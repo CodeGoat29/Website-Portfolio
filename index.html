@@ -14,6 +14,7 @@
                 <nav>
                     <a href="index.html">Home</a>
                     <a href="about.html">About</a>
+                    <button class="search-button" id="search-button" aria-label="Search">🔍</button>
                 </nav>
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
                     <div class="theme-toggle-slider">🌙</div>
@@ -22,6 +23,19 @@
         </div>
         <p class="tagline">Documenting my homelab, tech experiments, and cybersecurity journey.</p>
     </header>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="search-modal">
+        <div class="search-modal-content">
+            <div class="search-modal-header">
+                <h3>Search Posts</h3>
+                <button class="close-search" id="close-search" aria-label="Close search">×</button>
+            </div>
+            <input type="text" id="searchBar" placeholder="Search posts..." autofocus />
+            <ul id="searchResults"></ul>
+        </div>
+    </div>
+
     <main>
         <section class="intro">
             <h2>Welcome</h2>
@@ -32,7 +46,6 @@
         </section>
         <section class="posts">
             <h2>Recent Posts</h2>
-            <input type="text" id="searchBar" placeholder="Search posts..." />
             <ul id="postList">
                 <li><a href="posts/first-post.html">Setting Up Proxmox and Docker in My Homelab</a> - October 2025</li>
                 <li><a href="posts/network-segmentation.html">Network Segmentation in a Home Lab</a> - September 2025</li>
@@ -44,6 +57,13 @@
         <p>© 2025 CodeGoat | <a href="https://github.com/codegoat29">GitHub</a></p>
     </footer>
     <script>
+        // Post data
+        const posts = [
+            { title: 'Setting Up Proxmox and Docker in My Homelab', url: 'posts/first-post.html', date: 'October 2025' },
+            { title: 'Network Segmentation in a Home Lab', url: 'posts/network-segmentation.html', date: 'September 2025' },
+            { title: 'Using OpenVAS for Vulnerability Scanning', url: 'posts/vulnerability-scanning.html', date: 'August 2025' }
+        ];
+
         // Dark Mode Toggle
         const toggleButton = document.getElementById('theme-toggle');
         const slider = toggleButton.querySelector('.theme-toggle-slider');
@@ -53,18 +73,68 @@
             slider.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
         });
         
-        // Simple Search Filter
+        // Search Modal
+        const searchButton = document.getElementById('search-button');
+        const searchModal = document.getElementById('search-modal');
+        const closeSearch = document.getElementById('close-search');
         const searchBar = document.getElementById('searchBar');
-        const postList = document.getElementById('postList');
-        const posts = postList.getElementsByTagName('li');
+        const searchResults = document.getElementById('searchResults');
         
-        searchBar.addEventListener('keyup', () => {
-            const filter = searchBar.value.toLowerCase();
-            for (let i = 0; i < posts.length; i++) {
-                const text = posts[i].textContent.toLowerCase();
-                posts[i].style.display = text.includes(filter) ? '' : 'none';
+        searchButton.addEventListener('click', () => {
+            searchModal.classList.add('active');
+            searchBar.focus();
+        });
+        
+        closeSearch.addEventListener('click', () => {
+            searchModal.classList.remove('active');
+            searchBar.value = '';
+            displaySearchResults(posts);
+        });
+        
+        searchModal.addEventListener('click', (e) => {
+            if (e.target === searchModal) {
+                searchModal.classList.remove('active');
+                searchBar.value = '';
+                displaySearchResults(posts);
             }
         });
+        
+        // ESC key to close modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && searchModal.classList.contains('active')) {
+                searchModal.classList.remove('active');
+                searchBar.value = '';
+                displaySearchResults(posts);
+            }
+        });
+        
+        // Search functionality
+        function displaySearchResults(results) {
+            searchResults.innerHTML = '';
+            
+            if (results.length === 0) {
+                searchResults.innerHTML = '<div class="no-results">No posts found</div>';
+                return;
+            }
+            
+            results.forEach(post => {
+                const li = document.createElement('li');
+                li.innerHTML = `<a href="${post.url}">${post.title}</a> - ${post.date}`;
+                searchResults.appendChild(li);
+            });
+        }
+        
+        searchBar.addEventListener('input', () => {
+            const query = searchBar.value.toLowerCase();
+            const filtered = posts.filter(post => 
+                post.title.toLowerCase().includes(query) || 
+                post.date.toLowerCase().includes(query)
+            );
+            displaySearchResults(filtered);
+        });
+        
+        // Initialize with all posts
+        displaySearchResults(posts);
     </script>
 </body>
 </html>
