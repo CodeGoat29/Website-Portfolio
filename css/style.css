@@ -1,35 +1,40 @@
 /* Basic styling for simplicity and readability */
 body {
-    font-family: "Segoe UI", Roboto, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
+    font-family: system-ui, sans-serif;
     margin: 0;
     padding: 0;
     line-height: 1.6;
+    background: #f4f4f4;
+    color: #222;
+    transition: background 0.3s, color 0.3s;
 }
 
 header {
-    background: #004aad;
-    color: white;
     text-align: center;
-    padding: 1.5rem 1rem;
+    padding: 1.5rem;
+    background: #222;
+    color: #fff;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 2rem;
+.header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 }
 
-header .tagline {
-    font-style: italic;
-    margin-top: 0.3rem;
+#theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: #fff;
 }
 
 nav a {
-    color: white;
-    margin: 0 1rem;
+    color: #ddd;
+    margin: 0 0.75rem;
     text-decoration: none;
-    font-weight: 500;
 }
 
 nav a:hover {
@@ -37,27 +42,46 @@ nav a:hover {
 }
 
 main {
+    padding: 1.5rem;
     max-width: 800px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin: auto;
 }
 
-h2 {
-    border-bottom: 2px solid #004aad;
-    padding-bottom: 0.3rem;
+#searchBar {
+    width: 100%;
+    padding: 0.6rem;
+    margin: 0.8rem 0 1.2rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 0.8rem;
 }
 
 footer {
     text-align: center;
     padding: 1rem;
-    background: #eee;
-    font-size: 0.9rem;
+    background: #222;
+    color: #fff;
+    margin-top: 2rem;
 }
 
-footer a {
-    color: #004aad;
-    text-decoration: none;
+/* Dark Mode */
+.dark-mode {
+    background: #121212;
+    color: #f4f4f4;
+}
+
+.dark-mode header, .dark-mode footer {
+    background: #000;
+}
+
+.dark-mode a {
+    color: #9cd2ff;
 }
