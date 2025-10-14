@@ -37,6 +37,7 @@ header {
 nav {
     display: flex;
     gap: 1.5rem;
+    align-items: center;
 }
 
 nav a {
@@ -46,6 +47,20 @@ nav a {
 }
 
 nav a:hover {
+    color: #fff;
+}
+
+.search-button {
+    background: none;
+    border: none;
+    color: #ddd;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.search-button:hover {
     color: #fff;
 }
 
@@ -95,6 +110,131 @@ nav a:hover {
     font-size: 0.95rem;
 }
 
+/* Search Modal */
+.search-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 100px;
+}
+
+.search-modal.active {
+    display: flex;
+}
+
+.search-modal-content {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .search-modal-content {
+    background: #1e1e1e;
+}
+
+.search-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.search-modal-header h3 {
+    margin: 0;
+}
+
+.close-search {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    padding: 0;
+    line-height: 1;
+}
+
+.dark-mode .close-search {
+    color: #aaa;
+}
+
+.close-search:hover {
+    color: #000;
+}
+
+.dark-mode .close-search:hover {
+    color: #fff;
+}
+
+#searchBar {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.dark-mode #searchBar {
+    background: #2a2a2a;
+    color: #f4f4f4;
+    border-color: #444;
+}
+
+#searchResults {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#searchResults li {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.dark-mode #searchResults li {
+    border-bottom-color: #333;
+}
+
+#searchResults li:last-child {
+    border-bottom: none;
+}
+
+#searchResults a {
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.dark-mode #searchResults a {
+    color: #9cd2ff;
+}
+
+#searchResults a:hover {
+    text-decoration: underline;
+}
+
+.no-results {
+    text-align: center;
+    color: #666;
+    padding: 2rem 0;
+}
+
+.dark-mode .no-results {
+    color: #aaa;
+}
+
 main {
     padding: 1.5rem;
     max-width: 800px;
@@ -103,16 +243,6 @@ main {
 
 .intro, .posts {
     margin-bottom: 2rem;
-}
-
-#searchBar {
-    width: 100%;
-    padding: 0.6rem;
-    margin: 0.8rem 0 1.2rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-    box-sizing: border-box;
 }
 
 ul {
@@ -159,12 +289,6 @@ footer a {
     color: #9cd2ff;
 }
 
-.dark-mode #searchBar {
-    background: #1e1e1e;
-    color: #f4f4f4;
-    border-color: #444;
-}
-
 /* Responsive */
 @media (max-width: 600px) {
     .header-top {
@@ -178,13 +302,10 @@ footer a {
     main {
         padding: 1rem;
     }
+    .search-modal {
+        padding-top: 50px;
+    }
+    .search-modal-content {
+        padding: 1.5rem;
+    }
 }
-```
-
-Make sure your folder structure is:
-```
-your-project/
-├── index.html
-├── about.html
-└── css/
-    └── style.css
