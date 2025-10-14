@@ -8,30 +8,31 @@
 </head>
 <body>
     <header>
-        <div class="header-container">
+        <div class="header-top">
             <h1>CodeGoat</h1>
-            <button id="theme-toggle">🌙</button>
+            <div class="header-nav">
+                <nav>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                </nav>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <div class="theme-toggle-slider">🌙</div>
+                </button>
+            </div>
         </div>
         <p class="tagline">Documenting my homelab, tech experiments, and cybersecurity journey.</p>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-        </nav>
     </header>
-
     <main>
         <section class="intro">
             <h2>Welcome</h2>
             <p>
-                I’m building and documenting my homelab projects using Proxmox, Ubuntu Server, Docker, and more. 
+                I'm building and documenting my homelab projects using Proxmox, Ubuntu Server, Docker, and more. 
                 This site serves as my personal knowledge base and a way to share what I learn.
             </p>
         </section>
-
         <section class="posts">
             <h2>Recent Posts</h2>
             <input type="text" id="searchBar" placeholder="Search posts..." />
-
             <ul id="postList">
                 <li><a href="posts/first-post.html">Setting Up Proxmox and Docker in My Homelab</a> - October 2025</li>
                 <li><a href="posts/network-segmentation.html">Network Segmentation in a Home Lab</a> - September 2025</li>
@@ -39,24 +40,24 @@
             </ul>
         </section>
     </main>
-
     <footer>
         <p>© 2025 CodeGoat | <a href="https://github.com/codegoat29">GitHub</a></p>
     </footer>
-
     <script>
         // Dark Mode Toggle
         const toggleButton = document.getElementById('theme-toggle');
+        const slider = toggleButton.querySelector('.theme-toggle-slider');
+        
         toggleButton.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
-            toggleButton.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+            slider.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
         });
-
+        
         // Simple Search Filter
         const searchBar = document.getElementById('searchBar');
         const postList = document.getElementById('postList');
         const posts = postList.getElementsByTagName('li');
-
+        
         searchBar.addEventListener('keyup', () => {
             const filter = searchBar.value.toLowerCase();
             for (let i = 0; i < posts.length; i++) {
