@@ -10,35 +10,89 @@ body {
 }
 
 header {
-    text-align: center;
     padding: 1.5rem;
     background: #222;
     color: #fff;
 }
 
-.header-container {
+.header-top {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto 1rem;
 }
 
-#theme-toggle {
-    background: none;
-    border: none;
-    font-size: 1.3rem;
-    cursor: pointer;
-    color: #fff;
+.header-top h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+nav {
+    display: flex;
+    gap: 1.5rem;
 }
 
 nav a {
     color: #ddd;
-    margin: 0 0.75rem;
     text-decoration: none;
+    transition: color 0.2s;
 }
 
 nav a:hover {
-    text-decoration: underline;
+    color: #fff;
+}
+
+.theme-toggle {
+    background: #333;
+    border: 2px solid #555;
+    border-radius: 20px;
+    width: 60px;
+    height: 30px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.3s;
+}
+
+.theme-toggle:hover {
+    background: #444;
+}
+
+.theme-toggle-slider {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 22px;
+    height: 22px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+}
+
+.dark-mode .theme-toggle {
+    background: #555;
+    border-color: #777;
+}
+
+.dark-mode .theme-toggle-slider {
+    transform: translateX(30px);
+}
+
+.tagline {
+    text-align: center;
+    margin: 0;
+    color: #bbb;
+    font-size: 0.95rem;
 }
 
 main {
@@ -47,12 +101,18 @@ main {
     margin: auto;
 }
 
+.intro, .posts {
+    margin-bottom: 2rem;
+}
+
 #searchBar {
     width: 100%;
     padding: 0.6rem;
     margin: 0.8rem 0 1.2rem;
     border-radius: 5px;
     border: 1px solid #ccc;
+    font-size: 1rem;
+    box-sizing: border-box;
 }
 
 ul {
@@ -64,12 +124,25 @@ li {
     margin-bottom: 0.8rem;
 }
 
+main a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+main a:hover {
+    text-decoration: underline;
+}
+
 footer {
     text-align: center;
     padding: 1rem;
     background: #222;
     color: #fff;
     margin-top: 2rem;
+}
+
+footer a {
+    color: #9cd2ff;
 }
 
 /* Dark Mode */
@@ -82,6 +155,36 @@ footer {
     background: #000;
 }
 
-.dark-mode a {
+.dark-mode main a {
     color: #9cd2ff;
 }
+
+.dark-mode #searchBar {
+    background: #1e1e1e;
+    color: #f4f4f4;
+    border-color: #444;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .header-top {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .header-nav {
+        width: 100%;
+        justify-content: space-between;
+    }
+    main {
+        padding: 1rem;
+    }
+}
+```
+
+Make sure your folder structure is:
+```
+your-project/
+├── index.html
+├── about.html
+└── css/
+    └── style.css
