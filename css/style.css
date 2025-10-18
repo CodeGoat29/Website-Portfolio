@@ -290,8 +290,7 @@ footer a {
 }
 
 /* Logo Styling */
-.header-logo img {
-    height: 60px;      /* Adjust to desired size — try 30px–60px range */
+height: 100px;     /* Increased to 100px for a larger logo */
     width: auto;       /* Keeps the aspect ratio */
     border-radius: 8px; /* Optional: rounded corners */
     object-fit: contain;
@@ -318,5 +317,6 @@ footer a {
         padding: 1.5rem;
     }
 }
+
 
 
