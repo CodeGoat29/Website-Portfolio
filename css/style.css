@@ -290,9 +290,9 @@ footer a {
 }
 
 /* Logo Styling */
-height: 100px;     /* Increased to 100px for a larger logo */
-    width: auto;       /* Keeps the aspect ratio */
-    border-radius: 8px; /* Optional: rounded corners */
+height: 600px; 
+    width: auto;       
+    border-radius: 8px;
     object-fit: contain;
     vertical-align: middle;
 }
@@ -317,6 +317,7 @@ height: 100px;     /* Increased to 100px for a larger logo */
         padding: 1.5rem;
     }
 }
+
 
 
 
