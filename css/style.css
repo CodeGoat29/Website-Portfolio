@@ -290,7 +290,7 @@ footer a {
 }
 
 /* Logo Styling */
-height: 600px; 
+height: 60px; 
     width: auto;       
     border-radius: 8px;
     object-fit: contain;
@@ -317,6 +317,7 @@ height: 600px;
         padding: 1.5rem;
     }
 }
+
 
 
 
