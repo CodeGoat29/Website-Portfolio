@@ -30,8 +30,8 @@ header {
 }
 
 header .header-logo img {
-    height: 60px !important;
-    max-height: 60px !important;
+    height: 70px !important;
+    max-height: 70px !important;
     width: auto !important;
     border-radius: 6px;
     object-fit: contain;
@@ -325,6 +325,7 @@ footer a {
         padding: 1.5rem;
     }
 }
+
 
 
 
