@@ -241,7 +241,8 @@ main {
     margin: auto;
 }
 
-.intro, .posts {
+.intro,
+.posts {
     margin-bottom: 2rem;
 }
 
@@ -281,7 +282,8 @@ footer a {
     color: #f4f4f4;
 }
 
-.dark-mode header, .dark-mode footer {
+.dark-mode header,
+.dark-mode footer {
     background: #000;
 }
 
@@ -290,11 +292,12 @@ footer a {
 }
 
 /* Logo Styling */
-height: 25px;
-width: auto;
-border-radius: 6px;
-object-fit: contain;
-vertical-align: middle;
+.header-logo img {
+    height: 35px; /* adjust this value to make the goat image smaller/larger */
+    width: auto;
+    border-radius: 6px;
+    object-fit: contain;
+    vertical-align: middle;
 }
 
 /* Responsive */
@@ -317,9 +320,3 @@ vertical-align: middle;
         padding: 1.5rem;
     }
 }
-
-
-
-
-
-
