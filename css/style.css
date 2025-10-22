@@ -23,6 +23,21 @@ header {
     margin: 0 auto 1rem;
 }
 
+.header-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+header .header-logo img {
+    height: 30px !important;   /* change this value for your desired size */
+    max-height: 30px !important;
+    width: auto !important;
+    border-radius: 6px;
+    object-fit: contain;
+    vertical-align: middle;
+}
+
 .header-top h1 {
     margin: 0;
     font-size: 1.8rem;
@@ -241,8 +256,7 @@ main {
     margin: auto;
 }
 
-.intro,
-.posts {
+.intro, .posts {
     margin-bottom: 2rem;
 }
 
@@ -289,15 +303,6 @@ footer a {
 
 .dark-mode main a {
     color: #9cd2ff;
-}
-
-/* Logo Styling */
-.header-logo img {
-    height: 35px; /* adjust this value to make the goat image smaller/larger */
-    width: auto;
-    border-radius: 6px;
-    object-fit: contain;
-    vertical-align: middle;
 }
 
 /* Responsive */
