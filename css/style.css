@@ -41,7 +41,8 @@ header .header-logo img {
 
 .header-top h1 {
     margin: 0;
-    font-size: 1.8rem;
+    font-size: 2.0rem;
+    text-align: center;
 }
 
 .header-nav {
