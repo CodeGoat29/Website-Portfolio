@@ -54,30 +54,62 @@ body {
     padding: 0 20px;
 }
 
-/* Dark Mode Toggle */
+/* Dark Mode Toggle - Smaller Toggle Switch */
 .dark-mode-toggle {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    background: var(--accent);
-    border: 2px solid var(--border);
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
+    top: 15px;
+    right: 15px;
     z-index: 1000;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-.dark-mode-toggle:hover {
-    background: var(--accent-hover);
-    transform: rotate(20deg);
+.toggle-checkbox {
+    display: none;
 }
 
-.toggle-icon {
-    font-size: 24px;
+.toggle-label {
     display: block;
+    width: 50px;
+    height: 26px;
+    background: var(--gear-gray);
+    border-radius: 13px;
+    position: relative;
+    cursor: pointer;
+    border: 2px solid var(--border);
+    transition: background 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.toggle-label:hover {
+    background: var(--steel);
+}
+
+.toggle-inner {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 13px;
+    transition: background 0.3s ease;
+}
+
+.toggle-switch {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    background: var(--steam);
+    border-radius: 50%;
+    transition: transform 0.3s ease, background 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.toggle-checkbox:checked + .toggle-label {
+    background: var(--accent);
+}
+
+.toggle-checkbox:checked + .toggle-label .toggle-switch {
+    transform: translateX(24px);
+    background: var(--coal);
 }
 
 /* Header */
@@ -295,29 +327,44 @@ h4 {
     margin-top: 10px;
 }
 
-.experience-item li,
-.certifications li {
+.experience-item li {
     margin-bottom: 8px;
 }
 
-.certifications {
-    list-style: none;
+/* Certifications Grid with Logos */
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
 }
 
-.certifications li {
-    padding: 10px;
-    padding-left: 30px;
-    position: relative;
+.cert-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
     background: var(--bg-primary);
-    margin-bottom: 10px;
     border-radius: 5px;
     border-left: 4px solid var(--accent);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.certifications li::before {
-    content: '🔒';
-    position: absolute;
-    left: 8px;
+.cert-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cert-logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.cert-item span {
+    font-weight: 600;
+    color: var(--text-primary);
 }
 
 /* Blog Section */
@@ -513,19 +560,14 @@ footer {
     
     .skills-grid,
     .blog-grid,
-    .resources-grid {
+    .resources-grid,
+    .certifications-grid {
         grid-template-columns: 1fr;
     }
     
     .dark-mode-toggle {
         top: 10px;
         right: 10px;
-        width: 40px;
-        height: 40px;
-    }
-    
-    .toggle-icon {
-        font-size: 20px;
     }
 }
 
@@ -546,5 +588,10 @@ footer {
     .contact-link {
         width: 100%;
         max-width: 250px;
+    }
+    
+    .cert-logo {
+        width: 40px;
+        height: 40px;
     }
 }
