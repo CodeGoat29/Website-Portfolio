@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,9 +7,13 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Toggle dark mode">
-        <span class="toggle-icon">☀️</span>
-    </button>
+    <div class="dark-mode-toggle">
+        <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+        <label for="darkModeToggle" class="toggle-label">
+            <span class="toggle-inner"></span>
+            <span class="toggle-switch"></span>
+        </label>
+    </div>
 
     <header>
         <div class="container header-content">
@@ -36,7 +39,7 @@
     <main class="container">
         <section id="home" class="hero">
             <h2>Welcome to My Digital Workshop</h2>
-            <p>Exploring the intersection of security, technology, and innovation. Dive into my portfolio, read my latest research, and discover curated tools for cybersecurity professionals.</p>
+            <p>MSP Security Engineer specializing in endpoint protection, cloud administration, and security operations. Exploring the intersection of cybersecurity, automation, and enterprise IT solutions.</p>
         </section>
 
         <section id="resume" class="resume-section">
@@ -44,37 +47,46 @@
             
             <div class="resume-card">
                 <h3>Professional Summary</h3>
-                <p>Experienced cybersecurity professional specializing in penetration testing, vulnerability assessment, and security research. Passionate about securing systems and educating others on best practices.</p>
+                <p>IT and cybersecurity professional with expertise in MSP operations, endpoint security, and cloud administration. Proven track record in deploying enterprise security solutions, managing Microsoft 365 environments, and leading technical teams. CompTIA PenTest+ certified with hands-on experience in threat detection, incident response, and network optimization.</p>
             </div>
 
             <div class="resume-card">
                 <h3>Skills</h3>
                 <div class="skills-grid">
                     <div class="skill-category">
-                        <h4>Security Testing</h4>
+                        <h4>Cybersecurity & Endpoint Protection</h4>
                         <ul>
-                            <li>Penetration Testing</li>
-                            <li>Vulnerability Assessment</li>
-                            <li>Network Security</li>
-                            <li>Web Application Security</li>
+                            <li>SentinelOne, BlackPoint, Ironscales</li>
+                            <li>Bitwarden, NordLayer VPN</li>
+                            <li>Microsoft Defender, Conditional Access</li>
+                            <li>MFA/SSO Implementation</li>
                         </ul>
                     </div>
                     <div class="skill-category">
-                        <h4>Tools & Technologies</h4>
+                        <h4>Systems Administration & Cloud</h4>
                         <ul>
-                            <li>Metasploit, Burp Suite</li>
-                            <li>Nmap, Wireshark</li>
-                            <li>Python, Bash</li>
-                            <li>Linux, Windows</li>
+                            <li>Microsoft 365 Admin Center</li>
+                            <li>Exchange Online, SharePoint, Teams</li>
+                            <li>Azure AD, Pax8</li>
+                            <li>AWS Certified Cloud Practitioner</li>
                         </ul>
                     </div>
                     <div class="skill-category">
-                        <h4>Specializations</h4>
+                        <h4>RMM, Automation & Scripting</h4>
                         <ul>
-                            <li>CTF Competitions</li>
-                            <li>Threat Analysis</li>
-                            <li>Security Research</li>
-                            <li>Incident Response</li>
+                            <li>NinjaOne RMM</li>
+                            <li>Python, Bash, PowerShell</li>
+                            <li>AutoHotkey (AHK), GitHub</li>
+                            <li>Linux System Administration</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Tools & Platforms</h4>
+                        <ul>
+                            <li>Wireshark, FreePBX, Asterisk</li>
+                            <li>ITIL v4 Practices</li>
+                            <li>Zendesk, Windows/macOS Support</li>
+                            <li>SIP/VoIP Troubleshooting</li>
                         </ul>
                     </div>
                 </div>
@@ -83,41 +95,100 @@
             <div class="resume-card">
                 <h3>Experience</h3>
                 <div class="experience-item">
-                    <h4>Senior Security Analyst</h4>
-                    <p class="company">Company Name | 2020 - Present</p>
+                    <h4>MSP - IT & Cybersecurity Solutions Engineer</h4>
+                    <p class="company">Lightspeed Voice | June 2025 - Present | Venice, Florida</p>
                     <ul>
-                        <li>Conducted comprehensive security assessments and penetration tests</li>
-                        <li>Identified and remediated critical vulnerabilities in enterprise systems</li>
-                        <li>Developed security policies and best practice documentation</li>
+                        <li>Lead onboarding and security deployment for MSP clients, implementing SentinelOne, NinjaOne, BlackPoint, Pax8, Bitwarden, Ironscales, and NordLayer VPN</li>
+                        <li>Administer and secure Microsoft 365 tenants, managing licensing, configurations, and Exchange/Teams/SharePoint integrations</li>
+                        <li>Investigate alerts and remediate threats, refining EDR and email security policies to reduce false positives and improve response times</li>
                     </ul>
                 </div>
                 <div class="experience-item">
-                    <h4>Security Consultant</h4>
-                    <p class="company">Previous Company | 2018 - 2020</p>
+                    <h4>Lead Technical Account Manager (Tier 2 Engineer)</h4>
+                    <p class="company">Lightspeed Voice | April 2024 - May 2025 | Venice, Florida</p>
                     <ul>
-                        <li>Performed vulnerability assessments for diverse client environments</li>
-                        <li>Provided security training and awareness programs</li>
-                        <li>Assisted in incident response and forensic investigations</li>
+                        <li>Managed Tier 2 escalations under ITIL v4 framework, documenting bugs and feature requests through GitHub for permanent resolution</li>
+                        <li>Diagnosed and optimized Linux-based Asterisk systems, improving call stability and SIP performance</li>
+                        <li>Led cross-functional teams through VoIP deployment projects, achieving consistent on-time delivery and client satisfaction metrics</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h4>Technical Account Manager</h4>
+                    <p class="company">Lightspeed Voice | February 2022 - March 2024 | Venice, Florida</p>
+                    <ul>
+                        <li>Supported and implemented secure, cloud-based VoIP systems for enterprise clients, managing provisioning, endpoint setup, and network optimization</li>
+                        <li>Diagnosed and resolved complex SIP, DNS, and NAT issues using Wireshark and Linux tools to ensure reliable system performance</li>
+                        <li>Automated provisioning and diagnostics with Bash and AutoHotkey scripts, improving efficiency and reducing manual errors</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h4>PBX Operator</h4>
+                    <p class="company">Shore Point Health Venice | February 2020 - February 2022 | Venice, Florida</p>
+                    <ul>
+                        <li>Coordinated with IT to troubleshoot internal telephony issues and optimize communication workflows</li>
                     </ul>
                 </div>
             </div>
 
             <div class="resume-card">
                 <h3>Certifications</h3>
-                <ul class="certifications">
-                    <li>OSCP - Offensive Security Certified Professional</li>
-                    <li>CEH - Certified Ethical Hacker</li>
-                    <li>Security+ - CompTIA Security+</li>
-                    <li>CISSP - Certified Information Systems Security Professional</li>
-                </ul>
+                <div class="certifications-grid">
+                    <div class="cert-item">
+                        <img src="/images/certifications/PenTest+-png.png" alt="PenTest+" class="cert-logo">
+                        <span>CompTIA PenTest+</span>
+                    </div>
+                    <div class="cert-item">
+                        <img src="/images/certifications/CySA+-png.png" alt="CySA+" class="cert-logo">
+                        <span>CompTIA CySA+</span>
+                    </div>
+                    <div class="cert-item">
+                        <img src="/images/certifications/Security+-png.png" alt="Security+" class="cert-logo">
+                        <span>CompTIA Security+</span>
+                    </div>
+                    <div class="cert-item">
+                        <img src="/images/certifications/Linux+-png.png" alt="Linux+" class="cert-logo">
+                        <span>CompTIA Linux+</span>
+                    </div>
+                    <div class="cert-item">
+                        <img src="/images/certifications/Network+-png.png" alt="Network+" class="cert-logo">
+                        <span>CompTIA Network+</span>
+                    </div>
+                    <div class="cert-item">
+                        <img src="/images/certifications/A+-png.png" alt="A+" class="cert-logo">
+                        <span>CompTIA A+</span>
+                    </div>
+                    <div class="cert-item">
+                        <img src="/images/certifications/ITF+ Logo Certified.png" alt="ITF+" class="cert-logo">
+                        <span>CompTIA IT Fundamentals+</span>
+                    </div>
+                    <div class="cert-item">
+                        <img src="/images/certifications/AWSCP.png" alt="AWS CCP" class="cert-logo">
+                        <span>AWS Certified Cloud Practitioner</span>
+                    </div>
+                    <div class="cert-item">
+                        <img src="/images/certifications/itilv4.png" alt="ITIL v4" class="cert-logo">
+                        <span>ITIL v4 Foundations</span>
+                    </div>
+                    <div class="cert-item">
+                        <img src="/images/certifications/LPI.png" alt="LPI" class="cert-logo">
+                        <span>LPI Linux Essentials</span>
+                    </div>
+                    <div class="cert-item">
+                        <img src="/images/certifications/PT1.png" alt="PT1" class="cert-logo">
+                        <span>TryHackMe Junior Pen Tester (PT1)</span>
+                    </div>
+                </div>
             </div>
 
             <div class="resume-card">
                 <h3>Education</h3>
                 <div class="education-item">
-                    <h4>Bachelor of Science in Computer Science</h4>
-                    <p class="company">University Name | 2014 - 2018</p>
-                    <p>Focus on Cybersecurity and Network Security</p>
+                    <h4>Bachelor of Science in Information Technology</h4>
+                    <p class="company">Western Governors University | Graduated June 2024</p>
+                </div>
+                <div class="education-item">
+                    <h4>Associate of Arts in Art/General Studies</h4>
+                    <p class="company">State College of Florida | Graduated December 2019</p>
                 </div>
             </div>
         </section>
@@ -242,23 +313,20 @@
         // Dark mode toggle
         const darkModeToggle = document.getElementById('darkModeToggle');
         const body = document.body;
-        const toggleIcon = darkModeToggle.querySelector('.toggle-icon');
 
         // Check for saved preference
         if (localStorage.getItem('darkMode') === 'enabled') {
             body.classList.add('dark-mode');
-            toggleIcon.textContent = '🌙';
+            darkModeToggle.checked = true;
         }
 
-        darkModeToggle.addEventListener('click', () => {
+        darkModeToggle.addEventListener('change', () => {
             body.classList.toggle('dark-mode');
             
             if (body.classList.contains('dark-mode')) {
                 localStorage.setItem('darkMode', 'enabled');
-                toggleIcon.textContent = '🌙';
             } else {
                 localStorage.setItem('darkMode', 'disabled');
-                toggleIcon.textContent = '☀️';
             }
         });
 
