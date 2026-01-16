@@ -1,152 +1,287 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeGoat's Tech Blog</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" type="image/jpg" href="images/profile.jpg">
+    <title>DiPiazza - Cybersecurity Professional</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header>
-    <div class="header-top">
-<div class="header-logo">
-    <img src="images/thegoat.png" alt="Profile Image">
-</div>
-        <h1>CodeGoat</h1>
-        <h2>Owned and operated by David Dipiazza</h2>
-            <div class="header-nav">
-                <nav>
-                    <a href="index.html">Home</a>
-                    <a href="about.html">About</a>
-                    <button class="search-button" id="search-button" aria-label="Search">🔍</button>
-                </nav>
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-                    <div class="theme-toggle-slider">🌙</div>
-                </button>
+    <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Toggle dark mode">
+        <span class="toggle-icon">☀️</span>
+    </button>
+
+    <header>
+        <div class="container header-content">
+            <img src="/images/thegoat.png" alt="DiPiazza Logo" class="logo">
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Cybersecurity Professional | Penetration Tester | Security Researcher</p>
             </div>
         </div>
-        <p class="tagline">Documenting my homelab, tech experiments, and cybersecurity journey.</p>
+        <nav>
+            <div class="container">
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#resume">Resume</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
     </header>
 
-    <!-- Search Modal -->
-    <div class="search-modal" id="search-modal">
-        <div class="search-modal-content">
-            <div class="search-modal-header">
-                <h3>Search Posts</h3>
-                <button class="close-search" id="close-search" aria-label="Close search">×</button>
-            </div>
-            <input type="text" id="searchBar" placeholder="Search posts..." autofocus />
-            <ul id="searchResults"></ul>
-        </div>
-    </div>
-
-    <main>
-        <section class="intro">
-            <h2>Welcome</h2>
-            <p>
-                I'm building and documenting my homelab projects using Proxmox, Ubuntu Server, Docker, and more. 
-                This site serves as my personal knowledge base and a way to share what I learn.
-            </p>
+    <main class="container">
+        <section id="home" class="hero">
+            <h2>Welcome to My Digital Workshop</h2>
+            <p>Exploring the intersection of security, technology, and innovation. Dive into my portfolio, read my latest research, and discover curated tools for cybersecurity professionals.</p>
         </section>
-        <section class="posts">
-            <h2>Recent Posts</h2>
-            <ul id="postList">
-                <li><a href="posts/first-post.html">Setting Up Proxmox and Docker in My Homelab</a> - October 2025</li>
-                <li><a href="posts/network-segmentation.html">Network Segmentation in a Home Lab</a> - September 2025</li>
-                <li><a href="posts/vulnerability-scanning.html">Using OpenVAS for Vulnerability Scanning</a> - August 2025</li>
-            </ul>
+
+        <section id="resume" class="resume-section">
+            <h2>Resume</h2>
+            
+            <div class="resume-card">
+                <h3>Professional Summary</h3>
+                <p>Experienced cybersecurity professional specializing in penetration testing, vulnerability assessment, and security research. Passionate about securing systems and educating others on best practices.</p>
+            </div>
+
+            <div class="resume-card">
+                <h3>Skills</h3>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Security Testing</h4>
+                        <ul>
+                            <li>Penetration Testing</li>
+                            <li>Vulnerability Assessment</li>
+                            <li>Network Security</li>
+                            <li>Web Application Security</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Tools & Technologies</h4>
+                        <ul>
+                            <li>Metasploit, Burp Suite</li>
+                            <li>Nmap, Wireshark</li>
+                            <li>Python, Bash</li>
+                            <li>Linux, Windows</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Specializations</h4>
+                        <ul>
+                            <li>CTF Competitions</li>
+                            <li>Threat Analysis</li>
+                            <li>Security Research</li>
+                            <li>Incident Response</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume-card">
+                <h3>Experience</h3>
+                <div class="experience-item">
+                    <h4>Senior Security Analyst</h4>
+                    <p class="company">Company Name | 2020 - Present</p>
+                    <ul>
+                        <li>Conducted comprehensive security assessments and penetration tests</li>
+                        <li>Identified and remediated critical vulnerabilities in enterprise systems</li>
+                        <li>Developed security policies and best practice documentation</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h4>Security Consultant</h4>
+                    <p class="company">Previous Company | 2018 - 2020</p>
+                    <ul>
+                        <li>Performed vulnerability assessments for diverse client environments</li>
+                        <li>Provided security training and awareness programs</li>
+                        <li>Assisted in incident response and forensic investigations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="resume-card">
+                <h3>Certifications</h3>
+                <ul class="certifications">
+                    <li>OSCP - Offensive Security Certified Professional</li>
+                    <li>CEH - Certified Ethical Hacker</li>
+                    <li>Security+ - CompTIA Security+</li>
+                    <li>CISSP - Certified Information Systems Security Professional</li>
+                </ul>
+            </div>
+
+            <div class="resume-card">
+                <h3>Education</h3>
+                <div class="education-item">
+                    <h4>Bachelor of Science in Computer Science</h4>
+                    <p class="company">University Name | 2014 - 2018</p>
+                    <p>Focus on Cybersecurity and Network Security</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog" class="blog-section">
+            <h2>Latest Blog Posts</h2>
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="blog-meta">
+                        <span class="blog-date">January 15, 2026</span>
+                        <span class="blog-category">CTF</span>
+                    </div>
+                    <h3><a href="blog/sample-ctf-writeup.html">Sample CTF Writeup: Binary Exploitation Challenge</a></h3>
+                    <p>A detailed walkthrough of solving a buffer overflow challenge in the recent CTF competition. Learn about stack analysis, payload crafting, and exploit development.</p>
+                    <a href="blog/sample-ctf-writeup.html" class="read-more">Read More →</a>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-meta">
+                        <span class="blog-date">January 10, 2026</span>
+                        <span class="blog-category">Tutorial</span>
+                    </div>
+                    <h3><a href="blog/sample-tutorial.html">Advanced Nmap Techniques for Penetration Testing</a></h3>
+                    <p>Explore advanced scanning techniques, NSE scripts, and optimization strategies for efficient network reconnaissance during security assessments.</p>
+                    <a href="blog/sample-tutorial.html" class="read-more">Read More →</a>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-meta">
+                        <span class="blog-date">January 5, 2026</span>
+                        <span class="blog-category">Research</span>
+                    </div>
+                    <h3><a href="blog/sample-research.html">Analyzing Modern Web Application Vulnerabilities</a></h3>
+                    <p>An in-depth analysis of emerging web application security threats and practical mitigation strategies for developers and security professionals.</p>
+                    <a href="blog/sample-research.html" class="read-more">Read More →</a>
+                </article>
+            </div>
+        </section>
+
+        <section id="resources" class="resources-section">
+            <h2>Resources</h2>
+            <p class="resources-intro">Curated tools and resources for cybersecurity professionals and enthusiasts.</p>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3>Network Tools</h3>
+                    <ul>
+                        <li><a href="https://nmap.org" target="_blank">Nmap</a> - Network discovery and security auditing</li>
+                        <li><a href="https://www.wireshark.org" target="_blank">Wireshark</a> - Network protocol analyzer</li>
+                        <li><a href="https://www.tcpdump.org" target="_blank">tcpdump</a> - Command-line packet analyzer</li>
+                        <li><a href="https://github.com/robertdavidgraham/masscan" target="_blank">Masscan</a> - Fast TCP port scanner</li>
+                    </ul>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Web Application Testing</h3>
+                    <ul>
+                        <li><a href="https://portswigger.net/burp" target="_blank">Burp Suite</a> - Web vulnerability scanner</li>
+                        <li><a href="https://www.zaproxy.org" target="_blank">OWASP ZAP</a> - Web app security scanner</li>
+                        <li><a href="https://github.com/sqlmapproject/sqlmap" target="_blank">SQLmap</a> - SQL injection tool</li>
+                        <li><a href="https://github.com/commixproject/commix" target="_blank">Commix</a> - Command injection exploiter</li>
+                    </ul>
+                </div>
+
+                <div class="resource-card">
+                    <h3>CTF & Practice Platforms</h3>
+                    <ul>
+                        <li><a href="https://www.hackthebox.com" target="_blank">HackTheBox</a> - Penetration testing labs</li>
+                        <li><a href="https://tryhackme.com" target="_blank">TryHackMe</a> - Guided cybersecurity training</li>
+                        <li><a href="https://picoctf.org" target="_blank">PicoCTF</a> - Beginner-friendly CTF platform</li>
+                        <li><a href="https://overthewire.org" target="_blank">OverTheWire</a> - War games for security learning</li>
+                    </ul>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Exploitation & Post-Exploitation</h3>
+                    <ul>
+                        <li><a href="https://www.metasploit.com" target="_blank">Metasploit</a> - Penetration testing framework</li>
+                        <li><a href="https://github.com/PowerShellMafia/PowerSploit" target="_blank">PowerSploit</a> - PowerShell post-exploitation</li>
+                        <li><a href="https://github.com/SecureAuthCorp/impacket" target="_blank">Impacket</a> - Network protocol toolkit</li>
+                        <li><a href="https://github.com/byt3bl33d3r/CrackMapExec" target="_blank">CrackMapExec</a> - Post-exploitation tool</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <h2>Get In Touch</h2>
+            <p>Interested in collaboration, consulting, or just want to connect? Reach out through any of the channels below.</p>
+            <div class="contact-links">
+                <a href="mailto:contact@dipiazza.org" class="contact-link">Email</a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/yourprofile" target="_blank" class="contact-link">GitHub</a>
+                <a href="https://twitter.com/yourprofile" target="_blank" class="contact-link">Twitter</a>
+            </div>
         </section>
     </main>
-    <footer>
-        <p>© 2025 CodeGoat | <a href="https://github.com/codegoat29">GitHub</a></p>
-    </footer>
-    <script>
-        // Post data
-        const posts = [
-            { title: 'Setting Up Proxmox and Docker in My Homelab', url: 'posts/first-post.html', date: 'October 2025' },
-            { title: 'Network Segmentation in a Home Lab', url: 'posts/network-segmentation.html', date: 'September 2025' },
-            { title: 'Using OpenVAS for Vulnerability Scanning', url: 'posts/vulnerability-scanning.html', date: 'August 2025' }
-        ];
 
-        // Dark Mode Toggle
-        const toggleButton = document.getElementById('theme-toggle');
-        const slider = toggleButton.querySelector('.theme-toggle-slider');
-        
-        toggleButton.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            slider.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-        });
-        
-        // Search Modal
-        const searchButton = document.getElementById('search-button');
-        const searchModal = document.getElementById('search-modal');
-        const closeSearch = document.getElementById('close-search');
-        const searchBar = document.getElementById('searchBar');
-        const searchResults = document.getElementById('searchResults');
-        
-        searchButton.addEventListener('click', () => {
-            searchModal.classList.add('active');
-            searchBar.focus();
-        });
-        
-        closeSearch.addEventListener('click', () => {
-            searchModal.classList.remove('active');
-            searchBar.value = '';
-            displaySearchResults(posts);
-        });
-        
-        searchModal.addEventListener('click', (e) => {
-            if (e.target === searchModal) {
-                searchModal.classList.remove('active');
-                searchBar.value = '';
-                displaySearchResults(posts);
-            }
-        });
-        
-        // ESC key to close modal
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && searchModal.classList.contains('active')) {
-                searchModal.classList.remove('active');
-                searchBar.value = '';
-                displaySearchResults(posts);
-            }
-        });
-        
-        // Search functionality
-        function displaySearchResults(results) {
-            searchResults.innerHTML = '';
-            
-            if (results.length === 0) {
-                searchResults.innerHTML = '<div class="no-results">No posts found</div>';
-                return;
-            }
-            
-            results.forEach(post => {
-                const li = document.createElement('li');
-                li.innerHTML = `<a href="${post.url}">${post.title}</a> - ${post.date}`;
-                searchResults.appendChild(li);
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                
+                // Update active state
+                document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Smooth scroll
+                targetSection.scrollIntoView({ behavior: 'smooth' });
             });
-        }
-        
-        searchBar.addEventListener('input', () => {
-            const query = searchBar.value.toLowerCase();
-            const filtered = posts.filter(post => 
-                post.title.toLowerCase().includes(query) || 
-                post.date.toLowerCase().includes(query)
-            );
-            displaySearchResults(filtered);
         });
-        
-        // Initialize with all posts
-        displaySearchResults(posts);
+
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const toggleIcon = darkModeToggle.querySelector('.toggle-icon');
+
+        // Check for saved preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            toggleIcon.textContent = '🌙';
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+                toggleIcon.textContent = '🌙';
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+                toggleIcon.textContent = '☀️';
+            }
+        });
+
+        // Highlight active section on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
