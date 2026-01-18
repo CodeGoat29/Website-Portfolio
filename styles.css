@@ -54,12 +54,83 @@ body {
     padding: 0 20px;
 }
 
-/* Dark Mode Toggle - Smaller Toggle Switch */
-.dark-mode-toggle {
+/* Dark Mode Toggle and Counter */
+.top-controls {
     position: fixed;
     top: 15px;
     right: 15px;
     z-index: 1000;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.counter-dropdown {
+    position: relative;
+}
+
+.counter-button {
+    background: var(--gear-gray);
+    color: var(--steam);
+    border: 2px solid var(--border);
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-weight: 600;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.counter-button:hover {
+    background: var(--steel);
+    color: var(--accent);
+}
+
+.counter-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 45px;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border);
+    border-radius: 5px;
+    padding: 15px;
+    min-width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.counter-content.show {
+    display: block;
+}
+
+.counter-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    border-bottom: 1px solid var(--border);
+}
+
+.counter-item:last-child {
+    border-bottom: none;
+}
+
+.counter-name {
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 1em;
+}
+
+.counter-age {
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    font-family: 'Courier New', monospace;
+}
+
+.dark-mode-toggle {
+    position: relative;
 }
 
 .toggle-checkbox {
@@ -110,6 +181,63 @@ body {
 .toggle-checkbox:checked + .toggle-label .toggle-switch {
     transform: translateX(24px);
     background: var(--coal);
+}
+
+/* Decorative Gears */
+.gear-decoration {
+    position: fixed;
+    width: 80px;
+    height: 80px;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23b8860b' d='M50,10 L55,25 L60,10 L65,25 L70,15 L72,30 L80,20 L78,35 L88,30 L82,43 L92,42 L84,53 L92,58 L84,65 L90,72 L80,72 L82,82 L72,78 L70,88 L65,78 L60,90 L55,80 L50,90 L45,80 L40,90 L35,78 L30,88 L28,78 L20,82 L22,72 L12,72 L18,65 L8,58 L16,53 L8,42 L18,43 L12,30 L22,35 L20,20 L28,30 L30,15 L35,25 L40,10 L45,25 Z'/%3E%3Ccircle cx='50' cy='50' r='15' fill='%23b8860b'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.gear-top-left {
+    top: 120px;
+    left: 20px;
+    animation: rotateGearSlow 30s linear infinite;
+}
+
+.gear-top-right {
+    top: 150px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    animation: rotateGearSlow 25s linear infinite reverse;
+}
+
+.gear-bottom-left {
+    bottom: 100px;
+    left: 50px;
+    width: 70px;
+    height: 70px;
+    animation: rotateGearSlow 35s linear infinite;
+}
+
+.gear-bottom-right {
+    bottom: 150px;
+    right: 80px;
+    width: 90px;
+    height: 90px;
+    animation: rotateGearSlow 40s linear infinite reverse;
+}
+
+@keyframes rotateGearSlow {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+body.dark-mode .gear-decoration {
+    opacity: 0.1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23cd7f32' d='M50,10 L55,25 L60,10 L65,25 L70,15 L72,30 L80,20 L78,35 L88,30 L82,43 L92,42 L84,53 L92,58 L84,65 L90,72 L80,72 L82,82 L72,78 L70,88 L65,78 L60,90 L55,80 L50,90 L45,80 L40,90 L35,78 L30,88 L28,78 L20,82 L22,72 L12,72 L18,65 L8,58 L16,53 L8,42 L18,43 L12,30 L22,35 L20,20 L28,30 L30,15 L35,25 L40,10 L45,25 Z'/%3E%3Ccircle cx='50' cy='50' r='15' fill='%23cd7f32'/%3E%3C/svg%3E");
 }
 
 /* Header */
@@ -565,9 +693,18 @@ footer {
         grid-template-columns: 1fr;
     }
     
-    .dark-mode-toggle {
-        top: 10px;
-        right: 10px;
+    .top-controls {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 10px;
+    }
+    
+    .counter-content {
+        right: 0;
+    }
+    
+    .gear-decoration {
+        display: none;
     }
 }
 
