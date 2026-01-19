@@ -742,3 +742,558 @@
                     <button class="favorite-btn" data-command="vcpu-count">☆</button>
                 </div>
                 <p class="command-description">Count virtual CPUs
+                <p class="command-description">Count virtual CPUs on virtualized servers by parsing processor information.</p>
+                <div class="command-block">
+                    <code>cat /proc/cpuinfo | grep -E '^processor' | wc -l</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Verify VM resource allocation matches expected configuration.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="memory ram total meminfo">
+                <div class="command-header">
+                    <h3>Check Total RAM</h3>
+                    <button class="favorite-btn" data-command="ram-check">☆</button>
+                </div>
+                <p class="command-description">Display total system memory available on the server in kilobytes.</p>
+                <div class="command-block">
+                    <code>cat /proc/meminfo | grep -i memtotal</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Verify server memory allocation for capacity planning or troubleshooting performance issues.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="top processes cpu memory usage monitor">
+                <div class="command-header">
+                    <h3>Monitor Running Processes</h3>
+                    <button class="favorite-btn" data-command="top">☆</button>
+                </div>
+                <p class="command-description">Real-time view of system processes, CPU usage, memory consumption, and load averages.</p>
+                <div class="command-block">
+                    <code>top</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Interactive commands:</strong> Press 'M' to sort by memory, 'P' for CPU, 'q' to quit.<br>
+                    <strong>Use case:</strong> Identify resource-hungry processes causing performance issues.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="sar iowait performance disk cpu history">
+                <div class="command-header">
+                    <h3>View SAR (System Activity Report) - Current Day</h3>
+                    <button class="favorite-btn" data-command="sar-current">☆</button>
+                </div>
+                <p class="command-description">Display system activity report for today, showing CPU usage, I/O wait times, and performance metrics.</p>
+                <div class="command-block">
+                    <code>sar -p</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Key metric:</strong> %iowait column shows time CPU spent waiting for I/O operations.<br>
+                    <strong>High iowait (>10%):</strong> Indicates disk bottleneck or storage performance issues.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="sar historical decompress xz archive">
+                <div class="command-header">
+                    <h3>View Historical SAR Data</h3>
+                    <button class="favorite-btn" data-command="sar-historical">☆</button>
+                </div>
+                <p class="command-description">Access archived SAR data from previous days. Files are compressed and must be decompressed first.</p>
+                <div class="command-block">
+                    <code>sudo xz --decompress /var/log/sysstat/sa10.xz</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-block">
+                    <code>sar -f /var/log/sysstat/sa10</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-block">
+                    <code>sudo xz /var/log/sysstat/sa10</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Workflow:</strong> Decompress → View data → Recompress to save space.<br>
+                    <strong>Note:</strong> Replace 'sa10' with the desired day number (sa01-sa31).
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="sar filter iowait spikes awk high">
+                <div class="command-header">
+                    <h3>Filter SAR for High I/O Wait</h3>
+                    <button class="favorite-btn" data-command="sar-filter">☆</button>
+                </div>
+                <p class="command-description">Display only SAR entries where I/O wait exceeds 3%, helping identify performance spikes.</p>
+                <div class="command-block">
+                    <code>sar -f /var/log/sysstat/sa10 | awk 'NR==3 || $6 > 3'</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Quickly pinpoint exact times when disk I/O caused performance degradation.<br>
+                    <strong>Adjust threshold:</strong> Change '3' to any value based on your baseline.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="disk full log truncate shrink asterisk">
+                <div class="command-header">
+                    <h3>Shrink Full Asterisk Log</h3>
+                    <button class="favorite-btn" data-command="truncate-log">☆</button>
+                </div>
+                <p class="command-description">Emergency command to clear the Asterisk full log when disk space is critically low.</p>
+                <div class="command-block">
+                    <code>sudo truncate -s 0 /var/log/asterisk/full</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>⚠️ Warning:</strong> This permanently deletes all current log data.<br>
+                    <strong>Use case:</strong> When df -h shows partition is 100% full and preventing system operation.<br>
+                    <strong>Better practice:</strong> Archive logs before truncating when possible.
+                </div>
+            </div>
+        </section>
+
+        <!-- Fail2Ban -->
+        <section id="failtoban" class="command-category">
+            <h2>Fail2Ban Management</h2>
+            <p class="category-description">Control and troubleshoot the Fail2Ban intrusion prevention service</p>
+            
+            <div class="command-card" data-tags="fail2ban status check service">
+                <div class="command-header">
+                    <h3>Check Fail2Ban Status</h3>
+                    <button class="favorite-btn" data-command="fail2ban-status">☆</button>
+                </div>
+                <p class="command-description">View the current status of the Fail2Ban service including active jails and banned IPs.</p>
+                <div class="command-block">
+                    <code>sudo systemctl status fail2ban</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Shows:</strong> Service state, active jails, recent ban actions, and error messages if any.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="fail2ban restart reload service">
+                <div class="command-header">
+                    <h3>Restart Fail2Ban</h3>
+                    <button class="favorite-btn" data-command="fail2ban-restart">☆</button>
+                </div>
+                <p class="command-description">Restart the Fail2Ban service to apply configuration changes or clear all current bans.</p>
+                <div class="command-block">
+                    <code>sudo systemctl restart fail2ban</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Apply new jail configurations or reset ban lists after troubleshooting.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="fail2ban start enable service">
+                <div class="command-header">
+                    <h3>Start Fail2Ban</h3>
+                    <button class="favorite-btn" data-command="fail2ban-start">☆</button>
+                </div>
+                <p class="command-description">Start the Fail2Ban service if it's currently stopped.</p>
+                <div class="command-block">
+                    <code>sudo systemctl start fail2ban</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="fail2ban stop disable service">
+                <div class="command-header">
+                    <h3>Stop Fail2Ban</h3>
+                    <button class="favorite-btn" data-command="fail2ban-stop">☆</button>
+                </div>
+                <p class="command-description">Stop the Fail2Ban service temporarily to allow administrative access or troubleshooting.</p>
+                <div class="command-block">
+                    <code>sudo systemctl stop fail2ban</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>⚠️ Security Note:</strong> Server is vulnerable to brute force attacks while Fail2Ban is stopped.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="fail2ban lsvban unban reset pbx v2">
+                <div class="command-header">
+                    <h3>LSV Ban Reset (PBX v2)</h3>
+                    <button class="favorite-btn" data-command="lsvban-v2">☆</button>
+                </div>
+                <p class="command-description">Execute the LSV Ban client script on PBX v2 servers to clear bans and reset fail2ban state.</p>
+                <div class="command-block">
+                    <code>sudo /usr/local/bin/lsvBan/lsvBan-client.sh</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> When legitimate IPs are being blocked or after configuration changes.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="fail2ban lsvban unban reset pbx v1">
+                <div class="command-header">
+                    <h3>LSV Ban Reset (PBX v1)</h3>
+                    <button class="favorite-btn" data-command="lsvban-v1">☆</button>
+                </div>
+                <p class="command-description">Execute the LSV Ban client script on PBX v1 servers (different path than v2).</p>
+                <div class="command-block">
+                    <code>sudo /usr/bin/lsvBan/lsvBan-client.sh</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Note:</strong> Path differs from v2 (/usr/bin vs /usr/local/bin).
+                </div>
+            </div>
+        </section>
+
+        <!-- Extensions -->
+        <section id="extensions" class="command-category">
+            <h2>Extension Management</h2>
+            <p class="category-description">Commands for managing and troubleshooting phone extensions</p>
+            
+            <div class="command-card" data-tags="extension notify restart phone reboot sip">
+                <div class="command-header">
+                    <h3>Restart Phone/Extension</h3>
+                    <button class="favorite-btn" data-command="notify-extension">☆</button>
+                </div>
+                <p class="command-description">Send a notify command to restart a specific phone extension remotely.</p>
+                <div class="command-block">
+                    <code>notify "[extension]"</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Reboot phones remotely to apply configuration changes or fix registration issues.<br>
+                    <strong>Note:</strong> Phone must support SIP notify events for reboot.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="extension peer details sip show">
+                <div class="command-header">
+                    <h3>View Extension Details</h3>
+                    <button class="favorite-btn" data-command="peer-extension">☆</button>
+                </div>
+                <p class="command-description">Display detailed information about a specific SIP peer/extension including registration status and settings.</p>
+                <div class="command-block">
+                    <code>peer "[extension]"</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Shows:</strong> IP address, codec support, registration status, qualify status, and NAT settings.<br>
+                    <strong>Use case:</strong> Troubleshoot extension connectivity or verify configuration.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="extension peers list all sip show">
+                <div class="command-header">
+                    <h3>List All Extensions</h3>
+                    <button class="favorite-btn" data-command="peers-all">☆</button>
+                </div>
+                <p class="command-description">Display a complete list of all configured SIP peers/extensions and their status.</p>
+                <div class="command-block">
+                    <code>peers</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Get an overview of all extensions, check registration status, identify offline phones.<br>
+                    <strong>Tip:</strong> Look for "OK" in the status column for registered extensions.
+                </div>
+            </div>
+        </section>
+
+        <!-- File Locations -->
+        <section id="files" class="command-category">
+            <h2>Important File Locations</h2>
+            <p class="category-description">Key directories for configuration files, logs, and voicemail storage</p>
+            
+            <div class="command-card" data-tags="files tftp config boot">
+                <div class="command-header">
+                    <h3>TFTP Config Files</h3>
+                    <button class="favorite-btn" data-command="tftp-config">☆</button>
+                </div>
+                <p class="command-description">Location of TFTP boot and configuration files for IP phones.</p>
+                <div class="command-block">
+                    <code>/tftpboot/config</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Contains:</strong> Phone provisioning configs, firmware files, and boot parameters.<br>
+                    <strong>Use case:</strong> Modify phone configurations, upload firmware updates.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="files voicemail vm messages audio">
+                <div class="command-header">
+                    <h3>Voicemail Storage</h3>
+                    <button class="favorite-btn" data-command="voicemail-location">☆</button>
+                </div>
+                <p class="command-description">Directory where voicemail recordings and greetings are stored.</p>
+                <div class="command-block">
+                    <code>/var/spool/asterisk/voicemail/default</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Structure:</strong> Organized by extension number, contains WAV files and greeting recordings.<br>
+                    <strong>Use case:</strong> Backup voicemails, recover deleted messages, troubleshoot VM issues.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="files moh music on hold audio">
+                <div class="command-header">
+                    <h3>Music on Hold Files</h3>
+                    <button class="favorite-btn" data-command="moh-location">☆</button>
+                </div>
+                <p class="command-description">Storage location for Music on Hold audio files.</p>
+                <div class="command-block">
+                    <code>/var/lib/asterisk/moh</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Supported formats:</strong> WAV, MP3, GSM (WAV recommended for quality).<br>
+                    <strong>Use case:</strong> Upload custom hold music, replace default files.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="files logs asterisk full debug cdr">
+                <div class="command-header">
+                    <h3>Asterisk Log Files</h3>
+                    <button class="favorite-btn" data-command="log-location">☆</button>
+                </div>
+                <p class="command-description">Primary location for all Asterisk log files including full logs, CDR, and debug output.</p>
+                <div class="command-block">
+                    <code>/var/log/asterisk</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Key files:</strong> full (detailed log), messages (general), cdr-csv/ (call records).<br>
+                    <strong>Note:</strong> Logs rotate daily and compress to save space.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="files mail log email maillog">
+                <div class="command-header">
+                    <h3>Email/Mail Logs</h3>
+                    <button class="favorite-btn" data-command="maillog">☆</button>
+                </div>
+                <p class="command-description">System mail log for tracking voicemail-to-email delivery and SMTP issues.</p>
+                <div class="command-block">
+                    <code>/var/log/maillog</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Troubleshoot voicemail notification delivery failures, verify email sending.<br>
+                    <strong>Look for:</strong> Delivery status, bounced messages, SMTP connection errors.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="files tmp temporary spool asterisk">
+                <div class="command-header">
+                    <h3>Temporary/Spool Files</h3>
+                    <button class="favorite-btn" data-command="spool-tmp">☆</button>
+                </div>
+                <p class="command-description">Temporary file storage used by Asterisk for recordings and call processing.</p>
+                <div class="command-block">
+                    <code>/var/spool/asterisk/tmp</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Contains:</strong> Temporary recording files, transcoding buffers, monitor recordings.<br>
+                    <strong>Note:</strong> Files here are often automatically cleaned up after processing.
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Counter functions
+        function calculateAge(birthDate) {
+            const now = new Date();
+            const birth = new Date(birthDate);
+            let years = now.getFullYear() - birth.getFullYear();
+            let months = now.getMonth() - birth.getMonth();
+            let days = now.getDate() - birth.getDate();
+            if (days < 0) {
+                months--;
+                const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                days += lastMonth.getDate();
+            }
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+            return { years, months, days };
+        }
+        
+        function updateAges() {
+            const harperAge = calculateAge('2024-08-29');
+            const sophiaAge = calculateAge('2025-09-18');
+            document.getElementById('harperAge').textContent = `${harperAge.years}y ${harperAge.months}m ${harperAge.days}d`;
+            document.getElementById('sophiaAge').textContent = `${sophiaAge.years}y ${sophiaAge.months}m ${sophiaAge.days}d`;
+        }
+        
+        updateAges();
+        setInterval(updateAges, 3600000);
+        
+        const counterButton = document.getElementById('counterButton');
+        const counterContent = document.getElementById('counterContent');
+        counterButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            counterContent.classList.toggle('show');
+        });
+        document.addEventListener('click', (e) => {
+            if (!counterButton.contains(e.target) && !counterContent.contains(e.target)) {
+                counterContent.classList.remove('show');
+            }
+        });
+
+        // Dark mode
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+        }
+        darkModeToggle.addEventListener('change', () => {
+            body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
+        });
+
+        // Copy command function
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const code = this.parentElement.querySelector('code');
+                const text = code.textContent;
+                navigator.clipboard.writeText(text).then(() => {
+                    const originalText = this.textContent;
+                    this.textContent = 'Copied!';
+                    this.classList.add('copied');
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                        this.classList.remove('copied');
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy:', err);
+                    this.textContent = 'Error';
+                    setTimeout(() => { this.textContent = 'Copy'; }, 2000);
+                });
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const commandCards = document.querySelectorAll('.command-card');
+        const categories = document.querySelectorAll('.command-category');
+
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            let visibleCount = 0;
+            
+            categories.forEach(category => {
+                let categoryHasVisible = false;
+                const cardsInCategory = category.querySelectorAll('.command-card');
+                
+                cardsInCategory.forEach(card => {
+                    const tags = card.getAttribute('data-tags').toLowerCase();
+                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    const description = card.querySelector('.command-description').textContent.toLowerCase();
+                    const commands = Array.from(card.querySelectorAll('code')).map(c => c.textContent.toLowerCase()).join(' ');
+                    const searchable = `${tags} ${title} ${description} ${commands}`;
+                    
+                    if (searchable.includes(searchTerm)) {
+                        card.classList.remove('hidden');
+                        categoryHasVisible = true;
+                        visibleCount++;
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+                
+                category.style.display = categoryHasVisible ? 'block' : 'none';
+            });
+            
+            let noResultsDiv = document.querySelector('.no-results');
+            if (visibleCount === 0 && searchTerm !== '') {
+                if (!noResultsDiv) {
+                    noResultsDiv = document.createElement('div');
+                    noResultsDiv.className = 'no-results';
+                    noResultsDiv.innerHTML = '<h3>No commands found</h3><p>Try searching with different keywords or browse the categories below.</p>';
+                    document.querySelector('main').insertBefore(noResultsDiv, categories[0]);
+                }
+            } else if (noResultsDiv) {
+                noResultsDiv.remove();
+            }
+        });
+
+        // Favorites functionality
+        let favorites = JSON.parse(localStorage.getItem('favoriteCommands') || '[]');
+
+        function updateFavoritesDisplay() {
+            const favoritesSection = document.getElementById('favoritesSection');
+            const favoritesList = document.getElementById('favoritesList');
+            
+            if (favorites.length === 0) {
+                favoritesSection.style.display = 'none';
+                return;
+            }
+            
+            favoritesSection.style.display = 'block';
+            favoritesList.innerHTML = '';
+            
+            favorites.forEach(commandId => {
+                const originalCard = document.querySelector(`[data-command="${commandId}"]`)?.closest('.command-card');
+                if (originalCard) {
+                    const clone = originalCard.cloneNode(true);
+                    clone.querySelector('.favorite-btn').remove();
+                    favoritesList.appendChild(clone);
+                }
+            });
+        }
+
+        document.querySelectorAll('.favorite-btn').forEach(btn => {
+            const commandId = btn.getAttribute('data-command');
+            if (favorites.includes(commandId)) {
+                btn.classList.add('active');
+                btn.textContent = '★';
+            }
+            
+            btn.addEventListener('click', function() {
+                const commandId = this.getAttribute('data-command');
+                if (favorites.includes(commandId)) {
+                    favorites = favorites.filter(id => id !== commandId);
+                    this.classList.remove('active');
+                    this.textContent = '☆';
+                } else {
+                    favorites.push(commandId);
+                    this.classList.add('active');
+                    this.textContent = '★';
+                }
+                localStorage.setItem('favoriteCommands', JSON.stringify(favorites));
+                updateFavoritesDisplay();
+            });
+        });
+
+        updateFavoritesDisplay();
+
+        // Smooth scroll for quick navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
