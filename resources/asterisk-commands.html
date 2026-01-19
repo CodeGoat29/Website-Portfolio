@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asterisk Commands - DiPiazza</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" type="image/png" href="../images/thegoat.png">
+    <style>
+        /* Page-Specific Styles */
+        .commands-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .commands-header h1 {
+            font-size: 2.8em;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .search-container {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            font-size: 1.1em;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-family: 'Georgia', 'Times New Roman', serif;
+            transition: all 0.3s ease;
+        }
+
+        #searchInput:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(184, 134, 11, 0.3);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.3em;
+            pointer-events: none;
+        }
+
+        .quick-nav {
+            background: var(--bg-secondary);
+            padding: 25px;
+            border-radius: 8px;
+            border: 2px solid var(--border);
+            margin-bottom: 40px;
+        }
+
+        .quick-nav h3 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .nav-link {
+            background: var(--accent);
+            color: var(--coal);
+            padding: 8px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            border: 2px solid var(--border);
+        }
+
+        .nav-link:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .command-category {
+            margin-bottom: 60px;
+        }
+
+        .command-category h2 {
+            font-size: 2em;
+            color: var(--accent);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--border);
+        }
+
+        .category-description {
+            font-size: 1.1em;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .command-card {
+            background: var(--bg-secondary);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            border: 2px solid var(--border);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .command-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent);
+        }
+
+        .command-card.hidden {
+            display: none;
+        }
+
+        .command-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .command-header h3 {
+            font-size: 1.5em;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .favorite-btn {
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            padding: 5px;
+        }
+
+        .favorite-btn:hover {
+            color: var(--accent);
+            transform: scale(1.2);
+        }
+
+        .favorite-btn.active {
+            color: #ffd700;
+        }
+
+        .command-description {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .command-block {
+            position: relative;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            padding: 15px 100px 15px 15px;
+            margin-bottom: 15px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .command-block:last-of-type {
+            margin-bottom: 20px;
+        }
+
+        .command-block code {
+            color: var(--text-primary);
+            font-size: 0.95em;
+            display: block;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+
+        .copy-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--accent);
+            color: var(--coal);
+            border: 2px solid var(--border);
+            border-radius: 5px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-weight: 600;
+            font-size: 0.85em;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .copy-btn.copied {
+            background: #4caf50;
+            color: white;
+        }
+
+        .command-notes {
+            background: var(--bg-primary);
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        .command-notes strong {
+            color: var(--accent);
+        }
+
+        .command-notes code {
+            background: var(--bg-secondary);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .favorites-section {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            padding: 40px;
+            border-radius: 10px;
+            border: 2px solid var(--accent);
+            margin-bottom: 60px;
+        }
+
+        .favorites-section h2 {
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .favorites-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .empty-favorites {
+            text-align: center;
+            color: var(--text-secondary);
+            font-style: italic;
+            padding: 40px;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border: 2px dashed var(--border);
+            margin: 40px 0;
+        }
+
+        .no-results h3 {
+            color: var(--accent);
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .no-results p {
+            color: var(--text-secondary);
+            font-size: 1.1em;
+        }
+
+        @media (max-width: 768px) {
+            .commands-header h1 {
+                font-size: 2em;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+            }
+            
+            .nav-link {
+                text-align: center;
+            }
+            
+            .command-block {
+                padding: 15px 15px 60px 15px;
+            }
+            
+            .copy-btn {
+                right: 10px;
+                top: auto;
+                bottom: 10px;
+                transform: none;
+            }
+            
+            .copy-btn:hover {
+                transform: scale(1.05);
+            }
+            
+            .command-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .favorite-btn {
+                align-self: flex-end;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .commands-header h1 {
+                font-size: 1.6em;
+            }
+            
+            .subtitle {
+                font-size: 1em;
+            }
+            
+            #searchInput {
+                font-size: 1em;
+                padding: 12px 45px 12px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-controls">
+        <div class="counter-dropdown">
+            <button class="counter-button" id="counterButton">⚙ Counter</button>
+            <div class="counter-content" id="counterContent">
+                <div class="counter-item">
+                    <span class="counter-name">Harper</span>
+                    <span class="counter-age" id="harperAge"></span>
+                </div>
+                <div class="counter-item">
+                    <span class="counter-name">Sophia</span>
+                    <span class="counter-age" id="sophiaAge"></span>
+                </div>
+            </div>
+        </div>
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-inner"></span>
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <img src="../images/thegoat.png" alt="DiPiazza Logo" class="logo">
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Cybersecurity Professional | Penetration Tester | Security Researcher</p>
+            </div>
+        </div>
+        <nav>
+            <div class="container">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#resume">Resume</a></li>
+                    <li><a href="../index.html#blog">Blog</a></li>
+                    <li><a href="../index.html#resources" class="active">Resources</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="commands-header">
+            <h1>Asterisk Command Reference</h1>
+            <p class="subtitle">Quick reference guide for VoIP troubleshooting and server management</p>
+            
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search commands, descriptions, or categories...">
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <div class="quick-nav">
+                <h3>Quick Navigation</h3>
+                <div class="nav-links">
+                    <a href="#network" class="nav-link">Network Diagnostics</a>
+                    <a href="#grep" class="nav-link">Log Analysis (Grep)</a>
+                    <a href="#asterisk" class="nav-link">Asterisk Management</a>
+                    <a href="#system" class="nav-link">System Resources</a>
+                    <a href="#failtoban" class="nav-link">Fail2Ban</a>
+                    <a href="#extensions" class="nav-link">Extensions</a>
+                    <a href="#files" class="nav-link">File Locations</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Network Diagnostics -->
+        <section id="network" class="command-category">
+            <h2>Network Diagnostics</h2>
+            <p class="category-description">Essential commands for troubleshooting network connectivity and DNS issues</p>
+            
+            <div class="command-card" data-tags="network dns ip lookup nslookup">
+                <div class="command-header">
+                    <h3>DNS Lookup & Public IP</h3>
+                    <button class="favorite-btn" data-command="nslookup">☆</button>
+                </div>
+                <p class="command-description">Resolves domain names to IP addresses and retrieves your public IP address using OpenDNS resolver.</p>
+                <div class="command-block">
+                    <code>nslookup myip.opendns.com. resolver1.opendns.com</code>
+                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Quickly determine the public IP address of a client or server without visiting external websites.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="network trace tracert path routing">
+                <div class="command-header">
+                    <h3>Trace Route</h3>
+                    <button class="favorite-btn" data-command="tracert">☆</button>
+                </div>
+                <p class="command-description">Maps the complete network path packets take from source to destination, showing each hop and latency.</p>
+                <div class="command-block">
+                    <code>tracert [destination]</code>
+                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Diagnose where network delays or failures occur in the routing path. Essential for identifying ISP or network infrastructure issues.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="network ping connectivity latency">
+                <div class="command-header">
+                    <h3>Ping Test</h3>
+                    <button class="favorite-btn" data-command="ping">☆</button>
+                </div>
+                <p class="command-description">Tests network connectivity and measures round-trip time to a host. Use for basic reachability testing.</p>
+                <div class="command-block">
+                    <code>ping [hostname or IP]</code>
+                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                </div>
+                <div class="command-block">
+                    <code>ping -t [hostname or IP]</code>
+                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Note:</strong> Use <code>ping -t</code> for continuous pinging until manually stopped (Ctrl+C). Useful for monitoring intermittent connectivity issues.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="network arp mac address mapping">
+                <div class="command-header">
+                    <h3>ARP Table</h3>
+                    <button class="favorite-btn" data-command="arp">☆</button>
+                </div>
+                <p class="command-description">Displays the Address Resolution Protocol table, mapping IP addresses to MAC addresses on your local network.</p>
+                <div class="command-block">
+                    <code>arp -a</code>
+                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Identify devices on the local network, troubleshoot IP conflicts, or verify which physical device corresponds to an IP address.
+                </div>
+            </div>
+        </section>
+
+        <!-- Log Analysis (Grep) -->
+        <section id="grep" class="command-category">
+            <h2>Log Analysis (Grep)</h2>
+            <p class="category-description">Search and analyze Asterisk logs efficiently using grep patterns</p>
+            
+            <div class="command-card" data-tags="grep log search asterisk full current">
+                <div class="command-header">
+                    <h3>Search Current Day Logs</h3>
+                    <button class="favorite-btn" data-command="grep-current">☆</button>
+                </div>
+                <p class="command-description">Search today's Asterisk full log for specific keywords or patterns. Case-insensitive search.</p>
+                <div class="command-block">
+                    <code>grep -i searchword /var/log/asterisk/full</code>
+                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Common searches:</strong> reachable, registered, answered, lagged, '[specific IP address]'<br>
+                    <strong>Tip:</strong> The -i flag makes the search case-insensitive for broader results.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="grep zgrep log search asterisk archive historical">
+                <div class="command-header">
+                    <h3>Search Historical Logs (Past Week)</h3>
+                    <button class="favorite-btn" data-command="zgrep-historical">☆</button>
+                </div>
+                <p class="command-description">Search compressed archived logs from the past week. Use zgrep to search without manually decompressing files.</p>
+                <div class="command-block">
+                    <code>zgrep -i "searchword" /var/log/asterisk/full*.*</code>
+                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Investigate issues that occurred days ago. The wildcard pattern searches all rotated log files.<br>
+                    <strong>Note:</strong> This may take longer as it searches multiple compressed files.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="grep oom out of memory syslog crash">
+                <div class="command-header">
+                    <h3>Check for OOM Killer Events</h3>
+                    <button class="favorite-btn" data-command="grep-oom">☆</button>
+                </div>
+                <p class="command-description">Search system logs for Out-Of-Memory (OOM) killer events that may have terminated processes like the switchboard.</p>
+                <div class="command-block">
+                    <code>grep -i oom /var/log/syslog</code>
+                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Diagnose unexpected switchboard crashes or service failures caused by memory exhaustion.<br>
+                    <strong>What to look for:</strong> Messages indicating which process was killed and when.
+                </div>
+            </div>
+        </section>
+
+        <!-- Asterisk Management -->
+        <section id="asterisk" class="command-category">
+            <h2>Asterisk Management</h2>
+            <p class="category-description">Core Asterisk service control and channel management commands</p>
+            
+            <div class="command-card" data-tags="asterisk status service systemctl">
+                <div class="command-header">
+                    <h3>Check Asterisk Status</h3>
+                    <button class="favorite-btn" data-command="asterisk-status">☆</button>
+                </div>
+                <p class="command-description">View the current status of the Asterisk service including uptime and process state.</p>
+                <div class="command-block">
+                    <code>systemctl status asterisk</code>
+                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>What you'll see:</strong> Active/inactive status, PID, memory usage, and recent log entries.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="asterisk channels active calls view">
+                <div class="command-header">
+                    <h3>View Active Channels</h3>
+                    <button class="favorite-btn" data-command="channels-view">☆</button>
+                </div>
+                <p class="command-description">Display all currently active channels (calls) in a concise format showing channel details.</p>
+                <div class="command-block">
+                    <code>sudo asterisk -rx 'core show channels concise'</code>
+                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Monitor active calls, identify stuck channels, or verify call flow.<br>
+                    <strong>Output includes:</strong> Channel name, context, extension, priority, state, application.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="asterisk channel hangup terminate kill call">
+                <div class="command-header">
+                    <h3>Hangup Specific Channel</h3>
+                    <button class="favorite-btn" data-command="channel-hangup">☆</button>
+                </div>
+                <p class="command-description">Forcefully terminate a specific channel by name. Useful for clearing stuck or problematic calls.</p>
+                <div class="command-block">
+                    <code>channel request hangup 'channel name'</code>
+                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Clear channels that won't disconnect normally, freeing up resources.<br>
+                    <strong>Tip:</strong> Get the exact channel name from the 'core show channels' output.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="asterisk restart service systemctl reload">
+                <div class="command-header">
+                    <h3>Restart Asterisk Service</h3>
+                    <button class="favorite-btn" data-command="asterisk-restart">☆</button>
+                </div>
+                <p class="command-description">Completely restart the Asterisk service. This will drop all active calls.</p>
+                <div class="command-block">
+                    <code>sudo systemctl restart asterisk</code>
+                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>⚠️ Warning:</strong> This terminates all active calls. Schedule during maintenance windows when possible.<br>
+                    <strong>Use case:</strong> Apply configuration changes or recover from service issues.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="switchboard restart service sb systemctl">
+                <div class="command-header">
+                    <h3>Restart Switchboard</h3>
+                    <button class="favorite-btn" data-command="sb-restart">☆</button>
+                </div>
+                <p class="command-description">Restart the switchboard service that manages call routing and PBX interface.</p>
+                <div class="command-block">
+                    <code>sudo systemctl restart sb</code>
+                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Resolve switchboard UI issues, apply configuration changes, or recover from crashes.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="apache restart web pbx http service">
+                <div class="command-header">
+                    <h3>Restart Apache (PBX Web Interface)</h3>
+                    <button class="favorite-btn" data-command="apache-restart">☆</button>
+                </div>
+                <p class="command-description">Restart the Apache web server that hosts the PBX management interface.</p>
+                <div class="command-block">
+                    <code>sudo systemctl restart apache2</code>
+                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Fix web interface accessibility issues or apply Apache configuration changes.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="resync quantum sync bootstrap">
+                <div class="command-header">
+                    <h3>Force Quantum Resync</h3>
+                    <button class="favorite-btn" data-command="resync">☆</button>
+                </div>
+                <p class="command-description">Force a resynchronization on bootstrapped servers that are out of sync with the master configuration.</p>
+                <div class="command-block">
+                    <code>sudo resync</code>
+                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> When a bootstrapped server shows configuration drift or fails to sync automatically.<br>
+                    <strong>Note:</strong> May take several minutes to complete.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="services list systemctl status all">
+                <div class="command-header">
+                    <h3>List All Services</h3>
+                    <button class="favorite-btn" data-command="services-list">☆</button>
+                </div>
+                <p class="command-description">Display all system services and their current states (running, stopped, failed).</p>
+                <div class="command-block">
+                    <code>systemctl list-units --type=service</code>
+                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Get an overview of system health and identify failed or inactive services.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="mysql fix error fatal socket restart">
+                <div class="command-header">
+                    <h3>Fix MySQL Fatal Error</h3>
+                    <button class="favorite-btn" data-command="mysql-fix">☆</button>
+                </div>
+                <p class="command-description">Emergency fix for MySQL socket errors. Removes corrupted socket file and restarts all dependent services.</p>
+                <div class="command-block">
+                    <code>rm -f /var/lib/mysql/mysql.sock && service mysqld restart && service sb restart && service agentsync restart && service php7-fpm restart</code>
+                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>⚠️ Use case:</strong> When database connection errors prevent PBX operation.<br>
+                    <strong>What it does:</strong> Removes stale socket, restarts MySQL, switchboard, agent sync, and PHP-FPM in sequence.
+                </div>
+            </div>
+        </section>
+
+        <!-- System Resources -->
+        <section id="system" class="command-category">
+            <h2>System Resources & Performance</h2>
+            <p class="category-description">Monitor CPU, memory, disk usage, and system performance metrics</p>
+            
+            <div class="command-card" data-tags="cpu cores processor info lscpu nproc">
+                <div class="command-header">
+                    <h3>View CPU Information</h3>
+                    <button class="favorite-btn" data-command="cpu-info">☆</button>
+                </div>
+                <p class="command-description">Display detailed CPU architecture information or count the number of processor cores.</p>
+                <div class="command-block">
+                    <code>lscpu</code>
+                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                </div>
+                <div class="command-block">
+                    <code>nproc</code>
+                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>lscpu:</strong> Shows architecture, cores, threads, cache sizes, and CPU flags.<br>
+                    <strong>nproc:</strong> Simply returns the number of available processing units.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="cpu vcpu count cores virtual">
+                <div class="command-header">
+                    <h3>Count vCPUs (Virtual Servers)</h3>
+                    <button class="favorite-btn" data-command="vcpu-count">☆</button>
+                </div>
+                <p class="command-description">Count virtual CPUs on virtualized servers by parsing processor information.</p>
+                <div class="command-block">
+                    <code>cat /proc/cpuinfo | grep -E '^processor' | wc -l</code>
+                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Verify VM resource allocation matches expected configuration.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="memory ram total meminfo">
+                <div class="command-header">
+                    <h3>Check Total RAM</h3>
+                    <button class="favorite-btn" data-command="ram-check">☆</button>
+                </div>
+                <p class="command-description">
