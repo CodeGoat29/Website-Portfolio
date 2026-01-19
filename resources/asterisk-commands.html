@@ -413,6 +413,13 @@
             </div>
         </section>
 
+        <div class="favorites-section" id="favoritesSection" style="display: none;">
+            <h2>⭐ Favorite Commands</h2>
+            <div id="favoritesList" class="favorites-list">
+                <p class="empty-favorites">No favorites yet. Click the ☆ icon on any command to add it here!</p>
+            </div>
+        </div>
+
         <!-- Network Diagnostics -->
         <section id="network" class="command-category">
             <h2>Network Diagnostics</h2>
@@ -426,7 +433,7 @@
                 <p class="command-description">Resolves domain names to IP addresses and retrieves your public IP address using OpenDNS resolver.</p>
                 <div class="command-block">
                     <code>nslookup myip.opendns.com. resolver1.opendns.com</code>
-                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                    <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
                     <strong>Use case:</strong> Quickly determine the public IP address of a client or server without visiting external websites.
@@ -441,7 +448,7 @@
                 <p class="command-description">Maps the complete network path packets take from source to destination, showing each hop and latency.</p>
                 <div class="command-block">
                     <code>tracert [destination]</code>
-                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                    <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
                     <strong>Use case:</strong> Diagnose where network delays or failures occur in the routing path. Essential for identifying ISP or network infrastructure issues.
@@ -456,11 +463,11 @@
                 <p class="command-description">Tests network connectivity and measures round-trip time to a host. Use for basic reachability testing.</p>
                 <div class="command-block">
                     <code>ping [hostname or IP]</code>
-                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                    <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-block">
                     <code>ping -t [hostname or IP]</code>
-                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                    <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
                     <strong>Note:</strong> Use <code>ping -t</code> for continuous pinging until manually stopped (Ctrl+C). Useful for monitoring intermittent connectivity issues.
@@ -475,7 +482,7 @@
                 <p class="command-description">Displays the Address Resolution Protocol table, mapping IP addresses to MAC addresses on your local network.</p>
                 <div class="command-block">
                     <code>arp -a</code>
-                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                    <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
                     <strong>Use case:</strong> Identify devices on the local network, troubleshoot IP conflicts, or verify which physical device corresponds to an IP address.
@@ -496,11 +503,32 @@
                 <p class="command-description">Search today's Asterisk full log for specific keywords or patterns. Case-insensitive search.</p>
                 <div class="command-block">
                     <code>grep -i searchword /var/log/asterisk/full</code>
-                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                    <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
                     <strong>Common searches:</strong> reachable, registered, answered, lagged, '[specific IP address]'<br>
                     <strong>Tip:</strong> The -i flag makes the search case-insensitive for broader results.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="grep recursive search all files directory subdirectory">
+                <div class="command-header">
+                    <h3>Recursive Grep (Search All Files)</h3>
+                    <button class="favorite-btn" data-command="grep-recursive">☆</button>
+                </div>
+                <p class="command-description">Recursively search through all files in a directory and its subdirectories for a specific pattern.</p>
+                <div class="command-block">
+                    <code>grep -r "searchword" /var/log/asterisk/</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-block">
+                    <code>grep -ri "searchword" /var/log/asterisk/</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Search through entire log directories without knowing exact file names.<br>
+                    <strong>Options:</strong> -r for recursive, -i for case-insensitive. Combine as -ri for both.<br>
+                    <strong>Tip:</strong> Add -n flag to show line numbers in results.
                 </div>
             </div>
 
@@ -512,7 +540,7 @@
                 <p class="command-description">Search compressed archived logs from the past week. Use zgrep to search without manually decompressing files.</p>
                 <div class="command-block">
                     <code>zgrep -i "searchword" /var/log/asterisk/full*.*</code>
-                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                    <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
                     <strong>Use case:</strong> Investigate issues that occurred days ago. The wildcard pattern searches all rotated log files.<br>
@@ -528,7 +556,7 @@
                 <p class="command-description">Search system logs for Out-Of-Memory (OOM) killer events that may have terminated processes like the switchboard.</p>
                 <div class="command-block">
                     <code>grep -i oom /var/log/syslog</code>
-                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                    <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
                     <strong>Use case:</strong> Diagnose unexpected switchboard crashes or service failures caused by memory exhaustion.<br>
@@ -550,7 +578,7 @@
                 <p class="command-description">View the current status of the Asterisk service including uptime and process state.</p>
                 <div class="command-block">
                     <code>systemctl status asterisk</code>
-                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                    <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
                     <strong>What you'll see:</strong> Active/inactive status, PID, memory usage, and recent log entries.
@@ -565,7 +593,7 @@
                 <p class="command-description">Display all currently active channels (calls) in a concise format showing channel details.</p>
                 <div class="command-block">
                     <code>sudo asterisk -rx 'core show channels concise'</code>
-                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                    <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
                     <strong>Use case:</strong> Monitor active calls, identify stuck channels, or verify call flow.<br>
@@ -581,7 +609,7 @@
                 <p class="command-description">Forcefully terminate a specific channel by name. Useful for clearing stuck or problematic calls.</p>
                 <div class="command-block">
                     <code>channel request hangup 'channel name'</code>
-                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                    <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
                     <strong>Use case:</strong> Clear channels that won't disconnect normally, freeing up resources.<br>
@@ -597,7 +625,7 @@
                 <p class="command-description">Completely restart the Asterisk service. This will drop all active calls.</p>
                 <div class="command-block">
                     <code>sudo systemctl restart asterisk</code>
-                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                    <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
                     <strong>⚠️ Warning:</strong> This terminates all active calls. Schedule during maintenance windows when possible.<br>
@@ -613,7 +641,7 @@
                 <p class="command-description">Restart the switchboard service that manages call routing and PBX interface.</p>
                 <div class="command-block">
                     <code>sudo systemctl restart sb</code>
-                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                    <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
                     <strong>Use case:</strong> Resolve switchboard UI issues, apply configuration changes, or recover from crashes.
@@ -628,7 +656,7 @@
                 <p class="command-description">Restart the Apache web server that hosts the PBX management interface.</p>
                 <div class="command-block">
                     <code>sudo systemctl restart apache2</code>
-                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                    <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
                     <strong>Use case:</strong> Fix web interface accessibility issues or apply Apache configuration changes.
@@ -643,7 +671,7 @@
                 <p class="command-description">Force a resynchronization on bootstrapped servers that are out of sync with the master configuration.</p>
                 <div class="command-block">
                     <code>sudo resync</code>
-                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                    <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
                     <strong>Use case:</strong> When a bootstrapped server shows configuration drift or fails to sync automatically.<br>
@@ -659,7 +687,7 @@
                 <p class="command-description">Display all system services and their current states (running, stopped, failed).</p>
                 <div class="command-block">
                     <code>systemctl list-units --type=service</code>
-                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                    <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
                     <strong>Use case:</strong> Get an overview of system health and identify failed or inactive services.
@@ -674,7 +702,7 @@
                 <p class="command-description">Emergency fix for MySQL socket errors. Removes corrupted socket file and restarts all dependent services.</p>
                 <div class="command-block">
                     <code>rm -f /var/lib/mysql/mysql.sock && service mysqld restart && service sb restart && service agentsync restart && service php7-fpm restart</code>
-                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                    <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
                     <strong>⚠️ Use case:</strong> When database connection errors prevent PBX operation.<br>
@@ -696,11 +724,11 @@
                 <p class="command-description">Display detailed CPU architecture information or count the number of processor cores.</p>
                 <div class="command-block">
                     <code>lscpu</code>
-                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                    <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-block">
                     <code>nproc</code>
-                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
+                    <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
                     <strong>lscpu:</strong> Shows architecture, cores, threads, cache sizes, and CPU flags.<br>
@@ -713,19 +741,4 @@
                     <h3>Count vCPUs (Virtual Servers)</h3>
                     <button class="favorite-btn" data-command="vcpu-count">☆</button>
                 </div>
-                <p class="command-description">Count virtual CPUs on virtualized servers by parsing processor information.</p>
-                <div class="command-block">
-                    <code>cat /proc/cpuinfo | grep -E '^processor' | wc -l</code>
-                    <button class="copy-btn" onclick="copyCommand(this)">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Verify VM resource allocation matches expected configuration.
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="memory ram total meminfo">
-                <div class="command-header">
-                    <h3>Check Total RAM</h3>
-                    <button class="favorite-btn" data-command="ram-check">☆</button>
-                </div>
-                <p class="command-description">
+                <p class="command-description">Count virtual CPUs
