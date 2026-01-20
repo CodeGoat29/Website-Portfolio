@@ -289,6 +289,126 @@
             font-size: 1.1em;
         }
 
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent);
+            color: var(--coal);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-to-top:hover {
+            background: var(--accent-hover);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+
+        .category-toggle {
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-toggle::before {
+            content: '▼';
+            font-size: 0.8em;
+            transition: transform 0.3s ease;
+        }
+
+        .category-toggle.collapsed::before {
+            transform: rotate(-90deg);
+        }
+
+        .category-content {
+            max-height: 10000px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .category-content.collapsed {
+            max-height: 0;
+        }
+
+        .search-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            max-height: 400px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .search-dropdown.show {
+            display: block;
+        }
+
+        .search-result-item {
+            padding: 15px 20px;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s ease;
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .search-result-item:hover {
+            background: var(--bg-primary);
+        }
+
+        .search-result-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .search-result-category {
+            font-size: 0.85em;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+
+        .search-result-preview {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .no-search-results {
+            padding: 20px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
         @media (max-width: 768px) {
             .commands-header h1 {
                 font-size: 2em;
@@ -325,6 +445,13 @@
             
             .favorite-btn {
                 align-self: flex-end;
+            }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
             }
         }
 
@@ -395,8 +522,9 @@
             <p class="subtitle">Quick reference guide for VoIP troubleshooting and server management</p>
             
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search commands, descriptions, or categories...">
+                <input type="text" id="searchInput" placeholder="Search commands, descriptions, or categories..." autocomplete="off">
                 <span class="search-icon">🔍</span>
+                <div class="search-dropdown" id="searchDropdown"></div>
             </div>
 
             <div class="quick-nav">
@@ -419,10 +547,10 @@
                 <p class="empty-favorites">No favorites yet. Click the ☆ icon on any command to add it here!</p>
             </div>
         </div>
-
-        <!-- Network Diagnostics -->
+                <!-- Network Diagnostics -->
         <section id="network" class="command-category">
-            <h2>Network Diagnostics</h2>
+            <h2 class="category-toggle">Network Diagnostics</h2>
+            <div class="category-content">
             <p class="category-description">Essential commands for troubleshooting network connectivity and DNS issues</p>
             
             <div class="command-card" data-tags="network dns ip lookup nslookup">
@@ -488,11 +616,34 @@
                     <strong>Use case:</strong> Identify devices on the local network, troubleshoot IP conflicts, or verify which physical device corresponds to an IP address.
                 </div>
             </div>
+
+            <div class="command-card" data-tags="mtr traceroute ping network path continuous">
+                <div class="command-header">
+                    <h3>MTR - Network Path Analysis</h3>
+                    <button class="favorite-btn" data-command="mtr">☆</button>
+                </div>
+                <p class="command-description">Combines traceroute and ping functionality to continuously monitor network path and packet loss to a destination.</p>
+                <div class="command-block">
+                    <code>mtr [hostname or IP]</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-block">
+                    <code>mtr --report --report-cycles 50 [hostname]</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Superior to traceroute for diagnosing intermittent network issues and packet loss.<br>
+                    <strong>Interactive mode:</strong> Press 'q' to quit. Use --report flag for a one-time summary.<br>
+                    <strong>Look for:</strong> Loss% column shows packet loss at each hop.
+                </div>
+            </div>
+            </div>
         </section>
 
         <!-- Log Analysis (Grep) -->
         <section id="grep" class="command-category">
-            <h2>Log Analysis (Grep)</h2>
+            <h2 class="category-toggle">Log Analysis (Grep)</h2>
+            <div class="category-content">
             <p class="category-description">Search and analyze Asterisk logs efficiently using grep patterns</p>
             
             <div class="command-card" data-tags="grep log search asterisk full current">
@@ -563,11 +714,12 @@
                     <strong>What to look for:</strong> Messages indicating which process was killed and when.
                 </div>
             </div>
+            </div>
         </section>
-
-        <!-- Asterisk Management -->
+          <!-- Asterisk Management -->
         <section id="asterisk" class="command-category">
-            <h2>Asterisk Management</h2>
+            <h2 class="category-toggle">Asterisk Management</h2>
+            <div class="category-content">
             <p class="category-description">Core Asterisk service control and channel management commands</p>
             
             <div class="command-card" data-tags="asterisk status service systemctl">
@@ -709,11 +861,96 @@
                     <strong>What it does:</strong> Removes stale socket, restarts MySQL, switchboard, agent sync, and PHP-FPM in sequence.
                 </div>
             </div>
+
+            <div class="command-card" data-tags="asterisk version show info release">
+                <div class="command-header">
+                    <h3>Check Asterisk Version</h3>
+                    <button class="favorite-btn" data-command="asterisk-version">☆</button>
+                </div>
+                <p class="command-description">Display the current Asterisk version and build information.</p>
+                <div class="command-block">
+                    <code>sudo asterisk -rx 'core show version'</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Verify Asterisk version for compatibility checks, troubleshooting, or before upgrades.<br>
+                    <strong>Shows:</strong> Asterisk version number, build date, and compilation details.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="voicemail users show mailbox list">
+                <div class="command-header">
+                    <h3>Show Voicemail Users</h3>
+                    <button class="favorite-btn" data-command="voicemail-users">☆</button>
+                </div>
+                <p class="command-description">Display all configured voicemail boxes and their settings.</p>
+                <div class="command-block">
+                    <code>sudo asterisk -rx 'voicemail show users'</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> List all voicemail boxes, verify configuration, check message counts.<br>
+                    <strong>Shows:</strong> Context, mailbox number, name, and new/old message counts.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="hints blf busy lamp field show status">
+                <div class="command-header">
+                    <h3>Show Hints/BLF Status</h3>
+                    <button class="favorite-btn" data-command="hints">☆</button>
+                </div>
+                <p class="command-description">Display all configured hints for Busy Lamp Field (BLF) monitoring and their current states.</p>
+                <div class="command-block">
+                    <code>sudo asterisk -rx 'core show hints'</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Troubleshoot BLF not working, verify hint configurations, check extension states.<br>
+                    <strong>Shows:</strong> Extension, state (Idle, InUse, Unavailable), and which devices are watching each hint.<br>
+                    <strong>States:</strong> Idle = available, InUse = on a call, Unavailable = unregistered.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="dialplan show routing contexts extensions">
+                <div class="command-header">
+                    <h3>Show Dialplan</h3>
+                    <button class="favorite-btn" data-command="dialplan">☆</button>
+                </div>
+                <p class="command-description">Display the complete dialplan configuration showing all contexts, extensions, and call routing logic.</p>
+                <div class="command-block">
+                    <code>sudo asterisk -rx 'dialplan show'</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Verify call routing, troubleshoot misrouted calls, understand call flow.<br>
+                    <strong>Warning:</strong> Output can be very long. Use 'dialplan show [extension]@[context]' for specific extensions.<br>
+                    <strong>Tip:</strong> Pipe to grep to search: dialplan show | grep "extension_number"
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="channels watch monitor real-time auto-refresh live">
+                <div class="command-header">
+                    <h3>Monitor Channels (Auto-Refresh)</h3>
+                    <button class="favorite-btn" data-command="watch-channels">☆</button>
+                </div>
+                <p class="command-description">Continuously monitor active channels with automatic refresh every second for real-time call monitoring.</p>
+                <div class="command-block">
+                    <code>watch -n 1 'sudo asterisk -rx "core show channels"'</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Monitor call activity in real-time, watch for stuck channels, observe call flow during testing.<br>
+                    <strong>Controls:</strong> Press Ctrl+C to stop. The -n 1 flag refreshes every 1 second.<br>
+                    <strong>Tip:</strong> Increase refresh interval with -n 2 (2 seconds), -n 5 (5 seconds), etc.
+                </div>
+            </div>
+            </div>
         </section>
 
         <!-- System Resources -->
         <section id="system" class="command-category">
-            <h2>System Resources & Performance</h2>
+            <h2 class="category-toggle">System Resources & Performance</h2>
+            <div class="category-content">
             <p class="category-description">Monitor CPU, memory, disk usage, and system performance metrics</p>
             
             <div class="command-card" data-tags="cpu cores processor info lscpu nproc">
@@ -741,7 +978,7 @@
                     <h3>Count vCPUs (Virtual Servers)</h3>
                     <button class="favorite-btn" data-command="vcpu-count">☆</button>
                 </div>
-               <p class="command-description">Count virtual CPUs on virtualized servers by parsing processor information.</p>
+                <p class="command-description">Count virtual CPUs on virtualized servers by parsing processor information.</p>
                 <div class="command-block">
                     <code>cat /proc/cpuinfo | grep -E '^processor' | wc -l</code>
                     <button class="copy-btn">Copy</button>
@@ -846,27 +1083,6 @@
                 </div>
             </div>
 
-            <div class="command-card" data-tags="mtr traceroute ping network path continuous">
-                <div class="command-header">
-                    <h3>MTR - Network Path Analysis</h3>
-                    <button class="favorite-btn" data-command="mtr">☆</button>
-                </div>
-                <p class="command-description">Combines traceroute and ping functionality to continuously monitor network path and packet loss to a destination.</p>
-                <div class="command-block">
-                    <code>mtr [hostname or IP]</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-block">
-                    <code>mtr --report --report-cycles 50 [hostname]</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Superior to traceroute for diagnosing intermittent network issues and packet loss.<br>
-                    <strong>Interactive mode:</strong> Press 'q' to quit. Use --report flag for a one-time summary.<br>
-                    <strong>Look for:</strong> Loss% column shows packet loss at each hop.
-                </div>
-            </div>
-
             <div class="command-card" data-tags="sar iowait performance disk cpu history">
                 <div class="command-header">
                     <h3>View SAR (System Activity Report) - Current Day</h3>
@@ -939,11 +1155,12 @@
                     <strong>Better practice:</strong> Archive logs before truncating when possible.
                 </div>
             </div>
+            </div>
         </section>
-
         <!-- Fail2Ban -->
         <section id="failtoban" class="command-category">
-            <h2>Fail2Ban Management</h2>
+            <h2 class="category-toggle">Fail2Ban Management</h2>
+            <div class="category-content">
             <p class="category-description">Control and troubleshoot the Fail2Ban intrusion prevention service</p>
             
             <div class="command-card" data-tags="fail2ban status check service">
@@ -1032,16 +1249,18 @@
                     <strong>Note:</strong> Path differs from v2 (/usr/bin vs /usr/local/bin).
                 </div>
             </div>
+            </div>
         </section>
 
         <!-- Extensions -->
         <section id="extensions" class="command-category">
-            <h2>Extension Management</h2>
+            <h2 class="category-toggle">Extension Management</h2>
+            <div class="category-content">
             <p class="category-description">Commands for managing and troubleshooting phone extensions</p>
             
             <div class="command-card" data-tags="extension notify restart phone reboot sip">
                 <div class="command-header">
-                    <h3>Restart Phone/Extension</h3>
+                    <h3>Restart Phone/Extension (notify)</h3>
                     <button class="favorite-btn" data-command="notify-extension">☆</button>
                 </div>
                 <p class="command-description">Send a notify command to restart a specific phone extension remotely.</p>
@@ -1180,11 +1399,13 @@
                     <strong>Tip:</strong> Press Ctrl+C to stop following the log.
                 </div>
             </div>
+            </div>
         </section>
 
         <!-- File Locations -->
         <section id="files" class="command-category">
-            <h2>Important File Locations</h2>
+            <h2 class="category-toggle">Important File Locations</h2>
+            <div class="category-content">
             <p class="category-description">Key directories for configuration files, logs, and voicemail storage</p>
             
             <div class="command-card" data-tags="files tftp config boot">
@@ -1282,16 +1503,19 @@
                     <strong>Note:</strong> Files here are often automatically cleaned up after processing.
                 </div>
             </div>
+            </div>
         </section>
     </main>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" title="Back to top">↑</button>
 
     <footer>
         <div class="container">
             <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
         </div>
     </footer>
-
-    <script>
+      <script>
         // Counter functions
         function calculateAge(birthDate) {
             const now = new Date();
@@ -1366,49 +1590,127 @@
             });
         });
 
-        // Search functionality
+        // Search functionality with dropdown
         const searchInput = document.getElementById('searchInput');
+        const searchDropdown = document.getElementById('searchDropdown');
         const commandCards = document.querySelectorAll('.command-card');
         const categories = document.querySelectorAll('.command-category');
 
+        let searchResults = [];
+
         searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            let visibleCount = 0;
+            const searchTerm = e.target.value.toLowerCase().trim();
             
-            categories.forEach(category => {
-                let categoryHasVisible = false;
-                const cardsInCategory = category.querySelectorAll('.command-card');
-                
-                cardsInCategory.forEach(card => {
-                    const tags = card.getAttribute('data-tags').toLowerCase();
-                    const title = card.querySelector('h3').textContent.toLowerCase();
-                    const description = card.querySelector('.command-description').textContent.toLowerCase();
-                    const commands = Array.from(card.querySelectorAll('code')).map(c => c.textContent.toLowerCase()).join(' ');
-                    const searchable = `${tags} ${title} ${description} ${commands}`;
-                    
-                    if (searchable.includes(searchTerm)) {
-                        card.classList.remove('hidden');
-                        categoryHasVisible = true;
-                        visibleCount++;
-                    } else {
-                        card.classList.add('hidden');
-                    }
-                });
-                
-                category.style.display = categoryHasVisible ? 'block' : 'none';
-            });
-            
-            let noResultsDiv = document.querySelector('.no-results');
-            if (visibleCount === 0 && searchTerm !== '') {
-                if (!noResultsDiv) {
-                    noResultsDiv = document.createElement('div');
-                    noResultsDiv.className = 'no-results';
-                    noResultsDiv.innerHTML = '<h3>No commands found</h3><p>Try searching with different keywords or browse the categories below.</p>';
-                    document.querySelector('main').insertBefore(noResultsDiv, categories[0]);
-                }
-            } else if (noResultsDiv) {
-                noResultsDiv.remove();
+            if (searchTerm === '') {
+                searchDropdown.classList.remove('show');
+                searchDropdown.innerHTML = '';
+                return;
             }
+
+            searchResults = [];
+            
+            commandCards.forEach(card => {
+                const tags = card.getAttribute('data-tags').toLowerCase();
+                const title = card.querySelector('h3').textContent;
+                const description = card.querySelector('.command-description').textContent;
+                const commands = Array.from(card.querySelectorAll('code')).map(c => c.textContent).join(' ').toLowerCase();
+                const categoryName = card.closest('.command-category').querySelector('h2').textContent;
+                
+                const searchable = `${tags} ${title.toLowerCase()} ${description.toLowerCase()} ${commands}`;
+                
+                if (searchable.includes(searchTerm)) {
+                    searchResults.push({
+                        title: title,
+                        category: categoryName,
+                        description: description,
+                        element: card,
+                        preview: commands.split('\n')[0].substring(0, 60)
+                    });
+                }
+            });
+
+            displaySearchDropdown(searchResults);
+        });
+
+        function displaySearchDropdown(results) {
+            if (results.length === 0) {
+                searchDropdown.innerHTML = '<div class="no-search-results">No commands found</div>';
+                searchDropdown.classList.add('show');
+                return;
+            }
+
+            searchDropdown.innerHTML = results.slice(0, 10).map(result => `
+                <div class="search-result-item" data-card-id="${Array.from(commandCards).indexOf(result.element)}">
+                    <div class="search-result-title">${result.title}</div>
+                    <div class="search-result-category">${result.category}</div>
+                    <div class="search-result-preview">${result.preview}...</div>
+                </div>
+            `).join('');
+
+            searchDropdown.classList.add('show');
+
+            // Add click handlers to results
+            document.querySelectorAll('.search-result-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const cardIndex = parseInt(item.getAttribute('data-card-id'));
+                    const card = commandCards[cardIndex];
+                    const category = card.closest('.command-category');
+                    
+                    // Expand category if collapsed
+                    const categoryContent = category.querySelector('.category-content');
+                    const categoryToggle = category.querySelector('.category-toggle');
+                    if (categoryContent.classList.contains('collapsed')) {
+                        categoryContent.classList.remove('collapsed');
+                        categoryToggle.classList.remove('collapsed');
+                    }
+                    
+                    // Scroll to card
+                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    // Highlight briefly
+                    card.style.boxShadow = '0 0 20px rgba(184, 134, 11, 0.6)';
+                    setTimeout(() => {
+                        card.style.boxShadow = '';
+                    }, 2000);
+                    
+                    // Close dropdown and clear search
+                    searchDropdown.classList.remove('show');
+                    searchInput.value = '';
+                });
+            });
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && !searchDropdown.contains(e.target)) {
+                searchDropdown.classList.remove('show');
+            }
+        });
+
+        // Category collapse/expand functionality
+        document.querySelectorAll('.category-toggle').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const category = toggle.closest('.command-category');
+                const content = category.querySelector('.category-content');
+                
+                toggle.classList.toggle('collapsed');
+                content.classList.toggle('collapsed');
+            });
+        });
+
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
         // Favorites functionality
@@ -1475,3 +1777,5 @@
     </script>
 </body>
 </html>
+
+<!-- END OF FILE 1 - Continue with FILE 2 -->
