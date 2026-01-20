@@ -741,8 +741,7 @@
                     <h3>Count vCPUs (Virtual Servers)</h3>
                     <button class="favorite-btn" data-command="vcpu-count">☆</button>
                 </div>
-                <p class="command-description">Count virtual CPUs
-                <p class="command-description">Count virtual CPUs on virtualized servers by parsing processor information.</p>
+               <p class="command-description">Count virtual CPUs on virtualized servers by parsing processor information.</p>
                 <div class="command-block">
                     <code>cat /proc/cpuinfo | grep -E '^processor' | wc -l</code>
                     <button class="copy-btn">Copy</button>
@@ -780,6 +779,91 @@
                 <div class="command-notes">
                     <strong>Interactive commands:</strong> Press 'M' to sort by memory, 'P' for CPU, 'q' to quit.<br>
                     <strong>Use case:</strong> Identify resource-hungry processes causing performance issues.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="disk space usage df storage partition">
+                <div class="command-header">
+                    <h3>Check Disk Space Usage</h3>
+                    <button class="favorite-btn" data-command="df">☆</button>
+                </div>
+                <p class="command-description">Display available disk space on all mounted filesystems in human-readable format.</p>
+                <div class="command-block">
+                    <code>df -h</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Quickly check if partitions are running out of space, particularly important for /var/log.<br>
+                    <strong>Look for:</strong> Percentage used - anything over 90% needs attention.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="disk usage du log directory size folder">
+                <div class="command-header">
+                    <h3>Check Log Directory Sizes</h3>
+                    <button class="favorite-btn" data-command="du-logs">☆</button>
+                </div>
+                <p class="command-description">Display the size of each directory within /var/log to identify which logs are consuming the most space.</p>
+                <div class="command-block">
+                    <code>du -sh /var/log/*</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Identify which log files or directories are filling up disk space.<br>
+                    <strong>Tip:</strong> Add | sort -h to sort by size from smallest to largest.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="memory ram usage free available">
+                <div class="command-header">
+                    <h3>Check Memory Usage</h3>
+                    <button class="favorite-btn" data-command="free">☆</button>
+                </div>
+                <p class="command-description">Display current memory usage including total, used, free, shared, buff/cache, and available memory.</p>
+                <div class="command-block">
+                    <code>free -h</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Key metric:</strong> Look at the "available" column - this shows memory actually available for applications.<br>
+                    <strong>Use case:</strong> Diagnose memory pressure or verify if OOM killer events are likely.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="uptime load average system running">
+                <div class="command-header">
+                    <h3>System Uptime & Load Average</h3>
+                    <button class="favorite-btn" data-command="uptime">☆</button>
+                </div>
+                <p class="command-description">Show how long the system has been running and the 1, 5, and 15 minute load averages.</p>
+                <div class="command-block">
+                    <code>uptime</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Load average interpretation:</strong> Should be less than number of CPU cores for healthy performance.<br>
+                    <strong>Use case:</strong> Quick health check - high load averages indicate system stress.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="mtr traceroute ping network path continuous">
+                <div class="command-header">
+                    <h3>MTR - Network Path Analysis</h3>
+                    <button class="favorite-btn" data-command="mtr">☆</button>
+                </div>
+                <p class="command-description">Combines traceroute and ping functionality to continuously monitor network path and packet loss to a destination.</p>
+                <div class="command-block">
+                    <code>mtr [hostname or IP]</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-block">
+                    <code>mtr --report --report-cycles 50 [hostname]</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Superior to traceroute for diagnosing intermittent network issues and packet loss.<br>
+                    <strong>Interactive mode:</strong> Press 'q' to quit. Use --report flag for a one-time summary.<br>
+                    <strong>Look for:</strong> Loss% column shows packet loss at each hop.
                 </div>
             </div>
 
@@ -971,9 +1055,9 @@
                 </div>
             </div>
 
-            <div class="command-card" data-tags="extension peer details sip show">
+            <div class="command-card" data-tags="extension peer details sip show alias">
                 <div class="command-header">
-                    <h3>View Extension Details</h3>
+                    <h3>View Extension Details (peer)</h3>
                     <button class="favorite-btn" data-command="peer-extension">☆</button>
                 </div>
                 <p class="command-description">Display detailed information about a specific SIP peer/extension including registration status and settings.</p>
@@ -981,25 +1065,119 @@
                     <code>peer "[extension]"</code>
                     <button class="copy-btn">Copy</button>
                 </div>
+                <div class="command-block">
+                    <code>sudo /usr/local/bin/lsadmin sip-show-peer "[extension]"</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
                 <div class="command-notes">
+                    <strong>Note:</strong> "peer" is an alias for the full lsadmin command shown above.<br>
                     <strong>Shows:</strong> IP address, codec support, registration status, qualify status, and NAT settings.<br>
                     <strong>Use case:</strong> Troubleshoot extension connectivity or verify configuration.
                 </div>
             </div>
 
-            <div class="command-card" data-tags="extension peers list all sip show">
+            <div class="command-card" data-tags="extension peers contacts list all sip pjsip show alias">
                 <div class="command-header">
-                    <h3>List All Extensions</h3>
+                    <h3>List All Extensions (peers)</h3>
                     <button class="favorite-btn" data-command="peers-all">☆</button>
                 </div>
-                <p class="command-description">Display a complete list of all configured SIP peers/extensions and their status.</p>
+                <p class="command-description">Display a complete list of all configured PJSIP contacts/extensions and their status.</p>
                 <div class="command-block">
                     <code>peers</code>
                     <button class="copy-btn">Copy</button>
                 </div>
+                <div class="command-block">
+                    <code>sudo asterisk -rx 'pjsip show contacts'</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
                 <div class="command-notes">
+                    <strong>Note:</strong> "peers" is an alias for the full asterisk command shown above.<br>
                     <strong>Use case:</strong> Get an overview of all extensions, check registration status, identify offline phones.<br>
-                    <strong>Tip:</strong> Look for "OK" in the status column for registered extensions.
+                    <strong>Tip:</strong> Look for "Avail" or registered status to confirm active extensions.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="channels active calls view list alias">
+                <div class="command-header">
+                    <h3>View Active Channels (channels)</h3>
+                    <button class="favorite-btn" data-command="channels-alias">☆</button>
+                </div>
+                <p class="command-description">Display all currently active channels (calls) showing detailed channel information.</p>
+                <div class="command-block">
+                    <code>channels</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-block">
+                    <code>sudo asterisk -rx 'core show channels'</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Note:</strong> "channels" is an alias for the full asterisk command shown above.<br>
+                    <strong>Use case:</strong> Monitor active calls in real-time, identify stuck channels.<br>
+                    <strong>Shows:</strong> Channel name, location, state, and application.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="endpoints inuse active pjsip busy extensions">
+                <div class="command-header">
+                    <h3>Show In-Use Endpoints (inuse)</h3>
+                    <button class="favorite-btn" data-command="inuse">☆</button>
+                </div>
+                <p class="command-description">Display only PJSIP endpoints that are currently in use (active on a call).</p>
+                <div class="command-block">
+                    <code>inuse</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-block">
+                    <code>sudo asterisk -rx 'pjsip show endpoints like [0-9]+' | egrep '^ Endpoint'</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Note:</strong> "inuse" is an alias for the full command shown above.<br>
+                    <strong>Use case:</strong> Quickly see which extensions are actively on calls without showing all endpoints.<br>
+                    <strong>Tip:</strong> Useful for monitoring call center activity or troubleshooting busy issues.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="database show asterisk db astdb">
+                <div class="command-header">
+                    <h3>Show Asterisk Database (database-show)</h3>
+                    <button class="favorite-btn" data-command="database-show">☆</button>
+                </div>
+                <p class="command-description">Display all entries in the Asterisk internal database (AstDB) used for storing persistent configuration and state.</p>
+                <div class="command-block">
+                    <code>database-show</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-block">
+                    <code>sudo asterisk -rx 'database show'</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Note:</strong> "database-show" is an alias for the full command shown above.<br>
+                    <strong>Contains:</strong> Device states, BLF subscriptions, voicemail settings, and custom application data.<br>
+                    <strong>Use case:</strong> Troubleshoot feature codes, BLF issues, or verify stored configuration values.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="apache http access log tail follow web">
+                <div class="command-header">
+                    <h3>Follow Apache HTTP Access Log (http)</h3>
+                    <button class="favorite-btn" data-command="http-log">☆</button>
+                </div>
+                <p class="command-description">Continuously tail Apache HTTP access logs with colorized output for easier reading.</p>
+                <div class="command-block">
+                    <code>http</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-block">
+                    <code>sudo /usr/local/bin/lsadmin tail-logs /var/log/apache2/access.log | ccze -A -o nolookups</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Note:</strong> "http" and "https" are aliases for the same command shown above.<br>
+                    <strong>Use case:</strong> Monitor web traffic to PBX interface in real-time, troubleshoot login issues.<br>
+                    <strong>Tip:</strong> Press Ctrl+C to stop following the log.
                 </div>
             </div>
         </section>
