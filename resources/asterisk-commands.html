@@ -7,559 +7,87 @@
     <link rel="stylesheet" href="../styles.css">
     <link rel="icon" type="image/png" href="../images/thegoat.png">
     <style>
-        /* Page-Specific Styles */
-        .commands-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .commands-header h1 {
-            font-size: 2.8em;
-            color: var(--accent);
-            margin-bottom: 15px;
-        }
-
-        .subtitle {
-            font-size: 1.2em;
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-        }
-
-        .search-container {
-            position: relative;
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
-
-        #searchInput {
-            width: 100%;
-            padding: 15px 50px 15px 20px;
-            font-size: 1.1em;
-            border: 2px solid var(--border);
-            border-radius: 8px;
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            font-family: 'Georgia', 'Times New Roman', serif;
-            transition: all 0.3s ease;
-        }
-
-        #searchInput:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 10px rgba(184, 134, 11, 0.3);
-        }
-
-        .search-icon {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.3em;
-            pointer-events: none;
-        }
-
-        .quick-nav {
-            background: var(--bg-secondary);
-            padding: 25px;
-            border-radius: 8px;
-            border: 2px solid var(--border);
-            margin-bottom: 40px;
-        }
-
-        .quick-nav h3 {
-            color: var(--accent);
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .nav-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .nav-link {
-            background: var(--accent);
-            color: var(--coal);
-            padding: 8px 16px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9em;
-            transition: all 0.3s ease;
-            border: 2px solid var(--border);
-        }
-
-        .nav-link:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .command-category {
-            margin-bottom: 60px;
-        }
-
-        .command-category h2 {
-            font-size: 2em;
-            color: var(--accent);
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid var(--border);
-        }
-
-        .category-description {
-            font-size: 1.1em;
-            color: var(--text-secondary);
-            margin-bottom: 30px;
-            font-style: italic;
-        }
-
-        .command-card {
-            background: var(--bg-secondary);
-            padding: 25px;
-            margin-bottom: 25px;
-            border-radius: 8px;
-            border: 2px solid var(--border);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .command-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-            border-color: var(--accent);
-        }
-
-        .command-card.hidden {
-            display: none;
-        }
-
-        .command-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .command-header h3 {
-            font-size: 1.5em;
-            color: var(--text-primary);
-            margin: 0;
-        }
-
-        .favorite-btn {
-            background: none;
-            border: none;
-            font-size: 1.5em;
-            cursor: pointer;
-            color: var(--text-secondary);
-            transition: all 0.3s ease;
-            padding: 5px;
-        }
-
-        .favorite-btn:hover {
-            color: var(--accent);
-            transform: scale(1.2);
-        }
-
-        .favorite-btn.active {
-            color: #ffd700;
-        }
-
-        .command-description {
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .command-block {
-            position: relative;
-            background: var(--bg-primary);
-            border: 1px solid var(--border);
-            border-radius: 5px;
-            padding: 15px 100px 15px 15px;
-            margin-bottom: 15px;
-            font-family: 'Courier New', monospace;
-        }
-
-        .command-block:last-of-type {
-            margin-bottom: 20px;
-        }
-
-        .command-block code {
-            color: var(--text-primary);
-            font-size: 0.95em;
-            display: block;
-            word-wrap: break-word;
-            white-space: pre-wrap;
-        }
-
-        .copy-btn {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--accent);
-            color: var(--coal);
-            border: 2px solid var(--border);
-            border-radius: 5px;
-            padding: 8px 16px;
-            cursor: pointer;
-            font-family: 'Georgia', 'Times New Roman', serif;
-            font-weight: 600;
-            font-size: 0.85em;
-            transition: all 0.3s ease;
-        }
-
-        .copy-btn:hover {
-            background: var(--accent-hover);
-            transform: translateY(-50%) scale(1.05);
-        }
-
-        .copy-btn.copied {
-            background: #4caf50;
-            color: white;
-        }
-
-        .command-notes {
-            background: var(--bg-primary);
-            border-left: 4px solid var(--accent);
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 15px;
-        }
-
-        .command-notes strong {
-            color: var(--accent);
-        }
-
-        .command-notes code {
-            background: var(--bg-secondary);
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-        }
-
-        .placeholder {
-            background: var(--accent);
-            color: var(--coal);
-            padding: 2px 6px;
-            border-radius: 3px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .placeholder:hover {
-            background: var(--accent-hover);
-            transform: scale(1.05);
-        }
-
-        .placeholder-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .placeholder-modal.show {
-            display: flex;
-        }
-
-        .placeholder-modal-content {
-            background: var(--bg-secondary);
-            padding: 30px;
-            border-radius: 10px;
-            border: 3px solid var(--accent);
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .placeholder-modal h3 {
-            color: var(--accent);
-            margin-bottom: 20px;
-        }
-
-        .placeholder-modal input {
-            width: 100%;
-            padding: 12px;
-            font-size: 1.1em;
-            border: 2px solid var(--border);
-            border-radius: 5px;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            font-family: 'Courier New', monospace;
-            margin-bottom: 20px;
-        }
-
-        .placeholder-modal-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-        }
-
-        .placeholder-modal button {
-            padding: 10px 20px;
-            border: 2px solid var(--border);
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: 'Georgia', 'Times New Roman', serif;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .placeholder-modal .btn-copy {
-            background: var(--accent);
-            color: var(--coal);
-        }
-
-        .placeholder-modal .btn-copy:hover {
-            background: var(--accent-hover);
-        }
-
-        .placeholder-modal .btn-cancel {
-            background: var(--bg-primary);
-            color: var(--text-primary);
-        }
-
-        .placeholder-modal .btn-cancel:hover {
-            background: var(--gear-gray);
-        }
-
-        .favorites-section {
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
-            padding: 40px;
-            border-radius: 10px;
-            border: 2px solid var(--accent);
-            margin-bottom: 60px;
-        }
-
-        .favorites-section h2 {
-            color: var(--accent);
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .favorites-list {
-            display: grid;
-            gap: 20px;
-        }
-
-        .empty-favorites {
-            text-align: center;
-            color: var(--text-secondary);
-            font-style: italic;
-            padding: 40px;
-        }
-
-        .no-results {
-            text-align: center;
-            padding: 60px 20px;
-            background: var(--bg-secondary);
-            border-radius: 8px;
-            border: 2px dashed var(--border);
-            margin: 40px 0;
-        }
-
-        .no-results h3 {
-            color: var(--accent);
-            font-size: 1.8em;
-            margin-bottom: 15px;
-        }
-
-        .no-results p {
-            color: var(--text-secondary);
-            font-size: 1.1em;
-        }
-
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--accent);
-            color: var(--coal);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 2px solid var(--border);
-            font-size: 1.5em;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            z-index: 999;
-            display: none;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .back-to-top:hover {
-            background: var(--accent-hover);
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-        }
-
-        .back-to-top.show {
-            display: flex;
-        }
-
-        .category-toggle {
-            cursor: pointer;
-            user-select: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .category-toggle::before {
-            content: '▼';
-            font-size: 0.8em;
-            transition: transform 0.3s ease;
-        }
-
-        .category-toggle.collapsed::before {
-            transform: rotate(-90deg);
-        }
-
-        .category-content {
-            max-height: 10000px;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .category-content.collapsed {
-            max-height: 0;
-        }
-
-        .search-dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: var(--bg-secondary);
-            border: 2px solid var(--border);
-            border-top: none;
-            border-radius: 0 0 8px 8px;
-            max-height: 400px;
-            overflow-y: auto;
-            display: none;
-            z-index: 1000;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .search-dropdown.show {
-            display: block;
-        }
-
-        .search-result-item {
-            padding: 15px 20px;
-            cursor: pointer;
-            border-bottom: 1px solid var(--border);
-            transition: background 0.2s ease;
-        }
-
-        .search-result-item:last-child {
-            border-bottom: none;
-        }
-
-        .search-result-item:hover {
-            background: var(--bg-primary);
-        }
-
-        .search-result-title {
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 5px;
-        }
-
-        .search-result-category {
-            font-size: 0.85em;
-            color: var(--accent);
-            margin-bottom: 5px;
-        }
-
-        .search-result-preview {
-            font-size: 0.9em;
-            color: var(--text-secondary);
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .no-search-results {
-            padding: 20px;
-            text-align: center;
-            color: var(--text-secondary);
-            font-style: italic;
-        }
-
-        @media (max-width: 768px) {
-            .commands-header h1 {
-                font-size: 2em;
-            }
-            
-            .nav-links {
-                flex-direction: column;
-            }
-            
-            .nav-link {
-                text-align: center;
-            }
-            
-            .command-block {
-                padding: 15px 15px 60px 15px;
-            }
-            
-            .copy-btn {
-                right: 10px;
-                top: auto;
-                bottom: 10px;
-                transform: none;
-            }
-            
-            .copy-btn:hover {
-                transform: scale(1.05);
-            }
-            
-            .command-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-            
-            .favorite-btn {
-                align-self: flex-end;
-            }
-
-            .back-to-top {
-                bottom: 20px;
-                right: 20px;
-                width: 45px;
-                height: 45px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .commands-header h1 {
-                font-size: 1.6em;
-            }
-            
-            .subtitle {
-                font-size: 1em;
-            }
-            
-            #searchInput {
-                font-size: 1em;
-                padding: 12px 45px 12px 15px;
-            }
+        .commands-header{text-align:center;margin-bottom:50px}
+        .commands-header h1{font-size:2.8em;color:var(--accent);margin-bottom:15px}
+        .subtitle{font-size:1.2em;color:var(--text-secondary);margin-bottom:40px}
+        .search-container{position:relative;max-width:600px;margin:0 auto 40px}
+        #searchInput{width:100%;padding:15px 50px 15px 20px;font-size:1.1em;border:2px solid var(--border);border-radius:8px;background:var(--bg-secondary);color:var(--text-primary);font-family:'Georgia','Times New Roman',serif;transition:all .3s ease}
+        #searchInput:focus{outline:none;border-color:var(--accent);box-shadow:0 0 10px rgba(184,134,11,.3)}
+        .search-icon{position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:1.3em;pointer-events:none}
+        .quick-nav{background:var(--bg-secondary);padding:25px;border-radius:8px;border:2px solid var(--border);margin-bottom:40px}
+        .quick-nav h3{color:var(--accent);margin-bottom:20px;text-align:center}
+        .nav-links{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+        .nav-link{background:var(--accent);color:var(--coal);padding:8px 16px;border-radius:5px;text-decoration:none;font-weight:600;font-size:.9em;transition:all .3s ease;border:2px solid var(--border)}
+        .nav-link:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 4px 8px rgba(0,0,0,.2)}
+        .command-category{margin-bottom:60px}
+        .command-category h2{font-size:2em;color:var(--accent);margin-bottom:15px;padding-bottom:10px;border-bottom:3px solid var(--border)}
+        .category-description{font-size:1.1em;color:var(--text-secondary);margin-bottom:30px;font-style:italic}
+        .command-card{background:var(--bg-secondary);padding:25px;margin-bottom:25px;border-radius:8px;border:2px solid var(--border);box-shadow:0 4px 6px rgba(0,0,0,.2);transition:all .3s ease}
+        .command-card:hover{transform:translateY(-3px);box-shadow:0 6px 12px rgba(0,0,0,.3);border-color:var(--accent)}
+        .command-card.hidden{display:none}
+        .command-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+        .command-header h3{font-size:1.5em;color:var(--text-primary);margin:0}
+        .favorite-btn{background:none;border:none;font-size:1.5em;cursor:pointer;color:var(--text-secondary);transition:all .3s ease;padding:5px}
+        .favorite-btn:hover{color:var(--accent);transform:scale(1.2)}
+        .favorite-btn.active{color:#ffd700}
+        .command-description{color:var(--text-secondary);margin-bottom:20px;line-height:1.6}
+        .command-block{position:relative;background:var(--bg-primary);border:1px solid var(--border);border-radius:5px;padding:15px 100px 15px 15px;margin-bottom:15px;font-family:'Courier New',monospace}
+        .command-block:last-of-type{margin-bottom:20px}
+        .command-block code{color:var(--text-primary);font-size:.95em;display:block;word-wrap:break-word;white-space:pre-wrap}
+        .copy-btn{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:var(--accent);color:var(--coal);border:2px solid var(--border);border-radius:5px;padding:8px 16px;cursor:pointer;font-family:'Georgia','Times New Roman',serif;font-weight:600;font-size:.85em;transition:all .3s ease}
+        .copy-btn:hover{background:var(--accent-hover);transform:translateY(-50%) scale(1.05)}
+        .copy-btn.copied{background:#4caf50;color:white}
+        .command-notes{background:var(--bg-primary);border-left:4px solid var(--accent);padding:15px;border-radius:5px;margin-top:15px}
+        .command-notes strong{color:var(--accent)}
+        .command-notes code{background:var(--bg-secondary);padding:2px 6px;border-radius:3px;font-family:'Courier New',monospace;font-size:.9em}
+        .placeholder{background:var(--accent);color:var(--coal);padding:2px 6px;border-radius:3px;font-weight:600}
+        .placeholder-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);z-index:2000;align-items:center;justify-content:center}
+        .placeholder-modal.show{display:flex}
+        .placeholder-modal-content{background:var(--bg-secondary);padding:30px;border-radius:10px;border:3px solid var(--accent);max-width:500px;width:90%;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+        .placeholder-modal h3{color:var(--accent);margin-bottom:20px}
+        .placeholder-modal input{width:100%;padding:12px;font-size:1.1em;border:2px solid var(--border);border-radius:5px;background:var(--bg-primary);color:var(--text-primary);font-family:'Courier New',monospace;margin-bottom:20px}
+        .placeholder-modal-buttons{display:flex;gap:10px;justify-content:flex-end}
+        .placeholder-modal button{padding:10px 20px;border:2px solid var(--border);border-radius:5px;cursor:pointer;font-family:'Georgia','Times New Roman',serif;font-weight:600;transition:all .3s ease}
+        .placeholder-modal .btn-copy{background:var(--accent);color:var(--coal)}
+        .placeholder-modal .btn-copy:hover{background:var(--accent-hover)}
+        .placeholder-modal .btn-cancel{background:var(--bg-primary);color:var(--text-primary)}
+        .placeholder-modal .btn-cancel:hover{background:var(--gear-gray)}
+        .favorites-section{background:linear-gradient(135deg,var(--bg-secondary) 0%,var(--bg-primary) 100%);padding:40px;border-radius:10px;border:2px solid var(--accent);margin-bottom:60px}
+        .favorites-section h2{color:var(--accent);text-align:center;margin-bottom:30px}
+        .favorites-list{display:grid;gap:20px}
+        .empty-favorites{text-align:center;color:var(--text-secondary);font-style:italic;padding:40px}
+        .back-to-top{position:fixed;bottom:30px;right:30px;background:var(--accent);color:var(--coal);width:50px;height:50px;border-radius:50%;border:2px solid var(--border);font-size:1.5em;cursor:pointer;box-shadow:0 4px 8px rgba(0,0,0,.3);transition:all .3s ease;z-index:999;display:none;align-items:center;justify-content:center}
+        .back-to-top:hover{background:var(--accent-hover);transform:translateY(-5px);box-shadow:0 6px 12px rgba(0,0,0,.4)}
+        .back-to-top.show{display:flex}
+        .category-toggle{cursor:pointer;user-select:none;display:flex;align-items:center;gap:10px}
+        .category-toggle::before{content:'▼';font-size:.8em;transition:transform .3s ease}
+        .category-toggle.collapsed::before{transform:rotate(-90deg)}
+        .category-content{max-height:10000px;overflow:hidden;transition:max-height .3s ease}
+        .category-content.collapsed{max-height:0}
+        .search-dropdown{position:absolute;top:100%;left:0;right:0;background:var(--bg-secondary);border:2px solid var(--border);border-top:none;border-radius:0 0 8px 8px;max-height:400px;overflow-y:auto;display:none;z-index:1000;box-shadow:0 4px 8px rgba(0,0,0,.3)}
+        .search-dropdown.show{display:block}
+        .search-result-item{padding:15px 20px;cursor:pointer;border-bottom:1px solid var(--border);transition:background .2s ease}
+        .search-result-item:last-child{border-bottom:none}
+        .search-result-item:hover{background:var(--bg-primary)}
+        .search-result-title{font-weight:600;color:var(--text-primary);margin-bottom:5px}
+        .search-result-category{font-size:.85em;color:var(--accent);margin-bottom:5px}
+        .search-result-preview{font-size:.9em;color:var(--text-secondary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        .no-search-results{padding:20px;text-align:center;color:var(--text-secondary);font-style:italic}
+        @media (max-width:768px){
+            .commands-header h1{font-size:2em}
+            .nav-links{flex-direction:column}
+            .nav-link{text-align:center}
+            .command-block{padding:15px 15px 60px 15px}
+            .copy-btn{right:10px;top:auto;bottom:10px;transform:none}
+            .copy-btn:hover{transform:scale(1.05)}
+            .command-header{flex-direction:column;align-items:flex-start;gap:10px}
+            .favorite-btn{align-self:flex-end}
+            .back-to-top{bottom:20px;right:20px;width:45px;height:45px}
+        }
+        @media (max-width:480px){
+            .commands-header h1{font-size:1.6em}
+            .subtitle{font-size:1em}
+            #searchInput{font-size:1em;padding:12px 45px 12px 15px}
         }
     </style>
 </head>
@@ -639,8 +167,7 @@
                 <p class="empty-favorites">No favorites yet. Click the ☆ icon on any command to add it here!</p>
             </div>
         </div>
-        <!-- Network Diagnostics -->
-        <section id="network" class="command-category">
+                <section id="network" class="command-category">
             <h2 class="category-toggle">Network Diagnostics</h2>
             <div class="category-content">
             <p class="category-description">Essential commands for troubleshooting network connectivity and DNS issues</p>
@@ -666,8 +193,8 @@
                     <button class="favorite-btn" data-command="tracert">☆</button>
                 </div>
                 <p class="command-description">Maps the complete network path packets take from source to destination, showing each hop and latency.</p>
-                <div class="command-block">
-                    <code>tracert [destination]</code>
+                <div class="command-block has-placeholder">
+                    <code>tracert <span class="placeholder" data-placeholder="destination">destination</span></code>
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
@@ -681,12 +208,12 @@
                     <button class="favorite-btn" data-command="ping">☆</button>
                 </div>
                 <p class="command-description">Tests network connectivity and measures round-trip time to a host. Use for basic reachability testing.</p>
-                <div class="command-block">
-                    <code>ping [hostname or IP]</code>
+                <div class="command-block has-placeholder">
+                    <code>ping <span class="placeholder" data-placeholder="hostname_or_ip">hostname or IP</span></code>
                     <button class="copy-btn">Copy</button>
                 </div>
-                <div class="command-block">
-                    <code>ping -t [hostname or IP]</code>
+                <div class="command-block has-placeholder">
+                    <code>ping -t <span class="placeholder" data-placeholder="hostname_or_ip">hostname or IP</span></code>
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
@@ -715,8 +242,8 @@
                     <button class="favorite-btn" data-command="mtr">☆</button>
                 </div>
                 <p class="command-description">Combines traceroute and ping functionality to continuously monitor network path and packet loss to a destination.</p>
-                <div class="command-block">
-                    <code>sudo mtr [hostname or IP]</code>
+                <div class="command-block has-placeholder">
+                    <code>sudo mtr <span class="placeholder" data-placeholder="hostname_or_ip">hostname or IP</span></code>
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
@@ -728,7 +255,6 @@
             </div>
         </section>
 
-        <!-- Log Analysis (Grep) -->
         <section id="grep" class="command-category">
             <h2 class="category-toggle">Log Analysis (Grep)</h2>
             <div class="category-content">
@@ -804,8 +330,7 @@
             </div>
             </div>
         </section>
-           <!-- Asterisk Management -->
-        <section id="asterisk" class="command-category">
+                <section id="asterisk" class="command-category">
             <h2 class="category-toggle">Asterisk Management</h2>
             <div class="category-content">
             <p class="category-description">Core Asterisk service control and channel management commands</p>
@@ -995,8 +520,7 @@
                 </div>
                 <div class="command-notes">
                     <strong>Use case:</strong> Verify call routing, troubleshoot misrouted calls, understand call flow.<br>
-                    <strong>Warning:</strong> Output can be very long. Use 'dialplan show [extension]@[context]' for specific extensions.<br>
-                    <strong>Tip:</strong> Pipe to grep to search: dialplan show | grep "extension_number"
+                    <strong>Warning:</strong> Output can be very long. Use 'dialplan show [extension]@[context]' for specific extensions.
                 </div>
             </div>
 
@@ -1012,14 +536,12 @@
                 </div>
                 <div class="command-notes">
                     <strong>Use case:</strong> Monitor call activity in real-time, watch for stuck channels, observe call flow during testing.<br>
-                    <strong>Controls:</strong> Press Ctrl+C to stop. The -n 1 flag refreshes every 1 second.<br>
-                    <strong>Tip:</strong> Increase refresh interval with -n 2 (2 seconds), -n 5 (5 seconds), etc.
+                    <strong>Controls:</strong> Press Ctrl+C to stop. The -n 1 flag refreshes every 1 second.
                 </div>
             </div>
             </div>
         </section>
 
-        <!-- System Resources -->
         <section id="system" class="command-category">
             <h2 class="category-toggle">System Resources & Performance</h2>
             <div class="category-content">
@@ -1223,15 +745,12 @@
                 </div>
                 <div class="command-notes">
                     <strong>⚠️ Warning:</strong> This permanently deletes all current log data.<br>
-                    <strong>Use case:</strong> When df -h shows partition is 100% full and preventing system operation.<br>
-                    <strong>Better practice:</strong> Archive logs before truncating when possible.
+                    <strong>Use case:</strong> When df -h shows partition is 100% full and preventing system operation.
                 </div>
             </div>
             </div>
         </section>
-
-                <!-- Fail2Ban -->
-        <section id="failtoban" class="command-category">
+                <section id="failtoban" class="command-category">
             <h2 class="category-toggle">Fail2Ban Management</h2>
             <div class="category-content">
             <p class="category-description">Control and troubleshoot the Fail2Ban intrusion prevention service</p>
@@ -1310,7 +829,6 @@
             </div>
         </section>
 
-        <!-- Extensions -->
         <section id="extensions" class="command-category">
             <h2 class="category-toggle">Extension Management</h2>
             <div class="category-content">
@@ -1348,8 +866,7 @@
                 </div>
                 <div class="command-notes">
                     <strong>Note:</strong> "peer" is an alias for the full lsadmin command shown above.<br>
-                    <strong>Shows:</strong> IP address, codec support, registration status, qualify status, and NAT settings.<br>
-                    <strong>Use case:</strong> Troubleshoot extension connectivity or verify configuration.
+                    <strong>Shows:</strong> IP address, codec support, registration status, qualify status, and NAT settings.
                 </div>
             </div>
 
@@ -1369,8 +886,7 @@
                 </div>
                 <div class="command-notes">
                     <strong>Note:</strong> "peers" is an alias for the full asterisk command shown above.<br>
-                    <strong>Use case:</strong> Get an overview of all extensions, check registration status, identify offline phones.<br>
-                    <strong>Tip:</strong> Look for "Avail" or registered status to confirm active extensions.
+                    <strong>Use case:</strong> Get an overview of all extensions, check registration status.
                 </div>
             </div>
 
@@ -1389,9 +905,7 @@
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
-                    <strong>Note:</strong> "channels" is an alias for the full asterisk command shown above.<br>
-                    <strong>Use case:</strong> Monitor active calls in real-time, identify stuck channels.<br>
-                    <strong>Shows:</strong> Channel name, location, state, and application.
+                    <strong>Note:</strong> "channels" is an alias for the full asterisk command shown above.
                 </div>
             </div>
 
@@ -1410,9 +924,7 @@
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
-                    <strong>Note:</strong> "inuse" is an alias for the full command shown above.<br>
-                    <strong>Use case:</strong> Quickly see which extensions are actively on calls without showing all endpoints.<br>
-                    <strong>Tip:</strong> Useful for monitoring call center activity or troubleshooting busy issues.
+                    <strong>Note:</strong> "inuse" is an alias for the full command shown above.
                 </div>
             </div>
 
@@ -1431,9 +943,7 @@
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
-                    <strong>Note:</strong> "database-show" is an alias for the full command shown above.<br>
-                    <strong>Contains:</strong> Device states, BLF subscriptions, voicemail settings, and custom application data.<br>
-                    <strong>Use case:</strong> Troubleshoot feature codes, BLF issues, or verify stored configuration values.
+                    <strong>Note:</strong> "database-show" is an alias for the full command shown above.
                 </div>
             </div>
 
@@ -1452,15 +962,12 @@
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
-                    <strong>Note:</strong> "http" and "https" are aliases for the same command shown above.<br>
-                    <strong>Use case:</strong> Monitor web traffic to PBX interface in real-time, troubleshoot login issues.<br>
-                    <strong>Tip:</strong> Press Ctrl+C to stop following the log.
+                    <strong>Note:</strong> "http" and "https" are aliases for the same command shown above.
                 </div>
             </div>
             </div>
         </section>
 
-        <!-- File Locations -->
         <section id="files" class="command-category">
             <h2 class="category-toggle">Important File Locations</h2>
             <div class="category-content">
@@ -1477,8 +984,7 @@
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
-                    <strong>Contains:</strong> Phone provisioning configs, firmware files, and boot parameters.<br>
-                    <strong>Use case:</strong> Modify phone configurations, upload firmware updates.
+                    <strong>Contains:</strong> Phone provisioning configs, firmware files, and boot parameters.
                 </div>
             </div>
 
@@ -1493,8 +999,7 @@
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
-                    <strong>Structure:</strong> Organized by extension number, contains WAV files and greeting recordings.<br>
-                    <strong>Use case:</strong> Backup voicemails, recover deleted messages, troubleshoot VM issues.
+                    <strong>Structure:</strong> Organized by extension number, contains WAV files and greeting recordings.
                 </div>
             </div>
 
@@ -1509,8 +1014,7 @@
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
-                    <strong>Supported formats:</strong> WAV, MP3, GSM (WAV recommended for quality).<br>
-                    <strong>Use case:</strong> Upload custom hold music, replace default files.
+                    <strong>Supported formats:</strong> WAV, MP3, GSM (WAV recommended for quality).
                 </div>
             </div>
 
@@ -1525,8 +1029,7 @@
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
-                    <strong>Key files:</strong> full (detailed log), messages (general), cdr-csv/ (call records).<br>
-                    <strong>Note:</strong> Logs rotate daily and compress to save space.
+                    <strong>Key files:</strong> full (detailed log), messages (general), cdr-csv/ (call records).
                 </div>
             </div>
 
@@ -1541,8 +1044,7 @@
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
-                    <strong>Use case:</strong> Troubleshoot voicemail notification delivery failures, verify email sending.<br>
-                    <strong>Look for:</strong> Delivery status, bounced messages, SMTP connection errors.
+                    <strong>Use case:</strong> Troubleshoot voicemail notification delivery failures.
                 </div>
             </div>
 
@@ -1557,15 +1059,13 @@
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
-                    <strong>Contains:</strong> Temporary recording files, transcoding buffers, monitor recordings.<br>
-                    <strong>Note:</strong> Files here are often automatically cleaned up after processing.
+                    <strong>Contains:</strong> Temporary recording files, transcoding buffers, monitor recordings.
                 </div>
             </div>
             </div>
         </section>
     </main>
 
-    <!-- Back to Top Button -->
     <button class="back-to-top" id="backToTop" title="Back to top">↑</button>
 
     <footer>
@@ -1627,22 +1127,7 @@
             localStorage.setItem('darkMode', body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
         });
 
-        // Copy command function
-        document.querySelectorAll('.copy-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const commandBlock = this.parentElement;
-                const hasPlaceholder = commandBlock.classList.contains('has-placeholder');
-                
-                if (hasPlaceholder) {
-                    showPlaceholderModal(commandBlock);
-                } else {
-                    const code = commandBlock.querySelector('code');
-                    const text = code.textContent;
-                    copyToClipboard(text, this);
-                }
-            });
-        });
-
+        // Copy command function with placeholder support
         function copyToClipboard(text, button) {
             navigator.clipboard.writeText(text).then(() => {
                 const originalText = button.textContent;
@@ -1659,14 +1144,12 @@
             });
         }
 
-        // Placeholder modal functionality
         function showPlaceholderModal(commandBlock) {
             const code = commandBlock.querySelector('code');
             const placeholders = code.querySelectorAll('.placeholder');
             
             if (placeholders.length === 0) return;
             
-            // Create modal if it doesn't exist
             let modal = document.getElementById('placeholderModal');
             if (!modal) {
                 modal = document.createElement('div');
@@ -1674,7 +1157,7 @@
                 modal.className = 'placeholder-modal';
                 modal.innerHTML = `
                     <div class="placeholder-modal-content">
-                        <h3>Fill in the placeholder</h3>
+                        <h3>Fill in the values</h3>
                         <div id="placeholderInputs"></div>
                         <div class="placeholder-modal-buttons">
                             <button class="btn-cancel">Cancel</button>
@@ -1684,7 +1167,6 @@
                 `;
                 document.body.appendChild(modal);
                 
-                // Close modal on cancel or outside click
                 modal.querySelector('.btn-cancel').addEventListener('click', () => {
                     modal.classList.remove('show');
                 });
@@ -1695,13 +1177,12 @@
                 });
             }
             
-            // Build input fields for each unique placeholder
             const inputsContainer = modal.querySelector('#placeholderInputs');
             inputsContainer.innerHTML = '';
             const uniquePlaceholders = new Map();
             
             placeholders.forEach(p => {
-                const key = p.dataset.placeholder;
+                const key = p.getAttribute('data-placeholder') || p.textContent;
                 if (!uniquePlaceholders.has(key)) {
                     uniquePlaceholders.set(key, p.textContent);
                 }
@@ -1712,16 +1193,14 @@
                 const input = document.createElement('input');
                 input.type = 'text';
                 input.placeholder = `Enter ${label}`;
-                input.dataset.placeholder = key;
+                input.setAttribute('data-placeholder', key);
                 input.value = '';
                 inputsContainer.appendChild(input);
             });
             
-            // Focus first input
             const firstInput = inputsContainer.querySelector('input');
             setTimeout(() => firstInput?.focus(), 100);
             
-            // Handle enter key
             inputsContainer.querySelectorAll('input').forEach(input => {
                 input.addEventListener('keypress', (e) => {
                     if (e.key === 'Enter') {
@@ -1730,38 +1209,20 @@
                 });
             });
             
-            // Handle copy button
             const copyBtn = modal.querySelector('.btn-copy');
             copyBtn.onclick = () => {
                 let commandText = code.textContent;
                 
-                // Replace each placeholder with its input value
                 inputsContainer.querySelectorAll('input').forEach(input => {
-                    const key = input.dataset.placeholder;
-                    const value = input.value.trim() || input.placeholder.replace('Enter ', '');
-                    const placeholder = Array.from(placeholders).find(p => p.dataset.placeholder === key);
-                    if (placeholder) {
-                        const regex = new RegExp(placeholder.textContent.replace(/[.*+?^${}()|[\]\\]/g, '\\        // Copy command function
-        document.querySelectorAll('.copy-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const code = this.parentElement.querySelector('code');
-                const text = code.textContent;
-                navigator.clipboard.writeText(text).then(() => {
-                    const originalText = this.textContent;
-                    this.textContent = 'Copied!';
-                    this.classList.add('copied');
-                    setTimeout(() => {
-                        this.textContent = originalText;
-                        this.classList.remove('copied');
-                    }, 2000);
-                }).catch(err => {
-                    console.error('Failed to copy:', err);
-                    this.textContent = 'Error';
-                    setTimeout(() => { this.textContent = 'Copy'; }, 2000);
-                });
-            });
-        });'), 'g');
-                        commandText = commandText.replace(regex, value);
+                    const key = input.getAttribute('data-placeholder');
+                    const value = input.value.trim();
+                    if (value) {
+                        const placeholder = Array.from(placeholders).find(p => 
+                            (p.getAttribute('data-placeholder') || p.textContent) === key
+                        );
+                        if (placeholder) {
+                            commandText = commandText.replace(placeholder.textContent, value);
+                        }
                     }
                 });
                 
@@ -1772,13 +1233,26 @@
             modal.classList.add('show');
         }
 
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const commandBlock = this.parentElement;
+                const hasPlaceholder = commandBlock.classList.contains('has-placeholder');
+                
+                if (hasPlaceholder) {
+                    showPlaceholderModal(commandBlock);
+                } else {
+                    const code = commandBlock.querySelector('code');
+                    const text = code.textContent;
+                    copyToClipboard(text, this);
+                }
+            });
+        });
+
         // Search functionality with dropdown
         const searchInput = document.getElementById('searchInput');
         const searchDropdown = document.getElementById('searchDropdown');
         const commandCards = document.querySelectorAll('.command-card');
         const categories = document.querySelectorAll('.command-category');
-
-        let searchResults = [];
 
         searchInput.addEventListener('input', (e) => {
             const searchTerm = e.target.value.toLowerCase().trim();
@@ -1789,7 +1263,7 @@
                 return;
             }
 
-            searchResults = [];
+            let searchResults = [];
             
             commandCards.forEach(card => {
                 const tags = card.getAttribute('data-tags').toLowerCase();
@@ -1811,17 +1285,13 @@
                 }
             });
 
-            displaySearchDropdown(searchResults);
-        });
-
-        function displaySearchDropdown(results) {
-            if (results.length === 0) {
+            if (searchResults.length === 0) {
                 searchDropdown.innerHTML = '<div class="no-search-results">No commands found</div>';
                 searchDropdown.classList.add('show');
                 return;
             }
 
-            searchDropdown.innerHTML = results.slice(0, 10).map(result => `
+            searchDropdown.innerHTML = searchResults.slice(0, 10).map(result => `
                 <div class="search-result-item" data-card-id="${Array.from(commandCards).indexOf(result.element)}">
                     <div class="search-result-title">${result.title}</div>
                     <div class="search-result-category">${result.category}</div>
@@ -1831,14 +1301,12 @@
 
             searchDropdown.classList.add('show');
 
-            // Add click handlers to results
             document.querySelectorAll('.search-result-item').forEach(item => {
                 item.addEventListener('click', () => {
                     const cardIndex = parseInt(item.getAttribute('data-card-id'));
                     const card = commandCards[cardIndex];
                     const category = card.closest('.command-category');
                     
-                    // Expand category if collapsed
                     const categoryContent = category.querySelector('.category-content');
                     const categoryToggle = category.querySelector('.category-toggle');
                     if (categoryContent.classList.contains('collapsed')) {
@@ -1846,30 +1314,26 @@
                         categoryToggle.classList.remove('collapsed');
                     }
                     
-                    // Scroll to card
                     card.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     
-                    // Highlight briefly
                     card.style.boxShadow = '0 0 20px rgba(184, 134, 11, 0.6)';
                     setTimeout(() => {
                         card.style.boxShadow = '';
                     }, 2000);
                     
-                    // Close dropdown and clear search
                     searchDropdown.classList.remove('show');
                     searchInput.value = '';
                 });
             });
-        }
+        });
 
-        // Close dropdown when clicking outside
         document.addEventListener('click', (e) => {
             if (!searchInput.contains(e.target) && !searchDropdown.contains(e.target)) {
                 searchDropdown.classList.remove('show');
             }
         });
 
-        // Category collapse/expand functionality
+        // Category collapse/expand
         document.querySelectorAll('.category-toggle').forEach(toggle => {
             toggle.addEventListener('click', () => {
                 const category = toggle.closest('.command-category');
@@ -1914,7 +1378,7 @@
                 const originalCard = document.querySelector(`[data-command="${commandId}"]`)?.closest('.command-card');
                 if (originalCard) {
                     const clone = originalCard.cloneNode(true);
-                    clone.querySelector('.favorite-btn').remove();
+                    clone.querySelector('.favorite-btn')?.remove();
                     favoritesList.appendChild(clone);
                 }
             });
