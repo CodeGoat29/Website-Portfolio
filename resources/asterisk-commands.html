@@ -243,6 +243,98 @@
             font-size: 0.9em;
         }
 
+        .placeholder {
+            background: var(--accent);
+            color: var(--coal);
+            padding: 2px 6px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .placeholder:hover {
+            background: var(--accent-hover);
+            transform: scale(1.05);
+        }
+
+        .placeholder-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .placeholder-modal.show {
+            display: flex;
+        }
+
+        .placeholder-modal-content {
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 10px;
+            border: 3px solid var(--accent);
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .placeholder-modal h3 {
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .placeholder-modal input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1em;
+            border: 2px solid var(--border);
+            border-radius: 5px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Courier New', monospace;
+            margin-bottom: 20px;
+        }
+
+        .placeholder-modal-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .placeholder-modal button {
+            padding: 10px 20px;
+            border: 2px solid var(--border);
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .placeholder-modal .btn-copy {
+            background: var(--accent);
+            color: var(--coal);
+        }
+
+        .placeholder-modal .btn-copy:hover {
+            background: var(--accent-hover);
+        }
+
+        .placeholder-modal .btn-cancel {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .placeholder-modal .btn-cancel:hover {
+            background: var(--gear-gray);
+        }
+
         .favorites-section {
             background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
             padding: 40px;
@@ -542,12 +634,12 @@
         </section>
 
         <div class="favorites-section" id="favoritesSection" style="display: none;">
-            <h2>Favorite Commands</h2>
+            <h2>⭐ Favorite Commands</h2>
             <div id="favoritesList" class="favorites-list">
                 <p class="empty-favorites">No favorites yet. Click the ☆ icon on any command to add it here!</p>
             </div>
         </div>
-                <!-- Network Diagnostics -->
+        <!-- Network Diagnostics -->
         <section id="network" class="command-category">
             <h2 class="category-toggle">Network Diagnostics</h2>
             <div class="category-content">
@@ -624,16 +716,12 @@
                 </div>
                 <p class="command-description">Combines traceroute and ping functionality to continuously monitor network path and packet loss to a destination.</p>
                 <div class="command-block">
-                    <code>mtr [hostname or IP]</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-block">
-                    <code>mtr --report --report-cycles 50 [hostname]</code>
+                    <code>sudo mtr [hostname or IP]</code>
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
                     <strong>Use case:</strong> Superior to traceroute for diagnosing intermittent network issues and packet loss.<br>
-                    <strong>Interactive mode:</strong> Press 'q' to quit. Use --report flag for a one-time summary.<br>
+                    <strong>Interactive mode:</strong> Press 'q' to quit.<br>
                     <strong>Look for:</strong> Loss% column shows packet loss at each hop.
                 </div>
             </div>
@@ -652,8 +740,8 @@
                     <button class="favorite-btn" data-command="grep-current">☆</button>
                 </div>
                 <p class="command-description">Search today's Asterisk full log for specific keywords or patterns. Case-insensitive search.</p>
-                <div class="command-block">
-                    <code>grep -i searchword /var/log/asterisk/full</code>
+                <div class="command-block has-placeholder">
+                    <code>grep -i <span class="placeholder" data-placeholder="search_term">searchword</span> /var/log/asterisk/full</code>
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
@@ -668,12 +756,12 @@
                     <button class="favorite-btn" data-command="grep-recursive">☆</button>
                 </div>
                 <p class="command-description">Recursively search through all files in a directory and its subdirectories for a specific pattern.</p>
-                <div class="command-block">
-                    <code>grep -r "searchword" /var/log/asterisk/</code>
+                <div class="command-block has-placeholder">
+                    <code>grep -r "<span class="placeholder" data-placeholder="search_term">searchword</span>" /var/log/asterisk/</code>
                     <button class="copy-btn">Copy</button>
                 </div>
-                <div class="command-block">
-                    <code>grep -ri "searchword" /var/log/asterisk/</code>
+                <div class="command-block has-placeholder">
+                    <code>grep -ri "<span class="placeholder" data-placeholder="search_term">searchword</span>" /var/log/asterisk/</code>
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
@@ -689,8 +777,8 @@
                     <button class="favorite-btn" data-command="zgrep-historical">☆</button>
                 </div>
                 <p class="command-description">Search compressed archived logs from the past week. Use zgrep to search without manually decompressing files.</p>
-                <div class="command-block">
-                    <code>zgrep -i "searchword" /var/log/asterisk/full*.*</code>
+                <div class="command-block has-placeholder">
+                    <code>zgrep -i "<span class="placeholder" data-placeholder="search_term">searchword</span>" /var/log/asterisk/full*.*</code>
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
@@ -716,7 +804,7 @@
             </div>
             </div>
         </section>
-          <!-- Asterisk Management -->
+           <!-- Asterisk Management -->
         <section id="asterisk" class="command-category">
             <h2 class="category-toggle">Asterisk Management</h2>
             <div class="category-content">
@@ -744,7 +832,7 @@
                 </div>
                 <p class="command-description">Display all currently active channels (calls) in a concise format showing channel details.</p>
                 <div class="command-block">
-                    <code>sudo asterisk -rx 'core show channels concise'</code>
+                    <code>asterisk -rx 'core show channels concise'</code>
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
@@ -759,8 +847,8 @@
                     <button class="favorite-btn" data-command="channel-hangup">☆</button>
                 </div>
                 <p class="command-description">Forcefully terminate a specific channel by name. Useful for clearing stuck or problematic calls.</p>
-                <div class="command-block">
-                    <code>channel request hangup 'channel name'</code>
+                <div class="command-block has-placeholder">
+                    <code>sudo channel request hangup '<span class="placeholder" data-placeholder="channel_name">channel name</span>'</code>
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
@@ -843,22 +931,6 @@
                 </div>
                 <div class="command-notes">
                     <strong>Use case:</strong> Get an overview of system health and identify failed or inactive services.
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="mysql fix error fatal socket restart">
-                <div class="command-header">
-                    <h3>Fix MySQL Fatal Error</h3>
-                    <button class="favorite-btn" data-command="mysql-fix">☆</button>
-                </div>
-                <p class="command-description">Emergency fix for MySQL socket errors. Removes corrupted socket file and restarts all dependent services.</p>
-                <div class="command-block">
-                    <code>rm -f /var/lib/mysql/mysql.sock && service mysqld restart && service sb restart && service agentsync restart && service php7-fpm restart</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>⚠️ Use case:</strong> When database connection errors prevent PBX operation.<br>
-                    <strong>What it does:</strong> Removes stale socket, restarts MySQL, switchboard, agent sync, and PHP-FPM in sequence.
                 </div>
             </div>
 
@@ -1157,7 +1229,8 @@
             </div>
             </div>
         </section>
-        <!-- Fail2Ban -->
+
+                <!-- Fail2Ban -->
         <section id="failtoban" class="command-category">
             <h2 class="category-toggle">Fail2Ban Management</h2>
             <div class="category-content">
@@ -1234,21 +1307,6 @@
                     <strong>Use case:</strong> When legitimate IPs are being blocked or after configuration changes.
                 </div>
             </div>
-
-            <div class="command-card" data-tags="fail2ban lsvban unban reset pbx v1">
-                <div class="command-header">
-                    <h3>LSV Ban Reset (PBX v1)</h3>
-                    <button class="favorite-btn" data-command="lsvban-v1">☆</button>
-                </div>
-                <p class="command-description">Execute the LSV Ban client script on PBX v1 servers (different path than v2).</p>
-                <div class="command-block">
-                    <code>sudo /usr/bin/lsvBan/lsvBan-client.sh</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Note:</strong> Path differs from v2 (/usr/bin vs /usr/local/bin).
-                </div>
-            </div>
             </div>
         </section>
 
@@ -1264,8 +1322,8 @@
                     <button class="favorite-btn" data-command="notify-extension">☆</button>
                 </div>
                 <p class="command-description">Send a notify command to restart a specific phone extension remotely.</p>
-                <div class="command-block">
-                    <code>notify "[extension]"</code>
+                <div class="command-block has-placeholder">
+                    <code>notify "<span class="placeholder" data-placeholder="extension">extension</span>"</code>
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
@@ -1280,12 +1338,12 @@
                     <button class="favorite-btn" data-command="peer-extension">☆</button>
                 </div>
                 <p class="command-description">Display detailed information about a specific SIP peer/extension including registration status and settings.</p>
-                <div class="command-block">
-                    <code>peer "[extension]"</code>
+                <div class="command-block has-placeholder">
+                    <code>peer "<span class="placeholder" data-placeholder="extension">extension</span>"</code>
                     <button class="copy-btn">Copy</button>
                 </div>
-                <div class="command-block">
-                    <code>sudo /usr/local/bin/lsadmin sip-show-peer "[extension]"</code>
+                <div class="command-block has-placeholder">
+                    <code>sudo /usr/local/bin/lsadmin sip-show-peer "<span class="placeholder" data-placeholder="extension">extension</span>"</code>
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
@@ -1515,7 +1573,7 @@
             <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
         </div>
     </footer>
-      <script>
+        <script>
         // Counter functions
         function calculateAge(birthDate) {
             const now = new Date();
@@ -1572,6 +1630,120 @@
         // Copy command function
         document.querySelectorAll('.copy-btn').forEach(btn => {
             btn.addEventListener('click', function() {
+                const commandBlock = this.parentElement;
+                const hasPlaceholder = commandBlock.classList.contains('has-placeholder');
+                
+                if (hasPlaceholder) {
+                    showPlaceholderModal(commandBlock);
+                } else {
+                    const code = commandBlock.querySelector('code');
+                    const text = code.textContent;
+                    copyToClipboard(text, this);
+                }
+            });
+        });
+
+        function copyToClipboard(text, button) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                button.textContent = 'Error';
+                setTimeout(() => { button.textContent = 'Copy'; }, 2000);
+            });
+        }
+
+        // Placeholder modal functionality
+        function showPlaceholderModal(commandBlock) {
+            const code = commandBlock.querySelector('code');
+            const placeholders = code.querySelectorAll('.placeholder');
+            
+            if (placeholders.length === 0) return;
+            
+            // Create modal if it doesn't exist
+            let modal = document.getElementById('placeholderModal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'placeholderModal';
+                modal.className = 'placeholder-modal';
+                modal.innerHTML = `
+                    <div class="placeholder-modal-content">
+                        <h3>Fill in the placeholder</h3>
+                        <div id="placeholderInputs"></div>
+                        <div class="placeholder-modal-buttons">
+                            <button class="btn-cancel">Cancel</button>
+                            <button class="btn-copy">Copy Command</button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+                
+                // Close modal on cancel or outside click
+                modal.querySelector('.btn-cancel').addEventListener('click', () => {
+                    modal.classList.remove('show');
+                });
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.classList.remove('show');
+                    }
+                });
+            }
+            
+            // Build input fields for each unique placeholder
+            const inputsContainer = modal.querySelector('#placeholderInputs');
+            inputsContainer.innerHTML = '';
+            const uniquePlaceholders = new Map();
+            
+            placeholders.forEach(p => {
+                const key = p.dataset.placeholder;
+                if (!uniquePlaceholders.has(key)) {
+                    uniquePlaceholders.set(key, p.textContent);
+                }
+            });
+            
+            uniquePlaceholders.forEach((defaultValue, key) => {
+                const label = key.replace(/_/g, ' ');
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.placeholder = `Enter ${label}`;
+                input.dataset.placeholder = key;
+                input.value = '';
+                inputsContainer.appendChild(input);
+            });
+            
+            // Focus first input
+            const firstInput = inputsContainer.querySelector('input');
+            setTimeout(() => firstInput?.focus(), 100);
+            
+            // Handle enter key
+            inputsContainer.querySelectorAll('input').forEach(input => {
+                input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        modal.querySelector('.btn-copy').click();
+                    }
+                });
+            });
+            
+            // Handle copy button
+            const copyBtn = modal.querySelector('.btn-copy');
+            copyBtn.onclick = () => {
+                let commandText = code.textContent;
+                
+                // Replace each placeholder with its input value
+                inputsContainer.querySelectorAll('input').forEach(input => {
+                    const key = input.dataset.placeholder;
+                    const value = input.value.trim() || input.placeholder.replace('Enter ', '');
+                    const placeholder = Array.from(placeholders).find(p => p.dataset.placeholder === key);
+                    if (placeholder) {
+                        const regex = new RegExp(placeholder.textContent.replace(/[.*+?^${}()|[\]\\]/g, '\\        // Copy command function
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
                 const code = this.parentElement.querySelector('code');
                 const text = code.textContent;
                 navigator.clipboard.writeText(text).then(() => {
@@ -1588,7 +1760,17 @@
                     setTimeout(() => { this.textContent = 'Copy'; }, 2000);
                 });
             });
-        });
+        });'), 'g');
+                        commandText = commandText.replace(regex, value);
+                    }
+                });
+                
+                copyToClipboard(commandText, commandBlock.querySelector('.copy-btn'));
+                modal.classList.remove('show');
+            };
+            
+            modal.classList.add('show');
+        }
 
         // Search functionality with dropdown
         const searchInput = document.getElementById('searchInput');
@@ -1777,5 +1959,3 @@
     </script>
 </body>
 </html>
-
-<!-- END OF FILE 1 - Continue with FILE 2 -->
