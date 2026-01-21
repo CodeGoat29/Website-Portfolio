@@ -1,1 +1,516 @@
-Test
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CySA+ Notes - DiPiazza</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" type="image/png" href="../images/thegoat.png">
+</head>
+<body>
+    <div class="top-controls">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-inner"></span>
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <img src="../images/thegoat.png" alt="DiPiazza Logo" class="logo">
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Where I break stuff, then write about it.</p>
+            </div>
+        </div>
+        <nav>
+            <div class="container">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../resume.html">Resume</a></li>
+                    <li><a href="../index.html#blog">Blog</a></li>
+                    <li><a href="../index.html#resources" class="active">Resources</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="notes-header commands-header">
+            <h1>CompTIA CySA+ (CS0-003) Study Notes</h1>
+            <p class="subtitle">Comprehensive study guide for the Cybersecurity Analyst certification</p>
+            
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search topics, keywords, or concepts..." autocomplete="off">
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <div class="quick-nav">
+                <h3>Table of Contents - 4 Exam Domains</h3>
+                <div class="nav-links">
+                    <a href="#domain1" class="nav-link">Domain 1: Security Operations (33%)</a>
+                    <a href="#domain2" class="nav-link">Domain 2: Vulnerability Management (30%)</a>
+                    <a href="#domain3" class="nav-link">Domain 3: Incident Response (20%)</a>
+                    <a href="#domain4" class="nav-link">Domain 4: Reporting (17%)</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="domain1" class="command-category">
+            <h2 class="category-toggle">Domain 1: Security Operations (33%)</h2>
+            <div class="category-content">
+                
+                <div class="command-card" data-tags="logging monitoring siem ntp time">
+                    <div class="command-header"><h3>Logging & Monitoring</h3></div>
+                    <ul>
+                        <li><strong>Log ingestion:</strong> Collecting/processing log data into centralized platform (SIEM).</li>
+                        <li><strong>Time synchronization:</strong> NTP ensures same time across systems for log correlation.</li>
+                        <li><strong>Logging levels:</strong> DEBUG, INFO, WARNING, ERROR, CRITICAL for filtering.</li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="os windows linux registry hardening">
+                    <div class="command-header"><h3>Operating System Concepts</h3></div>
+                    <ul>
+                        <li><strong>Windows Registry:</strong> Hierarchical DB storing configs; malware target.</li>
+                        <li><strong>System hardening:</strong> Reduce attack surface (disable services, patches).</li>
+                        <li><strong>Config locations:</strong> Linux: /etc, ~/.config | Windows: C:\ProgramData, AppData</li>
+                        <li><strong>System processes:</strong> Background programs; monitor for anomalies.</li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="infrastructure cloud serverless vm docker">
+                    <div class="command-header"><h3>Infrastructure</h3></div>
+                    <ul>
+                        <li><strong>Serverless:</strong> Cloud provider manages infrastructure (AWS Lambda).</li>
+                        <li><strong>Virtualization:</strong> Multiple VMs on one host (VMware, Hyper-V).</li>
+                        <li><strong>Containerization:</strong> Isolated app units (Docker).</li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="network cloud hybrid zero trust sase sdn">
+                    <div class="command-header"><h3>Network Architecture</h3></div>
+                    <ul>
+                        <li><strong>On-premises/Cloud/Hybrid:</strong> Physical site / Off-site / Mix.</li>
+                        <li><strong>Network segmentation:</strong> Divide into zones for security.</li>
+                        <li><strong>Zero Trust:</strong> No default trust; verify all access.</li>
+                        <li><strong>SASE:</strong> Cloud networking + security (SD-WAN + CASB + FWaaS).</li>
+                        <li><strong>SDN:</strong> Decoupled control/data planes.</li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="iam mfa sso pam casb">
+                    <div class="command-header"><h3>Identity & Access Management</h3></div>
+                    <ul>
+                        <li><strong>MFA:</strong> 2+ auth factors. <strong>SSO:</strong> One login, multiple systems.</li>
+                        <li><strong>Federation:</strong> Cross-org trust. <strong>PAM:</strong> Control elevated accounts.</li>
+                        <li><strong>Passwordless:</strong> Biometrics/tokens. <strong>CASB:</strong> Cloud security enforcement.</li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="encryption pki ssl dlp pii chd">
+                    <div class="command-header"><h3>Encryption & Data Protection</h3></div>
+                    <ul>
+                        <li><strong>PKI:</strong> Key management via certificates. <strong>SSL inspection:</strong> Decrypt/inspect traffic.</li>
+                        <li><strong>DLP:</strong> Prevent unauthorized data transfer.</li>
+                        <li><strong>PII:</strong> Names, SSNs (special handling). <strong>CHD:</strong> Card data (PCI-DSS).</li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="indicators network bandwidth beaconing rogue scan">
+                    <div class="command-header"><h3>Network Indicators</h3></div>
+                    <ul>
+                        <li><strong>Bandwidth consumption:</strong> Excessive use (exfiltration). <strong>Beaconing:</strong> C2 comms.</li>
+                        <li><strong>Irregular P2P:</strong> Unauthorized connections. <strong>Rogue devices:</strong> Unapproved on network.</li>
+                        <li><strong>Scans/sweeps:</strong> Port probing. <strong>Traffic spikes:</strong> DoS/breach. <strong>Unexpected ports.</strong></li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="indicators host cpu memory disk exfiltration">
+                    <div class="command-header"><h3>Host Indicators</h3></div>
+                    <ul>
+                        <li><strong>Resource consumption:</strong> CPU/memory/disk. <strong>Unauthorized software/changes/privileges.</strong></li>
+                        <li><strong>Malicious processes:</strong> Keyloggers, backdoors. <strong>Data exfiltration.</strong></li>
+                        <li><strong>Abnormal OS behavior.</strong> <strong>File system/registry anomalies.</strong> <strong>Unauthorized scheduled tasks.</strong></li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="indicators application anomalous accounts">
+                    <div class="command-header"><h3>Application Indicators & Social Engineering</h3></div>
+                    <ul>
+                        <li><strong>Anomalous activity.</strong> <strong>New accounts</strong> (backdoors). <strong>Unexpected output/comms.</strong></li>
+                        <li><strong>Service interruption.</strong> <strong>Application logs.</strong></li>
+                        <li><strong>Social engineering:</strong> Phishing, pretexting. <strong>Obfuscated links.</strong></li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="tools wireshark siem soar edr virustotal sandbox">
+                    <div class="command-header"><h3>Security Tools</h3></div>
+                    <div class="command-notes">
+                        <strong>Packet:</strong> Wireshark (GUI), tcpdump (CLI) | 
+                        <strong>Log:</strong> SIEM (centralize), SOAR (automate) | 
+                        <strong>Endpoint:</strong> EDR (CrowdStrike) | 
+                        <strong>Reputation:</strong> WHOIS, AbuseIPDB | 
+                        <strong>File:</strong> Strings, VirusTotal | 
+                        <strong>Sandbox:</strong> Joe, Cuckoo
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="analysis email dkim spf dmarc hashing">
+                    <div class="command-header"><h3>Analysis Techniques</h3></div>
+                    <div class="command-notes">
+                        <strong>Pattern:</strong> C2 beaconing | <strong>Commands:</strong> sudo, encoded PowerShell<br>
+                        <strong>Email:</strong> Header analysis, DKIM/DMARC/SPF, impersonation, embedded links<br>
+                        <strong>File:</strong> SHA-256/MD5 hashing | <strong>Behavior:</strong> Abnormal activity, impossible travel
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="scripting json xml python powershell regex">
+                    <div class="command-header"><h3>Programming & Scripting</h3></div>
+                    <ul>
+                        <li><strong>JSON/XML:</strong> Data formats. <strong>Python:</strong> Automation. <strong>PowerShell:</strong> Windows (abused).</li>
+                        <li><strong>Shell script:</strong> Bash. <strong>Regex:</strong> Pattern matching.</li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="threat actors apt nation state insider supply">
+                    <div class="command-header"><h3>Threat Actors & TTPs</h3></div>
+                    <ul>
+                        <li><strong>APT:</strong> Sophisticated/prolonged. <strong>Nation-state:</strong> Gov espionage. <strong>Organized crime:</strong> Ransomware.</li>
+                        <li><strong>Hacktivists:</strong> Political. <strong>Script kiddie:</strong> Unskilled. <strong>Insider:</strong> Intentional/unintentional.</li>
+                        <li><strong>Supply chain.</strong> <strong>TTP:</strong> Tactics, Techniques, Procedures.</li>
+                        <li><strong>Confidence:</strong> Timeliness, Relevancy, Accuracy.</li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="intelligence sources cert dark web feeds">
+                    <div class="command-header"><h3>Threat Intel Sources & Hunting</h3></div>
+                    <div class="command-notes">
+                        <strong>Open:</strong> Social media, blogs, gov bulletins, CERT/CSIRT, dark web<br>
+                        <strong>Closed:</strong> Paid feeds, ISACs, internal<br>
+                        <strong>Hunting:</strong> IoC collection/analysis/application. Focus: misconfigs, isolated networks, critical assets.<br>
+                        <strong>Active defense:</strong> Deception, disruption. <strong>Honeypot:</strong> Decoy system.
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="automation soar api webhook efficiency">
+                    <div class="command-header"><h3>Automation & Efficiency</h3></div>
+                    <div class="command-notes">
+                        <strong>Standardize:</strong> Identify repeatable tasks, team coordination<br>
+                        <strong>Streamline:</strong> SOAR, data enrichment, threat feed combo, minimize human engagement<br>
+                        <strong>Integration:</strong> API, webhooks, plugins | <strong>Single pane of glass</strong>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="domain2" class="command-category">
+            <h2 class="category-toggle">Domain 2: Vulnerability Management (30%)</h2>
+            <div class="category-content">
+                
+                <div class="command-card" data-tags="asset discovery scan scheduling">
+                    <div class="command-header"><h3>Asset Discovery & Considerations</h3></div>
+                    <ul>
+                        <li><strong>Map scans:</strong> Identify devices/ports. <strong>Device fingerprinting:</strong> ID via traffic.</li>
+                        <li><strong>Considerations:</strong> Scheduling (non-peak), operations (coordinate), performance, sensitivity, segmentation, regulatory (PCI DSS, HIPAA).</li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="scanning types internal external agent passive">
+                    <div class="command-header"><h3>Scanning Types & Techniques</h3></div>
+                    <ul>
+                        <li><strong>Internal/External.</strong> <strong>Agent/Agentless.</strong> <strong>Credentialed/Non-credentialed.</strong></li>
+                        <li><strong>Passive/Active.</strong> <strong>Static/Dynamic.</strong></li>
+                        <li><strong>Reverse engineering:</strong> Analyze design. <strong>Fuzzing:</strong> Malformed data for flaws.</li>
+                        <li><strong>OT/ICS/SCADA:</strong> Industrial control systems.</li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="baseline frameworks pci cis owasp iso">
+                    <div class="command-header"><h3>Frameworks</h3></div>
+                    <ul>
+                        <li><strong>Security baseline:</strong> Check against benchmarks.</li>
+                        <li><strong>PCI DSS:</strong> Card data. <strong>CIS:</strong> Config best practices. <strong>OWASP:</strong> Web app. <strong>ISO 27000:</strong> InfoSec mgmt.</li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="tools nessus nmap burp zap metasploit">
+                    <div class="command-header"><h3>Assessment Tools</h3></div>
+                    <div class="command-notes">
+                        <strong>Network:</strong> Angry IP, Maltego, Nmap | <strong>Web:</strong> Burp, ZAP, Arachni, Nikto<br>
+                        <strong>Vuln scanners:</strong> Nessus, OpenVAS | <strong>Debuggers:</strong> Immunity, GDB<br>
+                        <strong>Multipurpose:</strong> Metasploit, Recon-ng | <strong>Cloud:</strong> Scout Suite, Prowler, Pacu
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="cvss scoring attack vector impact">
+                    <div class="command-header"><h3>CVSS & Prioritization</h3></div>
+                    <ul>
+                        <li><strong>CVSS:</strong> Attack vector/complexity, privileges, user interaction, scope, impact (CIA).</li>
+                        <li><strong>Validation:</strong> True/false positives/negatives.</li>
+                        <li><strong>Context:</strong> Internal/external/isolated. <strong>Exploitability/weaponization.</strong></li>
+                        <li><strong>Asset value.</strong> <strong>Zero-day:</strong> No vendor knowledge/patch.</li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="vulnerabilities xss injection overflow rce">
+                    <div class="command-header"><h3>Common Vulnerabilities</h3></div>
+                    <ul>
+                        <li><strong>XSS:</strong> Reflected/persistent. <strong>Overflow:</strong> Buffer/integer/heap/stack.</li>
+                        <li><strong>Data poisoning. Broken access control. Cryptographic failures. Injection flaws.</strong></li>
+                        <li><strong>CSRF. Directory traversal. Insecure design. Security misconfiguration.</strong></li>
+                        <li><strong>EOL components. Auth failures. SSRF. RCE. Privilege escalation. LFI/RFI.</strong></li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="response controls patching risk mitigation">
+                    <div class="command-header"><h3>Response & Management</h3></div>
+                    <div class="command-notes">
+                        <strong>Compensating control:</strong> Alternative when ideal unavailable<br>
+                        <strong>Control types:</strong> Managerial/Operational/Technical, Preventative/Detective/Responsive/Corrective<br>
+                        <strong>Risk:</strong> Accept/Transfer/Avoid/Mitigate | <strong>Patching:</strong> Test→Implement→Rollback→Validate<br>
+                        <strong>Attack surface mgmt:</strong> Edge/passive discovery, pentesting, bug bounty<br>
+                        <strong>Secure coding:</strong> Input validation, output encoding, parameterized queries, session mgmt
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="domain3" class="command-category">
+            <h2 class="category-toggle">Domain 3: Incident Response & Management (20%)</h2>
+            <div class="category-content">
+                
+                <div class="command-card" data-tags="frameworks kill chain mitre attack diamond">
+                    <div class="command-header"><h3>Attack Methodology Frameworks</h3></div>
+                    <ul>
+                        <li><strong>Cyber Kill Chain:</strong> Recon→Weaponization→Delivery→Exploitation→Installation→C2→Actions.</li>
+                        <li><strong>Diamond Model:</strong> Adversary, Infrastructure, Capability, Victim relationships.</li>
+                        <li><strong>MITRE ATT&CK:</strong> Knowledge base of adversary TTPs by attack phase.</li>
+                        <li><strong>OSSTMM:</strong> Peer-reviewed security testing methodology.</li>
+                        <li><strong>OWASP Testing Guide:</strong> Web app security testing (Top 10 vulns).</li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="incident detection analysis ioc evidence chain custody">
+                    <div class="command-header"><h3>Detection & Analysis</h3></div>
+                    <ul>
+                        <li><strong>IoC:</strong> Artifacts indicating breach (traffic, hashes, IPs, domains).</li>
+                        <li><strong>Evidence acquisition:</strong>
+                            <ul>
+                                <li><strong>Chain of custody:</strong> Document who handled evidence.</li>
+                                <li><strong>Data integrity:</strong> Hashing to confirm no alteration.</li>
+                                <li><strong>Preservation:</strong> Store without modification.</li>
+                                <li><strong>Legal hold:</strong> Preserve for potential litigation.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Data/log analysis:</strong> Parse systems, network data, security tools.</li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="containment eradication recovery scope isolation remediation">
+                    <div class="command-header"><h3>Containment, Eradication, Recovery</h3></div>
+                    <ul>
+                        <li><strong>Scope:</strong> Breadth (systems/users/data affected).</li>
+                        <li><strong>Impact:</strong> Severity and consequences (financial, data, downtime).</li>
+                        <li><strong>Isolation:</strong> Remove infected systems from network.</li>
+                        <li><strong>Remediation:</strong> Fix root issue (patches, config updates).</li>
+                        <li><strong>Re-imaging:</strong> Wipe and reinstall OS for clean recovery.</li>
+                        <li><strong>Compensating controls:</strong> Temporary measures while fixing.</li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="preparation response plan playbook tabletop training bc dr">
+                    <div class="command-header"><h3>Preparation</h3></div>
+                    <ul>
+                        <li><strong>Incident response plan:</strong> Documented detect/respond/recover process.</li>
+                        <li><strong>Tools:</strong> SIEMs, EDRs, forensic software, sandboxes, ticketing.</li>
+                        <li><strong>Playbooks:</strong> Predefined workflows for common incidents.</li>
+                        <li><strong>Tabletop exercises:</strong> Simulated scenarios to test readiness.</li>
+                        <li><strong>Training:</strong> Keep staff aware of roles/tools/procedures.</li>
+                        <li><strong>BC/DR:</strong> Ensure critical functions continue or restore quickly.</li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="post incident forensics root cause lessons learned">
+                    <div class="command-header"><h3>Post-Incident Activity</h3></div>
+                    <ul>
+                        <li><strong>Forensic analysis:</strong> In-depth investigation of how attack occurred.</li>
+                        <li><strong>Root cause analysis:</strong> Identify fundamental issue that allowed incident.</li>
+                        <li><strong>Lessons learned:</strong> Formal review of what went right/wrong, process improvements.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="domain4" class="command-category">
+            <h2 class="category-toggle">Domain 4: Reporting & Communication (17%)</h2>
+            <div class="category-content">
+                
+                <div class="command-card" data-tags="vulnerability reporting affected hosts risk mitigation compliance">
+                    <div class="command-header"><h3>Vulnerability Management Reporting</h3></div>
+                    <ul>
+                        <li><strong>Vulnerabilities:</strong> Known security weaknesses (outdated software, misconfigs).</li>
+                        <li><strong>Affected hosts:</strong> Devices/systems impacted.</li>
+                        <li><strong>Risk score:</strong> Numeric value from exploitability/impact (CVSS).</li>
+                        <li><strong>Mitigation:</strong> Actions to reduce severity/likelihood.</li>
+                        <li><strong>Recurrence:</strong> Same vuln reappearing (patching issues).</li>
+                        <li><strong>Prioritization:</strong> Rank by risk, asset criticality, business impact.</li>
+                        <li><strong>Compliance reports:</strong> Prove alignment with regulations (PCI-DSS, HIPAA).</li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="action plans patching configuration training inhibitors">
+                    <div class="command-header"><h3>Action Plans & Inhibitors</h3></div>
+                    <div class="command-notes">
+                        <strong>Action Plans:</strong> Config mgmt, Patching, Compensating controls, Training, Changing business requirements<br>
+                        <strong>Inhibitors:</strong> MOU (agreements limit actions), SLA (uptime restrictions), Org governance, Business interruption, Degrading functionality, Legacy/proprietary systems
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="metrics kpi trends top 10 zero day slo">
+                    <div class="command-header"><h3>Metrics & KPIs</h3></div>
+                    <ul>
+                        <li><strong>Trends:</strong> Patterns over time. <strong>Top 10:</strong> Most frequent/severe vulns.</li>
+                        <li><strong>Critical vulns & zero-days.</strong> <strong>SLOs:</strong> Specific targets (e.g., patch within 48hrs).</li>
+                        <li><strong>Stakeholder ID/communication:</strong> Tailor for technical vs executive audiences.</li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="incident reporting executive summary timeline impact scope evidence">
+                    <div class="command-header"><h3>Incident Response Reporting</h3></div>
+                    <ul>
+                        <li><strong>Executive summary:</strong> High-level overview for leadership.</li>
+                        <li><strong>Who/What/When/Where/Why:</strong> Essential facts.</li>
+                        <li><strong>Recommendations:</strong> Steps to prevent recurrence.</li>
+                        <li><strong>Timeline:</strong> Chronology from detection to recovery.</li>
+                        <li><strong>Impact:</strong> Data, services, operations, revenue affected.</li>
+                        <li><strong>Scope:</strong> Systems/departments involved.</li>
+                        <li><strong>Evidence:</strong> Logs, screenshots, memory dumps for forensics/legal.</li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="communications legal pr regulatory law enforcement">
+                    <div class="command-header"><h3>Communications & Escalation</h3></div>
+                    <ul>
+                        <li><strong>Stakeholders:</strong> IT, mgmt, legal, PR, compliance.</li>
+                        <li><strong>Incident declaration/escalation:</strong> Recognize event is incident, escalate properly.</li>
+                        <li><strong>Legal:</strong> Reports follow laws/policies.</li>
+                        <li><strong>PR:</strong> Customer communication, media management.</li>
+                        <li><strong>Regulatory reporting:</strong> GDPR, HIPAA requirements.</li>
+                        <li><strong>Law enforcement:</strong> Criminal activity cooperation.</li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="metrics mttd mttr root cause lessons learned alert volume">
+                    <div class="command-header"><h3>Incident Metrics & Analysis</h3></div>
+                    <ul>
+                        <li><strong>MTTD:</strong> Mean time to detect.</li>
+                        <li><strong>MTTR:</strong> Mean time to respond.</li>
+                        <li><strong>MTTM:</strong> Mean time to remediate.</li>
+                        <li><strong>Alert volume:</strong> Total alerts (workload/tuning metric).</li>
+                        <li><strong>Root cause analysis:</strong> Find original reason incident occurred.</li>
+                        <li><strong>Lessons learned:</strong> Post-incident review for improvements.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <button class="back-to-top" id="backToTop">↑</button>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+        }
+        darkModeToggle.addEventListener('change', () => {
+            body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const commandCards = document.querySelectorAll('.command-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            
+            commandCards.forEach(card => {
+                const tags = card.getAttribute('data-tags')?.toLowerCase() || '';
+                const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+                const content = card.textContent.toLowerCase();
+                
+                const searchable = `${tags} ${title} ${content}`;
+                
+                if (searchTerm === '' || searchable.includes(searchTerm)) {
+                    card.style.display = '';
+                    const category = card.closest('.command-category');
+                    if (category) {
+                        const categoryContent = category.querySelector('.category-content');
+                        const categoryToggle = category.querySelector('.category-toggle');
+                        categoryContent.classList.remove('collapsed');
+                        categoryToggle.classList.remove('collapsed');
+                    }
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Category collapse/expand
+        document.querySelectorAll('.category-toggle').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const category = toggle.closest('.command-category');
+                const content = category.querySelector('.category-content');
+                
+                toggle.classList.toggle('collapsed');
+                content.classList.toggle('collapsed');
+            });
+        });
+
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
