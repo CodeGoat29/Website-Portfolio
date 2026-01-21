@@ -9,19 +9,7 @@
 </head>
 <body>
     <div class="top-controls">
-        <div class="counter-dropdown">
-            <button class="counter-button" id="counterButton">⚙ Counter</button>
-            <div class="counter-content" id="counterContent">
-                <div class="counter-item">
-                    <span class="counter-name">Harper</span>
-                    <span class="counter-age" id="harperAge"></span>
-                </div>
-                <div class="counter-item">
-                    <span class="counter-name">Sophia</span>
-                    <span class="counter-age" id="sophiaAge"></span>
-                </div>
-            </div>
-        </div>
+
         <div class="dark-mode-toggle">
             <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
             <label for="darkModeToggle" class="toggle-label">
@@ -212,62 +200,6 @@
     </footer>
 
     <script>
-        // Age Counter Functions
-        function calculateAge(birthDate) {
-            const now = new Date();
-            const birth = new Date(birthDate);
-            
-            let years = now.getFullYear() - birth.getFullYear();
-            let months = now.getMonth() - birth.getMonth();
-            let days = now.getDate() - birth.getDate();
-            
-            if (days < 0) {
-                months--;
-                const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-                days += lastMonth.getDate();
-            }
-            
-            if (months < 0) {
-                years--;
-                months += 12;
-            }
-            
-            return { years, months, days };
-        }
-        
-        function updateAges() {
-            const harperBirth = '2024-08-29';
-            const sophiaBirth = '2025-09-18';
-            
-            const harperAge = calculateAge(harperBirth);
-            const sophiaAge = calculateAge(sophiaBirth);
-            
-            document.getElementById('harperAge').textContent = 
-                `${harperAge.years}y ${harperAge.months}m ${harperAge.days}d`;
-            document.getElementById('sophiaAge').textContent = 
-                `${sophiaAge.years}y ${sophiaAge.months}m ${sophiaAge.days}d`;
-        }
-        
-        // Update ages immediately and then every hour
-        updateAges();
-        setInterval(updateAges, 3600000);
-        
-        // Counter Dropdown Toggle
-        const counterButton = document.getElementById('counterButton');
-        const counterContent = document.getElementById('counterContent');
-        
-        counterButton.addEventListener('click', (e) => {
-            e.stopPropagation();
-            counterContent.classList.toggle('show');
-        });
-        
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!counterButton.contains(e.target) && !counterContent.contains(e.target)) {
-                counterContent.classList.remove('show');
-            }
-        });
-
         // Dark mode toggle
         const darkModeToggle = document.getElementById('darkModeToggle');
         const body = document.body;
