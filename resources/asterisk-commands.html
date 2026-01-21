@@ -145,6 +145,7 @@
                     <a href="#failtoban" class="nav-link">Fail2Ban</a>
                     <a href="#extensions" class="nav-link">Extensions</a>
                     <a href="#files" class="nav-link">File Locations</a>
+                    <a href="#find" class="nav-link">Find Commands</a>
                 </div>
             </div>
         </section>
@@ -1036,6 +1037,77 @@
                     <strong>Contains:</strong> Temporary recording files, transcoding buffers, monitor recordings.
                 </div>
             </div>
+            </div>
+        </section>
+
+        </section>
+
+        <section id="find" class="command-category">
+            <h2 class="category-toggle">Find Commands</h2>
+            <div class="category-content">
+            <p class="category-description">Search and locate files and directories across the filesystem</p>
+            
+<div class="command-card" data-tags="find search file name locate filesystem">
+    <div class="command-header">
+        <h3>Find File by Name</h3>
+        <button class="favorite-btn" data-command="find-name">☆</button>
+    </div>
+    <p class="command-description">Search the entire filesystem for a file by its exact name, suppressing permission errors.</p>
+    <div class="command-block has-placeholder">
+        <code>find / -name <span class="placeholder" data-placeholder="filename">filename.ext</span> 2>/dev/null</code>
+        <button class="copy-btn">Copy</button>
+    </div>
+    <div class="command-notes">
+        <strong>Use case:</strong> Locate configuration files, logs, or any file when you don't know its directory.<br>
+        <strong>Note:</strong> Case-sensitive. Use -iname for case-insensitive search.
+    </div>
+</div>
+
+<div class="command-card" data-tags="find search file case insensitive iname">
+    <div class="command-header">
+        <h3>Find File (Case-Insensitive)</h3>
+        <button class="favorite-btn" data-command="find-iname">☆</button>
+    </div>
+    <p class="command-description">Search for files regardless of case sensitivity in the filename.</p>
+    <div class="command-block has-placeholder">
+        <code>find / -iname <span class="placeholder" data-placeholder="filename">filename.ext</span> 2>/dev/null</code>
+        <button class="copy-btn">Copy</button>
+    </div>
+    <div class="command-notes">
+        <strong>Use case:</strong> When you're unsure of the exact capitalization of a filename.
+    </div>
+</div>
+
+<div class="command-card" data-tags="find search file type extension wildcard conf log">
+    <div class="command-header">
+        <h3>Find Files by Extension</h3>
+        <button class="favorite-btn" data-command="find-extension">☆</button>
+    </div>
+    <p class="command-description">Search for all files with a specific extension (e.g., all .conf or .log files).</p>
+    <div class="command-block has-placeholder">
+        <code>find / -name "*.<span class="placeholder" data-placeholder="extension">conf</span>" 2>/dev/null</code>
+        <button class="copy-btn">Copy</button>
+    </div>
+    <div class="command-notes">
+        <strong>Use case:</strong> Find all configuration files, logs, or scripts of a certain type.<br>
+        <strong>Examples:</strong> *.log, *.conf, *.sh
+    </div>
+</div>
+
+<div class="command-card" data-tags="find search directory folder path locate">
+    <div class="command-header">
+        <h3>Find Directory by Name</h3>
+        <button class="favorite-btn" data-command="find-directory">☆</button>
+    </div>
+    <p class="command-description">Search for directories/folders by name instead of files.</p>
+    <div class="command-block has-placeholder">
+        <code>find / -type d -name <span class="placeholder" data-placeholder="dirname">directory_name</span> 2>/dev/null</code>
+        <button class="copy-btn">Copy</button>
+    </div>
+    <div class="command-notes">
+        <strong>Use case:</strong> Locate specific directories like log folders, config directories, or application paths.
+    </div>
+</div>            
             </div>
         </section>
     </main>
