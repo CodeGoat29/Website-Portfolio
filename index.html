@@ -46,7 +46,7 @@
                     <li><a href="resume.html">Resume</a></li>
                     <li><a href="#blog">Blog</a></li>
                     <li><a href="#resources">Resources</a></li>
-                    <li><a href="#contact">Contact</a></li>
+
                 </ul>
             </div>
         </nav>
@@ -273,7 +273,7 @@
         window.addEventListener('scroll', () => {
             let current = '';
             // Only consider sections that are still in index.html
-            const sections = document.querySelectorAll('section[id="home"], section[id="blog"], section[id="resources"], section[id="contact"]');
+            const sections = document.querySelectorAll('section[id="home"], section[id="blog"], section[id="resources"]');
             
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
