@@ -1119,7 +1119,7 @@
             <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
         </div>
     </footer>
-        <script>
+<script>
         // Counter functions
         function calculateAge(birthDate) {
             const now = new Date();
@@ -1142,8 +1142,10 @@
         function updateAges() {
             const harperAge = calculateAge('2024-08-29');
             const sophiaAge = calculateAge('2025-09-18');
-            document.getElementById('harperAge').textContent = `${harperAge.years}y ${harperAge.months}m ${harperAge.days}d`;
-            document.getElementById('sophiaAge').textContent = `${sophiaAge.years}y ${sophiaAge.months}m ${sophiaAge.days}d`;
+            const harperEl = document.getElementById('harperAge');
+            const sophiaEl = document.getElementById('sophiaAge');
+            if (harperEl) harperEl.textContent = `${harperAge.years}y ${harperAge.months}m ${harperAge.days}d`;
+            if (sophiaEl) sophiaEl.textContent = `${sophiaAge.years}y ${sophiaAge.months}m ${sophiaAge.days}d`;
         }
         
         updateAges();
@@ -1151,15 +1153,17 @@
         
         const counterButton = document.getElementById('counterButton');
         const counterContent = document.getElementById('counterContent');
-        counterButton.addEventListener('click', (e) => {
-            e.stopPropagation();
-            counterContent.classList.toggle('show');
-        });
-        document.addEventListener('click', (e) => {
-            if (!counterButton.contains(e.target) && !counterContent.contains(e.target)) {
-                counterContent.classList.remove('show');
-            }
-        });
+        if (counterButton && counterContent) {
+            counterButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                counterContent.classList.toggle('show');
+            });
+            document.addEventListener('click', (e) => {
+                if (!counterButton.contains(e.target) && !counterContent.contains(e.target)) {
+                    counterContent.classList.remove('show');
+                }
+            });
+        }
 
         // Dark mode
         const darkModeToggle = document.getElementById('darkModeToggle');
@@ -1279,20 +1283,30 @@
             modal.classList.add('show');
         }
 
-        document.querySelectorAll('.copy-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const commandBlock = this.parentElement;
-                const hasPlaceholder = commandBlock.classList.contains('has-placeholder');
+        // Initialize copy buttons - using event delegation for dynamically added content
+        function initializeCopyButtons() {
+            document.querySelectorAll('.copy-btn').forEach(btn => {
+                // Remove existing listeners by cloning
+                const newBtn = btn.cloneNode(true);
+                btn.parentNode.replaceChild(newBtn, btn);
                 
-                if (hasPlaceholder) {
-                    showPlaceholderModal(commandBlock);
-                } else {
-                    const code = commandBlock.querySelector('code');
-                    const text = code.textContent;
-                    copyToClipboard(text, this);
-                }
+                newBtn.addEventListener('click', function() {
+                    const commandBlock = this.parentElement;
+                    const hasPlaceholder = commandBlock.classList.contains('has-placeholder');
+                    
+                    if (hasPlaceholder) {
+                        showPlaceholderModal(commandBlock);
+                    } else {
+                        const code = commandBlock.querySelector('code');
+                        const text = code.textContent;
+                        copyToClipboard(text, this);
+                    }
+                });
             });
-        });
+        }
+
+        // Call this on page load
+        initializeCopyButtons();
 
         // Search functionality with dropdown
         const searchInput = document.getElementById('searchInput');
@@ -1311,12 +1325,13 @@
 
             let searchResults = [];
             
-            commandCards.forEach(card => {
-                const tags = card.getAttribute('data-tags').toLowerCase();
-                const title = card.querySelector('h3').textContent;
-                const description = card.querySelector('.command-description').textContent;
+            document.querySelectorAll('.command-card').forEach(card => {
+                const tags = card.getAttribute('data-tags')?.toLowerCase() || '';
+                const title = card.querySelector('h3')?.textContent || '';
+                const description = card.querySelector('.command-description')?.textContent || '';
                 const commands = Array.from(card.querySelectorAll('code')).map(c => c.textContent).join(' ').toLowerCase();
-                const categoryName = card.closest('.command-category').querySelector('h2').textContent;
+                const categoryEl = card.closest('.command-category');
+                const categoryName = categoryEl ? categoryEl.querySelector('h2').textContent : '';
                 
                 const searchable = `${tags} ${title.toLowerCase()} ${description.toLowerCase()} ${commands}`;
                 
@@ -1337,8 +1352,9 @@
                 return;
             }
 
+            const allCards = Array.from(document.querySelectorAll('.command-card'));
             searchDropdown.innerHTML = searchResults.slice(0, 10).map(result => `
-                <div class="search-result-item" data-card-id="${Array.from(commandCards).indexOf(result.element)}">
+                <div class="search-result-item" data-card-id="${allCards.indexOf(result.element)}">
                     <div class="search-result-title">${result.title}</div>
                     <div class="search-result-category">${result.category}</div>
                     <div class="search-result-preview">${result.preview}...</div>
@@ -1350,7 +1366,7 @@
             document.querySelectorAll('.search-result-item').forEach(item => {
                 item.addEventListener('click', () => {
                     const cardIndex = parseInt(item.getAttribute('data-card-id'));
-                    const card = commandCards[cardIndex];
+                    const card = allCards[cardIndex];
                     const category = card.closest('.command-category');
                     
                     const categoryContent = category.querySelector('.category-content');
@@ -1428,6 +1444,9 @@
                     favoritesList.appendChild(clone);
                 }
             });
+            
+            // Re-initialize copy buttons for cloned cards
+            initializeCopyButtons();
         }
 
         document.querySelectorAll('.favorite-btn').forEach(btn => {
