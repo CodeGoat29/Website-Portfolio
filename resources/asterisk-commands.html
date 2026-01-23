@@ -14,14 +14,14 @@
 
         /* Better collapse animation */
         .category-content {
-            max-height: 10000px;
-            overflow: visible;
-            transition: max-height 0.3s ease-out;
+            display: grid;
+            transition: opacity 0.2s ease-out;
+            opacity: 1;
         }
 
         .category-content.collapsed {
-            max-height: 0;
-            overflow: hidden;
+            display: none;
+            opacity: 0;
         }
 
         /* Input boxes for placeholders */
@@ -66,6 +66,98 @@
         .input-group {
             flex: 1;
             min-width: 200px;
+        }
+
+        /* Search Modal */
+        .search-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-modal.show {
+            display: flex;
+        }
+
+        .search-modal-content {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode .search-modal-content {
+            background: #1c2938;
+        }
+
+        .search-modal h3 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .search-modal-input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1em;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .dark-mode .search-modal-input {
+            background: #0f1419;
+            color: var(--primary-blue);
+            border-color: #2a3f5f;
+        }
+
+        .search-modal-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        .search-modal-btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .search-modal-btn.btn-search {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .search-modal-btn.btn-search:hover {
+            background: var(--main-blue);
+        }
+
+        .search-modal-btn.btn-cancel {
+            background: #e1e8ed;
+            color: #2c3e50;
+        }
+
+        .dark-mode .search-modal-btn.btn-cancel {
+            background: #2a3f5f;
+            color: #e4e6eb;
+        }
+
+        .search-modal-btn.btn-cancel:hover {
+            background: #657786;
+            color: white;
         }
     </style>
 </head>
@@ -234,13 +326,7 @@
                     <button class="favorite-btn" data-command="grep-current">☆</button>
                 </div>
                 <p class="command-description">Search today's Asterisk full log for specific keywords.</p>
-                <div class="placeholder-inputs">
-                    <div class="input-group">
-                        <div class="placeholder-label">Search Term:</div>
-                        <input type="text" class="placeholder-input" data-field="search" placeholder="keyword to search">
-                    </div>
-                </div>
-                <div class="command-block" data-template="grep -i {search} /var/log/asterisk/full">
+                <div class="command-block" data-has-search="true" data-template="grep -i {search} /var/log/asterisk/full">
                     <code>grep -i <span class="placeholder">searchword</span> /var/log/asterisk/full</code>
                     <button class="copy-btn">Copy</button>
                 </div>
@@ -252,17 +338,11 @@
                     <button class="favorite-btn" data-command="grep-recursive">☆</button>
                 </div>
                 <p class="command-description">Recursively search through all files.</p>
-                <div class="placeholder-inputs">
-                    <div class="input-group">
-                        <div class="placeholder-label">Search Term:</div>
-                        <input type="text" class="placeholder-input" data-field="search" placeholder="keyword to search">
-                    </div>
-                </div>
-                <div class="command-block" data-template='grep -r "{search}" /var/log/asterisk/'>
+                <div class="command-block" data-has-search="true" data-template='grep -r "{search}" /var/log/asterisk/'>
                     <code>grep -r "<span class="placeholder">searchword</span>" /var/log/asterisk/</code>
                     <button class="copy-btn">Copy</button>
                 </div>
-                <div class="command-block" data-template='grep -ri "{search}" /var/log/asterisk/'>
+                <div class="command-block" data-has-search="true" data-template='grep -ri "{search}" /var/log/asterisk/'>
                     <code>grep -ri "<span class="placeholder">searchword</span>" /var/log/asterisk/</code>
                     <button class="copy-btn">Copy</button>
                 </div>
@@ -274,13 +354,7 @@
                     <button class="favorite-btn" data-command="zgrep">☆</button>
                 </div>
                 <p class="command-description">Search compressed archived logs.</p>
-                <div class="placeholder-inputs">
-                    <div class="input-group">
-                        <div class="placeholder-label">Search Term:</div>
-                        <input type="text" class="placeholder-input" data-field="search" placeholder="keyword to search">
-                    </div>
-                </div>
-                <div class="command-block" data-template='zgrep -i "{search}" /var/log/asterisk/full*.*'>
+                <div class="command-block" data-has-search="true" data-template='zgrep -i "{search}" /var/log/asterisk/full*.*'>
                     <code>zgrep -i "<span class="placeholder">searchword</span>" /var/log/asterisk/full*.*</code>
                     <button class="copy-btn">Copy</button>
                 </div>
@@ -642,6 +716,18 @@
         </div>
     </footer>
 
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <h3>Enter Search Term</h3>
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Enter keyword to search...">
+            <div class="search-modal-buttons">
+                <button class="search-modal-btn btn-cancel" id="searchModalCancel">Cancel</button>
+                <button class="search-modal-btn btn-search" id="searchModalSearch">Copy Command</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Dark mode
         const darkModeToggle = document.getElementById('darkModeToggle');
@@ -699,16 +785,79 @@
             });
         });
 
-        // Copy functionality with input support
+        // Copy functionality with input support and search modal
+        let currentSearchButton = null;
+
+        function showSearchModal(btn) {
+            currentSearchButton = btn;
+            const modal = document.getElementById('searchModal');
+            const input = document.getElementById('searchModalInput');
+            modal.classList.add('show');
+            input.value = '';
+            input.focus();
+        }
+
+        document.getElementById('searchModalCancel').addEventListener('click', () => {
+            document.getElementById('searchModal').classList.remove('show');
+            currentSearchButton = null;
+        });
+
+        document.getElementById('searchModalSearch').addEventListener('click', () => {
+            if (currentSearchButton) {
+                const searchValue = document.getElementById('searchModalInput').value.trim();
+                if (!searchValue) {
+                    alert('Please enter a search term');
+                    return;
+                }
+                
+                const commandBlock = currentSearchButton.parentElement;
+                const template = commandBlock.getAttribute('data-template');
+                const text = template.replace(/{search}/g, searchValue);
+                
+                navigator.clipboard.writeText(text).then(() => {
+                    currentSearchButton.textContent = 'Copied!';
+                    currentSearchButton.classList.add('copied');
+                    setTimeout(() => {
+                        currentSearchButton.textContent = 'Copy';
+                        currentSearchButton.classList.remove('copied');
+                    }, 2000);
+                });
+                
+                document.getElementById('searchModal').classList.remove('show');
+                currentSearchButton = null;
+            }
+        });
+
+        // Enter key in modal
+        document.getElementById('searchModalInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('searchModalSearch').click();
+            }
+        });
+
+        // Click outside modal to close
+        document.getElementById('searchModal').addEventListener('click', (e) => {
+            if (e.target.id === 'searchModal') {
+                document.getElementById('searchModal').classList.remove('show');
+                currentSearchButton = null;
+            }
+        });
+
         document.querySelectorAll('.copy-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const commandBlock = this.parentElement;
+                const hasSearch = commandBlock.getAttribute('data-has-search') === 'true';
+                
+                if (hasSearch) {
+                    showSearchModal(this);
+                    return;
+                }
+                
                 const card = commandBlock.closest('.command-card');
                 const template = commandBlock.getAttribute('data-template');
                 
                 let text;
                 if (template) {
-                    // Has placeholders - get values from inputs
                     text = template;
                     const inputs = card.querySelectorAll('.placeholder-input');
                     inputs.forEach(input => {
@@ -717,7 +866,6 @@
                         text = text.replace(`{${field}}`, value);
                     });
                 } else {
-                    // No placeholders - copy as-is
                     const code = commandBlock.querySelector('code');
                     text = code.textContent;
                 }
@@ -779,6 +927,51 @@
                 if (originalCard) {
                     const clone = originalCard.cloneNode(true);
                     clone.querySelector('.favorite-btn')?.remove();
+                    
+                    // Re-attach copy button functionality to cloned buttons
+                    clone.querySelectorAll('.copy-btn').forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            const commandBlock = this.parentElement;
+                            const hasSearch = commandBlock.getAttribute('data-has-search') === 'true';
+                            
+                            if (hasSearch) {
+                                currentSearchButton = this;
+                                const modal = document.getElementById('searchModal');
+                                const input = document.getElementById('searchModalInput');
+                                modal.classList.add('show');
+                                input.value = '';
+                                input.focus();
+                                return;
+                            }
+                            
+                            const card = commandBlock.closest('.command-card');
+                            const template = commandBlock.getAttribute('data-template');
+                            
+                            let text;
+                            if (template) {
+                                text = template;
+                                const inputs = card.querySelectorAll('.placeholder-input');
+                                inputs.forEach(input => {
+                                    const field = input.getAttribute('data-field');
+                                    const value = input.value.trim() || input.placeholder;
+                                    text = text.replace(`{${field}}`, value);
+                                });
+                            } else {
+                                const code = commandBlock.querySelector('code');
+                                text = code.textContent;
+                            }
+                            
+                            navigator.clipboard.writeText(text).then(() => {
+                                this.textContent = 'Copied!';
+                                this.classList.add('copied');
+                                setTimeout(() => {
+                                    this.textContent = 'Copy';
+                                    this.classList.remove('copied');
+                                }, 2000);
+                            });
+                        });
+                    });
+                    
                     favoritesList.appendChild(clone);
                 }
             });
