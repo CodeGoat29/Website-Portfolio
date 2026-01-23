@@ -6,98 +6,12 @@
     <title>Asterisk Commands - DiPiazza</title>
     <link rel="stylesheet" href="../styles.css">
     <link rel="icon" type="image/png" href="../images/thegoat.png">
-    <style>
-        .commands-header{text-align:center;margin-bottom:50px}
-        .commands-header h1{font-size:2.8em;color:var(--accent);margin-bottom:15px}
-        .subtitle{font-size:1.2em;color:var(--text-secondary);margin-bottom:40px}
-        .search-container{position:relative;max-width:600px;margin:0 auto 40px}
-        #searchInput{width:100%;padding:15px 50px 15px 20px;font-size:1.1em;border:2px solid var(--border);border-radius:8px;background:var(--bg-secondary);color:var(--text-primary);font-family:'Georgia','Times New Roman',serif;transition:all .3s ease}
-        #searchInput:focus{outline:none;border-color:var(--accent);box-shadow:0 0 10px rgba(184,134,11,.3)}
-        .search-icon{position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:1.3em;pointer-events:none}
-        .quick-nav{background:var(--bg-secondary);padding:25px;border-radius:8px;border:2px solid var(--border);margin-bottom:40px}
-        .quick-nav h3{color:var(--accent);margin-bottom:20px;text-align:center}
-        .nav-links{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-        .nav-link{background:var(--accent);color:var(--coal);padding:8px 16px;border-radius:5px;text-decoration:none;font-weight:600;font-size:.9em;transition:all .3s ease;border:2px solid var(--border)}
-        .nav-link:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 4px 8px rgba(0,0,0,.2)}
-        .command-category{margin-bottom:60px}
-        .command-category h2{font-size:2em;color:var(--accent);margin-bottom:15px;padding-bottom:10px;border-bottom:3px solid var(--border)}
-        .category-description{font-size:1.1em;color:var(--text-secondary);margin-bottom:30px;font-style:italic}
-        .command-card{background:var(--bg-secondary);padding:25px;margin-bottom:25px;border-radius:8px;border:2px solid var(--border);box-shadow:0 4px 6px rgba(0,0,0,.2);transition:all .3s ease}
-        .command-card:hover{transform:translateY(-3px);box-shadow:0 6px 12px rgba(0,0,0,.3);border-color:var(--accent)}
-        .command-card.hidden{display:none}
-        .command-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
-        .command-header h3{font-size:1.5em;color:var(--text-primary);margin:0}
-        .favorite-btn{background:none;border:none;font-size:1.5em;cursor:pointer;color:var(--text-secondary);transition:all .3s ease;padding:5px}
-        .favorite-btn:hover{color:var(--accent);transform:scale(1.2)}
-        .favorite-btn.active{color:#ffd700}
-        .command-description{color:var(--text-secondary);margin-bottom:20px;line-height:1.6}
-        .command-block{position:relative;background:var(--bg-primary);border:1px solid var(--border);border-radius:5px;padding:15px 100px 15px 15px;margin-bottom:15px;font-family:'Courier New',monospace}
-        .command-block:last-of-type{margin-bottom:20px}
-        .command-block code{color:var(--text-primary);font-size:.95em;display:block;word-wrap:break-word;white-space:pre-wrap}
-        .copy-btn{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:var(--accent);color:var(--coal);border:2px solid var(--border);border-radius:5px;padding:8px 16px;cursor:pointer;font-family:'Georgia','Times New Roman',serif;font-weight:600;font-size:.85em;transition:all .3s ease}
-        .copy-btn:hover{background:var(--accent-hover);transform:translateY(-50%) scale(1.05)}
-        .copy-btn.copied{background:#4caf50;color:white}
-        .command-notes{background:var(--bg-primary);border-left:4px solid var(--accent);padding:15px;border-radius:5px;margin-top:15px}
-        .command-notes strong{color:var(--accent)}
-        .command-notes code{background:var(--bg-secondary);padding:2px 6px;border-radius:3px;font-family:'Courier New',monospace;font-size:.9em}
-        .placeholder{background:var(--accent);color:var(--coal);padding:2px 6px;border-radius:3px;font-weight:600}
-        .placeholder-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);z-index:2000;align-items:center;justify-content:center}
-        .placeholder-modal.show{display:flex}
-        .placeholder-modal-content{background:var(--bg-secondary);padding:30px;border-radius:10px;border:3px solid var(--accent);max-width:500px;width:90%;box-shadow:0 10px 30px rgba(0,0,0,.5)}
-        .placeholder-modal h3{color:var(--accent);margin-bottom:20px}
-        .placeholder-modal input{width:100%;padding:12px;font-size:1.1em;border:2px solid var(--border);border-radius:5px;background:var(--bg-primary);color:var(--text-primary);font-family:'Courier New',monospace;margin-bottom:20px}
-        .placeholder-modal-buttons{display:flex;gap:10px;justify-content:flex-end}
-        .placeholder-modal button{padding:10px 20px;border:2px solid var(--border);border-radius:5px;cursor:pointer;font-family:'Georgia','Times New Roman',serif;font-weight:600;transition:all .3s ease}
-        .placeholder-modal .btn-copy{background:var(--accent);color:var(--coal)}
-        .placeholder-modal .btn-copy:hover{background:var(--accent-hover)}
-        .placeholder-modal .btn-cancel{background:var(--bg-primary);color:var(--text-primary)}
-        .placeholder-modal .btn-cancel:hover{background:var(--gear-gray)}
-        .favorites-section{background:linear-gradient(135deg,var(--bg-secondary) 0%,var(--bg-primary) 100%);padding:40px;border-radius:10px;border:2px solid var(--accent);margin-bottom:60px}
-        .favorites-section h2{color:var(--accent);text-align:center;margin-bottom:30px}
-        .favorites-list{display:grid;gap:20px}
-        .empty-favorites{text-align:center;color:var(--text-secondary);font-style:italic;padding:40px}
-        .back-to-top{position:fixed;bottom:30px;right:30px;background:var(--accent);color:var(--coal);width:50px;height:50px;border-radius:50%;border:2px solid var(--border);font-size:1.5em;cursor:pointer;box-shadow:0 4px 8px rgba(0,0,0,.3);transition:all .3s ease;z-index:999;display:none;align-items:center;justify-content:center}
-        .back-to-top:hover{background:var(--accent-hover);transform:translateY(-5px);box-shadow:0 6px 12px rgba(0,0,0,.4)}
-        .back-to-top.show{display:flex}
-        .category-toggle{cursor:pointer;user-select:none;display:flex;align-items:center;gap:10px}
-        .category-toggle::before{content:'▼';font-size:.8em;transition:transform .3s ease}
-        .category-toggle.collapsed::before{transform:rotate(-90deg)}
-        .category-content{max-height:10000px;overflow:hidden;transition:max-height .3s ease}
-        .category-content.collapsed{max-height:0}
-        .search-dropdown{position:absolute;top:100%;left:0;right:0;background:var(--bg-secondary);border:2px solid var(--border);border-top:none;border-radius:0 0 8px 8px;max-height:400px;overflow-y:auto;display:none;z-index:1000;box-shadow:0 4px 8px rgba(0,0,0,.3)}
-        .search-dropdown.show{display:block}
-        .search-result-item{padding:15px 20px;cursor:pointer;border-bottom:1px solid var(--border);transition:background .2s ease}
-        .search-result-item:last-child{border-bottom:none}
-        .search-result-item:hover{background:var(--bg-primary)}
-        .search-result-title{font-weight:600;color:var(--text-primary);margin-bottom:5px}
-        .search-result-category{font-size:.85em;color:var(--accent);margin-bottom:5px}
-        .search-result-preview{font-size:.9em;color:var(--text-secondary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-        .no-search-results{padding:20px;text-align:center;color:var(--text-secondary);font-style:italic}
-        @media (max-width:768px){
-            .commands-header h1{font-size:2em}
-            .nav-links{flex-direction:column}
-            .nav-link{text-align:center}
-            .command-block{padding:15px 15px 60px 15px}
-            .copy-btn{right:10px;top:auto;bottom:10px;transform:none}
-            .copy-btn:hover{transform:scale(1.05)}
-            .command-header{flex-direction:column;align-items:flex-start;gap:10px}
-            .favorite-btn{align-self:flex-end}
-            .back-to-top{bottom:20px;right:20px;width:45px;height:45px}
-        }
-        @media (max-width:480px){
-            .commands-header h1{font-size:1.6em}
-            .subtitle{font-size:1em}
-            #searchInput{font-size:1em;padding:12px 45px 12px 15px}
-        }
-    </style>
 </head>
 <body>
     <div class="top-controls">
-
         <div class="dark-mode-toggle">
             <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
             <label for="darkModeToggle" class="toggle-label">
-                <span class="toggle-inner"></span>
                 <span class="toggle-switch"></span>
             </label>
         </div>
@@ -118,31 +32,29 @@
                     <li><a href="../resume.html">Resume</a></li>
                     <li><a href="../index.html#blog">Blog</a></li>
                     <li><a href="../index.html#resources" class="active">Resources</a></li>
-
                 </ul>
             </div>
         </nav>
     </header>
 
     <main class="container">
-        <section class="commands-header">
+        <section class="notes-header commands-header">
             <h1>Asterisk Command Reference</h1>
             <p class="subtitle">Quick reference guide for VoIP troubleshooting and server management</p>
             
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="Search commands, descriptions, or categories..." autocomplete="off">
                 <span class="search-icon">🔍</span>
-                <div class="search-dropdown" id="searchDropdown"></div>
             </div>
 
             <div class="quick-nav">
                 <h3>Quick Navigation</h3>
                 <div class="nav-links">
                     <a href="#network" class="nav-link">Network Diagnostics</a>
-                    <a href="#grep" class="nav-link">Log Analysis (Grep)</a>
+                    <a href="#grep" class="nav-link">Log Analysis</a>
                     <a href="#asterisk" class="nav-link">Asterisk Management</a>
                     <a href="#system" class="nav-link">System Resources</a>
-                    <a href="#failtoban" class="nav-link">Fail2Ban</a>
+                    <a href="#fail2ban" class="nav-link">Fail2Ban</a>
                     <a href="#extensions" class="nav-link">Extensions</a>
                     <a href="#files" class="nav-link">File Locations</a>
                     <a href="#find" class="nav-link">Find Commands</a>
@@ -156,10 +68,10 @@
                 <p class="empty-favorites">No favorites yet. Click the ☆ icon on any command to add it here!</p>
             </div>
         </div>
-                <section id="network" class="command-category">
+
+        <section id="network" class="command-category">
             <h2 class="category-toggle">Network Diagnostics</h2>
             <div class="category-content">
-            <p class="category-description">Essential commands for troubleshooting network connectivity and DNS issues</p>
             
             <div class="command-card" data-tags="network dns ip lookup nslookup">
                 <div class="command-header">
@@ -241,13 +153,13 @@
                     <strong>Look for:</strong> Loss% column shows packet loss at each hop.
                 </div>
             </div>
+
             </div>
         </section>
 
         <section id="grep" class="command-category">
             <h2 class="category-toggle">Log Analysis (Grep)</h2>
             <div class="category-content">
-            <p class="category-description">Search and analyze Asterisk logs efficiently using grep patterns</p>
             
             <div class="command-card" data-tags="grep log search asterisk full current">
                 <div class="command-header">
@@ -317,12 +229,13 @@
                     <strong>What to look for:</strong> Messages indicating which process was killed and when.
                 </div>
             </div>
+
             </div>
         </section>
-                <section id="asterisk" class="command-category">
+
+        <section id="asterisk" class="command-category">
             <h2 class="category-toggle">Asterisk Management</h2>
             <div class="category-content">
-            <p class="category-description">Core Asterisk service control and channel management commands</p>
             
             <div class="command-card" data-tags="asterisk status service systemctl">
                 <div class="command-header">
@@ -338,8 +251,6 @@
                     <strong>What you'll see:</strong> Active/inactive status, PID, memory usage, and recent log entries.
                 </div>
             </div>
-
-
 
             <div class="command-card" data-tags="asterisk channel hangup terminate kill call">
                 <div class="command-header">
@@ -373,67 +284,6 @@
                 </div>
             </div>
 
-            <div class="command-card" data-tags="switchboard restart service sb systemctl">
-                <div class="command-header">
-                    <h3>Restart Switchboard</h3>
-                    <button class="favorite-btn" data-command="sb-restart">☆</button>
-                </div>
-                <p class="command-description">Restart the switchboard service that manages call routing and PBX interface.</p>
-                <div class="command-block">
-                    <code>sudo systemctl restart sb</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Resolve switchboard UI issues, apply configuration changes, or recover from crashes.
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="apache restart web pbx http service">
-                <div class="command-header">
-                    <h3>Restart Apache (PBX Web Interface)</h3>
-                    <button class="favorite-btn" data-command="apache-restart">☆</button>
-                </div>
-                <p class="command-description">Restart the Apache web server that hosts the PBX management interface.</p>
-                <div class="command-block">
-                    <code>sudo systemctl restart apache2</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Fix web interface accessibility issues or apply Apache configuration changes.
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="resync quantum sync bootstrap">
-                <div class="command-header">
-                    <h3>Force Quantum Resync</h3>
-                    <button class="favorite-btn" data-command="resync">☆</button>
-                </div>
-                <p class="command-description">Force a resynchronization on bootstrapped servers that are out of sync with the master configuration.</p>
-                <div class="command-block">
-                    <code>sudo resync</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> When a bootstrapped server shows configuration drift or fails to sync automatically.<br>
-                    <strong>Note:</strong> May take several minutes to complete.
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="services list systemctl status all">
-                <div class="command-header">
-                    <h3>List All Services</h3>
-                    <button class="favorite-btn" data-command="services-list">☆</button>
-                </div>
-                <p class="command-description">Display all system services and their current states (running, stopped, failed).</p>
-                <div class="command-block">
-                    <code>systemctl list-units --type=service</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Get an overview of system health and identify failed or inactive services.
-                </div>
-            </div>
-
             <div class="command-card" data-tags="asterisk version show info release">
                 <div class="command-header">
                     <h3>Check Asterisk Version</h3>
@@ -447,55 +297,6 @@
                 <div class="command-notes">
                     <strong>Use case:</strong> Verify Asterisk version for compatibility checks, troubleshooting, or before upgrades.<br>
                     <strong>Shows:</strong> Asterisk version number, build date, and compilation details.
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="voicemail users show mailbox list">
-                <div class="command-header">
-                    <h3>Show Voicemail Users</h3>
-                    <button class="favorite-btn" data-command="voicemail-users">☆</button>
-                </div>
-                <p class="command-description">Display all configured voicemail boxes and their settings.</p>
-                <div class="command-block">
-                    <code>sudo asterisk -rx 'voicemail show users'</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> List all voicemail boxes, verify configuration, check message counts.<br>
-                    <strong>Shows:</strong> Context, mailbox number, name, and new/old message counts.
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="hints blf busy lamp field show status">
-                <div class="command-header">
-                    <h3>Show Hints/BLF Status</h3>
-                    <button class="favorite-btn" data-command="hints">☆</button>
-                </div>
-                <p class="command-description">Display all configured hints for Busy Lamp Field (BLF) monitoring and their current states.</p>
-                <div class="command-block">
-                    <code>sudo asterisk -rx 'core show hints'</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Troubleshoot BLF not working, verify hint configurations, check extension states.<br>
-                    <strong>Shows:</strong> Extension, state (Idle, InUse, Unavailable), and which devices are watching each hint.<br>
-                    <strong>States:</strong> Idle = available, InUse = on a call, Unavailable = unregistered.
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="dialplan show routing contexts extensions">
-                <div class="command-header">
-                    <h3>Show Dialplan</h3>
-                    <button class="favorite-btn" data-command="dialplan">☆</button>
-                </div>
-                <p class="command-description">Display the complete dialplan configuration showing all contexts, extensions, and call routing logic.</p>
-                <div class="command-block">
-                    <code>sudo asterisk -rx 'dialplan show'</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Verify call routing, troubleshoot misrouted calls, understand call flow.<br>
-                    <strong>Warning:</strong> Output can be very long. Use 'dialplan show [extension]@[context]' for specific extensions.
                 </div>
             </div>
 
@@ -514,13 +315,13 @@
                     <strong>Controls:</strong> Press Ctrl+C to stop. The -n 1 flag refreshes every 1 second.
                 </div>
             </div>
+
             </div>
         </section>
 
         <section id="system" class="command-category">
             <h2 class="category-toggle">System Resources & Performance</h2>
             <div class="category-content">
-            <p class="category-description">Monitor CPU, memory, disk usage, and system performance metrics</p>
             
             <div class="command-card" data-tags="cpu cores processor info lscpu nproc">
                 <div class="command-header">
@@ -542,52 +343,6 @@
                 </div>
             </div>
 
-            <div class="command-card" data-tags="cpu vcpu count cores virtual">
-                <div class="command-header">
-                    <h3>Count vCPUs (Virtual Servers)</h3>
-                    <button class="favorite-btn" data-command="vcpu-count">☆</button>
-                </div>
-                <p class="command-description">Count virtual CPUs on virtualized servers by parsing processor information.</p>
-                <div class="command-block">
-                    <code>cat /proc/cpuinfo | grep -E '^processor' | wc -l</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Verify VM resource allocation matches expected configuration.
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="memory ram total meminfo">
-                <div class="command-header">
-                    <h3>Check Total RAM</h3>
-                    <button class="favorite-btn" data-command="ram-check">☆</button>
-                </div>
-                <p class="command-description">Display total system memory available on the server in kilobytes.</p>
-                <div class="command-block">
-                    <code>cat /proc/meminfo | grep -i memtotal</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Verify server memory allocation for capacity planning or troubleshooting performance issues.
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="top processes cpu memory usage monitor">
-                <div class="command-header">
-                    <h3>Monitor Running Processes</h3>
-                    <button class="favorite-btn" data-command="top">☆</button>
-                </div>
-                <p class="command-description">Real-time view of system processes, CPU usage, memory consumption, and load averages.</p>
-                <div class="command-block">
-                    <code>top</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Interactive commands:</strong> Press 'M' to sort by memory, 'P' for CPU, 'q' to quit.<br>
-                    <strong>Use case:</strong> Identify resource-hungry processes causing performance issues.
-                </div>
-            </div>
-
             <div class="command-card" data-tags="disk space usage df storage partition">
                 <div class="command-header">
                     <h3>Check Disk Space Usage</h3>
@@ -601,22 +356,6 @@
                 <div class="command-notes">
                     <strong>Use case:</strong> Quickly check if partitions are running out of space, particularly important for /var/log.<br>
                     <strong>Look for:</strong> Percentage used - anything over 90% needs attention.
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="disk usage du log directory size folder">
-                <div class="command-header">
-                    <h3>Check Log Directory Sizes</h3>
-                    <button class="favorite-btn" data-command="du-logs">☆</button>
-                </div>
-                <p class="command-description">Display the size of each directory within /var/log to identify which logs are consuming the most space.</p>
-                <div class="command-block">
-                    <code>du -sh /var/log/*</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Identify which log files or directories are filling up disk space.<br>
-                    <strong>Tip:</strong> Add | sort -h to sort by size from smallest to largest.
                 </div>
             </div>
 
@@ -636,99 +375,12 @@
                 </div>
             </div>
 
-            <div class="command-card" data-tags="uptime load average system running">
-                <div class="command-header">
-                    <h3>System Uptime & Load Average</h3>
-                    <button class="favorite-btn" data-command="uptime">☆</button>
-                </div>
-                <p class="command-description">Show how long the system has been running and the 1, 5, and 15 minute load averages.</p>
-                <div class="command-block">
-                    <code>uptime</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Load average interpretation:</strong> Should be less than number of CPU cores for healthy performance.<br>
-                    <strong>Use case:</strong> Quick health check - high load averages indicate system stress.
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="sar iowait performance disk cpu history">
-                <div class="command-header">
-                    <h3>View SAR (System Activity Report) - Current Day</h3>
-                    <button class="favorite-btn" data-command="sar-current">☆</button>
-                </div>
-                <p class="command-description">Display system activity report for today, showing CPU usage, I/O wait times, and performance metrics.</p>
-                <div class="command-block">
-                    <code>sar -p</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Key metric:</strong> %iowait column shows time CPU spent waiting for I/O operations.<br>
-                    <strong>High iowait (>10%):</strong> Indicates disk bottleneck or storage performance issues.
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="sar historical decompress xz archive">
-                <div class="command-header">
-                    <h3>View Historical SAR Data</h3>
-                    <button class="favorite-btn" data-command="sar-historical">☆</button>
-                </div>
-                <p class="command-description">Access archived SAR data from previous days. Files are compressed and must be decompressed first.</p>
-                <div class="command-block">
-                    <code>sudo xz --decompress /var/log/sysstat/sa10.xz</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-block">
-                    <code>sar -f /var/log/sysstat/sa10</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-block">
-                    <code>sudo xz /var/log/sysstat/sa10</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Workflow:</strong> Decompress → View data → Recompress to save space.<br>
-                    <strong>Note:</strong> Replace 'sa10' with the desired day number (sa01-sa31).
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="sar filter iowait spikes awk high">
-                <div class="command-header">
-                    <h3>Filter SAR for High I/O Wait</h3>
-                    <button class="favorite-btn" data-command="sar-filter">☆</button>
-                </div>
-                <p class="command-description">Display only SAR entries where I/O wait exceeds 3%, helping identify performance spikes.</p>
-                <div class="command-block">
-                    <code>sar -f /var/log/sysstat/sa10 | awk 'NR==3 || $6 > 3'</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Quickly pinpoint exact times when disk I/O caused performance degradation.<br>
-                    <strong>Adjust threshold:</strong> Change '3' to any value based on your baseline.
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="disk full log truncate shrink asterisk">
-                <div class="command-header">
-                    <h3>Shrink Full Asterisk Log</h3>
-                    <button class="favorite-btn" data-command="truncate-log">☆</button>
-                </div>
-                <p class="command-description">Emergency command to clear the Asterisk full log when disk space is critically low.</p>
-                <div class="command-block">
-                    <code>sudo truncate -s 0 /var/log/asterisk/full</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>⚠️ Warning:</strong> This permanently deletes all current log data.<br>
-                    <strong>Use case:</strong> When df -h shows partition is 100% full and preventing system operation.
-                </div>
-            </div>
             </div>
         </section>
-                <section id="failtoban" class="command-category">
+
+        <section id="fail2ban" class="command-category">
             <h2 class="category-toggle">Fail2Ban Management</h2>
             <div class="category-content">
-            <p class="category-description">Control and troubleshoot the Fail2Ban intrusion prevention service</p>
             
             <div class="command-card" data-tags="fail2ban status check service">
                 <div class="command-header">
@@ -760,206 +412,47 @@
                 </div>
             </div>
 
-            <div class="command-card" data-tags="fail2ban start enable service">
-                <div class="command-header">
-                    <h3>Start Fail2Ban</h3>
-                    <button class="favorite-btn" data-command="fail2ban-start">☆</button>
-                </div>
-                <p class="command-description">Start the Fail2Ban service if it's currently stopped.</p>
-                <div class="command-block">
-                    <code>sudo systemctl start fail2ban</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="fail2ban stop disable service">
-                <div class="command-header">
-                    <h3>Stop Fail2Ban</h3>
-                    <button class="favorite-btn" data-command="fail2ban-stop">☆</button>
-                </div>
-                <p class="command-description">Stop the Fail2Ban service temporarily to allow administrative access or troubleshooting.</p>
-                <div class="command-block">
-                    <code>sudo systemctl stop fail2ban</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>⚠️ Security Note:</strong> Server is vulnerable to brute force attacks while Fail2Ban is stopped.
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="fail2ban lsvban unban reset pbx v2">
-                <div class="command-header">
-                    <h3>LSV Ban Reset (PBX v2)</h3>
-                    <button class="favorite-btn" data-command="lsvban-v2">☆</button>
-                </div>
-                <p class="command-description">Execute the LSV Ban client script on PBX v2 servers to clear bans and reset fail2ban state.</p>
-                <div class="command-block">
-                    <code>sudo /usr/local/bin/lsvBan/lsvBan-client.sh</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> When legitimate IPs are being blocked or after configuration changes.
-                </div>
-            </div>
             </div>
         </section>
 
         <section id="extensions" class="command-category">
             <h2 class="category-toggle">Extension Management</h2>
             <div class="category-content">
-            <p class="category-description">Commands for managing and troubleshooting phone extensions</p>
             
-            <div class="command-card" data-tags="extension notify restart phone reboot sip">
-                <div class="command-header">
-                    <h3>Restart Phone/Extension (notify)</h3>
-                    <button class="favorite-btn" data-command="notify-extension">☆</button>
-                </div>
-                <p class="command-description">Send a notify command to restart a specific phone extension remotely.</p>
-                <div class="command-block has-placeholder">
-                    <code>notify "<span class="placeholder" data-placeholder="extension">extension</span>"</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Reboot phones remotely to apply configuration changes or fix registration issues.<br>
-                    <strong>Note:</strong> Phone must support SIP notify events for reboot.
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="extension peer details sip show alias">
-                <div class="command-header">
-                    <h3>View Extension Details (peer)</h3>
-                    <button class="favorite-btn" data-command="peer-extension">☆</button>
-                </div>
-                <p class="command-description">Display detailed information about a specific SIP peer/extension including registration status and settings.</p>
-                <div class="command-block has-placeholder">
-                    <code>peer "<span class="placeholder" data-placeholder="extension">extension</span>"</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-block has-placeholder">
-                    <code>sudo /usr/local/bin/lsadmin sip-show-peer "<span class="placeholder" data-placeholder="extension">extension</span>"</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Note:</strong> "peer" is an alias for the full lsadmin command shown above.<br>
-                    <strong>Shows:</strong> IP address, codec support, registration status, qualify status, and NAT settings.
-                </div>
-            </div>
-
             <div class="command-card" data-tags="extension peers contacts list all sip pjsip show alias">
                 <div class="command-header">
-                    <h3>List All Extensions (peers)</h3>
+                    <h3>List All Extensions</h3>
                     <button class="favorite-btn" data-command="peers-all">☆</button>
                 </div>
                 <p class="command-description">Display a complete list of all configured PJSIP contacts/extensions and their status.</p>
-                <div class="command-block">
-                    <code>peers</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
                 <div class="command-block">
                     <code>sudo asterisk -rx 'pjsip show contacts'</code>
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
-                    <strong>Note:</strong> "peers" is an alias for the full asterisk command shown above.<br>
                     <strong>Use case:</strong> Get an overview of all extensions, check registration status.
                 </div>
             </div>
 
-            <div class="command-card" data-tags="channels active calls view list alias">
-                <div class="command-header">
-                    <h3>View Active Channels (channels)</h3>
-                    <button class="favorite-btn" data-command="channels-alias">☆</button>
-                </div>
-                <p class="command-description">Display all currently active channels (calls) showing detailed channel information.</p>
-                <div class="command-block">
-                    <code>channels</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-block">
-                    <code>sudo asterisk -rx 'core show channels verbose'</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Note:</strong> "channels" is an alias for the full asterisk command shown above.
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="endpoints inuse active pjsip busy extensions">
-                <div class="command-header">
-                    <h3>Show In-Use Endpoints (inuse)</h3>
-                    <button class="favorite-btn" data-command="inuse">☆</button>
-                </div>
-                <p class="command-description">Display only PJSIP endpoints that are currently in use (active on a call).</p>
-                <div class="command-block">
-                    <code>inuse</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-block">
-                    <code>sudo asterisk -rx 'pjsip show endpoints like [0-9]+' | egrep '^ Endpoint'</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Note:</strong> "inuse" is an alias for the full command shown above.
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="database show asterisk db astdb">
-                <div class="command-header">
-                    <h3>Show Asterisk Database (database-show)</h3>
-                    <button class="favorite-btn" data-command="database-show">☆</button>
-                </div>
-                <p class="command-description">Display all entries in the Asterisk internal database (AstDB) used for storing persistent configuration and state.</p>
-                <div class="command-block">
-                    <code>database-show</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-block">
-                    <code>sudo asterisk -rx 'database show'</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Note:</strong> "database-show" is an alias for the full command shown above.
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="apache http access log tail follow web">
-                <div class="command-header">
-                    <h3>Follow Apache HTTP Access Log (http)</h3>
-                    <button class="favorite-btn" data-command="http-log">☆</button>
-                </div>
-                <p class="command-description">Continuously tail Apache HTTP access logs with colorized output for easier reading.</p>
-                <div class="command-block">
-                    <code>http</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-block">
-                    <code>sudo /usr/local/bin/lsadmin tail-logs /var/log/apache2/access.log | ccze -A -o nolookups</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Note:</strong> "http" and "https" are aliases for the same command shown above.
-                </div>
-            </div>
             </div>
         </section>
 
         <section id="files" class="command-category">
             <h2 class="category-toggle">Important File Locations</h2>
             <div class="category-content">
-            <p class="category-description">Key directories for configuration files, logs, and voicemail storage</p>
             
-            <div class="command-card" data-tags="files tftp config boot">
+            <div class="command-card" data-tags="files logs asterisk full debug cdr">
                 <div class="command-header">
-                    <h3>TFTP Config Files</h3>
-                    <button class="favorite-btn" data-command="tftp-config">☆</button>
+                    <h3>Asterisk Log Files</h3>
+                    <button class="favorite-btn" data-command="log-location">☆</button>
                 </div>
-                <p class="command-description">Location of TFTP boot and configuration files for IP phones.</p>
+                <p class="command-description">Primary location for all Asterisk log files including full logs, CDR, and debug output.</p>
                 <div class="command-block">
-                    <code>/tftpboot/config</code>
+                    <code>/var/log/asterisk</code>
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
-                    <strong>Contains:</strong> Phone provisioning configs, firmware files, and boot parameters.
+                    <strong>Key files:</strong> full (detailed log), messages (general), cdr-csv/ (call records).
                 </div>
             </div>
 
@@ -978,193 +471,58 @@
                 </div>
             </div>
 
-            <div class="command-card" data-tags="files moh music on hold audio">
-                <div class="command-header">
-                    <h3>Music on Hold Files</h3>
-                    <button class="favorite-btn" data-command="moh-location">☆</button>
-                </div>
-                <p class="command-description">Storage location for Music on Hold audio files.</p>
-                <div class="command-block">
-                    <code>/var/lib/asterisk/moh</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Supported formats:</strong> WAV, MP3, GSM (WAV recommended for quality).
-                </div>
             </div>
-
-            <div class="command-card" data-tags="files logs asterisk full debug cdr">
-                <div class="command-header">
-                    <h3>Asterisk Log Files</h3>
-                    <button class="favorite-btn" data-command="log-location">☆</button>
-                </div>
-                <p class="command-description">Primary location for all Asterisk log files including full logs, CDR, and debug output.</p>
-                <div class="command-block">
-                    <code>/var/log/asterisk</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Key files:</strong> full (detailed log), messages (general), cdr-csv/ (call records).
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="files mail log email maillog">
-                <div class="command-header">
-                    <h3>Email/Mail Logs</h3>
-                    <button class="favorite-btn" data-command="maillog">☆</button>
-                </div>
-                <p class="command-description">System mail log for tracking voicemail-to-email delivery and SMTP issues.</p>
-                <div class="command-block">
-                    <code>/var/log/maillog</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Troubleshoot voicemail notification delivery failures.
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="files tmp temporary spool asterisk">
-                <div class="command-header">
-                    <h3>Temporary/Spool Files</h3>
-                    <button class="favorite-btn" data-command="spool-tmp">☆</button>
-                </div>
-                <p class="command-description">Temporary file storage used by Asterisk for recordings and call processing.</p>
-                <div class="command-block">
-                    <code>/var/spool/asterisk/tmp</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Contains:</strong> Temporary recording files, transcoding buffers, monitor recordings.
-                </div>
-            </div>
-            </div>
-        </section>
-
         </section>
 
         <section id="find" class="command-category">
             <h2 class="category-toggle">Find Commands</h2>
             <div class="category-content">
-            <p class="category-description">Search and locate files and directories across the filesystem</p>
             
-<div class="command-card" data-tags="find search file name locate filesystem">
-    <div class="command-header">
-        <h3>Find File by Name</h3>
-        <button class="favorite-btn" data-command="find-name">☆</button>
-    </div>
-    <p class="command-description">Search the entire filesystem for a file by its exact name, suppressing permission errors.</p>
-    <div class="command-block has-placeholder">
-        <code>find / -name <span class="placeholder" data-placeholder="filename">filename.ext</span> 2>/dev/null</code>
-        <button class="copy-btn">Copy</button>
-    </div>
-    <div class="command-notes">
-        <strong>Use case:</strong> Locate configuration files, logs, or any file when you don't know its directory.<br>
-        <strong>Note:</strong> Case-sensitive. Use -iname for case-insensitive search.
-    </div>
-</div>
+            <div class="command-card" data-tags="find search file name locate filesystem">
+                <div class="command-header">
+                    <h3>Find File by Name</h3>
+                    <button class="favorite-btn" data-command="find-name">☆</button>
+                </div>
+                <p class="command-description">Search the entire filesystem for a file by its exact name, suppressing permission errors.</p>
+                <div class="command-block has-placeholder">
+                    <code>find / -name <span class="placeholder" data-placeholder="filename">filename.ext</span> 2>/dev/null</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Locate configuration files, logs, or any file when you don't know its directory.<br>
+                    <strong>Note:</strong> Case-sensitive. Use -iname for case-insensitive search.
+                </div>
+            </div>
 
-<div class="command-card" data-tags="find search file case insensitive iname">
-    <div class="command-header">
-        <h3>Find File (Case-Insensitive)</h3>
-        <button class="favorite-btn" data-command="find-iname">☆</button>
-    </div>
-    <p class="command-description">Search for files regardless of case sensitivity in the filename.</p>
-    <div class="command-block has-placeholder">
-        <code>find / -iname <span class="placeholder" data-placeholder="filename">filename.ext</span> 2>/dev/null</code>
-        <button class="copy-btn">Copy</button>
-    </div>
-    <div class="command-notes">
-        <strong>Use case:</strong> When you're unsure of the exact capitalization of a filename.
-    </div>
-</div>
+            <div class="command-card" data-tags="find search directory folder path locate">
+                <div class="command-header">
+                    <h3>Find Directory by Name</h3>
+                    <button class="favorite-btn" data-command="find-directory">☆</button>
+                </div>
+                <p class="command-description">Search for directories/folders by name instead of files.</p>
+                <div class="command-block has-placeholder">
+                    <code>find / -type d -name <span class="placeholder" data-placeholder="dirname">directory_name</span> 2>/dev/null</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>Use case:</strong> Locate specific directories like log folders, config directories, or application paths.
+                </div>
+            </div>
 
-<div class="command-card" data-tags="find search file type extension wildcard conf log">
-    <div class="command-header">
-        <h3>Find Files by Extension</h3>
-        <button class="favorite-btn" data-command="find-extension">☆</button>
-    </div>
-    <p class="command-description">Search for all files with a specific extension (e.g., all .conf or .log files).</p>
-    <div class="command-block has-placeholder">
-        <code>find / -name "*.<span class="placeholder" data-placeholder="extension">conf</span>" 2>/dev/null</code>
-        <button class="copy-btn">Copy</button>
-    </div>
-    <div class="command-notes">
-        <strong>Use case:</strong> Find all configuration files, logs, or scripts of a certain type.<br>
-        <strong>Examples:</strong> *.log, *.conf, *.sh
-    </div>
-</div>
-
-<div class="command-card" data-tags="find search directory folder path locate">
-    <div class="command-header">
-        <h3>Find Directory by Name</h3>
-        <button class="favorite-btn" data-command="find-directory">☆</button>
-    </div>
-    <p class="command-description">Search for directories/folders by name instead of files.</p>
-    <div class="command-block has-placeholder">
-        <code>find / -type d -name <span class="placeholder" data-placeholder="dirname">directory_name</span> 2>/dev/null</code>
-        <button class="copy-btn">Copy</button>
-    </div>
-    <div class="command-notes">
-        <strong>Use case:</strong> Locate specific directories like log folders, config directories, or application paths.
-    </div>
-</div>            
             </div>
         </section>
-    </main>
 
-    <button class="back-to-top" id="backToTop" title="Back to top">↑</button>
+        <button class="back-to-top" id="backToTop">↑</button>
+
+    </main>
 
     <footer>
         <div class="container">
             <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
         </div>
     </footer>
-<script>
-        // Counter functions
-        function calculateAge(birthDate) {
-            const now = new Date();
-            const birth = new Date(birthDate);
-            let years = now.getFullYear() - birth.getFullYear();
-            let months = now.getMonth() - birth.getMonth();
-            let days = now.getDate() - birth.getDate();
-            if (days < 0) {
-                months--;
-                const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-                days += lastMonth.getDate();
-            }
-            if (months < 0) {
-                years--;
-                months += 12;
-            }
-            return { years, months, days };
-        }
-        
-        function updateAges() {
-            const harperAge = calculateAge('2024-08-29');
-            const sophiaAge = calculateAge('2025-09-18');
-            const harperEl = document.getElementById('harperAge');
-            const sophiaEl = document.getElementById('sophiaAge');
-            if (harperEl) harperEl.textContent = `${harperAge.years}y ${harperAge.months}m ${harperAge.days}d`;
-            if (sophiaEl) sophiaEl.textContent = `${sophiaAge.years}y ${sophiaAge.months}m ${sophiaAge.days}d`;
-        }
-        
-        updateAges();
-        setInterval(updateAges, 3600000);
-        
-        const counterButton = document.getElementById('counterButton');
-        const counterContent = document.getElementById('counterContent');
-        if (counterButton && counterContent) {
-            counterButton.addEventListener('click', (e) => {
-                e.stopPropagation();
-                counterContent.classList.toggle('show');
-            });
-            document.addEventListener('click', (e) => {
-                if (!counterButton.contains(e.target) && !counterContent.contains(e.target)) {
-                    counterContent.classList.remove('show');
-                }
-            });
-        }
 
+    <script>
         // Dark mode
         const darkModeToggle = document.getElementById('darkModeToggle');
         const body = document.body;
@@ -1177,225 +535,36 @@
             localStorage.setItem('darkMode', body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
         });
 
-        // Copy command function with placeholder support
-        function copyToClipboard(text, button) {
-            navigator.clipboard.writeText(text).then(() => {
-                const originalText = button.textContent;
-                button.textContent = 'Copied!';
-                button.classList.add('copied');
-                setTimeout(() => {
-                    button.textContent = originalText;
-                    button.classList.remove('copied');
-                }, 2000);
-            }).catch(err => {
-                console.error('Failed to copy:', err);
-                button.textContent = 'Error';
-                setTimeout(() => { button.textContent = 'Copy'; }, 2000);
-            });
-        }
-
-        function showPlaceholderModal(commandBlock) {
-            const code = commandBlock.querySelector('code');
-            const placeholders = code.querySelectorAll('.placeholder');
-            
-            if (placeholders.length === 0) return;
-            
-            let modal = document.getElementById('placeholderModal');
-            if (!modal) {
-                modal = document.createElement('div');
-                modal.id = 'placeholderModal';
-                modal.className = 'placeholder-modal';
-                modal.innerHTML = `
-                    <div class="placeholder-modal-content">
-                        <h3>Fill in the values</h3>
-                        <div id="placeholderInputs"></div>
-                        <div class="placeholder-modal-buttons">
-                            <button class="btn-cancel">Cancel</button>
-                            <button class="btn-copy">Copy Command</button>
-                        </div>
-                    </div>
-                `;
-                document.body.appendChild(modal);
-                
-                modal.querySelector('.btn-cancel').addEventListener('click', () => {
-                    modal.classList.remove('show');
-                });
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        modal.classList.remove('show');
-                    }
-                });
-            }
-            
-            const inputsContainer = modal.querySelector('#placeholderInputs');
-            inputsContainer.innerHTML = '';
-            const uniquePlaceholders = new Map();
-            
-            placeholders.forEach(p => {
-                const key = p.getAttribute('data-placeholder') || p.textContent;
-                if (!uniquePlaceholders.has(key)) {
-                    uniquePlaceholders.set(key, p.textContent);
-                }
-            });
-            
-            uniquePlaceholders.forEach((defaultValue, key) => {
-                const label = key.replace(/_/g, ' ');
-                const input = document.createElement('input');
-                input.type = 'text';
-                input.placeholder = `Enter ${label}`;
-                input.setAttribute('data-placeholder', key);
-                input.value = '';
-                inputsContainer.appendChild(input);
-            });
-            
-            const firstInput = inputsContainer.querySelector('input');
-            setTimeout(() => firstInput?.focus(), 100);
-            
-            inputsContainer.querySelectorAll('input').forEach(input => {
-                input.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-                        modal.querySelector('.btn-copy').click();
-                    }
-                });
-            });
-            
-            const copyBtn = modal.querySelector('.btn-copy');
-            copyBtn.onclick = () => {
-                let commandText = code.textContent;
-                
-                inputsContainer.querySelectorAll('input').forEach(input => {
-                    const key = input.getAttribute('data-placeholder');
-                    const value = input.value.trim();
-                    if (value) {
-                        const placeholder = Array.from(placeholders).find(p => 
-                            (p.getAttribute('data-placeholder') || p.textContent) === key
-                        );
-                        if (placeholder) {
-                            commandText = commandText.replace(placeholder.textContent, value);
-                        }
-                    }
-                });
-                
-                copyToClipboard(commandText, commandBlock.querySelector('.copy-btn'));
-                modal.classList.remove('show');
-            };
-            
-            modal.classList.add('show');
-        }
-
-        // Initialize copy buttons - using event delegation for dynamically added content
-        function initializeCopyButtons() {
-            document.querySelectorAll('.copy-btn').forEach(btn => {
-                // Remove existing listeners by cloning
-                const newBtn = btn.cloneNode(true);
-                btn.parentNode.replaceChild(newBtn, btn);
-                
-                newBtn.addEventListener('click', function() {
-                    const commandBlock = this.parentElement;
-                    const hasPlaceholder = commandBlock.classList.contains('has-placeholder');
-                    
-                    if (hasPlaceholder) {
-                        showPlaceholderModal(commandBlock);
-                    } else {
-                        const code = commandBlock.querySelector('code');
-                        const text = code.textContent;
-                        copyToClipboard(text, this);
-                    }
-                });
-            });
-        }
-
-        // Call this on page load
-        initializeCopyButtons();
-
-        // Search functionality with dropdown
+        // Search functionality
         const searchInput = document.getElementById('searchInput');
-        const searchDropdown = document.getElementById('searchDropdown');
         const commandCards = document.querySelectorAll('.command-card');
-        const categories = document.querySelectorAll('.command-category');
 
         searchInput.addEventListener('input', (e) => {
             const searchTerm = e.target.value.toLowerCase().trim();
             
-            if (searchTerm === '') {
-                searchDropdown.classList.remove('show');
-                searchDropdown.innerHTML = '';
-                return;
-            }
-
-            let searchResults = [];
-            
-            document.querySelectorAll('.command-card').forEach(card => {
+            commandCards.forEach(card => {
                 const tags = card.getAttribute('data-tags')?.toLowerCase() || '';
-                const title = card.querySelector('h3')?.textContent || '';
-                const description = card.querySelector('.command-description')?.textContent || '';
-                const commands = Array.from(card.querySelectorAll('code')).map(c => c.textContent).join(' ').toLowerCase();
-                const categoryEl = card.closest('.command-category');
-                const categoryName = categoryEl ? categoryEl.querySelector('h2').textContent : '';
+                const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+                const content = card.textContent.toLowerCase();
                 
-                const searchable = `${tags} ${title.toLowerCase()} ${description.toLowerCase()} ${commands}`;
+                const searchable = `${tags} ${title} ${content}`;
                 
-                if (searchable.includes(searchTerm)) {
-                    searchResults.push({
-                        title: title,
-                        category: categoryName,
-                        description: description,
-                        element: card,
-                        preview: commands.split('\n')[0].substring(0, 60)
-                    });
-                }
-            });
-
-            if (searchResults.length === 0) {
-                searchDropdown.innerHTML = '<div class="no-search-results">No commands found</div>';
-                searchDropdown.classList.add('show');
-                return;
-            }
-
-            const allCards = Array.from(document.querySelectorAll('.command-card'));
-            searchDropdown.innerHTML = searchResults.slice(0, 10).map(result => `
-                <div class="search-result-item" data-card-id="${allCards.indexOf(result.element)}">
-                    <div class="search-result-title">${result.title}</div>
-                    <div class="search-result-category">${result.category}</div>
-                    <div class="search-result-preview">${result.preview}...</div>
-                </div>
-            `).join('');
-
-            searchDropdown.classList.add('show');
-
-            document.querySelectorAll('.search-result-item').forEach(item => {
-                item.addEventListener('click', () => {
-                    const cardIndex = parseInt(item.getAttribute('data-card-id'));
-                    const card = allCards[cardIndex];
+                if (searchTerm === '' || searchable.includes(searchTerm)) {
+                    card.style.display = '';
                     const category = card.closest('.command-category');
-                    
-                    const categoryContent = category.querySelector('.category-content');
-                    const categoryToggle = category.querySelector('.category-toggle');
-                    if (categoryContent.classList.contains('collapsed')) {
+                    if (category) {
+                        const categoryContent = category.querySelector('.category-content');
+                        const categoryToggle = category.querySelector('.category-toggle');
                         categoryContent.classList.remove('collapsed');
                         categoryToggle.classList.remove('collapsed');
                     }
-                    
-                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    
-                    card.style.boxShadow = '0 0 20px rgba(184, 134, 11, 0.6)';
-                    setTimeout(() => {
-                        card.style.boxShadow = '';
-                    }, 2000);
-                    
-                    searchDropdown.classList.remove('show');
-                    searchInput.value = '';
-                });
+                } else {
+                    card.style.display = 'none';
+                }
             });
         });
 
-        document.addEventListener('click', (e) => {
-            if (!searchInput.contains(e.target) && !searchDropdown.contains(e.target)) {
-                searchDropdown.classList.remove('show');
-            }
-        });
-
-        // Category collapse/expand
+        // Category toggle
         document.querySelectorAll('.category-toggle').forEach(toggle => {
             toggle.addEventListener('click', () => {
                 const category = toggle.closest('.command-category');
@@ -1406,9 +575,58 @@
             });
         });
 
-        // Back to top button
-        const backToTop = document.getElementById('backToTop');
+        // Copy functionality with placeholder support
+        function showPlaceholderModal(commandBlock) {
+            const code = commandBlock.querySelector('code');
+            const placeholders = code.querySelectorAll('.placeholder');
+            
+            if (placeholders.length === 0) return false;
+            
+            const values = {};
+            placeholders.forEach(p => {
+                const key = p.getAttribute('data-placeholder');
+                const value = prompt(`Enter ${key.replace(/_/g, ' ')}:`);
+                if (value) values[key] = value;
+            });
+            
+            let commandText = code.textContent;
+            placeholders.forEach(p => {
+                const key = p.getAttribute('data-placeholder');
+                if (values[key]) {
+                    commandText = commandText.replace(p.textContent, values[key]);
+                }
+            });
+            
+            return commandText;
+        }
 
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const commandBlock = this.parentElement;
+                const hasPlaceholder = commandBlock.classList.contains('has-placeholder');
+                
+                let text;
+                if (hasPlaceholder) {
+                    text = showPlaceholderModal(commandBlock);
+                    if (!text) return;
+                } else {
+                    const code = commandBlock.querySelector('code');
+                    text = code.textContent;
+                }
+                
+                navigator.clipboard.writeText(text).then(() => {
+                    this.textContent = 'Copied!';
+                    this.classList.add('copied');
+                    setTimeout(() => {
+                        this.textContent = 'Copy';
+                        this.classList.remove('copied');
+                    }, 2000);
+                });
+            });
+        });
+
+        // Back to top
+        const backToTop = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 300) {
                 backToTop.classList.add('show');
@@ -1416,75 +634,6 @@
                 backToTop.classList.remove('show');
             }
         });
-
         backToTop.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-
-        // Favorites functionality
-        let favorites = JSON.parse(localStorage.getItem('favoriteCommands') || '[]');
-
-        function updateFavoritesDisplay() {
-            const favoritesSection = document.getElementById('favoritesSection');
-            const favoritesList = document.getElementById('favoritesList');
-            
-            if (favorites.length === 0) {
-                favoritesSection.style.display = 'none';
-                return;
-            }
-            
-            favoritesSection.style.display = 'block';
-            favoritesList.innerHTML = '';
-            
-            favorites.forEach(commandId => {
-                const originalCard = document.querySelector(`[data-command="${commandId}"]`)?.closest('.command-card');
-                if (originalCard) {
-                    const clone = originalCard.cloneNode(true);
-                    clone.querySelector('.favorite-btn')?.remove();
-                    favoritesList.appendChild(clone);
-                }
-            });
-            
-            // Re-initialize copy buttons for cloned cards
-            initializeCopyButtons();
-        }
-
-        document.querySelectorAll('.favorite-btn').forEach(btn => {
-            const commandId = btn.getAttribute('data-command');
-            if (favorites.includes(commandId)) {
-                btn.classList.add('active');
-                btn.textContent = '★';
-            }
-            
-            btn.addEventListener('click', function() {
-                const commandId = this.getAttribute('data-command');
-                if (favorites.includes(commandId)) {
-                    favorites = favorites.filter(id => id !== commandId);
-                    this.classList.remove('active');
-                    this.textContent = '☆';
-                } else {
-                    favorites.push(commandId);
-                    this.classList.add('active');
-                    this.textContent = '★';
-                }
-                localStorage.setItem('favoriteCommands', JSON.stringify(favorites));
-                updateFavoritesDisplay();
-            });
-        });
-
-        updateFavoritesDisplay();
-
-        // Smooth scroll for quick navigation
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                if (targetSection) {
-                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-    </script>
-</body>
-</html>
