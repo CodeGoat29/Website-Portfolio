@@ -677,3 +677,268 @@ footer {
         padding: 32px 24px;
     }
 }
+
+/* Resume Page Styles */
+.resume-section {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.resume-card {
+    background: white;
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    margin-bottom: 32px;
+    border: 1px solid #e1e8ed;
+}
+
+.dark-mode .resume-card {
+    background: #1c2938;
+    border-color: #2a3f5f;
+}
+
+.resume-card h3 {
+    color: var(--primary-blue);
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--primary-blue);
+}
+
+.dark-mode .resume-card h3 {
+    color: var(--primary-blue);
+}
+
+.resume-card > p {
+    color: #2c3e50;
+    line-height: 1.8;
+    font-size: 1.05em;
+}
+
+.dark-mode .resume-card > p {
+    color: #e4e6eb;
+}
+
+/* Skills Grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+}
+
+.skill-category h4 {
+    color: var(--primary-blue);
+    font-size: 1.1em;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.dark-mode .skill-category h4 {
+    color: var(--primary-blue);
+}
+
+.skill-category ul {
+    list-style: none;
+    padding: 0;
+}
+
+.skill-category li {
+    padding: 8px 0;
+    padding-left: 20px;
+    position: relative;
+    color: #657786;
+    line-height: 1.6;
+}
+
+.dark-mode .skill-category li {
+    color: #8899a6;
+}
+
+.skill-category li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--primary-blue);
+    font-weight: bold;
+}
+
+/* Experience Items */
+.experience-item {
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 2px solid #e1e8ed;
+}
+
+.dark-mode .experience-item {
+    border-bottom-color: #2a3f5f;
+}
+
+.experience-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.experience-item h4 {
+    color: #2c3e50;
+    font-size: 1.3em;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.dark-mode .experience-item h4 {
+    color: #e4e6eb;
+}
+
+.experience-item .company {
+    color: var(--primary-blue);
+    font-weight: 600;
+    margin-bottom: 12px;
+    font-size: 1.05em;
+}
+
+.dark-mode .experience-item .company {
+    color: var(--primary-blue);
+}
+
+.experience-item ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 12px;
+}
+
+.experience-item li {
+    padding: 8px 0;
+    padding-left: 24px;
+    position: relative;
+    color: #657786;
+    line-height: 1.7;
+}
+
+.dark-mode .experience-item li {
+    color: #8899a6;
+}
+
+.experience-item li::before {
+    content: '•';
+    position: absolute;
+    left: 8px;
+    color: var(--primary-blue);
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* Certifications Grid */
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.cert-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    transition: all 0.3s;
+    border: 2px solid #e1e8ed;
+}
+
+.dark-mode .cert-item {
+    background: #243447;
+    border-color: #2a3f5f;
+}
+
+.cert-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(76, 116, 206, 0.15);
+    border-color: var(--primary-blue);
+}
+
+.cert-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 12px;
+}
+
+.cert-item span {
+    font-size: 0.9em;
+    color: #2c3e50;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.dark-mode .cert-item span {
+    color: #e4e6eb;
+}
+
+/* Education Items */
+.education-item {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid #e1e8ed;
+}
+
+.dark-mode .education-item {
+    border-bottom-color: #2a3f5f;
+}
+
+.education-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.education-item h4 {
+    color: #2c3e50;
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.dark-mode .education-item h4 {
+    color: #e4e6eb;
+}
+
+.education-item .company {
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+.dark-mode .education-item .company {
+    color: var(--primary-blue);
+}
+
+/* Responsive Resume */
+@media (max-width: 768px) {
+    .resume-card {
+        padding: 24px;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .certifications-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 16px;
+    }
+
+    .cert-logo {
+        width: 60px;
+        height: 60px;
+    }
+
+    .cert-item {
+        padding: 16px;
+    }
+
+    .cert-item span {
+        font-size: 0.85em;
+    }
+}
