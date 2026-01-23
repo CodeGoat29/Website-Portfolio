@@ -6,6 +6,68 @@
     <title>Asterisk Commands - DiPiazza</title>
     <link rel="stylesheet" href="../styles.css">
     <link rel="icon" type="image/png" href="../images/thegoat.png">
+    <style>
+        /* Override grid for asterisk commands - full width cards */
+        .command-category .category-content {
+            grid-template-columns: 1fr !important;
+        }
+
+        /* Better collapse animation */
+        .category-content {
+            max-height: 10000px;
+            overflow: visible;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .category-content.collapsed {
+            max-height: 0;
+            overflow: hidden;
+        }
+
+        /* Input boxes for placeholders */
+        .placeholder-inputs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .placeholder-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px;
+            border: 2px solid #e1e8ed;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .dark-mode .placeholder-input {
+            background: #0f1419;
+            color: var(--primary-blue);
+            border-color: #2a3f5f;
+        }
+
+        .placeholder-input::placeholder {
+            color: #8899a6;
+        }
+
+        .placeholder-label {
+            font-size: 0.85em;
+            color: #657786;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .dark-mode .placeholder-label {
+            color: #8899a6;
+        }
+
+        .input-group {
+            flex: 1;
+            min-width: 200px;
+        }
+    </style>
 </head>
 <body>
     <div class="top-controls">
@@ -64,9 +126,7 @@
 
         <div class="favorites-section" id="favoritesSection" style="display: none;">
             <h2>⭐ Favorite Commands</h2>
-            <div id="favoritesList" class="favorites-list">
-                <p class="empty-favorites">No favorites yet. Click the ☆ icon on any command to add it here!</p>
-            </div>
+            <div id="favoritesList" class="favorites-list"></div>
         </div>
 
         <section id="network" class="command-category">
@@ -93,64 +153,71 @@
                     <h3>Trace Route</h3>
                     <button class="favorite-btn" data-command="tracert">☆</button>
                 </div>
-                <p class="command-description">Maps the complete network path packets take from source to destination, showing each hop and latency.</p>
-                <div class="command-block has-placeholder">
-                    <code>tracert <span class="placeholder" data-placeholder="destination">destination</span></code>
+                <p class="command-description">Maps the complete network path packets take from source to destination.</p>
+                <div class="placeholder-inputs">
+                    <div class="input-group">
+                        <div class="placeholder-label">Destination:</div>
+                        <input type="text" class="placeholder-input" data-field="destination" placeholder="example.com or IP address">
+                    </div>
+                </div>
+                <div class="command-block" data-template="tracert {destination}">
+                    <code>tracert <span class="placeholder">destination</span></code>
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
-                    <strong>Use case:</strong> Diagnose where network delays or failures occur in the routing path. Essential for identifying ISP or network infrastructure issues.
+                    <strong>Use case:</strong> Diagnose where network delays or failures occur in the routing path.
                 </div>
             </div>
 
-            <div class="command-card" data-tags="network ping connectivity latency">
+            <div class="command-card" data-tags="network ping connectivity">
                 <div class="command-header">
                     <h3>Ping Test</h3>
                     <button class="favorite-btn" data-command="ping">☆</button>
                 </div>
-                <p class="command-description">Tests network connectivity and measures round-trip time to a host. Use for basic reachability testing.</p>
-                <div class="command-block has-placeholder">
-                    <code>ping <span class="placeholder" data-placeholder="hostname_or_ip">hostname or IP</span></code>
+                <p class="command-description">Tests network connectivity and measures round-trip time.</p>
+                <div class="placeholder-inputs">
+                    <div class="input-group">
+                        <div class="placeholder-label">Hostname or IP:</div>
+                        <input type="text" class="placeholder-input" data-field="host" placeholder="example.com or IP address">
+                    </div>
+                </div>
+                <div class="command-block" data-template="ping {host}">
+                    <code>ping <span class="placeholder">hostname</span></code>
                     <button class="copy-btn">Copy</button>
                 </div>
-                <div class="command-block has-placeholder">
-                    <code>ping -t <span class="placeholder" data-placeholder="hostname_or_ip">hostname or IP</span></code>
+                <div class="command-block" data-template="ping -t {host}">
+                    <code>ping -t <span class="placeholder">hostname</span></code>
                     <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Note:</strong> Use <code>ping -t</code> for continuous pinging until manually stopped (Ctrl+C). Useful for monitoring intermittent connectivity issues.
                 </div>
             </div>
 
-            <div class="command-card" data-tags="network arp mac address mapping">
+            <div class="command-card" data-tags="network arp mac address">
                 <div class="command-header">
                     <h3>ARP Table</h3>
                     <button class="favorite-btn" data-command="arp">☆</button>
                 </div>
-                <p class="command-description">Displays the Address Resolution Protocol table, mapping IP addresses to MAC addresses on your local network.</p>
+                <p class="command-description">Displays the Address Resolution Protocol table.</p>
                 <div class="command-block">
                     <code>arp -a</code>
                     <button class="copy-btn">Copy</button>
                 </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Identify devices on the local network, troubleshoot IP conflicts, or verify which physical device corresponds to an IP address.
-                </div>
             </div>
 
-            <div class="command-card" data-tags="mtr traceroute ping network path continuous">
+            <div class="command-card" data-tags="mtr traceroute ping network">
                 <div class="command-header">
                     <h3>MTR - Network Path Analysis</h3>
                     <button class="favorite-btn" data-command="mtr">☆</button>
                 </div>
-                <p class="command-description">Combines traceroute and ping functionality to continuously monitor network path and packet loss to a destination.</p>
-                <div class="command-block has-placeholder">
-                    <code>sudo mtr <span class="placeholder" data-placeholder="hostname_or_ip">hostname or IP</span></code>
-                    <button class="copy-btn">Copy</button>
+                <p class="command-description">Combines traceroute and ping functionality.</p>
+                <div class="placeholder-inputs">
+                    <div class="input-group">
+                        <div class="placeholder-label">Hostname or IP:</div>
+                        <input type="text" class="placeholder-input" data-field="host" placeholder="example.com or IP address">
+                    </div>
                 </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Superior to traceroute for diagnosing intermittent network issues and packet loss.<br>
-                    <strong>Interactive mode:</strong> Press 'q' to quit.<br>
-                    <strong>Look for:</strong> Loss% column shows packet loss at each hop.
+                <div class="command-block" data-template="sudo mtr {host}">
+                    <code>sudo mtr <span class="placeholder">hostname</span></code>
+                    <button class="copy-btn">Copy</button>
                 </div>
             </div>
 
@@ -161,72 +228,73 @@
             <h2 class="category-toggle">Log Analysis (Grep)</h2>
             <div class="category-content">
             
-            <div class="command-card" data-tags="grep log search asterisk full current">
+            <div class="command-card" data-tags="grep log search">
                 <div class="command-header">
                     <h3>Search Current Day Logs</h3>
                     <button class="favorite-btn" data-command="grep-current">☆</button>
                 </div>
-                <p class="command-description">Search today's Asterisk full log for specific keywords or patterns. Case-insensitive search.</p>
-                <div class="command-block has-placeholder">
-                    <code>grep -i <span class="placeholder" data-placeholder="search_term">searchword</span> /var/log/asterisk/full</code>
-                    <button class="copy-btn">Copy</button>
+                <p class="command-description">Search today's Asterisk full log for specific keywords.</p>
+                <div class="placeholder-inputs">
+                    <div class="input-group">
+                        <div class="placeholder-label">Search Term:</div>
+                        <input type="text" class="placeholder-input" data-field="search" placeholder="keyword to search">
+                    </div>
                 </div>
-                <div class="command-notes">
-                    <strong>Common searches:</strong> reachable, registered, answered, lagged, '[specific IP address]'<br>
-                    <strong>Tip:</strong> The -i flag makes the search case-insensitive for broader results.
+                <div class="command-block" data-template="grep -i {search} /var/log/asterisk/full">
+                    <code>grep -i <span class="placeholder">searchword</span> /var/log/asterisk/full</code>
+                    <button class="copy-btn">Copy</button>
                 </div>
             </div>
 
-            <div class="command-card" data-tags="grep recursive search all files directory subdirectory">
+            <div class="command-card" data-tags="grep recursive search">
                 <div class="command-header">
-                    <h3>Recursive Grep (Search All Files)</h3>
+                    <h3>Recursive Grep</h3>
                     <button class="favorite-btn" data-command="grep-recursive">☆</button>
                 </div>
-                <p class="command-description">Recursively search through all files in a directory and its subdirectories for a specific pattern.</p>
-                <div class="command-block has-placeholder">
-                    <code>grep -r "<span class="placeholder" data-placeholder="search_term">searchword</span>" /var/log/asterisk/</code>
+                <p class="command-description">Recursively search through all files.</p>
+                <div class="placeholder-inputs">
+                    <div class="input-group">
+                        <div class="placeholder-label">Search Term:</div>
+                        <input type="text" class="placeholder-input" data-field="search" placeholder="keyword to search">
+                    </div>
+                </div>
+                <div class="command-block" data-template='grep -r "{search}" /var/log/asterisk/'>
+                    <code>grep -r "<span class="placeholder">searchword</span>" /var/log/asterisk/</code>
                     <button class="copy-btn">Copy</button>
                 </div>
-                <div class="command-block has-placeholder">
-                    <code>grep -ri "<span class="placeholder" data-placeholder="search_term">searchword</span>" /var/log/asterisk/</code>
+                <div class="command-block" data-template='grep -ri "{search}" /var/log/asterisk/'>
+                    <code>grep -ri "<span class="placeholder">searchword</span>" /var/log/asterisk/</code>
                     <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Search through entire log directories without knowing exact file names.<br>
-                    <strong>Options:</strong> -r for recursive, -i for case-insensitive. Combine as -ri for both.<br>
-                    <strong>Tip:</strong> Add -n flag to show line numbers in results.
                 </div>
             </div>
 
-            <div class="command-card" data-tags="grep zgrep log search asterisk archive historical">
+            <div class="command-card" data-tags="grep zgrep historical">
                 <div class="command-header">
-                    <h3>Search Historical Logs (Past Week)</h3>
-                    <button class="favorite-btn" data-command="zgrep-historical">☆</button>
+                    <h3>Search Historical Logs</h3>
+                    <button class="favorite-btn" data-command="zgrep">☆</button>
                 </div>
-                <p class="command-description">Search compressed archived logs from the past week. Use zgrep to search without manually decompressing files.</p>
-                <div class="command-block has-placeholder">
-                    <code>zgrep -i "<span class="placeholder" data-placeholder="search_term">searchword</span>" /var/log/asterisk/full*.*</code>
+                <p class="command-description">Search compressed archived logs.</p>
+                <div class="placeholder-inputs">
+                    <div class="input-group">
+                        <div class="placeholder-label">Search Term:</div>
+                        <input type="text" class="placeholder-input" data-field="search" placeholder="keyword to search">
+                    </div>
+                </div>
+                <div class="command-block" data-template='zgrep -i "{search}" /var/log/asterisk/full*.*'>
+                    <code>zgrep -i "<span class="placeholder">searchword</span>" /var/log/asterisk/full*.*</code>
                     <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Investigate issues that occurred days ago. The wildcard pattern searches all rotated log files.<br>
-                    <strong>Note:</strong> This may take longer as it searches multiple compressed files.
                 </div>
             </div>
 
-            <div class="command-card" data-tags="grep oom out of memory syslog crash">
+            <div class="command-card" data-tags="grep oom memory">
                 <div class="command-header">
                     <h3>Check for OOM Killer Events</h3>
                     <button class="favorite-btn" data-command="grep-oom">☆</button>
                 </div>
-                <p class="command-description">Search system logs for Out-Of-Memory (OOM) killer events that may have terminated processes like the switchboard.</p>
+                <p class="command-description">Search for Out-Of-Memory killer events.</p>
                 <div class="command-block">
                     <code>grep -i oom /var/log/syslog</code>
                     <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Diagnose unexpected switchboard crashes or service failures caused by memory exhaustion.<br>
-                    <strong>What to look for:</strong> Messages indicating which process was killed and when.
                 </div>
             </div>
 
@@ -237,82 +305,132 @@
             <h2 class="category-toggle">Asterisk Management</h2>
             <div class="category-content">
             
-            <div class="command-card" data-tags="asterisk status service systemctl">
+            <div class="command-card" data-tags="asterisk status">
                 <div class="command-header">
                     <h3>Check Asterisk Status</h3>
                     <button class="favorite-btn" data-command="asterisk-status">☆</button>
                 </div>
-                <p class="command-description">View the current status of the Asterisk service including uptime and process state.</p>
+                <p class="command-description">View the current status of the Asterisk service.</p>
                 <div class="command-block">
                     <code>systemctl status asterisk</code>
                     <button class="copy-btn">Copy</button>
                 </div>
-                <div class="command-notes">
-                    <strong>What you'll see:</strong> Active/inactive status, PID, memory usage, and recent log entries.
-                </div>
             </div>
 
-            <div class="command-card" data-tags="asterisk channel hangup terminate kill call">
+            <div class="command-card" data-tags="asterisk channel hangup">
                 <div class="command-header">
                     <h3>Hangup Specific Channel</h3>
                     <button class="favorite-btn" data-command="channel-hangup">☆</button>
                 </div>
-                <p class="command-description">Forcefully terminate a specific channel by name. Useful for clearing stuck or problematic calls.</p>
-                <div class="command-block has-placeholder">
-                    <code>sudo channel request hangup '<span class="placeholder" data-placeholder="channel_name">channel name</span>'</code>
-                    <button class="copy-btn">Copy</button>
+                <p class="command-description">Forcefully terminate a specific channel.</p>
+                <div class="placeholder-inputs">
+                    <div class="input-group">
+                        <div class="placeholder-label">Channel Name:</div>
+                        <input type="text" class="placeholder-input" data-field="channel" placeholder="channel name">
+                    </div>
                 </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Clear channels that won't disconnect normally, freeing up resources.<br>
-                    <strong>Tip:</strong> Get the exact channel name from the 'core show channels' output.
+                <div class="command-block" data-template="sudo channel request hangup '{channel}'">
+                    <code>sudo channel request hangup '<span class="placeholder">channel name</span>'</code>
+                    <button class="copy-btn">Copy</button>
                 </div>
             </div>
 
-            <div class="command-card" data-tags="asterisk restart service systemctl reload">
+            <div class="command-card" data-tags="asterisk restart">
                 <div class="command-header">
                     <h3>Restart Asterisk Service</h3>
                     <button class="favorite-btn" data-command="asterisk-restart">☆</button>
                 </div>
-                <p class="command-description">Completely restart the Asterisk service. This will drop all active calls.</p>
+                <p class="command-description">Completely restart the Asterisk service.</p>
                 <div class="command-block">
                     <code>sudo systemctl restart asterisk</code>
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
-                    <strong>⚠️ Warning:</strong> This terminates all active calls. Schedule during maintenance windows when possible.<br>
-                    <strong>Use case:</strong> Apply configuration changes or recover from service issues.
+                    <strong>⚠️ Warning:</strong> This terminates all active calls.
                 </div>
             </div>
 
-            <div class="command-card" data-tags="asterisk version show info release">
+            <div class="command-card" data-tags="switchboard restart sb">
+                <div class="command-header">
+                    <h3>Restart Switchboard</h3>
+                    <button class="favorite-btn" data-command="sb-restart">☆</button>
+                </div>
+                <p class="command-description">Restart the switchboard service.</p>
+                <div class="command-block">
+                    <code>sudo systemctl restart sb</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="apache restart web">
+                <div class="command-header">
+                    <h3>Restart Apache</h3>
+                    <button class="favorite-btn" data-command="apache-restart">☆</button>
+                </div>
+                <p class="command-description">Restart the Apache web server.</p>
+                <div class="command-block">
+                    <code>sudo systemctl restart apache2</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="asterisk version">
                 <div class="command-header">
                     <h3>Check Asterisk Version</h3>
                     <button class="favorite-btn" data-command="asterisk-version">☆</button>
                 </div>
-                <p class="command-description">Display the current Asterisk version and build information.</p>
+                <p class="command-description">Display the current Asterisk version.</p>
                 <div class="command-block">
                     <code>sudo asterisk -rx 'core show version'</code>
                     <button class="copy-btn">Copy</button>
                 </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Verify Asterisk version for compatibility checks, troubleshooting, or before upgrades.<br>
-                    <strong>Shows:</strong> Asterisk version number, build date, and compilation details.
+            </div>
+
+            <div class="command-card" data-tags="voicemail users">
+                <div class="command-header">
+                    <h3>Show Voicemail Users</h3>
+                    <button class="favorite-btn" data-command="voicemail-users">☆</button>
+                </div>
+                <p class="command-description">Display all configured voicemail boxes.</p>
+                <div class="command-block">
+                    <code>sudo asterisk -rx 'voicemail show users'</code>
+                    <button class="copy-btn">Copy</button>
                 </div>
             </div>
 
-            <div class="command-card" data-tags="channels watch monitor real-time auto-refresh live">
+            <div class="command-card" data-tags="hints blf">
+                <div class="command-header">
+                    <h3>Show Hints/BLF Status</h3>
+                    <button class="favorite-btn" data-command="hints">☆</button>
+                </div>
+                <p class="command-description">Display all configured hints for BLF monitoring.</p>
+                <div class="command-block">
+                    <code>sudo asterisk -rx 'core show hints'</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="dialplan show">
+                <div class="command-header">
+                    <h3>Show Dialplan</h3>
+                    <button class="favorite-btn" data-command="dialplan">☆</button>
+                </div>
+                <p class="command-description">Display the complete dialplan configuration.</p>
+                <div class="command-block">
+                    <code>sudo asterisk -rx 'dialplan show'</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="channels watch monitor">
                 <div class="command-header">
                     <h3>Monitor Channels (Auto-Refresh)</h3>
                     <button class="favorite-btn" data-command="watch-channels">☆</button>
                 </div>
-                <p class="command-description">Continuously monitor active channels with automatic refresh every second for real-time call monitoring.</p>
+                <p class="command-description">Continuously monitor active channels.</p>
                 <div class="command-block">
                     <code>watch -n 1 'sudo asterisk -rx "core show channels verbose"'</code>
                     <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Monitor call activity in real-time, watch for stuck channels, observe call flow during testing.<br>
-                    <strong>Controls:</strong> Press Ctrl+C to stop. The -n 1 flag refreshes every 1 second.
                 </div>
             </div>
 
@@ -323,12 +441,12 @@
             <h2 class="category-toggle">System Resources & Performance</h2>
             <div class="category-content">
             
-            <div class="command-card" data-tags="cpu cores processor info lscpu nproc">
+            <div class="command-card" data-tags="cpu cores">
                 <div class="command-header">
                     <h3>View CPU Information</h3>
                     <button class="favorite-btn" data-command="cpu-info">☆</button>
                 </div>
-                <p class="command-description">Display detailed CPU architecture information or count the number of processor cores.</p>
+                <p class="command-description">Display CPU architecture information.</p>
                 <div class="command-block">
                     <code>lscpu</code>
                     <button class="copy-btn">Copy</button>
@@ -337,41 +455,53 @@
                     <code>nproc</code>
                     <button class="copy-btn">Copy</button>
                 </div>
-                <div class="command-notes">
-                    <strong>lscpu:</strong> Shows architecture, cores, threads, cache sizes, and CPU flags.<br>
-                    <strong>nproc:</strong> Simply returns the number of available processing units.
-                </div>
             </div>
 
-            <div class="command-card" data-tags="disk space usage df storage partition">
+            <div class="command-card" data-tags="disk space df">
                 <div class="command-header">
-                    <h3>Check Disk Space Usage</h3>
+                    <h3>Check Disk Space</h3>
                     <button class="favorite-btn" data-command="df">☆</button>
                 </div>
-                <p class="command-description">Display available disk space on all mounted filesystems in human-readable format.</p>
+                <p class="command-description">Display available disk space.</p>
                 <div class="command-block">
                     <code>df -h</code>
                     <button class="copy-btn">Copy</button>
                 </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Quickly check if partitions are running out of space, particularly important for /var/log.<br>
-                    <strong>Look for:</strong> Percentage used - anything over 90% needs attention.
-                </div>
             </div>
 
-            <div class="command-card" data-tags="memory ram usage free available">
+            <div class="command-card" data-tags="memory ram free">
                 <div class="command-header">
                     <h3>Check Memory Usage</h3>
                     <button class="favorite-btn" data-command="free">☆</button>
                 </div>
-                <p class="command-description">Display current memory usage including total, used, free, shared, buff/cache, and available memory.</p>
+                <p class="command-description">Display current memory usage.</p>
                 <div class="command-block">
                     <code>free -h</code>
                     <button class="copy-btn">Copy</button>
                 </div>
-                <div class="command-notes">
-                    <strong>Key metric:</strong> Look at the "available" column - this shows memory actually available for applications.<br>
-                    <strong>Use case:</strong> Diagnose memory pressure or verify if OOM killer events are likely.
+            </div>
+
+            <div class="command-card" data-tags="top processes">
+                <div class="command-header">
+                    <h3>Monitor Running Processes</h3>
+                    <button class="favorite-btn" data-command="top">☆</button>
+                </div>
+                <p class="command-description">Real-time view of system processes.</p>
+                <div class="command-block">
+                    <code>top</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="uptime load">
+                <div class="command-header">
+                    <h3>System Uptime & Load</h3>
+                    <button class="favorite-btn" data-command="uptime">☆</button>
+                </div>
+                <p class="command-description">Show system uptime and load averages.</p>
+                <div class="command-block">
+                    <code>uptime</code>
+                    <button class="copy-btn">Copy</button>
                 </div>
             </div>
 
@@ -382,33 +512,27 @@
             <h2 class="category-toggle">Fail2Ban Management</h2>
             <div class="category-content">
             
-            <div class="command-card" data-tags="fail2ban status check service">
+            <div class="command-card" data-tags="fail2ban status">
                 <div class="command-header">
                     <h3>Check Fail2Ban Status</h3>
                     <button class="favorite-btn" data-command="fail2ban-status">☆</button>
                 </div>
-                <p class="command-description">View the current status of the Fail2Ban service including active jails and banned IPs.</p>
+                <p class="command-description">View the current status of Fail2Ban.</p>
                 <div class="command-block">
                     <code>sudo systemctl status fail2ban</code>
                     <button class="copy-btn">Copy</button>
                 </div>
-                <div class="command-notes">
-                    <strong>Shows:</strong> Service state, active jails, recent ban actions, and error messages if any.
-                </div>
             </div>
 
-            <div class="command-card" data-tags="fail2ban restart reload service">
+            <div class="command-card" data-tags="fail2ban restart">
                 <div class="command-header">
                     <h3>Restart Fail2Ban</h3>
                     <button class="favorite-btn" data-command="fail2ban-restart">☆</button>
                 </div>
-                <p class="command-description">Restart the Fail2Ban service to apply configuration changes or clear all current bans.</p>
+                <p class="command-description">Restart the Fail2Ban service.</p>
                 <div class="command-block">
                     <code>sudo systemctl restart fail2ban</code>
                     <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Apply new jail configurations or reset ban lists after troubleshooting.
                 </div>
             </div>
 
@@ -419,18 +543,15 @@
             <h2 class="category-toggle">Extension Management</h2>
             <div class="category-content">
             
-            <div class="command-card" data-tags="extension peers contacts list all sip pjsip show alias">
+            <div class="command-card" data-tags="extension peers">
                 <div class="command-header">
                     <h3>List All Extensions</h3>
                     <button class="favorite-btn" data-command="peers-all">☆</button>
                 </div>
-                <p class="command-description">Display a complete list of all configured PJSIP contacts/extensions and their status.</p>
+                <p class="command-description">Display all configured PJSIP contacts/extensions.</p>
                 <div class="command-block">
                     <code>sudo asterisk -rx 'pjsip show contacts'</code>
                     <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Get an overview of all extensions, check registration status.
                 </div>
             </div>
 
@@ -441,33 +562,27 @@
             <h2 class="category-toggle">Important File Locations</h2>
             <div class="category-content">
             
-            <div class="command-card" data-tags="files logs asterisk full debug cdr">
+            <div class="command-card" data-tags="files logs">
                 <div class="command-header">
                     <h3>Asterisk Log Files</h3>
                     <button class="favorite-btn" data-command="log-location">☆</button>
                 </div>
-                <p class="command-description">Primary location for all Asterisk log files including full logs, CDR, and debug output.</p>
+                <p class="command-description">Primary location for all Asterisk log files.</p>
                 <div class="command-block">
                     <code>/var/log/asterisk</code>
                     <button class="copy-btn">Copy</button>
                 </div>
-                <div class="command-notes">
-                    <strong>Key files:</strong> full (detailed log), messages (general), cdr-csv/ (call records).
-                </div>
             </div>
 
-            <div class="command-card" data-tags="files voicemail vm messages audio">
+            <div class="command-card" data-tags="files voicemail">
                 <div class="command-header">
                     <h3>Voicemail Storage</h3>
                     <button class="favorite-btn" data-command="voicemail-location">☆</button>
                 </div>
-                <p class="command-description">Directory where voicemail recordings and greetings are stored.</p>
+                <p class="command-description">Directory where voicemail recordings are stored.</p>
                 <div class="command-block">
                     <code>/var/spool/asterisk/voicemail/default</code>
                     <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>Structure:</strong> Organized by extension number, contains WAV files and greeting recordings.
                 </div>
             </div>
 
@@ -478,34 +593,39 @@
             <h2 class="category-toggle">Find Commands</h2>
             <div class="category-content">
             
-            <div class="command-card" data-tags="find search file name locate filesystem">
+            <div class="command-card" data-tags="find search file">
                 <div class="command-header">
                     <h3>Find File by Name</h3>
                     <button class="favorite-btn" data-command="find-name">☆</button>
                 </div>
-                <p class="command-description">Search the entire filesystem for a file by its exact name, suppressing permission errors.</p>
-                <div class="command-block has-placeholder">
-                    <code>find / -name <span class="placeholder" data-placeholder="filename">filename.ext</span> 2>/dev/null</code>
-                    <button class="copy-btn">Copy</button>
+                <p class="command-description">Search the entire filesystem for a file.</p>
+                <div class="placeholder-inputs">
+                    <div class="input-group">
+                        <div class="placeholder-label">Filename:</div>
+                        <input type="text" class="placeholder-input" data-field="filename" placeholder="filename.ext">
+                    </div>
                 </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Locate configuration files, logs, or any file when you don't know its directory.<br>
-                    <strong>Note:</strong> Case-sensitive. Use -iname for case-insensitive search.
+                <div class="command-block" data-template="find / -name {filename} 2>/dev/null">
+                    <code>find / -name <span class="placeholder">filename.ext</span> 2>/dev/null</code>
+                    <button class="copy-btn">Copy</button>
                 </div>
             </div>
 
-            <div class="command-card" data-tags="find search directory folder path locate">
+            <div class="command-card" data-tags="find directory">
                 <div class="command-header">
                     <h3>Find Directory by Name</h3>
                     <button class="favorite-btn" data-command="find-directory">☆</button>
                 </div>
-                <p class="command-description">Search for directories/folders by name instead of files.</p>
-                <div class="command-block has-placeholder">
-                    <code>find / -type d -name <span class="placeholder" data-placeholder="dirname">directory_name</span> 2>/dev/null</code>
-                    <button class="copy-btn">Copy</button>
+                <p class="command-description">Search for directories/folders by name.</p>
+                <div class="placeholder-inputs">
+                    <div class="input-group">
+                        <div class="placeholder-label">Directory Name:</div>
+                        <input type="text" class="placeholder-input" data-field="dirname" placeholder="directory_name">
+                    </div>
                 </div>
-                <div class="command-notes">
-                    <strong>Use case:</strong> Locate specific directories like log folders, config directories, or application paths.
+                <div class="command-block" data-template="find / -type d -name {dirname} 2>/dev/null">
+                    <code>find / -type d -name <span class="placeholder">directory_name</span> 2>/dev/null</code>
+                    <button class="copy-btn">Copy</button>
                 </div>
             </div>
 
@@ -535,81 +655,69 @@
             localStorage.setItem('darkMode', body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
         });
 
-        // Search functionality
+        // Search functionality - FIXED
         const searchInput = document.getElementById('searchInput');
-        const commandCards = document.querySelectorAll('.command-card');
-
+        
         searchInput.addEventListener('input', (e) => {
             const searchTerm = e.target.value.toLowerCase().trim();
+            const commandCards = document.querySelectorAll('.command-card');
             
             commandCards.forEach(card => {
-                const tags = card.getAttribute('data-tags')?.toLowerCase() || '';
-                const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
-                const content = card.textContent.toLowerCase();
+                const tags = (card.getAttribute('data-tags') || '').toLowerCase();
+                const title = (card.querySelector('h3')?.textContent || '').toLowerCase();
+                const description = (card.querySelector('.command-description')?.textContent || '').toLowerCase();
+                const notes = (card.querySelector('.command-notes')?.textContent || '').toLowerCase();
                 
-                const searchable = `${tags} ${title} ${content}`;
+                const searchable = `${tags} ${title} ${description} ${notes}`;
                 
                 if (searchTerm === '' || searchable.includes(searchTerm)) {
                     card.style.display = '';
-                    const category = card.closest('.command-category');
-                    if (category) {
-                        const categoryContent = category.querySelector('.category-content');
-                        const categoryToggle = category.querySelector('.category-toggle');
-                        categoryContent.classList.remove('collapsed');
-                        categoryToggle.classList.remove('collapsed');
-                    }
                 } else {
                     card.style.display = 'none';
                 }
             });
+
+            // Auto-expand categories with visible cards
+            document.querySelectorAll('.command-category').forEach(category => {
+                const visibleCards = Array.from(category.querySelectorAll('.command-card')).filter(card => card.style.display !== 'none');
+                const categoryContent = category.querySelector('.category-content');
+                const categoryToggle = category.querySelector('.category-toggle');
+                
+                if (searchTerm !== '' && visibleCards.length > 0) {
+                    categoryContent.classList.remove('collapsed');
+                    categoryToggle.classList.remove('collapsed');
+                }
+            });
         });
 
-        // Category toggle
+        // Category toggle - FIXED
         document.querySelectorAll('.category-toggle').forEach(toggle => {
             toggle.addEventListener('click', () => {
-                const category = toggle.closest('.command-category');
-                const content = category.querySelector('.category-content');
-                
+                const content = toggle.nextElementSibling;
                 toggle.classList.toggle('collapsed');
                 content.classList.toggle('collapsed');
             });
         });
 
-        // Copy functionality with placeholder support
-        function showPlaceholderModal(commandBlock) {
-            const code = commandBlock.querySelector('code');
-            const placeholders = code.querySelectorAll('.placeholder');
-            
-            if (placeholders.length === 0) return false;
-            
-            const values = {};
-            placeholders.forEach(p => {
-                const key = p.getAttribute('data-placeholder');
-                const value = prompt(`Enter ${key.replace(/_/g, ' ')}:`);
-                if (value) values[key] = value;
-            });
-            
-            let commandText = code.textContent;
-            placeholders.forEach(p => {
-                const key = p.getAttribute('data-placeholder');
-                if (values[key]) {
-                    commandText = commandText.replace(p.textContent, values[key]);
-                }
-            });
-            
-            return commandText;
-        }
-
+        // Copy functionality with input support
         document.querySelectorAll('.copy-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const commandBlock = this.parentElement;
-                const hasPlaceholder = commandBlock.classList.contains('has-placeholder');
+                const card = commandBlock.closest('.command-card');
+                const template = commandBlock.getAttribute('data-template');
                 
                 let text;
-                if (hasPlaceholder) {
-                    text = showPlaceholderModal(commandBlock);
-                    if (!text) return;
+                if (template) {
+                    // Has placeholders - get values from inputs
+                    text = template;
+                    const inputs = card.querySelectorAll('.placeholder-input');
+                    inputs.forEach(input => {
+                        const field = input.getAttribute('data-field');
+                        const value = input.value.trim() || input.placeholder;
+                        text = text.replace(`{${field}}`, value);
+                    });
                 } else {
+                    // No placeholders - copy as-is
                     const code = commandBlock.querySelector('code');
                     text = code.textContent;
                 }
@@ -625,77 +733,93 @@
             });
         });
 
+        // Update command display when inputs change
+        document.querySelectorAll('.placeholder-input').forEach(input => {
+            input.addEventListener('input', function() {
+                const card = this.closest('.command-card');
+                const field = this.getAttribute('data-field');
+                const value = this.value || this.placeholder;
+                
+                // Update all placeholders in this card's command blocks
+                card.querySelectorAll('.command-block[data-template]').forEach(block => {
+                    const placeholder = block.querySelector('.placeholder');
+                    if (block.getAttribute('data-template').includes(`{${field}}`)) {
+                        placeholder.textContent = value;
+                    }
+                });
+            });
+        });
+
         // Back to top
         const backToTop = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTop.classList.add('show');
-            } else {
-                backToTop.classList.remove('show');
-            }
+            backToTop.classList.toggle('show', window.scrollY > 300);
         });
         backToTop.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+
         // Favorites functionality
-    let favorites = JSON.parse(localStorage.getItem('favoriteCommands') || '[]');
+        let favorites = JSON.parse(localStorage.getItem('favoriteCommands') || '[]');
 
-    function updateFavoritesDisplay() {
-        const favoritesSection = document.getElementById('favoritesSection');
-        const favoritesList = document.getElementById('favoritesList');
-        
-        if (favorites.length === 0) {
-            favoritesSection.style.display = 'none';
-            return;
-        }
-        
-        favoritesSection.style.display = 'block';
-        favoritesList.innerHTML = '';
-        
-        favorites.forEach(commandId => {
-            const originalCard = document.querySelector(`[data-command="${commandId}"]`)?.closest('.command-card');
-            if (originalCard) {
-                const clone = originalCard.cloneNode(true);
-                clone.querySelector('.favorite-btn')?.remove();
-                favoritesList.appendChild(clone);
+        function updateFavoritesDisplay() {
+            const favoritesSection = document.getElementById('favoritesSection');
+            const favoritesList = document.getElementById('favoritesList');
+            
+            if (favorites.length === 0) {
+                favoritesSection.style.display = 'none';
+                return;
             }
-        });
-    }
-
-    document.querySelectorAll('.favorite-btn').forEach(btn => {
-        const commandId = btn.getAttribute('data-command');
-        if (favorites.includes(commandId)) {
-            btn.classList.add('active');
-            btn.textContent = '★';
+            
+            favoritesSection.style.display = 'block';
+            favoritesList.innerHTML = '';
+            
+            favorites.forEach(commandId => {
+                const originalCard = document.querySelector(`[data-command="${commandId}"]`)?.closest('.command-card');
+                if (originalCard) {
+                    const clone = originalCard.cloneNode(true);
+                    clone.querySelector('.favorite-btn')?.remove();
+                    favoritesList.appendChild(clone);
+                }
+            });
         }
-        
-        btn.addEventListener('click', function() {
-            const commandId = this.getAttribute('data-command');
+
+        document.querySelectorAll('.favorite-btn').forEach(btn => {
+            const commandId = btn.getAttribute('data-command');
             if (favorites.includes(commandId)) {
-                favorites = favorites.filter(id => id !== commandId);
-                this.classList.remove('active');
-                this.textContent = '☆';
-            } else {
-                favorites.push(commandId);
-                this.classList.add('active');
-                this.textContent = '★';
+                btn.classList.add('active');
+                btn.textContent = '★';
             }
-            localStorage.setItem('favoriteCommands', JSON.stringify(favorites));
-            updateFavoritesDisplay();
+            
+            btn.addEventListener('click', function() {
+                const commandId = this.getAttribute('data-command');
+                if (favorites.includes(commandId)) {
+                    favorites = favorites.filter(id => id !== commandId);
+                    this.classList.remove('active');
+                    this.textContent = '☆';
+                } else {
+                    favorites.push(commandId);
+                    this.classList.add('active');
+                    this.textContent = '★';
+                }
+                localStorage.setItem('favoriteCommands', JSON.stringify(favorites));
+                updateFavoritesDisplay();
+            });
         });
-    });
 
-    updateFavoritesDisplay();
+        updateFavoritesDisplay();
 
-    // Smooth scroll for quick navigation
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = link.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            if (targetSection) {
-                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+        // Smooth scroll for quick navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
         });
-    });
-</script>
+    </script>
+</body>
+</html>
