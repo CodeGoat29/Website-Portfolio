@@ -4,26 +4,115 @@ title: Test Page
 ---
 
 <main class="container">
-    <section style="padding: 40px; text-align: center;">
-        <h2>Jekyll Test Page</h2>
-        <p>If you can see the header and footer from your layout, Jekyll is working!</p>
-        
-        <div style="background: #d4edda; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #28a745;">
-            <h3 style="margin-top: 0;">✓ Success!</h3>
-            <p>This content is from test-page.html</p>
-            <p>The header and footer are coming from _layouts/default.html</p>
+    <section id="home" class="hero">
+        <h2>Jekyll Test Page - Should Look Identical to Home</h2>
+        <p>MSP Security Engineer specializing in endpoint protection, cloud administration, and security operations. Exploring the intersection of cybersecurity, automation, and enterprise IT solutions.</p>
+    </section>
+
+    <section id="blog" class="blog-section">
+        <h2>Latest Blog Posts</h2>
+        <div class="blog-grid">
+            <article class="blog-card">
+                <div class="blog-meta">
+                    <span class="blog-date">January 15, 2026</span>
+                    <span class="blog-category">CTF</span>
+                </div>
+                <h3><a href="blog/sample-ctf-writeup.html">Sample CTF Writeup: Binary Exploitation Challenge</a></h3>
+                <p>A detailed walkthrough of solving a buffer overflow challenge in the recent CTF competition. Learn about stack analysis, payload crafting, and exploit development.</p>
+                <a href="blog/sample-ctf-writeup.html" class="read-more">Read More →</a>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-meta">
+                    <span class="blog-date">January 10, 2026</span>
+                    <span class="blog-category">Tutorial</span>
+                </div>
+                <h3><a href="blog/sample-tutorial.html">Advanced Nmap Techniques for Penetration Testing</a></h3>
+                <p>Explore advanced scanning techniques, NSE scripts, and optimization strategies for efficient network reconnaissance during security assessments.</p>
+                <a href="blog/sample-tutorial.html" class="read-more">Read More →</a>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-meta">
+                    <span class="blog-date">January 5, 2026</span>
+                    <span class="blog-category">Research</span>
+                </div>
+                <h3><a href="blog/sample-research.html">Analyzing Modern Web Application Vulnerabilities</a></h3>
+                <p>An in-depth analysis of emerging web application security threats and practical mitigation strategies for developers and security professionals.</p>
+                <a href="blog/sample-research.html" class="read-more">Read More →</a>
+            </article>
         </div>
+    </section>
+
+    <section id="resources" class="resources-section">
+        <h2>Resources</h2>
+        <p class="resources-intro">Curated tools and guides for all things Tech, VoIP, or cybersecurity.</p>
         
-        <div style="background: #fff3cd; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #ffc107;">
-            <h3 style="margin-top: 0;">What to check:</h3>
-            <ul style="text-align: left; max-width: 500px; margin: 0 auto;">
-                <li>Can you see the DiPiazza header with logo?</li>
-                <li>Can you see the navigation menu?</li>
-                <li>Can you see the footer?</li>
-                <li>Is the dark mode toggle working?</li>
-            </ul>
+        <div class="resources-grid">
+            <div class="resource-card featured-resource">
+                <h3>⚙ Asterisk Command Reference</h3>
+                <p>Comprehensive guide of essential VoIP and server management commands for troubleshooting and daily operations.</p>
+                <a href="resources/asterisk-commands.html" class="resource-link">View Command Reference →</a>
+            </div>
+
+        <div class="resources-grid">
+            <div class="resource-card">
+                <h3>CompTIA Certification Notes</h3>
+                <ul>
+                    <li><a href="resources/cysa-notes.html">CySA+ (CS0-003) Study Guide</a></li>
+                </ul>
+            </div>
+        
+        <div class="resources-grid">
+            <div class="resource-card">
+                <h3>Network Tools</h3>
+                <ul>
+                    <li><a href="https://nmap.org" target="_blank">Nmap</a> - Network discovery and security auditing</li>
+                    <li><a href="https://www.wireshark.org" target="_blank">Wireshark</a> - Network protocol analyzer</li>
+                    <li><a href="https://www.tcpdump.org" target="_blank">tcpdump</a> - Command-line packet analyzer</li>
+                    <li><a href="https://github.com/robertdavidgraham/masscan" target="_blank">Masscan</a> - Fast TCP port scanner</li>
+                </ul>
+            </div>
+
+            <div class="resource-card">
+                <h3>Web Application Testing</h3>
+                <ul>
+                    <li><a href="https://portswigger.net/burp" target="_blank">Burp Suite</a> - Web vulnerability scanner</li>
+                    <li><a href="https://www.zaproxy.org" target="_blank">OWASP ZAP</a> - Web app security scanner</li>
+                    <li><a href="https://github.com/sqlmapproject/sqlmap" target="_blank">SQLmap</a> - SQL injection tool</li>
+                    <li><a href="https://github.com/commixproject/commix" target="_blank">Commix</a> - Command injection exploiter</li>
+                </ul>
+            </div>
+
+            <div class="resource-card">
+                <h3>CTF & Practice Platforms</h3>
+                <ul>
+                    <li><a href="https://www.hackthebox.com" target="_blank">HackTheBox</a> - Penetration testing labs</li>
+                    <li><a href="https://tryhackme.com" target="_blank">TryHackMe</a> - Guided cybersecurity training</li>
+                    <li><a href="https://picoctf.org" target="_blank">PicoCTF</a> - Beginner-friendly CTF platform</li>
+                    <li><a href="https://overthewire.org" target="_blank">OverTheWire</a> - War games for security learning</li>
+                </ul>
+            </div>
+
+            <div class="resource-card">
+                <h3>Exploitation & Post-Exploitation</h3>
+                <ul>
+                    <li><a href="https://www.metasploit.com" target="_blank">Metasploit</a> - Penetration testing framework</li>
+                    <li><a href="https://github.com/PowerShellMafia/PowerSploit" target="_blank">PowerSploit</a> - PowerShell post-exploitation</li>
+                    <li><a href="https://github.com/SecureAuthCorp/impacket" target="_blank">Impacket</a> - Network protocol toolkit</li>
+                    <li><a href="https://github.com/byt3bl33d3r/CrackMapExec" target="_blank">CrackMapExec</a> - Post-exploitation tool</li>
+                </ul>
+            </div>
         </div>
-        
-        <p><a href="/" style="color: #2c5282; text-decoration: underline;">← Back to Home</a></p>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2>Get In Touch</h2>
+        <p>Interested in collaboration, consulting, or just want to connect? Reach out through any of the channels below.</p>
+        <div class="contact-links">
+            <a href="mailto:daviddipiazza29@gmail.com" class="contact-link">Email</a>
+            <a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank" class="contact-link">LinkedIn</a>
+            <a href="https://github.com/CodeGoat29" target="_blank" class="contact-link">GitHub</a>
+        </div>
     </section>
 </main>
