@@ -1,118 +1,183 @@
----
-layout: default
-title: Test Page
----
-
-<main class="container">
-    <section id="home" class="hero">
-        <h2>Jekyll Test Page - Should Look Identical to Home</h2>
-        <p>MSP Security Engineer specializing in endpoint protection, cloud administration, and security operations. Exploring the intersection of cybersecurity, automation, and enterprise IT solutions.</p>
-    </section>
-
-    <section id="blog" class="blog-section">
-        <h2>Latest Blog Posts</h2>
-        <div class="blog-grid">
-            <article class="blog-card">
-                <div class="blog-meta">
-                    <span class="blog-date">January 15, 2026</span>
-                    <span class="blog-category">CTF</span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} - DiPiazza</title>
+    <link rel="stylesheet" href="{{ '/styles.css' | relative_url }}">
+    <link rel="icon" type="image/png" href="{{ '/images/thegoat.png' | relative_url }}">
+</head>
+<body>
+    <div class="top-controls">
+        <div class="counter-dropdown">
+            <button class="counter-button" id="counterButton">⚙ Counter</button>
+            <div class="counter-content" id="counterContent">
+                <div class="counter-item">
+                    <span class="counter-name">Harper</span>
+                    <span class="counter-age" id="harperAge"></span>
                 </div>
-                <h3><a href="blog/sample-ctf-writeup.html">Sample CTF Writeup: Binary Exploitation Challenge</a></h3>
-                <p>A detailed walkthrough of solving a buffer overflow challenge in the recent CTF competition. Learn about stack analysis, payload crafting, and exploit development.</p>
-                <a href="blog/sample-ctf-writeup.html" class="read-more">Read More →</a>
-            </article>
-
-            <article class="blog-card">
-                <div class="blog-meta">
-                    <span class="blog-date">January 10, 2026</span>
-                    <span class="blog-category">Tutorial</span>
+                <div class="counter-item">
+                    <span class="counter-name">Sophia</span>
+                    <span class="counter-age" id="sophiaAge"></span>
                 </div>
-                <h3><a href="blog/sample-tutorial.html">Advanced Nmap Techniques for Penetration Testing</a></h3>
-                <p>Explore advanced scanning techniques, NSE scripts, and optimization strategies for efficient network reconnaissance during security assessments.</p>
-                <a href="blog/sample-tutorial.html" class="read-more">Read More →</a>
-            </article>
-
-            <article class="blog-card">
-                <div class="blog-meta">
-                    <span class="blog-date">January 5, 2026</span>
-                    <span class="blog-category">Research</span>
-                </div>
-                <h3><a href="blog/sample-research.html">Analyzing Modern Web Application Vulnerabilities</a></h3>
-                <p>An in-depth analysis of emerging web application security threats and practical mitigation strategies for developers and security professionals.</p>
-                <a href="blog/sample-research.html" class="read-more">Read More →</a>
-            </article>
+            </div>
         </div>
-    </section>
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-inner"></span>
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div>
 
-    <section id="resources" class="resources-section">
-        <h2>Resources</h2>
-        <p class="resources-intro">Curated tools and guides for all things Tech, VoIP, or cybersecurity.</p>
+    <header>
+        <div class="container header-content">
+            <img src="{{ '/images/thegoat.png' | relative_url }}" alt="DiPiazza Logo" class="logo">
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Where I break stuff, then write about it.</p>
+            </div>
+        </div>
+        <nav>
+            <div class="container">
+                <ul>
+                    <li><a href="/index.html#home">Home</a></li>
+                    <li><a href="/resume.html">Resume</a></li>
+                    <li><a href="/index.html#blog">Blog</a></li>
+                    <li><a href="/index.html#resources">Resources</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    {{ content }}
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Age Counter Functions
+        function calculateAge(birthDate) {
+            const now = new Date();
+            const birth = new Date(birthDate);
+            
+            let years = now.getFullYear() - birth.getFullYear();
+            let months = now.getMonth() - birth.getMonth();
+            let days = now.getDate() - birth.getDate();
+            
+            if (days < 0) {
+                months--;
+                const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                days += lastMonth.getDate();
+            }
+            
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+            
+            return { years, months, days };
+        }
         
-        <div class="resources-grid">
-            <div class="resource-card featured-resource">
-                <h3>⚙ Asterisk Command Reference</h3>
-                <p>Comprehensive guide of essential VoIP and server management commands for troubleshooting and daily operations.</p>
-                <a href="resources/asterisk-commands.html" class="resource-link">View Command Reference →</a>
-            </div>
-
-        <div class="resources-grid">
-            <div class="resource-card">
-                <h3>CompTIA Certification Notes</h3>
-                <ul>
-                    <li><a href="resources/cysa-notes.html">CySA+ (CS0-003) Study Guide</a></li>
-                </ul>
-            </div>
+        function updateAges() {
+            const harperBirth = '2024-08-29';
+            const sophiaBirth = '2025-09-18';
+            
+            const harperAge = calculateAge(harperBirth);
+            const sophiaAge = calculateAge(sophiaBirth);
+            
+            document.getElementById('harperAge').textContent = 
+                `${harperAge.years}y ${harperAge.months}m ${harperAge.days}d`;
+            document.getElementById('sophiaAge').textContent = 
+                `${sophiaAge.years}y ${sophiaAge.months}m ${sophiaAge.days}d`;
+        }
         
-        <div class="resources-grid">
-            <div class="resource-card">
-                <h3>Network Tools</h3>
-                <ul>
-                    <li><a href="https://nmap.org" target="_blank">Nmap</a> - Network discovery and security auditing</li>
-                    <li><a href="https://www.wireshark.org" target="_blank">Wireshark</a> - Network protocol analyzer</li>
-                    <li><a href="https://www.tcpdump.org" target="_blank">tcpdump</a> - Command-line packet analyzer</li>
-                    <li><a href="https://github.com/robertdavidgraham/masscan" target="_blank">Masscan</a> - Fast TCP port scanner</li>
-                </ul>
-            </div>
+        updateAges();
+        setInterval(updateAges, 3600000);
+        
+        const counterButton = document.getElementById('counterButton');
+        const counterContent = document.getElementById('counterContent');
+        
+        counterButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            counterContent.classList.toggle('show');
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (!counterButton.contains(e.target) && !counterContent.contains(e.target)) {
+                counterContent.classList.remove('show');
+            }
+        });
 
-            <div class="resource-card">
-                <h3>Web Application Testing</h3>
-                <ul>
-                    <li><a href="https://portswigger.net/burp" target="_blank">Burp Suite</a> - Web vulnerability scanner</li>
-                    <li><a href="https://www.zaproxy.org" target="_blank">OWASP ZAP</a> - Web app security scanner</li>
-                    <li><a href="https://github.com/sqlmapproject/sqlmap" target="_blank">SQLmap</a> - SQL injection tool</li>
-                    <li><a href="https://github.com/commixproject/commix" target="_blank">Commix</a> - Command injection exploiter</li>
-                </ul>
-            </div>
+        document.querySelectorAll('nav a').forEach(anchor => {
+            if (anchor.getAttribute('href').startsWith('#')) {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            } else {
+                anchor.addEventListener('click', function() {
+                    document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
+                });
+            }
+        });
 
-            <div class="resource-card">
-                <h3>CTF & Practice Platforms</h3>
-                <ul>
-                    <li><a href="https://www.hackthebox.com" target="_blank">HackTheBox</a> - Penetration testing labs</li>
-                    <li><a href="https://tryhackme.com" target="_blank">TryHackMe</a> - Guided cybersecurity training</li>
-                    <li><a href="https://picoctf.org" target="_blank">PicoCTF</a> - Beginner-friendly CTF platform</li>
-                    <li><a href="https://overthewire.org" target="_blank">OverTheWire</a> - War games for security learning</li>
-                </ul>
-            </div>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
 
-            <div class="resource-card">
-                <h3>Exploitation & Post-Exploitation</h3>
-                <ul>
-                    <li><a href="https://www.metasploit.com" target="_blank">Metasploit</a> - Penetration testing framework</li>
-                    <li><a href="https://github.com/PowerShellMafia/PowerSploit" target="_blank">PowerSploit</a> - PowerShell post-exploitation</li>
-                    <li><a href="https://github.com/SecureAuthCorp/impacket" target="_blank">Impacket</a> - Network protocol toolkit</li>
-                    <li><a href="https://github.com/byt3bl33d3r/CrackMapExec" target="_blank">CrackMapExec</a> - Post-exploitation tool</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+        }
 
-    <section id="contact" class="contact-section">
-        <h2>Get In Touch</h2>
-        <p>Interested in collaboration, consulting, or just want to connect? Reach out through any of the channels below.</p>
-        <div class="contact-links">
-            <a href="mailto:daviddipiazza29@gmail.com" class="contact-link">Email</a>
-            <a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank" class="contact-link">LinkedIn</a>
-            <a href="https://github.com/CodeGoat29" target="_blank" class="contact-link">GitHub</a>
-        </div>
-    </section>
-</main>
+        darkModeToggle.addEventListener('change', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                localStorage.setData('darkMode', 'disabled');
+            }
+        });
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section[id="home"], section[id="blog"], section[id="resources"]');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').startsWith('#') && link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+            
+            if (current === '' && window.scrollY === 0) {
+                const homeLink = document.querySelector('nav a[href="#home"]');
+                if (homeLink) {
+                    homeLink.classList.add('active');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
