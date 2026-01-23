@@ -1,1 +1,324 @@
-Placeholder
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Counter - DiPiazza</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" type="image/png" href="/images/thegoat.png">
+</head>
+<body>
+    <div class="top-controls">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-inner"></span>
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <img src="/images/thegoat.png" alt="DiPiazza Logo" class="logo">
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Where I break stuff, then write about it.</p>
+            </div>
+        </div>
+        <nav>
+            <div class="container">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../resume.html">Resume</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../resources.html">Resources</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="page-header">
+            <h1>Age Counter</h1>
+            <p>Live age tracking for Harper and Sophia</p>
+        </section>
+
+        <section class="counter-display-section">
+            <div class="counter-cards">
+                <div class="counter-display-card">
+                    <div class="counter-display-header">
+                        <h2>Harper</h2>
+                        <span class="counter-birthdate">Born: August 29, 2024</span>
+                    </div>
+                    <div class="counter-display-age" id="harperAge">
+                        <div class="age-component">
+                            <span class="age-number" id="harperYears">0</span>
+                            <span class="age-label">Years</span>
+                        </div>
+                        <div class="age-component">
+                            <span class="age-number" id="harperMonths">0</span>
+                            <span class="age-label">Months</span>
+                        </div>
+                        <div class="age-component">
+                            <span class="age-number" id="harperDays">0</span>
+                            <span class="age-label">Days</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="counter-display-card">
+                    <div class="counter-display-header">
+                        <h2>Sophia</h2>
+                        <span class="counter-birthdate">Born: September 18, 2025</span>
+                    </div>
+                    <div class="counter-display-age" id="sophiaAge">
+                        <div class="age-component">
+                            <span class="age-number" id="sophiaYears">0</span>
+                            <span class="age-label">Years</span>
+                        </div>
+                        <div class="age-component">
+                            <span class="age-number" id="sophiaMonths">0</span>
+                            <span class="age-label">Months</span>
+                        </div>
+                        <div class="age-component">
+                            <span class="age-number" id="sophiaDays">0</span>
+                            <span class="age-label">Days</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="counter-info">
+                <p>This counter updates automatically every hour to show the current age in years, months, and days.</p>
+                <p class="last-update">Last updated: <span id="lastUpdate"></span></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <style>
+        .counter-display-section {
+            margin-bottom: 48px;
+        }
+
+        .counter-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .counter-display-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e1e8ed;
+            transition: all 0.3s;
+        }
+
+        .dark-mode .counter-display-card {
+            background: #1c2938;
+            border-color: #2a3f5f;
+        }
+
+        .counter-display-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(76, 116, 206, 0.2);
+        }
+
+        .counter-display-header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary-blue);
+        }
+
+        .counter-display-header h2 {
+            color: var(--primary-blue);
+            font-size: 2.2em;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .dark-mode .counter-display-header h2 {
+            color: var(--primary-blue);
+        }
+
+        .counter-birthdate {
+            color: #657786;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .dark-mode .counter-birthdate {
+            color: #8899a6;
+        }
+
+        .counter-display-age {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .age-component {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+
+        .age-number {
+            font-size: 3em;
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-family: 'Courier New', monospace;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .dark-mode .age-number {
+            color: var(--primary-blue);
+        }
+
+        .age-label {
+            font-size: 0.9em;
+            color: #657786;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .dark-mode .age-label {
+            color: #8899a6;
+        }
+
+        .counter-info {
+            background: #f0f4f8;
+            padding: 24px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .dark-mode .counter-info {
+            background: #243447;
+        }
+
+        .counter-info p {
+            color: #657786;
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+
+        .dark-mode .counter-info p {
+            color: #8899a6;
+        }
+
+        .counter-info p:last-child {
+            margin-bottom: 0;
+        }
+
+        .last-update {
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        .dark-mode .last-update {
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .counter-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .counter-display-card {
+                padding: 28px;
+            }
+
+            .age-number {
+                font-size: 2.5em;
+            }
+
+            .counter-display-header h2 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+
+    <script>
+        // Age Counter Functions
+        function calculateAge(birthDate) {
+            const now = new Date();
+            const birth = new Date(birthDate);
+            
+            let years = now.getFullYear() - birth.getFullYear();
+            let months = now.getMonth() - birth.getMonth();
+            let days = now.getDate() - birth.getDate();
+            
+            if (days < 0) {
+                months--;
+                const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                days += lastMonth.getDate();
+            }
+            
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+            
+            return { years, months, days };
+        }
+        
+        function updateAges() {
+            const harperBirth = '2024-08-29';
+            const sophiaBirth = '2025-09-18';
+            
+            const harperAge = calculateAge(harperBirth);
+            const sophiaAge = calculateAge(sophiaBirth);
+            
+            document.getElementById('harperYears').textContent = harperAge.years;
+            document.getElementById('harperMonths').textContent = harperAge.months;
+            document.getElementById('harperDays').textContent = harperAge.days;
+            
+            document.getElementById('sophiaYears').textContent = sophiaAge.years;
+            document.getElementById('sophiaMonths').textContent = sophiaAge.months;
+            document.getElementById('sophiaDays').textContent = sophiaAge.days;
+            
+            // Update last update time
+            const now = new Date();
+            document.getElementById('lastUpdate').textContent = now.toLocaleString();
+        }
+        
+        // Update ages immediately and then every hour
+        updateAges();
+        setInterval(updateAges, 3600000);
+
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        // Check for saved preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+        }
+
+        darkModeToggle.addEventListener('change', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+    </script>
+</body>
+</html>
