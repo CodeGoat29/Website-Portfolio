@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} - DiPiazza</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/png" href="/images/thegoat.png">
+</head>
+<body>
+    <div class="top-controls">
+        <div class="counter-dropdown">
+            <button class="counter-button" id="counterButton">⚙ Counter</button>
+            <div class="counter-content" id="counterContent">
+                <div class="counter-item">
+                    <span class="counter-name">Harper</span>
+                    <span class="counter-age" id="harperAge"></span>
+                </div>
+                <div class="counter-item">
+                    <span class="counter-name">Sophia</span>
+                    <span class="counter-age" id="sophiaAge"></span>
+                </div>
+            </div>
+        </div>
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-inner"></span>
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <img src="/images/thegoat.png" alt="DiPiazza Logo" class="logo">
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Where I break stuff, then write about it.</p>
+            </div>
+        </div>
+        <nav>
+            <div class="container">
+                <ul>
+                    <li><a href="/index.html#home">Home</a></li>
+                    <li><a href="/resume.html">Resume</a></li>
+                    <li><a href="/index.html#blog">Blog</a></li>
+                    <li><a href="/index.html#resources">Resources</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    {{ content }}
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Age Counter Functions
+        function calculateAge(birthDate) {
+            const now = new Date();
+            const birth = new Date(birthDate);
+            
+            let years = now.getFullYear() - birth.getFullYear();
+            let months = now.getMonth() - birth.getMonth();
+            let days = now.getDate() - birth.getDate();
+            
+            if (days < 0) {
+                months--;
+                const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                days += lastMonth.getDate();
+            }
+            
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+            
+            return { years, months, days };
+        }
+        
+        function updateAges() {
+            const harperBirth = '2024-08-29';
+            const sophiaBirth = '2025-09-18';
+            
+            const harperAge = calculateAge(harperBirth);
+            const sophiaAge = calculateAge(sophiaBirth);
+            
+            document.getElementById('harperAge').textContent = 
+                `${harperAge.years}y ${harperAge.months}m ${harperAge.days}d`;
+            document.getElementById('sophiaAge').textContent = 
+                `${sophiaAge.years}y ${sophiaAge.months}m ${sophiaAge.days}d`;
+        }
+        
+        updateAges();
+        setInterval(updateAges, 3600000);
+        
+        const counterButton = document.getElementById('counterButton');
+        const counterContent = document.getElementById('counterContent');
+        
+        counterButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            counterContent.classList.toggle('show');
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (!counterButton.contains(e.target) && !counterContent.contains(e.target)) {
+                counterContent.classList.remove('show');
+            }
+        });
+
+        document.querySelectorAll('nav a').forEach(anchor => {
+            if (anchor.getAttribute('href').startsWith('#')) {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            } else {
+                anchor.addEventListener('click', function() {
+                    document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
+                });
+            }
+        });
+
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+        }
+
+        darkModeToggle.addEventListener('change', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                localStorage.setData('darkMode', 'disabled');
+            }
+        });
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section[id="home"], section[id="blog"], section[id="resources"]');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').startsWith('#') && link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+            
+            if (current === '' && window.scrollY === 0) {
+                const homeLink = document.querySelector('nav a[href="#home"]');
+                if (homeLink) {
+                    homeLink.classList.add('active');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
