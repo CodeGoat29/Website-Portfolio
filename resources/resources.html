@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - DiPiazza</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="/images/thegoat.png">
+</head>
+<body>
+    <div class="top-controls">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-inner"></span>
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <img src="/images/thegoat.png" alt="DiPiazza Logo" class="logo">
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Where I break stuff, then write about it.</p>
+            </div>
+        </div>
+        <nav>
+            <div class="container">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="resume.html">Resume</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="resources.html" class="active">Resources</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="page-header">
+            <h1>Resources</h1>
+            <p>Curated tools and guides for all things Tech, VoIP, and cybersecurity</p>
+        </section>
+
+        <section class="resources-section">
+            <h2>Featured Guides</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-card featured-resource">
+                    <h3>⚙ Asterisk Command Reference</h3>
+                    <p>Comprehensive guide of essential VoIP and server management commands for troubleshooting and daily operations.</p>
+                    <a href="resources/asterisk-commands.html" class="resource-link">View Command Reference →</a>
+                </div>
+
+                <div class="resource-card featured-resource">
+                    <h3>📚 CompTIA Certification Notes</h3>
+                    <p>Study guides and notes for CompTIA certifications including CySA+, Linux+, PenTest+, and Network+.</p>
+                    <a href="resources/cysa-notes.html" class="resource-link">CySA+ (CS0-003) Study Guide →</a>
+                    <a href="resources/linuxplus-notes.html" class="resource-link">Linux+ Study Guide →</a>
+                    <a href="resources/pentest-notes.html" class="resource-link">PenTest+ Study Guide →</a>
+                    <a href="resources/networkplus-notes.html" class="resource-link">Network+ Study Guide →</a>
+                </div>
+
+                <div class="resource-card featured-resource">
+                    <h3>👨‍👩‍👧 Age Counter</h3>
+                    <p>Track the ages of Harper and Sophia with a live counter showing years, months, and days.</p>
+                    <a href="resources/counter.html" class="resource-link">View Counter →</a>
+                </div>
+            </div>
+
+            <h2>Security Tools</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3>Network Tools</h3>
+                    <ul>
+                        <li><a href="https://nmap.org" target="_blank">Nmap</a> - Network discovery and security auditing</li>
+                        <li><a href="https://www.wireshark.org" target="_blank">Wireshark</a> - Network protocol analyzer</li>
+                        <li><a href="https://www.tcpdump.org" target="_blank">tcpdump</a> - Command-line packet analyzer</li>
+                        <li><a href="https://github.com/robertdavidgraham/masscan" target="_blank">Masscan</a> - Fast TCP port scanner</li>
+                    </ul>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Web Application Testing</h3>
+                    <ul>
+                        <li><a href="https://portswigger.net/burp" target="_blank">Burp Suite</a> - Web vulnerability scanner</li>
+                        <li><a href="https://www.zaproxy.org" target="_blank">OWASP ZAP</a> - Web app security scanner</li>
+                        <li><a href="https://github.com/sqlmapproject/sqlmap" target="_blank">SQLmap</a> - SQL injection tool</li>
+                        <li><a href="https://github.com/commixproject/commix" target="_blank">Commix</a> - Command injection exploiter</li>
+                    </ul>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Exploitation & Post-Exploitation</h3>
+                    <ul>
+                        <li><a href="https://www.metasploit.com" target="_blank">Metasploit</a> - Penetration testing framework</li>
+                        <li><a href="https://github.com/PowerShellMafia/PowerSploit" target="_blank">PowerSploit</a> - PowerShell post-exploitation</li>
+                        <li><a href="https://github.com/SecureAuthCorp/impacket" target="_blank">Impacket</a> - Network protocol toolkit</li>
+                        <li><a href="https://github.com/byt3bl33d3r/CrackMapExec" target="_blank">CrackMapExec</a> - Post-exploitation tool</li>
+                    </ul>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Password & Hash Cracking</h3>
+                    <ul>
+                        <li><a href="https://hashcat.net/hashcat/" target="_blank">Hashcat</a> - Advanced password recovery</li>
+                        <li><a href="https://www.openwall.com/john/" target="_blank">John the Ripper</a> - Password cracker</li>
+                        <li><a href="https://github.com/vanhauser-thc/thc-hydra" target="_blank">Hydra</a> - Network logon cracker</li>
+                        <li><a href="https://github.com/magnumripper/JohnTheRipper" target="_blank">John Jumbo</a> - Community-enhanced John</li>
+                    </ul>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Wireless Security</h3>
+                    <ul>
+                        <li><a href="https://www.aircrack-ng.org/" target="_blank">Aircrack-ng</a> - WiFi security auditing</li>
+                        <li><a href="https://github.com/derv82/wifite2" target="_blank">Wifite</a> - Automated wireless attack tool</li>
+                        <li><a href="https://github.com/ZerBea/hcxtools" target="_blank">hcxtools</a> - WLAN packet capturing</li>
+                        <li><a href="https://github.com/t6x/reaver-wps-fork-t6x" target="_blank">Reaver</a> - WPS brute force tool</li>
+                    </ul>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Forensics & Analysis</h3>
+                    <ul>
+                        <li><a href="https://www.sleuthkit.org/autopsy/" target="_blank">Autopsy</a> - Digital forensics platform</li>
+                        <li><a href="https://www.volatilityfoundation.org/" target="_blank">Volatility</a> - Memory forensics framework</li>
+                        <li><a href="https://github.com/fireeye/flare-vm" target="_blank">FLARE-VM</a> - Malware analysis distribution</li>
+                        <li><a href="https://github.com/Neo23x0/Loki" target="_blank">Loki</a> - Simple IOC scanner</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>Learning Platforms</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3>CTF & Practice Platforms</h3>
+                    <ul>
+                        <li><a href="https://www.hackthebox.com" target="_blank">HackTheBox</a> - Penetration testing labs</li>
+                        <li><a href="https://tryhackme.com" target="_blank">TryHackMe</a> - Guided cybersecurity training</li>
+                        <li><a href="https://picoctf.org" target="_blank">PicoCTF</a> - Beginner-friendly CTF platform</li>
+                        <li><a href="https://overthewire.org" target="_blank">OverTheWire</a> - War games for security learning</li>
+                    </ul>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Online Training</h3>
+                    <ul>
+                        <li><a href="https://www.offensive-security.com/" target="_blank">Offensive Security</a> - OSCP and advanced courses</li>
+                        <li><a href="https://www.sans.org/" target="_blank">SANS Institute</a> - Professional security training</li>
+                        <li><a href="https://www.pentesteracademy.com/" target="_blank">Pentester Academy</a> - Video courses and labs</li>
+                        <li><a href="https://portswigger.net/web-security" target="_blank">PortSwigger Academy</a> - Free web security training</li>
+                    </ul>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Vulnerable Applications</h3>
+                    <ul>
+                        <li><a href="https://github.com/WebGoat/WebGoat" target="_blank">WebGoat</a> - Deliberately insecure application</li>
+                        <li><a href="https://github.com/digininja/DVWA" target="_blank">DVWA</a> - Damn Vulnerable Web Application</li>
+                        <li><a href="https://github.com/bkimminich/juice-shop" target="_blank">OWASP Juice Shop</a> - Modern vulnerable web app</li>
+                        <li><a href="https://www.vulnhub.com/" target="_blank">VulnHub</a> - Vulnerable VMs for practice</li>
+                    </ul>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Documentation & References</h3>
+                    <ul>
+                        <li><a href="https://attack.mitre.org/" target="_blank">MITRE ATT&CK</a> - Adversary tactics framework</li>
+                        <li><a href="https://cheatsheetseries.owasp.org/" target="_blank">OWASP Cheat Sheets</a> - Security best practices</li>
+                        <li><a href="https://gtfobins.github.io/" target="_blank">GTFOBins</a> - Unix binaries exploitation</li>
+                        <li><a href="https://lolbas-project.github.io/" target="_blank">LOLBAS</a> - Living Off The Land binaries</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        // Check for saved preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+        }
+
+        darkModeToggle.addEventListener('change', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+    </script>
+</body>
+</html>
