@@ -9,19 +9,6 @@
 </head>
 <body>
     <div class="top-controls">
-        <div class="counter-dropdown">
-            <button class="counter-button" id="counterButton">⚙ Counter</button>
-            <div class="counter-content" id="counterContent">
-                <div class="counter-item">
-                    <span class="counter-name">Harper</span>
-                    <span class="counter-age" id="harperAge"></span>
-                </div>
-                <div class="counter-item">
-                    <span class="counter-name">Sophia</span>
-                    <span class="counter-age" id="sophiaAge"></span>
-                </div>
-            </div>
-        </div>
         <div class="dark-mode-toggle">
             <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
             <label for="darkModeToggle" class="toggle-label">
@@ -42,11 +29,10 @@
         <nav>
             <div class="container">
                 <ul>
-                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="resume.html">Resume</a></li>
-                    <li><a href="#blog">Blog</a></li>
-                    <li><a href="#resources">Resources</a></li>
-
+                    <li><a href="blog/blog.html">Blog</a></li>
+                    <li><a href="resources/resources.html">Resources</a></li>
                 </ul>
             </div>
         </nav>
@@ -58,9 +44,33 @@
             <p>MSP Security Engineer specializing in endpoint protection, cloud administration, and security operations. Exploring the intersection of cybersecurity, automation, and enterprise IT solutions.</p>
         </section>
 
+        <section id="featured-resources" class="resources-section">
+            <h2>Featured Resources</h2>
+            <p class="resources-intro">Quick access to essential guides and tools.</p>
+            
+            <div class="resources-grid">
+                <div class="resource-card featured-resource">
+                    <h3>⚙ Asterisk Command Reference</h3>
+                    <p>Comprehensive guide of essential VoIP and server management commands for troubleshooting and daily operations.</p>
+                    <a href="resources/asterisk-commands.html" class="resource-link">View Command Reference →</a>
+                </div>
 
+                <div class="resource-card featured-resource">
+                    <h3>📚 CompTIA Certification Notes</h3>
+                    <p>Study guides and notes for CompTIA certifications including CySA+, Linux+, PenTest+, and Network+.</p>
+                    <a href="resources/cysa-notes.html" class="resource-link">CySA+ (CS0-003) Study Guide →</a>
+                    <a href="resources/linuxplus-notes.html" class="resource-link">Linux+ Study Guide →</a>
+                    <a href="resources/pentest-notes.html" class="resource-link">PenTest+ Study Guide →</a>
+                    <a href="resources/networkplus-notes.html" class="resource-link">Network+ Study Guide →</a>
+                </div>
+            </div>
+            
+            <div class="view-all-link">
+                <a href="resources/resources.html" class="read-more">View All Resources →</a>
+            </div>
+        </section>
 
-        <section id="blog" class="blog-section">
+        <section id="latest-posts" class="blog-section">
             <h2>Latest Blog Posts</h2>
             <div class="blog-grid">
                 <article class="blog-card">
@@ -92,68 +102,19 @@
                     <p>An in-depth analysis of emerging web application security threats and practical mitigation strategies for developers and security professionals.</p>
                     <a href="blog/sample-research.html" class="read-more">Read More →</a>
                 </article>
+
+                <article class="blog-card">
+                    <div class="blog-meta">
+                        <span class="blog-date">Coming Soon</span>
+                        <span class="blog-category">Placeholder</span>
+                    </div>
+                    <h3><a href="#">Upcoming Post: Cloud Security Best Practices</a></h3>
+                    <p>An exploration of essential security configurations and practices for AWS, Azure, and GCP environments. Stay tuned for this comprehensive guide.</p>
+                </article>
             </div>
-        </section>
-
-        <section id="resources" class="resources-section">
-            <h2>Resources</h2>
-            <p class="resources-intro">Curated tools and guides for all things Tech, VoIP, or cybersecurity.</p>
             
-            <div class="resources-grid">
-                <div class="resource-card featured-resource">
-                    <h3>⚙ Asterisk Command Reference</h3>
-                    <p>Comprehensive guide of essential VoIP and server management commands for troubleshooting and daily operations.</p>
-                    <a href="resources/asterisk-commands.html" class="resource-link">View Command Reference →</a>
-                </div>
-
-            <div class="resources-grid">
-                <div class="resource-card">
-                    <h3>CompTIA Certification Notes</h3>
-                    <ul>
-                        <li><a href="resources/cysa-notes.html">CySA+ (CS0-003) Study Guide</a></li>
-                    </ul>
-                </div>
-            
-            <div class="resources-grid">
-                <div class="resource-card">
-                    <h3>Network Tools</h3>
-                    <ul>
-                        <li><a href="https://nmap.org" target="_blank">Nmap</a> - Network discovery and security auditing</li>
-                        <li><a href="https://www.wireshark.org" target="_blank">Wireshark</a> - Network protocol analyzer</li>
-                        <li><a href="https://www.tcpdump.org" target="_blank">tcpdump</a> - Command-line packet analyzer</li>
-                        <li><a href="https://github.com/robertdavidgraham/masscan" target="_blank">Masscan</a> - Fast TCP port scanner</li>
-                    </ul>
-                </div>
-
-                <div class="resource-card">
-                    <h3>Web Application Testing</h3>
-                    <ul>
-                        <li><a href="https://portswigger.net/burp" target="_blank">Burp Suite</a> - Web vulnerability scanner</li>
-                        <li><a href="https://www.zaproxy.org" target="_blank">OWASP ZAP</a> - Web app security scanner</li>
-                        <li><a href="https://github.com/sqlmapproject/sqlmap" target="_blank">SQLmap</a> - SQL injection tool</li>
-                        <li><a href="https://github.com/commixproject/commix" target="_blank">Commix</a> - Command injection exploiter</li>
-                    </ul>
-                </div>
-
-                <div class="resource-card">
-                    <h3>CTF & Practice Platforms</h3>
-                    <ul>
-                        <li><a href="https://www.hackthebox.com" target="_blank">HackTheBox</a> - Penetration testing labs</li>
-                        <li><a href="https://tryhackme.com" target="_blank">TryHackMe</a> - Guided cybersecurity training</li>
-                        <li><a href="https://picoctf.org" target="_blank">PicoCTF</a> - Beginner-friendly CTF platform</li>
-                        <li><a href="https://overthewire.org" target="_blank">OverTheWire</a> - War games for security learning</li>
-                    </ul>
-                </div>
-
-                <div class="resource-card">
-                    <h3>Exploitation & Post-Exploitation</h3>
-                    <ul>
-                        <li><a href="https://www.metasploit.com" target="_blank">Metasploit</a> - Penetration testing framework</li>
-                        <li><a href="https://github.com/PowerShellMafia/PowerSploit" target="_blank">PowerSploit</a> - PowerShell post-exploitation</li>
-                        <li><a href="https://github.com/SecureAuthCorp/impacket" target="_blank">Impacket</a> - Network protocol toolkit</li>
-                        <li><a href="https://github.com/byt3bl33d3r/CrackMapExec" target="_blank">CrackMapExec</a> - Post-exploitation tool</li>
-                    </ul>
-                </div>
+            <div class="view-all-link">
+                <a href="blog/blog.html" class="read-more">View All Posts →</a>
             </div>
         </section>
 
@@ -175,88 +136,6 @@
     </footer>
 
     <script>
-        // Age Counter Functions
-        function calculateAge(birthDate) {
-            const now = new Date();
-            const birth = new Date(birthDate);
-            
-            let years = now.getFullYear() - birth.getFullYear();
-            let months = now.getMonth() - birth.getMonth();
-            let days = now.getDate() - birth.getDate();
-            
-            if (days < 0) {
-                months--;
-                const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-                days += lastMonth.getDate();
-            }
-            
-            if (months < 0) {
-                years--;
-                months += 12;
-            }
-            
-            return { years, months, days };
-        }
-        
-        function updateAges() {
-            const harperBirth = '2024-08-29';
-            const sophiaBirth = '2025-09-18';
-            
-            const harperAge = calculateAge(harperBirth);
-            const sophiaAge = calculateAge(sophiaBirth);
-            
-            document.getElementById('harperAge').textContent = 
-                `${harperAge.years}y ${harperAge.months}m ${harperAge.days}d`;
-            document.getElementById('sophiaAge').textContent = 
-                `${sophiaAge.years}y ${sophiaAge.months}m ${sophiaAge.days}d`;
-        }
-        
-        // Update ages immediately and then every hour
-        updateAges();
-        setInterval(updateAges, 3600000);
-        
-        // Counter Dropdown Toggle
-        const counterButton = document.getElementById('counterButton');
-        const counterContent = document.getElementById('counterContent');
-        
-        counterButton.addEventListener('click', (e) => {
-            e.stopPropagation();
-            counterContent.classList.toggle('show');
-        });
-        
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!counterButton.contains(e.target) && !counterContent.contains(e.target)) {
-                counterContent.classList.remove('show');
-            }
-        });
-
-        // Smooth scrolling for internal navigation
-        document.querySelectorAll('nav a').forEach(anchor => {
-            // Only apply smooth scroll to internal links (starting with #)
-            if (anchor.getAttribute('href').startsWith('#')) {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    const targetSection = document.getElementById(targetId);
-                    
-                    // Update active state for internal links
-                    document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Smooth scroll
-                    if (targetSection) {
-                        targetSection.scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
-            } else {
-                // For external links (like resume.html), ensure active state is removed on click
-                anchor.addEventListener('click', function() {
-                    document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
-                });
-            }
-        });
-
         // Dark mode toggle
         const darkModeToggle = document.getElementById('darkModeToggle');
         const body = document.body;
@@ -276,37 +155,6 @@
                 localStorage.setItem('darkMode', 'disabled');
             }
         });
-
-        // Highlight active section on scroll (only for sections within index.html)
-        window.addEventListener('scroll', () => {
-            let current = '';
-            // Only consider sections that are still in index.html
-            const sections = document.querySelectorAll('section[id="home"], section[id="blog"], section[id="resources"]');
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            document.querySelectorAll('nav a').forEach(link => {
-                link.classList.remove('active');
-                // Only activate internal links
-                if (link.getAttribute('href').startsWith('#') && link.getAttribute('href').substring(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-            // For index.html, if current is empty and we are at the top, activate 'home'.
-            if (current === '' && window.scrollY === 0) {
-                const homeLink = document.querySelector('nav a[href="#home"]');
-                if (homeLink) {
-                    homeLink.classList.add('active');
-                }
-            }
-        });
     </script>
 </body>
 </html>
-
