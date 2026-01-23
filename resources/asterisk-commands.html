@@ -637,3 +637,65 @@
         backToTop.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+        // Favorites functionality
+    let favorites = JSON.parse(localStorage.getItem('favoriteCommands') || '[]');
+
+    function updateFavoritesDisplay() {
+        const favoritesSection = document.getElementById('favoritesSection');
+        const favoritesList = document.getElementById('favoritesList');
+        
+        if (favorites.length === 0) {
+            favoritesSection.style.display = 'none';
+            return;
+        }
+        
+        favoritesSection.style.display = 'block';
+        favoritesList.innerHTML = '';
+        
+        favorites.forEach(commandId => {
+            const originalCard = document.querySelector(`[data-command="${commandId}"]`)?.closest('.command-card');
+            if (originalCard) {
+                const clone = originalCard.cloneNode(true);
+                clone.querySelector('.favorite-btn')?.remove();
+                favoritesList.appendChild(clone);
+            }
+        });
+    }
+
+    document.querySelectorAll('.favorite-btn').forEach(btn => {
+        const commandId = btn.getAttribute('data-command');
+        if (favorites.includes(commandId)) {
+            btn.classList.add('active');
+            btn.textContent = '★';
+        }
+        
+        btn.addEventListener('click', function() {
+            const commandId = this.getAttribute('data-command');
+            if (favorites.includes(commandId)) {
+                favorites = favorites.filter(id => id !== commandId);
+                this.classList.remove('active');
+                this.textContent = '☆';
+            } else {
+                favorites.push(commandId);
+                this.classList.add('active');
+                this.textContent = '★';
+            }
+            localStorage.setItem('favoriteCommands', JSON.stringify(favorites));
+            updateFavoritesDisplay();
+        });
+    });
+
+    updateFavoritesDisplay();
+
+    // Smooth scroll for quick navigation
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
