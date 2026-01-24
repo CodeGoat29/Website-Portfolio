@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DiPiazza - Digital Workshop</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" type="image/png" href="/images/thegoat.png">
 </head>
 <body>
@@ -18,30 +18,56 @@
         </div>
     </div>
 
-    <header>
+        <header>
         <div class="container header-content">
             <a href="index.html" class="logo-link"><img src="/images/thegoat.png" alt="DiPiazza Logo" class="logo"></a>
             <div class="header-text">
                 <h1>DiPiazza</h1>
                 <p class="tagline">Where I break stuff, then write about it.</p>
             </div>
-        
-        <nav>
-            <ul>
+            <nav>
+                <ul>
                     <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="resources.html">Resources</a></li>
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="resume.html">Resume</a></li>
                     <li><button class="nav-cta" type="button" data-contact-open>Get in Touch</button></li>
                 </ul>
-        </nav>
-    </div>
-</header>
+            </nav>
+        </div>
+    </header>
 
     <main class="container">
         <section id="home" class="hero">
-            <h2>Welcome to My Digital Workshop</h2>
-            <p>where I build, break, document, and refine technical projects. This site serves as a central hub for hands-on labs, experiments, and notes across systems engineering, networking, Linux, VoIP, cloud, security, and automation.</p>
+            <div class="hero-card">
+                <h2>Welcome to My Digital Workshop</h2>
+                <p>Where I build, break, document, and refine technical projects. This site serves as a central hub for hands-on labs, experiments, and notes across systems engineering, networking, Linux, VoIP, cloud, security, and automation.</p>
+                <div class="hero-actions">
+                    <a href="resources.html" class="hero-btn primary">Explore Resources</a>
+                    <a href="blog.html" class="hero-btn ghost">Read the Blog</a>
+                </div>
+            </div>
+            <div class="hero-panel">
+                <div class="hero-illustration">
+                    <div class="hero-grid"></div>
+                    <div class="hero-scan"></div>
+                    <div class="hero-terminal">
+                        <div class="terminal-header">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <div class="terminal-body">
+                            <p><span class="prompt">$</span> whoami</p>
+                            <p><span class="output">systems-engineer</span></p>
+                            <p><span class="prompt">$</span> tail -f notes.log</p>
+                            <p class="output">+ Updated PenTest+ · Added SAR quick view</p>
+                            <p><span class="prompt">$</span> git status</p>
+                            <p class="output">modified: asterisk-commands.html</p>
+                            <p class="cursor">▌</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="hero-caption">Live notes, labs, and security experiments in one place.</p>
+            </div>
         </section>
 
         <section id="featured-resources" class="resources-section">
@@ -136,45 +162,12 @@
         </div>
     </div>
 
-    <footer>
+        <footer>
         <div class="container">
             <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
         </div>
     </footer>
 
-    <script>
-        // Dark mode toggle
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
-
-        // Check for saved preference
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            body.classList.add('dark-mode');
-            darkModeToggle.checked = true;
-        }
-
-        darkModeToggle.addEventListener('change', () => {
-            body.classList.toggle('dark-mode');
-            
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                localStorage.setItem('darkMode', 'disabled');
-            }
-        });
-
-        const contactModal = document.getElementById('contactModal');
-        const contactModalClose = document.getElementById('contactModalClose');
-        document.querySelectorAll('[data-contact-open]').forEach(btn => {
-            btn.addEventListener('click', () => contactModal.classList.add('show'));
-        });
-        contactModalClose.addEventListener('click', () => contactModal.classList.remove('show'));
-        contactModal.addEventListener('click', (e) => {
-            if (e.target.id === 'contactModal') {
-                contactModal.classList.remove('show');
-            }
-        });
-    </script>
+    <script src="js/site.js"></script>
 </body>
 </html>
-

@@ -329,7 +329,45 @@
                 display: inline-flex;
             }
         }
-    </style>
+    
+        .terminal-dark {
+            background: #0b1118;
+            border-color: #1f2937;
+            color: #d7e2ef;
+        }
+
+        .terminal-dark .terminal-header {
+            background: #0f1722;
+        }
+
+        .terminal-dark .terminal-header span:nth-child(1) { background: #ef4444; }
+        .terminal-dark .terminal-header span:nth-child(2) { background: #f59e0b; }
+        .terminal-dark .terminal-header span:nth-child(3) { background: #22c55e; }
+
+        .terminal-dark .terminal-body {
+            font-family: "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+            font-size: 0.9em;
+        }
+
+        .terminal-dark .prompt {
+            color: #7dd3fc;
+            margin-right: 6px;
+        }
+
+        .terminal-dark .output {
+            color: #a7f3d0;
+        }
+
+        .terminal-dark .cursor {
+            color: #e2e8f0;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+</style>
 </head>
 <body>
     <header class="site-nav">
@@ -356,6 +394,12 @@
         <section class="hero">
             <div class="hero-card">
                 <div class="pill">Modern UI test build</div>
+                <div class="theme-switch">
+                    <button class="theme-chip active" data-theme="sky">Sky</button>
+                    <button class="theme-chip" data-theme="ember">Ember</button>
+                    <button class="theme-chip" data-theme="forest">Forest</button>
+                    <button class="theme-chip" data-theme="mono">Mono</button>
+                </div>
                 <h1>Welcome to the Digital Workshop</h1>
                 <p>Clean cards, tighter typography, a sticky nav, and a calmer palette make the site easier to scan without losing personality.</p>
                 <div class="actions">
@@ -364,18 +408,25 @@
                 </div>
             </div>
             <div class="hero-panel">
-                <div class="stat">
-                    <strong>48+</strong>
-                    <span>Curated guides</span>
+                <div class="hero-illustration">
+                    <div class="hero-grid"></div>
+                    <div class="hero-scan"></div>
+                    <div class="hero-terminal terminal-dark">
+                        <div class="terminal-header">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <div class="terminal-body">
+                            <p><span class="prompt">$</span> whoami</p>
+                            <p><span class="output">systems-engineer</span></p>
+                            <p><span class="prompt">$</span> tail -f notes.log</p>
+                            <p class="output">+ Added SAR notes · Updated PenTest+</p>
+                            <p><span class="prompt">$</span> git status</p>
+                            <p class="output">modified: cysa-notes.html</p>
+                            <p class="cursor">▌</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="stat">
-                    <strong>12</strong>
-                    <span>Hands-on labs</span>
-                </div>
-                <div class="stat">
-                    <strong>2026</strong>
-                    <span>Updated weekly</span>
-                </div>
+                <p class="hero-caption">Live notes, labs, and security experiments in one place.</p>
             </div>
         </section>
 
@@ -442,12 +493,118 @@
                 </div>
             </div>
         </section>
-    </main>
+            <section class="section" id="ui">
+            <div class="section-header">
+                <h2>UI Upgrades</h2>
+                <a class="btn" href="#">See specs</a>
+            </div>
+            <div class="card-grid">
+                <article class="card">
+                    <span class="tag">Navigation</span>
+                    <h3>Floating quick actions</h3>
+                    <p>Compact action cluster that keeps Search, Theme, and Contact accessible without a heavy header.</p>
+                    <div class="actions">
+                        <button class="btn">Search</button>
+                        <button class="btn">Theme</button>
+                    </div>
+                </article>
+                <article class="card">
+                    <span class="tag">Layout</span>
+                    <h3>Split content grid</h3>
+                    <p>Hero + stats + dense cards create a layered, editorial feel while keeping content scannable.</p>
+                    <div class="note-block">
+                        Keep 40–48px vertical rhythm for calm pacing.
+                    </div>
+                </article>
+                <article class="card">
+                    <span class="tag">Cards</span>
+                    <h3>Highlighted calls</h3>
+                    <p>Use subtle gradients and colored borders to draw attention without overpowering the page.</p>
+                    <div class="highlight-row">
+                        <span>Priority Guide</span>
+                        <button class="btn primary">Open</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+    <div class="quick-actions">
+        <button title="Search">⌕</button>
+        <button title="Theme">◐</button>
+        <button title="Contact">✉</button>
+    </div>
+</main>
 
     <footer class="footer">
         <div class="container">
             <span>© 2026 DiPiazza.org — Test UI build</span>
         </div>
     </footer>
+    <script>
+        const themeMap = {
+            sky: {
+                primary: '#2263f3',
+                primary2: '#1b4cc2',
+                accent: '#f4a340',
+                bg: '#f6f7f9',
+                surface: '#ffffff',
+                surface2: '#f0f3f7',
+                ink: '#0f1a2a',
+                muted: '#5b6b7a',
+                line: '#e3e8ef'
+            },
+            ember: {
+                primary: '#ef5b25',
+                primary2: '#c9491d',
+                accent: '#f7c948',
+                bg: '#fbf6f2',
+                surface: '#ffffff',
+                surface2: '#f8efe8',
+                ink: '#2b1a12',
+                muted: '#7a5a4b',
+                line: '#ead8cf'
+            },
+            forest: {
+                primary: '#2f7f5f',
+                primary2: '#25664b',
+                accent: '#b7e1a1',
+                bg: '#f4f8f6',
+                surface: '#ffffff',
+                surface2: '#eef5f1',
+                ink: '#143028',
+                muted: '#4c6b60',
+                line: '#d9e7df'
+            },
+            mono: {
+                primary: '#1f2937',
+                primary2: '#111827',
+                accent: '#9ca3af',
+                bg: '#f7f7f7',
+                surface: '#ffffff',
+                surface2: '#efefef',
+                ink: '#111827',
+                muted: '#4b5563',
+                line: '#e5e7eb'
+            }
+        };
+
+        const chips = document.querySelectorAll('.theme-chip');
+        chips.forEach((chip) => {
+            chip.addEventListener('click', () => {
+                chips.forEach((item) => item.classList.remove('active'));
+                chip.classList.add('active');
+                const theme = themeMap[chip.dataset.theme];
+                const root = document.documentElement;
+                root.style.setProperty('--primary', theme.primary);
+                root.style.setProperty('--primary-2', theme.primary2);
+                root.style.setProperty('--accent', theme.accent);
+                root.style.setProperty('--bg', theme.bg);
+                root.style.setProperty('--surface', theme.surface);
+                root.style.setProperty('--surface-2', theme.surface2);
+                root.style.setProperty('--ink', theme.ink);
+                root.style.setProperty('--muted', theme.muted);
+                root.style.setProperty('--line', theme.line);
+            });
+        });
+    </script>
 </body>
 </html>
