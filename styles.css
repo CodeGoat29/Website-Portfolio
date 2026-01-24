@@ -289,6 +289,11 @@ main {
     color: var(--primary-blue);
 }
 
+.hero h2::after {
+    width: 100%;
+    left: 0;
+}
+
 .hero p {
     font-size: 1.2em;
     line-height: 1.8;
@@ -566,6 +571,7 @@ section h2::after {
     text-decoration: none !important;
     font-weight: 600;
     transition: all 0.3s;
+    margin: 6px 0;
 }
 
 .resource-link:hover {
@@ -587,6 +593,11 @@ section h2::after {
 .dark-mode .contact-section {
     background: #1c2938;
     border-color: #2a3f5f;
+}
+
+.contact-section h2::after {
+    width: 100%;
+    left: 0;
 }
 
 .contact-section p {
