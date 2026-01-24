@@ -820,6 +820,14 @@ footer {
         justify-content: center;
     }
 
+    header {
+        background: rgba(246, 247, 249, 0.92);
+    }
+
+    .dark-mode header {
+        background: rgba(20, 27, 38, 0.95);
+    }
+
     .hero {
         padding: 40px 24px;
     }
