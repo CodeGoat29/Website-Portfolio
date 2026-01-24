@@ -19,23 +19,23 @@
 
     <header>
         <div class="container header-content">
-            <img src="/images/thegoat.png" alt="DiPiazza Logo" class="logo">
+            <a href="../index.html" class="logo-link"><img src="/images/thegoat.png" alt="DiPiazza Logo" class="logo"></a>
             <div class="header-text">
                 <h1>DiPiazza</h1>
                 <p class="tagline">Where I break stuff, then write about it.</p>
             </div>
-        </div>
+        
         <nav>
-            <div class="container">
-                <ul>
+            <ul>
                     <li><a href="../index.html">Home</a></li>
                     <li><a href="../resources.html" class="active">Resources</a></li>
                     <li><a href="../blog.html">Blog</a></li>
                     <li><a href="../resume.html">Resume</a></li>
+                    <li><button class="nav-cta" type="button" data-contact-open>Get in Touch</button></li>
                 </ul>
-            </div>
         </nav>
-    </header>
+    </div>
+</header>
 
     <main class="container">
         <section class="notes-header">
@@ -425,6 +425,20 @@
 
     </main>
 
+    <div class="contact-modal" id="contactModal">
+        <div class="contact-modal-content">
+            <div class="contact-modal-header">
+                <h3>Get in Touch</h3>
+                <button class="contact-modal-close" type="button" id="contactModalClose">✕</button>
+            </div>
+            <div class="contact-modal-links">
+                <a href="mailto:daviddipiazza29@gmail.com" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/CodeGoat29" target="_blank" class="contact-link">GitHub</a>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <div class="container">
             <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
@@ -544,6 +558,18 @@
                     targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
+        });
+
+        const contactModal = document.getElementById('contactModal');
+        const contactModalClose = document.getElementById('contactModalClose');
+        document.querySelectorAll('[data-contact-open]').forEach(btn => {
+            btn.addEventListener('click', () => contactModal.classList.add('show'));
+        });
+        contactModalClose.addEventListener('click', () => contactModal.classList.remove('show'));
+        contactModal.addEventListener('click', (e) => {
+            if (e.target.id === 'contactModal') {
+                contactModal.classList.remove('show');
+            }
         });
     </script>
 </body>

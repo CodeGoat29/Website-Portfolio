@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test UI - DiPiazza</title>
+    <link rel="icon" type="image/png" href="images/thegoat.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f6f7f9;
+            --surface: #ffffff;
+            --surface-2: #f0f3f7;
+            --ink: #0f1a2a;
+            --muted: #5b6b7a;
+            --line: #e3e8ef;
+            --primary: #2263f3;
+            --primary-2: #1b4cc2;
+            --accent: #f4a340;
+            --shadow: 0 10px 30px rgba(15, 26, 42, 0.08);
+            --radius: 18px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: radial-gradient(1200px 500px at 80% -10%, #e9f0ff 0%, rgba(233, 240, 255, 0) 60%), var(--bg);
+            color: var(--ink);
+            font-family: "Source Sans 3", "Segoe UI", Tahoma, sans-serif;
+        }
+
+        h1, h2, h3 {
+            font-family: "Sora", "Trebuchet MS", sans-serif;
+            letter-spacing: -0.02em;
+            margin: 0 0 12px 0;
+        }
+
+        p {
+            margin: 0 0 16px 0;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .site-nav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(246, 247, 249, 0.8);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: var(--shadow);
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand span {
+            font-size: 0.9em;
+            color: var(--muted);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-link {
+            padding: 8px 14px;
+            border-radius: 999px;
+            color: var(--muted);
+            font-weight: 600;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .nav-link.active {
+            background: var(--surface);
+            color: var(--ink);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--line);
+        }
+
+        .nav-link:hover {
+            color: var(--ink);
+        }
+
+        .nav-cta {
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: transparent;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 8px 10px;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 32px;
+            align-items: center;
+            padding: 48px 0;
+        }
+
+        .hero-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 32px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--line);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 3vw, 3.2rem);
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: var(--surface-2);
+            color: var(--muted);
+            font-weight: 600;
+            font-size: 0.85em;
+            margin-bottom: 16px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-weight: 600;
+            border: 1px solid var(--line);
+            background: var(--surface);
+        }
+
+        .btn.primary {
+            background: var(--primary);
+            color: #fff;
+            border-color: transparent;
+        }
+
+        .btn.ghost {
+            color: var(--primary-2);
+        }
+
+        .hero-panel {
+            display: grid;
+            gap: 16px;
+        }
+
+        .stat {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 18px;
+            display: grid;
+            gap: 6px;
+        }
+
+        .stat strong {
+            font-size: 1.6em;
+        }
+
+        .section {
+            margin: 40px 0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+        }
+
+        .card-grid {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow);
+            display: grid;
+            gap: 12px;
+        }
+
+        .card .tag {
+            display: inline-flex;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(244, 163, 64, 0.15);
+            color: #9a5d10;
+            font-weight: 600;
+            font-size: 0.8em;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 28px;
+        }
+
+        .toc {
+            position: sticky;
+            top: 90px;
+            align-self: start;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: var(--shadow);
+        }
+
+        .toc a {
+            display: block;
+            color: var(--muted);
+            padding: 8px 0;
+            font-weight: 600;
+        }
+
+        .toc a:hover {
+            color: var(--ink);
+        }
+
+        .search {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 12px 16px;
+        }
+
+        .search input {
+            border: none;
+            outline: none;
+            flex: 1;
+            font-size: 1em;
+            background: transparent;
+        }
+
+        .footer {
+            margin-top: 60px;
+            padding: 30px 0 40px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .toc {
+                position: relative;
+                top: auto;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-nav">
+        <div class="container nav-inner">
+            <div class="logo-wrap">
+                <a href="index.html" class="logo-link"><img src="images/thegoat.png" alt="DiPiazza Logo" class="logo"></a>
+                <div class="brand">
+                    <strong>DiPiazza</strong>
+                    <span>Systems + Security Notes</span>
+                </div>
+            </div>
+            <nav class="nav-links">
+                <a class="nav-link active" href="#">Home</a>
+                <a class="nav-link" href="#">Resources</a>
+                <a class="nav-link" href="#">Blog</a>
+                <a class="nav-link" href="#">Resume</a>
+                <a class="nav-cta" href="#">Get in Touch</a>
+            </nav>
+            <button class="nav-toggle" type="button">Menu</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-card">
+                <div class="pill">Modern UI test build</div>
+                <h1>Welcome to the Digital Workshop</h1>
+                <p>Clean cards, tighter typography, a sticky nav, and a calmer palette make the site easier to scan without losing personality.</p>
+                <div class="actions">
+                    <a class="btn primary" href="#resources">Explore Resources</a>
+                    <a class="btn ghost" href="#notes">View Notes</a>
+                </div>
+            </div>
+            <div class="hero-panel">
+                <div class="stat">
+                    <strong>48+</strong>
+                    <span>Curated guides</span>
+                </div>
+                <div class="stat">
+                    <strong>12</strong>
+                    <span>Hands-on labs</span>
+                </div>
+                <div class="stat">
+                    <strong>2026</strong>
+                    <span>Updated weekly</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="resources">
+            <div class="section-header">
+                <h2>Featured Resources</h2>
+                <a class="btn" href="#">View all</a>
+            </div>
+            <div class="card-grid">
+                <article class="card">
+                    <span class="tag">Asterisk</span>
+                    <h3>Command Reference</h3>
+                    <p>Quick lookups for everyday VoIP troubleshooting and server management.</p>
+                    <a class="btn ghost" href="#">Open guide →</a>
+                </article>
+                <article class="card">
+                    <span class="tag">CompTIA</span>
+                    <h3>Certification Notes</h3>
+                    <p>Structured notes for CySA+, Linux+, PenTest+, and Network+.</p>
+                    <a class="btn ghost" href="#">Open guide →</a>
+                </article>
+                <article class="card">
+                    <span class="tag">Labs</span>
+                    <h3>Practice Environments</h3>
+                    <p>Lab notes for routing, DNS, firewalling, and packet capture.</p>
+                    <a class="btn ghost" href="#">Open guide →</a>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="notes">
+            <div class="section-header">
+                <h2>Notes Layout</h2>
+                <div class="search">
+                    <input type="text" placeholder="Search notes">
+                    <span>⌘K</span>
+                </div>
+            </div>
+            <div class="layout">
+                <aside class="toc">
+                    <h3>On this page</h3>
+                    <a href="#sec-1">1. Security Operations</a>
+                    <a href="#sec-2">2. Vulnerability Mgmt</a>
+                    <a href="#sec-3">3. Incident Response</a>
+                    <a href="#sec-4">4. Reporting</a>
+                </aside>
+                <div>
+                    <div class="card" id="sec-1">
+                        <h3>Security Operations</h3>
+                        <p>Use cards for quick scanning and keep key commands in highlighted blocks.</p>
+                    </div>
+                    <div class="card" id="sec-2">
+                        <h3>Vulnerability Management</h3>
+                        <p>Group related tools, keep separators light, and favor short descriptions.</p>
+                    </div>
+                    <div class="card" id="sec-3">
+                        <h3>Incident Response</h3>
+                        <p>Use color accents sparingly to highlight warnings or timelines.</p>
+                    </div>
+                    <div class="card" id="sec-4">
+                        <h3>Reporting & Communication</h3>
+                        <p>Use a calm background and high contrast for readability.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <span>© 2026 DiPiazza.org — Test UI build</span>
+        </div>
+    </footer>
+</body>
+</html>
