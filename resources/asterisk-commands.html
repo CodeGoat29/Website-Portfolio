@@ -24,50 +24,6 @@
             opacity: 0;
         }
 
-        /* Input boxes for placeholders */
-        .placeholder-inputs {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 12px;
-            flex-wrap: wrap;
-        }
-
-        .placeholder-input {
-            flex: 1;
-            min-width: 200px;
-            padding: 10px;
-            border: 2px solid #e1e8ed;
-            border-radius: 6px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-        }
-
-        .dark-mode .placeholder-input {
-            background: #0f1419;
-            color: var(--primary-blue);
-            border-color: #2a3f5f;
-        }
-
-        .placeholder-input::placeholder {
-            color: #8899a6;
-        }
-
-        .placeholder-label {
-            font-size: 0.85em;
-            color: #657786;
-            margin-bottom: 4px;
-            font-weight: 600;
-        }
-
-        .dark-mode .placeholder-label {
-            color: #8899a6;
-        }
-
-        .input-group {
-            flex: 1;
-            min-width: 200px;
-        }
-
         /* Search Modal */
         .search-modal {
             display: none;
@@ -105,13 +61,30 @@
             font-size: 1.5em;
         }
 
+        .search-modal-fields {
+            display: grid;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .search-modal-field span {
+            display: block;
+            font-size: 0.85em;
+            color: #657786;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .dark-mode .search-modal-field span {
+            color: #8899a6;
+        }
+
         .search-modal-input {
             width: 100%;
             padding: 12px;
             font-size: 1.1em;
             border: 2px solid #e1e8ed;
             border-radius: 8px;
-            margin-bottom: 20px;
             font-family: 'Courier New', monospace;
         }
 
@@ -183,9 +156,9 @@
             <div class="container">
                 <ul>
                     <li><a href="../index.html">Home</a></li>
+                    <li><a href="../resources.html" class="active">Resources</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
                     <li><a href="../resume.html">Resume</a></li>
-                    <li><a href="../index.html#blog">Blog</a></li>
-                    <li><a href="../index.html#resources" class="active">Resources</a></li>
                 </ul>
             </div>
         </nav>
@@ -197,8 +170,8 @@
             <p class="subtitle">Quick reference guide for VoIP troubleshooting and server management</p>
             
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search commands, descriptions, or categories..." autocomplete="off">
-                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="Search" autocomplete="off">
+                <div id="searchResults" class="search-results"></div>
             </div>
 
             <div class="quick-nav">
@@ -217,7 +190,7 @@
         </section>
 
         <div class="favorites-section" id="favoritesSection" style="display: none;">
-            <h2>⭐ Favorite Commands</h2>
+            <h2>Favorite Commands</h2>
             <div id="favoritesList" class="favorites-list"></div>
         </div>
 
@@ -246,12 +219,6 @@
                     <button class="favorite-btn" data-command="tracert">☆</button>
                 </div>
                 <p class="command-description">Maps the complete network path packets take from source to destination.</p>
-                <div class="placeholder-inputs">
-                    <div class="input-group">
-                        <div class="placeholder-label">Destination:</div>
-                        <input type="text" class="placeholder-input" data-field="destination" placeholder="example.com or IP address">
-                    </div>
-                </div>
                 <div class="command-block" data-template="tracert {destination}">
                     <code>tracert <span class="placeholder">destination</span></code>
                     <button class="copy-btn">Copy</button>
@@ -267,12 +234,6 @@
                     <button class="favorite-btn" data-command="ping">☆</button>
                 </div>
                 <p class="command-description">Tests network connectivity and measures round-trip time.</p>
-                <div class="placeholder-inputs">
-                    <div class="input-group">
-                        <div class="placeholder-label">Hostname or IP:</div>
-                        <input type="text" class="placeholder-input" data-field="host" placeholder="example.com or IP address">
-                    </div>
-                </div>
                 <div class="command-block" data-template="ping {host}">
                     <code>ping <span class="placeholder">hostname</span></code>
                     <button class="copy-btn">Copy</button>
@@ -301,14 +262,8 @@
                     <button class="favorite-btn" data-command="mtr">☆</button>
                 </div>
                 <p class="command-description">Combines traceroute and ping functionality.</p>
-                <div class="placeholder-inputs">
-                    <div class="input-group">
-                        <div class="placeholder-label">Hostname or IP:</div>
-                        <input type="text" class="placeholder-input" data-field="host" placeholder="example.com or IP address">
-                    </div>
-                </div>
-                <div class="command-block" data-template="sudo mtr {host}">
-                    <code>sudo mtr <span class="placeholder">hostname</span></code>
+                <div class="command-block" data-template="mtr {host}">
+                    <code>mtr <span class="placeholder">hostname</span></code>
                     <button class="copy-btn">Copy</button>
                 </div>
             </div>
@@ -360,18 +315,6 @@
                 </div>
             </div>
 
-            <div class="command-card" data-tags="grep oom memory">
-                <div class="command-header">
-                    <h3>Check for OOM Killer Events</h3>
-                    <button class="favorite-btn" data-command="grep-oom">☆</button>
-                </div>
-                <p class="command-description">Search for Out-Of-Memory killer events.</p>
-                <div class="command-block">
-                    <code>grep -i oom /var/log/syslog</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-            </div>
-
             </div>
         </section>
 
@@ -379,15 +322,22 @@
             <h2 class="category-toggle">Asterisk Management</h2>
             <div class="category-content">
             
-            <div class="command-card" data-tags="asterisk status">
+            <div class="command-card" data-tags="asterisk status restart">
                 <div class="command-header">
-                    <h3>Check Asterisk Status</h3>
-                    <button class="favorite-btn" data-command="asterisk-status">☆</button>
+                    <h3>Asterisk Service Controls</h3>
+                    <button class="favorite-btn" data-command="asterisk-service">☆</button>
                 </div>
-                <p class="command-description">View the current status of the Asterisk service.</p>
+                <p class="command-description">Check status or restart the Asterisk service.</p>
                 <div class="command-block">
                     <code>systemctl status asterisk</code>
                     <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-block">
+                    <code>sudo systemctl restart asterisk</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>⚠️ Warning:</strong> Restarting terminates all active calls.
                 </div>
             </div>
 
@@ -397,30 +347,9 @@
                     <button class="favorite-btn" data-command="channel-hangup">☆</button>
                 </div>
                 <p class="command-description">Forcefully terminate a specific channel.</p>
-                <div class="placeholder-inputs">
-                    <div class="input-group">
-                        <div class="placeholder-label">Channel Name:</div>
-                        <input type="text" class="placeholder-input" data-field="channel" placeholder="channel name">
-                    </div>
-                </div>
                 <div class="command-block" data-template="sudo channel request hangup '{channel}'">
                     <code>sudo channel request hangup '<span class="placeholder">channel name</span>'</code>
                     <button class="copy-btn">Copy</button>
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="asterisk restart">
-                <div class="command-header">
-                    <h3>Restart Asterisk Service</h3>
-                    <button class="favorite-btn" data-command="asterisk-restart">☆</button>
-                </div>
-                <p class="command-description">Completely restart the Asterisk service.</p>
-                <div class="command-block">
-                    <code>sudo systemctl restart asterisk</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>⚠️ Warning:</strong> This terminates all active calls.
                 </div>
             </div>
 
@@ -579,6 +508,46 @@
                 </div>
             </div>
 
+            <div class="command-card" data-tags="systemctl services list">
+                <div class="command-header">
+                    <h3>List Services</h3>
+                    <button class="favorite-btn" data-command="systemctl-list">☆</button>
+                </div>
+                <p class="command-description">List all loaded service units.</p>
+                <div class="command-block">
+                    <code>systemctl list-units --type=service</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="sar performance today cpu">
+                <div class="command-header">
+                    <h3>SAR Quick View (Today)</h3>
+                    <button class="favorite-btn" data-command="sar-today">☆</button>
+                </div>
+                <p class="command-description">View current day performance stats.</p>
+                <div class="command-block">
+                    <code>sar -p</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-block">
+                    <code>sar</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="oom memory">
+                <div class="command-header">
+                    <h3>Check for OOM Killer Events</h3>
+                    <button class="favorite-btn" data-command="grep-oom">☆</button>
+                </div>
+                <p class="command-description">Search for Out-Of-Memory killer events.</p>
+                <div class="command-block">
+                    <code>grep -i oom /var/log/syslog</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
             </div>
         </section>
 
@@ -648,6 +617,22 @@
                 </div>
             </div>
 
+            <div class="command-card" data-tags="files spool voicemail tmp">
+                <div class="command-header">
+                    <h3>Spool (Temp & Voicemail)</h3>
+                    <button class="favorite-btn" data-command="spool-asterisk">☆</button>
+                </div>
+                <p class="command-description">Asterisk spool directory for temp files and voicemail.</p>
+                <div class="command-block">
+                    <code>/var/spool/asterisk/tmp</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-block">
+                    <code>/var/spool/asterisk/voicemail</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
             <div class="command-card" data-tags="files voicemail">
                 <div class="command-header">
                     <h3>Voicemail Storage</h3>
@@ -656,6 +641,42 @@
                 <p class="command-description">Directory where voicemail recordings are stored.</p>
                 <div class="command-block">
                     <code>/var/spool/asterisk/voicemail/default</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="files tftp config">
+                <div class="command-header">
+                    <h3>TFTP Config Files</h3>
+                    <button class="favorite-btn" data-command="tftp-config">☆</button>
+                </div>
+                <p class="command-description">TFTP boot config directory.</p>
+                <div class="command-block">
+                    <code>/tftpboot/config</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="files moh">
+                <div class="command-header">
+                    <h3>Music on Hold</h3>
+                    <button class="favorite-btn" data-command="moh-location">☆</button>
+                </div>
+                <p class="command-description">Asterisk MOH files directory.</p>
+                <div class="command-block">
+                    <code>/var/lib/asterisk/moh</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="files mail log">
+                <div class="command-header">
+                    <h3>Mail Log</h3>
+                    <button class="favorite-btn" data-command="mail-log">☆</button>
+                </div>
+                <p class="command-description">System mail log file.</p>
+                <div class="command-block">
+                    <code>/var/log/maillog</code>
                     <button class="copy-btn">Copy</button>
                 </div>
             </div>
@@ -673,12 +694,6 @@
                     <button class="favorite-btn" data-command="find-name">☆</button>
                 </div>
                 <p class="command-description">Search the entire filesystem for a file.</p>
-                <div class="placeholder-inputs">
-                    <div class="input-group">
-                        <div class="placeholder-label">Filename:</div>
-                        <input type="text" class="placeholder-input" data-field="filename" placeholder="filename.ext">
-                    </div>
-                </div>
                 <div class="command-block" data-template="find / -name {filename} 2>/dev/null">
                     <code>find / -name <span class="placeholder">filename.ext</span> 2>/dev/null</code>
                     <button class="copy-btn">Copy</button>
@@ -691,12 +706,6 @@
                     <button class="favorite-btn" data-command="find-directory">☆</button>
                 </div>
                 <p class="command-description">Search for directories/folders by name.</p>
-                <div class="placeholder-inputs">
-                    <div class="input-group">
-                        <div class="placeholder-label">Directory Name:</div>
-                        <input type="text" class="placeholder-input" data-field="dirname" placeholder="directory_name">
-                    </div>
-                </div>
                 <div class="command-block" data-template="find / -type d -name {dirname} 2>/dev/null">
                     <code>find / -type d -name <span class="placeholder">directory_name</span> 2>/dev/null</code>
                     <button class="copy-btn">Copy</button>
@@ -719,11 +728,11 @@
     <!-- Search Modal -->
     <div class="search-modal" id="searchModal">
         <div class="search-modal-content">
-            <h3>Enter Search Term</h3>
-            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Enter keyword to search...">
+            <h3>Complete Command</h3>
+            <div class="search-modal-fields" id="searchModalFields"></div>
             <div class="search-modal-buttons">
                 <button class="search-modal-btn btn-cancel" id="searchModalCancel">Cancel</button>
-                <button class="search-modal-btn btn-search" id="searchModalSearch">Copy Command</button>
+                <button class="search-modal-btn btn-search" id="searchModalSearch">Done</button>
             </div>
         </div>
     </div>
@@ -743,37 +752,67 @@
 
         // Search functionality - FIXED
         const searchInput = document.getElementById('searchInput');
-        
+        const searchResults = document.getElementById('searchResults');
+        const commandCards = Array.from(document.querySelectorAll('.command-card'));
+
+        function buildResultButton(card, label, meta) {
+            if (!card.id) {
+                card.id = `command-card-${Math.random().toString(36).slice(2, 9)}`;
+            }
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'search-result';
+            btn.dataset.targetId = card.id;
+            btn.innerHTML = `${label}${meta ? `<small>${meta}</small>` : ''}`;
+            return btn;
+        }
+
         searchInput.addEventListener('input', (e) => {
             const searchTerm = e.target.value.toLowerCase().trim();
-            const commandCards = document.querySelectorAll('.command-card');
-            
-            commandCards.forEach(card => {
+            searchResults.innerHTML = '';
+
+            if (!searchTerm) {
+                return;
+            }
+
+            const matches = commandCards.filter(card => {
                 const tags = (card.getAttribute('data-tags') || '').toLowerCase();
                 const title = (card.querySelector('h3')?.textContent || '').toLowerCase();
                 const description = (card.querySelector('.command-description')?.textContent || '').toLowerCase();
                 const notes = (card.querySelector('.command-notes')?.textContent || '').toLowerCase();
-                
                 const searchable = `${tags} ${title} ${description} ${notes}`;
-                
-                if (searchTerm === '' || searchable.includes(searchTerm)) {
-                    card.style.display = '';
-                } else {
-                    card.style.display = 'none';
-                }
+                return searchable.includes(searchTerm);
             });
 
-            // Auto-expand categories with visible cards
-            document.querySelectorAll('.command-category').forEach(category => {
-                const visibleCards = Array.from(category.querySelectorAll('.command-card')).filter(card => card.style.display !== 'none');
+            if (matches.length === 0) {
+                const empty = document.createElement('div');
+                empty.className = 'search-result';
+                empty.textContent = 'No matches found.';
+                empty.style.cursor = 'default';
+                searchResults.appendChild(empty);
+                return;
+            }
+
+            matches.forEach(card => {
+                const title = (card.querySelector('h3')?.textContent || 'Untitled').trim();
+                const tags = card.getAttribute('data-tags') || '';
+                searchResults.appendChild(buildResultButton(card, title, tags));
+            });
+        });
+
+        searchResults.addEventListener('click', (e) => {
+            const target = e.target.closest('.search-result');
+            if (!target || !target.dataset.targetId) return;
+            const card = document.getElementById(target.dataset.targetId);
+            if (!card) return;
+            const category = card.closest('.command-category');
+            if (category) {
                 const categoryContent = category.querySelector('.category-content');
                 const categoryToggle = category.querySelector('.category-toggle');
-                
-                if (searchTerm !== '' && visibleCards.length > 0) {
-                    categoryContent.classList.remove('collapsed');
-                    categoryToggle.classList.remove('collapsed');
-                }
-            });
+                categoryContent.classList.remove('collapsed');
+                categoryToggle.classList.remove('collapsed');
+            }
+            card.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
 
         // Category toggle - FIXED
@@ -785,116 +824,152 @@
             });
         });
 
-        // Copy functionality with input support and search modal
-        let currentSearchButton = null;
+        // Copy functionality with fill-in modal
+        const searchModal = document.getElementById('searchModal');
+        const searchModalFields = document.getElementById('searchModalFields');
+        const searchModalCancel = document.getElementById('searchModalCancel');
+        const searchModalDone = document.getElementById('searchModalSearch');
+        let currentCopyButton = null;
+        let currentTemplate = null;
 
-        function showSearchModal(btn) {
-            currentSearchButton = btn;
-            const modal = document.getElementById('searchModal');
-            const input = document.getElementById('searchModalInput');
-            modal.classList.add('show');
-            input.value = '';
-            input.focus();
+        function extractTemplateFields(template) {
+            const fields = [];
+            const matches = template.matchAll(/{([^}]+)}/g);
+            for (const match of matches) {
+                const field = match[1];
+                if (!fields.includes(field)) {
+                    fields.push(field);
+                }
+            }
+            return fields;
         }
 
-        document.getElementById('searchModalCancel').addEventListener('click', () => {
-            document.getElementById('searchModal').classList.remove('show');
-            currentSearchButton = null;
-        });
+        function formatFieldLabel(field) {
+            const map = {
+                search: 'Search term',
+                host: 'Hostname or IP',
+                destination: 'Destination',
+                channel: 'Channel name',
+                filename: 'Filename',
+                dirname: 'Directory name'
+            };
+            return map[field] || field.replace(/[-_]/g, ' ');
+        }
 
-        document.getElementById('searchModalSearch').addEventListener('click', () => {
-            if (currentSearchButton) {
-                const searchValue = document.getElementById('searchModalInput').value.trim();
-                if (!searchValue) {
-                    alert('Please enter a search term');
+        function setCopiedState(button) {
+            if (!button) return;
+            button.textContent = 'Copied!';
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.textContent = 'Copy';
+                button.classList.remove('copied');
+            }, 2000);
+        }
+
+        function openFillModal(button, commandBlock) {
+            const template = commandBlock.getAttribute('data-template');
+            if (!template) return;
+            const fields = extractTemplateFields(template);
+            if (fields.length === 0) {
+                return;
+            }
+
+            currentCopyButton = button;
+            currentTemplate = template;
+            searchModalFields.innerHTML = '';
+
+            fields.forEach(field => {
+                const label = formatFieldLabel(field);
+                const wrapper = document.createElement('label');
+                wrapper.className = 'search-modal-field';
+                const title = document.createElement('span');
+                title.textContent = label;
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.className = 'search-modal-input';
+                input.dataset.field = field;
+                input.placeholder = label;
+                wrapper.appendChild(title);
+                wrapper.appendChild(input);
+                searchModalFields.appendChild(wrapper);
+            });
+
+            searchModal.classList.add('show');
+            const firstInput = searchModalFields.querySelector('.search-modal-input');
+            if (firstInput) {
+                firstInput.focus();
+            }
+        }
+
+        function closeFillModal() {
+            searchModal.classList.remove('show');
+            currentCopyButton = null;
+            currentTemplate = null;
+            searchModalFields.innerHTML = '';
+        }
+
+        searchModalCancel.addEventListener('click', closeFillModal);
+
+        searchModalDone.addEventListener('click', () => {
+            if (!currentTemplate) return;
+            let filled = currentTemplate;
+            const inputs = Array.from(searchModalFields.querySelectorAll('.search-modal-input'));
+            for (const input of inputs) {
+                const value = input.value.trim();
+                if (!value) {
+                    alert('Please fill in all fields');
+                    input.focus();
                     return;
                 }
-                
-                const commandBlock = currentSearchButton.parentElement;
-                const template = commandBlock.getAttribute('data-template');
-                const text = template.replace(/{search}/g, searchValue);
-                
-                navigator.clipboard.writeText(text).then(() => {
-                    currentSearchButton.textContent = 'Copied!';
-                    currentSearchButton.classList.add('copied');
-                    setTimeout(() => {
-                        currentSearchButton.textContent = 'Copy';
-                        currentSearchButton.classList.remove('copied');
-                    }, 2000);
-                });
-                
-                document.getElementById('searchModal').classList.remove('show');
-                currentSearchButton = null;
+                const field = input.dataset.field;
+                const fieldRegex = new RegExp(`{${field}}`, 'g');
+                filled = filled.replace(fieldRegex, value);
             }
-        });
 
-        // Enter key in modal
-        document.getElementById('searchModalInput').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                document.getElementById('searchModalSearch').click();
-            }
-        });
-
-        // Click outside modal to close
-        document.getElementById('searchModal').addEventListener('click', (e) => {
-            if (e.target.id === 'searchModal') {
-                document.getElementById('searchModal').classList.remove('show');
-                currentSearchButton = null;
-            }
-        });
-
-        document.querySelectorAll('.copy-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const commandBlock = this.parentElement;
-                const hasSearch = commandBlock.getAttribute('data-has-search') === 'true';
-                
-                if (hasSearch) {
-                    showSearchModal(this);
-                    return;
-                }
-                
-                const card = commandBlock.closest('.command-card');
-                const template = commandBlock.getAttribute('data-template');
-                
-                let text;
-                if (template) {
-                    text = template;
-                    const inputs = card.querySelectorAll('.placeholder-input');
-                    inputs.forEach(input => {
-                        const field = input.getAttribute('data-field');
-                        const value = input.value.trim() || input.placeholder;
-                        text = text.replace(`{${field}}`, value);
-                    });
-                } else {
-                    const code = commandBlock.querySelector('code');
-                    text = code.textContent;
-                }
-                
-                navigator.clipboard.writeText(text).then(() => {
-                    this.textContent = 'Copied!';
-                    this.classList.add('copied');
-                    setTimeout(() => {
-                        this.textContent = 'Copy';
-                        this.classList.remove('copied');
-                    }, 2000);
-                });
+            navigator.clipboard.writeText(filled).then(() => {
+                setCopiedState(currentCopyButton);
+                closeFillModal();
             });
         });
 
-        // Update command display when inputs change
-        document.querySelectorAll('.placeholder-input').forEach(input => {
-            input.addEventListener('input', function() {
-                const card = this.closest('.command-card');
-                const field = this.getAttribute('data-field');
-                const value = this.value || this.placeholder;
-                
-                // Update all placeholders in this card's command blocks
-                card.querySelectorAll('.command-block[data-template]').forEach(block => {
-                    const placeholder = block.querySelector('.placeholder');
-                    if (block.getAttribute('data-template').includes(`{${field}}`)) {
-                        placeholder.textContent = value;
-                    }
+        searchModal.addEventListener('click', (e) => {
+            if (e.target.id === 'searchModal') {
+                closeFillModal();
+            }
+        });
+
+        searchModal.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                searchModalDone.click();
+            }
+        });
+
+        function handleCopyClick(button) {
+            const commandBlock = button.parentElement;
+            const template = commandBlock.getAttribute('data-template');
+
+            if (template) {
+                const fields = extractTemplateFields(template);
+                if (fields.length > 0) {
+                    openFillModal(button, commandBlock);
+                    return;
+                }
+                navigator.clipboard.writeText(template).then(() => {
+                    setCopiedState(button);
                 });
+                return;
+            }
+
+            const code = commandBlock.querySelector('code');
+            const text = code ? code.textContent : '';
+            navigator.clipboard.writeText(text).then(() => {
+                setCopiedState(button);
+            });
+        }
+
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                handleCopyClick(this);
             });
         });
 
@@ -926,49 +1001,27 @@
                 const originalCard = document.querySelector(`[data-command="${commandId}"]`)?.closest('.command-card');
                 if (originalCard) {
                     const clone = originalCard.cloneNode(true);
-                    clone.querySelector('.favorite-btn')?.remove();
+                    const cloneFavoriteBtn = clone.querySelector('.favorite-btn');
+                    if (cloneFavoriteBtn) {
+                        cloneFavoriteBtn.classList.add('active');
+                        cloneFavoriteBtn.textContent = '★';
+                        cloneFavoriteBtn.addEventListener('click', function() {
+                            const id = this.getAttribute('data-command');
+                            favorites = favorites.filter(favId => favId !== id);
+                            localStorage.setItem('favoriteCommands', JSON.stringify(favorites));
+                            updateFavoritesDisplay();
+                            const originalBtn = document.querySelector(`[data-command="${id}"]`);
+                            if (originalBtn) {
+                                originalBtn.classList.remove('active');
+                                originalBtn.textContent = '☆';
+                            }
+                        });
+                    }
                     
                     // Re-attach copy button functionality to cloned buttons
                     clone.querySelectorAll('.copy-btn').forEach(btn => {
                         btn.addEventListener('click', function() {
-                            const commandBlock = this.parentElement;
-                            const hasSearch = commandBlock.getAttribute('data-has-search') === 'true';
-                            
-                            if (hasSearch) {
-                                currentSearchButton = this;
-                                const modal = document.getElementById('searchModal');
-                                const input = document.getElementById('searchModalInput');
-                                modal.classList.add('show');
-                                input.value = '';
-                                input.focus();
-                                return;
-                            }
-                            
-                            const card = commandBlock.closest('.command-card');
-                            const template = commandBlock.getAttribute('data-template');
-                            
-                            let text;
-                            if (template) {
-                                text = template;
-                                const inputs = card.querySelectorAll('.placeholder-input');
-                                inputs.forEach(input => {
-                                    const field = input.getAttribute('data-field');
-                                    const value = input.value.trim() || input.placeholder;
-                                    text = text.replace(`{${field}}`, value);
-                                });
-                            } else {
-                                const code = commandBlock.querySelector('code');
-                                text = code.textContent;
-                            }
-                            
-                            navigator.clipboard.writeText(text).then(() => {
-                                this.textContent = 'Copied!';
-                                this.classList.add('copied');
-                                setTimeout(() => {
-                                    this.textContent = 'Copy';
-                                    this.classList.remove('copied');
-                                }, 2000);
-                            });
+                            handleCopyClick(this);
                         });
                     });
                     

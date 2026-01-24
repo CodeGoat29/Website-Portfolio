@@ -29,9 +29,9 @@
             <div class="container">
                 <ul>
                     <li><a href="../index.html">Home</a></li>
-                    <li><a href="../resume.html">Resume</a></li>
-                    <li><a href="../blog.html">Blog</a></li>
                     <li><a href="../resources.html" class="active">Resources</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../resume.html">Resume</a></li>
                 </ul>
             </div>
         </nav>
@@ -43,8 +43,8 @@
             <p class="subtitle">Comprehensive study guide for the Cybersecurity Analyst certification</p>
             
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search topics, keywords, or concepts..." autocomplete="off">
-                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="Search" autocomplete="off">
+                <div id="searchResults" class="search-results"></div>
             </div>
 
             <div class="quick-nav">
@@ -287,7 +287,7 @@
                 <div class="command-card" data-tags="frameworks kill chain mitre attack diamond">
                     <div class="command-header"><h3>Attack Methodology Frameworks</h3></div>
                     <ul>
-                        <li><strong>Cyber Kill Chain:</strong> Recon→Weaponization→Delivery→Exploitation→Installation→C2→Actions.</li>
+                        <li><strong>Cyber Kill Chain:</strong> Recon → Weaponization → Delivery → Exploitation → Installation → C2 → Actions.</li>
                         <li><strong>Diamond Model:</strong> Adversary, Infrastructure, Capability, Victim relationships.</li>
                         <li><strong>MITRE ATT&CK:</strong> Knowledge base of adversary TTPs by attack phase.</li>
                         <li><strong>OSSTMM:</strong> Peer-reviewed security testing methodology.</li>
@@ -446,31 +446,66 @@
 
         // Search functionality
         const searchInput = document.getElementById('searchInput');
-        const commandCards = document.querySelectorAll('.command-card');
+        const searchResults = document.getElementById('searchResults');
+        const commandCards = Array.from(document.querySelectorAll('.command-card'));
+
+        function buildResultButton(card, label, meta) {
+            if (!card.id) {
+                card.id = `command-card-${Math.random().toString(36).slice(2, 9)}`;
+            }
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'search-result';
+            btn.dataset.targetId = card.id;
+            btn.innerHTML = `${label}${meta ? `<small>${meta}</small>` : ''}`;
+            return btn;
+        }
 
         searchInput.addEventListener('input', (e) => {
             const searchTerm = e.target.value.toLowerCase().trim();
-            
-            commandCards.forEach(card => {
+            searchResults.innerHTML = '';
+
+            if (!searchTerm) {
+                return;
+            }
+
+            const matches = commandCards.filter(card => {
                 const tags = card.getAttribute('data-tags')?.toLowerCase() || '';
                 const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
                 const content = card.textContent.toLowerCase();
-                
                 const searchable = `${tags} ${title} ${content}`;
-                
-                if (searchTerm === '' || searchable.includes(searchTerm)) {
-                    card.style.display = '';
-                    const category = card.closest('.command-category');
-                    if (category) {
-                        const categoryContent = category.querySelector('.category-content');
-                        const categoryToggle = category.querySelector('.category-toggle');
-                        categoryContent.classList.remove('collapsed');
-                        categoryToggle.classList.remove('collapsed');
-                    }
-                } else {
-                    card.style.display = 'none';
-                }
+                return searchable.includes(searchTerm);
             });
+
+            if (matches.length === 0) {
+                const empty = document.createElement('div');
+                empty.className = 'search-result';
+                empty.textContent = 'No matches found.';
+                empty.style.cursor = 'default';
+                searchResults.appendChild(empty);
+                return;
+            }
+
+            matches.forEach(card => {
+                const title = card.querySelector('h3')?.textContent.trim() || 'Untitled';
+                const tags = card.getAttribute('data-tags') || '';
+                searchResults.appendChild(buildResultButton(card, title, tags));
+            });
+        });
+
+        searchResults.addEventListener('click', (e) => {
+            const target = e.target.closest('.search-result');
+            if (!target || !target.dataset.targetId) return;
+            const card = document.getElementById(target.dataset.targetId);
+            if (!card) return;
+            const category = card.closest('.command-category');
+            if (category) {
+                const categoryContent = category.querySelector('.category-content');
+                const categoryToggle = category.querySelector('.category-toggle');
+                categoryContent.classList.remove('collapsed');
+                categoryToggle.classList.remove('collapsed');
+            }
+            card.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
 
         // Category collapse/expand
