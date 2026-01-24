@@ -822,6 +822,7 @@ footer {
 
     header {
         background: rgba(246, 247, 249, 0.92);
+        position: static;
     }
 
     .dark-mode header {
