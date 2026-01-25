@@ -1945,8 +1945,8 @@ footer {
 .site-footer {
     background: #0f1a17;
     color: #c6d2cc;
-    padding: 24px 0 14px;
-    margin-top: 48px;
+    padding: 16px 0 10px;
+    margin-top: 32px;
 }
 
 .dark-mode .site-footer {
@@ -1956,14 +1956,16 @@ footer {
 .footer-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-    margin-bottom: 12px;
+    gap: 10px;
+    margin-bottom: 8px;
 }
 
 .footer-grid h4 {
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     color: #e7efe9;
-    font-size: 0.95em;
+    font-size: 0.82em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
 .footer-grid ul {
@@ -1973,7 +1975,8 @@ footer {
 }
 
 .footer-grid li {
-    margin-bottom: 6px;
+    margin-bottom: 4px;
+    font-size: 0.92em;
 }
 
 .footer-grid a {
@@ -1987,8 +1990,8 @@ footer {
 
 .footer-bar {
     border-top: 1px solid rgba(255,255,255,0.08);
-    padding-top: 10px;
+    padding-top: 6px;
     text-align: center;
     color: #8fa39a;
-    font-size: 0.9em;
+    font-size: 0.82em;
 }
