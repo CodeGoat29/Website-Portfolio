@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network+ Notes - DiPiazza</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" type="image/png" href="/images/thegoat.png">
+</head>
+<body>
+    <div class="top-controls">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <a href="../index.html" class="logo-link"><img src="/images/thegoat.png" alt="DiPiazza Logo" class="logo"></a>
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Where I break stuff, then write about it.</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../resources.html" class="active">Resources</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../resume.html">Resume</a></li>
+                    <li><button class="nav-cta" type="button" data-contact-open>Get in Touch</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="notes-header">
+            <h1>CompTIA Network+ (N10-008) Study Notes</h1>
+            <p class="subtitle">Structured notes aligned to the Network+ exam domains</p>
+
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search" autocomplete="off">
+                <div id="searchResults" class="search-results"></div>
+            </div>
+
+            <div class="quick-nav">
+                <h3>Table of Contents</h3>
+                <div class="nav-links">
+                    <a href="#networking-fundamentals" class="nav-link">1.0 Networking Fundamentals (24%)</a>
+                    <a href="#network-implementations" class="nav-link">2.0 Network Implementations (19%)</a>
+                    <a href="#network-operations" class="nav-link">3.0 Network Operations (16%)</a>
+                    <a href="#network-security" class="nav-link">4.0 Network Security (19%)</a>
+                    <a href="#network-troubleshooting" class="nav-link">5.0 Network Troubleshooting (22%)</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="networking-fundamentals" class="command-category">
+            <h2 class="category-toggle">1.0 Networking Fundamentals (24%)</h2>
+            <div class="category-content">
+                <div class="command-card">
+                    <div class="command-header"><h3>OSI Model + Encapsulation</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>OSI model:</strong> A 7-layer reference model (Physical, Data link, Network, Transport, Session, Presentation, Application) that describes how data moves across networks.</li>
+                            <li><strong>Layer 1 - Physical:</strong> Moves bits over media; defines cables, connectors, voltages, and RF signals.</li>
+                            <li><strong>Layer 2 - Data link:</strong> Frames data, uses MAC addresses, and handles switching/loop control.</li>
+                            <li><strong>Layer 3 - Network:</strong> Provides logical addressing and routing between networks (IP).</li>
+                            <li><strong>Layer 4 - Transport:</strong> End-to-end delivery, segmentation, reliability, and flow control (TCP/UDP).</li>
+                            <li><strong>Layer 5 - Session:</strong> Establishes, manages, and tears down sessions between hosts.</li>
+                            <li><strong>Layer 6 - Presentation:</strong> Data translation, compression, and encryption (e.g., formats like JPEG/MP3).</li>
+                            <li><strong>Layer 7 - Application:</strong> User-facing network services like HTTP, DNS, FTP, and SSH.</li>
+                            <li><strong>Encapsulation/decapsulation:</strong> Adding/removing headers and trailers as data moves down/up the stack.</li>
+                            <li><strong>Ethernet header:</strong> L2 header with source/destination MAC and type/length.</li>
+                            <li><strong>IP header:</strong> L3 header with source/destination IP, TTL, and protocol fields.</li>
+                            <li><strong>TCP/UDP headers:</strong> L4 headers with ports; TCP adds sequencing/flags, UDP is lightweight.</li>
+                            <li><strong>TCP flags:</strong> URG (urgent), ACK (acknowledgment), PSH (push), RST (reset), SYN (start), FIN (finish).</li>
+                            <li><strong>Payload:</strong> The actual data carried in the frame/packet.</li>
+                            <li><strong>MTU:</strong> Maximum packet size before fragmentation.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>Topologies</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>Mesh:</strong> Every node connects to many others for redundancy and fault tolerance; complex and expensive.</li>
+                            <li><strong>Star/hub-and-spoke:</strong> Devices connect to a central switch/router; easy to manage but a single point of failure.</li>
+                            <li><strong>Bus:</strong> Single shared backbone cable; inexpensive but breaks/collisions affect all nodes.</li>
+                            <li><strong>Ring:</strong> Nodes form a loop; a break interrupts traffic flow.</li>
+                            <li><strong>Hybrid:</strong> Combination of multiple topologies, often used in WANs.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>Network Types</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>Peer-to-peer:</strong> Devices share resources directly without a central server.</li>
+                            <li><strong>Client-server:</strong> Clients request services from a centralized server.</li>
+                            <li><strong>LAN:</strong> Local area network within a small area (home/office).</li>
+                            <li><strong>MAN:</strong> Metropolitan area network covering a city/region.</li>
+                            <li><strong>WAN:</strong> Wide area network connecting distant locations.</li>
+                            <li><strong>WLAN:</strong> Wireless LAN using RF and access points.</li>
+                            <li><strong>PAN:</strong> Personal area network (Bluetooth/NFC, wearables).</li>
+                            <li><strong>CAN:</strong> Campus area network across a campus/site.</li>
+                            <li><strong>SAN:</strong> Storage area network providing block-level storage.</li>
+                            <li><strong>SD-WAN:</strong> Software-defined WAN optimized for cloud traffic.</li>
+                            <li><strong>MPLS:</strong> Label-based forwarding to select optimal paths.</li>
+                            <li><strong>mGRE:</strong> Multipoint GRE tunnels for DMVPN-style connections.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>Provider Links</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>Satellite:</strong> Internet via satellites; high latency, good for rural areas.</li>
+                            <li><strong>DSL:</strong> Internet over phone lines; distance-sensitive (ADSL asymmetric).</li>
+                            <li><strong>Cable:</strong> DOCSIS broadband over coax; supports data/voice/video.</li>
+                            <li><strong>Leased line:</strong> Dedicated point-to-point circuit (e.g., T1–T4).</li>
+                            <li><strong>Metro-optical:</strong> Metro fiber networks interconnecting businesses/data centers.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>Service-related Entry Points</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>Demarcation point:</strong> ISP/Telco entry point (ONT/modem/phone box).</li>
+                            <li><strong>Smartjack/NID:</strong> Loopback tests, amplification, alarms, surge protection.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>Virtual Network Concepts</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>vSwitch:</strong> Virtual switch with features like port mirroring and NetFlow.</li>
+                            <li><strong>vNIC:</strong> Virtual NIC that connects a VM to a virtual network.</li>
+                            <li><strong>NFV:</strong> Virtualized network functions like routers, firewalls, VPNs, and load balancers.</li>
+                            <li><strong>Hypervisor:</strong> VM manager; Type 1 runs on hardware, Type 2 runs on a host OS.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>Cabling, Connectors, and Standards</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>Cat 5:</strong> UTP copper, up to 100 Mbps at 100m.</li>
+                            <li><strong>Cat 5e:</strong> Enhanced Cat 5, up to 1 Gbps at 100m.</li>
+                            <li><strong>Cat 6:</strong> 1 Gbps at 100m; 10 Gbps up to ~55m (UTP).</li>
+                            <li><strong>Cat 6a:</strong> 10 Gbps at 100m.</li>
+                            <li><strong>Cat 7:</strong> Shielded, up to 10 Gbps at 100m.</li>
+                            <li><strong>Cat 8:</strong> 25/40 Gbps up to ~30m.</li>
+                            <li><strong>Coax/RG-6:</strong> Coax cable used for cable TV/broadband.</li>
+                            <li><strong>Twinax:</strong> Dual-conductor coax for short high-speed links.</li>
+                            <li><strong>TIA/EIA-568A:</strong> Wiring pinout with green pair on pins 1/2.</li>
+                            <li><strong>TIA/EIA-568B:</strong> Wiring pinout with orange pair on pins 1/2.</li>
+                            <li><strong>Single-mode fiber:</strong> Long-distance fiber with a single light path.</li>
+                            <li><strong>Multimode fiber:</strong> Shorter-distance fiber with multiple light paths.</li>
+                            <li><strong>LC:</strong> Small-form-factor fiber connector.</li>
+                            <li><strong>ST:</strong> Bayonet-style fiber connector.</li>
+                            <li><strong>SC:</strong> Square, snap-in fiber connector.</li>
+                            <li><strong>MT/MTRJ:</strong> Small multi-fiber connector for duplex links.</li>
+                            <li><strong>RJ11:</strong> Telephone connector (2 pairs).</li>
+                            <li><strong>RJ45:</strong> Ethernet connector (8P8C).</li>
+                            <li><strong>F-type:</strong> Coax connector for TV/cable.</li>
+                            <li><strong>APC:</strong> Angled fiber connector with low back-reflection.</li>
+                            <li><strong>UPC:</strong> Flat fiber connector with higher back-reflection than APC.</li>
+                            <li><strong>SFP:</strong> 1 Gbps small form-factor transceiver.</li>
+                            <li><strong>SFP+:</strong> 10 Gbps enhanced SFP.</li>
+                            <li><strong>QSFP:</strong> Quad SFP transceiver, 4 lanes.</li>
+                            <li><strong>QSFP+:</strong> Quad SFP+ transceiver, 4x10 Gbps.</li>
+                            <li><strong>Patch panel/patch bay:</strong> Cable termination and organization panel.</li>
+                            <li><strong>Fiber distribution panel:</strong> Fiber termination/management panel.</li>
+                            <li><strong>66 block:</strong> Older punchdown for voice lines.</li>
+                            <li><strong>110 block:</strong> Common punchdown for data cabling.</li>
+                            <li><strong>Krone:</strong> Alternative punchdown system (international).</li>
+                            <li><strong>Bix:</strong> Older punchdown system.</li>
+                            <li><strong>10BASE-T:</strong> 10 Mbps over copper, 100m.</li>
+                            <li><strong>100BASE-TX:</strong> 100 Mbps over Cat 5, 100m.</li>
+                            <li><strong>1000BASE-T:</strong> 1 Gbps over Cat 5e+, 100m.</li>
+                            <li><strong>10GBASE-T:</strong> 10 Gbps over Cat 6a/7, 100m.</li>
+                            <li><strong>40GBASE-T:</strong> 40 Gbps over Cat 8, ~30m.</li>
+                            <li><strong>100BASE-FX:</strong> 100 Mbps over MMF, up to ~2 km.</li>
+                            <li><strong>100BASE-SX:</strong> 100 Mbps over MMF, ~300 m.</li>
+                            <li><strong>1000BASE-SX:</strong> 1 Gbps over MMF, ~220–550 m.</li>
+                            <li><strong>1000BASE-LX:</strong> 1 Gbps over SMF/MMF, up to ~5 km on SMF.</li>
+                            <li><strong>10GBASE-SR:</strong> 10 Gbps over MMF, short range.</li>
+                            <li><strong>10GBASE-LR:</strong> 10 Gbps over SMF, up to 10 km.</li>
+                            <li><strong>CWDM:</strong> Coarse wavelength multiplexing for multiple channels.</li>
+                            <li><strong>DWDM:</strong> Dense wavelength multiplexing for many channels.</li>
+                            <li><strong>WDM (bidirectional):</strong> Different wavelengths for each direction on one fiber.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>IP Addressing + Protocols</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>RFC1918:</strong> Private IPv4 ranges 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16.</li>
+                            <li><strong>NAT:</strong> Translates private IPs to a public IP for Internet routing.</li>
+                            <li><strong>PAT:</strong> NAT with port translation so many hosts share one public IP.</li>
+                            <li><strong>APIPA:</strong> Self-assigned IPv4 address in 169.254.0.0/16 when DHCP fails.</li>
+                            <li><strong>EUI-64:</strong> Method to build IPv6 interface IDs from a MAC address.</li>
+                            <li><strong>Unicast:</strong> One-to-one communication.</li>
+                            <li><strong>Multicast:</strong> One-to-many (group) communication.</li>
+                            <li><strong>Anycast:</strong> One-to-nearest of many targets.</li>
+                            <li><strong>Broadcast:</strong> One-to-all within a subnet (IPv4 only).</li>
+                            <li><strong>Link-local:</strong> Addresses valid only on the local segment (IPv6 FE80::/10).</li>
+                            <li><strong>Loopback:</strong> Localhost testing address (IPv4 127.0.0.0/8, IPv6 ::1).</li>
+                            <li><strong>Default gateway:</strong> Router used to reach other networks.</li>
+                            <li><strong>Classful A/B/C/D/E:</strong> Legacy IPv4 classes (A/B/C unicast, D multicast, E reserved).</li>
+                            <li><strong>CIDR:</strong> Classless notation using prefix length (e.g., /24).</li>
+                            <li><strong>Tunneling:</strong> Encapsulate IPv6 in IPv4 (or other) to traverse networks.</li>
+                            <li><strong>Dual stack:</strong> Run IPv4 and IPv6 simultaneously.</li>
+                            <li><strong>Shorthand notation:</strong> IPv6 compression rules (drop leading zeros, use :: once).</li>
+                            <li><strong>Router advertisement:</strong> IPv6 NDP messages that announce prefixes.</li>
+                            <li><strong>SLAAC:</strong> IPv6 stateless auto-configuration without DHCPv6.</li>
+                            <li><strong>VIP:</strong> Virtual IP not tied to one interface.</li>
+                            <li><strong>Subinterfaces:</strong> Logical interfaces on one physical port (often for VLANs).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>Ports, Protocols, and Services</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>FTP (20/21):</strong> Insecure file transfer protocol.</li>
+                            <li><strong>SSH (22):</strong> Secure remote shell access.</li>
+                            <li><strong>SFTP (22):</strong> Secure file transfer over SSH.</li>
+                            <li><strong>Telnet (23):</strong> Insecure remote shell.</li>
+                            <li><strong>SMTP (25):</strong> Server-to-server email transfer.</li>
+                            <li><strong>DNS (53):</strong> Domain name resolution (UDP/TCP).</li>
+                            <li><strong>DHCP (67/68):</strong> Dynamic IP addressing.</li>
+                            <li><strong>HTTP (80):</strong> Web traffic without encryption.</li>
+                            <li><strong>POP3 (110):</strong> Email retrieval (download).</li>
+                            <li><strong>NTP (123):</strong> Time synchronization.</li>
+                            <li><strong>IMAP (143):</strong> Email retrieval with server sync.</li>
+                            <li><strong>SNMP (161/162):</strong> Network management and traps.</li>
+                            <li><strong>HTTPS (443):</strong> HTTP over TLS encryption.</li>
+                            <li><strong>SMB (445):</strong> Windows file/printer sharing.</li>
+                            <li><strong>Syslog (514):</strong> Log transport protocol.</li>
+                            <li><strong>SMTP TLS (587):</strong> Secure email submission.</li>
+                            <li><strong>LDAPS (636):</strong> LDAP over SSL/TLS.</li>
+                            <li><strong>IMAP/POP SSL (993/995):</strong> Secure IMAP/POP3.</li>
+                            <li><strong>SQL Server (1433):</strong> Microsoft SQL database traffic.</li>
+                            <li><strong>SQLnet (1521):</strong> Oracle database traffic.</li>
+                            <li><strong>MySQL (3306):</strong> MySQL database traffic.</li>
+                            <li><strong>RDP (3389):</strong> Remote Desktop Protocol.</li>
+                            <li><strong>SIP (5060/5061):</strong> VoIP call signaling.</li>
+                            <li><strong>ICMP:</strong> Control messages (e.g., ping).</li>
+                            <li><strong>TCP:</strong> Connection-oriented, reliable transport.</li>
+                            <li><strong>UDP:</strong> Connectionless, low-overhead transport.</li>
+                            <li><strong>GRE:</strong> Tunneling protocol without encryption.</li>
+                            <li><strong>IPSec:</strong> L3 security; <strong>AH</strong> authenticates, <strong>ESP</strong> encrypts.</li>
+                            <li><strong>Connection-oriented:</strong> Requires a session (TCP).</li>
+                            <li><strong>Connectionless:</strong> Sends without a session (UDP).</li>
+                            <li><strong>DORA:</strong> DHCP Discover, Offer, Request, Acknowledge.</li>
+                            <li><strong>Scope:</strong> Pool of available DHCP addresses.</li>
+                            <li><strong>Exclusion:</strong> IPs excluded from DHCP leasing.</li>
+                            <li><strong>Reservation:</strong> DHCP-assigned static IP based on MAC.</li>
+                            <li><strong>Lease:</strong> Time-limited DHCP assignment.</li>
+                            <li><strong>DHCP relay:</strong> Forwards DHCP across subnets.</li>
+                            <li><strong>IP helper:</strong> Router feature for relaying DHCP/UDP broadcasts.</li>
+                            <li><strong>A/AAAA:</strong> DNS record mapping to IPv4/IPv6.</li>
+                            <li><strong>CNAME:</strong> Alias record for another name.</li>
+                            <li><strong>MX:</strong> Mail exchange server record.</li>
+                            <li><strong>SOA:</strong> Start of authority for a zone.</li>
+                            <li><strong>PTR:</strong> Reverse DNS record (IP → name).</li>
+                            <li><strong>TXT:</strong> Text record (often verification).</li>
+                            <li><strong>SRV:</strong> Service/port record.</li>
+                            <li><strong>NS:</strong> Authoritative name server record.</li>
+                            <li><strong>TTL:</strong> DNS cache lifetime.</li>
+                            <li><strong>DNS caching:</strong> Temporary storage of lookups.</li>
+                            <li><strong>Zone transfer:</strong> Replicate DNS zone data.</li>
+                            <li><strong>Forward lookup:</strong> Name → IP resolution.</li>
+                            <li><strong>Reverse lookup:</strong> IP → name resolution.</li>
+                            <li><strong>Recursive lookup:</strong> DNS server resolves on behalf of client.</li>
+                            <li><strong>Iterative lookup:</strong> DNS server refers client to other servers.</li>
+                            <li><strong>NTP stratum:</strong> Time-source hierarchy level (0 = most accurate).</li>
+                            <li><strong>NTP client:</strong> Device syncing time from a server.</li>
+                            <li><strong>NTP server:</strong> Device providing time to clients.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="network-implementations" class="command-category">
+            <h2 class="category-toggle">2.0 Network Implementations (19%)</h2>
+            <div class="category-content">
+                <div class="command-card">
+                    <div class="command-header"><h3>Architecture + Data Center</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>Core:</strong> High-speed backbone of the network.</li>
+                            <li><strong>Distribution/aggregation:</strong> Policy and routing layer between core and access.</li>
+                            <li><strong>Access/edge:</strong> Layer where end devices connect.</li>
+                            <li><strong>Application layer (SDN):</strong> Centralized management/automation layer.</li>
+                            <li><strong>Control layer (SDN):</strong> Logic that programs the data plane.</li>
+                            <li><strong>Infrastructure layer (SDN):</strong> Physical/virtual devices that forward traffic.</li>
+                            <li><strong>Management plane (SDN):</strong> Monitoring and configuration plane.</li>
+                            <li><strong>Spine and leaf:</strong> Leaf switches connect to every spine for predictable paths.</li>
+                            <li><strong>North-South:</strong> Traffic entering/exiting a data center.</li>
+                            <li><strong>East-West:</strong> Traffic between internal data center systems.</li>
+                            <li><strong>Branch office:</strong> Remote site outside HQ.</li>
+                            <li><strong>On-prem:</strong> Data center owned/operated by the organization.</li>
+                            <li><strong>Colocation:</strong> Shared facility renting space/power/network.</li>
+                            <li><strong>FCoE:</strong> Fibre Channel over Ethernet for SAN traffic.</li>
+                            <li><strong>Fibre Channel:</strong> Dedicated SAN fabric technology.</li>
+                            <li><strong>iSCSI:</strong> SAN protocol over IP networks.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>Cloud Concepts</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>Public cloud:</strong> Shared cloud services over the Internet.</li>
+                            <li><strong>Private cloud:</strong> Cloud dedicated to one organization.</li>
+                            <li><strong>Hybrid cloud:</strong> Mix of public and private clouds.</li>
+                            <li><strong>Community cloud:</strong> Shared cloud for similar organizations.</li>
+                            <li><strong>SaaS:</strong> Provider-hosted applications delivered to users.</li>
+                            <li><strong>IaaS:</strong> Provider-hosted compute/network/storage resources.</li>
+                            <li><strong>PaaS:</strong> Platform for deploying apps without managing servers.</li>
+                            <li><strong>DaaS:</strong> Hosted virtual desktop environments.</li>
+                            <li><strong>Infrastructure as code:</strong> Provision infrastructure using code.</li>
+                            <li><strong>Automation:</strong> Execute tasks with minimal manual input.</li>
+                            <li><strong>Orchestration:</strong> Coordinate automated tasks/workflows.</li>
+                            <li><strong>VPN:</strong> Encrypted tunnel to a private network.</li>
+                            <li><strong>Private-direct connection:</strong> Dedicated link to a cloud provider.</li>
+                            <li><strong>Multitenancy:</strong> Multiple customers share infrastructure securely.</li>
+                            <li><strong>Elasticity:</strong> Scale resources up/down quickly.</li>
+                            <li><strong>Scalability:</strong> Ability to grow capacity over time.</li>
+                            <li><strong>VM escape:</strong> Attack where a VM breaks into the host.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>Devices + Infrastructure</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>Layer 2 switch:</strong> Forwards frames using MAC addresses.</li>
+                            <li><strong>Layer 3 switch:</strong> Switch with routing capability.</li>
+                            <li><strong>Router:</strong> Forwards packets between networks.</li>
+                            <li><strong>Hub:</strong> L1 device that repeats traffic to all ports.</li>
+                            <li><strong>Access point (AP):</strong> Bridges wired LAN to wireless clients.</li>
+                            <li><strong>Bridge:</strong> Connects two LAN segments at Layer 2.</li>
+                            <li><strong>Wireless LAN controller (WLC):</strong> Central AP management device.</li>
+                            <li><strong>Load balancer:</strong> Distributes traffic across servers.</li>
+                            <li><strong>Proxy server:</strong> Intermediary that forwards client requests.</li>
+                            <li><strong>Cable modem:</strong> Internet access over DOCSIS coax.</li>
+                            <li><strong>DSL modem:</strong> Internet access over phone lines.</li>
+                            <li><strong>Repeater:</strong> Regenerates signals at Layer 1.</li>
+                            <li><strong>IPS:</strong> Detects and blocks malicious traffic.</li>
+                            <li><strong>IDS:</strong> Detects and alerts on malicious traffic.</li>
+                            <li><strong>Firewall:</strong> Filters traffic by policy.</li>
+                            <li><strong>VPN headend:</strong> Terminates VPN tunnels.</li>
+                            <li><strong>VoIP phone:</strong> Phone using IP networks.</li>
+                            <li><strong>Printer:</strong> Networked output device.</li>
+                            <li><strong>Physical access control:</strong> Locks/badges/biometrics for entry control.</li>
+                            <li><strong>Cameras:</strong> Surveillance endpoints.</li>
+                            <li><strong>HVAC sensors:</strong> Environmental monitoring devices.</li>
+                            <li><strong>IoT devices:</strong> Internet-connected sensors/appliances.</li>
+                            <li><strong>Smart appliances:</strong> Consumer IoT like thermostats/speakers.</li>
+                            <li><strong>SCADA:</strong> Industrial control/monitoring systems.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>Routing + Bandwidth Management</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>Dynamic routing:</strong> Routers learn routes automatically.</li>
+                            <li><strong>RIP:</strong> Distance-vector routing using hop count.</li>
+                            <li><strong>OSPF:</strong> Link-state routing using cost metrics.</li>
+                            <li><strong>EIGRP:</strong> Cisco hybrid routing protocol.</li>
+                            <li><strong>BGP:</strong> Exterior routing protocol for Internet paths.</li>
+                            <li><strong>Static route:</strong> Manually configured route.</li>
+                            <li><strong>Default route:</strong> Catch-all route (0.0.0.0/0 or ::/0).</li>
+                            <li><strong>Administrative distance:</strong> Route preference when multiple sources exist.</li>
+                            <li><strong>IGP:</strong> Interior gateway protocol within an organization.</li>
+                            <li><strong>EGP:</strong> Exterior gateway protocol between organizations (BGP).</li>
+                            <li><strong>TTL:</strong> Time-to-live hop limit to prevent loops.</li>
+                            <li><strong>QoS:</strong> Policies that prioritize critical traffic.</li>
+                            <li><strong>Traffic shaping:</strong> Rate-limits traffic to smooth bursts.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>Switching Features</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>Data VLAN:</strong> VLAN for regular user data traffic.</li>
+                            <li><strong>Voice VLAN:</strong> VLAN dedicated to VoIP traffic.</li>
+                            <li><strong>802.1Q tagging:</strong> VLAN tagging on trunk links.</li>
+                            <li><strong>Port aggregation (LACP):</strong> Bundles links for more bandwidth and redundancy.</li>
+                            <li><strong>Duplex:</strong> Half vs full duplex communication mode.</li>
+                            <li><strong>Speed:</strong> Link data rate (e.g., 1G/10G).</li>
+                            <li><strong>Flow control:</strong> Prevents sender from overrunning receiver.</li>
+                            <li><strong>Port mirroring:</strong> Copies traffic to a monitor port.</li>
+                            <li><strong>Port security:</strong> Restricts MACs allowed on a port.</li>
+                            <li><strong>Jumbo frames:</strong> Frames larger than 1500 bytes for efficiency.</li>
+                            <li><strong>Auto MDI-X:</strong> Auto-corrects cable pinouts.</li>
+                            <li><strong>MAC address table:</strong> Switch table mapping MACs to ports.</li>
+                            <li><strong>PoE:</strong> Power over Ethernet (up to 15.4W).</li>
+                            <li><strong>PoE+:</strong> Enhanced PoE (up to 25.5W).</li>
+                            <li><strong>STP:</strong> Spanning Tree prevents switching loops.</li>
+                            <li><strong>CSMA/CD:</strong> Collision detection on shared Ethernet.</li>
+                            <li><strong>ARP:</strong> Resolves IP to MAC in IPv4.</li>
+                            <li><strong>Neighbor Discovery:</strong> IPv6 replacement for ARP.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>Wireless</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>802.11a:</strong> 5 GHz Wi-Fi, up to 54 Mbps.</li>
+                            <li><strong>802.11b:</strong> 2.4 GHz Wi-Fi, up to 11 Mbps.</li>
+                            <li><strong>802.11g:</strong> 2.4 GHz Wi-Fi, up to 54 Mbps.</li>
+                            <li><strong>802.11n (Wi-Fi 4):</strong> 2.4/5 GHz, MIMO, higher throughput.</li>
+                            <li><strong>802.11ac (Wi-Fi 5):</strong> 5 GHz, higher throughput with MU-MIMO.</li>
+                            <li><strong>802.11ax (Wi-Fi 6):</strong> 2.4/5 GHz, higher efficiency and speed.</li>
+                            <li><strong>2.4 GHz:</strong> Longer range, fewer non-overlapping channels (1/6/11).</li>
+                            <li><strong>5 GHz:</strong> Shorter range, more channels, higher speeds.</li>
+                            <li><strong>Channel bonding:</strong> Combines channels to increase throughput.</li>
+                            <li><strong>SSID:</strong> Wireless network name.</li>
+                            <li><strong>BSSID:</strong> MAC address of a wireless AP.</li>
+                            <li><strong>ESSID:</strong> SSID shared across multiple APs.</li>
+                            <li><strong>Ad-hoc:</strong> Peer-to-peer wireless network without an AP.</li>
+                            <li><strong>Roaming:</strong> Client moves between APs on same SSID.</li>
+                            <li><strong>Omni antenna:</strong> Radiates in all directions.</li>
+                            <li><strong>Directional antenna:</strong> Focuses signal in one direction.</li>
+                            <li><strong>WPA/WPA2:</strong> Wireless security protocols.</li>
+                            <li><strong>AES:</strong> Strong encryption used by WPA2.</li>
+                            <li><strong>TKIP:</strong> Legacy encryption (weaker than AES).</li>
+                            <li><strong>Enterprise (802.1X):</strong> Auth via RADIUS/EAP.</li>
+                            <li><strong>CDMA:</strong> Cellular tech using code division.</li>
+                            <li><strong>GSM:</strong> Cellular tech using SIMs and TDMA.</li>
+                            <li><strong>3G/4G/5G:</strong> Generations of cellular data networks.</li>
+                            <li><strong>MIMO:</strong> Multiple antennas to increase throughput.</li>
+                            <li><strong>MU-MIMO:</strong> MIMO serving multiple clients at once.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="network-operations" class="command-category">
+            <h2 class="category-toggle">3.0 Network Operations (16%)</h2>
+            <div class="category-content">
+                <div class="command-card">
+                    <div class="command-header"><h3>Monitoring + Metrics</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>Bandwidth:</strong> Amount of data per second a link can carry.</li>
+                            <li><strong>Latency:</strong> Time it takes data to travel end-to-end.</li>
+                            <li><strong>Jitter:</strong> Variation in packet delay.</li>
+                            <li><strong>Temperature:</strong> Device thermal health indicator.</li>
+                            <li><strong>CPU usage:</strong> Processor utilization on a device.</li>
+                            <li><strong>Memory usage:</strong> RAM consumption on a device.</li>
+                            <li><strong>SNMP:</strong> Management protocol for monitoring devices.</li>
+                            <li><strong>Traps:</strong> SNMP alerts sent from devices to managers.</li>
+                            <li><strong>OIDs:</strong> Object identifiers for SNMP metrics.</li>
+                            <li><strong>MIBs:</strong> Databases describing SNMP objects.</li>
+                            <li><strong>Traffic logs:</strong> Records of network flows/usage.</li>
+                            <li><strong>Audit logs:</strong> Security/administrative activity logs.</li>
+                            <li><strong>Syslog:</strong> Standardized logging protocol.</li>
+                            <li><strong>Severity levels:</strong> Log priority scale (debug → critical).</li>
+                            <li><strong>Link state:</strong> Interface up/down status.</li>
+                            <li><strong>Speed/duplex:</strong> Interface rate and duplex mode.</li>
+                            <li><strong>Interface traffic:</strong> Bytes/packets in/out.</li>
+                            <li><strong>CRCs:</strong> Cyclic redundancy check errors.</li>
+                            <li><strong>Errors/alerts:</strong> Interface fault counters/alarms.</li>
+                            <li><strong>Humidity:</strong> Environmental moisture level.</li>
+                            <li><strong>Electrical:</strong> Power/voltage monitoring.</li>
+                            <li><strong>Flooding:</strong> Water detection sensors.</li>
+                            <li><strong>Baseline:</strong> Normal performance reference point.</li>
+                            <li><strong>NetFlow:</strong> Flow telemetry for traffic analysis.</li>
+                            <li><strong>Uptime/downtime:</strong> Time a system is available/unavailable.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>Plans, Policies, and Documentation</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>Change management:</strong> Formal process for approving and tracking changes.</li>
+                            <li><strong>Incident response:</strong> Steps to detect, contain, and recover from incidents.</li>
+                            <li><strong>Disaster recovery (DR):</strong> Restoring systems after major outages.</li>
+                            <li><strong>Business continuity (BCP):</strong> Keeping critical operations running.</li>
+                            <li><strong>System life cycle:</strong> Asset planning, deployment, maintenance, retirement.</li>
+                            <li><strong>SOPs:</strong> Standard operating procedures for consistent tasks.</li>
+                            <li><strong>Password policy:</strong> Rules for password length/complexity/rotation.</li>
+                            <li><strong>AUP:</strong> Acceptable use policy for resources.</li>
+                            <li><strong>BYOD policy:</strong> Rules for personal devices on the network.</li>
+                            <li><strong>Remote access policy:</strong> Requirements for remote connectivity.</li>
+                            <li><strong>Onboarding/offboarding:</strong> Access changes when staff join/leave.</li>
+                            <li><strong>Security policy:</strong> Organization-wide security rules.</li>
+                            <li><strong>DLP:</strong> Data loss prevention controls.</li>
+                            <li><strong>Physical diagram:</strong> Shows physical device/cable layout.</li>
+                            <li><strong>Logical diagram:</strong> Shows logical flows and IP/VLANs.</li>
+                            <li><strong>Floor plan:</strong> Shows device and cable placement in rooms.</li>
+                            <li><strong>Rack diagram:</strong> Shows device layout in racks.</li>
+                            <li><strong>IDF:</strong> Intermediate distribution frame (floor wiring closet).</li>
+                            <li><strong>MDF:</strong> Main distribution frame (central wiring point).</li>
+                            <li><strong>Wiring diagram:</strong> Cable paths and termination details.</li>
+                            <li><strong>Site survey:</strong> RF/environmental assessment.</li>
+                            <li><strong>Audit/assessment:</strong> Review of controls and compliance.</li>
+                            <li><strong>Baseline configs:</strong> Approved standard configurations.</li>
+                            <li><strong>NDA:</strong> Non-disclosure agreement.</li>
+                            <li><strong>SLA:</strong> Service-level agreement with performance targets.</li>
+                            <li><strong>MOU:</strong> Memorandum of understanding.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>High Availability + DR Concepts</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>Load balancing:</strong> Spreads traffic across systems.</li>
+                            <li><strong>Multipathing:</strong> Multiple paths to storage/network.</li>
+                            <li><strong>NIC teaming:</strong> Combines NICs for redundancy/bandwidth.</li>
+                            <li><strong>Redundant hardware:</strong> Duplicate switches/routers/firewalls.</li>
+                            <li><strong>UPS:</strong> Battery backup power.</li>
+                            <li><strong>PDU:</strong> Power distribution unit.</li>
+                            <li><strong>Generator:</strong> Backup power source.</li>
+                            <li><strong>HVAC:</strong> Environmental cooling/heating.</li>
+                            <li><strong>Fire suppression:</strong> Fire detection/extinguishing systems.</li>
+                            <li><strong>Cold site:</strong> Empty facility ready for equipment.</li>
+                            <li><strong>Warm site:</strong> Partially equipped recovery site.</li>
+                            <li><strong>Hot site:</strong> Fully equipped recovery site.</li>
+                            <li><strong>Cloud site:</strong> Recovery environment in cloud.</li>
+                            <li><strong>Active-active:</strong> Both systems handle traffic simultaneously.</li>
+                            <li><strong>Active-passive:</strong> Standby system takes over on failure.</li>
+                            <li><strong>ISP diversity:</strong> Multiple ISPs for redundancy.</li>
+                            <li><strong>VRRP/FHRP:</strong> First-hop redundancy using a virtual gateway.</li>
+                            <li><strong>MTTR:</strong> Mean time to repair.</li>
+                            <li><strong>MTBF:</strong> Mean time between failures.</li>
+                            <li><strong>RTO:</strong> Recovery time objective.</li>
+                            <li><strong>RPO:</strong> Recovery point objective.</li>
+                            <li><strong>Backup/restore:</strong> Save and recover device configs/state.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+                <section id="network-security" class="command-category">
+            <h2 class="category-toggle">4.0 Network Security (19%)</h2>
+            <div class="category-content">
+                <div class="command-card">
+                    <div class="command-header"><h3>4.1 Security concepts</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>Confidentiality:</strong> Keep data private (encryption).</li>
+                            <li><strong>Integrity:</strong> Prevent unauthorized changes (hashing).</li>
+                            <li><strong>Availability:</strong> Ensure systems/data are accessible.</li>
+                            <li><strong>Internal threat:</strong> Risk from insiders with access.</li>
+                            <li><strong>External threat:</strong> Risk from outside attackers.</li>
+                            <li><strong>CVE:</strong> Public catalog of known vulnerabilities.</li>
+                            <li><strong>Zero-day:</strong> Vulnerability unknown to the vendor.</li>
+                            <li><strong>Exploit:</strong> Technique that leverages a vulnerability.</li>
+                            <li><strong>Least privilege:</strong> Minimal access needed to do a job.</li>
+                            <li><strong>Role-based access:</strong> Permissions tied to job roles.</li>
+                            <li><strong>Zero trust:</strong> Verify all access, trust none by default.</li>
+                            <li><strong>Defense in depth:</strong> Multiple layers of security controls.</li>
+                            <li><strong>Segmentation:</strong> Separate networks to limit access.</li>
+                            <li><strong>DMZ:</strong> Perimeter network for public-facing services.</li>
+                            <li><strong>Separation of duties:</strong> Split tasks to reduce fraud/errors.</li>
+                            <li><strong>NAC:</strong> Network access control based on device/user posture.</li>
+                            <li><strong>Honeypot:</strong> Decoy system to detect attacks.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>Authentication methods</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>MFA:</strong> Uses two or more authentication factors.</li>
+                            <li><strong>TACACS+:</strong> AAA protocol (typically over TCP; device admin).</li>
+                            <li><strong>SSO:</strong> One login for multiple services.</li>
+                            <li><strong>RADIUS:</strong> AAA protocol for network access (UDP).</li>
+                            <li><strong>LDAP:</strong> Directory protocol for user/auth data.</li>
+                            <li><strong>Kerberos:</strong> Ticket-based authentication system.</li>
+                            <li><strong>Local authentication:</strong> Credentials stored on the device.</li>
+                            <li><strong>802.1X:</strong> Port-based network access control.</li>
+                            <li><strong>EAP:</strong> Extensible authentication framework used with 802.1X.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>Risk management</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>Threat assessment:</strong> Identify likely threats and impact.</li>
+                            <li><strong>Vulnerability assessment:</strong> Find and prioritize weaknesses.</li>
+                            <li><strong>Penetration testing:</strong> Authorized exploitation to validate risk.</li>
+                            <li><strong>Posture assessment:</strong> Review overall security controls.</li>
+                            <li><strong>Process assessment:</strong> Risk review of business processes.</li>
+                            <li><strong>Vendor assessment:</strong> Evaluate third-party risk.</li>
+                            <li><strong>SIEM:</strong> Collects/correlates logs for detection and response.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>Technology-based attacks</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>DoS:</strong> Flooding a target to make it unavailable.</li>
+                            <li><strong>DDoS:</strong> Distributed DoS using many compromised hosts.</li>
+                            <li><strong>Botnet:</strong> Network of compromised systems.</li>
+                            <li><strong>C2:</strong> Command-and-control server for botnets.</li>
+                            <li><strong>On-path (MITM):</strong> Attacker intercepts traffic between hosts.</li>
+                            <li><strong>DNS poisoning:</strong> Redirecting DNS to malicious targets.</li>
+                            <li><strong>VLAN hopping:</strong> Accessing other VLANs via spoofing/double tagging.</li>
+                            <li><strong>ARP spoofing:</strong> Poisoning ARP to redirect traffic.</li>
+                            <li><strong>Rogue DHCP:</strong> Unauthorized DHCP server issuing IPs.</li>
+                            <li><strong>Rogue AP:</strong> Unauthorized wireless access point.</li>
+                            <li><strong>Evil twin:</strong> Fake AP with the same SSID.</li>
+                            <li><strong>Ransomware:</strong> Encrypts data to demand payment.</li>
+                            <li><strong>Brute-force:</strong> Tries all password combinations.</li>
+                            <li><strong>Dictionary attack:</strong> Tries common words/passwords.</li>
+                            <li><strong>MAC spoofing:</strong> Fakes a device MAC address.</li>
+                            <li><strong>IP spoofing:</strong> Fakes a source IP address.</li>
+                            <li><strong>Deauthentication:</strong> Forces clients off a Wi-Fi network.</li>
+                            <li><strong>Virus:</strong> Malware that attaches to files.</li>
+                            <li><strong>Worm:</strong> Self-replicating malware.</li>
+                            <li><strong>Trojan:</strong> Malicious software disguised as legitimate.</li>
+                            <li><strong>Rootkit:</strong> Stealth malware with deep access.</li>
+                            <li><strong>Adware:</strong> Malware that serves unwanted ads.</li>
+                            <li><strong>Spyware:</strong> Malware that secretly collects data.</li>
+                            <li><strong>Keylogger:</strong> Captures keystrokes.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>Human & environmental</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>Social engineering:</strong> Manipulating people to gain access.</li>
+                            <li><strong>Phishing:</strong> Fraudulent messages to steal info.</li>
+                            <li><strong>Tailgating:</strong> Following someone into a secure area.</li>
+                            <li><strong>Piggybacking:</strong> Entering with consent of an authorized user.</li>
+                            <li><strong>Shoulder surfing:</strong> Observing credentials being entered.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>Best practices</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>Secure SNMP:</strong> Use SNMPv3 with auth/encryption.</li>
+                            <li><strong>RA Guard:</strong> Blocks rogue IPv6 router advertisements.</li>
+                            <li><strong>Port security:</strong> Restrict MAC addresses per switch port.</li>
+                            <li><strong>Dynamic ARP inspection:</strong> Validates ARP against trusted bindings.</li>
+                            <li><strong>Control plane policing:</strong> Rate-limits traffic to device CPU.</li>
+                            <li><strong>Private VLANs:</strong> Isolate hosts within a VLAN.</li>
+                            <li><strong>Disable unused switchports:</strong> Reduce attack surface.</li>
+                            <li><strong>Disable unused services:</strong> Reduce exploitable services.</li>
+                            <li><strong>Change default passwords:</strong> Prevent known-credential access.</li>
+                            <li><strong>Change default VLAN:</strong> Reduce VLAN hopping risk.</li>
+                            <li><strong>Password complexity/length:</strong> Require strong passwords.</li>
+                            <li><strong>DHCP snooping:</strong> Block rogue DHCP servers.</li>
+                            <li><strong>Patch/firmware management:</strong> Keep systems updated.</li>
+                            <li><strong>ACLs:</strong> Filter traffic by IP/port/protocol.</li>
+                            <li><strong>Role-based access:</strong> Limit access by job role.</li>
+                            <li><strong>Explicit deny:</strong> Rule that blocks specific traffic.</li>
+                            <li><strong>Implicit deny:</strong> Block anything not explicitly allowed.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>Wireless security</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>MAC filtering:</strong> Allow/deny Wi-Fi by device MAC.</li>
+                            <li><strong>Antenna placement:</strong> Optimize coverage and reduce interference.</li>
+                            <li><strong>Power levels:</strong> Adjust transmit power to control range.</li>
+                            <li><strong>Wireless client isolation:</strong> Block client-to-client traffic.</li>
+                            <li><strong>Guest network isolation:</strong> Separate guest traffic from internal.</li>
+                            <li><strong>PSKs:</strong> Pre-shared keys for WPA/WPA2-Personal.</li>
+                            <li><strong>EAP:</strong> Enterprise auth framework for Wi-Fi.</li>
+                            <li><strong>Geofencing:</strong> Restrict access by location.</li>
+                            <li><strong>Captive portal:</strong> Login/acceptance page before access.</li>
+                            <li><strong>IoT access considerations:</strong> Isolate IoT on separate VLANs.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>Remote access</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>Site-to-site VPN:</strong> Encrypted tunnel between networks.</li>
+                            <li><strong>Client-to-site VPN:</strong> Remote user to corporate network.</li>
+                            <li><strong>Clientless VPN:</strong> Browser-based VPN access.</li>
+                            <li><strong>Split tunnel:</strong> Only corporate traffic goes through VPN.</li>
+                            <li><strong>Full tunnel:</strong> All traffic goes through VPN.</li>
+                            <li><strong>Remote desktop:</strong> Remote control of a system.</li>
+                            <li><strong>Remote desktop gateway:</strong> Secure broker for RDP sessions.</li>
+                            <li><strong>SSH:</strong> Secure remote command-line access.</li>
+                            <li><strong>VNC:</strong> Cross-platform remote desktop protocol.</li>
+                            <li><strong>VDI:</strong> Hosted virtual desktops delivered to users.</li>
+                            <li><strong>Authentication:</strong> Verifies identity.</li>
+                            <li><strong>Authorization:</strong> Grants access based on identity.</li>
+                            <li><strong>In-band management:</strong> Manage devices via production network.</li>
+                            <li><strong>Out-of-band management:</strong> Manage via a separate network.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>Detection & prevention (physical)</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>Camera:</strong> Visual surveillance for monitoring.</li>
+                            <li><strong>Motion detection:</strong> Alerts on movement in secure areas.</li>
+                            <li><strong>Asset tags:</strong> Labels to track equipment.</li>
+                            <li><strong>Tamper detection:</strong> Alerts if devices are opened/moved.</li>
+                            <li><strong>Employee training:</strong> Security awareness to reduce risk.</li>
+                            <li><strong>Badge readers:</strong> Card-based access control.</li>
+                            <li><strong>Biometrics:</strong> Finger/face/voice identity verification.</li>
+                            <li><strong>Locking racks/cabinets:</strong> Physical protection for gear.</li>
+                            <li><strong>Smart lockers:</strong> Secured storage with access control.</li>
+                            <li><strong>Mantrap:</strong> Two-door vestibule to prevent tailgating.</li>
+                            <li><strong>Factory reset/wipe:</strong> Remove configs/data before disposal.</li>
+                            <li><strong>Sanitize devices:</strong> Securely erase sensitive data.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+                <section id="network-troubleshooting" class="command-category">
+            <h2 class="category-toggle">5.0 Network Troubleshooting (22%)</h2>
+            <div class="category-content">
+                <div class="command-card">
+                    <div class="command-header"><h3>5.1 Troubleshooting methodology</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>Identify the problem:</strong> Gather info, question users, identify symptoms, and check recent changes.</li>
+                            <li><strong>Establish a theory:</strong> Form a likely cause using top-down/bottom-up or divide-and-conquer.</li>
+                            <li><strong>Test the theory:</strong> Validate or adjust the hypothesis with evidence.</li>
+                            <li><strong>Plan of action:</strong> Define fix steps and potential impact.</li>
+                            <li><strong>Implement solution/escalate:</strong> Apply fix or escalate if needed.</li>
+                            <li><strong>Verify functionality:</strong> Confirm system works and apply preventive measures.</li>
+                            <li><strong>Document findings:</strong> Record actions, outcomes, and lessons learned.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>5.2 Cable connectivity issues</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>Throughput:</strong> Actual data rate achieved.</li>
+                            <li><strong>Speed:</strong> Link rate capability.</li>
+                            <li><strong>Distance:</strong> Maximum supported cable run length.</li>
+                            <li><strong>STP:</strong> Shielded twisted pair reduces interference.</li>
+                            <li><strong>UTP:</strong> Unshielded twisted pair (common Ethernet).</li>
+                            <li><strong>Foil shield:</strong> Additional EMI protection layer.</li>
+                            <li><strong>Plenum-rated:</strong> Fire-safe cable for air spaces.</li>
+                            <li><strong>Riser-rated:</strong> Cable rated for vertical runs.</li>
+                            <li><strong>Rollover/console:</strong> Ethernet-to-serial for device config.</li>
+                            <li><strong>Crossover:</strong> Connects like devices without a switch.</li>
+                            <li><strong>PoE:</strong> Power and data over one Ethernet cable.</li>
+                            <li><strong>Attenuation:</strong> Signal loss over distance.</li>
+                            <li><strong>Interference:</strong> EMI/RFI degrading signal.</li>
+                            <li><strong>Decibel loss:</strong> Measure of signal reduction.</li>
+                            <li><strong>Incorrect pinout:</strong> Miswired cable pairs.</li>
+                            <li><strong>Bad ports:</strong> Faulty interface on a device.</li>
+                            <li><strong>Open/short:</strong> Broken or shorted conductors.</li>
+                            <li><strong>LED indicators:</strong> Port status lights for link/activity.</li>
+                            <li><strong>Incorrect transceivers:</strong> Incompatible optics/modules.</li>
+                            <li><strong>Duplex mismatch:</strong> Half/full duplex mismatch causing errors.</li>
+                            <li><strong>TX/RX reversed:</strong> Transmit/receive pairs swapped.</li>
+                            <li><strong>Dirty optics:</strong> Contamination on fiber ends.</li>
+                            <li><strong>Crimper:</strong> Attaches RJ connectors.</li>
+                            <li><strong>Punchdown tool:</strong> Seats wires into blocks.</li>
+                            <li><strong>Tone generator:</strong> Finds cable endpoints.</li>
+                            <li><strong>Loopback adapter:</strong> Tests port transmit/receive.</li>
+                            <li><strong>OTDR:</strong> Measures fiber length/defects.</li>
+                            <li><strong>Multimeter:</strong> Measures voltage/resistance.</li>
+                            <li><strong>Cable tester:</strong> Validates continuity/pinout.</li>
+                            <li><strong>Wire map:</strong> Shows pair mapping graphically.</li>
+                            <li><strong>Tap:</strong> Passive device to capture traffic.</li>
+                            <li><strong>Fusion splicer:</strong> Joins fiber by fusing ends.</li>
+                            <li><strong>Spectrum analyzer:</strong> RF signal analysis tool.</li>
+                            <li><strong>Snips/cutters:</strong> Cable cutting tools.</li>
+                            <li><strong>Cable stripper:</strong> Removes cable jacket.</li>
+                            <li><strong>Fiber light meter:</strong> Measures optical signal power.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>5.3 Software tools & commands</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>WiFi analyzer:</strong> Measures wireless signal/channel usage.</li>
+                            <li><strong>Protocol analyzer/packet capture:</strong> Captures and decodes network traffic.</li>
+                            <li><strong>Bandwidth speed tester:</strong> Measures Internet throughput.</li>
+                            <li><strong>Port scanner:</strong> Identifies open ports on hosts.</li>
+                            <li><strong>iperf:</strong> Active bandwidth testing tool.</li>
+                            <li><strong>NetFlow analyzer:</strong> Analyzes flow telemetry.</li>
+                            <li><strong>TFTP server:</strong> Simple file transfer server for devices.</li>
+                            <li><strong>Terminal emulator:</strong> CLI access to network gear (e.g., PuTTY).</li>
+                            <li><strong>IP scanner:</strong> Finds active hosts on a subnet.</li>
+                            <li><strong>ping:</strong> ICMP reachability test.</li>
+                            <li><strong>ipconfig:</strong> Windows IP configuration tool.</li>
+                            <li><strong>ifconfig:</strong> Legacy Unix/Linux IP config tool.</li>
+                            <li><strong>ip:</strong> Modern Linux IP configuration tool.</li>
+                            <li><strong>nslookup:</strong> DNS query tool.</li>
+                            <li><strong>dig:</strong> DNS query tool with detailed output.</li>
+                            <li><strong>traceroute:</strong> Unix path tracing tool.</li>
+                            <li><strong>tracert:</strong> Windows path tracing tool.</li>
+                            <li><strong>arp:</strong> View or manage ARP cache.</li>
+                            <li><strong>netstat:</strong> Show connections and routing stats.</li>
+                            <li><strong>hostname:</strong> Show/set host name.</li>
+                            <li><strong>route:</strong> View or edit routing table.</li>
+                            <li><strong>telnet:</strong> Insecure remote shell/testing tool.</li>
+                            <li><strong>tcpdump:</strong> CLI packet capture tool.</li>
+                            <li><strong>nmap:</strong> Network mapper/scanner.</li>
+                            <li><strong>show interface:</strong> Display interface statistics.</li>
+                            <li><strong>show config:</strong> Display device configuration.</li>
+                            <li><strong>show route:</strong> Display routing table.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>5.4 Wireless connectivity issues</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>Throughput:</strong> Actual wireless data rate achieved.</li>
+                            <li><strong>Speed:</strong> Link rate negotiated with the AP.</li>
+                            <li><strong>Distance:</strong> Range between client and AP.</li>
+                            <li><strong>RSSI:</strong> Received signal strength indicator.</li>
+                            <li><strong>EIRP:</strong> Effective isotropic radiated power output.</li>
+                            <li><strong>Antenna placement:</strong> Physical location for optimal coverage.</li>
+                            <li><strong>Antenna type:</strong> Omni vs directional radiation pattern.</li>
+                            <li><strong>Polarization:</strong> Orientation of the radio wave.</li>
+                            <li><strong>Channel utilization:</strong> How busy a channel is.</li>
+                            <li><strong>AP association time:</strong> Time to connect a client to an AP.</li>
+                            <li><strong>Site survey:</strong> RF mapping and planning assessment.</li>
+                            <li><strong>Interference:</strong> Competing RF signals causing noise.</li>
+                            <li><strong>Channel overlap:</strong> Adjacent channel interference.</li>
+                            <li><strong>RF attenuation:</strong> Signal loss from distance/obstructions.</li>
+                            <li><strong>Wrong SSID:</strong> Client targeting the wrong network.</li>
+                            <li><strong>Incorrect passphrase:</strong> Authentication failure due to key mismatch.</li>
+                            <li><strong>Encryption mismatch:</strong> Client/AP use different security types.</li>
+                            <li><strong>Insufficient coverage:</strong> Weak signal in parts of the area.</li>
+                            <li><strong>Captive portal issues:</strong> Login page not loading or blocked.</li>
+                            <li><strong>Client disassociation:</strong> Random client disconnects.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <div class="command-header"><h3>5.5 General networking issues</h3></div>
+                    <div class="command-notes">
+                        <ul>
+                            <li><strong>Device config review:</strong> Validate settings and recent changes.</li>
+                            <li><strong>Routing tables:</strong> Check learned/static routes.</li>
+                            <li><strong>Interface status:</strong> Verify link up/down and errors.</li>
+                            <li><strong>VLAN assignment:</strong> Confirm correct VLAN membership.</li>
+                            <li><strong>Baseline:</strong> Compare against normal performance.</li>
+                            <li><strong>Collisions:</strong> Simultaneous transmissions causing loss.</li>
+                            <li><strong>Broadcast storm:</strong> Excessive broadcast traffic saturating a LAN.</li>
+                            <li><strong>Duplicate MAC:</strong> Two devices share same MAC (often spoofing).</li>
+                            <li><strong>Duplicate IP:</strong> Two devices share same IP address.</li>
+                            <li><strong>Multicast flooding:</strong> Multicast sent to all ports.</li>
+                            <li><strong>Asymmetrical routing:</strong> Different paths for send/receive.</li>
+                            <li><strong>Switching loop:</strong> L2 loop causing endless frames.</li>
+                            <li><strong>Routing loop:</strong> L3 loop causing packet cycling.</li>
+                            <li><strong>Rogue DHCP:</strong> Unauthorized DHCP server on the network.</li>
+                            <li><strong>Scope exhaustion:</strong> DHCP pool has no free IPs.</li>
+                            <li><strong>Incorrect gateway:</strong> Wrong default router configured.</li>
+                            <li><strong>Incorrect subnet mask:</strong> Bad network mask configuration.</li>
+                            <li><strong>Incorrect IP:</strong> Wrong IP address on a host.</li>
+                            <li><strong>Incorrect DNS:</strong> Wrong DNS server configured.</li>
+                            <li><strong>Missing route:</strong> No path to a destination network.</li>
+                            <li><strong>Low optical link budget:</strong> Fiber signal too weak.</li>
+                            <li><strong>Certificate issues:</strong> Expired/mismatched TLS certs.</li>
+                            <li><strong>Hardware failure:</strong> Faulty device or component.</li>
+                            <li><strong>Firewall settings:</strong> Rules blocking required traffic.</li>
+                            <li><strong>Blocked ports/addresses:</strong> ACLs/filters blocking services.</li>
+                            <li><strong>Incorrect VLAN:</strong> Host placed in wrong VLAN.</li>
+                            <li><strong>DNS issues:</strong> Resolution failures or outages.</li>
+                            <li><strong>NTP issues:</strong> Time sync failures or drift.</li>
+                            <li><strong>BYOD challenges:</strong> Security/compatibility of personal devices.</li>
+                            <li><strong>Licensed feature issues:</strong> Features disabled due to licensing.</li>
+                            <li><strong>Performance issues:</strong> High CPU, bandwidth, or connectivity problems.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <button class="back-to-top" id="backToTop">↑</button>
+    </main>
+
+    <div class="contact-modal" id="contactModal">
+        <div class="contact-modal-content">
+            <div class="contact-modal-header">
+                <h3>Get in Touch</h3>
+                <button class="contact-modal-close" type="button" id="contactModalClose">✕</button>
+            </div>
+            <div class="contact-modal-links">
+                <a href="mailto:daviddipiazza29@gmail.com" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/CodeGoat29" target="_blank" class="contact-link">GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="../resources.html">Resources</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../resume.html">Resume</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="mailto:daviddipiazza29@gmail.com">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/CodeGoat29" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bar">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        const commandCards = Array.from(document.querySelectorAll('.command-card'));
+
+        function buildResultButton(card, label, meta) {
+            if (!card.id) {
+                card.id = `command-card-${Math.random().toString(36).slice(2, 9)}`;
+            }
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'search-result';
+            btn.dataset.targetId = card.id;
+            btn.innerHTML = `${label}${meta ? `<small>${meta}</small>` : ''}`;
+            return btn;
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            searchResults.innerHTML = '';
+
+            if (!searchTerm) return;
+
+            const matches = commandCards.filter(card => {
+                const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+                const content = card.textContent.toLowerCase();
+                return `${title} ${content}`.includes(searchTerm);
+            });
+
+            if (matches.length === 0) {
+                const empty = document.createElement('div');
+                empty.className = 'search-result';
+                empty.textContent = 'No matches found.';
+                empty.style.cursor = 'default';
+                searchResults.appendChild(empty);
+                return;
+            }
+
+            matches.forEach(card => {
+                const title = card.querySelector('h3')?.textContent.trim() || 'Untitled';
+                searchResults.appendChild(buildResultButton(card, title, ''));
+            });
+        });
+
+        searchResults.addEventListener('click', (e) => {
+            const target = e.target.closest('.search-result');
+            if (!target || !target.dataset.targetId) return;
+            const card = document.getElementById(target.dataset.targetId);
+            if (!card) return;
+            const category = card.closest('.command-category');
+            if (category) {
+                const categoryContent = category.querySelector('.category-content');
+                const categoryToggle = category.querySelector('.category-toggle');
+                categoryContent.classList.remove('collapsed');
+                categoryToggle.classList.remove('collapsed');
+            }
+            card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            backToTop.classList.toggle('show', window.scrollY > 300);
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        document.querySelectorAll('.category-toggle').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const category = toggle.closest('.command-category');
+                const content = category.querySelector('.category-content');
+                toggle.classList.toggle('collapsed');
+                content.classList.toggle('collapsed');
+            });
+        });
+    </script>
+    <script src="../js/site.js"></script>
+</body>
+</html>

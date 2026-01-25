@@ -49,252 +49,275 @@
             <div class="quick-nav">
                 <h3>Table of Contents</h3>
                 <div class="nav-links">
-<a href="#system-management" class="nav-link">1.0 System Management (32%)</a>
+                    <a href="#system-management" class="nav-link">1.0 System Management (32%)</a>
                     <a href="#security" class="nav-link">2.0 Security (21%)</a>
-                    <a href="#scripting-containers-automation" class="nav-link">3.0 Scripting, Containers, and Automation (19%)</a>
+                    <a href="#scripting-automation" class="nav-link">3.0 Scripting, Containers, and Automation (19%)</a>
                     <a href="#troubleshooting" class="nav-link">4.0 Troubleshooting (28%)</a>
-</div>
+                </div>
             </div>
         </section>
-<section id="system-management" class="command-category">
+
+        <section id="system-management" class="command-category">
             <h2 class="category-toggle">1.0 System Management (32%)</h2>
             <div class="category-content">
-                <div class="command-card"><div class="command-header"><h3>1.1 Summarize Linux fundamentals</h3></div><div class="command-notes">
+                <div class="command-card">
+                    <div class="command-header"><h3>Filesystem Hierarchy (FHS)</h3></div>
                     <ul>
-                        <li><strong>Filesystem Hierarchy Standard (FHS):</strong> /boot, /proc, /sys, /var, /usr, /lib, /dev, /etc, /opt, /bin, /sbin, /home, /media, /mnt, /root, /tmp</li>
-                        <li><strong>Basic boot process:</strong> BIOS, UEFI, GRUB2, kernel panic</li>
-                        <li><strong>Boot commands:</strong> mkinitrd, grub2-install, grub2-mkconfig, grub2-update, dracut, initrd.img, vmlinuz</li>
-                        <li><strong>Boot sources:</strong> PXE, USB, ISO</li>
-                        <li><strong>Device types in /dev:</strong> Block devices, character devices, special character devices</li>
-                        <li><strong>Special devices:</strong> /dev/null, /dev/zero, /dev/urandom</li>
-                        <li><strong>Package compilation:</strong> ./configure, make, make install</li>
-                        <li><strong>Storage concepts:</strong> File, block, object storage; MBR, GPT; FUSE; RAID (striping, mirroring, parity)</li>
-                        <li><strong>Hardware info:</strong> lspci, lsusb, dmidecode</li>
+                        <li><strong>/boot:</strong> Bootloader and kernel files.</li>
+                        <li><strong>/proc:</strong> Virtual filesystem with process/system info.</li>
+                        <li><strong>/sys:</strong> Kernel and hardware information.</li>
+                        <li><strong>/var:</strong> Variable data like logs and spools.</li>
+                        <li><strong>/usr:</strong> User binaries, libraries, and docs.</li>
+                        <li><strong>/lib:</strong> Essential shared libraries/modules.</li>
+                        <li><strong>/dev:</strong> Device files for hardware.</li>
+                        <li><strong>/etc:</strong> System configuration files.</li>
+                        <li><strong>/opt:</strong> Optional/add-on software.</li>
+                        <li><strong>/bin:</strong> Essential user binaries.</li>
+                        <li><strong>/sbin:</strong> System binaries for admins.</li>
+                        <li><strong>/home:</strong> User home directories.</li>
+                        <li><strong>/media:</strong> Removable media mounts.</li>
+                        <li><strong>/mnt:</strong> Temporary mount points.</li>
+                        <li><strong>/root:</strong> Root user home directory.</li>
+                        <li><strong>/tmp:</strong> Temporary files.</li>
                     </ul>
-                </div></div>
+                </div>
 
-                <div class="command-card"><div class="command-header"><h3>1.2 Manage files and directories</h3></div><div class="command-notes">
+                <div class="command-card">
+                    <div class="command-header"><h3>Disk Partitioning & Mounting</h3></div>
                     <ul>
-                        <li><strong>File editing:</strong> sed, awk, printf, nano, vi(m)</li>
-                        <li><strong>Compression/archiving/backup:</strong> gzip, bzip2, zip, tar, xz, cpio, dd</li>
-                        <li><strong>Metadata:</strong> stat, file</li>
-                        <li><strong>Links:</strong> soft and hard</li>
-                        <li><strong>Copying between systems:</strong> rsync, scp, nc</li>
-                        <li><strong>File/dir ops:</strong> mv, cp, mkdir, rmdir, ls, pwd, rm, cd, ., .., ~, tree, cat, touch</li>
+                        <li><strong>MBR:</strong> Legacy partitioning; 2TB limit; 4 primary partitions.</li>
+                        <li><strong>GPT:</strong> Modern partition table for large disks and many partitions.</li>
+                        <li><strong>FUSE:</strong> Filesystems implemented in user space.</li>
+                        <li><strong>fdisk:</strong> MBR partitioning tool.</li>
+                        <li><strong>parted:</strong> GPT-aware partitioning tool.</li>
+                        <li><strong>partprobe:</strong> Reload partition table without reboot.</li>
+                        <li><strong>mount:</strong> Mount a filesystem manually.</li>
+                        <li><strong>/etc/fstab:</strong> Persistent mount configuration file.</li>
+                        <li><strong>systemd.mount:</strong> systemd unit for mounts.</li>
+                        <li><strong>LUKS:</strong> Linux Unified Key Setup (disk encryption).</li>
                     </ul>
-                </div></div>
+                </div>
 
-                <div class="command-card"><div class="command-header"><h3>1.3 Configure and manage storage</h3></div><div class="command-notes">
+                <div class="command-card">
+                    <div class="command-header"><h3>LVM & RAID</h3></div>
                     <ul>
-                        <li><strong>Disk partitioning:</strong> fdisk, parted, partprobe</li>
-                        <li><strong>Disk usage:</strong> df, du</li>
-                        <li><strong>LVM:</strong> pvs, vgs, lvs, pvcreate, vgcreate, vgextend, lvcreate, lvresize, lvchange</li>
-                        <li><strong>Mounting:</strong> systemd.mount, /etc/fstab, mount</li>
-                        <li><strong>Encryption:</strong> LUKS</li>
-                        <li><strong>Filesystem tools:</strong> XFS, Ext4, Btrfs</li>
-                        <li><strong>RAID:</strong> mdadm, /proc/mdstat</li>
-                        <li><strong>SAN/NAS:</strong> multipathd, NFS, SMB/CIFS</li>
-                        <li><strong>Storage hardware:</strong> lsscsi, lsblk, blkid, fcstat</li>
+                        <li><strong>pvcreate:</strong> Create a physical volume.</li>
+                        <li><strong>vgcreate:</strong> Create a volume group.</li>
+                        <li><strong>lvcreate:</strong> Create a logical volume.</li>
+                        <li><strong>lvresize:</strong> Resize a logical volume.</li>
+                        <li><strong>pvs:</strong> Display physical volume details.</li>
+                        <li><strong>vgs:</strong> Display volume group details.</li>
+                        <li><strong>lvs:</strong> Display logical volume details.</li>
+                        <li><strong>RAID 0:</strong> Striping; no redundancy.</li>
+                        <li><strong>RAID 1:</strong> Mirroring for redundancy.</li>
+                        <li><strong>RAID 5:</strong> Single-parity redundancy with striping.</li>
+                        <li><strong>RAID 6:</strong> Dual-parity redundancy with striping.</li>
+                        <li><strong>mdadm:</strong> Manage RAID arrays.</li>
+                        <li><strong>/proc/mdstat:</strong> RAID status interface.</li>
                     </ul>
-                </div></div>
+                </div>
 
-                <div class="command-card"><div class="command-header"><h3>1.4 Processes and services</h3></div><div class="command-notes">
+                <div class="command-card">
+                    <div class="command-header"><h3>Networking & Name Resolution</h3></div>
                     <ul>
-                        <li><strong>systemctl:</strong> stop, start, restart, status, enable, disable, mask</li>
-                        <li><strong>Signals:</strong> SIGTERM, SIGKILL, SIGHUP</li>
-                        <li><strong>Process tools:</strong> top, ps, lsof, htop</li>
-                        <li><strong>Scheduling:</strong> cron, crontab, at</li>
-                        <li><strong>Priorities:</strong> nice, renice</li>
-                        <li><strong>States:</strong> zombie, sleeping, running, stopped</li>
-                        <li><strong>Job control:</strong> bg, fg, jobs, Ctrl+Z, Ctrl+C, Ctrl+D</li>
-                        <li><strong>Process lookup:</strong> pgrep, pkill, pidof</li>
+                        <li><strong>ip:</strong> Configure routing and interfaces.</li>
+                        <li><strong>ss:</strong> Socket statistics and connections.</li>
+                        <li><strong>nmcli:</strong> NetworkManager CLI.</li>
+                        <li><strong>hostname:</strong> Show or set system hostname.</li>
+                        <li><strong>hostnamectl:</strong> systemd hostname management.</li>
+                        <li><strong>arp:</strong> View ARP cache.</li>
+                        <li><strong>/etc/resolv.conf:</strong> DNS resolver configuration.</li>
+                        <li><strong>nsswitch.conf:</strong> Name lookup order.</li>
+                        <li><strong>dig:</strong> DNS query tool.</li>
+                        <li><strong>nslookup:</strong> Legacy DNS query tool.</li>
+                        <li><strong>host:</strong> Simple DNS lookup tool.</li>
+                        <li><strong>WHOIS:</strong> Domain registration lookup.</li>
+                        <li><strong>tcpdump:</strong> CLI packet capture.</li>
+                        <li><strong>wireshark:</strong> GUI packet analyzer.</li>
+                        <li><strong>tshark:</strong> CLI Wireshark analyzer.</li>
+                        <li><strong>ping:</strong> ICMP reachability test.</li>
+                        <li><strong>traceroute:</strong> Trace network path hops.</li>
+                        <li><strong>mtr:</strong> Combined ping/traceroute diagnostics.</li>
                     </ul>
-                </div></div>
+                </div>
 
-                <div class="command-card"><div class="command-header"><h3>1.5 Networking tools/config files</h3></div><div class="command-notes">
+                <div class="command-card">
+                    <div class="command-header"><h3>System Services & Scheduling</h3></div>
                     <ul>
-                        <li><strong>Interfaces:</strong> iproute2 (ip, ss), NetworkManager (nmcli), net-tools (ifconfig), ifcfg, hostname, arp, route</li>
-                        <li><strong>Config paths:</strong> /etc/sysconfig/network-scripts/</li>
-                        <li><strong>Name resolution:</strong> nsswitch, /etc/resolv.conf, systemd (hostnamectl, resolvectl), bind-utils (dig, nslookup, host), WHOIS</li>
-                        <li><strong>Monitoring:</strong> tcpdump, wireshark/tshark, netstat, traceroute, ping, mtr</li>
-                        <li><strong>Remote tools:</strong> SSH, cURL, wget, nc, rsync, SCP, SFTP</li>
+                        <li><strong>systemctl:</strong> Manage systemd services.</li>
+                        <li><strong>start:</strong> Start a service immediately.</li>
+                        <li><strong>stop:</strong> Stop a running service.</li>
+                        <li><strong>restart:</strong> Stop and start a service.</li>
+                        <li><strong>status:</strong> Show service status/logs.</li>
+                        <li><strong>enable:</strong> Start service at boot.</li>
+                        <li><strong>disable:</strong> Prevent service from starting at boot.</li>
+                        <li><strong>mask:</strong> Block a service from being started.</li>
+                        <li><strong>cron:</strong> Time-based job scheduler.</li>
+                        <li><strong>crontab:</strong> Manage cron jobs.</li>
+                        <li><strong>at:</strong> Schedule one-time jobs.</li>
                     </ul>
-                </div></div>
+                </div>
 
-                <div class="command-card"><div class="command-header"><h3>1.6 Build and install software</h3></div><div class="command-notes">
+                <div class="command-card">
+                    <div class="command-header"><h3>User, Group & Process Management</h3></div>
                     <ul>
-                        <li><strong>Package managers:</strong> DNF, YUM, APT, RPM, dpkg, ZYpp</li>
-                        <li><strong>Sandboxed apps:</strong> snapd, Flatpak, AppImage</li>
-                        <li><strong>Updates:</strong> kernel updates, package updates</li>
+                        <li><strong>useradd:</strong> Create a user account.</li>
+                        <li><strong>userdel:</strong> Remove a user account.</li>
+                        <li><strong>usermod:</strong> Modify a user account.</li>
+                        <li><strong>groupadd:</strong> Create a group.</li>
+                        <li><strong>groupdel:</strong> Remove a group.</li>
+                        <li><strong>groupmod:</strong> Modify a group.</li>
+                        <li><strong>/etc/passwd:</strong> User account database.</li>
+                        <li><strong>/etc/shadow:</strong> Encrypted password database.</li>
+                        <li><strong>/etc/group:</strong> Group definitions.</li>
+                        <li><strong>ps:</strong> List running processes.</li>
+                        <li><strong>top:</strong> Live process/resource view.</li>
+                        <li><strong>htop:</strong> Enhanced interactive process viewer.</li>
+                        <li><strong>nice:</strong> Start a process with a priority.</li>
+                        <li><strong>renice:</strong> Change priority of a running process.</li>
+                        <li><strong>kill:</strong> Send a signal to a PID.</li>
+                        <li><strong>pkill:</strong> Send a signal by process name.</li>
+                        <li><strong>pgrep:</strong> Find PIDs by name/pattern.</li>
+                        <li><strong>Zombie:</strong> Terminated, unreaped process.</li>
                     </ul>
-                </div></div>
+                </div>
 
-                <div class="command-card"><div class="command-header"><h3>1.7 Manage software configurations</h3></div><div class="command-notes">
+                <div class="command-card">
+                    <div class="command-header"><h3>Package Management & Updates</h3></div>
                     <ul>
-                        <li><strong>Config procedures:</strong> restart service, reload service, .rpmnew, .rpmsave</li>
-                        <li><strong>Repo files:</strong> /etc/apt.conf, /etc/yum.conf, /etc/dnf/dnf.conf, /etc/yum.repo.d, /etc/apt/sources.list.d</li>
-                        <li><strong>Kernel params:</strong> sysctl, /etc/sysctl.conf</li>
-                        <li><strong>Kernel modules:</strong> lsmod, insmod, rmmod, modprobe, modinfo</li>
-                        <li><strong>Common services:</strong> SSH, NTP, syslog, chrony</li>
-                        <li><strong>Localization:</strong> timedatectl, localectl</li>
+                        <li><strong>DNF:</strong> Modern RPM package manager (Fedora/CentOS).</li>
+                        <li><strong>YUM:</strong> Legacy RPM package manager.</li>
+                        <li><strong>APT:</strong> Debian-based package manager.</li>
+                        <li><strong>RPM:</strong> Package format/manager for Red Hat systems.</li>
+                        <li><strong>dpkg:</strong> Low-level Debian package tool.</li>
+                        <li><strong>ZYpp:</strong> openSUSE package management system.</li>
+                        <li><strong>Kernel updates:</strong> Updates to the Linux kernel.</li>
+                        <li><strong>Package updates:</strong> Updates to installed software.</li>
+                        <li><strong>snapd:</strong> Service managing Snap packages.</li>
+                        <li><strong>Flatpak:</strong> Sandboxed cross-distro app packaging.</li>
+                        <li><strong>AppImage:</strong> Portable self-contained application format.</li>
                     </ul>
-                </div></div>
+                </div>
             </div>
         </section>
 
         <section id="security" class="command-category">
             <h2 class="category-toggle">2.0 Security (21%)</h2>
             <div class="category-content">
-                <div class="command-card"><div class="command-header"><h3>2.1 Security best practices</h3></div><div class="command-notes">
+                <div class="command-card">
+                    <div class="command-header"><h3>Permissions & Access Control</h3></div>
                     <ul>
-                        <li><strong>PKI:</strong> public/private key, self-signed cert, digital signature, wildcard cert, hashing, CAs</li>
-                        <li><strong>Cert use cases:</strong> SSL/TLS, certificate authentication, encryption</li>
-                        <li><strong>Authentication:</strong> tokens, MFA, PAM, SSSD, LDAP, SSO</li>
-                        <li><strong>Hardening:</strong> scanning, secure boot (UEFI), logging config, umask, disable insecure services, password strength, remove unused packages, kernel tuning, secure service accounts, host firewall</li>
+                        <li><strong>chmod:</strong> Change file permissions.</li>
+                        <li><strong>chown:</strong> Change file owner.</li>
+                        <li><strong>chgrp:</strong> Change file group.</li>
+                        <li><strong>SUID:</strong> Run as file owner when executed.</li>
+                        <li><strong>SGID:</strong> Run as file group when executed.</li>
+                        <li><strong>Sticky Bit:</strong> Restrict deletes in shared directories.</li>
+                        <li><strong>ACLs:</strong> Extended permissions beyond owner/group/other.</li>
+                        <li><strong>umask:</strong> Default permission mask for new files.</li>
                     </ul>
-                </div></div>
+                </div>
 
-                <div class="command-card"><div class="command-header"><h3>2.2 Identity management</h3></div><div class="command-notes">
+                <div class="command-card">
+                    <div class="command-header"><h3>SELinux</h3></div>
                     <ul>
-                        <li><strong>Account tools:</strong> useradd, groupadd, userdel, groupdel, usermod, groupmod, id, who, w</li>
-                        <li><strong>Defaults/config:</strong> /etc/passwd, /etc/group, /etc/shadow, /etc/profile, /etc/skel, .bash_profile, .bashrc</li>
-                        <li><strong>Account management:</strong> passwd, chage, pam_tally2, faillock, /etc/login.defs</li>
+                        <li><strong>SELinux:</strong> Mandatory access control framework.</li>
+                        <li><strong>Enforcing:</strong> SELinux policy is enforced.</li>
+                        <li><strong>Permissive:</strong> Violations logged only.</li>
+                        <li><strong>Disabled:</strong> SELinux is off.</li>
+                        <li><strong>setenforce:</strong> Change SELinux mode.</li>
+                        <li><strong>getenforce:</strong> Show current SELinux mode.</li>
+                        <li><strong>semanage:</strong> Manage SELinux settings/contexts.</li>
+                        <li><strong>audit2allow:</strong> Build allow rules from audit logs.</li>
                     </ul>
-                </div></div>
-
-                <div class="command-card"><div class="command-header"><h3>2.3 Firewalls</h3></div><div class="command-notes">
-                    <ul>
-                        <li><strong>Use cases:</strong> open/close ports, check config, enable/disable IP forwarding</li>
-                        <li><strong>Technologies:</strong> firewalld, iptables, nftables, UFW</li>
-                        <li><strong>Features:</strong> zones, services, stateful, stateless</li>
-                    </ul>
-                </div></div>
-
-                <div class="command-card"><div class="command-header"><h3>2.4 Remote connectivity</h3></div><div class="command-notes">
-                    <ul>
-                        <li><strong>SSH configs:</strong> /etc/ssh/sshd_config, /etc/ssh/ssh_config, ~/.ssh/known_hosts, ~/.ssh/authorized_keys, ~/.ssh/config</li>
-                        <li><strong>SSH commands:</strong> ssh-keygen, ssh-copy-id, ssh-add</li>
-                        <li><strong>Tunneling:</strong> X11 forwarding, port forwarding, dynamic forwarding</li>
-                        <li><strong>Run as another user:</strong> /etc/sudoers, PolicyKit, sudo, visudo, su -, pkexec</li>
-                    </ul>
-                </div></div>
-
-                <div class="command-card"><div class="command-header"><h3>2.5 Access controls</h3></div><div class="command-notes">
-                    <ul>
-                        <li><strong>Permissions:</strong> ACL, SUID, SGID, sticky bit</li>
-                        <li><strong>SELinux:</strong> context permissions, labels, autorelabel, booleans, enforcing/permissive/disabled, targeted/minimum</li>
-                        <li><strong>AppArmor:</strong> application permissions</li>
-                        <li><strong>Utilities:</strong> chown, umask, chmod, getfacl, setfacl, ls, setenforce, getenforce, chattr, lsattr, chgrp, setsebool, getsebool, chcon, restorecon, semanage, audit2allow</li>
-                    </ul>
-                </div></div>
+                </div>
             </div>
         </section>
 
-        <section id="scripting-containers-automation" class="command-category">
+        <section id="scripting-automation" class="command-category">
             <h2 class="category-toggle">3.0 Scripting, Containers, and Automation (19%)</h2>
             <div class="category-content">
-                <div class="command-card"><div class="command-header"><h3>3.1 Shell scripting</h3></div><div class="command-notes">
+                <div class="command-card">
+                    <div class="command-header"><h3>Shell Scripting Essentials</h3></div>
                     <ul>
-                        <li><strong>Loops:</strong> while, for, until</li>
-                        <li><strong>Conditionals:</strong> if, switch/case</li>
-                        <li><strong>Expansion:</strong> globbing, brace expansions</li>
-                        <li><strong>Comparisons:</strong> arithmetic, string, boolean</li>
-                        <li><strong>Variables and regex</strong></li>
-                        <li><strong>Streams:</strong> |, ||, >, >>, <, <<, &, &&, stderr/stdout</li>
-                        <li><strong>Here docs, exit codes, built-ins:</strong> read, echo, source</li>
-                        <li><strong>Utilities:</strong> awk, sed, find, xargs, grep, egrep, tee, wc, cut, tr, head, tail</li>
-                        <li><strong>Env vars:</strong> $PATH, $SHELL, $?</li>
-                        <li><strong>Paths:</strong> relative and absolute</li>
+                        <li><strong>Loops:</strong> Repeat commands until a condition is met.</li>
+                        <li><strong>while:</strong> Loop while a condition is true.</li>
+                        <li><strong>for:</strong> Loop over a list or range.</li>
+                        <li><strong>until:</strong> Loop until a condition becomes true.</li>
+                        <li><strong>Conditionals:</strong> Execute logic based on true/false tests.</li>
+                        <li><strong>if:</strong> Run commands when a condition is true.</li>
+                        <li><strong>case:</strong> Select a code path based on matching patterns.</li>
+                        <li><strong>Variables:</strong> Store values for reuse in scripts.</li>
+                        <li><strong>Globbing:</strong> Wildcard pattern matching for filenames.</li>
+                        <li><strong>Brace expansion:</strong> Generate multiple strings from a pattern.</li>
+                        <li><strong>Standard streams:</strong> stdin, stdout, and stderr.</li>
+                        <li><strong>| (pipe):</strong> Pass output of one command to another.</li>
+                        <li><strong>&&:</strong> Run next command if previous succeeds.</li>
+                        <li><strong>||:</strong> Run next command if previous fails.</li>
+                        <li><strong>&gt;:</strong> Redirect output to a file (overwrite).</li>
+                        <li><strong>&gt;&gt;:</strong> Redirect output to a file (append).</li>
+                        <li><strong>&lt;:</strong> Read input from a file.</li>
+                        <li><strong>&lt;&lt;:</strong> Here-document input block.</li>
+                        <li><strong>&amp;:</strong> Run process in the background.</li>
+                        <li><strong>Exit code:</strong> Command status (0 success, non-zero failure).</li>
+                        <li><strong>$PATH:</strong> Directories searched for commands.</li>
+                        <li><strong>$SHELL:</strong> Current user shell path.</li>
+                        <li><strong>$?:</strong> Exit status of last command.</li>
+                        <li><strong>Relative path:</strong> Path based on current directory.</li>
+                        <li><strong>Absolute path:</strong> Full path from root (/).</li>
                     </ul>
-                </div></div>
+                </div>
 
-                <div class="command-card"><div class="command-header"><h3>3.2 Containers</h3></div><div class="command-notes">
+                <div class="command-card">
+                    <div class="command-header"><h3>Containers & Automation</h3></div>
                     <ul>
-                        <li><strong>Management:</strong> start/stop, inspect, list, deploy images, connect, logging, expose ports</li>
-                        <li><strong>Images:</strong> build, push, pull, list, rmi</li>
+                        <li><strong>Docker:</strong> Container platform for packaging apps.</li>
+                        <li><strong>docker run:</strong> Create and start a container.</li>
+                        <li><strong>docker start:</strong> Start a stopped container.</li>
+                        <li><strong>docker stop:</strong> Stop a running container.</li>
+                        <li><strong>docker ps:</strong> List containers.</li>
+                        <li><strong>docker build:</strong> Build an image from a Dockerfile.</li>
+                        <li><strong>docker pull:</strong> Download an image.</li>
+                        <li><strong>docker push:</strong> Upload an image to a registry.</li>
+                        <li><strong>Kubernetes:</strong> Container orchestration platform.</li>
+                        <li><strong>git clone:</strong> Copy a repository.</li>
+                        <li><strong>git add:</strong> Stage changes.</li>
+                        <li><strong>git commit:</strong> Save a snapshot.</li>
+                        <li><strong>git push:</strong> Upload commits.</li>
+                        <li><strong>git pull:</strong> Fetch and merge updates.</li>
+                        <li><strong>.gitignore:</strong> Define files to ignore in Git.</li>
+                        <li><strong>CI/CD:</strong> Automated build/test/deploy pipelines.</li>
                     </ul>
-                </div></div>
-
-                <div class="command-card"><div class="command-header"><h3>3.3 Git basics</h3></div><div class="command-notes">
-                    <ul>
-                        <li>clone, push, pull, commit, add, checkout, branch, tag, gitignore</li>
-                    </ul>
-                </div></div>
-
-                <div class="command-card"><div class="command-header"><h3>3.4 IaC + CI/CD</h3></div><div class="command-notes">
-                    <ul>
-                        <li><strong>Formats:</strong> YAML, JSON</li>
-                        <li><strong>Utilities:</strong> Ansible, Puppet, Chef, SaltStack, Terraform</li>
-                        <li><strong>CI/CD use cases</strong></li>
-                        <li><strong>Advanced Git:</strong> merge, rebase, pull requests</li>
-                    </ul>
-                </div></div>
-
-                <div class="command-card"><div class="command-header"><h3>3.5 Container, cloud, orchestration concepts</h3></div><div class="command-notes">
-                    <ul>
-                        <li><strong>Kubernetes:</strong> benefits, pods, sidecars, ambassador containers</li>
-                        <li><strong>Single-node/multicontainer:</strong> Compose</li>
-                        <li><strong>Persistent storage, networks:</strong> overlay, bridging, NAT, host</li>
-                        <li><strong>Service mesh</strong></li>
-                        <li><strong>Bootstrapping:</strong> cloud-init</li>
-                        <li><strong>Registries</strong></li>
-                    </ul>
-                </div></div>
+                </div>
             </div>
         </section>
 
         <section id="troubleshooting" class="command-category">
             <h2 class="category-toggle">4.0 Troubleshooting (28%)</h2>
             <div class="category-content">
-                <div class="command-card"><div class="command-header"><h3>4.1 Storage issues</h3></div><div class="command-notes">
+                <div class="command-card">
+                    <div class="command-header"><h3>Resource Troubleshooting</h3></div>
                     <ul>
-                        <li>High latency, I/O wait, low throughput, low IOPS</li>
-                        <li>Capacity issues, inode exhaustion</li>
-                        <li>Filesystem issues: corruption, mismatch</li>
-                        <li>I/O scheduler, device issues (NVMe, SSD, trim, RAID, LVM, errors)</li>
-                        <li>Mount option problems</li>
+                        <li><strong>df:</strong> Show filesystem free space.</li>
+                        <li><strong>du:</strong> Show file/directory disk usage.</li>
+                        <li><strong>OOM:</strong> Out-of-memory condition.</li>
+                        <li><strong>iowait:</strong> CPU time waiting on disk I/O.</li>
+                        <li><strong>journalctl:</strong> systemd log viewer.</li>
                     </ul>
-                </div></div>
+                </div>
 
-                <div class="command-card"><div class="command-header"><h3>4.2 Network issues</h3></div><div class="command-notes">
+                <div class="command-card">
+                    <div class="command-header"><h3>Common Issue Areas</h3></div>
                     <ul>
-                        <li>Subnet/routing, firewall issues, interface errors (drops/collisions/link)</li>
-                        <li>Bandwidth limitations, latency</li>
-                        <li>Name resolution issues (DNS)</li>
-                        <li>Testing remote systems: Nmap, openssl s_client</li>
+                        <li><strong>Network issues:</strong> Routing, DNS, or firewall problems.</li>
+                        <li><strong>Storage issues:</strong> RAID/LVM or filesystem failures.</li>
+                        <li><strong>Permission issues:</strong> ACL, SELinux, or ownership conflicts.</li>
                     </ul>
-                </div></div>
-
-                <div class="command-card"><div class="command-header"><h3>4.3 CPU and memory issues</h3></div><div class="command-notes">
-                    <ul>
-                        <li>Runaway/zombie processes, high CPU, high load, run queues</li>
-                        <li>CPU times: steal, user, system, idle, iowait</li>
-                        <li>Priorities: nice, renice</li>
-                        <li>Memory exhaustion, OOM, swapping</li>
-                        <li>Hardware: lscpu, lsmem, /proc/cpuinfo, /proc/meminfo</li>
-                    </ul>
-                </div></div>
-
-                <div class="command-card"><div class="command-header"><h3>4.4 User access and permissions</h3></div><div class="command-notes">
-                    <ul>
-                        <li>User login/file access issues, group/context/permissions, ACL/attributes</li>
-                        <li>Password issues, privilege elevation, quota issues</li>
-                    </ul>
-                </div></div>
-
-                <div class="command-card"><div class="command-header"><h3>4.5 Systemd troubleshooting</h3></div><div class="command-notes">
-                    <ul>
-                        <li>Unit files: services, ExecStart/ExecStop, before/after, type, user, requires/wants</li>
-                        <li>Timers: OnCalendar, OnBootSec</li>
-                        <li>Mounts: naming, what/where/type/options</li>
-                        <li>Targets: default, multiuser, network-online, graphical</li>
-                        <li>Common problems: name resolution failure, crashes, time-zone config, boot issues, journal issues, services not starting on time</li>
-                    </ul>
-                </div></div>
+                </div>
             </div>
         </section>
-    <button class="back-to-top" id="backToTop">↑</button>
 
+        <button class="back-to-top" id="backToTop">↑</button>
     </main>
 
     <div class="contact-modal" id="contactModal">
@@ -336,7 +359,6 @@
     </footer>
 
     <script>
-        // Search functionality
         const searchInput = document.getElementById('searchInput');
         const searchResults = document.getElementById('searchResults');
         const commandCards = Array.from(document.querySelectorAll('.command-card'));
@@ -403,7 +425,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Category collapse/expand
         document.querySelectorAll('.category-toggle').forEach(toggle => {
             toggle.addEventListener('click', () => {
                 const category = toggle.closest('.command-category');
