@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux+ Notes - DiPiazza</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" type="image/png" href="/images/thegoat.png">
+</head>
+<body>
+    <div class="top-controls">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <a href="../index.html" class="logo-link"><img src="/images/thegoat.png" alt="DiPiazza Logo" class="logo"></a>
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Where I break stuff, then write about it.</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../resources.html" class="active">Resources</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../resume.html">Resume</a></li>
+                    <li><button class="nav-cta" type="button" data-contact-open>Get in Touch</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="notes-header">
+            <h1>CompTIA Linux+ (XK0-005) Study Notes</h1>
+            <p class="subtitle">Structured notes aligned to the Linux+ exam domains</p>
+
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search" autocomplete="off">
+                <div id="searchResults" class="search-results"></div>
+            </div>
+
+            <div class="quick-nav">
+                <h3>Table of Contents</h3>
+                <div class="nav-links">
+<a href="#system-management" class="nav-link">1.0 System Management (32%)</a>
+                    <a href="#security" class="nav-link">2.0 Security (21%)</a>
+                    <a href="#scripting-containers-automation" class="nav-link">3.0 Scripting, Containers, and Automation (19%)</a>
+                    <a href="#troubleshooting" class="nav-link">4.0 Troubleshooting (28%)</a>
+</div>
+            </div>
+        </section>
+<section id="system-management" class="command-category">
+            <h2 class="category-toggle">1.0 System Management (32%)</h2>
+            <div class="category-content">
+                <div class="command-card"><div class="command-header"><h3>1.1 Summarize Linux fundamentals</h3></div><div class="command-notes">
+                    <ul>
+                        <li><strong>Filesystem Hierarchy Standard (FHS):</strong> /boot, /proc, /sys, /var, /usr, /lib, /dev, /etc, /opt, /bin, /sbin, /home, /media, /mnt, /root, /tmp</li>
+                        <li><strong>Basic boot process:</strong> BIOS, UEFI, GRUB2, kernel panic</li>
+                        <li><strong>Boot commands:</strong> mkinitrd, grub2-install, grub2-mkconfig, grub2-update, dracut, initrd.img, vmlinuz</li>
+                        <li><strong>Boot sources:</strong> PXE, USB, ISO</li>
+                        <li><strong>Device types in /dev:</strong> Block devices, character devices, special character devices</li>
+                        <li><strong>Special devices:</strong> /dev/null, /dev/zero, /dev/urandom</li>
+                        <li><strong>Package compilation:</strong> ./configure, make, make install</li>
+                        <li><strong>Storage concepts:</strong> File, block, object storage; MBR, GPT; FUSE; RAID (striping, mirroring, parity)</li>
+                        <li><strong>Hardware info:</strong> lspci, lsusb, dmidecode</li>
+                    </ul>
+                </div></div>
+
+                <div class="command-card"><div class="command-header"><h3>1.2 Manage files and directories</h3></div><div class="command-notes">
+                    <ul>
+                        <li><strong>File editing:</strong> sed, awk, printf, nano, vi(m)</li>
+                        <li><strong>Compression/archiving/backup:</strong> gzip, bzip2, zip, tar, xz, cpio, dd</li>
+                        <li><strong>Metadata:</strong> stat, file</li>
+                        <li><strong>Links:</strong> soft and hard</li>
+                        <li><strong>Copying between systems:</strong> rsync, scp, nc</li>
+                        <li><strong>File/dir ops:</strong> mv, cp, mkdir, rmdir, ls, pwd, rm, cd, ., .., ~, tree, cat, touch</li>
+                    </ul>
+                </div></div>
+
+                <div class="command-card"><div class="command-header"><h3>1.3 Configure and manage storage</h3></div><div class="command-notes">
+                    <ul>
+                        <li><strong>Disk partitioning:</strong> fdisk, parted, partprobe</li>
+                        <li><strong>Disk usage:</strong> df, du</li>
+                        <li><strong>LVM:</strong> pvs, vgs, lvs, pvcreate, vgcreate, vgextend, lvcreate, lvresize, lvchange</li>
+                        <li><strong>Mounting:</strong> systemd.mount, /etc/fstab, mount</li>
+                        <li><strong>Encryption:</strong> LUKS</li>
+                        <li><strong>Filesystem tools:</strong> XFS, Ext4, Btrfs</li>
+                        <li><strong>RAID:</strong> mdadm, /proc/mdstat</li>
+                        <li><strong>SAN/NAS:</strong> multipathd, NFS, SMB/CIFS</li>
+                        <li><strong>Storage hardware:</strong> lsscsi, lsblk, blkid, fcstat</li>
+                    </ul>
+                </div></div>
+
+                <div class="command-card"><div class="command-header"><h3>1.4 Processes and services</h3></div><div class="command-notes">
+                    <ul>
+                        <li><strong>systemctl:</strong> stop, start, restart, status, enable, disable, mask</li>
+                        <li><strong>Signals:</strong> SIGTERM, SIGKILL, SIGHUP</li>
+                        <li><strong>Process tools:</strong> top, ps, lsof, htop</li>
+                        <li><strong>Scheduling:</strong> cron, crontab, at</li>
+                        <li><strong>Priorities:</strong> nice, renice</li>
+                        <li><strong>States:</strong> zombie, sleeping, running, stopped</li>
+                        <li><strong>Job control:</strong> bg, fg, jobs, Ctrl+Z, Ctrl+C, Ctrl+D</li>
+                        <li><strong>Process lookup:</strong> pgrep, pkill, pidof</li>
+                    </ul>
+                </div></div>
+
+                <div class="command-card"><div class="command-header"><h3>1.5 Networking tools/config files</h3></div><div class="command-notes">
+                    <ul>
+                        <li><strong>Interfaces:</strong> iproute2 (ip, ss), NetworkManager (nmcli), net-tools (ifconfig), ifcfg, hostname, arp, route</li>
+                        <li><strong>Config paths:</strong> /etc/sysconfig/network-scripts/</li>
+                        <li><strong>Name resolution:</strong> nsswitch, /etc/resolv.conf, systemd (hostnamectl, resolvectl), bind-utils (dig, nslookup, host), WHOIS</li>
+                        <li><strong>Monitoring:</strong> tcpdump, wireshark/tshark, netstat, traceroute, ping, mtr</li>
+                        <li><strong>Remote tools:</strong> SSH, cURL, wget, nc, rsync, SCP, SFTP</li>
+                    </ul>
+                </div></div>
+
+                <div class="command-card"><div class="command-header"><h3>1.6 Build and install software</h3></div><div class="command-notes">
+                    <ul>
+                        <li><strong>Package managers:</strong> DNF, YUM, APT, RPM, dpkg, ZYpp</li>
+                        <li><strong>Sandboxed apps:</strong> snapd, Flatpak, AppImage</li>
+                        <li><strong>Updates:</strong> kernel updates, package updates</li>
+                    </ul>
+                </div></div>
+
+                <div class="command-card"><div class="command-header"><h3>1.7 Manage software configurations</h3></div><div class="command-notes">
+                    <ul>
+                        <li><strong>Config procedures:</strong> restart service, reload service, .rpmnew, .rpmsave</li>
+                        <li><strong>Repo files:</strong> /etc/apt.conf, /etc/yum.conf, /etc/dnf/dnf.conf, /etc/yum.repo.d, /etc/apt/sources.list.d</li>
+                        <li><strong>Kernel params:</strong> sysctl, /etc/sysctl.conf</li>
+                        <li><strong>Kernel modules:</strong> lsmod, insmod, rmmod, modprobe, modinfo</li>
+                        <li><strong>Common services:</strong> SSH, NTP, syslog, chrony</li>
+                        <li><strong>Localization:</strong> timedatectl, localectl</li>
+                    </ul>
+                </div></div>
+            </div>
+        </section>
+
+        <section id="security" class="command-category">
+            <h2 class="category-toggle">2.0 Security (21%)</h2>
+            <div class="category-content">
+                <div class="command-card"><div class="command-header"><h3>2.1 Security best practices</h3></div><div class="command-notes">
+                    <ul>
+                        <li><strong>PKI:</strong> public/private key, self-signed cert, digital signature, wildcard cert, hashing, CAs</li>
+                        <li><strong>Cert use cases:</strong> SSL/TLS, certificate authentication, encryption</li>
+                        <li><strong>Authentication:</strong> tokens, MFA, PAM, SSSD, LDAP, SSO</li>
+                        <li><strong>Hardening:</strong> scanning, secure boot (UEFI), logging config, umask, disable insecure services, password strength, remove unused packages, kernel tuning, secure service accounts, host firewall</li>
+                    </ul>
+                </div></div>
+
+                <div class="command-card"><div class="command-header"><h3>2.2 Identity management</h3></div><div class="command-notes">
+                    <ul>
+                        <li><strong>Account tools:</strong> useradd, groupadd, userdel, groupdel, usermod, groupmod, id, who, w</li>
+                        <li><strong>Defaults/config:</strong> /etc/passwd, /etc/group, /etc/shadow, /etc/profile, /etc/skel, .bash_profile, .bashrc</li>
+                        <li><strong>Account management:</strong> passwd, chage, pam_tally2, faillock, /etc/login.defs</li>
+                    </ul>
+                </div></div>
+
+                <div class="command-card"><div class="command-header"><h3>2.3 Firewalls</h3></div><div class="command-notes">
+                    <ul>
+                        <li><strong>Use cases:</strong> open/close ports, check config, enable/disable IP forwarding</li>
+                        <li><strong>Technologies:</strong> firewalld, iptables, nftables, UFW</li>
+                        <li><strong>Features:</strong> zones, services, stateful, stateless</li>
+                    </ul>
+                </div></div>
+
+                <div class="command-card"><div class="command-header"><h3>2.4 Remote connectivity</h3></div><div class="command-notes">
+                    <ul>
+                        <li><strong>SSH configs:</strong> /etc/ssh/sshd_config, /etc/ssh/ssh_config, ~/.ssh/known_hosts, ~/.ssh/authorized_keys, ~/.ssh/config</li>
+                        <li><strong>SSH commands:</strong> ssh-keygen, ssh-copy-id, ssh-add</li>
+                        <li><strong>Tunneling:</strong> X11 forwarding, port forwarding, dynamic forwarding</li>
+                        <li><strong>Run as another user:</strong> /etc/sudoers, PolicyKit, sudo, visudo, su -, pkexec</li>
+                    </ul>
+                </div></div>
+
+                <div class="command-card"><div class="command-header"><h3>2.5 Access controls</h3></div><div class="command-notes">
+                    <ul>
+                        <li><strong>Permissions:</strong> ACL, SUID, SGID, sticky bit</li>
+                        <li><strong>SELinux:</strong> context permissions, labels, autorelabel, booleans, enforcing/permissive/disabled, targeted/minimum</li>
+                        <li><strong>AppArmor:</strong> application permissions</li>
+                        <li><strong>Utilities:</strong> chown, umask, chmod, getfacl, setfacl, ls, setenforce, getenforce, chattr, lsattr, chgrp, setsebool, getsebool, chcon, restorecon, semanage, audit2allow</li>
+                    </ul>
+                </div></div>
+            </div>
+        </section>
+
+        <section id="scripting-containers-automation" class="command-category">
+            <h2 class="category-toggle">3.0 Scripting, Containers, and Automation (19%)</h2>
+            <div class="category-content">
+                <div class="command-card"><div class="command-header"><h3>3.1 Shell scripting</h3></div><div class="command-notes">
+                    <ul>
+                        <li><strong>Loops:</strong> while, for, until</li>
+                        <li><strong>Conditionals:</strong> if, switch/case</li>
+                        <li><strong>Expansion:</strong> globbing, brace expansions</li>
+                        <li><strong>Comparisons:</strong> arithmetic, string, boolean</li>
+                        <li><strong>Variables and regex</strong></li>
+                        <li><strong>Streams:</strong> |, ||, >, >>, <, <<, &, &&, stderr/stdout</li>
+                        <li><strong>Here docs, exit codes, built-ins:</strong> read, echo, source</li>
+                        <li><strong>Utilities:</strong> awk, sed, find, xargs, grep, egrep, tee, wc, cut, tr, head, tail</li>
+                        <li><strong>Env vars:</strong> $PATH, $SHELL, $?</li>
+                        <li><strong>Paths:</strong> relative and absolute</li>
+                    </ul>
+                </div></div>
+
+                <div class="command-card"><div class="command-header"><h3>3.2 Containers</h3></div><div class="command-notes">
+                    <ul>
+                        <li><strong>Management:</strong> start/stop, inspect, list, deploy images, connect, logging, expose ports</li>
+                        <li><strong>Images:</strong> build, push, pull, list, rmi</li>
+                    </ul>
+                </div></div>
+
+                <div class="command-card"><div class="command-header"><h3>3.3 Git basics</h3></div><div class="command-notes">
+                    <ul>
+                        <li>clone, push, pull, commit, add, checkout, branch, tag, gitignore</li>
+                    </ul>
+                </div></div>
+
+                <div class="command-card"><div class="command-header"><h3>3.4 IaC + CI/CD</h3></div><div class="command-notes">
+                    <ul>
+                        <li><strong>Formats:</strong> YAML, JSON</li>
+                        <li><strong>Utilities:</strong> Ansible, Puppet, Chef, SaltStack, Terraform</li>
+                        <li><strong>CI/CD use cases</strong></li>
+                        <li><strong>Advanced Git:</strong> merge, rebase, pull requests</li>
+                    </ul>
+                </div></div>
+
+                <div class="command-card"><div class="command-header"><h3>3.5 Container, cloud, orchestration concepts</h3></div><div class="command-notes">
+                    <ul>
+                        <li><strong>Kubernetes:</strong> benefits, pods, sidecars, ambassador containers</li>
+                        <li><strong>Single-node/multicontainer:</strong> Compose</li>
+                        <li><strong>Persistent storage, networks:</strong> overlay, bridging, NAT, host</li>
+                        <li><strong>Service mesh</strong></li>
+                        <li><strong>Bootstrapping:</strong> cloud-init</li>
+                        <li><strong>Registries</strong></li>
+                    </ul>
+                </div></div>
+            </div>
+        </section>
+
+        <section id="troubleshooting" class="command-category">
+            <h2 class="category-toggle">4.0 Troubleshooting (28%)</h2>
+            <div class="category-content">
+                <div class="command-card"><div class="command-header"><h3>4.1 Storage issues</h3></div><div class="command-notes">
+                    <ul>
+                        <li>High latency, I/O wait, low throughput, low IOPS</li>
+                        <li>Capacity issues, inode exhaustion</li>
+                        <li>Filesystem issues: corruption, mismatch</li>
+                        <li>I/O scheduler, device issues (NVMe, SSD, trim, RAID, LVM, errors)</li>
+                        <li>Mount option problems</li>
+                    </ul>
+                </div></div>
+
+                <div class="command-card"><div class="command-header"><h3>4.2 Network issues</h3></div><div class="command-notes">
+                    <ul>
+                        <li>Subnet/routing, firewall issues, interface errors (drops/collisions/link)</li>
+                        <li>Bandwidth limitations, latency</li>
+                        <li>Name resolution issues (DNS)</li>
+                        <li>Testing remote systems: Nmap, openssl s_client</li>
+                    </ul>
+                </div></div>
+
+                <div class="command-card"><div class="command-header"><h3>4.3 CPU and memory issues</h3></div><div class="command-notes">
+                    <ul>
+                        <li>Runaway/zombie processes, high CPU, high load, run queues</li>
+                        <li>CPU times: steal, user, system, idle, iowait</li>
+                        <li>Priorities: nice, renice</li>
+                        <li>Memory exhaustion, OOM, swapping</li>
+                        <li>Hardware: lscpu, lsmem, /proc/cpuinfo, /proc/meminfo</li>
+                    </ul>
+                </div></div>
+
+                <div class="command-card"><div class="command-header"><h3>4.4 User access and permissions</h3></div><div class="command-notes">
+                    <ul>
+                        <li>User login/file access issues, group/context/permissions, ACL/attributes</li>
+                        <li>Password issues, privilege elevation, quota issues</li>
+                    </ul>
+                </div></div>
+
+                <div class="command-card"><div class="command-header"><h3>4.5 Systemd troubleshooting</h3></div><div class="command-notes">
+                    <ul>
+                        <li>Unit files: services, ExecStart/ExecStop, before/after, type, user, requires/wants</li>
+                        <li>Timers: OnCalendar, OnBootSec</li>
+                        <li>Mounts: naming, what/where/type/options</li>
+                        <li>Targets: default, multiuser, network-online, graphical</li>
+                        <li>Common problems: name resolution failure, crashes, time-zone config, boot issues, journal issues, services not starting on time</li>
+                    </ul>
+                </div></div>
+            </div>
+        </section>
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    </main>
+
+    <div class="contact-modal" id="contactModal">
+        <div class="contact-modal-content">
+            <div class="contact-modal-header">
+                <h3>Get in Touch</h3>
+                <button class="contact-modal-close" type="button" id="contactModalClose">✕</button>
+            </div>
+            <div class="contact-modal-links">
+                <a href="mailto:daviddipiazza29@gmail.com" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/CodeGoat29" target="_blank" class="contact-link">GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="../resources.html">Resources</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../resume.html">Resume</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="mailto:daviddipiazza29@gmail.com">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/CodeGoat29" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bar">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        const commandCards = Array.from(document.querySelectorAll('.command-card'));
+
+        function buildResultButton(card, label, meta) {
+            if (!card.id) {
+                card.id = `command-card-${Math.random().toString(36).slice(2, 9)}`;
+            }
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'search-result';
+            btn.dataset.targetId = card.id;
+            btn.innerHTML = `${label}${meta ? `<small>${meta}</small>` : ''}`;
+            return btn;
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            searchResults.innerHTML = '';
+
+            if (!searchTerm) return;
+
+            const matches = commandCards.filter(card => {
+                const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+                const content = card.textContent.toLowerCase();
+                return `${title} ${content}`.includes(searchTerm);
+            });
+
+            if (matches.length === 0) {
+                const empty = document.createElement('div');
+                empty.className = 'search-result';
+                empty.textContent = 'No matches found.';
+                empty.style.cursor = 'default';
+                searchResults.appendChild(empty);
+                return;
+            }
+
+            matches.forEach(card => {
+                const title = card.querySelector('h3')?.textContent.trim() || 'Untitled';
+                searchResults.appendChild(buildResultButton(card, title, ''));
+            });
+        });
+
+        searchResults.addEventListener('click', (e) => {
+            const target = e.target.closest('.search-result');
+            if (!target || !target.dataset.targetId) return;
+            const card = document.getElementById(target.dataset.targetId);
+            if (!card) return;
+            const category = card.closest('.command-category');
+            if (category) {
+                const categoryContent = category.querySelector('.category-content');
+                const categoryToggle = category.querySelector('.category-toggle');
+                categoryContent.classList.remove('collapsed');
+                categoryToggle.classList.remove('collapsed');
+            }
+            card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            backToTop.classList.toggle('show', window.scrollY > 300);
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Category collapse/expand
+        document.querySelectorAll('.category-toggle').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const category = toggle.closest('.command-category');
+                const content = category.querySelector('.category-content');
+                toggle.classList.toggle('collapsed');
+                content.classList.toggle('collapsed');
+            });
+        });
+    </script>
+    <script src="../js/site.js"></script>
+</body>
+</html>

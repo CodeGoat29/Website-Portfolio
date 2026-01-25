@@ -39,7 +39,7 @@
 
     <main class="container">
         <section id="counter" class="resume-section">
-            <h2>Age Counter</h2>
+            <h2>Important Event Tracker</h2>
             
             <div class="counter-display-section">
             <div class="counter-cards">
@@ -84,6 +84,27 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="counter-display-card">
+                    <div class="counter-display-header">
+                        <h2>Anniversary</h2>
+                        <span class="counter-birthdate">Since: August 5, 2023</span>
+                    </div>
+                    <div class="counter-display-age" id="anniversaryAge">
+                        <div class="age-component">
+                            <span class="age-number" id="anniversaryYears">0</span>
+                            <span class="age-label">Years</span>
+                        </div>
+                        <div class="age-component">
+                            <span class="age-number" id="anniversaryMonths">0</span>
+                            <span class="age-label">Months</span>
+                        </div>
+                        <div class="age-component">
+                            <span class="age-number" id="anniversaryDays">0</span>
+                            <span class="age-label">Days</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="counter-info">
@@ -107,8 +128,26 @@
         </div>
     </div>
 
-        <footer>
-        <div class="container">
+            <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="../resources.html">Resources</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../resume.html">Resume</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="mailto:daviddipiazza29@gmail.com">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/CodeGoat29" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bar">
             <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
         </div>
     </footer>
@@ -290,9 +329,11 @@
         function updateAges() {
             const harperBirth = '2024-08-29';
             const sophiaBirth = '2025-09-18';
+            const anniversaryDate = '2023-08-05';
             
             const harperAge = calculateAge(harperBirth);
             const sophiaAge = calculateAge(sophiaBirth);
+            const anniversaryAge = calculateAge(anniversaryDate);
             
             document.getElementById('harperYears').textContent = harperAge.years;
             document.getElementById('harperMonths').textContent = harperAge.months;
@@ -301,6 +342,10 @@
             document.getElementById('sophiaYears').textContent = sophiaAge.years;
             document.getElementById('sophiaMonths').textContent = sophiaAge.months;
             document.getElementById('sophiaDays').textContent = sophiaAge.days;
+
+            document.getElementById('anniversaryYears').textContent = anniversaryAge.years;
+            document.getElementById('anniversaryMonths').textContent = anniversaryAge.months;
+            document.getElementById('anniversaryDays').textContent = anniversaryAge.days;
             
             // Update last update time
             const now = new Date();

@@ -367,6 +367,31 @@
             50% { opacity: 0; }
         }
 
+
+        .footer-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px;
+            background: var(--surface-2);
+            padding: 16px;
+            border-radius: 14px;
+        }
+
+        .footer-preview ul {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0 0 0;
+        }
+
+        .footer-preview li {
+            margin-bottom: 6px;
+            color: var(--muted);
+        }
+
+        .footer-preview a {
+            color: var(--primary);
+        }
+
 </style>
 </head>
 <body>
@@ -534,9 +559,27 @@
     </div>
 </main>
 
-    <footer class="footer">
-        <div class="container">
-            <span>© 2026 DiPiazza.org — Test UI build</span>
+        <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="resume.html">Resume</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="mailto:daviddipiazza29@gmail.com">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/CodeGoat29" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bar">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
         </div>
     </footer>
     <script>

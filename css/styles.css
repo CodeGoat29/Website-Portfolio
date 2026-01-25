@@ -407,6 +407,14 @@ main {
     margin-bottom: 48px;
 }
 
+.hero-full {
+    grid-template-columns: 1fr;
+}
+
+.hero-panel-section {
+    margin-bottom: 48px;
+}
+
 .dark-mode .hero {
     background: transparent;
     border-color: transparent;
@@ -427,6 +435,18 @@ main {
 .hero h2::after {
     width: 100%;
     left: 0;
+}
+
+.hero-subtitle {
+    display: block;
+    font-size: 0.7em;
+    color: #4c6b60;
+    font-weight: 600;
+    margin-top: 6px;
+}
+
+.dark-mode .hero-subtitle {
+    color: #93a4b5;
 }
 
 .hero p {
@@ -1919,4 +1939,56 @@ footer {
 .search-modal-btn.btn-cancel:hover {
     background: #657786;
     color: white;
+}
+
+
+.site-footer {
+    background: #0f1a17;
+    color: #c6d2cc;
+    padding: 24px 0 14px;
+    margin-top: 48px;
+}
+
+.dark-mode .site-footer {
+    background: #0b1110;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.footer-grid h4 {
+    margin-bottom: 8px;
+    color: #e7efe9;
+    font-size: 0.95em;
+}
+
+.footer-grid ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-grid li {
+    margin-bottom: 6px;
+}
+
+.footer-grid a {
+    color: #a9bcb3;
+    text-decoration: none;
+}
+
+.footer-grid a:hover {
+    color: #ffffff;
+}
+
+.footer-bar {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 10px;
+    text-align: center;
+    color: #8fa39a;
+    font-size: 0.9em;
 }
