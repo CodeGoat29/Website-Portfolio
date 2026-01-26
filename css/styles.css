@@ -893,6 +893,137 @@ section h2::after {
     box-shadow: 0 4px 12px rgba(47, 127, 95, 0.3);
 }
 
+.medmath-page .medmath-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    margin-top: 18px;
+}
+
+.medmath-page .medmath-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: #657786;
+}
+
+.dark-mode .medmath-page .medmath-toggle {
+    color: #93a4b5;
+}
+
+.medmath-page .medmath-toggle input {
+    width: 18px;
+    height: 18px;
+}
+
+.medmath-page .medmath-timer {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    color: #657786;
+}
+
+.dark-mode .medmath-page .medmath-timer {
+    color: #93a4b5;
+}
+
+.medmath-page .medmath-input-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.medmath-page .medmath-input-row input {
+    padding: 10px 12px;
+    border: 2px solid #e1e8ed;
+    border-radius: 8px;
+    font-size: 1em;
+    width: 140px;
+}
+
+.dark-mode .medmath-page .medmath-input-row input {
+    background: #1c2938;
+    color: #e4e6eb;
+    border-color: #2a3f5f;
+}
+
+.medmath-page .medmath-btn {
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: var(--primary-blue);
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.medmath-page .medmath-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(47, 127, 95, 0.2);
+}
+
+.medmath-page .feedback {
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.medmath-page .correct { color: #22c55e; }
+.medmath-page .incorrect { color: #ef4444; }
+
+.medmath-page .explanation {
+    margin-top: 8px;
+    font-size: 0.95em;
+    color: #657786;
+}
+
+.dark-mode .medmath-page .explanation {
+    color: #93a4b5;
+}
+
+.medmath-page .medmath-dim {
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px dashed #d5dee6;
+    background: #f7fafc;
+    color: #4b5b6a;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace;
+    font-size: 0.9em;
+    white-space: pre-wrap;
+}
+
+.dark-mode .medmath-page .medmath-dim {
+    background: #1f2d3d;
+    border-color: #2a3f5f;
+    color: #c9d3df;
+}
+
+.medmath-page .medmath-score {
+    margin-top: 28px;
+    background: #ffffff;
+    border: 1px solid #e1e8ed;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.dark-mode .medmath-page .medmath-score {
+    background: #1c2938;
+    border-color: #2a3f5f;
+}
+
+.medmath-page .medmath-score h2 {
+    margin-top: 0;
+    color: var(--primary-blue);
+}
+
 .resource-links {
     display: flex;
     flex-wrap: wrap;

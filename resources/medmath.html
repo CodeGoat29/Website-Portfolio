@@ -6,143 +6,8 @@
     <title>Med Math Practice - DiPiazza</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="icon" type="image/png" href="/images/thegoat.png">
-    <style>
-        .medmath-hero {
-            background: #ffffff;
-            border-radius: 16px;
-            border: 1px solid #e1e8ed;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-            padding: 32px;
-            margin-bottom: 28px;
-        }
-
-        .dark-mode .medmath-hero {
-            background: #1c2938;
-            border-color: #2a3f5f;
-        }
-
-        .medmath-hero h1 {
-            margin: 0 0 10px;
-            font-size: 2.2em;
-            color: var(--primary-blue);
-        }
-
-        .medmath-hero p {
-            margin: 0;
-            color: #657786;
-            font-size: 1.05em;
-        }
-
-        .dark-mode .medmath-hero p {
-            color: #93a4b5;
-        }
-
-        .medmath-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .medmath-card {
-            background: white;
-            border-radius: 14px;
-            padding: 22px;
-            border: 1px solid #e1e8ed;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-        }
-
-        .dark-mode .medmath-card {
-            background: #1c2938;
-            border-color: #2a3f5f;
-        }
-
-        .medmath-card h3 {
-            margin: 0 0 12px;
-            color: var(--primary-blue);
-        }
-
-        .medmath-card p {
-            color: #657786;
-            margin-bottom: 16px;
-        }
-
-        .dark-mode .medmath-card p {
-            color: #93a4b5;
-        }
-
-        .question-box {
-            background: #f6f8fa;
-            border: 1px solid #e1e8ed;
-            border-radius: 12px;
-            padding: 18px;
-        }
-
-        .dark-mode .question-box {
-            background: #223145;
-            border-color: #2a3f5f;
-        }
-
-        .question-box p {
-            margin-top: 0;
-        }
-
-        .medmath-input-row {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .medmath-input-row input {
-            padding: 10px 12px;
-            border: 2px solid #e1e8ed;
-            border-radius: 8px;
-            font-size: 1em;
-            width: 140px;
-        }
-
-        .dark-mode .medmath-input-row input {
-            background: #1c2938;
-            color: #e4e6eb;
-            border-color: #2a3f5f;
-        }
-
-        .medmath-btn {
-            padding: 10px 16px;
-            border-radius: 8px;
-            background: var(--primary-blue);
-            color: #fff;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .medmath-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(47, 127, 95, 0.2);
-        }
-
-        .feedback {
-            margin-top: 10px;
-            font-weight: 600;
-        }
-
-        .correct { color: #22c55e; }
-        .incorrect { color: #ef4444; }
-
-        .explanation {
-            margin-top: 8px;
-            font-size: 0.95em;
-            color: #657786;
-        }
-
-        .dark-mode .explanation {
-            color: #93a4b5;
-        }
-    </style>
 </head>
-<body>
+<body class="medmath-page">
     <div class="top-controls">
         <div class="dark-mode-toggle">
             <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
@@ -172,12 +37,30 @@
     </header>
 
     <main class="container">
-        <section class="medmath-hero">
+        <section class="notes-header">
             <h1>Med Math Practice Game</h1>
-            <p>Practice dose, conversion, and IV rate calculations with instant feedback.</p>
+            <p class="subtitle">Practice dose, conversion, and IV rate calculations with instant feedback.</p>
+            <div class="medmath-controls">
+                <label class="medmath-toggle">
+                    <input type="checkbox" id="showAnalysis" checked>
+                    <span>Show dimensional analysis when answer is wrong</span>
+                </label>
+                <div class="medmath-timer">
+                    <button class="medmath-btn" type="button" id="startTimer">Start timer mode</button>
+                    <button class="medmath-btn" type="button" id="shuffleQuiz">Shuffle questions</button>
+                    <button class="medmath-btn" type="button" id="resetQuiz">Reset quiz</button>
+                    <span id="timerDisplay">Timer off</span>
+                </div>
+            </div>
         </section>
 
-        <section class="medmath-grid" id="game"></section>
+        <section class="resources-grid medmath-grid" id="game"></section>
+
+        <section class="medmath-score" id="finalScore" hidden>
+            <h2>Final Score</h2>
+            <p id="finalScoreText"></p>
+            <button class="medmath-btn" type="button" id="retryGame">Retry</button>
+        </section>
     </main>
 
     <div class="contact-modal" id="contactModal">
@@ -223,81 +106,236 @@
             {
                 q: "Order: 500 mg. Available: 250 mg per tablet. How many tablets?",
                 answer: 2,
-                explanation: "500 mg ÷ 250 mg per tablet = 2 tablets."
+                explanation: "500 mg ÷ 250 mg/tablet = 2 tablets.",
+                dim: "(500 mg) ÷ (250 mg/tablet) = 2 tablets."
             },
             {
                 q: "Order: 1 g. Available: 250 mg tablets. How many tablets?",
                 answer: 4,
-                explanation: "1 g = 1000 mg. 1000 ÷ 250 = 4 tablets."
+                explanation: "(1 g × 1000 mg/1 g) ÷ (250 mg/tablet) = 4 tablets.",
+                dim: "(1 g × 1000 mg/1 g) ÷ (250 mg/tablet) = 4 tablets."
             },
             {
                 q: "Order: 30 mg. Available: 10 mg/mL. How many mL?",
                 answer: 3,
-                explanation: "30 mg ÷ 10 mg/mL = 3 mL."
+                explanation: "(30 mg) ÷ (10 mg/mL) = 3 mL.",
+                dim: "(30 mg) ÷ (10 mg/mL) = 3 mL."
             },
             {
                 q: "Order: 0.5 g. Available: 250 mg tablets. How many tablets?",
                 answer: 2,
-                explanation: "0.5 g = 500 mg. 500 ÷ 250 = 2 tablets."
+                explanation: "(0.5 g × 1000 mg/1 g) ÷ (250 mg/tablet) = 2 tablets.",
+                dim: "(0.5 g × 1000 mg/1 g) ÷ (250 mg/tablet) = 2 tablets."
             },
             {
                 q: "Order: 1000 mL IV over 8 hours. mL/hr?",
                 answer: 125,
-                explanation: "1000 mL ÷ 8 hr = 125 mL/hr."
+                explanation: "(1000 mL) ÷ (8 hr) = 125 mL/hr.",
+                dim: "(1000 mL) ÷ (8 hr) = 125 mL/hr."
             },
             {
                 q: "Order: 500 mL over 4 hours. mL/hr?",
                 answer: 125,
-                explanation: "500 ÷ 4 = 125 mL/hr."
+                explanation: "(500 mL) ÷ (4 hr) = 125 mL/hr.",
+                dim: "(500 mL) ÷ (4 hr) = 125 mL/hr."
             },
             {
                 q: "Order: 250 mg. Available: 500 mg/5 mL. How many mL?",
                 answer: 2.5,
-                explanation: "500 mg in 5 mL → 250 mg is half = 2.5 mL."
+                explanation: "(250 mg) × (5 mL/500 mg) = 2.5 mL.",
+                dim: "(250 mg) × (5 mL/500 mg) = 2.5 mL."
             },
             {
                 q: "Order: 60 mg. Available: 20 mg/mL. How many mL?",
                 answer: 3,
-                explanation: "60 ÷ 20 = 3 mL."
+                explanation: "(60 mg) ÷ (20 mg/mL) = 3 mL.",
+                dim: "(60 mg) ÷ (20 mg/mL) = 3 mL."
             },
             {
                 q: "Order: 2 L IV fluids. How many mL?",
                 answer: 2000,
-                explanation: "1 L = 1000 mL → 2 L = 2000 mL."
+                explanation: "(2 L) × (1000 mL/1 L) = 2000 mL.",
+                dim: "(2 L) × (1000 mL/1 L) = 2000 mL."
             },
             {
                 q: "Order: 0.25 g. Available: 125 mg tablets. How many tablets?",
                 answer: 2,
-                explanation: "0.25 g = 250 mg. 250 ÷ 125 = 2 tablets."
+                explanation: "(0.25 g × 1000 mg/1 g) ÷ (125 mg/tablet) = 2 tablets.",
+                dim: "(0.25 g × 1000 mg/1 g) ÷ (125 mg/tablet) = 2 tablets."
             },
             {
                 q: "Order: 75 mL/hr for 6 hours. Total mL infused?",
                 answer: 450,
-                explanation: "75 × 6 = 450 mL."
+                explanation: "(75 mL/hr) × (6 hr) = 450 mL.",
+                dim: "(75 mL/hr) × (6 hr) = 450 mL."
             },
             {
                 q: "Order: 800 mg. Available: 400 mg tablets. How many tablets?",
                 answer: 2,
-                explanation: "800 ÷ 400 = 2 tablets."
+                explanation: "(800 mg) ÷ (400 mg/tablet) = 2 tablets.",
+                dim: "(800 mg) ÷ (400 mg/tablet) = 2 tablets."
+            },
+            {
+                q: "Order: 0.75 g. Available: 250 mg tablets. How many tablets?",
+                answer: 3,
+                explanation: "0.75 g = 750 mg. 750 ÷ 250 = 3 tablets.",
+                dim: "0.75 g × (1000 mg / 1 g) × (1 tablet / 250 mg) = 3 tablets"
+            },
+            {
+                q: "Order: 90 mg. Available: 30 mg/mL. How many mL?",
+                answer: 3,
+                explanation: "90 ÷ 30 = 3 mL.",
+                dim: "90 mg × (1 mL / 30 mg) = 3 mL"
+            },
+            {
+                q: "Order: 1.5 L IV fluids. How many mL?",
+                answer: 1500,
+                explanation: "1 L = 1000 mL → 1.5 L = 1500 mL.",
+                dim: "1.5 L × (1000 mL / 1 L) = 1500 mL"
+            },
+            {
+                q: "Order: 300 mg. Available: 600 mg/10 mL. How many mL?",
+                answer: 5,
+                explanation: "600 mg in 10 mL → half the dose is 5 mL.",
+                dim: "300 mg × (10 mL / 600 mg) = 5 mL"
+            },
+            {
+                q: "Order: 50 mL/hr for 8 hours. Total mL infused?",
+                answer: 400,
+                explanation: "50 × 8 = 400 mL.",
+                dim: "50 (mL/hr) × 8 hr = 400 mL"
+            },
+            {
+                q: "Order: 0.2 g. Available: 100 mg tablets. How many tablets?",
+                answer: 2,
+                explanation: "0.2 g = 200 mg. 200 ÷ 100 = 2 tablets.",
+                dim: "0.2 g × (1000 mg / 1 g) × (1 tablet / 100 mg) = 2 tablets"
+            },
+            {
+                q: "Order: 45 mg. Available: 15 mg/mL. How many mL?",
+                answer: 3,
+                explanation: "45 ÷ 15 = 3 mL.",
+                dim: "45 mg × (1 mL / 15 mg) = 3 mL"
+            },
+            {
+                q: "Order: 1200 mL IV over 10 hours. mL/hr?",
+                answer: 120,
+                explanation: "1200 ÷ 10 = 120 mL/hr.",
+                dim: "1200 mL × (1 hr / 10 hr) = 120 mL/hr"
             }
         ];
+        const originalQuestions = questions.map(item => ({ ...item }));
 
         const gameDiv = document.getElementById("game");
+        const showAnalysisToggle = document.getElementById("showAnalysis");
+        const timerDisplay = document.getElementById("timerDisplay");
+        const startTimerBtn = document.getElementById("startTimer");
+        const shuffleQuizBtn = document.getElementById("shuffleQuiz");
+        const resetQuizBtn = document.getElementById("resetQuiz");
+        const finalScore = document.getElementById("finalScore");
+        const finalScoreText = document.getElementById("finalScoreText");
+        const retryGame = document.getElementById("retryGame");
+        let score = 0;
+        let answered = 0;
+        let timerId = null;
+        let secondsLeft = 0;
+        const timerDuration = 1800;
 
-        questions.forEach((item, index) => {
-            const div = document.createElement("div");
-            div.className = "medmath-card question-box";
-            div.innerHTML = `
-                <h3>Question ${index + 1}</h3>
-                <p>${item.q}</p>
-                <div class="medmath-input-row">
-                    <input type="number" step="0.01" id="answer-${index}" placeholder="Answer">
-                    <button class="medmath-btn" type="button" data-check="${index}">Check</button>
-                </div>
-                <div id="feedback-${index}" class="feedback"></div>
-                <div id="explanation-${index}" class="explanation"></div>
-            `;
-            gameDiv.appendChild(div);
+        function renderQuestions() {
+            gameDiv.innerHTML = '';
+            questions.forEach((item, index) => {
+                const div = document.createElement("div");
+                div.className = "resource-card medmath-question";
+                div.innerHTML = `
+                    <h3>Question ${index + 1}</h3>
+                    <p>${item.q}</p>
+                    <div class="medmath-input-row">
+                        <input type="number" step="0.01" id="answer-${index}" placeholder="Answer">
+                        <button class="medmath-btn" type="button" data-check="${index}">Check</button>
+                    </div>
+                    <div id="feedback-${index}" class="feedback"></div>
+                    <div id="explanation-${index}" class="explanation"></div>
+                    <div id="dim-${index}" class="medmath-dim">${item.dim || ''}</div>
+                `;
+                gameDiv.appendChild(div);
+            });
+            updateExplanationsVisibility();
+        }
+
+        function updateExplanationsVisibility() {
+            document.querySelectorAll('.medmath-dim').forEach((el) => {
+                el.style.display = 'none';
+            });
+        }
+
+        function endGame(reason) {
+            clearInterval(timerId);
+            timerId = null;
+            const total = questions.length;
+            finalScore.hidden = false;
+            finalScoreText.textContent = `You scored ${score} out of ${total}. ${reason}`;
+            document.querySelectorAll('[data-check]').forEach(btn => btn.disabled = true);
+            document.querySelectorAll('#game input').forEach(input => input.disabled = true);
+        }
+
+        function startTimer() {
+            if (timerId) return;
+            secondsLeft = timerDuration;
+            timerDisplay.textContent = `Time left: ${Math.floor(secondsLeft / 60)}:${String(secondsLeft % 60).padStart(2, '0')}`;
+            startTimerBtn.textContent = 'Restart timer';
+            timerId = setInterval(() => {
+                secondsLeft -= 1;
+                timerDisplay.textContent = `Time left: ${Math.floor(secondsLeft / 60)}:${String(secondsLeft % 60).padStart(2, '0')}`;
+                if (secondsLeft <= 0) {
+                    endGame('Time is up.');
+                }
+            }, 1000);
+        }
+
+        function restartTimer() {
+            clearInterval(timerId);
+            timerId = null;
+            startTimer();
+        }
+
+        function shuffleQuestions() {
+            for (let i = questions.length - 1; i > 0; i -= 1) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [questions[i], questions[j]] = [questions[j], questions[i]];
+            }
+            resetQuiz(false);
+        }
+
+        function resetQuiz(resetOrder = true) {
+            if (resetOrder) {
+                questions.splice(0, questions.length, ...originalQuestions.map(item => ({ ...item })));
+            }
+            score = 0;
+            answered = 0;
+            finalScore.hidden = true;
+            finalScoreText.textContent = '';
+            timerDisplay.textContent = 'Timer off';
+            startTimerBtn.textContent = 'Start timer mode';
+            clearInterval(timerId);
+            timerId = null;
+            renderQuestions();
+        }
+
+        showAnalysisToggle.addEventListener('change', updateExplanationsVisibility);
+
+        startTimerBtn.addEventListener('click', () => {
+            if (timerId) {
+                restartTimer();
+            } else {
+                startTimer();
+            }
+        });
+
+        shuffleQuizBtn.addEventListener('click', shuffleQuestions);
+        resetQuizBtn.addEventListener('click', () => resetQuiz(true));
+
+        retryGame.addEventListener('click', () => {
+            resetQuiz(true);
         });
 
         gameDiv.addEventListener('click', (event) => {
@@ -307,11 +345,13 @@
             const userAnswer = parseFloat(document.getElementById(`answer-${index}`).value);
             const feedback = document.getElementById(`feedback-${index}`);
             const explanation = document.getElementById(`explanation-${index}`);
+            const dimBlock = document.getElementById(`dim-${index}`);
 
             if (!Number.isFinite(userAnswer)) {
                 feedback.textContent = "Enter a number.";
                 feedback.className = "feedback incorrect";
                 explanation.textContent = "";
+                dimBlock.style.display = 'none';
                 return;
             }
 
@@ -319,12 +359,28 @@
                 feedback.textContent = "✅ Correct!";
                 feedback.className = "feedback correct";
                 explanation.textContent = "";
+                dimBlock.style.display = 'none';
+                if (!btn.dataset.answered) {
+                    score += 1;
+                }
             } else {
                 feedback.textContent = "❌ Incorrect";
                 feedback.className = "feedback incorrect";
                 explanation.textContent = questions[index].explanation;
+                if (showAnalysisToggle.checked) {
+                    dimBlock.style.display = '';
+                } else {
+                    dimBlock.style.display = 'none';
+                }
+            }
+            btn.dataset.answered = 'true';
+            answered += 1;
+            if (answered >= questions.length) {
+                endGame('You answered all questions.');
             }
         });
+
+        renderQuestions();
     </script>
     <script src="../js/site.js"></script>
 </body>
