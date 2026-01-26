@@ -49,6 +49,7 @@
                     <button class="medmath-btn" type="button" id="startTimer">Start timer mode</button>
                     <button class="medmath-btn" type="button" id="shuffleQuiz">Shuffle questions</button>
                     <button class="medmath-btn" type="button" id="resetQuiz">Reset quiz</button>
+                    <button class="medmath-btn" type="button" id="openHelp">Help</button>
                     <span id="timerDisplay">Timer off</span>
                 </div>
             </div>
@@ -56,12 +57,150 @@
 
         <section class="resources-grid medmath-grid" id="game"></section>
 
-        <section class="medmath-score" id="finalScore" hidden>
-            <h2>Final Score</h2>
-            <p id="finalScoreText"></p>
-            <button class="medmath-btn" type="button" id="retryGame">Retry</button>
-        </section>
-    </main>
+    <section class="medmath-score" id="finalScore" hidden>
+        <h2>Final Score</h2>
+        <p id="finalScoreText"></p>
+        <button class="medmath-btn" type="button" id="retryGame">Retry</button>
+    </section>
+</main>
+
+    <div class="medmath-help-modal" id="medmathHelp" hidden>
+        <div class="medmath-help-panel" role="dialog" aria-modal="true" aria-label="Med Math Help">
+            <div class="medmath-help-header">
+                <h3>🧠 Med Math Quick Help Guide</h3>
+                <button class="medmath-btn medmath-help-close" type="button" id="closeHelp">Close</button>
+            </div>
+
+            <details class="help-item">
+                <summary>1) Core Conversions (Memorize)</summary>
+                <div class="help-content">
+                    <ul>
+                        <li><strong>1 g = 1000 mg</strong></li>
+                        <li><strong>1 mg = 1000 mcg</strong></li>
+                        <li><strong>1 kg = 2.2 lb</strong></li>
+                        <li><strong>1 tsp = 5 mL</strong></li>
+                        <li><strong>1 tbsp = 15 mL</strong></li>
+                        <li><strong>1 oz = 30 mL</strong></li>
+                        <li><strong>1 L = 1000 mL</strong></li>
+                    </ul>
+                    <p class="help-note">If units don’t match, convert first.</p>
+                </div>
+            </details>
+
+            <details class="help-item">
+                <summary>2) Basic Dosage Formula (Most Common)</summary>
+                <div class="help-content">
+                    <p><strong>Formula:</strong></p>
+                    <pre><code>(Dose Ordered ÷ Dose on Hand) × Quantity = Amount to Give</code></pre>
+                    <p><strong>Example:</strong> Order 500 mg • On hand 250 mg tablets • Quantity 1 tab</p>
+                    <pre><code>(500 ÷ 250) × 1 = 2 tablets</code></pre>
+                </div>
+            </details>
+
+            <details class="help-item">
+                <summary>3) Liquid Medications</summary>
+                <div class="help-content">
+                    <p>Same formula — watch <strong>mL</strong>.</p>
+                    <p><strong>Example:</strong> Order 10 mg • On hand 20 mg / 5 mL</p>
+                    <pre><code>(10 ÷ 20) × 5 = 2.5 mL</code></pre>
+                </div>
+            </details>
+
+            <details class="help-item">
+                <summary>4) IV Pump Rate (mL/hr)</summary>
+                <div class="help-content">
+                    <p><strong>Formula:</strong></p>
+                    <pre><code>Total Volume (mL) ÷ Time (hr) = mL/hr</code></pre>
+                    <p><strong>Example:</strong> 1000 mL over 8 hr</p>
+                    <pre><code>1000 ÷ 8 = 125 mL/hr</code></pre>
+                </div>
+            </details>
+
+            <details class="help-item">
+                <summary>5) IV Drip Rate (gtt/min)</summary>
+                <div class="help-content">
+                    <p><strong>Formula:</strong></p>
+                    <pre><code>(mL × drop factor) ÷ minutes = gtt/min</code></pre>
+                    <p><strong>Example:</strong> 500 mL over 4 hr • Drop factor 15 gtt/mL</p>
+                    <pre><code>(500 × 15) ÷ 240 = 31 gtt/min</code></pre>
+                    <p class="help-note">Round drops to a whole number.</p>
+                </div>
+            </details>
+
+            <details class="help-item">
+                <summary>6) Weight-Based Dosing (kg only)</summary>
+                <div class="help-content">
+                    <ol>
+                        <li>Convert lb → kg</li>
+                        <li>Multiply by ordered dose (mg/kg)</li>
+                        <li>Use dosage formula if needed</li>
+                    </ol>
+                    <p><strong>Example:</strong> 22 lb child • Order 10 mg/kg</p>
+                    <pre><code>22 ÷ 2.2 = 10 kg
+10 × 10 = 100 mg</code></pre>
+                </div>
+            </details>
+
+            <details class="help-item">
+                <summary>7) Insulin Basics</summary>
+                <div class="help-content">
+                    <ul>
+                        <li><strong>U-100 insulin</strong> = 100 units per 1 mL</li>
+                        <li>Insulin syringes are marked in <strong>units</strong></li>
+                        <li>Don’t convert to mL unless asked</li>
+                    </ul>
+                    <p><strong>Example:</strong> Order 15 units → draw up <strong>15 units</strong></p>
+                </div>
+            </details>
+
+            <details class="help-item">
+                <summary>8) Rounding Rules (Test Favorite)</summary>
+                <div class="help-content">
+                    <ul>
+                        <li><strong>Tablets:</strong> nearest half or whole (if scored)</li>
+                        <li><strong>mL (oral):</strong> nearest tenth (0.1)</li>
+                        <li><strong>IV pump:</strong> whole number (unless told otherwise)</li>
+                        <li><strong>Drops (gtt/min):</strong> whole number</li>
+                        <li><strong>Insulin:</strong> whole number</li>
+                    </ul>
+                    <p class="help-note">If the question says “round to the nearest tenth,” do exactly that.</p>
+                </div>
+            </details>
+
+            <details class="help-item">
+                <summary>9) Dimensional Analysis (Unit-Cancel Method)</summary>
+                <div class="help-content">
+                    <p>Write it top to bottom and cancel units as you go:</p>
+                    <pre><code>Ordered unit
+────────────── × Quantity
+On-hand unit</code></pre>
+                    <p class="help-note">If units cancel correctly, you’re usually right.</p>
+                </div>
+            </details>
+
+            <details class="help-item">
+                <summary>10) Common Test Traps + Final Check</summary>
+                <div class="help-content">
+                    <p><strong>Traps:</strong></p>
+                    <ul>
+                        <li>Forgetting lb → kg</li>
+                        <li>Mixing mg and mcg</li>
+                        <li>Rounding too early</li>
+                        <li>Giving mL instead of tablets (or vice versa)</li>
+                        <li>Ignoring drop factor</li>
+                    </ul>
+
+                    <p><strong>Quick check before submitting:</strong></p>
+                    <ul>
+                        <li>Units match?</li>
+                        <li>Answer reasonable?</li>
+                        <li>Rounded correctly?</li>
+                        <li>Route makes sense?</li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </div>
 
     <div class="contact-modal" id="contactModal">
         <div class="contact-modal-content">
@@ -232,6 +371,9 @@
         const startTimerBtn = document.getElementById("startTimer");
         const shuffleQuizBtn = document.getElementById("shuffleQuiz");
         const resetQuizBtn = document.getElementById("resetQuiz");
+        const openHelpBtn = document.getElementById("openHelp");
+        const closeHelpBtn = document.getElementById("closeHelp");
+        const helpModal = document.getElementById("medmathHelp");
         const finalScore = document.getElementById("finalScore");
         const finalScoreText = document.getElementById("finalScoreText");
         const retryGame = document.getElementById("retryGame");
@@ -303,10 +445,10 @@
                 const j = Math.floor(Math.random() * (i + 1));
                 [questions[i], questions[j]] = [questions[j], questions[i]];
             }
-            resetQuiz(false);
+            resetQuiz(false, true);
         }
 
-        function resetQuiz(resetOrder = true) {
+        function resetQuiz(resetOrder = true, preserveTimer = false) {
             if (resetOrder) {
                 questions.splice(0, questions.length, ...originalQuestions.map(item => ({ ...item })));
             }
@@ -314,10 +456,12 @@
             answered = 0;
             finalScore.hidden = true;
             finalScoreText.textContent = '';
-            timerDisplay.textContent = 'Timer off';
-            startTimerBtn.textContent = 'Start timer mode';
-            clearInterval(timerId);
-            timerId = null;
+            if (!preserveTimer) {
+                timerDisplay.textContent = 'Timer off';
+                startTimerBtn.textContent = 'Start timer mode';
+                clearInterval(timerId);
+                timerId = null;
+            }
             renderQuestions();
         }
 
@@ -336,6 +480,28 @@
 
         retryGame.addEventListener('click', () => {
             resetQuiz(true);
+        });
+
+        function closeHelp() {
+            helpModal.hidden = true;
+        }
+
+        openHelpBtn.addEventListener('click', () => {
+            helpModal.hidden = false;
+        });
+
+        closeHelpBtn.addEventListener('click', closeHelp);
+
+        helpModal.addEventListener('click', (event) => {
+            if (event.target === helpModal) {
+                closeHelp();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && !helpModal.hidden) {
+                closeHelp();
+            }
         });
 
         gameDiv.addEventListener('click', (event) => {

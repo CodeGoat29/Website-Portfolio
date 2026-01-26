@@ -1024,6 +1024,113 @@ section h2::after {
     color: var(--primary-blue);
 }
 
+.medmath-page .medmath-help-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 2000;
+}
+
+.medmath-page .medmath-help-modal[hidden] {
+    display: none;
+}
+
+.medmath-page .medmath-help-panel {
+    width: min(900px, 100%);
+    max-height: 85vh;
+    overflow: auto;
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e1e8ed;
+    padding: 20px;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2);
+}
+
+.dark-mode .medmath-page .medmath-help-panel {
+    background: #1c2938;
+    border-color: #2a3f5f;
+}
+
+.medmath-page .medmath-help-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.medmath-page .medmath-help-header h3 {
+    margin: 0;
+    color: var(--primary-blue);
+}
+
+.medmath-page .help-item {
+    border: 1px solid #e1e8ed;
+    border-radius: 12px;
+    padding: 10px 12px;
+    background: #f8fafc;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.dark-mode .medmath-page .help-item {
+    background: #223145;
+    border-color: #2a3f5f;
+}
+
+.medmath-page .help-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    list-style: none;
+}
+
+.medmath-page .help-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.medmath-page .help-content {
+    margin-top: 8px;
+    color: #657786;
+    padding-left: 6px;
+}
+
+.dark-mode .medmath-page .help-content {
+    color: #93a4b5;
+}
+
+.medmath-page .help-content pre {
+    margin: 8px 0;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: #eef3f7;
+    overflow-x: auto;
+}
+
+.dark-mode .medmath-page .help-content pre {
+    background: #1c2938;
+}
+
+.medmath-page .help-content ul,
+.medmath-page .help-content ol {
+    margin: 6px 0 4px 0;
+    padding-left: 18px;
+    list-style-position: inside;
+}
+
+.medmath-page .help-note {
+    margin-top: 6px;
+    font-size: 0.95em;
+    color: #6b7c8f;
+}
+
+.dark-mode .medmath-page .help-note {
+    color: #93a4b5;
+}
+
 .resource-links {
     display: flex;
     flex-wrap: wrap;
