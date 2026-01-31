@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Fuggedaboutit Dumpsters</title>
+  <meta name="description" content="Learn about Fuggedaboutit Dumpsters, a local, licensed roll-off dumpster rental company serving Sarasota County and nearby areas." />
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --panel:#10161d;
+      --panel2:#151c24;
+      --text:#eef2f7;
+      --muted:#b9c3d0;
+      --line:#273241;
+      --orange:#f59e0b;
+      --hazard:#fbbf24;
+      --green:#16a34a;
+      --red:#dc2626;
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1120px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: "Barlow", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 600px at 10% 10%, rgba(245,158,11,.18), transparent 55%),
+        radial-gradient(900px 450px at 90% 15%, rgba(22,163,74,.18), transparent 50%),
+        radial-gradient(900px 450px at 30% 85%, rgba(220,38,38,.12), transparent 55%),
+        var(--bg);
+      color: var(--text);
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; height:auto; display:block;}
+    .container{max-width:var(--max); margin:0 auto; padding:0 18px;}
+    .hero{
+      padding:70px 0;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg, rgba(11,15,20,.82), rgba(11,15,20,.92)),
+        url("https://raw.githubusercontent.com/CodeGoat29/Website-Portfolio/main/Dumpster/dumptruckpic2.jpg");
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1.05) contrast(1.05);
+      opacity: .45;
+      z-index: 0;
+    }
+    .hero .container{position:relative; z-index:1;}
+    .hero h1{
+      font-size: clamp(36px, 5vw, 56px);
+      line-height:1.1;
+      margin:12px 0 18px;
+    }
+    .hero p{
+      font-size:18px;
+      color:var(--muted);
+      max-width:720px;
+      margin: 0 auto 24px;
+      line-height: 1.6;
+    }
+    section{padding:50px 0}
+    .section-title{
+      font-size:32px;
+      margin-bottom:12px;
+      text-align:center;
+    }
+    .section-sub{
+      color:var(--muted);
+      max-width:760px;
+      margin: 0 auto 26px;
+      text-align:center;
+      font-size: 17px;
+    }
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:18px;
+      margin-top:32px;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(16,22,29,.95), rgba(16,22,29,.7));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow: var(--shadow);
+    }
+    .card h3{margin:0 0 10px; font-size: 22px;}
+    .card p{margin:0; color:var(--muted); line-height: 1.6;}
+    .icon{
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      background:rgba(245,158,11,.15);
+      color:var(--hazard);
+      font-weight:800;
+      margin-bottom:12px;
+      border:1px solid rgba(245,158,11,.35);
+    }
+    .split{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:22px;
+      margin-top:22px;
+    }
+    .panel{
+      background: rgba(16,22,29,.85);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      padding:24px;
+      box-shadow: var(--shadow);
+    }
+    .list{
+      margin:12px 0 0 18px;
+      color:var(--muted);
+      line-height:1.7;
+    }
+    .cta-strip{
+      margin-top:40px;
+      padding:28px;
+      border-radius:var(--radius);
+      background: linear-gradient(90deg, rgba(22,163,74,.95), rgba(245,158,11,.95), rgba(220,38,38,.95));
+      color:#0b0f14;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      font-weight:800;
+      font-size: 18px;
+    }
+    .cta-strip a{
+      background:#0b0f14;
+      color:#fff;
+      padding:14px 20px;
+      border-radius:12px;
+      text-decoration:none;
+      font-size: 18px;
+    }
+    @media (max-width: 980px){
+      .grid-3,.split{grid-template-columns: 1fr}
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>About Fuggedaboutit Dumpsters</h1>
+        <p>We are a local, licensed dumpster rental company focused on fast delivery, clean equipment, and reliable service across Sarasota County and nearby areas.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 class="section-title">Local Service, Simple Pricing</h2>
+        <p class="section-sub">From small cleanouts to full construction jobs, we help homeowners and contractors keep their sites clean and on schedule.</p>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="icon">01</div>
+            <h3>Licensed &amp; Local</h3>
+            <p>We are based locally and serve the community with straightforward scheduling and dependable pickups.</p>
+          </div>
+          <div class="card">
+            <div class="icon">02</div>
+            <h3>Clean Equipment</h3>
+            <p>We keep dumpsters clean and driveway-friendly whenever possible, protecting your property.</p>
+          </div>
+          <div class="card">
+            <div class="icon">03</div>
+            <h3>Fast Swaps</h3>
+            <p>Need another dumpster? We can swap quickly to keep your project moving.</p>
+          </div>
+        </div>
+
+        <div class="split">
+          <div class="panel">
+            <h3>What We Do</h3>
+            <p class="section-sub" style="text-align:left; margin:6px 0 0;">We provide roll-off dumpsters in 10, 15, 20, 25, and 33 yard sizes for:</p>
+            <ul class="list">
+              <li>Home cleanouts and junk removal</li>
+              <li>Remodels, flooring, and roofing debris</li>
+              <li>Construction and demolition waste</li>
+              <li>Concrete removal and driveway pickups</li>
+              <li>Yard waste and storm cleanup</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Service Area</h3>
+            <p class="section-sub" style="text-align:left; margin:6px 0 0;">We deliver throughout Sarasota County and nearby areas, including Venice, Sarasota, Nokomis, Osprey, Englewood, North Port, Siesta Key, Port Charlotte, Punta Gorda, and Bradenton.</p>
+          </div>
+        </div>
+
+        <div class="cta-strip">
+          <div>Need a dumpster? We are ready to schedule.</div>
+          <a href="tel:9414450664">Call 941-445-0664</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

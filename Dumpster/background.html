@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fuggedaboutit Dumpsters | Background</title>
+  <style>
+    :root{
+      --bg:#0b0f14;
+    }
+    *{box-sizing:border-box}
+    html, body{height:100%}
+    body{
+      margin:0;
+      background: var(--bg);
+    }
+    .page{
+      min-height:200vh;
+    }
+    .bg{
+      height:60vh;
+      position:relative;
+      overflow:hidden;
+      background:
+        linear-gradient(180deg, rgba(11,15,20,.9), rgba(11,15,20,.95)),
+        url("https://raw.githubusercontent.com/CodeGoat29/Website-Portfolio/main/Dumpster/dumptruckpic1.jpg");
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1.05) contrast(1.05);
+      opacity: .85;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="bg" aria-hidden="true"></div>
+  </div>
+</body>
+</html>

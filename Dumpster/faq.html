@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dumpster Rental FAQ | Fuggedaboutit Dumpsters</title>
+  <meta name="description" content="Answers to common questions about dumpster rentals, including what can be dumped, sizing, rental length, and scheduling." />
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --panel:#10161d;
+      --panel2:#151c24;
+      --text:#eef2f7;
+      --muted:#b9c3d0;
+      --line:#273241;
+      --orange:#f59e0b;
+      --hazard:#fbbf24;
+      --green:#16a34a;
+      --red:#dc2626;
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1120px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: "Barlow", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 600px at 10% 10%, rgba(245,158,11,.18), transparent 55%),
+        radial-gradient(900px 450px at 90% 15%, rgba(22,163,74,.18), transparent 50%),
+        radial-gradient(900px 450px at 30% 85%, rgba(220,38,38,.12), transparent 55%),
+        var(--bg);
+      color: var(--text);
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--max); margin:0 auto; padding:0 18px;}
+    .hero{
+      padding:70px 0 40px;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg, rgba(11,15,20,.82), rgba(11,15,20,.92)),
+        url("https://raw.githubusercontent.com/CodeGoat29/Website-Portfolio/main/Dumpster/dumptruckpic1.jpg");
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1.05) contrast(1.05);
+      opacity: .45;
+      z-index: 0;
+    }
+    .hero .container{position:relative; z-index:1;}
+    .hero h1{
+      font-size: clamp(36px, 5vw, 56px);
+      line-height:1.1;
+      margin:12px 0 14px;
+    }
+    .hero p{
+      font-size:18px;
+      color:var(--muted);
+      max-width:720px;
+      margin: 0 auto 24px;
+      line-height: 1.6;
+    }
+    section{padding:40px 0 70px}
+    .section-title{
+      font-size:32px;
+      margin-bottom:12px;
+      text-align:center;
+    }
+    .section-sub{
+      color:var(--muted);
+      max-width:760px;
+      margin: 0 auto 26px;
+      text-align:center;
+      font-size: 17px;
+    }
+    .faq{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+      margin-top:28px;
+    }
+    details{
+      background: linear-gradient(180deg, rgba(16,22,29,.95), rgba(16,22,29,.7));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 6px 18px;
+    }
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding:16px 4px;
+      font-size:18px;
+      font-weight:700;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    summary::marker{display:none}
+    summary::after{
+      content:"+";
+      font-size:24px;
+      color:var(--hazard);
+      margin-left:12px;
+    }
+    details[open] summary::after{content:"–"}
+    .answer{
+      color:var(--muted);
+      line-height:1.7;
+      padding:0 4px 16px;
+    }
+    .cta-strip{
+      margin-top:40px;
+      padding:28px;
+      border-radius:var(--radius);
+      background: linear-gradient(90deg, rgba(22,163,74,.95), rgba(245,158,11,.95), rgba(220,38,38,.95));
+      color:#0b0f14;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      font-weight:800;
+      font-size: 18px;
+    }
+    .cta-strip a{
+      background:#0b0f14;
+      color:#fff;
+      padding:14px 20px;
+      border-radius:12px;
+      text-decoration:none;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Dumpster Rental FAQ</h1>
+        <p>Quick answers about what you can dump, how to choose a size, rental length, and scheduling. Call if you need help fast.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 class="section-title">Common Questions</h2>
+        <p class="section-sub">We keep pricing and scheduling simple. Here are the most common questions we get from homeowners, contractors, and property managers.</p>
+
+        <div class="faq">
+          <details>
+            <summary>What can I put in the dumpster?</summary>
+            <div class="answer">Household junk, renovation debris, wood, drywall, roofing shingles, yard waste, and general construction debris are all acceptable. If you are unsure about an item, call us before loading.</div>
+          </details>
+          <details>
+            <summary>What items are not allowed?</summary>
+            <div class="answer">Hazardous materials, chemicals, paint, oils, batteries, tires, and electronics typically require special disposal. Call us and we will guide you on what to do with restricted items.</div>
+          </details>
+          <details>
+            <summary>How do I choose the right dumpster size?</summary>
+            <div class="answer">Small cleanouts and minor remodels are usually a 10 or 15 yard dumpster. Larger remodels, roofing, and construction jobs often need a 20 yard or bigger. If you describe your project, we will recommend the best size.</div>
+          </details>
+          <details>
+            <summary>How long can I keep the dumpster?</summary>
+            <div class="answer">A few days to a few weeks is common. We do not charge per day—just tell us your timeline and we will work around your schedule.</div>
+          </details>
+          <details>
+            <summary>Do you offer quick swaps or pickups?</summary>
+            <div class="answer">Yes. If your dumpster fills up, we can swap it for an empty one quickly to keep your project moving.</div>
+          </details>
+          <details>
+            <summary>Can you place a dumpster in my driveway?</summary>
+            <div class="answer">Most driveways work fine. We place boards when needed to protect surfaces and keep things clean.</div>
+          </details>
+          <details>
+            <summary>Do you handle concrete or heavy debris?</summary>
+            <div class="answer">Yes. We can handle concrete removal and other heavy materials. Let us know so we can make sure you have the right size and weight limit.</div>
+          </details>
+          <details>
+            <summary>How do I schedule a delivery?</summary>
+            <div class="answer">Call us and we will set a delivery time that works for your project. We are a local company and can usually schedule fast.</div>
+          </details>
+        </div>
+
+        <div class="cta-strip">
+          <div>Have a question? We are happy to help.</div>
+          <a href="tel:9414450664">Call 941-445-0664</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
