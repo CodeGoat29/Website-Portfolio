@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Tools & Resources | DiPiazza</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" type="image/png" href="/images/thegoat.png">
+    <style>
+        .tools-hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+
+        .tools-hero h1 {
+            font-size: 2.4rem;
+            color: var(--primary-blue);
+            margin-bottom: 14px;
+        }
+
+        .tools-hero .subtitle {
+            font-size: 1.1rem;
+            color: #50635b;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .tools-section {
+            margin-bottom: 52px;
+        }
+
+        .tools-section h2 {
+            font-size: 1.6rem;
+            color: var(--primary-blue);
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(47, 127, 95, 0.25);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .tool-card {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(47, 127, 95, 0.15);
+            box-shadow: 0 6px 18px rgba(17, 32, 24, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 22px rgba(17, 32, 24, 0.12);
+        }
+
+        .tool-card h3 {
+            font-size: 1.2rem;
+            color: inherit;
+            margin-bottom: 10px;
+        }
+
+        .tool-desc {
+            color: #4b5c55;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .tool-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .tool-link:hover {
+            color: var(--main-blue);
+        }
+
+        body.dark-mode .tools-hero .subtitle {
+            color: #c5c8cc;
+        }
+
+        body.dark-mode .tool-card {
+            background: #162129;
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+        }
+
+        body.dark-mode .tool-desc {
+            color: #c5c8cc;
+        }
+
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tools-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-controls">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <a href="../index.html" class="logo-link"><img src="/images/thegoat.png" alt="DiPiazza Logo" class="logo"></a>
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Where I break stuff, then write about it.</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../resources.html" class="active">Resources</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../resume.html">Resume</a></li>
+                    <li><button class="nav-cta" type="button" data-contact-open>Get in Touch</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="tools-hero">
+            <h1>Security Tools & Resources</h1>
+            <p class="subtitle">Essential tools and resources I use for penetration testing, reconnaissance, and cybersecurity research.</p>
+        </section>
+
+        <section class="tools-section">
+            <h2>🔍 Network Tools</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <h3>Nmap</h3>
+                    <p class="tool-desc">Network discovery and security auditing tool for port scanning and service detection.</p>
+                    <a href="https://nmap.org" target="_blank" class="tool-link">nmap.org →</a>
+                </div>
+                <div class="tool-card">
+                    <h3>Wireshark</h3>
+                    <p class="tool-desc">Network protocol analyzer for deep packet inspection and traffic analysis.</p>
+                    <a href="https://www.wireshark.org" target="_blank" class="tool-link">wireshark.org →</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools-section">
+            <h2>🌐 Web Application Testing</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <h3>Burp Suite</h3>
+                    <p class="tool-desc">Industry-standard web vulnerability scanner and proxy tool for finding security flaws in web applications.</p>
+                    <a href="https://portswigger.net/burp" target="_blank" class="tool-link">portswigger.net →</a>
+                </div>
+                <div class="tool-card">
+                    <h3>OWASP ZAP</h3>
+                    <p class="tool-desc">Open-source web application security scanner for automated and manual testing.</p>
+                    <a href="https://www.zaproxy.org" target="_blank" class="tool-link">zaproxy.org →</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools-section">
+            <h2>⚔️ Exploitation & Post-Exploitation</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <h3>Metasploit Framework</h3>
+                    <p class="tool-desc">Comprehensive penetration testing framework with thousands of exploits and payloads.</p>
+                    <a href="https://www.metasploit.com" target="_blank" class="tool-link">metasploit.com →</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools-section">
+            <h2>💻 Development & Productivity</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <h3>Termius</h3>
+                    <p class="tool-desc">Cross-platform SSH client with saved hosts, key management, and terminal organization.</p>
+                    <a href="https://termius.com" target="_blank" class="tool-link">termius.com →</a>
+                </div>
+                <div class="tool-card">
+                    <h3>Visual Studio Code</h3>
+                    <p class="tool-desc">Lightweight code editor with extensions for Python, PowerShell, and cybersecurity scripting.</p>
+                    <a href="https://code.visualstudio.com" target="_blank" class="tool-link">code.visualstudio.com →</a>
+                </div>
+                <div class="tool-card">
+                    <h3>Flameshot</h3>
+                    <p class="tool-desc">Screenshot tool with built-in annotation for documenting findings and creating reports.</p>
+                    <a href="https://flameshot.org" target="_blank" class="tool-link">flameshot.org →</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools-section">
+            <h2>🔎 Reconnaissance & OSINT</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <h3>Whois.com</h3>
+                    <p class="tool-desc">Domain and IP ownership lookup for identifying registrants and contact information.</p>
+                    <a href="https://www.whois.com" target="_blank" class="tool-link">whois.com →</a>
+                </div>
+                <div class="tool-card">
+                    <h3>Shodan</h3>
+                    <p class="tool-desc">Search engine for internet-connected devices, services, and exposed systems.</p>
+                    <a href="https://www.shodan.io" target="_blank" class="tool-link">shodan.io →</a>
+                </div>
+                <div class="tool-card">
+                    <h3>Wayback Machine</h3>
+                    <p class="tool-desc">Historical snapshots of websites for finding old versions and deleted content.</p>
+                    <a href="https://archive.org/web/" target="_blank" class="tool-link">archive.org →</a>
+                </div>
+                <div class="tool-card">
+                    <h3>DNSDumpster</h3>
+                    <p class="tool-desc">DNS reconnaissance and domain mapping tool for discovering subdomains and infrastructure.</p>
+                    <a href="https://dnsdumpster.com" target="_blank" class="tool-link">dnsdumpster.com →</a>
+                </div>
+                <div class="tool-card">
+                    <h3>crt.sh</h3>
+                    <p class="tool-desc">Certificate Transparency log search for finding subdomains via SSL certificates.</p>
+                    <a href="https://crt.sh" target="_blank" class="tool-link">crt.sh →</a>
+                </div>
+                <div class="tool-card">
+                    <h3>ViewDNS.info</h3>
+                    <p class="tool-desc">Reverse IP lookup, ASN queries, and DNS history for infrastructure reconnaissance.</p>
+                    <a href="https://viewdns.info" target="_blank" class="tool-link">viewdns.info →</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools-section">
+            <h2>🔐 Hashing & Cryptography</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <h3>CyberChef</h3>
+                    <p class="tool-desc">Web-based data analysis toolbox for encoding, decoding, and data manipulation.</p>
+                    <a href="https://gchq.github.io/CyberChef/" target="_blank" class="tool-link">CyberChef →</a>
+                </div>
+                <div class="tool-card">
+                    <h3>Have I Been Pwned</h3>
+                    <p class="tool-desc">Check if email addresses have been compromised in data breaches.</p>
+                    <a href="https://haveibeenpwned.com" target="_blank" class="tool-link">haveibeenpwned.com →</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools-section">
+            <h2>🎯 Practice Labs & Training</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <h3>HackTheBox</h3>
+                    <p class="tool-desc">Penetration testing labs with real-world scenarios and retired machines for practice.</p>
+                    <a href="https://www.hackthebox.com" target="_blank" class="tool-link">hackthebox.com →</a>
+                </div>
+                <div class="tool-card">
+                    <h3>TryHackMe</h3>
+                    <p class="tool-desc">Guided cybersecurity training with hands-on rooms and learning paths.</p>
+                    <a href="https://tryhackme.com" target="_blank" class="tool-link">tryhackme.com →</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools-section">
+            <h2>🛡️ Threat Intelligence & Vulnerabilities</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <h3>VirusTotal</h3>
+                    <p class="tool-desc">Multi-engine file and URL scanning service for malware analysis.</p>
+                    <a href="https://www.virustotal.com" target="_blank" class="tool-link">virustotal.com →</a>
+                </div>
+                <div class="tool-card">
+                    <h3>CVE Database</h3>
+                    <p class="tool-desc">Public catalog of disclosed cybersecurity vulnerabilities and exposures.</p>
+                    <a href="https://cve.mitre.org" target="_blank" class="tool-link">cve.mitre.org →</a>
+                </div>
+                <div class="tool-card">
+                    <h3>Exploit Database</h3>
+                    <p class="tool-desc">Archive of public exploits and corresponding vulnerable software.</p>
+                    <a href="https://www.exploit-db.com" target="_blank" class="tool-link">exploit-db.com →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="contact-modal" id="contactModal">
+        <div class="contact-modal-content">
+            <div class="contact-modal-header">
+                <h3>Get in Touch</h3>
+                <button class="contact-modal-close" type="button" id="contactModalClose">✕</button>
+            </div>
+            <div class="contact-modal-links">
+                <a href="mailto:daviddipiazza29@gmail.com" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/CodeGoat29" target="_blank" class="contact-link">GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="../resources.html">Resources</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../resume.html">Resume</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="mailto:daviddipiazza29@gmail.com">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/CodeGoat29" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bar">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="../js/site.js"></script>
+</body>
+</html>
