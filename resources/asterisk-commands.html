@@ -181,7 +181,6 @@
                     <a href="#asterisk" class="nav-link">Asterisk Management</a>
                     <a href="#system" class="nav-link">System Resources</a>
                     <a href="#services" class="nav-link">Service Controls</a>
-                    <a href="#extensions" class="nav-link">Extensions</a>
                     <a href="#files" class="nav-link">File Locations</a>
                     <a href="#find" class="nav-link">Find Commands</a>
                 </div>
@@ -245,6 +244,9 @@
                     <button class="favorite-btn" data-command="ping">☆</button>
                 </div>
                 <p class="command-description">Tests network connectivity and measures round-trip time.</p>
+                <div class="command-notes">
+                    <strong>Flag:</strong> <code>-t</code> runs a continuous ping until stopped.
+                </div>
                 <div class="command-block" data-template="ping {host}">
                     <code>ping <span class="placeholder">hostname</span></code>
                     <button class="copy-btn">Copy</button>
@@ -261,6 +263,9 @@
                     <button class="favorite-btn" data-command="arp">☆</button>
                 </div>
                 <p class="command-description">Displays the Address Resolution Protocol table.</p>
+                <div class="command-notes">
+                    <strong>Flag:</strong> <code>-a</code> shows all entries in the ARP table.
+                </div>
                 <div class="command-block">
                     <code>arp -a</code>
                     <button class="copy-btn">Copy</button>
@@ -292,6 +297,9 @@
                     <button class="favorite-btn" data-command="grep-current">☆</button>
                 </div>
                 <p class="command-description">Search today's Asterisk full log for specific keywords.</p>
+                <div class="command-notes">
+                    <strong>Flag:</strong> <code>-i</code> ignores case while matching.
+                </div>
                 <div class="command-block" data-has-search="true" data-template="grep -i {search} /var/log/asterisk/full">
                     <code>grep -i <span class="placeholder">searchword</span> /var/log/asterisk/full</code>
                     <button class="copy-btn">Copy</button>
@@ -304,6 +312,9 @@
                     <button class="favorite-btn" data-command="grep-recursive">☆</button>
                 </div>
                 <p class="command-description">Recursively search through all files.</p>
+                <div class="command-notes">
+                    <strong>Flags:</strong> <code>-r</code> searches directories recursively; <code>-i</code> ignores case.
+                </div>
                 <div class="command-block" data-has-search="true" data-template='grep -r "{search}" /var/log/asterisk/'>
                     <code>grep -r "<span class="placeholder">searchword</span>" /var/log/asterisk/</code>
                     <button class="copy-btn">Copy</button>
@@ -320,6 +331,9 @@
                     <button class="favorite-btn" data-command="zgrep">☆</button>
                 </div>
                 <p class="command-description">Search compressed archived logs.</p>
+                <div class="command-notes">
+                    <strong>Flag:</strong> <code>-i</code> ignores case while matching.
+                </div>
                 <div class="command-block" data-has-search="true" data-template='zgrep -i "{search}" /var/log/asterisk/full*.*'>
                     <code>zgrep -i "<span class="placeholder">searchword</span>" /var/log/asterisk/full*.*</code>
                     <button class="copy-btn">Copy</button>
@@ -332,6 +346,9 @@
                     <button class="favorite-btn" data-command="syslog-tail">☆</button>
                 </div>
                 <p class="command-description">Follow the system log in real time.</p>
+                <div class="command-notes">
+                    <strong>Flag:</strong> <code>-f</code> follows the log as new lines are added.
+                </div>
                 <div class="command-block">
                     <code>tail -f /var/log/syslog</code>
                     <button class="copy-btn">Copy</button>
@@ -363,6 +380,9 @@
                     <button class="favorite-btn" data-command="asterisk-version">☆</button>
                 </div>
                 <p class="command-description">Display the current Asterisk version.</p>
+                <div class="command-notes">
+                    <strong>Flag:</strong> <code>-rx</code> runs an Asterisk CLI command and exits.
+                </div>
                 <div class="command-block">
                     <code>sudo asterisk -rx 'core show version'</code>
                     <button class="copy-btn">Copy</button>
@@ -375,6 +395,9 @@
                     <button class="favorite-btn" data-command="voicemail-users">☆</button>
                 </div>
                 <p class="command-description">Display all configured voicemail boxes.</p>
+                <div class="command-notes">
+                    <strong>Flag:</strong> <code>-rx</code> runs an Asterisk CLI command and exits.
+                </div>
                 <div class="command-block">
                     <code>sudo asterisk -rx 'voicemail show users'</code>
                     <button class="copy-btn">Copy</button>
@@ -387,6 +410,9 @@
                     <button class="favorite-btn" data-command="hints">☆</button>
                 </div>
                 <p class="command-description">Display all configured hints for BLF monitoring.</p>
+                <div class="command-notes">
+                    <strong>Flag:</strong> <code>-rx</code> runs an Asterisk CLI command and exits.
+                </div>
                 <div class="command-block">
                     <code>sudo asterisk -rx 'core show hints'</code>
                     <button class="copy-btn">Copy</button>
@@ -399,6 +425,9 @@
                     <button class="favorite-btn" data-command="dialplan">☆</button>
                 </div>
                 <p class="command-description">Display the complete dialplan configuration.</p>
+                <div class="command-notes">
+                    <strong>Flag:</strong> <code>-rx</code> runs an Asterisk CLI command and exits.
+                </div>
                 <div class="command-block">
                     <code>sudo asterisk -rx 'dialplan show'</code>
                     <button class="copy-btn">Copy</button>
@@ -411,8 +440,26 @@
                     <button class="favorite-btn" data-command="watch-channels">☆</button>
                 </div>
                 <p class="command-description">Continuously monitor active channels.</p>
+                <div class="command-notes">
+                    <strong>Flags:</strong> <code>-n 1</code> refreshes the output every 1 second; <code>-rx</code> runs an Asterisk CLI command and exits.
+                </div>
                 <div class="command-block">
                     <code>watch -n 1 'sudo asterisk -rx "core show channels verbose"'</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="extension peers">
+                <div class="command-header">
+                    <h3>List All Extensions</h3>
+                    <button class="favorite-btn" data-command="peers-all">☆</button>
+                </div>
+                <p class="command-description">Display all configured PJSIP contacts/extensions.</p>
+                <div class="command-notes">
+                    <strong>Flag:</strong> <code>-rx</code> runs an Asterisk CLI command and exits.
+                </div>
+                <div class="command-block">
+                    <code>sudo asterisk -rx 'pjsip show contacts'</code>
                     <button class="copy-btn">Copy</button>
                 </div>
             </div>
@@ -446,6 +493,9 @@
                     <button class="favorite-btn" data-command="df">☆</button>
                 </div>
                 <p class="command-description">Display available disk space.</p>
+                <div class="command-notes">
+                    <strong>Flag:</strong> <code>-h</code> shows sizes in human-readable units.
+                </div>
                 <div class="command-block">
                     <code>df -h</code>
                     <button class="copy-btn">Copy</button>
@@ -458,6 +508,9 @@
                     <button class="favorite-btn" data-command="free">☆</button>
                 </div>
                 <p class="command-description">Display current memory usage.</p>
+                <div class="command-notes">
+                    <strong>Flag:</strong> <code>-h</code> shows sizes in human-readable units.
+                </div>
                 <div class="command-block">
                     <code>free -h</code>
                     <button class="copy-btn">Copy</button>
@@ -494,6 +547,9 @@
                     <button class="favorite-btn" data-command="sar-today">☆</button>
                 </div>
                 <p class="command-description">View current day performance stats.</p>
+                <div class="command-notes">
+                    <strong>Flag:</strong> <code>-p</code> prints output in a more readable format.
+                </div>
                 <div class="command-block">
                     <code>sar -p</code>
                     <button class="copy-btn">Copy</button>
@@ -510,6 +566,9 @@
                     <button class="favorite-btn" data-command="grep-oom">☆</button>
                 </div>
                 <p class="command-description">Search for Out-Of-Memory killer events.</p>
+                <div class="command-notes">
+                    <strong>Flag:</strong> <code>-i</code> ignores case while matching.
+                </div>
                 <div class="command-block">
                     <code>grep -i oom /var/log/syslog</code>
                     <button class="copy-btn">Copy</button>
@@ -523,121 +582,37 @@
             <h2 class="category-toggle">Service Controls (systemctl)</h2>
             <div class="category-content">
             
-            <div class="command-card" data-tags="systemctl status services">
+            <div class="command-card" data-tags="systemctl services asterisk fail2ban status restart start stop">
                 <div class="command-header">
-                    <h3>Check Service Status</h3>
-                    <button class="favorite-btn" data-command="systemctl-status">☆</button>
+                    <h3>Manage Services</h3>
+                    <button class="favorite-btn" data-command="systemctl-manage">☆</button>
                 </div>
-                <p class="command-description">Check status for common services.</p>
+                <p class="command-description">Used to start, restart, stop, or view the status of systemctl services.</p>
+                <div class="command-notes">
+                    <strong>Flag:</strong> <code>--type=service</code> limits output to service units.
+                </div>
                 <div class="command-block">
-                    <code>systemctl status asterisk</code>
+                    <code>systemctl list-units --type=service</code>
                     <button class="copy-btn">Copy</button>
                 </div>
-                <div class="command-block">
-                    <code>systemctl status sb</code>
+                <div class="command-block" data-template="systemctl status {service}">
+                    <code>systemctl status <span class="placeholder">asterisk|fail2ban</span></code>
                     <button class="copy-btn">Copy</button>
                 </div>
-                <div class="command-block">
-                    <code>systemctl status apache2</code>
+                <div class="command-block" data-template="sudo systemctl start {service}">
+                    <code>sudo systemctl start <span class="placeholder">asterisk|fail2ban</span></code>
                     <button class="copy-btn">Copy</button>
                 </div>
-                <div class="command-block">
-                    <code>systemctl status fail2ban</code>
+                <div class="command-block" data-template="sudo systemctl restart {service}">
+                    <code>sudo systemctl restart <span class="placeholder">asterisk|fail2ban</span></code>
                     <button class="copy-btn">Copy</button>
                 </div>
-            </div>
-
-            <div class="command-card" data-tags="systemctl restart services">
-                <div class="command-header">
-                    <h3>Restart Services</h3>
-                    <button class="favorite-btn" data-command="systemctl-restart">☆</button>
-                </div>
-                <p class="command-description">Restart common services.</p>
-                <div class="command-block">
-                    <code>sudo systemctl restart asterisk</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-block">
-                    <code>sudo systemctl restart sb</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-block">
-                    <code>sudo systemctl restart apache2</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-block">
-                    <code>sudo systemctl restart fail2ban</code>
+                <div class="command-block" data-template="sudo systemctl stop {service}">
+                    <code>sudo systemctl stop <span class="placeholder">asterisk|fail2ban</span></code>
                     <button class="copy-btn">Copy</button>
                 </div>
                 <div class="command-notes">
-                    <strong>⚠️ Warning:</strong> Restarting Asterisk terminates all active calls.
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="systemctl start services">
-                <div class="command-header">
-                    <h3>Start Services</h3>
-                    <button class="favorite-btn" data-command="systemctl-start">☆</button>
-                </div>
-                <p class="command-description">Start common services.</p>
-                <div class="command-block">
-                    <code>sudo systemctl start asterisk</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-block">
-                    <code>sudo systemctl start sb</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-block">
-                    <code>sudo systemctl start apache2</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-block">
-                    <code>sudo systemctl start fail2ban</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="systemctl stop services">
-                <div class="command-header">
-                    <h3>Stop Services</h3>
-                    <button class="favorite-btn" data-command="systemctl-stop">☆</button>
-                </div>
-                <p class="command-description">Stop common services.</p>
-                <div class="command-block">
-                    <code>sudo systemctl stop asterisk</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-block">
-                    <code>sudo systemctl stop sb</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-block">
-                    <code>sudo systemctl stop apache2</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-block">
-                    <code>sudo systemctl stop fail2ban</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-            </div>
-
-            </div>
-        </section>
-
-        <section id="extensions" class="command-category">
-            <h2 class="category-toggle">Extension Management</h2>
-            <div class="category-content">
-            
-            <div class="command-card" data-tags="extension peers">
-                <div class="command-header">
-                    <h3>List All Extensions</h3>
-                    <button class="favorite-btn" data-command="peers-all">☆</button>
-                </div>
-                <p class="command-description">Display all configured PJSIP contacts/extensions.</p>
-                <div class="command-block">
-                    <code>sudo asterisk -rx 'pjsip show contacts'</code>
-                    <button class="copy-btn">Copy</button>
+                    <strong>⚠️ Note:</strong> Restarting Asterisk terminates all active calls.
                 </div>
             </div>
 
@@ -645,33 +620,17 @@
         </section>
 
         <section id="files" class="command-category">
-            <h2 class="category-toggle">Important File Locations</h2>
+            <h2 class="category-toggle">Key File Paths</h2>
             <div class="category-content">
-            
-            <div class="command-card" data-tags="files logs">
-                <div class="command-header">
-                    <h3>Asterisk Log Files</h3>
-                    <button class="favorite-btn" data-command="log-location">☆</button>
-                </div>
-                <p class="command-description">Primary location for all Asterisk log files.</p>
-                <div class="command-block">
-                    <code>/var/log/asterisk</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-            </div>
 
             <div class="command-card" data-tags="files spool voicemail tmp">
                 <div class="command-header">
-                    <h3>Spool (Temp & Voicemail)</h3>
+                    <h3>Spool (Temp & Voicemails)</h3>
                     <button class="favorite-btn" data-command="spool-asterisk">☆</button>
                 </div>
-                <p class="command-description">Asterisk spool directory for temp files and voicemail.</p>
+                <p class="command-description">Asterisk spool directory for temp files and voicemails.</p>
                 <div class="command-block">
                     <code>/var/spool/asterisk/tmp</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-block">
-                    <code>/var/spool/asterisk/voicemail</code>
                     <button class="copy-btn">Copy</button>
                 </div>
             </div>
@@ -741,6 +700,9 @@
                     <button class="favorite-btn" data-command="find-name">☆</button>
                 </div>
                 <p class="command-description">Search the entire filesystem for a file.</p>
+                <div class="command-notes">
+                    <strong>Flags:</strong> <code>-name</code> matches by filename; <code>2&gt;/dev/null</code> hides permission errors.
+                </div>
                 <div class="command-block" data-template="find / -name {filename} 2>/dev/null">
                     <code>find / -name <span class="placeholder">filename.ext</span> 2>/dev/null</code>
                     <button class="copy-btn">Copy</button>
@@ -753,6 +715,9 @@
                     <button class="favorite-btn" data-command="find-directory">☆</button>
                 </div>
                 <p class="command-description">Search for directories/folders by name.</p>
+                <div class="command-notes">
+                    <strong>Flags:</strong> <code>-type d</code> limits results to directories; <code>-name</code> matches by name; <code>2&gt;/dev/null</code> hides permission errors.
+                </div>
                 <div class="command-block" data-template="find / -type d -name {dirname} 2>/dev/null">
                     <code>find / -type d -name <span class="placeholder">directory_name</span> 2>/dev/null</code>
                     <button class="copy-btn">Copy</button>
@@ -765,6 +730,9 @@
                     <button class="favorite-btn" data-command="realpath">☆</button>
                 </div>
                 <p class="command-description">Resolve the absolute path of a file or symlink.</p>
+                <div class="command-notes">
+                    <strong>Flag:</strong> <code>-f</code> resolves all symlinks to the final target.
+                </div>
                 <div class="command-block" data-template="realpath {path}">
                     <code>realpath <span class="placeholder">/path/to/file</span></code>
                     <button class="copy-btn">Copy</button>
