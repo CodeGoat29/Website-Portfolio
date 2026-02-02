@@ -180,7 +180,7 @@
                     <a href="#grep" class="nav-link">Log Analysis</a>
                     <a href="#asterisk" class="nav-link">Asterisk Management</a>
                     <a href="#system" class="nav-link">System Resources</a>
-                    <a href="#fail2ban" class="nav-link">Fail2Ban</a>
+                    <a href="#services" class="nav-link">Service Controls</a>
                     <a href="#extensions" class="nav-link">Extensions</a>
                     <a href="#files" class="nav-link">File Locations</a>
                     <a href="#find" class="nav-link">Find Commands</a>
@@ -209,6 +209,18 @@
                 </div>
                 <div class="command-notes">
                     <strong>Use case:</strong> Quickly determine the public IP address of a client or server without visiting external websites.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="network public ip curl">
+                <div class="command-header">
+                    <h3>Public IP (curl ifconfig.me)</h3>
+                    <button class="favorite-btn" data-command="curl-ifconfig">☆</button>
+                </div>
+                <p class="command-description">Fetch the public IP address using ifconfig.me.</p>
+                <div class="command-block">
+                    <code>curl ifconfig.me</code>
+                    <button class="copy-btn">Copy</button>
                 </div>
             </div>
 
@@ -314,31 +326,24 @@
                 </div>
             </div>
 
+            <div class="command-card" data-tags="syslog tail follow">
+                <div class="command-header">
+                    <h3>Tail Syslog (Live)</h3>
+                    <button class="favorite-btn" data-command="syslog-tail">☆</button>
+                </div>
+                <p class="command-description">Follow the system log in real time.</p>
+                <div class="command-block">
+                    <code>tail -f /var/log/syslog</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
             </div>
         </section>
 
         <section id="asterisk" class="command-category">
             <h2 class="category-toggle">Asterisk Management</h2>
             <div class="category-content">
-            
-            <div class="command-card" data-tags="asterisk status restart">
-                <div class="command-header">
-                    <h3>Asterisk Service Controls</h3>
-                    <button class="favorite-btn" data-command="asterisk-service">☆</button>
-                </div>
-                <p class="command-description">Check status or restart the Asterisk service.</p>
-                <div class="command-block">
-                    <code>systemctl status asterisk</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-block">
-                    <code>sudo systemctl restart asterisk</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-                <div class="command-notes">
-                    <strong>⚠️ Warning:</strong> Restarting terminates all active calls.
-                </div>
-            </div>
 
             <div class="command-card" data-tags="asterisk channel hangup">
                 <div class="command-header">
@@ -348,30 +353,6 @@
                 <p class="command-description">Forcefully terminate a specific channel.</p>
                 <div class="command-block" data-template="sudo channel request hangup '{channel}'">
                     <code>sudo channel request hangup '<span class="placeholder">channel name</span>'</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="switchboard restart sb">
-                <div class="command-header">
-                    <h3>Restart Switchboard</h3>
-                    <button class="favorite-btn" data-command="sb-restart">☆</button>
-                </div>
-                <p class="command-description">Restart the switchboard service.</p>
-                <div class="command-block">
-                    <code>sudo systemctl restart sb</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-            </div>
-
-            <div class="command-card" data-tags="apache restart web">
-                <div class="command-header">
-                    <h3>Restart Apache</h3>
-                    <button class="favorite-btn" data-command="apache-restart">☆</button>
-                </div>
-                <p class="command-description">Restart the Apache web server.</p>
-                <div class="command-block">
-                    <code>sudo systemctl restart apache2</code>
                     <button class="copy-btn">Copy</button>
                 </div>
             </div>
@@ -507,18 +488,6 @@
                 </div>
             </div>
 
-            <div class="command-card" data-tags="systemctl services list">
-                <div class="command-header">
-                    <h3>List Services</h3>
-                    <button class="favorite-btn" data-command="systemctl-list">☆</button>
-                </div>
-                <p class="command-description">List all loaded service units.</p>
-                <div class="command-block">
-                    <code>systemctl list-units --type=service</code>
-                    <button class="copy-btn">Copy</button>
-                </div>
-            </div>
-
             <div class="command-card" data-tags="sar performance today cpu">
                 <div class="command-header">
                     <h3>SAR Quick View (Today)</h3>
@@ -550,30 +519,105 @@
             </div>
         </section>
 
-        <section id="fail2ban" class="command-category">
-            <h2 class="category-toggle">Fail2Ban Management</h2>
+        <section id="services" class="command-category">
+            <h2 class="category-toggle">Service Controls (systemctl)</h2>
             <div class="category-content">
             
-            <div class="command-card" data-tags="fail2ban status">
+            <div class="command-card" data-tags="systemctl status services">
                 <div class="command-header">
-                    <h3>Check Fail2Ban Status</h3>
-                    <button class="favorite-btn" data-command="fail2ban-status">☆</button>
+                    <h3>Check Service Status</h3>
+                    <button class="favorite-btn" data-command="systemctl-status">☆</button>
                 </div>
-                <p class="command-description">View the current status of Fail2Ban.</p>
+                <p class="command-description">Check status for common services.</p>
                 <div class="command-block">
-                    <code>sudo systemctl status fail2ban</code>
+                    <code>systemctl status asterisk</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-block">
+                    <code>systemctl status sb</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-block">
+                    <code>systemctl status apache2</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-block">
+                    <code>systemctl status fail2ban</code>
                     <button class="copy-btn">Copy</button>
                 </div>
             </div>
 
-            <div class="command-card" data-tags="fail2ban restart">
+            <div class="command-card" data-tags="systemctl restart services">
                 <div class="command-header">
-                    <h3>Restart Fail2Ban</h3>
-                    <button class="favorite-btn" data-command="fail2ban-restart">☆</button>
+                    <h3>Restart Services</h3>
+                    <button class="favorite-btn" data-command="systemctl-restart">☆</button>
                 </div>
-                <p class="command-description">Restart the Fail2Ban service.</p>
+                <p class="command-description">Restart common services.</p>
+                <div class="command-block">
+                    <code>sudo systemctl restart asterisk</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-block">
+                    <code>sudo systemctl restart sb</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-block">
+                    <code>sudo systemctl restart apache2</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
                 <div class="command-block">
                     <code>sudo systemctl restart fail2ban</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-notes">
+                    <strong>⚠️ Warning:</strong> Restarting Asterisk terminates all active calls.
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="systemctl start services">
+                <div class="command-header">
+                    <h3>Start Services</h3>
+                    <button class="favorite-btn" data-command="systemctl-start">☆</button>
+                </div>
+                <p class="command-description">Start common services.</p>
+                <div class="command-block">
+                    <code>sudo systemctl start asterisk</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-block">
+                    <code>sudo systemctl start sb</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-block">
+                    <code>sudo systemctl start apache2</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-block">
+                    <code>sudo systemctl start fail2ban</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="systemctl stop services">
+                <div class="command-header">
+                    <h3>Stop Services</h3>
+                    <button class="favorite-btn" data-command="systemctl-stop">☆</button>
+                </div>
+                <p class="command-description">Stop common services.</p>
+                <div class="command-block">
+                    <code>sudo systemctl stop asterisk</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-block">
+                    <code>sudo systemctl stop sb</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-block">
+                    <code>sudo systemctl stop apache2</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-block">
+                    <code>sudo systemctl stop fail2ban</code>
                     <button class="copy-btn">Copy</button>
                 </div>
             </div>
@@ -637,9 +681,13 @@
                     <h3>Voicemail Storage</h3>
                     <button class="favorite-btn" data-command="voicemail-location">☆</button>
                 </div>
-                <p class="command-description">Directory where voicemail recordings are stored.</p>
+                <p class="command-description">Directory where voicemail recordings are stored (view voicemails here).</p>
                 <div class="command-block">
                     <code>/var/spool/asterisk/voicemail/default</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-block" data-template="ls /var/spool/asterisk/voicemail/default/{mailbox}/INBOX">
+                    <code>ls /var/spool/asterisk/voicemail/default/<span class="placeholder">mailbox</span>/INBOX</code>
                     <button class="copy-btn">Copy</button>
                 </div>
             </div>
@@ -661,7 +709,7 @@
                     <h3>Music on Hold</h3>
                     <button class="favorite-btn" data-command="moh-location">☆</button>
                 </div>
-                <p class="command-description">Asterisk MOH files directory.</p>
+                <p class="command-description">Asterisk MOH files directory (VAR &gt; LIB &gt; ASTERISK &gt; MOH).</p>
                 <div class="command-block">
                     <code>/var/lib/asterisk/moh</code>
                     <button class="copy-btn">Copy</button>
@@ -707,6 +755,22 @@
                 <p class="command-description">Search for directories/folders by name.</p>
                 <div class="command-block" data-template="find / -type d -name {dirname} 2>/dev/null">
                     <code>find / -type d -name <span class="placeholder">directory_name</span> 2>/dev/null</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="realpath readlink exact path">
+                <div class="command-header">
+                    <h3>Get Real Path</h3>
+                    <button class="favorite-btn" data-command="realpath">☆</button>
+                </div>
+                <p class="command-description">Resolve the absolute path of a file or symlink.</p>
+                <div class="command-block" data-template="realpath {path}">
+                    <code>realpath <span class="placeholder">/path/to/file</span></code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="command-block" data-template="readlink -f {path}">
+                    <code>readlink -f <span class="placeholder">/path/to/file</span></code>
                     <button class="copy-btn">Copy</button>
                 </div>
             </div>
