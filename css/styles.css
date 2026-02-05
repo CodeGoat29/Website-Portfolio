@@ -572,6 +572,7 @@ main {
     gap: 6px;
     padding: 10px 12px;
     background: #0f1722;
+    align-items: center;
 }
 
 .terminal-header span {
@@ -585,6 +586,17 @@ main {
 .terminal-header span:nth-child(2) { background: #f59e0b; }
 .terminal-header span:nth-child(3) { background: #22c55e; }
 
+.terminal-title {
+    margin-left: auto;
+    color: #94a3b8;
+    font-size: 0.75em;
+    letter-spacing: 0.04em;
+    max-width: 40%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .terminal-body {
     padding: 16px;
     font-family: "SFMono-Regular", Menlo, Consolas, monospace;
@@ -596,9 +608,72 @@ main {
     color: #d7e2ef;
 }
 
+.terminal-input-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.terminal-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #e2e8f0;
+    font-family: inherit;
+    font-size: 0.95em;
+    outline: none;
+    padding: 2px 0;
+}
+
 .terminal-body .prompt {
     color: #7dd3fc;
     margin-right: 6px;
+}
+
+.terminal-body .prompt-line {
+    color: #7dd3fc;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+}
+
+.prompt-user {
+    color: #a7f3d0;
+    font-weight: 600;
+}
+
+.prompt-sep {
+    color: #94a3b8;
+}
+
+.prompt-host {
+    color: #7dd3fc;
+    font-weight: 600;
+}
+
+.prompt-path {
+    color: #fbbf24;
+    margin-left: 2px;
+}
+
+.prompt-char {
+    color: #e2e8f0;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+.terminal-body .output {
+    color: #a7f3d0;
+    font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+}
+
+.terminal-body .output .html-tag {
+    color: #f59e0b;
+}
+
+.terminal-body .output .html-text {
+    color: #e2e8f0;
 }
 
 .terminal-body .output {

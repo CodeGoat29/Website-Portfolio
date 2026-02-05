@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoIP Network Fundamentals - DiPiazza</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" type="image/png" href="../images/thegoat.png">
+    <style>
+        .voip-hero {
+            display: grid;
+            gap: 24px;
+        }
+
+        .voip-hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .voip-pill {
+            background: #e9f2fb;
+            color: #1f5f99;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .dark-mode .voip-pill {
+            background: #243447;
+            color: var(--primary-blue);
+        }
+
+        .voip-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .voip-card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e1e8ed;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+            padding: 18px;
+            display: grid;
+            gap: 14px;
+        }
+
+        .dark-mode .voip-card {
+            background: #1c2938;
+            border-color: #2a3f5f;
+        }
+
+        .voip-card img {
+            width: 94%;
+            margin: 0 auto;
+            border-radius: 10px;
+            border: 1px solid #d6e2f0;
+            background: #f5f7fb;
+            display: block;
+        }
+
+        .voip-card img.is-small {
+            width: 78%;
+        }
+
+        .dark-mode .voip-card img {
+            border-color: #2a3f5f;
+        }
+
+        .voip-card h2 {
+            margin: 0;
+            color: var(--primary-blue);
+            font-size: 1.35em;
+        }
+
+        .voip-card p {
+            margin: 0;
+            color: #4a5a6a;
+            line-height: 1.6;
+        }
+
+        .dark-mode .voip-card p {
+            color: #b8c4d1;
+        }
+
+        .voip-card ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+            display: grid;
+            gap: 8px;
+        }
+
+        .voip-card li {
+            padding-left: 18px;
+            position: relative;
+            color: #4a5a6a;
+            line-height: 1.55;
+        }
+
+        .voip-card li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+        }
+
+        .dark-mode .voip-card li {
+            color: #b8c4d1;
+        }
+
+        .voip-section {
+            margin-top: 36px;
+        }
+
+        .voip-checklist {
+            background: #f0f4f8;
+            border-left: 4px solid var(--primary-blue);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .dark-mode .voip-checklist {
+            background: #243447;
+        }
+
+        .voip-checklist h3 {
+            margin-top: 0;
+            color: var(--primary-blue);
+        }
+
+        .voip-checklist ul {
+            list-style: none;
+            padding-left: 0;
+            display: grid;
+            gap: 10px;
+        }
+
+        .voip-checklist li {
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .voip-checklist li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #2f7f5f;
+            font-weight: 700;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+            background: #f0f4f8;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .info-table th {
+            background: var(--primary-blue);
+            color: white;
+            padding: 12px 14px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 0.95em;
+        }
+
+        .info-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid #d6e2f0;
+            color: #4a5a6a;
+            font-size: 0.95em;
+        }
+
+        .info-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .dark-mode .info-table {
+            background: #1f2d3d;
+        }
+
+        .dark-mode .info-table td {
+            color: #b8c4d1;
+            border-bottom-color: #2a3f5f;
+        }
+
+        .alert-box {
+            background: rgba(245, 158, 11, 0.12);
+            border-left: 4px solid #f59e0b;
+            padding: 14px 16px;
+            border-radius: 10px;
+            color: #5b4a2b;
+        }
+
+        .dark-mode .alert-box {
+            background: rgba(245, 158, 11, 0.18);
+            color: #e8d6b2;
+        }
+
+        .diagram-box {
+            background: #0f1419;
+            color: #cdd9e5;
+            padding: 16px 18px;
+            border-radius: 10px;
+            border: 1px solid #2a3f5f;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+        }
+
+        .port-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+        }
+
+        .port-card {
+            background: #f0f4f8;
+            padding: 14px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .dark-mode .port-card {
+            background: #1f2d3d;
+        }
+
+        .voip-section .category-content {
+            grid-template-columns: 1fr;
+        }
+
+        @media (max-width: 768px) {
+            .voip-card {
+                padding: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-controls">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <a href="../index.html" class="logo-link"><img src="/images/thegoat.png" alt="DiPiazza Logo" class="logo"></a>
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Where I break stuff, then write about it.</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../resources.html" class="active">Resources</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../resume.html">Resume</a></li>
+                    <li><button class="nav-cta" type="button" data-contact-open>Get in Touch</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="notes-header voip-hero">
+            <div>
+                <h1>VoIP Network Fundamentals</h1>
+                <p class="subtitle">A fast, visual guide to the network concepts that make or break call quality.</p>
+            </div>
+
+            <div class="quick-nav">
+                <h3>Quick Navigation</h3>
+                <div class="nav-links">
+                    <a href="#qos" class="nav-link">QoS</a>
+                    <a href="#dmz" class="nav-link">DMZ</a>
+                    <a href="#quality" class="nav-link">Latency, Jitter, Loss</a>
+                    <a href="#mtr" class="nav-link">MTR</a>
+                    <a href="#sip-ports" class="nav-link">SIP Ports</a>
+                    <a href="#sip-alg" class="nav-link">SIP ALG</a>
+                    <a href="#webrtc" class="nav-link">WebRTC</a>
+                    <a href="#trunks" class="nav-link">SIP Trunks</a>
+                    <a href="#nat" class="nav-link">STUN/TURN</a>
+                    <a href="#wireshark" class="nav-link">Wireshark</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="voip-section">
+            <section id="qos" class="command-category">
+                <h2 class="category-toggle">QoS (Quality of Service)</h2>
+                <div class="category-content">
+                    <div class="voip-card">
+                        <p>QoS prioritizes voice packets over bulk data so calls stay clear even when the network is busy.</p>
+                        <ul>
+                            <li>Set WAN upload/download shapers to ~85-90% of real speeds to keep the router in control.</li>
+                            <li>Reserve voice bandwidth based on max concurrent calls + ~20% overhead.</li>
+                            <li>Typical starting point: allocate 20-30% of the uplink for VoIP, then adjust.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="dmz" class="command-category">
+                <h2 class="category-toggle">DMZ (Demilitarized Zone)</h2>
+                <div class="category-content">
+                    <div class="voip-card">
+                        <img src="../images/voip/dmz-diagram.png" alt="DMZ network segmentation diagram">
+                        <p>A DMZ isolates publicly reachable systems from internal devices.</p>
+                        <ul>
+                            <li>Use a DMZ for any VoIP system that must accept inbound internet traffic.</li>
+                            <li>Keep phones on the internal LAN or a dedicated voice VLAN.</li>
+                            <li>Only open the required SIP and RTP ports through the firewall.</li>
+                        </ul>
+                        <div class="alert-box">Note: Enabling a DMZ forwards all inbound internet traffic to the selected device, which effectively bypasses firewall protection. This can expose the device to security risks, so use it only as a last resort.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="quality" class="command-category">
+                <h2 class="category-toggle">Latency, Jitter, Packet Loss</h2>
+                <div class="category-content">
+                    <div class="voip-card">
+                        <p>Voice is sensitive to delay variation. Keep these in the green for stable calls.</p>
+                        <table class="info-table">
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th>Excellent</th>
+                                    <th>Acceptable</th>
+                                    <th>Poor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Latency</strong></td>
+                                    <td>&lt; 70 ms</td>
+                                    <td>70-150 ms</td>
+                                    <td>&gt; 150 ms</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Jitter</strong></td>
+                                    <td>&lt; 10 ms</td>
+                                    <td>10-30 ms</td>
+                                    <td>&gt; 30 ms</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Packet Loss</strong></td>
+                                    <td>&lt; 0.5%</td>
+                                    <td>0.5-1%</td>
+                                    <td>&gt; 1%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="alert-box">Jitter is variation in packet arrival time. Too much variation causes choppy audio.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="mtr" class="command-category">
+                <h2 class="category-toggle">What Is MTR?</h2>
+                <div class="category-content">
+                    <div class="voip-card">
+                        <img src="../images/voip/mtr-terminal.svg" alt="MTR command output">
+                        <p>MTR combines ping and traceroute so you can see loss and latency at every hop.</p>
+                        <ul>
+                            <li>Run it toward the provider when calls are choppy.</li>
+                            <li>Loss that starts mid-path is often ISP or transit related.</li>
+                            <li>Look for jitter spikes near the end of the path.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sip-ports" class="command-category">
+                <h2 class="category-toggle">Ports 5060 and 5061</h2>
+                <div class="category-content">
+                    <div class="voip-card">
+                        <p>SIP is the signaling protocol that sets up calls. Media flows separately over RTP.</p>
+                        <ul>
+                            <li>5060: SIP over UDP or TCP.</li>
+                            <li>5061: SIP over TLS (encrypted signaling).</li>
+                            <li>RTP uses a provider-specific port range.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sip-alg" class="command-category">
+                <h2 class="category-toggle">What Is SIP ALG?</h2>
+                <div class="category-content">
+                    <div class="voip-card">
+                        <p>SIP ALG is a router feature that edits SIP packets and often breaks VoIP.</p>
+                        <ul>
+                            <li>Best practice: disable SIP ALG for stability.</li>
+                            <li>Symptoms include one-way audio and dropped calls.</li>
+                            <li>Document the setting in your network checklist.</li>
+                        </ul>
+                        <div class="alert-box">Customer version: SIP ALG is a “helper” setting in some routers that rewrites call traffic. It often changes the wrong parts of the call, which leads to one-way audio, dropped calls, or phones that won’t register. Turning it off is a common fix.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="webrtc" class="command-category">
+                <h2 class="category-toggle">What Is WebRTC?</h2>
+                <div class="category-content">
+                    <div class="voip-card">
+                        <img src="../images/voip/webrtc.png" alt="WebRTC in the browser" class="is-small">
+                        <p>WebRTC delivers real-time voice and video directly in the browser without plugins.</p>
+                        <ul>
+                            <li>Used for softphones, web call widgets, and contact centers.</li>
+                            <li>Relies on ICE, STUN, and TURN for NAT traversal.</li>
+                            <li>Security is built-in with DTLS and SRTP.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="trunks" class="command-category">
+                <h2 class="category-toggle">What Are VoIP Trunks?</h2>
+                <div class="category-content">
+                    <div class="voip-card">
+                        <img src="../images/voip/siptrunk.png" alt="SIP trunking diagram">
+                        <p>A SIP trunk is a shared connection between your phone system and the carrier.</p>
+                        <ul>
+                            <li>One trunk provides multiple simultaneous call paths.</li>
+                            <li>Scales without installing physical phone lines.</li>
+                            <li>Common for PBX-to-provider integrations.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="nat" class="command-category">
+                <h2 class="category-toggle">STUN, TURN, ICE (NAT Traversal)</h2>
+                <div class="category-content">
+                    <div class="voip-card">
+                        <p>Remote users and WebRTC need NAT traversal to avoid one-way audio.</p>
+                        <table class="info-table">
+                            <thead>
+                                <tr>
+                                    <th>Protocol</th>
+                                    <th>Purpose</th>
+                                    <th>When to Use</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>STUN</strong></td>
+                                    <td>Discover public IP/port</td>
+                                    <td>Most NAT scenarios</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>TURN</strong></td>
+                                    <td>Relay media traffic</td>
+                                    <td>Restrictive firewalls</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ICE</strong></td>
+                                    <td>STUN first, TURN fallback</td>
+                                    <td>Default in WebRTC</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="wireshark" class="command-category">
+                <h2 class="category-toggle">Wireshark & Packet Capture</h2>
+                <div class="category-content">
+                    <div class="voip-card">
+                        <p>Packet captures reveal SIP errors and RTP quality problems.</p>
+                        <div class="diagram-box">tcpdump -i eth0 -w voip.pcap port 5060 or portrange 10000-20000</div>
+                        <div class="diagram-box">sip || rtp || sip.Status-Code &gt;= 400</div>
+                        <ul>
+                            <li>Check Telephony → RTP → Stream Analysis for jitter and loss.</li>
+                            <li>Filter by SIP error codes to see failed calls.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section class="voip-section">
+            <div class="voip-checklist">
+                <h3>Quick Troubleshooting Checklist</h3>
+                <ul>
+                    <li>Run MTR to the provider and look for loss or jitter.</li>
+                    <li>Verify QoS is enabled and voice is prioritized.</li>
+                    <li>Disable SIP ALG in the router or firewall.</li>
+                    <li>Confirm SIP + RTP ports are allowed.</li>
+                    <li>Test on wired Ethernet to rule out Wi-Fi jitter.</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="contact-modal" id="contactModal">
+        <div class="contact-modal-content">
+            <div class="contact-modal-header">
+                <h3>Get in Touch</h3>
+                <button class="contact-modal-close" type="button" id="contactModalClose">✕</button>
+            </div>
+            <div class="contact-modal-links">
+                <a href="mailto:daviddipiazza29@gmail.com" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/CodeGoat29" target="_blank" class="contact-link">GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="../resources.html">Resources</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../resume.html">Resume</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="mailto:daviddipiazza29@gmail.com">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/CodeGoat29" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bar">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="../js/site.js"></script>
+    <script>
+        document.querySelectorAll('.category-toggle').forEach((toggle) => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                toggle.classList.toggle('collapsed');
+                if (content) {
+                    content.classList.toggle('collapsed');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

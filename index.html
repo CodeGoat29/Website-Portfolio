@@ -57,19 +57,22 @@
                     <div class="hero-terminal">
                         <div class="terminal-header">
                             <span></span><span></span><span></span>
+                            <span class="terminal-title">DDPLab</span>
                         </div>
-                        <div class="terminal-body">
-                            <p><span class="prompt">$</span> whoami</p>
-                            <p><span class="output">systems-engineer</span></p>
-                            <p><span class="prompt">$</span> tail -f notes.log</p>
-                            <p class="output">+ Updated PenTest+ · Added SAR quick view</p>
-                            <p><span class="prompt">$</span> git status</p>
-                            <p class="output">modified: asterisk-commands.html</p>
-                            <p class="cursor">▌</p>
+                        <div class="terminal-body" data-cli>
+                            <div class="terminal-output" data-cli-output>
+                                <p class="prompt-line"><span class="prompt-user">ddp</span><span class="prompt-sep">@</span><span class="prompt-host">goat</span><span class="prompt-path">:~</span><span class="prompt-char">$</span> cat home.html</p>
+                                <p class="output"><span class="html-tag">&lt;h1&gt;</span><span class="html-text">Welcome to My Digital Workshop</span><span class="html-tag">&lt;/h1&gt;</span></p>
+                                <p class="output"><span class="html-tag">&lt;h2&gt;</span><span class="html-text">Notes, labs, and automation.</span><span class="html-tag">&lt;/h2&gt;</span></p>
+                                <p class="output"><span class="html-tag">&lt;p&gt;</span><span class="html-text">Where I build, break, document, and refine technical projects. This site serves as a central hub for hands-on labs, experiments, and notes across systems engineering, networking, Linux, VoIP, cloud, security, and automation.</span><span class="html-tag">&lt;/p&gt;</span></p>
+                            </div>
+                            <div class="terminal-input-row">
+                                <span class="prompt-user">ddp</span><span class="prompt-sep">@</span><span class="prompt-host">goat</span><span class="prompt-path">:~</span><span class="prompt-char">$</span>
+                                <input type="text" class="terminal-input" data-cli-input autocomplete="off" spellcheck="false">
+                            </div>
                         </div>
                     </div>
                 </div>
-                <p class="hero-caption">Live notes, labs, and security experiments in one place.</p>
             </div>
         </section>
 
@@ -81,7 +84,10 @@
                 <div class="resource-card featured-resource">
                     <h3>⚙ Asterisk / FreePBX / VoIP References</h3>
                     <p>Practical VoIP notes and server ops commands for real-world troubleshooting, with more SIP and network references coming.</p>
-                    <a href="resources/asterisk-commands.html" class="resource-link">View Command Reference →</a>
+                    <div class="resource-links">
+                        <a href="resources/asterisk-commands.html" class="resource-link">Command Reference →</a>
+                        <a href="resources/voip-network-fundamentals.html" class="resource-link">General VoIP Guide →</a>
+                    </div>
                 </div>
 
                 <div class="resource-card featured-resource">
@@ -106,24 +112,12 @@
             <div class="blog-grid">
                 <article class="blog-card">
                     <div class="blog-meta">
-                        <span class="blog-date">January 15, 2026</span>
-                        <span class="blog-category">CTF</span>
+                        <span class="blog-date">Coming Soon</span>
+                        <span class="blog-category">Placeholder</span>
                     </div>
-                    <h3><a href="blog/sample-ctf-writeup.html">Sample CTF Writeup: Binary Exploitation Challenge</a></h3>
-                    <p>A detailed walkthrough of solving a buffer overflow challenge in the recent CTF competition. Learn about stack analysis, payload crafting, and exploit development.</p>
-                    <a href="blog/sample-ctf-writeup.html" class="read-more">Read More →</a>
+                    <h3>Posts are in progress</h3>
+                    <p>Write-ups, labs, and notes will show up here soon. Check back for fresh content.</p>
                 </article>
-
-                <article class="blog-card">
-                    <div class="blog-meta">
-                        <span class="blog-date">January 10, 2026</span>
-                        <span class="blog-category">Tutorial</span>
-                    </div>
-                    <h3><a href="blog/sample-tutorial.html">Advanced Nmap Techniques for Penetration Testing</a></h3>
-                    <p>Explore advanced scanning techniques, NSE scripts, and optimization strategies for efficient network reconnaissance during security assessments.</p>
-                    <a href="blog/sample-tutorial.html" class="read-more">Read More →</a>
-                </article>
-
             </div>
             
             <div class="view-all-link">

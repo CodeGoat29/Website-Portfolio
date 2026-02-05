@@ -362,6 +362,18 @@
             <h2 class="category-toggle">Asterisk Management</h2>
             <div class="category-content">
 
+            <div class="command-card" data-tags="asterisk cli console">
+                <div class="command-header">
+                    <h3>Access Asterisk CLI</h3>
+                    <button class="favorite-btn" data-command="asterisk-cli">☆</button>
+                </div>
+                <p class="command-description">Open the live Asterisk console for real-time commands.</p>
+                <div class="command-block">
+                    <code>sudo asterisk -rvv</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
             <div class="command-card" data-tags="asterisk channel hangup">
                 <div class="command-header">
                     <h3>Hangup Specific Channel</h3>
@@ -430,6 +442,21 @@
                 </div>
                 <div class="command-block">
                     <code>sudo asterisk -rx 'dialplan show'</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="queue show call queue">
+                <div class="command-header">
+                    <h3>Show Queue Status</h3>
+                    <button class="favorite-btn" data-command="queue-show">☆</button>
+                </div>
+                <p class="command-description">Display the status of a specific call queue.</p>
+                <div class="command-notes">
+                    <strong>Flag:</strong> <code>-rx</code> runs an Asterisk CLI command and exits.
+                </div>
+                <div class="command-block" data-template="sudo asterisk -rx 'queue show {queue_number}'">
+                    <code>sudo asterisk -rx 'queue show <span class="placeholder">queue number</span>'</code>
                     <button class="copy-btn">Copy</button>
                 </div>
             </div>
