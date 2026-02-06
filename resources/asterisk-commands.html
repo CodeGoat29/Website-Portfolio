@@ -647,7 +647,7 @@
         </section>
 
         <section id="files" class="command-category">
-            <h2 class="category-toggle">Key File Paths</h2>
+            <h2 class="category-toggle">Key File Paths & SCP</h2>
             <div class="category-content">
 
             <div class="command-card" data-tags="files spool voicemail tmp">
@@ -710,6 +710,36 @@
                 <p class="command-description">System mail log file.</p>
                 <div class="command-block">
                     <code>/var/log/maillog</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="scp copy files transfer remote download">
+                <div class="command-header">
+                    <h3>SCP: Server → Local</h3>
+                    <button class="favorite-btn" data-command="scp-from-server">☆</button>
+                </div>
+                <p class="command-description">Download a file from the VoIP server to your local machine.</p>
+                <div class="command-notes">
+                    <strong>Placeholders:</strong> <code>user</code> = SSH username, <code>server</code> = host/IP, <code>remote path</code> = file on server, <code>local path</code> = destination folder.
+                </div>
+                <div class="command-block" data-template="scp {user}@{server}:{remote_path} {local_path}">
+                    <code>scp <span class="placeholder">user</span>@<span class="placeholder">server</span>:<span class="placeholder">/remote/path/file</span> <span class="placeholder">/local/path/</span></code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
+            <div class="command-card" data-tags="scp copy files transfer upload">
+                <div class="command-header">
+                    <h3>SCP: Local → Server</h3>
+                    <button class="favorite-btn" data-command="scp-to-server">☆</button>
+                </div>
+                <p class="command-description">Upload a file from your local machine to the VoIP server.</p>
+                <div class="command-notes">
+                    <strong>Placeholders:</strong> <code>user</code> = SSH username, <code>server</code> = host/IP, <code>local path</code> = file on your machine, <code>remote path</code> = destination folder on server.
+                </div>
+                <div class="command-block" data-template="scp {local_path} {user}@{server}:{remote_path}">
+                    <code>scp <span class="placeholder">/local/path/file</span> <span class="placeholder">user</span>@<span class="placeholder">server</span>:<span class="placeholder">/remote/path/</span></code>
                     <button class="copy-btn">Copy</button>
                 </div>
             </div>
