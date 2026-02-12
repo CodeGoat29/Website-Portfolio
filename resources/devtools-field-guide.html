@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevTools Field Guide - DiPiazza</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" type="image/png" href="../images/thegoat.png">
+</head>
+<body>
+    <div class="top-controls">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <a href="../index.html" class="logo-link"><img src="/images/thegoat.png" alt="DiPiazza Logo" class="logo"></a>
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Where I break stuff, then write about it.</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../resources.html" class="active">Resources</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../resume.html">Resume</a></li>
+                    <li><button class="nav-cta" type="button" data-contact-open>Get in Touch</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="notes-header">
+            <h1>DevTools Field Guide</h1>
+            <p class="subtitle">High-level browser debugging tips with just enough depth to be useful fast.</p>
+
+            <div class="quick-nav">
+                <h3>Quick Navigation</h3>
+                <div class="nav-links">
+                    <a href="#network" class="nav-link">Network</a>
+                    <a href="#status" class="nav-link">Status Codes</a>
+                    <a href="#console" class="nav-link">Console</a>
+                    <a href="#storage" class="nav-link">Storage & Cookies</a>
+                    <a href="#elements" class="nav-link">Elements & CSS</a>
+                    <a href="#methods" class="nav-link">HTTP Methods</a>
+                    <a href="#cors" class="nav-link">CORS & Preflight</a>
+                    <a href="#realtime" class="nav-link">WebSockets & SSE</a>
+                    <a href="#perf" class="nav-link">Performance</a>
+                    <a href="#shortcuts" class="nav-link">Shortcuts</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="network" class="command-category">
+            <h2 class="category-toggle">Network Tab: Source of Truth</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="network preserve log cache xhr fetch ws">
+                    <div class="command-header"><h3>First Place to Check</h3></div>
+                    <ul>
+                        <li><strong>Preserve log:</strong> Keeps requests after refresh, redirects, or auth flows.</li>
+                        <li><strong>Disable cache:</strong> Prevents stale assets while debugging.</li>
+                        <li><strong>Filter by type:</strong> Focus on Fetch/XHR for APIs, Doc for page loads, WS for real-time.</li>
+                        <li><strong>Compare payloads:</strong> Request payload (client) vs response payload (server).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="status" class="command-category">
+            <h2 class="category-toggle">Status Codes Tell Stories</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="status codes 200 401 403 429 500">
+                    <div class="command-header"><h3>What the Server is Really Saying</h3></div>
+                    <ul>
+                        <li><strong>200:</strong> Still check the body. Many apps return errors inside a 200.</li>
+                        <li><strong>401/403:</strong> Auth or permissions. Look for expired tokens or role mismatch.</li>
+                        <li><strong>429:</strong> Rate limiting. Retry after delay or inspect headers.</li>
+                        <li><strong>5xx:</strong> Server error. Capture request ID and move on.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="console" class="command-category">
+            <h2 class="category-toggle">Console: Fast Signal</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="console errors warnings stack trace">
+                    <div class="command-header"><h3>Errors You Should Not Ignore</h3></div>
+                    <ul>
+                        <li><strong>Uncaught errors:</strong> The app crashed a code path.</li>
+                        <li><strong>Undefined or null:</strong> Usually missing data or bad assumptions.</li>
+                        <li><strong>Warnings:</strong> Often become real bugs later.</li>
+                        <li><strong>console.table():</strong> Best way to read arrays or objects fast.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="storage" class="command-category">
+            <h2 class="category-toggle">Application Tab: State & Storage</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="storage local session cookies">
+                    <div class="command-header"><h3>What the Browser Is Holding</h3></div>
+                    <ul>
+                        <li><strong>Local/Session Storage:</strong> Feature flags, app state, cached data.</li>
+                        <li><strong>Cookies:</strong> Domain scope, expiration, secure/httpOnly flags.</li>
+                        <li><strong>Clear storage:</strong> Reproduce a clean session and rule out stale state.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="elements" class="command-category">
+            <h2 class="category-toggle">Elements Tab: UI Debugging</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="elements css display z-index hover focus">
+                    <div class="command-header"><h3>Common UI Fixes</h3></div>
+                    <ul>
+                        <li><strong>Toggle display/visibility:</strong> Find hidden components fast.</li>
+                        <li><strong>Check z-index:</strong> Most modal and dropdown bugs live here.</li>
+                        <li><strong>Disable overflow:</strong> Fix clipped or unscrollable content.</li>
+                        <li><strong>Force :hover/:focus:</strong> Inspect menus and hidden states.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="methods" class="command-category">
+            <h2 class="category-toggle">Request Methods: Intent Check</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="http methods get post put patch delete">
+                    <div class="command-header"><h3>Match Method to Action</h3></div>
+                    <ul>
+                        <li><strong>GET:</strong> Fetch only. Should not modify data.</li>
+                        <li><strong>POST:</strong> Create or submit new data.</li>
+                        <li><strong>PUT/PATCH:</strong> Update existing data.</li>
+                        <li><strong>DELETE:</strong> Remove data.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="cors" class="command-category">
+            <h2 class="category-toggle">CORS & Preflight (OPTIONS)</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="cors preflight options headers">
+                    <div class="command-header"><h3>When Requests Never Fire</h3></div>
+                    <ul>
+                        <li><strong>OPTIONS fails:</strong> The real request is blocked.</li>
+                        <li><strong>Access-Control headers:</strong> Missing or wrong values cause silent failure.</li>
+                        <li><strong>Browser differences:</strong> CORS can behave differently across browsers.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="realtime" class="command-category">
+            <h2 class="category-toggle">WebSockets & SSE</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="websocket sse realtime 101">
+                    <div class="command-header"><h3>Real-Time Troubleshooting</h3></div>
+                    <ul>
+                        <li><strong>WS status 101:</strong> Connection accepted.</li>
+                        <li><strong>Ping/pong missing:</strong> Indicates timeout or disconnects.</li>
+                        <li><strong>SSE:</strong> Should stay open and stream data without closing.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="perf" class="command-category">
+            <h2 class="category-toggle">Performance & Throttling</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="performance throttling timeline">
+                    <div class="command-header"><h3>Simulate Real-World Conditions</h3></div>
+                    <ul>
+                        <li><strong>Throttle CPU/network:</strong> Reproduce slow-device or low-bandwidth issues.</li>
+                        <li><strong>Record trace:</strong> Find long tasks and layout shifts.</li>
+                        <li><strong>Measure regressions:</strong> Compare before/after changes.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="shortcuts" class="command-category">
+            <h2 class="category-toggle">Handy Shortcuts</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="shortcuts devtools hotkeys">
+                    <div class="command-header"><h3>Speed Boosters</h3></div>
+                    <ul>
+                        <li><strong>Open DevTools:</strong> F12 / Cmd+Opt+I</li>
+                        <li><strong>Inspect Element:</strong> Cmd+Shift+C</li>
+                        <li><strong>Search Files:</strong> Cmd+P</li>
+                        <li><strong>Command Menu:</strong> Cmd+Shift+P</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="contact-modal" id="contactModal">
+        <div class="contact-modal-content">
+            <div class="contact-modal-header">
+                <h3>Get in Touch</h3>
+                <button class="contact-modal-close" type="button" id="contactModalClose">✕</button>
+            </div>
+            <div class="contact-modal-links">
+                <a href="mailto:daviddipiazza29@gmail.com" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/CodeGoat29" target="_blank" class="contact-link">GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="../resources.html">Resources</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../resume.html">Resume</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="mailto:daviddipiazza29@gmail.com">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/CodeGoat29" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bar">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="../js/site.js"></script>
+</body>
+</html>
