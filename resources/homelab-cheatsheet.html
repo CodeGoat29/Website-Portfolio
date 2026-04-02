@@ -190,6 +190,9 @@
                         <code>sudo fail2ban-client unban --all</code>
                         <button class="copy-btn">Copy</button>
                     </div>
+                    <div class="command-notes">
+                        <strong>Note:</strong> If unsupported, unban by jail with <code>fail2ban-client set &lt;jail&gt; unbanip &lt;ip&gt;</code>.
+                    </div>
                 </div>
 
                 <div class="command-card" data-tags="fail2ban unban ip sshd">
@@ -211,6 +214,13 @@
                     <p class="command-description">View recent SSH logins, failures, and disconnects.</p>
                     <div class="command-block">
                         <code>sudo journalctl -u ssh -n 20</code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <div class="command-notes">
+                        <strong>Note:</strong> Some systems use <code>sshd</code> instead of <code>ssh</code>.
+                    </div>
+                    <div class="command-block">
+                        <code>sudo journalctl -u sshd -n 20</code>
                         <button class="copy-btn">Copy</button>
                     </div>
                 </div>
