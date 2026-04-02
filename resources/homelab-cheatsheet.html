@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homelab Cheat Sheet - DiPiazza</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" type="image/png" href="../images/thegoat.png">
+</head>
+<body>
+    <div class="top-controls">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <a href="../index.html" class="logo-link"><img src="/images/thegoat.png" alt="DiPiazza Logo" class="logo"></a>
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Where I break stuff, then write about it.</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../resources.html" class="active">Resources</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../resume.html">Resume</a></li>
+                    <li><button class="nav-cta" type="button" data-contact-open>Get in Touch</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="notes-header">
+            <h1>Homelab Cheat Sheet</h1>
+            <p class="subtitle">Quick commands for Fail2Ban, SSH, logs, networking, and Docker basics.</p>
+
+            <div class="quick-nav">
+                <h3>Quick Navigation</h3>
+                <div class="nav-links">
+                    <a href="#fail2ban" class="nav-link">Fail2Ban</a>
+                    <a href="#logs" class="nav-link">Logs & Monitoring</a>
+                    <a href="#networking" class="nav-link">Networking</a>
+                    <a href="#ssh" class="nav-link">SSH Sessions</a>
+                    <a href="#docker" class="nav-link">Docker Basics</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="fail2ban" class="command-category">
+            <h2 class="category-toggle">Fail2Ban Commands</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="fail2ban status jail">
+                    <div class="command-header"><h3>Overall Status</h3></div>
+                    <p class="command-description">Check the main Fail2Ban status and list active jails.</p>
+                    <div class="command-block">
+                        <code>sudo fail2ban-client status</code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="fail2ban sshd jail status">
+                    <div class="command-header"><h3>Specific Jail Status</h3></div>
+                    <p class="command-description">Show banned IPs, failed attempts, and jail settings.</p>
+                    <div class="command-block" data-template="sudo fail2ban-client status {jail}">
+                        <code>sudo fail2ban-client status <span class="placeholder">sshd</span></code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="fail2ban unban all">
+                    <div class="command-header"><h3>Unban All IPs</h3></div>
+                    <p class="command-description">Remove all bans across all jails.</p>
+                    <div class="command-block">
+                        <code>sudo fail2ban-client unban --all</code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="fail2ban unban ip sshd">
+                    <div class="command-header"><h3>Unban Specific IP (SSH)</h3></div>
+                    <p class="command-description">Remove a single IP from the SSH jail.</p>
+                    <div class="command-block" data-template="sudo fail2ban-client set {jail} unbanip {ip}">
+                        <code>sudo fail2ban-client set <span class="placeholder">sshd</span> unbanip <span class="placeholder">IP_ADDRESS</span></code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="logs" class="command-category">
+            <h2 class="category-toggle">Logs & Monitoring</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="journalctl ssh logs">
+                    <div class="command-header"><h3>Recent SSH Activity</h3></div>
+                    <p class="command-description">View recent SSH logins, failures, and disconnects.</p>
+                    <div class="command-block">
+                        <code>sudo journalctl -u ssh -n 20</code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="fail2ban logs journalctl">
+                    <div class="command-header"><h3>Fail2Ban Logs</h3></div>
+                    <p class="command-description">Show recent Fail2Ban bans, unbans, and errors.</p>
+                    <div class="command-block">
+                        <code>sudo journalctl -u fail2ban -n 50 --no-pager</code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="networking" class="command-category">
+            <h2 class="category-toggle">Networking</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="public ip curl">
+                    <div class="command-header"><h3>Get Public IP</h3></div>
+                    <p class="command-description">Useful for whitelisting or verifying outbound IP.</p>
+                    <div class="command-block">
+                        <code>curl ifconfig.me</code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ssh" class="command-category">
+            <h2 class="category-toggle">SSH Sessions</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="ssh sessions who">
+                    <div class="command-header"><h3>Who Is Logged In</h3></div>
+                    <p class="command-description">See active users, IPs, and login times.</p>
+                    <div class="command-block">
+                        <code>who</code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="docker" class="command-category">
+            <h2 class="category-toggle">Docker Basics</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="docker ps running">
+                    <div class="command-header"><h3>List Running Containers</h3></div>
+                    <div class="command-block">
+                        <code>docker ps</code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="docker ps all">
+                    <div class="command-header"><h3>List All Containers</h3></div>
+                    <div class="command-block">
+                        <code>docker ps -a</code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="docker stop">
+                    <div class="command-header"><h3>Stop a Container</h3></div>
+                    <div class="command-block" data-template="docker stop {container}">
+                        <code>docker stop <span class="placeholder">container_name</span></code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="docker rm remove">
+                    <div class="command-header"><h3>Remove a Container</h3></div>
+                    <div class="command-block" data-template="docker rm {container}">
+                        <code>docker rm <span class="placeholder">container_name</span></code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="docker rm volumes">
+                    <div class="command-header"><h3>Remove Container + Anonymous Volumes</h3></div>
+                    <div class="command-block" data-template="docker rm -v {container}">
+                        <code>docker rm -v <span class="placeholder">container_name</span></code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="docker volume list">
+                    <div class="command-header"><h3>List Volumes</h3></div>
+                    <div class="command-block">
+                        <code>docker volume ls</code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="docker volume prune">
+                    <div class="command-header"><h3>Remove Unused Volumes</h3></div>
+                    <div class="command-block">
+                        <code>docker volume prune</code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="docker system prune cleanup">
+                    <div class="command-header"><h3>Full Cleanup (Aggressive)</h3></div>
+                    <p class="command-description">Removes stopped containers, unused images, networks, and volumes.</p>
+                    <div class="command-block">
+                        <code>docker system prune -a --volumes</code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="docker inspect mounts">
+                    <div class="command-header"><h3>Inspect Container Mounts</h3></div>
+                    <p class="command-description">Find where data is stored on the host.</p>
+                    <div class="command-block" data-template="docker inspect {container}">
+                        <code>docker inspect <span class="placeholder">container_name</span></code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="contact-modal" id="contactModal">
+        <div class="contact-modal-content">
+            <div class="contact-modal-header">
+                <h3>Get in Touch</h3>
+                <button class="contact-modal-close" type="button" id="contactModalClose">✕</button>
+            </div>
+            <div class="contact-modal-links">
+                <a href="mailto:daviddipiazza29@gmail.com" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/CodeGoat29" target="_blank" class="contact-link">GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="../resources.html">Resources</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../resume.html">Resume</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="mailto:daviddipiazza29@gmail.com">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/CodeGoat29" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bar">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="../js/site.js"></script>
+</body>
+</html>
