@@ -6,6 +6,115 @@
     <title>Homelab Cheat Sheet - DiPiazza</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="icon" type="image/png" href="../images/thegoat.png">
+    <style>
+        .search-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-modal.show {
+            display: flex;
+        }
+
+        .search-modal-content {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode .search-modal-content {
+            background: #1c2938;
+        }
+
+        .search-modal h3 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .search-modal-fields {
+            display: grid;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .search-modal-field span {
+            display: block;
+            font-size: 0.85em;
+            color: #657786;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .dark-mode .search-modal-field span {
+            color: #8899a6;
+        }
+
+        .search-modal-input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1em;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .dark-mode .search-modal-input {
+            background: #0f1419;
+            color: var(--primary-blue);
+            border-color: #2a3f5f;
+        }
+
+        .search-modal-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        .search-modal-btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .search-modal-btn.btn-search {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .search-modal-btn.btn-search:hover {
+            background: var(--main-blue);
+        }
+
+        .search-modal-btn.btn-cancel {
+            background: #e1e8ed;
+            color: #2c3e50;
+        }
+
+        .dark-mode .search-modal-btn.btn-cancel {
+            background: #2a3f5f;
+            color: #e4e6eb;
+        }
+
+        .search-modal-btn.btn-cancel:hover {
+            background: #657786;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <div class="top-controls">
@@ -225,6 +334,17 @@
         </section>
     </main>
 
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <h3>Fill in values</h3>
+            <div class="search-modal-fields" id="searchModalFields"></div>
+            <div class="search-modal-buttons">
+                <button class="search-modal-btn btn-cancel" id="searchModalCancel">Cancel</button>
+                <button class="search-modal-btn btn-search" id="searchModalSearch">Done</button>
+            </div>
+        </div>
+    </div>
+
     <div class="contact-modal" id="contactModal">
         <div class="contact-modal-content">
             <div class="contact-modal-header">
@@ -264,5 +384,159 @@
     </footer>
 
     <script src="../js/site.js"></script>
+    <script>
+        document.querySelectorAll('.category-toggle').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                toggle.classList.toggle('collapsed');
+                content.classList.toggle('collapsed');
+            });
+        });
+
+        const searchModal = document.getElementById('searchModal');
+        const searchModalFields = document.getElementById('searchModalFields');
+        const searchModalCancel = document.getElementById('searchModalCancel');
+        const searchModalDone = document.getElementById('searchModalSearch');
+        let currentCopyButton = null;
+        let currentTemplate = null;
+
+        function extractTemplateFields(template) {
+            const fields = [];
+            const matches = template.matchAll(/{([^}]+)}/g);
+            for (const match of matches) {
+                const field = match[1];
+                if (!fields.includes(field)) {
+                    fields.push(field);
+                }
+            }
+            return fields;
+        }
+
+        function formatFieldLabel(field) {
+            const map = {
+                jail: 'Jail name',
+                ip: 'IP address',
+                container: 'Container name'
+            };
+            return map[field] || field.replace(/[-_]/g, ' ');
+        }
+
+        function setCopiedState(button) {
+            if (!button) return;
+            button.textContent = 'Copied!';
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.textContent = 'Copy';
+                button.classList.remove('copied');
+            }, 2000);
+        }
+
+        function openFillModal(button, commandBlock) {
+            const template = commandBlock.getAttribute('data-template');
+            if (!template) return;
+            const fields = extractTemplateFields(template);
+            if (fields.length === 0) {
+                return;
+            }
+
+            currentCopyButton = button;
+            currentTemplate = template;
+            searchModalFields.innerHTML = '';
+
+            fields.forEach(field => {
+                const label = formatFieldLabel(field);
+                const wrapper = document.createElement('label');
+                wrapper.className = 'search-modal-field';
+                const title = document.createElement('span');
+                title.textContent = label;
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.className = 'search-modal-input';
+                input.dataset.field = field;
+                input.placeholder = label;
+                wrapper.appendChild(title);
+                wrapper.appendChild(input);
+                searchModalFields.appendChild(wrapper);
+            });
+
+            searchModal.classList.add('show');
+            const firstInput = searchModalFields.querySelector('.search-modal-input');
+            if (firstInput) {
+                firstInput.focus();
+            }
+        }
+
+        function closeFillModal() {
+            searchModal.classList.remove('show');
+            currentCopyButton = null;
+            currentTemplate = null;
+            searchModalFields.innerHTML = '';
+        }
+
+        searchModalCancel.addEventListener('click', closeFillModal);
+
+        searchModalDone.addEventListener('click', () => {
+            if (!currentTemplate) return;
+            let filled = currentTemplate;
+            const inputs = Array.from(searchModalFields.querySelectorAll('.search-modal-input'));
+            for (const input of inputs) {
+                const value = input.value.trim();
+                if (!value) {
+                    alert('Please fill in all fields');
+                    input.focus();
+                    return;
+                }
+                const field = input.dataset.field;
+                const fieldRegex = new RegExp(`{${field}}`, 'g');
+                filled = filled.replace(fieldRegex, value);
+            }
+
+            navigator.clipboard.writeText(filled).then(() => {
+                setCopiedState(currentCopyButton);
+                closeFillModal();
+            });
+        });
+
+        searchModal.addEventListener('click', (e) => {
+            if (e.target.id === 'searchModal') {
+                closeFillModal();
+            }
+        });
+
+        searchModal.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                searchModalDone.click();
+            }
+        });
+
+        function handleCopyClick(button) {
+            const commandBlock = button.parentElement;
+            const template = commandBlock.getAttribute('data-template');
+
+            if (template) {
+                const fields = extractTemplateFields(template);
+                if (fields.length > 0) {
+                    openFillModal(button, commandBlock);
+                    return;
+                }
+                navigator.clipboard.writeText(template).then(() => {
+                    setCopiedState(button);
+                });
+                return;
+            }
+
+            const code = commandBlock.querySelector('code');
+            const text = code ? code.textContent : '';
+            navigator.clipboard.writeText(text).then(() => {
+                setCopiedState(button);
+            });
+        }
+
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                handleCopyClick(this);
+            });
+        });
+    </script>
 </body>
 </html>
