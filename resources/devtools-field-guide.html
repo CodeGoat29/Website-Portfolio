@@ -6,6 +6,11 @@
     <title>DevTools Field Guide - DiPiazza</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="icon" type="image/png" href="../images/thegoat.png">
+    <style>
+        .category-content {
+            grid-template-columns: 1fr;
+        }
+    </style>
 </head>
 <body>
     <div class="top-controls">
@@ -68,6 +73,8 @@
                         <li><strong>Disable cache:</strong> Prevents stale assets while debugging.</li>
                         <li><strong>Filter by type:</strong> Focus on Fetch/XHR for APIs, Doc for page loads, WS for real-time.</li>
                         <li><strong>Compare payloads:</strong> Request payload (client) vs response payload (server).</li>
+                        <li><strong>Headers matter:</strong> Check Cache-Control, Authorization, and content-type.</li>
+                        <li><strong>Timing:</strong> Use the waterfall to spot slow DNS, TLS, or server delays.</li>
                     </ul>
                 </div>
             </div>
@@ -83,6 +90,7 @@
                         <li><strong>401/403:</strong> Auth or permissions. Look for expired tokens or role mismatch.</li>
                         <li><strong>429:</strong> Rate limiting. Retry after delay or inspect headers.</li>
                         <li><strong>5xx:</strong> Server error. Capture request ID and move on.</li>
+                        <li><strong>3xx:</strong> Redirects can hide auth flows or mis-routed requests.</li>
                     </ul>
                 </div>
             </div>
@@ -98,6 +106,8 @@
                         <li><strong>Undefined or null:</strong> Usually missing data or bad assumptions.</li>
                         <li><strong>Warnings:</strong> Often become real bugs later.</li>
                         <li><strong>console.table():</strong> Best way to read arrays or objects fast.</li>
+                        <li><strong>Stack traces:</strong> Click the file/line to jump to the source.</li>
+                        <li><strong>Source maps:</strong> Make sure they load so errors point to real code.</li>
                     </ul>
                 </div>
             </div>
@@ -112,6 +122,8 @@
                         <li><strong>Local/Session Storage:</strong> Feature flags, app state, cached data.</li>
                         <li><strong>Cookies:</strong> Domain scope, expiration, secure/httpOnly flags.</li>
                         <li><strong>Clear storage:</strong> Reproduce a clean session and rule out stale state.</li>
+                        <li><strong>Secure/HttpOnly:</strong> Secure requires HTTPS, HttpOnly hides from JS.</li>
+                        <li><strong>Path & Domain:</strong> Wrong scope can break login or sessions.</li>
                     </ul>
                 </div>
             </div>
@@ -127,6 +139,8 @@
                         <li><strong>Check z-index:</strong> Most modal and dropdown bugs live here.</li>
                         <li><strong>Disable overflow:</strong> Fix clipped or unscrollable content.</li>
                         <li><strong>Force :hover/:focus:</strong> Inspect menus and hidden states.</li>
+                        <li><strong>Box model:</strong> Margin/padding often explains “why is this off?”.</li>
+                        <li><strong>Computed styles:</strong> See the final applied CSS when inheritance is confusing.</li>
                     </ul>
                 </div>
             </div>
@@ -142,6 +156,7 @@
                         <li><strong>POST:</strong> Create or submit new data.</li>
                         <li><strong>PUT/PATCH:</strong> Update existing data.</li>
                         <li><strong>DELETE:</strong> Remove data.</li>
+                        <li><strong>Mismatch:</strong> If the method doesn’t match the action, expect bugs.</li>
                     </ul>
                 </div>
             </div>
@@ -156,6 +171,7 @@
                         <li><strong>OPTIONS fails:</strong> The real request is blocked.</li>
                         <li><strong>Access-Control headers:</strong> Missing or wrong values cause silent failure.</li>
                         <li><strong>Browser differences:</strong> CORS can behave differently across browsers.</li>
+                        <li><strong>Credentials:</strong> Cross-site cookies require explicit allow-credentials.</li>
                     </ul>
                 </div>
             </div>
@@ -170,6 +186,7 @@
                         <li><strong>WS status 101:</strong> Connection accepted.</li>
                         <li><strong>Ping/pong missing:</strong> Indicates timeout or disconnects.</li>
                         <li><strong>SSE:</strong> Should stay open and stream data without closing.</li>
+                        <li><strong>Reconnect loops:</strong> Often show auth/token or proxy problems.</li>
                     </ul>
                 </div>
             </div>
@@ -184,6 +201,7 @@
                         <li><strong>Throttle CPU/network:</strong> Reproduce slow-device or low-bandwidth issues.</li>
                         <li><strong>Record trace:</strong> Find long tasks and layout shifts.</li>
                         <li><strong>Measure regressions:</strong> Compare before/after changes.</li>
+                        <li><strong>Memory:</strong> Watch for growing heap size during long sessions.</li>
                     </ul>
                 </div>
             </div>
