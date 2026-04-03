@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDN & Networking Notes - DiPiazza</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" type="image/png" href="../images/thegoat.png">
+</head>
+<body>
+    <div class="top-controls">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <a href="../index.html" class="logo-link"><img src="/images/thegoat.png" alt="DiPiazza Logo" class="logo"></a>
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Where I break stuff, then write about it.</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../resources.html" class="active">Resources</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../resume.html">Resume</a></li>
+                    <li><button class="nav-cta" type="button" data-contact-open>Get in Touch</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="notes-header">
+            <h1>CDN & Networking Notes</h1>
+            <p class="subtitle">High-level concepts for content delivery, HTTP, routing, and reliability.</p>
+
+            <div class="quick-nav">
+                <h3>Quick Navigation</h3>
+                <div class="nav-links">
+                    <a href="#cdn" class="nav-link">CDN Fundamentals</a>
+                    <a href="#http" class="nav-link">HTTP & Web Delivery</a>
+                    <a href="#core" class="nav-link">Networking Core</a>
+                    <a href="#reliability" class="nav-link">Reliability & Monitoring</a>
+                    <a href="#edge" class="nav-link">Edge & Config Concepts</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="cdn" class="command-category">
+            <h2 class="category-toggle">CDN Fundamentals</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="cdn edge pop cache origin">
+                    <div class="command-header"><h3>Core Ideas</h3></div>
+                    <ul>
+                        <li><strong>CDN:</strong> A distributed network that serves content closer to users for lower latency.</li>
+                        <li><strong>Edge POP:</strong> An edge location that caches content and responds to nearby users.</li>
+                        <li><strong>Origin:</strong> The source server where content is hosted.</li>
+                        <li><strong>Cache hit:</strong> Served from edge cache (fast, no origin load).</li>
+                        <li><strong>Cache miss:</strong> Must fetch from origin (slower, adds origin load).</li>
+                        <li><strong>TTL:</strong> How long cached content is valid before revalidation.</li>
+                        <li><strong>Purge:</strong> Force content removal from cache before TTL expires.</li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="edge compute">
+                    <div class="command-header"><h3>Edge Compute (High Level)</h3></div>
+                    <ul>
+                        <li><strong>Edge logic:</strong> Run request/response logic closer to users.</li>
+                        <li><strong>Use cases:</strong> Redirects, header manipulation, routing, personalization.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="http" class="command-category">
+            <h2 class="category-toggle">HTTP & Web Delivery</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="http https tls headers">
+                    <div class="command-header"><h3>Protocol Basics</h3></div>
+                    <ul>
+                        <li><strong>HTTP:</strong> The protocol for client/server communication.</li>
+                        <li><strong>HTTPS:</strong> HTTP over TLS encryption.</li>
+                        <li><strong>TLS:</strong> Secures data in transit and prevents MITM attacks.</li>
+                        <li><strong>Headers:</strong> Metadata that controls caching, auth, and behavior.</li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="status codes cache-control etag">
+                    <div class="command-header"><h3>Status & Caching</h3></div>
+                    <ul>
+                        <li><strong>Status codes:</strong> 200 OK, 301/302 redirects, 403 forbidden, 404 not found, 500 server error.</li>
+                        <li><strong>Cache-Control:</strong> Controls how long responses are cached (e.g., max-age=3600).</li>
+                        <li><strong>ETag:</strong> Identifier for cache validation (saves bandwidth).</li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="latency bandwidth">
+                    <div class="command-header"><h3>Performance Terms</h3></div>
+                    <ul>
+                        <li><strong>Latency:</strong> Round-trip time for a request; lower is better.</li>
+                        <li><strong>Bandwidth:</strong> Amount of data transmitted per unit time.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="core" class="command-category">
+            <h2 class="category-toggle">Networking Core Concepts</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="ip dns anycast bgp asn">
+                    <div class="command-header"><h3>Foundations</h3></div>
+                    <ul>
+                        <li><strong>IP (IPv4/IPv6):</strong> Unique address for a device on a network.</li>
+                        <li><strong>DNS:</strong> Resolves domain names to IP addresses.</li>
+                        <li><strong>DNS propagation:</strong> Time for DNS changes to spread globally.</li>
+                        <li><strong>Anycast:</strong> Multiple servers share one IP; traffic goes to the closest.</li>
+                        <li><strong>BGP:</strong> Routing protocol between networks (ASNs).</li>
+                        <li><strong>ASN:</strong> Identifier for a network on the public internet.</li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="peering transit load balancing reverse proxy">
+                    <div class="command-header"><h3>Traffic Flow</h3></div>
+                    <ul>
+                        <li><strong>Peering:</strong> Direct exchange of traffic between networks.</li>
+                        <li><strong>Transit provider:</strong> Paid network that carries your traffic to the internet.</li>
+                        <li><strong>Load balancing:</strong> Distributes traffic to prevent overload.</li>
+                        <li><strong>Reverse proxy:</strong> Sits in front of origin and forwards requests.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="reliability" class="command-category">
+            <h2 class="category-toggle">Reliability & Monitoring</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="uptime sla incident alerting observability">
+                    <div class="command-header"><h3>Operational Basics</h3></div>
+                    <ul>
+                        <li><strong>Uptime:</strong> Percentage of time a system is operational.</li>
+                        <li><strong>SLA:</strong> Availability or performance guarantee (e.g., 99.99%).</li>
+                        <li><strong>Incident:</strong> Event that disrupts normal service.</li>
+                        <li><strong>Alerting:</strong> Automated notifications for problems.</li>
+                        <li><strong>Observability:</strong> Understanding a system via logs, metrics, traces.</li>
+                    </ul>
+                </div>
+
+                <div class="command-card" data-tags="metrics logs traces rate limiting ddos waf">
+                    <div class="command-header"><h3>Signals & Protection</h3></div>
+                    <ul>
+                        <li><strong>Logs:</strong> Events and errors (what happened).</li>
+                        <li><strong>Metrics:</strong> Numeric trends (latency, error rate).</li>
+                        <li><strong>Traces:</strong> Request-level visibility across services.</li>
+                        <li><strong>Rate limiting:</strong> Protects against abuse or overload.</li>
+                        <li><strong>DDoS:</strong> Traffic flood attack; needs mitigation.</li>
+                        <li><strong>WAF:</strong> Filters malicious HTTP traffic.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="edge" class="command-category">
+            <h2 class="category-toggle">Edge & Config Concepts</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="edge config dictionaries shielding logging">
+                    <div class="command-header"><h3>Advanced Delivery Concepts</h3></div>
+                    <ul>
+                        <li><strong>Configuration language:</strong> Defines routing, caching, and request handling.</li>
+                        <li><strong>Edge dictionaries:</strong> Key-value stores at the edge for dynamic config.</li>
+                        <li><strong>Shielding:</strong> Centralizes cache misses to reduce origin load.</li>
+                        <li><strong>Streaming logs:</strong> Ship logs in real time instead of batching.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="contact-modal" id="contactModal">
+        <div class="contact-modal-content">
+            <div class="contact-modal-header">
+                <h3>Get in Touch</h3>
+                <button class="contact-modal-close" type="button" id="contactModalClose">✕</button>
+            </div>
+            <div class="contact-modal-links">
+                <a href="mailto:daviddipiazza29@gmail.com" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/CodeGoat29" target="_blank" class="contact-link">GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="../resources.html">Resources</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../resume.html">Resume</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="mailto:daviddipiazza29@gmail.com">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/CodeGoat29" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bar">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="../js/site.js"></script>
+    <script>
+        document.querySelectorAll('.category-toggle').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                toggle.classList.toggle('collapsed');
+                content.classList.toggle('collapsed');
+            });
+        });
+    </script>
+</body>
+</html>
