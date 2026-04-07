@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" href="/images/thegoat.png">
     <style>
         .post-hero {
-            background: white;
+            background: linear-gradient(140deg, #ffffff 0%, #f1f6fc 100%);
             border-radius: 14px;
             border: 1px solid #e1e8ed;
             box-shadow: 0 6px 22px rgba(0,0,0,0.08);
@@ -17,8 +17,12 @@
         }
 
         .dark-mode .post-hero {
-            background: #1c2938;
+            background: linear-gradient(140deg, #1c2938 0%, #162233 100%);
             border-color: #2a3f5f;
+        }
+
+        .post-title {
+            margin-bottom: 8px;
         }
 
         .post-meta {
@@ -35,10 +39,26 @@
         }
 
         .post-image {
-            width: 100%;
+            width: 92%;
+            max-width: 900px;
             border-radius: 12px;
             border: 1px solid #d6e2f0;
             margin: 18px 0 8px;
+            box-shadow: 0 10px 26px rgba(0,0,0,0.12);
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .post-image-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #6a7b8d;
+            margin-bottom: 10px;
+        }
+
+        .dark-mode .post-image-caption {
+            color: #9aa8b6;
         }
 
         .post-body {
@@ -48,6 +68,8 @@
             padding: 28px;
             box-shadow: 0 6px 22px rgba(0,0,0,0.06);
             line-height: 1.75;
+            max-width: 900px;
+            margin: 0 auto 40px;
         }
 
         .dark-mode .post-body {
@@ -93,6 +115,38 @@
             background: #243447;
             color: #b8c4d1;
         }
+
+        .post-takeaways {
+            background: #f7f9fc;
+            border: 1px solid #e1e8ed;
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin: 18px 0 26px;
+        }
+
+        .dark-mode .post-takeaways {
+            background: #1c2a3a;
+            border-color: #2a3f5f;
+        }
+
+        .post-takeaways h3 {
+            margin-top: 0;
+            color: var(--primary-blue);
+        }
+
+        .post-takeaways ul {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 900px) {
+            .post-body {
+                padding: 22px;
+            }
+
+            .post-image {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -126,13 +180,14 @@
 
     <main class="container">
         <section class="post-hero">
-            <h1>A Real Authorization Flaw I Found by Modifying a PUT Request</h1>
+            <h1 class="post-title">A Real Authorization Flaw I Found by Modifying a PUT Request</h1>
             <div class="post-meta">
                 <span>March 24, 2026</span>
                 <span>Security</span>
                 <span>Authorization Testing</span>
             </div>
             <img class="post-image" src="../images/blog/authorization-put.png" alt="Authorization testing illustration">
+            <div class="post-image-caption">Authentication passed, authorization failed.</div>
             <div class="post-callout">
                 This write-up is intentionally high-level. The issue was reported internally and is now fixed.
             </div>
@@ -140,6 +195,15 @@
 
         <section class="post-body">
             <p>I recently found and reported a real authorization flaw, and it was one of those wins that reminds me why I enjoy security testing.</p>
+
+            <div class="post-takeaways">
+                <h3>Key Takeaways</h3>
+                <ul>
+                    <li>Authorization must be enforced on every request.</li>
+                    <li>Request-layer testing catches issues UI testing will miss.</li>
+                    <li>Ownership checks are the difference between safe and exposed.</li>
+                </ul>
+            </div>
 
             <h2>What happened, technically</h2>
             <p>I intercepted a legitimate PUT request that referenced a user ID, modified it, and the server accepted a change it should have rejected. The result was unauthorized account access. The request was authenticated, but the server did not consistently validate that the action was authorized for the specific target.</p>
