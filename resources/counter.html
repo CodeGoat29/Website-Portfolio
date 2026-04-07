@@ -40,6 +40,7 @@
     <main class="container">
         <section id="counter" class="resume-section">
             <h2>Important Event Tracker</h2>
+            <p class="counter-subtitle">A clean, always-updated view of the milestones that matter most.</p>
             
             <div class="counter-display-section">
             <div class="counter-cards">
@@ -108,7 +109,7 @@
             </div>
 
             <div class="counter-info">
-                <p>This counter updates automatically every hour to show the current age in years, months, and days.</p>
+                <p>This tracker updates automatically every hour and shows years, months, and days at a glance.</p>
                 <p class="last-update">Last updated: <span id="lastUpdate"></span></p>
             </div>
         </section>
@@ -157,6 +158,17 @@
             margin-bottom: 48px;
         }
 
+        .counter-subtitle {
+            margin-top: 8px;
+            margin-bottom: 28px;
+            color: #657786;
+            font-size: 1.05em;
+        }
+
+        .dark-mode .counter-subtitle {
+            color: #8899a6;
+        }
+
         .counter-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -171,6 +183,8 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             border: 1px solid #e1e8ed;
             transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
         }
 
         .dark-mode .counter-display-card {
@@ -183,11 +197,20 @@
             box-shadow: 0 8px 30px rgba(76, 116, 206, 0.2);
         }
 
+        .counter-display-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary-blue), #7aa8ff);
+        }
+
         .counter-display-header {
             text-align: center;
             margin-bottom: 32px;
             padding-bottom: 20px;
-            border-bottom: 3px solid var(--primary-blue);
         }
 
         .counter-display-header h2 {
@@ -199,6 +222,11 @@
 
         .dark-mode .counter-display-header h2 {
             color: var(--primary-blue);
+        }
+
+        .counter-display-header h2::after {
+            display: none;
+            content: none;
         }
 
         .counter-birthdate {
@@ -222,6 +250,15 @@
             flex-direction: column;
             align-items: center;
             flex: 1;
+            background: #f6f9fc;
+            border-radius: 12px;
+            padding: 16px 10px;
+            border: 1px solid #e1e8ed;
+        }
+
+        .dark-mode .age-component {
+            background: #16212f;
+            border-color: #2a3f5f;
         }
 
         .age-number {

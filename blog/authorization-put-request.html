@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authorization Flaw Found via PUT Request - DiPiazza</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" type="image/png" href="/images/thegoat.png">
+    <style>
+        .post-hero {
+            background: white;
+            border-radius: 14px;
+            border: 1px solid #e1e8ed;
+            box-shadow: 0 6px 22px rgba(0,0,0,0.08);
+            padding: 28px;
+            margin-bottom: 28px;
+        }
+
+        .dark-mode .post-hero {
+            background: #1c2938;
+            border-color: #2a3f5f;
+        }
+
+        .post-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            color: #657786;
+            font-size: 0.95em;
+            margin-top: 8px;
+        }
+
+        .dark-mode .post-meta {
+            color: #8899a6;
+        }
+
+        .post-image {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid #d6e2f0;
+            margin: 18px 0 8px;
+        }
+
+        .post-body {
+            background: white;
+            border-radius: 14px;
+            border: 1px solid #e1e8ed;
+            padding: 28px;
+            box-shadow: 0 6px 22px rgba(0,0,0,0.06);
+            line-height: 1.75;
+        }
+
+        .dark-mode .post-body {
+            background: #1c2938;
+            border-color: #2a3f5f;
+            color: #b8c4d1;
+        }
+
+        .post-body h2 {
+            margin-top: 28px;
+            color: var(--primary-blue);
+        }
+
+        .post-body ul {
+            list-style: none;
+            padding-left: 0;
+            display: grid;
+            gap: 8px;
+        }
+
+        .post-body li {
+            padding-left: 18px;
+            position: relative;
+        }
+
+        .post-body li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+        }
+
+        .post-callout {
+            background: #f0f4f8;
+            border-left: 4px solid var(--primary-blue);
+            padding: 14px 16px;
+            border-radius: 10px;
+            margin: 18px 0;
+            color: #4a5a6a;
+        }
+
+        .dark-mode .post-callout {
+            background: #243447;
+            color: #b8c4d1;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-controls">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <a href="../index.html" class="logo-link"><img src="/images/thegoat.png" alt="DiPiazza Logo" class="logo"></a>
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Where I break stuff, then write about it.</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../resources.html">Resources</a></li>
+                    <li><a href="../blog.html" class="active">Blog</a></li>
+                    <li><a href="../resume.html">Resume</a></li>
+                    <li><button class="nav-cta" type="button" data-contact-open>Get in Touch</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="post-hero">
+            <h1>A Real Authorization Flaw I Found by Modifying a PUT Request</h1>
+            <div class="post-meta">
+                <span>March 24, 2026</span>
+                <span>Security</span>
+                <span>Authorization Testing</span>
+            </div>
+            <img class="post-image" src="../images/blog/authorization-put.png" alt="Authorization testing illustration">
+            <div class="post-callout">
+                This write-up is intentionally high-level. The issue was reported internally and is now fixed.
+            </div>
+        </section>
+
+        <section class="post-body">
+            <p>I recently found and reported a real authorization flaw, and it was one of those wins that reminds me why I enjoy security testing.</p>
+
+            <h2>What happened, technically</h2>
+            <p>I intercepted a legitimate PUT request that referenced a user ID, modified it, and the server accepted a change it should have rejected. The result was unauthorized account access. The request was authenticated, but the server did not consistently validate that the action was authorized for the specific target.</p>
+            <p>This is the classic access control gap. Authentication answers who you are. Authorization answers what you are allowed to touch. If those checks are not tightly enforced on every request, the boundary between accounts can be crossed.</p>
+
+            <h2>Why this was meaningful</h2>
+            <p>The UI was not the problem. Everything looked correct on the front end. The issue lived in server-side logic. A field was trusted without being validated against ownership. That is the exact failure mode that turns a valid request into unauthorized access.</p>
+
+            <h2>How I got here</h2>
+            <p>I learned this style of testing through hands-on labs on TryHackMe. The training forced me to focus on trust boundaries and request integrity, not just UI behavior. That mindset led me to review the request itself and ask, \"If I change this, does the server still allow it?\"</p>
+
+            <h2>Why this kind of testing matters</h2>
+            <ul>
+                <li><strong>Server-side enforcement is everything.</strong> UI checks do not protect data.</li>
+                <li><strong>Authorization must be explicit.</strong> Every request needs a verified owner.</li>
+                <li><strong>Small gaps have big impact.</strong> One missed check can expose accounts.</li>
+            </ul>
+
+            <h2>Outcome</h2>
+            <p>I reported the issue, it was fixed, and it reinforced a simple truth. Security wins often happen in the details of a request and the assumptions behind it. That is why I test at the request layer, not just the UI.</p>
+        </section>
+    </main>
+
+    <div class="contact-modal" id="contactModal">
+        <div class="contact-modal-content">
+            <div class="contact-modal-header">
+                <h3>Get in Touch</h3>
+                <button class="contact-modal-close" type="button" id="contactModalClose">✕</button>
+            </div>
+            <div class="contact-modal-links">
+                <a href="mailto:daviddipiazza29@gmail.com" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/CodeGoat29" target="_blank" class="contact-link">GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="../resources.html">Resources</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                    <li><a href="../resume.html">Resume</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="mailto:daviddipiazza29@gmail.com">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/CodeGoat29" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bar">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="../js/site.js"></script>
+</body>
+</html>
