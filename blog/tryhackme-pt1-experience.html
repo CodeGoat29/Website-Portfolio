@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Authorization Flaw Found via PUT Request - DiPiazza</title>
+    <title>TryHackMe PT1 Experience - DiPiazza</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="icon" type="image/png" href="/images/thegoat.png">
     <style>
@@ -172,50 +172,72 @@
 
     <main class="container">
         <section class="post-hero">
-            <h1 class="post-title">A Real Authorization Flaw I Found by Modifying a PUT Request</h1>
+            <h1 class="post-title">My Experience Earning the TryHackMe Pentest 1 Certification</h1>
             <div class="post-meta">
-                <span>March 24, 2026</span>
+                <span>November 13, 2025</span>
                 <span>Security</span>
-                <span>Authorization Testing</span>
+                <span>Training</span>
             </div>
-            <img class="post-image" src="../images/blog/authorization-put.png" alt="Authorization testing illustration">
-            <div class="post-image-caption">Authentication passed, authorization failed.</div>
+            <img class="post-image" src="../images/blog/tryhackme-pt1.png" alt="TryHackMe PT1 overview">
+            <div class="post-image-caption">Hands-on, guided penetration testing practice.</div>
             <div class="post-callout">
-                This write-up is intentionally high-level. The issue was reported internally and is now fixed.
+                All testing described here was performed in authorized lab environments.
             </div>
         </section>
 
         <section class="post-body">
-            <p>I recently found and reported a real authorization flaw, and it was one of those wins that reminds me why I enjoy security testing.</p>
+            <p>I recently completed the TryHackMe Pentest 1 (PT1) certification. I submitted the exam at around 47 hours in, after roughly 16 hours a day over two days. The experience was hands-on and task-driven, which is exactly how I learn best.</p>
+
+            <h2>Approach and methodology</h2>
+            <p>I followed a structured penetration testing methodology that mirrors real engagement flow:</p>
+            <ul>
+                <li>Reconnaissance and enumeration</li>
+                <li>Vulnerability identification</li>
+                <li>Exploitation</li>
+                <li>Privilege escalation</li>
+                <li>Post-exploitation validation</li>
+                <li>Reporting and documentation</li>
+            </ul>
+
+            <h2>Web application testing focus</h2>
+            <p>Web testing emphasized understanding how applications are intended to behave, then validating what happens when inputs change or trust assumptions break.</p>
+            <ul>
+                <li>Endpoint discovery and parameter mapping</li>
+                <li>Input validation and access control checks</li>
+                <li>Session and token handling review</li>
+                <li>Workflow logic testing for edge cases</li>
+            </ul>
+
+            <h2>Network testing focus</h2>
+            <p>The network portion was about discovery, service identification, and safe validation of common weaknesses in Linux environments.</p>
+            <ul>
+                <li>Service enumeration and version discovery</li>
+                <li>Attack surface mapping and prioritization</li>
+                <li>Post-exploitation validation and cleanup mindset</li>
+            </ul>
+
+            <h2>Active Directory testing focus</h2>
+            <p>This section required a different mindset. It was less about one big exploit and more about chaining small misconfigurations.</p>
+            <ul>
+                <li>Domain enumeration and trust relationships</li>
+                <li>Credential hygiene and lateral movement awareness</li>
+                <li>Privilege pathways and access graph thinking</li>
+            </ul>
 
             <div class="post-takeaways">
                 <h3>Key Takeaways</h3>
                 <ul>
-                    <li>Authorization must be enforced on every request.</li>
-                    <li>Request-layer testing catches issues UI testing will miss.</li>
-                    <li>Ownership checks are the difference between safe and exposed.</li>
+                    <li>Methodical enumeration beats rushing into exploitation.</li>
+                    <li>Most wins come from small misconfigurations, not flashy exploits.</li>
+                    <li>Reporting quality matters as much as technical skill.</li>
                 </ul>
             </div>
 
-            <h2>What happened, technically</h2>
-            <p>I intercepted a legitimate PUT request that referenced a user ID, modified it, and the server accepted a change it should have rejected. The result was unauthorized account access. The request was authenticated, but the server did not consistently validate that the action was authorized for the specific target.</p>
-            <p>This is the classic access control gap. Authentication answers who you are. Authorization answers what you are allowed to touch. If those checks are not tightly enforced on every request, the boundary between accounts can be crossed.</p>
+            <h2>What I would improve next</h2>
+            <p>My biggest improvement area is keeping even tighter notes on commands and repeatable steps, so I can quickly reproduce findings and build cleaner reports.</p>
 
-            <h2>Why this was meaningful</h2>
-            <p>The UI was not the problem. Everything looked correct on the front end. The issue lived in server-side logic. A field was trusted without being validated against ownership. That is the exact failure mode that turns a valid request into unauthorized access.</p>
-
-            <h2>How I got here</h2>
-            <p>I learned this style of testing through hands-on labs on TryHackMe. The training forced me to focus on trust boundaries and request integrity, not just UI behavior. That mindset led me to review the request itself and ask, \"If I change this, does the server still allow it?\"</p>
-
-            <h2>Why this kind of testing matters</h2>
-            <ul>
-                <li><strong>Server-side enforcement is everything.</strong> UI checks do not protect data.</li>
-                <li><strong>Authorization must be explicit.</strong> Every request needs a verified owner.</li>
-                <li><strong>Small gaps have big impact.</strong> One missed check can expose accounts.</li>
-            </ul>
-
-            <h2>Outcome</h2>
-            <p>I reported the issue, it was fixed, and it reinforced a simple truth. Security wins often happen in the details of a request and the assumptions behind it. That is why I test at the request layer, not just the UI.</p>
+            <h2>Final thoughts</h2>
+            <p>PT1 was one of the most practical training experiences I have completed. It reinforced the value of structured methodology, careful validation, and clear reporting. Most importantly, it sharpened the exact skills I want to use in real-world security work.</p>
         </section>
     </main>
 
