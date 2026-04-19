@@ -44,16 +44,21 @@
     <main class="container">
         <section class="notes-header">
             <h1>CDN & Networking Notes</h1>
-            <p class="subtitle">High-level concepts for content delivery, HTTP, routing, and reliability.</p>
+            <p class="subtitle">Practical notes for content delivery engineering: caching, HTTP, DNS, edge routing, security, observability, and troubleshooting.</p>
 
             <div class="quick-nav">
                 <h3>Quick Navigation</h3>
                 <div class="nav-links">
                     <a href="#cdn" class="nav-link">CDN Fundamentals</a>
+                    <a href="#cache" class="nav-link">Caching Behavior</a>
                     <a href="#http" class="nav-link">HTTP & Web Delivery</a>
-                    <a href="#core" class="nav-link">Networking Core</a>
-                    <a href="#reliability" class="nav-link">Reliability & Monitoring</a>
-                    <a href="#edge" class="nav-link">Edge & Config Concepts</a>
+                    <a href="#routing" class="nav-link">DNS, Anycast & BGP</a>
+                    <a href="#tls" class="nav-link">TLS & Certificates</a>
+                    <a href="#origin" class="nav-link">Origin & Shielding</a>
+                    <a href="#edge" class="nav-link">Edge Configuration</a>
+                    <a href="#security" class="nav-link">Security Controls</a>
+                    <a href="#observability" class="nav-link">Logs & Monitoring</a>
+                    <a href="#troubleshooting" class="nav-link">Troubleshooting</a>
                 </div>
             </div>
         </section>
@@ -64,22 +69,31 @@
                 <div class="command-card" data-tags="cdn edge pop cache origin">
                     <div class="command-header"><h3>Core Ideas</h3></div>
                     <ul>
-                        <li><strong>CDN (Content Delivery Network):</strong> A globally distributed network of servers that cache and deliver content closer to users. <strong>What it does:</strong> Reduces latency and offloads origin traffic. <strong>Use case:</strong> Faster image/CSS/JS delivery worldwide.</li>
-                        <li><strong>Edge location (POP = Point of Presence):</strong> A regional CDN site with cache servers. <strong>What it does:</strong> Serves cached content locally. <strong>Use case:</strong> A user in Chicago is served from a nearby POP instead of your origin.</li>
-                        <li><strong>Origin server:</strong> The source server where content is hosted. <strong>What it does:</strong> Provides the canonical response when cache misses occur. <strong>Use case:</strong> Your web app or API behind the CDN.</li>
-                        <li><strong>Cache hit / Cache miss:</strong> <strong>Hit</strong> = served from edge cache; <strong>Miss</strong> = fetched from origin. <strong>What it does:</strong> Determines speed and origin load. <strong>Use case:</strong> High hit ratio keeps traffic off origin.</li>
-                        <li><strong>TTL (Time To Live):</strong> How long cached content is considered fresh. <strong>What it does:</strong> Controls cache lifespan. <strong>Use case:</strong> Set short TTL for frequently updated pages, long TTL for static assets.</li>
-                        <li><strong>Purge / Invalidation:</strong> Force cached content to be removed early. <strong>What it does:</strong> Ensures users see new content immediately. <strong>Use case:</strong> After deploying new JS/CSS.</li>
-                        <li><strong>Cache bypass:</strong> Rules that skip caching. <strong>What it does:</strong> Ensures dynamic or personalized pages are always fresh. <strong>Use case:</strong> Authenticated dashboards.</li>
+                        <li><strong>CDN (Content Delivery Network):</strong> A distributed platform that serves web content from locations closer to users. <strong>What it does:</strong> Lowers latency, reduces origin load, absorbs traffic spikes, and improves reliability. <strong>Use case:</strong> Serving images, JavaScript, CSS, APIs, video, and downloads globally.</li>
+                        <li><strong>Edge location / POP (Point of Presence):</strong> A regional site where CDN servers run. <strong>What it does:</strong> Terminates client connections, applies edge rules, checks cache, and forwards misses to origin. <strong>Use case:</strong> A user in New York gets a response from a nearby edge instead of a distant origin.</li>
+                        <li><strong>Origin server:</strong> The source of truth for content. <strong>What it does:</strong> Handles requests the CDN cannot serve from cache. <strong>Use case:</strong> Your application server, object bucket, API gateway, or media server behind the CDN.</li>
+                        <li><strong>Request flow:</strong> Browser -> DNS -> CDN edge -> cache lookup -> origin if needed -> response back to user. <strong>What it does:</strong> Explains where latency, cache misses, redirects, TLS failures, and 5xx errors can happen. <strong>Use case:</strong> Debugging why one region is slow while another is fast.</li>
+                        <li><strong>Reverse proxy:</strong> A server that sits in front of origin and forwards requests. <strong>What it does:</strong> Hides origin, applies policy, and can cache responses. <strong>Use case:</strong> CDN edge acting as the public entry point for a web app.</li>
+                        <li><strong>Edge delivery mindset:</strong> Think in terms of request path, cacheability, headers, routing, and failure mode. <strong>What it does:</strong> Keeps troubleshooting structured. <strong>Use case:</strong> Separating a browser issue from an edge issue from an origin issue.</li>
                     </ul>
                 </div>
+            </div>
+        </section>
 
-                <div class="command-card" data-tags="edge compute">
-                    <div class="command-header"><h3>Edge Compute (High Level)</h3></div>
+        <section id="cache" class="command-category">
+            <h2 class="category-toggle">Caching Behavior</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="cache ttl hit miss stale purge invalidation surrogate">
+                    <div class="command-header"><h3>Cache Concepts</h3></div>
                     <ul>
-                        <li><strong>Edge compute:</strong> Running lightweight logic at the edge. <strong>What it does:</strong> Modifies requests/responses before they hit origin. <strong>Use case:</strong> Geo‑based redirects or auth header injection.</li>
-                        <li><strong>Header manipulation:</strong> Add/strip headers at the edge. <strong>What it does:</strong> Enforces caching and security rules. <strong>Use case:</strong> Set Cache-Control for static assets.</li>
-                        <li><strong>Routing rules:</strong> Decide which origin to use. <strong>What it does:</strong> Sends traffic to the right backend. <strong>Use case:</strong> Blue/green deployments.</li>
+                        <li><strong>Cache hit:</strong> The edge already has a fresh response. <strong>What it does:</strong> Returns quickly without contacting origin. <strong>Use case:</strong> Static assets with long TTLs.</li>
+                        <li><strong>Cache miss:</strong> The edge does not have a usable response. <strong>What it does:</strong> Fetches from origin and may store the response. <strong>Use case:</strong> First request after deploy or purge.</li>
+                        <li><strong>TTL (Time To Live):</strong> How long a cached object is considered fresh. <strong>What it does:</strong> Balances freshness and performance. <strong>Use case:</strong> Long TTL for hashed JS files, short TTL for HTML pages.</li>
+                        <li><strong>Cache key:</strong> The values used to identify a cached object. <strong>What it does:</strong> Decides whether two requests share the same cached response. <strong>Use case:</strong> Include path and query string, but avoid unnecessary variation.</li>
+                        <li><strong>Vary header:</strong> Tells caches which request headers affect the response. <strong>What it does:</strong> Prevents serving the wrong variant. <strong>Use case:</strong> Different compression or language responses.</li>
+                        <li><strong>Stale content:</strong> Cached response served after freshness expires under controlled rules. <strong>What it does:</strong> Can preserve availability during origin trouble. <strong>Use case:</strong> Serve stale on origin timeout while refreshing in background.</li>
+                        <li><strong>Purge / invalidation:</strong> Manual removal of cached content. <strong>What it does:</strong> Forces the edge to fetch a new version. <strong>Use case:</strong> Emergency rollback, content update, bad asset deployed.</li>
+                        <li><strong>Cache poisoning risk:</strong> Incorrect cache key or header trust can store attacker-controlled content. <strong>What it does:</strong> Turns caching into a security issue. <strong>Use case:</strong> Always review user-controlled headers and query parameters.</li>
                     </ul>
                 </div>
             </div>
@@ -93,8 +107,10 @@
                     <ul>
                         <li><strong>HTTP (Hypertext Transfer Protocol):</strong> The request/response protocol for web traffic. <strong>What it does:</strong> Defines how clients and servers exchange data. <strong>Use case:</strong> Loading a webpage or API response.</li>
                         <li><strong>HTTPS (HTTP Secure):</strong> HTTP over TLS encryption. <strong>What it does:</strong> Protects data in transit. <strong>Use case:</strong> Login pages and any private data transfer.</li>
-                        <li><strong>TLS (Transport Layer Security):</strong> The encryption protocol used by HTTPS. <strong>What it does:</strong> Encrypts and authenticates connections. <strong>Use case:</strong> Prevent MITM attacks.</li>
                         <li><strong>Headers:</strong> Metadata sent with requests/responses. <strong>What it does:</strong> Controls caching, auth, and behavior. <strong>Use case:</strong> Cache-Control, Authorization, User-Agent.</li>
+                        <li><strong>Methods:</strong> GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS. <strong>What it does:</strong> Communicates intent. <strong>Use case:</strong> GET and HEAD are commonly cacheable; mutating methods usually are not.</li>
+                        <li><strong>Redirects:</strong> 301, 302, 307, and 308 move clients to another URL. <strong>What it does:</strong> Changes request destination. <strong>Use case:</strong> HTTP to HTTPS, old path to new path, apex to www.</li>
+                        <li><strong>HTTP versions:</strong> HTTP/1.1, HTTP/2, and HTTP/3. <strong>What it does:</strong> Changes connection behavior and performance. <strong>Use case:</strong> HTTP/2 multiplexing reduces connection overhead; HTTP/3 uses QUIC over UDP.</li>
                     </ul>
                 </div>
 
@@ -105,6 +121,7 @@
                         <li><strong>Cache-Control:</strong> Cache policy header. <strong>What it does:</strong> Sets how long content can be cached. <strong>Use case:</strong> max-age=3600 for static assets.</li>
                         <li><strong>ETag (Entity Tag):</strong> Resource version identifier. <strong>What it does:</strong> Lets clients revalidate efficiently. <strong>Use case:</strong> 304 responses for unchanged content.</li>
                         <li><strong>304 Not Modified:</strong> Reuse cached content without redownloading. <strong>What it does:</strong> Saves bandwidth. <strong>Use case:</strong> Browser checks if asset changed.</li>
+                        <li><strong>Surrogate headers:</strong> Headers meant for the CDN rather than the browser. <strong>What it does:</strong> Lets edge cache policy differ from browser cache policy. <strong>Use case:</strong> Browser caches for 5 minutes, edge caches for 1 hour.</li>
                     </ul>
                 </div>
 
@@ -119,74 +136,126 @@
             </div>
         </section>
 
-        <section id="core" class="command-category">
-            <h2 class="category-toggle">Networking Core Concepts</h2>
+        <section id="routing" class="command-category">
+            <h2 class="category-toggle">DNS, Anycast & BGP</h2>
             <div class="category-content">
                 <div class="command-card" data-tags="ip dns anycast bgp asn">
-                    <div class="command-header"><h3>Foundations</h3></div>
+                    <div class="command-header"><h3>Routing Foundations</h3></div>
                     <ul>
                         <li><strong>IP (Internet Protocol, IPv4/IPv6):</strong> A unique address for a device. <strong>What it does:</strong> Identifies where traffic should go. <strong>Use case:</strong> DNS returns IPs for domains.</li>
                         <li><strong>DNS (Domain Name System):</strong> Maps domain names to IPs. <strong>What it does:</strong> Lets users type names instead of numbers. <strong>Use case:</strong> example.com → 93.184.216.34.</li>
                         <li><strong>DNS propagation:</strong> Time for DNS updates to spread globally. <strong>What it does:</strong> Delays changes being seen. <strong>Use case:</strong> New CDN CNAME may take hours to fully apply.</li>
+                        <li><strong>CNAME:</strong> Alias from one hostname to another. <strong>What it does:</strong> Points a customer hostname toward a CDN hostname. <strong>Use case:</strong> www.example.com aliases to a CDN-managed hostname.</li>
+                        <li><strong>A / AAAA records:</strong> DNS records for IPv4 and IPv6. <strong>What it does:</strong> Returns direct IP addresses. <strong>Use case:</strong> Apex domains or direct service endpoints.</li>
                         <li><strong>Anycast:</strong> One IP announced from many locations. <strong>What it does:</strong> Routes users to the nearest/healthiest POP. <strong>Use case:</strong> Global CDN edge IPs.</li>
                         <li><strong>BGP (Border Gateway Protocol):</strong> The internet routing protocol between networks. <strong>What it does:</strong> Chooses paths between ASNs. <strong>Use case:</strong> CDN traffic steering.</li>
                         <li><strong>ASN (Autonomous System Number):</strong> ID for a network on the internet. <strong>What it does:</strong> Identifies routing domains in BGP. <strong>Use case:</strong> ISPs and CDNs have ASNs.</li>
-                    </ul>
-                </div>
-
-                <div class="command-card" data-tags="peering transit load balancing reverse proxy">
-                    <div class="command-header"><h3>Traffic Flow</h3></div>
-                    <ul>
-                        <li><strong>Peering:</strong> Direct exchange of traffic between networks. <strong>What it does:</strong> Lowers latency and cost. <strong>Use case:</strong> CDN peering with large ISPs.</li>
-                        <li><strong>Transit:</strong> Paid connectivity to the wider internet. <strong>What it does:</strong> Provides global reach. <strong>Use case:</strong> Small networks buying upstream access.</li>
-                        <li><strong>Load balancing:</strong> Distributes traffic across servers. <strong>What it does:</strong> Prevents overload. <strong>Use case:</strong> Multiple origins behind a CDN.</li>
-                        <li><strong>Reverse proxy:</strong> Sits in front of origin and forwards requests. <strong>What it does:</strong> Shields origin and enables caching. <strong>Use case:</strong> CDN edge acting as reverse proxy.</li>
+                        <li><strong>Peering:</strong> Direct exchange of traffic between networks. <strong>What it does:</strong> Lowers latency and transit cost. <strong>Use case:</strong> CDN peering with large ISPs.</li>
+                        <li><strong>Transit:</strong> Paid connectivity to the broader internet. <strong>What it does:</strong> Provides reach when peering is unavailable. <strong>Use case:</strong> Backup path or smaller network connectivity.</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <section id="reliability" class="command-category">
-            <h2 class="category-toggle">Reliability & Monitoring</h2>
+        <section id="tls" class="command-category">
+            <h2 class="category-toggle">TLS & Certificates</h2>
             <div class="category-content">
-                <div class="command-card" data-tags="uptime sla incident alerting observability">
-                    <div class="command-header"><h3>Operational Basics</h3></div>
+                <div class="command-card" data-tags="tls certificates sni hsts ocsp">
+                    <div class="command-header"><h3>Secure Delivery</h3></div>
                     <ul>
-                        <li><strong>Uptime:</strong> Percent of time the service is running. <strong>What it does:</strong> Measures availability. <strong>Use case:</strong> 99.99% target for critical services.</li>
-                        <li><strong>SLA (Service Level Agreement):</strong> Availability/performance guarantee. <strong>What it does:</strong> Sets expectations and penalties. <strong>Use case:</strong> Enterprise contracts.</li>
-                        <li><strong>Incident:</strong> Disruption of normal service. <strong>What it does:</strong> Triggers response process. <strong>Use case:</strong> Outage, elevated error rates.</li>
-                        <li><strong>Alerting:</strong> Automated notifications for issues. <strong>What it does:</strong> Flags problems fast. <strong>Use case:</strong> Latency spike alert.</li>
-                        <li><strong>Observability:</strong> Understanding system health via signals. <strong>What it does:</strong> Helps debug and prevent outages. <strong>Use case:</strong> Logs + metrics + traces.</li>
-                        <li><strong>MTTR (Mean Time To Recover):</strong> Average time to restore service. <strong>What it does:</strong> Measures recovery speed. <strong>Use case:</strong> Track incident response performance.</li>
+                        <li><strong>TLS (Transport Layer Security):</strong> Encryption protocol for HTTPS. <strong>What it does:</strong> Encrypts traffic and validates server identity. <strong>Use case:</strong> Protecting login sessions and private data.</li>
+                        <li><strong>Certificate:</strong> Public proof that a hostname belongs to a server. <strong>What it does:</strong> Lets browsers trust the HTTPS connection. <strong>Use case:</strong> Serving https://www.example.com without browser warnings.</li>
+                        <li><strong>SNI (Server Name Indication):</strong> Hostname sent during TLS negotiation. <strong>What it does:</strong> Allows one IP to serve many certificates. <strong>Use case:</strong> Multi-tenant CDN edge hosts thousands of domains.</li>
+                        <li><strong>HSTS (HTTP Strict Transport Security):</strong> Browser policy forcing HTTPS. <strong>What it does:</strong> Prevents downgrade to HTTP. <strong>Use case:</strong> Security hardening for production domains.</li>
+                        <li><strong>OCSP stapling:</strong> Certificate revocation status sent during TLS handshake. <strong>What it does:</strong> Improves trust checks without extra browser lookup. <strong>Use case:</strong> Faster TLS validation.</li>
+                        <li><strong>Certificate chain:</strong> Leaf, intermediate, and root certificates. <strong>What it does:</strong> Establishes trust path. <strong>Use case:</strong> Debugging "certificate not trusted" errors.</li>
                     </ul>
                 </div>
+            </div>
+        </section>
 
-                <div class="command-card" data-tags="metrics logs traces rate limiting ddos waf">
-                    <div class="command-header"><h3>Signals & Protection</h3></div>
+        <section id="origin" class="command-category">
+            <h2 class="category-toggle">Origin & Shielding</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="origin shielding health load balancing timeout">
+                    <div class="command-header"><h3>Origin Behavior</h3></div>
                     <ul>
-                        <li><strong>Logs:</strong> Time‑ordered events. <strong>What it does:</strong> Explains what happened. <strong>Use case:</strong> Debug 5xx spikes.</li>
-                        <li><strong>Metrics:</strong> Numeric time‑series data. <strong>What it does:</strong> Shows trends. <strong>Use case:</strong> Latency and error rate dashboards.</li>
-                        <li><strong>Traces:</strong> End‑to‑end request timing. <strong>What it does:</strong> Pinpoints slow services. <strong>Use case:</strong> Microservice bottlenecks.</li>
-                        <li><strong>Rate limiting:</strong> Controls request volume. <strong>What it does:</strong> Prevents abuse. <strong>Use case:</strong> API protection.</li>
-                        <li><strong>DDoS (Distributed Denial of Service):</strong> Flood attack. <strong>What it does:</strong> Overwhelms services. <strong>Use case:</strong> Needs CDN/edge mitigation.</li>
-                        <li><strong>WAF (Web Application Firewall):</strong> Filters HTTP attacks. <strong>What it does:</strong> Blocks malicious patterns. <strong>Use case:</strong> SQLi/XSS protection.</li>
-                        <li><strong>Health checks:</strong> Periodic probes of upstreams. <strong>What it does:</strong> Avoids routing to unhealthy servers. <strong>Use case:</strong> Failover decisions.</li>
+                        <li><strong>Origin selection:</strong> Choosing which backend receives a miss. <strong>What it does:</strong> Routes traffic to the correct service. <strong>Use case:</strong> API origin vs static asset origin.</li>
+                        <li><strong>Load balancing:</strong> Distributes traffic across origins. <strong>What it does:</strong> Avoids overloading one backend. <strong>Use case:</strong> Multiple origin servers behind the same site.</li>
+                        <li><strong>Health checks:</strong> Probes that verify origin availability. <strong>What it does:</strong> Keeps traffic away from failed backends. <strong>Use case:</strong> Automatic failover.</li>
+                        <li><strong>Timeouts:</strong> Limits for connecting, reading, or writing to origin. <strong>What it does:</strong> Prevents stuck requests. <strong>Use case:</strong> Return fast failure instead of waiting forever.</li>
+                        <li><strong>Shielding:</strong> A designated parent cache between edge and origin. <strong>What it does:</strong> Collapses origin misses and reduces origin load. <strong>Use case:</strong> Big traffic spikes or popular uncached content.</li>
+                        <li><strong>Origin protection:</strong> Restricting direct access to backend servers. <strong>What it does:</strong> Reduces attack surface and ensures traffic goes through the edge. <strong>Use case:</strong> Firewall allow only CDN IP ranges.</li>
                     </ul>
                 </div>
             </div>
         </section>
 
         <section id="edge" class="command-category">
-            <h2 class="category-toggle">Edge & Config Concepts</h2>
+            <h2 class="category-toggle">Edge Configuration</h2>
             <div class="category-content">
                 <div class="command-card" data-tags="edge config dictionaries shielding logging">
-                    <div class="command-header"><h3>Advanced Delivery Concepts</h3></div>
+                    <div class="command-header"><h3>Request Control</h3></div>
                     <ul>
-                        <li><strong>Edge configuration:</strong> Rules that control routing and caching. <strong>What it does:</strong> Shapes traffic behavior. <strong>Use case:</strong> Cache static assets but bypass auth pages.</li>
-                        <li><strong>Edge dictionaries:</strong> Key‑value config at the edge. <strong>What it does:</strong> Enables fast changes without deploys. <strong>Use case:</strong> Feature flags or allowlists.</li>
-                        <li><strong>Shielding:</strong> Designated “parent” cache. <strong>What it does:</strong> Reduces origin load by consolidating misses. <strong>Use case:</strong> Large traffic spikes.</li>
-                        <li><strong>Streaming logs:</strong> Real‑time log delivery. <strong>What it does:</strong> Faster debugging. <strong>Use case:</strong> Live incident monitoring.</li>
-                        <li><strong>Origin protection:</strong> Keep origin off the public internet. <strong>What it does:</strong> Reduces attack surface. <strong>Use case:</strong> Allow only CDN IPs to reach origin.</li>
+                        <li><strong>Edge configuration:</strong> Rules that control request and response behavior. <strong>What it does:</strong> Shapes caching, routing, redirects, headers, and security. <strong>Use case:</strong> Cache static assets but bypass logged-in pages.</li>
+                        <li><strong>Edge compute:</strong> Lightweight logic executed at the edge. <strong>What it does:</strong> Makes decisions before origin. <strong>Use case:</strong> Geo routing, A/B testing, bot checks, header normalization.</li>
+                        <li><strong>Header manipulation:</strong> Add, remove, or rewrite headers. <strong>What it does:</strong> Controls cache policy, origin routing, and security behavior. <strong>Use case:</strong> Add security headers or normalize Host headers.</li>
+                        <li><strong>URL rewriting:</strong> Change the path or query sent upstream. <strong>What it does:</strong> Decouples public URLs from backend structure. <strong>Use case:</strong> Serve /assets from an object storage origin.</li>
+                        <li><strong>Edge dictionaries:</strong> Key-value configuration available at the edge. <strong>What it does:</strong> Enables fast runtime decisions. <strong>Use case:</strong> Allow lists, feature flags, redirect maps.</li>
+                        <li><strong>Config versioning:</strong> Tracking and activating config changes safely. <strong>What it does:</strong> Reduces risk during deployment. <strong>Use case:</strong> Roll back a bad cache rule quickly.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="security" class="command-category">
+            <h2 class="category-toggle">Security Controls</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="waf ddos rate limiting bot auth security">
+                    <div class="command-header"><h3>Edge Security</h3></div>
+                    <ul>
+                        <li><strong>WAF (Web Application Firewall):</strong> Filters malicious HTTP traffic. <strong>What it does:</strong> Blocks attack patterns before origin. <strong>Use case:</strong> SQL injection, XSS, path traversal attempts.</li>
+                        <li><strong>DDoS (Distributed Denial of Service):</strong> High-volume attack from many sources. <strong>What it does:</strong> Attempts to exhaust bandwidth, compute, or application resources. <strong>Use case:</strong> CDN absorbs and filters attack traffic at the edge.</li>
+                        <li><strong>Rate limiting:</strong> Restricts request volume by client, token, path, or behavior. <strong>What it does:</strong> Protects APIs and login endpoints. <strong>Use case:</strong> Limit password attempts or expensive API calls.</li>
+                        <li><strong>Bot mitigation:</strong> Detects automated traffic. <strong>What it does:</strong> Separates likely bots from real users. <strong>Use case:</strong> Scraping, credential stuffing, fake signups.</li>
+                        <li><strong>Access control:</strong> Rules that allow or deny traffic. <strong>What it does:</strong> Restricts sensitive paths. <strong>Use case:</strong> Admin routes only available from trusted networks.</li>
+                        <li><strong>Security headers:</strong> Browser-enforced protections. <strong>What it does:</strong> Reduces client-side risk. <strong>Use case:</strong> HSTS, CSP, X-Frame-Options, Referrer-Policy.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="observability" class="command-category">
+            <h2 class="category-toggle">Logs & Monitoring</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="logs metrics traces observability incident sla">
+                    <div class="command-header"><h3>Operational Signals</h3></div>
+                    <ul>
+                        <li><strong>Logs:</strong> Detailed records of requests and events. <strong>What it does:</strong> Shows what happened. <strong>Use case:</strong> Debug a spike in 503 responses.</li>
+                        <li><strong>Metrics:</strong> Numeric time-series data. <strong>What it does:</strong> Shows trends and health. <strong>Use case:</strong> Cache hit ratio, origin latency, error rate, request volume.</li>
+                        <li><strong>Tracing:</strong> Request path visibility across systems. <strong>What it does:</strong> Shows where time is spent. <strong>Use case:</strong> Identify whether slowness is edge, network, or origin.</li>
+                        <li><strong>Streaming logs:</strong> Near real-time log delivery. <strong>What it does:</strong> Speeds investigation. <strong>Use case:</strong> Watching an incident while traffic is still affected.</li>
+                        <li><strong>SLO / SLA:</strong> Reliability targets and contractual guarantees. <strong>What it does:</strong> Defines acceptable availability and performance. <strong>Use case:</strong> Measure uptime and response latency.</li>
+                        <li><strong>Incident response:</strong> Structured handling of service impact. <strong>What it does:</strong> Coordinates mitigation, communication, and follow-up. <strong>Use case:</strong> Edge errors or origin outage affecting customers.</li>
+                        <li><strong>Postmortem:</strong> Written review after an incident. <strong>What it does:</strong> Captures cause, timeline, fixes, and prevention. <strong>Use case:</strong> Improve systems after repeated cache purge failures.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="troubleshooting" class="command-category">
+            <h2 class="category-toggle">Troubleshooting Workflow</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="troubleshooting curl dig openssl mtr headers">
+                    <div class="command-header"><h3>How to Debug CDN Issues</h3></div>
+                    <ul>
+                        <li><strong>Start with DNS:</strong> Confirm the hostname resolves to the expected CDN path. <strong>What it does:</strong> Rules out bad records or stale propagation. <strong>Useful tools:</strong> <code>dig</code>, <code>nslookup</code>.</li>
+                        <li><strong>Check headers:</strong> Inspect cache status, age, server, location, and cache-control. <strong>What it does:</strong> Shows whether the edge cached, missed, redirected, or bypassed. <strong>Useful tool:</strong> <code>curl -I https://example.com</code>.</li>
+                        <li><strong>Compare regions:</strong> Test from different networks or locations. <strong>What it does:</strong> Finds regional routing or POP-specific behavior. <strong>Useful tools:</strong> external probes, VPN, monitoring locations.</li>
+                        <li><strong>Separate edge from origin:</strong> Determine whether the CDN or backend generated the response. <strong>What it does:</strong> Prevents chasing the wrong layer. <strong>Use case:</strong> 503 from origin vs 503 from edge timeout.</li>
+                        <li><strong>Validate TLS:</strong> Check certificate name, expiration, chain, and SNI. <strong>What it does:</strong> Explains browser TLS warnings. <strong>Useful tool:</strong> <code>openssl s_client -connect host:443 -servername host</code>.</li>
+                        <li><strong>Read timing:</strong> Break down DNS, connect, TLS, TTFB, and download. <strong>What it does:</strong> Identifies where latency lives. <strong>Useful tool:</strong> <code>curl -w</code> timing output.</li>
+                        <li><strong>Document the fix:</strong> Record symptom, scope, root cause, change made, and verification. <strong>What it does:</strong> Builds repeatable incident muscle. <strong>Use case:</strong> Customer-facing support and escalation notes.</li>
                     </ul>
                 </div>
             </div>
