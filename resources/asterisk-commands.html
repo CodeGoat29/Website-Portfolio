@@ -461,6 +461,21 @@
                 </div>
             </div>
 
+            <div class="command-card" data-tags="queue pause member dnd user">
+                <div class="command-header">
+                    <h3>Pause Queue Member</h3>
+                    <button class="favorite-btn" data-command="queue-pause-member">☆</button>
+                </div>
+                <p class="command-description">Pause a specific queue member with a reason, such as DND.</p>
+                <div class="command-notes">
+                    <strong>Flag:</strong> <code>-rx</code> runs an Asterisk CLI command and exits.
+                </div>
+                <div class="command-block" data-template="sudo asterisk -rx 'queue pause member Local/{user}@from-queue/n queue {queue_number} reason {reason}'">
+                    <code>sudo asterisk -rx 'queue pause member Local/<span class="placeholder">user</span>@from-queue/n queue <span class="placeholder">queue number</span> reason <span class="placeholder">reason</span>'</code>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+
             <div class="command-card" data-tags="channels watch monitor">
                 <div class="command-header">
                     <h3>Monitor Channels (Auto-Refresh)</h3>
@@ -971,7 +986,10 @@
                 destination: 'Destination',
                 channel: 'Channel name',
                 filename: 'Filename',
-                dirname: 'Directory name'
+                dirname: 'Directory name',
+                user: 'User',
+                queue_number: 'Queue number',
+                reason: 'Reason'
             };
             return map[field] || field.replace(/[-_]/g, ' ');
         }
