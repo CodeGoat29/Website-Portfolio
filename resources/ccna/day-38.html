@@ -1,0 +1,125 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 38: DNS | DiPiazza</title><meta name="description" content="Personal CCNA study notes from OneNote, organized into 63 days with diagrams, original PDFs and searchable text."><link rel="icon" href="../../images/thegoat.png"><link rel="stylesheet" href="course.css"></head><body><header class="top"><div class="wrap"><a class="brand" href="../../index.html">DiPiazza<span aria-hidden="true">.</span></a><nav aria-label="Main"><a href="../../resources.html">Resources</a><a href="index.html">CCNA course</a></nav></div></header><main class="wrap"><div class="crumb"><a href="index.html">CCNA study notes</a> / Day 38</div><header class="lesson-head"><div class="eyebrow">Day 38 / 63 · Network services</div><h1>DNS</h1><p class="lead">Original notes and diagrams from my OneNote notebook.</p><div class="pills"><a class="button primary" href="index.html">All 63 days</a></div></header><div class="reading-layout"><aside class="aside" aria-label="Lesson parts"><p class="muted">IN THIS DAY</p><a href="#part-1">DNS</a><p class="muted">Tap a note image to zoom. Expand the text view to copy or search the exported text.</p></aside><article><section class="note-part" id="part-1"><h2>DNS</h2><a class="button" href="assets/lesson-39/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="assets/lesson-39/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge DNS page 1"><img src="assets/lesson-39/page-1.webp" width="1531" height="2052" loading="lazy" alt="Original OneNote notes: DNS, page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 2</figcaption></figure><figure class="note-image"><a href="assets/lesson-39/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge DNS page 2"><img src="assets/lesson-39/page-2.webp" width="1486" height="672" loading="lazy" alt="Original OneNote notes: DNS, page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 2</figcaption></figure><details class="text-view"><summary>Text view — DNS</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 38 - DNS
+Sunday, September 6, 2026 10:46 AM
+DNS Info
+DNS General Information
+Domain Name System (DNS) is a protocol that’s used to resolve human-readable domain names (Ex. youtube.com) to IP
+addresses that can be understood by devices.
+• It uses port 53 for communication through either the TCP or UDP protocol.
+• When you type a domain name (Ex. google.com) into a web browser, your device will ask a DNS server for the IP
+address of that domain, so that it can reach it.
+• The DNS server(s) your device uses can be manually configured or learned via Dynamic Host Configuration
+Protocol (DHCP).
+• If the configured DNS server is an external server, when a device sends domain lookup requests, your router will
+simply forward the packets to the DNS server. (Therefore, no DNS configuration is required on the router. It is
+optional)
+When does DNS use TCP or UDP on port 53?
+○ Standard DNS queries/responses typically use the UDP protocol.
+○ TCP is used for DNS messages greater than 512 bytes
+○ Port 53 is always used in both cases.
+DNS Record Types
+There are multiple DNS record types which store a variety of information. The most important ones for the CCNA are:
+1. DNS ‘A’ Records
+○ Used to map names to IPv4 addresses.
+2. DNS ‘AAAA’ Records
+○ Used to map names to IPv6 addresses.
+Devices will save the DNS server’s responses to a locally stored DNS cache, meaning that they won’t have to query the
+server every single time they want to access a particular destination.
+DNS Configuration on Windows
+DNS settings and other networking settings can be seen and configured through the following commands on the
+Windows operating system:
+Transclude of IP-Configuration-Commands#^ipconfig-general-windows
+Transclude of IP-Configuration-Commands#^ipconfig-dns-windows
+• ipconfig
+○ Provides basic information about the current device’s networking configuration.
+• ipconfig /all
+○ Provides advanced information about the current device’s networking configuration, including the IP
+address, default gateway and DNS server.
+• ipconfig /displaydns ^dns-cache
+○ Shows the locally stored DNS cache on the device.
+• ipconfig /flushdns
+○ Clears the current DNS cache on the device.
+• nslookup DOMAIN-NAME
+○ Sends a DNS query from the host to a DNS server, in order to look up the actual IP address of the specified
+domain.
+DNS Configuration on Cisco IOS
+DNS doesn’t need to be configured on routers. When hosts in the network use DNS, the routers will simply forward the
+DNS messages like any other packet to the DNS server(s).
+However, a Cisco router can be configured as a DNS server, as well as a DNS client.
+• show hosts
+○ Shows all configured and cached DNS hosts as well as their IP addresses.
+• ip dns server
+○ Configures the router to act as a DNS server.
+• ip host HOST-NAME IP-ADDRESS
+○ Configures a list of hostname/IP address mappings.
+• ip name-server IP-ADDRESS
+○ Configures a DNS server that the router will query if the requested record isn’t available in its host table.
+• ip domain lookup or ip domain-lookup
+○ Enables the router to perform DNS queries to the configured DNS server.
+○ (Enabled by default)
+• ip domain name DOMAIN-NAME or ip domain-name DOMAIN-NAME
+○ Configures the default domain name.
+○ This will be automatically appended to any hostnames without a specified domain.
+○ (Ex. if the domain name is kruber.party, then PC1 would become reachable at PC1.kruber.party)
+
+Day 38 - DNS
+Sunday, September 6, 2026 10:46 AM
+DNS Info
+DNS General Information
+Domain Name System (DNS) is a protocol that’s used to resolve human-readable domain names (Ex. youtube.com) to IP
+addresses that can be understood by devices.
+• It uses port 53 for communication through either the TCP or UDP protocol.
+• When you type a domain name (Ex. google.com) into a web browser, your device will ask a DNS server for the IP
+address of that domain, so that it can reach it.
+• The DNS server(s) your device uses can be manually configured or learned via Dynamic Host Configuration
+Protocol (DHCP).
+• If the configured DNS server is an external server, when a device sends domain lookup requests, your router will
+simply forward the packets to the DNS server. (Therefore, no DNS configuration is required on the router. It is
+optional)
+When does DNS use TCP or UDP on port 53?
+○ Standard DNS queries/responses typically use the UDP protocol.
+○ TCP is used for DNS messages greater than 512 bytes
+○ Port 53 is always used in both cases.
+DNS Record Types
+There are multiple DNS record types which store a variety of information. The most important ones for the CCNA are:
+1. DNS ‘A’ Records
+○ Used to map names to IPv4 addresses.
+2. DNS ‘AAAA’ Records
+○ Used to map names to IPv6 addresses.
+Devices will save the DNS server’s responses to a locally stored DNS cache, meaning that they won’t have to query the
+server every single time they want to access a particular destination.
+DNS Configuration on Windows
+DNS settings and other networking settings can be seen and configured through the following commands on the
+Windows operating system:
+Transclude of IP-Configuration-Commands#^ipconfig-general-windows
+Transclude of IP-Configuration-Commands#^ipconfig-dns-windows
+• ipconfig
+○ Provides basic information about the current device’s networking configuration.
+• ipconfig /all
+○ Provides advanced information about the current device’s networking configuration, including the IP
+address, default gateway and DNS server.
+• ipconfig /displaydns ^dns-cache
+○ Shows the locally stored DNS cache on the device.
+• ipconfig /flushdns
+○ Clears the current DNS cache on the device.
+• nslookup DOMAIN-NAME
+○ Sends a DNS query from the host to a DNS server, in order to look up the actual IP address of the specified
+domain.
+DNS Configuration on Cisco IOS
+DNS doesn’t need to be configured on routers. When hosts in the network use DNS, the routers will simply forward the
+DNS messages like any other packet to the DNS server(s).
+However, a Cisco router can be configured as a DNS server, as well as a DNS client.
+• show hosts
+○ Shows all configured and cached DNS hosts as well as their IP addresses.
+• ip dns server
+○ Configures the router to act as a DNS server.
+• ip host HOST-NAME IP-ADDRESS
+○ Configures a list of hostname/IP address mappings.
+• ip name-server IP-ADDRESS
+○ Configures a DNS server that the router will query if the requested record isn’t available in its host table.
+• ip domain lookup or ip domain-lookup
+○ Enables the router to perform DNS queries to the configured DNS server.
+○ (Enabled by default)
+• ip domain name DOMAIN-NAME or ip domain-name DOMAIN-NAME
+○ Configures the default domain name.
+○ This will be automatically appended to any hostnames without a specified domain.
+○ (Ex. if the domain name is kruber.party, then PC1 would become reachable at PC1.kruber.party)</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="day-37.html"><small>← Day 37</small>NTP</a><a href="day-39.html"><small>Day 39 →</small>DHCP</a></nav></article></div></main><footer class="footer"><div class="wrap">Personal study notes · Jeremy’s IT Lab CCNA course · Exported from OneNote September 20, 2026<br><a href="../../resources.html">Back to all resources</a></div></footer><script src="course.js"></script></body></html>

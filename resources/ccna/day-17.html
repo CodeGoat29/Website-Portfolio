@@ -1,0 +1,879 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 17: (VlANs pt 2) | DiPiazza</title><meta name="description" content="Personal CCNA study notes from OneNote, organized into 63 days with diagrams, original PDFs and searchable text."><link rel="icon" href="../../images/thegoat.png"><link rel="stylesheet" href="course.css"></head><body><header class="top"><div class="wrap"><a class="brand" href="../../index.html">DiPiazza<span aria-hidden="true">.</span></a><nav aria-label="Main"><a href="../../resources.html">Resources</a><a href="index.html">CCNA course</a></nav></div></header><main class="wrap"><div class="crumb"><a href="index.html">CCNA study notes</a> / Day 17</div><header class="lesson-head"><div class="eyebrow">Day 17 / 63 · Switching &amp; VLANs</div><h1>(VlANs pt 2)</h1><p class="lead">Original notes and diagrams from my OneNote notebook.</p><div class="pills"><a class="button primary" href="index.html">All 63 days</a></div></header><div class="reading-layout"><aside class="aside" aria-label="Lesson parts"><p class="muted">IN THIS DAY</p><a href="#part-1">(VlANs pt 2)</a><p class="muted">Tap a note image to zoom. Expand the text view to copy or search the exported text.</p></aside><article><section class="note-part" id="part-1"><h2>(VlANs pt 2)</h2><a class="button" href="assets/lesson-18/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="assets/lesson-18/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge (VlANs pt 2) page 1"><img src="assets/lesson-18/page-1.webp" width="1515" height="2052" loading="lazy" alt="Original OneNote notes: (VlANs pt 2), page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 10</figcaption></figure><figure class="note-image"><a href="assets/lesson-18/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge (VlANs pt 2) page 2"><img src="assets/lesson-18/page-2.webp" width="1478" height="2061" loading="lazy" alt="Original OneNote notes: (VlANs pt 2), page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 10</figcaption></figure><figure class="note-image"><a href="assets/lesson-18/page-3.webp" target="_blank" rel="noopener" aria-label="Enlarge (VlANs pt 2) page 3"><img src="assets/lesson-18/page-3.webp" width="1436" height="2107" loading="lazy" alt="Original OneNote notes: (VlANs pt 2), page 3. Text version follows below."></a><figcaption>Original notes · Page 3 of 10</figcaption></figure><figure class="note-image"><a href="assets/lesson-18/page-4.webp" target="_blank" rel="noopener" aria-label="Enlarge (VlANs pt 2) page 4"><img src="assets/lesson-18/page-4.webp" width="1239" height="2109" loading="lazy" alt="Original OneNote notes: (VlANs pt 2), page 4. Text version follows below."></a><figcaption>Original notes · Page 4 of 10</figcaption></figure><figure class="note-image"><a href="assets/lesson-18/page-5.webp" target="_blank" rel="noopener" aria-label="Enlarge (VlANs pt 2) page 5"><img src="assets/lesson-18/page-5.webp" width="1511" height="2109" loading="lazy" alt="Original OneNote notes: (VlANs pt 2), page 5. Text version follows below."></a><figcaption>Original notes · Page 5 of 10</figcaption></figure><figure class="note-image"><a href="assets/lesson-18/page-6.webp" target="_blank" rel="noopener" aria-label="Enlarge (VlANs pt 2) page 6"><img src="assets/lesson-18/page-6.webp" width="1300" height="2109" loading="lazy" alt="Original OneNote notes: (VlANs pt 2), page 6. Text version follows below."></a><figcaption>Original notes · Page 6 of 10</figcaption></figure><figure class="note-image"><a href="assets/lesson-18/page-7.webp" target="_blank" rel="noopener" aria-label="Enlarge (VlANs pt 2) page 7"><img src="assets/lesson-18/page-7.webp" width="1029" height="2109" loading="lazy" alt="Original OneNote notes: (VlANs pt 2), page 7. Text version follows below."></a><figcaption>Original notes · Page 7 of 10</figcaption></figure><figure class="note-image"><a href="assets/lesson-18/page-8.webp" target="_blank" rel="noopener" aria-label="Enlarge (VlANs pt 2) page 8"><img src="assets/lesson-18/page-8.webp" width="1029" height="2109" loading="lazy" alt="Original OneNote notes: (VlANs pt 2), page 8. Text version follows below."></a><figcaption>Original notes · Page 8 of 10</figcaption></figure><figure class="note-image"><a href="assets/lesson-18/page-9.webp" target="_blank" rel="noopener" aria-label="Enlarge (VlANs pt 2) page 9"><img src="assets/lesson-18/page-9.webp" width="1497" height="2109" loading="lazy" alt="Original OneNote notes: (VlANs pt 2), page 9. Text version follows below."></a><figcaption>Original notes · Page 9 of 10</figcaption></figure><figure class="note-image"><a href="assets/lesson-18/page-10.webp" target="_blank" rel="noopener" aria-label="Enlarge (VlANs pt 2) page 10"><img src="assets/lesson-18/page-10.webp" width="1471" height="1235" loading="lazy" alt="Original OneNote notes: (VlANs pt 2), page 10. Text version follows below."></a><figcaption>Original notes · Page 10 of 10</figcaption></figure><details class="text-view"><summary>Text view — (VlANs pt 2)</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 17 - (VlANs pt 2)
+Saturday, August 22, 2026 2:50 PM
+17. VLANS : PART 2
+Basic VLAN topology from PART 1
+What about THIS Network Topology ?
+Notice this one has TWO Switches (SW1 and SW2) and ENGINEERING (VLAN 10) has two separate locations on
+the network.
+TRUNK PORTS
+• In a small network with few VLANS, it’s possible to use a separate interface for EACH VLAN when
+connecting SWITCHES to SWITCHES, and SWITCHES to ROUTERS
+• HOWEVER, when the number of VLANS increases, this is not viable. It will result in wasted interfaces, and
+often ROUTERS won’t have enough INTERFACES for each VLAN
+• You can use TRUNK PORTS to carry traffic from multiple VLANS over a single interface
+A TRUNK PORT carrying multiple VLAN connections over single interface
+How does a packet know WHICH VLAN to send traffic to over the TRUNK PORT ?
+VLAN TAGS !
+SWITCHES will “tag” all frames that they send over a TRUNK LINK. This allows the receiving SWITCH to know
+which VLAN the frame belongs to.
+TRUNK PORT = “Tagged” ports
+ACCESS PORT = “Untagged” ports
+VLAN TAGGING
+• There are TWO main TRUNK protocols:
+○ ISL (Inter-Switch Link)
+○ IEEE 802.1Q (also known as “dot1q”)
+ISL is an old Cisco proprietary protocol created before industry standard IEEE 802.1Q
+IEEE 802.1Q is an industry standard protocol created by the IEEE (Institute of Electrical and Electronics
+Engineers)
+You will probably NEVER use ISL in the real world; even modern Cisco equipment doesn’t use it.
+For the CCNA, you will only need to learn 802.1Q
+ETHERNET HEADER with 802.1Q
+• The 802.1Q TAG Is inserted between the SOURCE and TYPE/LENGTH fields in the ETHERNET FRAME
+• The TAG is 4 bytes (32 bits) in length
+• The TAG consists of TWO main fields:
+○ Tag Protocol Identifier (TPID)
+○ Tag Control Information (TCI)
+§ TCI consists of THREE sub-fields:
+TPID (TAG Protocol Identifier) :
+• 16 bits (2 bytes) in length
+• Always set to a value of 0x8100. This indicates that the frame is 802.1Q TAG
+TCI / PCP (Priority Code Point) :
+• 3 bits in length
+• Used for Class of Service (CoS), which prioritizes important traffic in congested networks
+TCI / DEI (Drop Eligible Indicator) :
+• 1 bit in length
+• Used to indicated frames that can be dropped if the network is congested
+TCI / VID (VLAN ID) :
+• 12 bits in length
+• Identifies the VLAN the frame belongs to
+• 12 bits in length = 4096 total VLANS (2^12), range of 0 - 4095
+• VLANs 0 and 4095 are reserved and can’t be used
+• Therefore, the actual range of VLANs is 1 - 4094
+NOTE : Cisco’s ISL also had a VLAN range of 1 - 4094
+VLAN RANGES
+NATIVE VLAN
+TRUNK CONFIGURATION
+Many modern switches do not support Cisco’s ISL at all. They only support 802.1Q (dot1q)
+However, SWITCHES that do support both (like the one I am using in this example) have a TRUNK
+encapsulation of “AUTO” by default
+To MANUALLY configure the INTERFACE as a TRUNK PORT, you must first set the encapsulation to “802.1Q” or
+“ISL”. On SWITCHES that only support 802.1Q, this is not necessary
+After you set the encapsulation type, you can then configure the interface as a TRUNK
+1. Select the interface to configure
+2. Use “#switchport trunk encapsulation dot1q” to set the encapsulation mode to 802.1Q
+3. Use “#switchport mode trunk” to manually configure the interface to TRUNK
+Use the “#show interfaces trunk” command to confirm INTERFACES on TRUNK
+Commands to allow a VLAN on a given TRUNK
+Command to change the NATIVE VLAN
+Setting up our TRUNKS for this Network
+We will need to configure :
+SW1 : g0/0 interface (already configure above this section)
+SW2: g0/0, and g0/1 interface
+SW2 g0/0
+SW2 g0/1
+What about the ROUTER, R1 ?
+ROUTER ON A STICK (ROAS)
+NOTE the Sub-Interface names (like the network diagram) of 0.10, 0.20 and 0.30
+You assign them IP addresses identically like you would a regular interface (using the last usable IP address of
+a given VLAN subnet)
+Sub-interfaces will appear with the “show ip interface brief” command
+They also appear in the “show ip route” command (Route Table)
+ROAS is used to route between multiple VLANs using a SINGLE interface on a ROUTER and SWITCH
+The SWITCH interface is configured as a regular TRUNK
+The ROUTER interface is configured using SUB-INTERFACES. You configure the VLAN tag and IP address on
+EACH SUB-INTERFACE
+The ROUTER will behave as if frames arriving with a certain VLAN tag have arrived on the SUB-INTERFACE
+configured with that VLAN tag
+The ROUTER will TAG frames sent out of EACH SUB-INTERFACE with the VLAN TAG configured on the SUB-INTERFACE
+
+Day 17 - (VlANs pt 2)
+Saturday, August 22, 2026 2:50 PM
+17. VLANS : PART 2
+Basic VLAN topology from PART 1
+What about THIS Network Topology ?
+Notice this one has TWO Switches (SW1 and SW2) and ENGINEERING (VLAN 10) has two separate locations on
+the network.
+TRUNK PORTS
+• In a small network with few VLANS, it’s possible to use a separate interface for EACH VLAN when
+connecting SWITCHES to SWITCHES, and SWITCHES to ROUTERS
+• HOWEVER, when the number of VLANS increases, this is not viable. It will result in wasted interfaces, and
+often ROUTERS won’t have enough INTERFACES for each VLAN
+• You can use TRUNK PORTS to carry traffic from multiple VLANS over a single interface
+A TRUNK PORT carrying multiple VLAN connections over single interface
+How does a packet know WHICH VLAN to send traffic to over the TRUNK PORT ?
+VLAN TAGS !
+SWITCHES will “tag” all frames that they send over a TRUNK LINK. This allows the receiving SWITCH to know
+which VLAN the frame belongs to.
+TRUNK PORT = “Tagged” ports
+ACCESS PORT = “Untagged” ports
+VLAN TAGGING
+• There are TWO main TRUNK protocols:
+○ ISL (Inter-Switch Link)
+○ IEEE 802.1Q (also known as “dot1q”)
+ISL is an old Cisco proprietary protocol created before industry standard IEEE 802.1Q
+IEEE 802.1Q is an industry standard protocol created by the IEEE (Institute of Electrical and Electronics
+Engineers)
+You will probably NEVER use ISL in the real world; even modern Cisco equipment doesn’t use it.
+For the CCNA, you will only need to learn 802.1Q
+ETHERNET HEADER with 802.1Q
+• The 802.1Q TAG Is inserted between the SOURCE and TYPE/LENGTH fields in the ETHERNET FRAME
+• The TAG is 4 bytes (32 bits) in length
+• The TAG consists of TWO main fields:
+○ Tag Protocol Identifier (TPID)
+○ Tag Control Information (TCI)
+§ TCI consists of THREE sub-fields:
+TPID (TAG Protocol Identifier) :
+• 16 bits (2 bytes) in length
+• Always set to a value of 0x8100. This indicates that the frame is 802.1Q TAG
+TCI / PCP (Priority Code Point) :
+• 3 bits in length
+• Used for Class of Service (CoS), which prioritizes important traffic in congested networks
+TCI / DEI (Drop Eligible Indicator) :
+• 1 bit in length
+• Used to indicated frames that can be dropped if the network is congested
+TCI / VID (VLAN ID) :
+• 12 bits in length
+• Identifies the VLAN the frame belongs to
+• 12 bits in length = 4096 total VLANS (2^12), range of 0 - 4095
+• VLANs 0 and 4095 are reserved and can’t be used
+• Therefore, the actual range of VLANs is 1 - 4094
+NOTE : Cisco’s ISL also had a VLAN range of 1 - 4094
+VLAN RANGES
+NATIVE VLAN
+TRUNK CONFIGURATION
+Many modern switches do not support Cisco’s ISL at all. They only support 802.1Q (dot1q)
+However, SWITCHES that do support both (like the one I am using in this example) have a TRUNK
+encapsulation of “AUTO” by default
+To MANUALLY configure the INTERFACE as a TRUNK PORT, you must first set the encapsulation to “802.1Q” or
+“ISL”. On SWITCHES that only support 802.1Q, this is not necessary
+After you set the encapsulation type, you can then configure the interface as a TRUNK
+1. Select the interface to configure
+2. Use “#switchport trunk encapsulation dot1q” to set the encapsulation mode to 802.1Q
+3. Use “#switchport mode trunk” to manually configure the interface to TRUNK
+Use the “#show interfaces trunk” command to confirm INTERFACES on TRUNK
+Commands to allow a VLAN on a given TRUNK
+Command to change the NATIVE VLAN
+Setting up our TRUNKS for this Network
+We will need to configure :
+SW1 : g0/0 interface (already configure above this section)
+SW2: g0/0, and g0/1 interface
+SW2 g0/0
+SW2 g0/1
+What about the ROUTER, R1 ?
+ROUTER ON A STICK (ROAS)
+NOTE the Sub-Interface names (like the network diagram) of 0.10, 0.20 and 0.30
+You assign them IP addresses identically like you would a regular interface (using the last usable IP address of
+a given VLAN subnet)
+Sub-interfaces will appear with the “show ip interface brief” command
+They also appear in the “show ip route” command (Route Table)
+ROAS is used to route between multiple VLANs using a SINGLE interface on a ROUTER and SWITCH
+The SWITCH interface is configured as a regular TRUNK
+The ROUTER interface is configured using SUB-INTERFACES. You configure the VLAN tag and IP address on
+EACH SUB-INTERFACE
+The ROUTER will behave as if frames arriving with a certain VLAN tag have arrived on the SUB-INTERFACE
+configured with that VLAN tag
+The ROUTER will TAG frames sent out of EACH SUB-INTERFACE with the VLAN TAG configured on the SUB-INTERFACE
+
+Day 17 - (VlANs pt 2)
+Saturday, August 22, 2026 2:50 PM
+17. VLANS : PART 2
+Basic VLAN topology from PART 1
+What about THIS Network Topology ?
+Notice this one has TWO Switches (SW1 and SW2) and ENGINEERING (VLAN 10) has two separate locations on
+the network.
+TRUNK PORTS
+• In a small network with few VLANS, it’s possible to use a separate interface for EACH VLAN when
+connecting SWITCHES to SWITCHES, and SWITCHES to ROUTERS
+• HOWEVER, when the number of VLANS increases, this is not viable. It will result in wasted interfaces, and
+often ROUTERS won’t have enough INTERFACES for each VLAN
+• You can use TRUNK PORTS to carry traffic from multiple VLANS over a single interface
+A TRUNK PORT carrying multiple VLAN connections over single interface
+How does a packet know WHICH VLAN to send traffic to over the TRUNK PORT ?
+VLAN TAGS !
+SWITCHES will “tag” all frames that they send over a TRUNK LINK. This allows the receiving SWITCH to know
+which VLAN the frame belongs to.
+TRUNK PORT = “Tagged” ports
+ACCESS PORT = “Untagged” ports
+VLAN TAGGING
+• There are TWO main TRUNK protocols:
+○ ISL (Inter-Switch Link)
+○ IEEE 802.1Q (also known as “dot1q”)
+ISL is an old Cisco proprietary protocol created before industry standard IEEE 802.1Q
+IEEE 802.1Q is an industry standard protocol created by the IEEE (Institute of Electrical and Electronics
+Engineers)
+You will probably NEVER use ISL in the real world; even modern Cisco equipment doesn’t use it.
+For the CCNA, you will only need to learn 802.1Q
+ETHERNET HEADER with 802.1Q
+• The 802.1Q TAG Is inserted between the SOURCE and TYPE/LENGTH fields in the ETHERNET FRAME
+• The TAG is 4 bytes (32 bits) in length
+• The TAG consists of TWO main fields:
+○ Tag Protocol Identifier (TPID)
+○ Tag Control Information (TCI)
+§ TCI consists of THREE sub-fields:
+TPID (TAG Protocol Identifier) :
+• 16 bits (2 bytes) in length
+• Always set to a value of 0x8100. This indicates that the frame is 802.1Q TAG
+TCI / PCP (Priority Code Point) :
+• 3 bits in length
+• Used for Class of Service (CoS), which prioritizes important traffic in congested networks
+TCI / DEI (Drop Eligible Indicator) :
+• 1 bit in length
+• Used to indicated frames that can be dropped if the network is congested
+TCI / VID (VLAN ID) :
+• 12 bits in length
+• Identifies the VLAN the frame belongs to
+• 12 bits in length = 4096 total VLANS (2^12), range of 0 - 4095
+• VLANs 0 and 4095 are reserved and can’t be used
+• Therefore, the actual range of VLANs is 1 - 4094
+NOTE : Cisco’s ISL also had a VLAN range of 1 - 4094
+VLAN RANGES
+NATIVE VLAN
+TRUNK CONFIGURATION
+Many modern switches do not support Cisco’s ISL at all. They only support 802.1Q (dot1q)
+However, SWITCHES that do support both (like the one I am using in this example) have a TRUNK
+encapsulation of “AUTO” by default
+To MANUALLY configure the INTERFACE as a TRUNK PORT, you must first set the encapsulation to “802.1Q” or
+“ISL”. On SWITCHES that only support 802.1Q, this is not necessary
+After you set the encapsulation type, you can then configure the interface as a TRUNK
+1. Select the interface to configure
+2. Use “#switchport trunk encapsulation dot1q” to set the encapsulation mode to 802.1Q
+3. Use “#switchport mode trunk” to manually configure the interface to TRUNK
+Use the “#show interfaces trunk” command to confirm INTERFACES on TRUNK
+Commands to allow a VLAN on a given TRUNK
+Command to change the NATIVE VLAN
+Setting up our TRUNKS for this Network
+We will need to configure :
+SW1 : g0/0 interface (already configure above this section)
+SW2: g0/0, and g0/1 interface
+SW2 g0/0
+SW2 g0/1
+What about the ROUTER, R1 ?
+ROUTER ON A STICK (ROAS)
+NOTE the Sub-Interface names (like the network diagram) of 0.10, 0.20 and 0.30
+You assign them IP addresses identically like you would a regular interface (using the last usable IP address of
+a given VLAN subnet)
+Sub-interfaces will appear with the “show ip interface brief” command
+They also appear in the “show ip route” command (Route Table)
+ROAS is used to route between multiple VLANs using a SINGLE interface on a ROUTER and SWITCH
+The SWITCH interface is configured as a regular TRUNK
+The ROUTER interface is configured using SUB-INTERFACES. You configure the VLAN tag and IP address on
+EACH SUB-INTERFACE
+The ROUTER will behave as if frames arriving with a certain VLAN tag have arrived on the SUB-INTERFACE
+configured with that VLAN tag
+The ROUTER will TAG frames sent out of EACH SUB-INTERFACE with the VLAN TAG configured on the SUB-INTERFACE
+
+Day 17 - (VlANs pt 2)
+Saturday, August 22, 2026 2:50 PM
+17. VLANS : PART 2
+Basic VLAN topology from PART 1
+What about THIS Network Topology ?
+Notice this one has TWO Switches (SW1 and SW2) and ENGINEERING (VLAN 10) has two separate locations on
+the network.
+TRUNK PORTS
+• In a small network with few VLANS, it’s possible to use a separate interface for EACH VLAN when
+connecting SWITCHES to SWITCHES, and SWITCHES to ROUTERS
+• HOWEVER, when the number of VLANS increases, this is not viable. It will result in wasted interfaces, and
+often ROUTERS won’t have enough INTERFACES for each VLAN
+• You can use TRUNK PORTS to carry traffic from multiple VLANS over a single interface
+A TRUNK PORT carrying multiple VLAN connections over single interface
+How does a packet know WHICH VLAN to send traffic to over the TRUNK PORT ?
+VLAN TAGS !
+SWITCHES will “tag” all frames that they send over a TRUNK LINK. This allows the receiving SWITCH to know
+which VLAN the frame belongs to.
+TRUNK PORT = “Tagged” ports
+ACCESS PORT = “Untagged” ports
+VLAN TAGGING
+• There are TWO main TRUNK protocols:
+○ ISL (Inter-Switch Link)
+○ IEEE 802.1Q (also known as “dot1q”)
+ISL is an old Cisco proprietary protocol created before industry standard IEEE 802.1Q
+IEEE 802.1Q is an industry standard protocol created by the IEEE (Institute of Electrical and Electronics
+Engineers)
+You will probably NEVER use ISL in the real world; even modern Cisco equipment doesn’t use it.
+For the CCNA, you will only need to learn 802.1Q
+ETHERNET HEADER with 802.1Q
+• The 802.1Q TAG Is inserted between the SOURCE and TYPE/LENGTH fields in the ETHERNET FRAME
+• The TAG is 4 bytes (32 bits) in length
+• The TAG consists of TWO main fields:
+○ Tag Protocol Identifier (TPID)
+○ Tag Control Information (TCI)
+§ TCI consists of THREE sub-fields:
+TPID (TAG Protocol Identifier) :
+• 16 bits (2 bytes) in length
+• Always set to a value of 0x8100. This indicates that the frame is 802.1Q TAG
+TCI / PCP (Priority Code Point) :
+• 3 bits in length
+• Used for Class of Service (CoS), which prioritizes important traffic in congested networks
+TCI / DEI (Drop Eligible Indicator) :
+• 1 bit in length
+• Used to indicated frames that can be dropped if the network is congested
+TCI / VID (VLAN ID) :
+• 12 bits in length
+• Identifies the VLAN the frame belongs to
+• 12 bits in length = 4096 total VLANS (2^12), range of 0 - 4095
+• VLANs 0 and 4095 are reserved and can’t be used
+• Therefore, the actual range of VLANs is 1 - 4094
+NOTE : Cisco’s ISL also had a VLAN range of 1 - 4094
+VLAN RANGES
+NATIVE VLAN
+TRUNK CONFIGURATION
+Many modern switches do not support Cisco’s ISL at all. They only support 802.1Q (dot1q)
+However, SWITCHES that do support both (like the one I am using in this example) have a TRUNK
+encapsulation of “AUTO” by default
+To MANUALLY configure the INTERFACE as a TRUNK PORT, you must first set the encapsulation to “802.1Q” or
+“ISL”. On SWITCHES that only support 802.1Q, this is not necessary
+After you set the encapsulation type, you can then configure the interface as a TRUNK
+1. Select the interface to configure
+2. Use “#switchport trunk encapsulation dot1q” to set the encapsulation mode to 802.1Q
+3. Use “#switchport mode trunk” to manually configure the interface to TRUNK
+Use the “#show interfaces trunk” command to confirm INTERFACES on TRUNK
+Commands to allow a VLAN on a given TRUNK
+Command to change the NATIVE VLAN
+Setting up our TRUNKS for this Network
+We will need to configure :
+SW1 : g0/0 interface (already configure above this section)
+SW2: g0/0, and g0/1 interface
+SW2 g0/0
+SW2 g0/1
+What about the ROUTER, R1 ?
+ROUTER ON A STICK (ROAS)
+NOTE the Sub-Interface names (like the network diagram) of 0.10, 0.20 and 0.30
+You assign them IP addresses identically like you would a regular interface (using the last usable IP address of
+a given VLAN subnet)
+Sub-interfaces will appear with the “show ip interface brief” command
+They also appear in the “show ip route” command (Route Table)
+ROAS is used to route between multiple VLANs using a SINGLE interface on a ROUTER and SWITCH
+The SWITCH interface is configured as a regular TRUNK
+The ROUTER interface is configured using SUB-INTERFACES. You configure the VLAN tag and IP address on
+EACH SUB-INTERFACE
+The ROUTER will behave as if frames arriving with a certain VLAN tag have arrived on the SUB-INTERFACE
+configured with that VLAN tag
+The ROUTER will TAG frames sent out of EACH SUB-INTERFACE with the VLAN TAG configured on the SUB-INTERFACE
+
+Day 17 - (VlANs pt 2)
+Saturday, August 22, 2026 2:50 PM
+17. VLANS : PART 2
+Basic VLAN topology from PART 1
+What about THIS Network Topology ?
+Notice this one has TWO Switches (SW1 and SW2) and ENGINEERING (VLAN 10) has two separate locations on
+the network.
+TRUNK PORTS
+• In a small network with few VLANS, it’s possible to use a separate interface for EACH VLAN when
+connecting SWITCHES to SWITCHES, and SWITCHES to ROUTERS
+• HOWEVER, when the number of VLANS increases, this is not viable. It will result in wasted interfaces, and
+often ROUTERS won’t have enough INTERFACES for each VLAN
+• You can use TRUNK PORTS to carry traffic from multiple VLANS over a single interface
+A TRUNK PORT carrying multiple VLAN connections over single interface
+How does a packet know WHICH VLAN to send traffic to over the TRUNK PORT ?
+VLAN TAGS !
+SWITCHES will “tag” all frames that they send over a TRUNK LINK. This allows the receiving SWITCH to know
+which VLAN the frame belongs to.
+TRUNK PORT = “Tagged” ports
+ACCESS PORT = “Untagged” ports
+VLAN TAGGING
+• There are TWO main TRUNK protocols:
+○ ISL (Inter-Switch Link)
+○ IEEE 802.1Q (also known as “dot1q”)
+ISL is an old Cisco proprietary protocol created before industry standard IEEE 802.1Q
+IEEE 802.1Q is an industry standard protocol created by the IEEE (Institute of Electrical and Electronics
+Engineers)
+You will probably NEVER use ISL in the real world; even modern Cisco equipment doesn’t use it.
+For the CCNA, you will only need to learn 802.1Q
+ETHERNET HEADER with 802.1Q
+• The 802.1Q TAG Is inserted between the SOURCE and TYPE/LENGTH fields in the ETHERNET FRAME
+• The TAG is 4 bytes (32 bits) in length
+• The TAG consists of TWO main fields:
+○ Tag Protocol Identifier (TPID)
+○ Tag Control Information (TCI)
+§ TCI consists of THREE sub-fields:
+TPID (TAG Protocol Identifier) :
+• 16 bits (2 bytes) in length
+• Always set to a value of 0x8100. This indicates that the frame is 802.1Q TAG
+TCI / PCP (Priority Code Point) :
+• 3 bits in length
+• Used for Class of Service (CoS), which prioritizes important traffic in congested networks
+TCI / DEI (Drop Eligible Indicator) :
+• 1 bit in length
+• Used to indicated frames that can be dropped if the network is congested
+TCI / VID (VLAN ID) :
+• 12 bits in length
+• Identifies the VLAN the frame belongs to
+• 12 bits in length = 4096 total VLANS (2^12), range of 0 - 4095
+• VLANs 0 and 4095 are reserved and can’t be used
+• Therefore, the actual range of VLANs is 1 - 4094
+NOTE : Cisco’s ISL also had a VLAN range of 1 - 4094
+VLAN RANGES
+NATIVE VLAN
+TRUNK CONFIGURATION
+Many modern switches do not support Cisco’s ISL at all. They only support 802.1Q (dot1q)
+However, SWITCHES that do support both (like the one I am using in this example) have a TRUNK
+encapsulation of “AUTO” by default
+To MANUALLY configure the INTERFACE as a TRUNK PORT, you must first set the encapsulation to “802.1Q” or
+“ISL”. On SWITCHES that only support 802.1Q, this is not necessary
+After you set the encapsulation type, you can then configure the interface as a TRUNK
+1. Select the interface to configure
+2. Use “#switchport trunk encapsulation dot1q” to set the encapsulation mode to 802.1Q
+3. Use “#switchport mode trunk” to manually configure the interface to TRUNK
+Use the “#show interfaces trunk” command to confirm INTERFACES on TRUNK
+Commands to allow a VLAN on a given TRUNK
+Command to change the NATIVE VLAN
+Setting up our TRUNKS for this Network
+We will need to configure :
+SW1 : g0/0 interface (already configure above this section)
+SW2: g0/0, and g0/1 interface
+SW2 g0/0
+SW2 g0/1
+What about the ROUTER, R1 ?
+ROUTER ON A STICK (ROAS)
+NOTE the Sub-Interface names (like the network diagram) of 0.10, 0.20 and 0.30
+You assign them IP addresses identically like you would a regular interface (using the last usable IP address of
+a given VLAN subnet)
+Sub-interfaces will appear with the “show ip interface brief” command
+They also appear in the “show ip route” command (Route Table)
+ROAS is used to route between multiple VLANs using a SINGLE interface on a ROUTER and SWITCH
+The SWITCH interface is configured as a regular TRUNK
+The ROUTER interface is configured using SUB-INTERFACES. You configure the VLAN tag and IP address on
+EACH SUB-INTERFACE
+The ROUTER will behave as if frames arriving with a certain VLAN tag have arrived on the SUB-INTERFACE
+configured with that VLAN tag
+The ROUTER will TAG frames sent out of EACH SUB-INTERFACE with the VLAN TAG configured on the SUB-INTERFACE
+
+Day 17 - (VlANs pt 2)
+Saturday, August 22, 2026 2:50 PM
+17. VLANS : PART 2
+Basic VLAN topology from PART 1
+What about THIS Network Topology ?
+Notice this one has TWO Switches (SW1 and SW2) and ENGINEERING (VLAN 10) has two separate locations on
+the network.
+TRUNK PORTS
+• In a small network with few VLANS, it’s possible to use a separate interface for EACH VLAN when
+connecting SWITCHES to SWITCHES, and SWITCHES to ROUTERS
+• HOWEVER, when the number of VLANS increases, this is not viable. It will result in wasted interfaces, and
+often ROUTERS won’t have enough INTERFACES for each VLAN
+• You can use TRUNK PORTS to carry traffic from multiple VLANS over a single interface
+A TRUNK PORT carrying multiple VLAN connections over single interface
+How does a packet know WHICH VLAN to send traffic to over the TRUNK PORT ?
+VLAN TAGS !
+SWITCHES will “tag” all frames that they send over a TRUNK LINK. This allows the receiving SWITCH to know
+which VLAN the frame belongs to.
+TRUNK PORT = “Tagged” ports
+ACCESS PORT = “Untagged” ports
+VLAN TAGGING
+• There are TWO main TRUNK protocols:
+○ ISL (Inter-Switch Link)
+○ IEEE 802.1Q (also known as “dot1q”)
+ISL is an old Cisco proprietary protocol created before industry standard IEEE 802.1Q
+IEEE 802.1Q is an industry standard protocol created by the IEEE (Institute of Electrical and Electronics
+Engineers)
+You will probably NEVER use ISL in the real world; even modern Cisco equipment doesn’t use it.
+For the CCNA, you will only need to learn 802.1Q
+ETHERNET HEADER with 802.1Q
+• The 802.1Q TAG Is inserted between the SOURCE and TYPE/LENGTH fields in the ETHERNET FRAME
+• The TAG is 4 bytes (32 bits) in length
+• The TAG consists of TWO main fields:
+○ Tag Protocol Identifier (TPID)
+○ Tag Control Information (TCI)
+§ TCI consists of THREE sub-fields:
+TPID (TAG Protocol Identifier) :
+• 16 bits (2 bytes) in length
+• Always set to a value of 0x8100. This indicates that the frame is 802.1Q TAG
+TCI / PCP (Priority Code Point) :
+• 3 bits in length
+• Used for Class of Service (CoS), which prioritizes important traffic in congested networks
+TCI / DEI (Drop Eligible Indicator) :
+• 1 bit in length
+• Used to indicated frames that can be dropped if the network is congested
+TCI / VID (VLAN ID) :
+• 12 bits in length
+• Identifies the VLAN the frame belongs to
+• 12 bits in length = 4096 total VLANS (2^12), range of 0 - 4095
+• VLANs 0 and 4095 are reserved and can’t be used
+• Therefore, the actual range of VLANs is 1 - 4094
+NOTE : Cisco’s ISL also had a VLAN range of 1 - 4094
+VLAN RANGES
+NATIVE VLAN
+TRUNK CONFIGURATION
+Many modern switches do not support Cisco’s ISL at all. They only support 802.1Q (dot1q)
+However, SWITCHES that do support both (like the one I am using in this example) have a TRUNK
+encapsulation of “AUTO” by default
+To MANUALLY configure the INTERFACE as a TRUNK PORT, you must first set the encapsulation to “802.1Q” or
+“ISL”. On SWITCHES that only support 802.1Q, this is not necessary
+After you set the encapsulation type, you can then configure the interface as a TRUNK
+1. Select the interface to configure
+2. Use “#switchport trunk encapsulation dot1q” to set the encapsulation mode to 802.1Q
+3. Use “#switchport mode trunk” to manually configure the interface to TRUNK
+Use the “#show interfaces trunk” command to confirm INTERFACES on TRUNK
+Commands to allow a VLAN on a given TRUNK
+Command to change the NATIVE VLAN
+Setting up our TRUNKS for this Network
+We will need to configure :
+SW1 : g0/0 interface (already configure above this section)
+SW2: g0/0, and g0/1 interface
+SW2 g0/0
+SW2 g0/1
+What about the ROUTER, R1 ?
+ROUTER ON A STICK (ROAS)
+NOTE the Sub-Interface names (like the network diagram) of 0.10, 0.20 and 0.30
+You assign them IP addresses identically like you would a regular interface (using the last usable IP address of
+a given VLAN subnet)
+Sub-interfaces will appear with the “show ip interface brief” command
+They also appear in the “show ip route” command (Route Table)
+ROAS is used to route between multiple VLANs using a SINGLE interface on a ROUTER and SWITCH
+The SWITCH interface is configured as a regular TRUNK
+The ROUTER interface is configured using SUB-INTERFACES. You configure the VLAN tag and IP address on
+EACH SUB-INTERFACE
+The ROUTER will behave as if frames arriving with a certain VLAN tag have arrived on the SUB-INTERFACE
+configured with that VLAN tag
+The ROUTER will TAG frames sent out of EACH SUB-INTERFACE with the VLAN TAG configured on the SUB-INTERFACE
+
+Day 17 - (VlANs pt 2)
+Saturday, August 22, 2026 2:50 PM
+17. VLANS : PART 2
+Basic VLAN topology from PART 1
+What about THIS Network Topology ?
+Notice this one has TWO Switches (SW1 and SW2) and ENGINEERING (VLAN 10) has two separate locations on
+the network.
+TRUNK PORTS
+• In a small network with few VLANS, it’s possible to use a separate interface for EACH VLAN when
+connecting SWITCHES to SWITCHES, and SWITCHES to ROUTERS
+• HOWEVER, when the number of VLANS increases, this is not viable. It will result in wasted interfaces, and
+often ROUTERS won’t have enough INTERFACES for each VLAN
+• You can use TRUNK PORTS to carry traffic from multiple VLANS over a single interface
+A TRUNK PORT carrying multiple VLAN connections over single interface
+How does a packet know WHICH VLAN to send traffic to over the TRUNK PORT ?
+VLAN TAGS !
+SWITCHES will “tag” all frames that they send over a TRUNK LINK. This allows the receiving SWITCH to know
+which VLAN the frame belongs to.
+TRUNK PORT = “Tagged” ports
+ACCESS PORT = “Untagged” ports
+VLAN TAGGING
+• There are TWO main TRUNK protocols:
+○ ISL (Inter-Switch Link)
+○ IEEE 802.1Q (also known as “dot1q”)
+ISL is an old Cisco proprietary protocol created before industry standard IEEE 802.1Q
+IEEE 802.1Q is an industry standard protocol created by the IEEE (Institute of Electrical and Electronics
+Engineers)
+You will probably NEVER use ISL in the real world; even modern Cisco equipment doesn’t use it.
+For the CCNA, you will only need to learn 802.1Q
+ETHERNET HEADER with 802.1Q
+• The 802.1Q TAG Is inserted between the SOURCE and TYPE/LENGTH fields in the ETHERNET FRAME
+• The TAG is 4 bytes (32 bits) in length
+• The TAG consists of TWO main fields:
+○ Tag Protocol Identifier (TPID)
+○ Tag Control Information (TCI)
+§ TCI consists of THREE sub-fields:
+TPID (TAG Protocol Identifier) :
+• 16 bits (2 bytes) in length
+• Always set to a value of 0x8100. This indicates that the frame is 802.1Q TAG
+TCI / PCP (Priority Code Point) :
+• 3 bits in length
+• Used for Class of Service (CoS), which prioritizes important traffic in congested networks
+TCI / DEI (Drop Eligible Indicator) :
+• 1 bit in length
+• Used to indicated frames that can be dropped if the network is congested
+TCI / VID (VLAN ID) :
+• 12 bits in length
+• Identifies the VLAN the frame belongs to
+• 12 bits in length = 4096 total VLANS (2^12), range of 0 - 4095
+• VLANs 0 and 4095 are reserved and can’t be used
+• Therefore, the actual range of VLANs is 1 - 4094
+NOTE : Cisco’s ISL also had a VLAN range of 1 - 4094
+VLAN RANGES
+NATIVE VLAN
+TRUNK CONFIGURATION
+Many modern switches do not support Cisco’s ISL at all. They only support 802.1Q (dot1q)
+However, SWITCHES that do support both (like the one I am using in this example) have a TRUNK
+encapsulation of “AUTO” by default
+To MANUALLY configure the INTERFACE as a TRUNK PORT, you must first set the encapsulation to “802.1Q” or
+“ISL”. On SWITCHES that only support 802.1Q, this is not necessary
+After you set the encapsulation type, you can then configure the interface as a TRUNK
+1. Select the interface to configure
+2. Use “#switchport trunk encapsulation dot1q” to set the encapsulation mode to 802.1Q
+3. Use “#switchport mode trunk” to manually configure the interface to TRUNK
+Use the “#show interfaces trunk” command to confirm INTERFACES on TRUNK
+Commands to allow a VLAN on a given TRUNK
+Command to change the NATIVE VLAN
+Setting up our TRUNKS for this Network
+We will need to configure :
+SW1 : g0/0 interface (already configure above this section)
+SW2: g0/0, and g0/1 interface
+SW2 g0/0
+SW2 g0/1
+What about the ROUTER, R1 ?
+ROUTER ON A STICK (ROAS)
+NOTE the Sub-Interface names (like the network diagram) of 0.10, 0.20 and 0.30
+You assign them IP addresses identically like you would a regular interface (using the last usable IP address of
+a given VLAN subnet)
+Sub-interfaces will appear with the “show ip interface brief” command
+They also appear in the “show ip route” command (Route Table)
+ROAS is used to route between multiple VLANs using a SINGLE interface on a ROUTER and SWITCH
+The SWITCH interface is configured as a regular TRUNK
+The ROUTER interface is configured using SUB-INTERFACES. You configure the VLAN tag and IP address on
+EACH SUB-INTERFACE
+The ROUTER will behave as if frames arriving with a certain VLAN tag have arrived on the SUB-INTERFACE
+configured with that VLAN tag
+The ROUTER will TAG frames sent out of EACH SUB-INTERFACE with the VLAN TAG configured on the SUB-INTERFACE
+
+Day 17 - (VlANs pt 2)
+Saturday, August 22, 2026 2:50 PM
+17. VLANS : PART 2
+Basic VLAN topology from PART 1
+What about THIS Network Topology ?
+Notice this one has TWO Switches (SW1 and SW2) and ENGINEERING (VLAN 10) has two separate locations on
+the network.
+TRUNK PORTS
+• In a small network with few VLANS, it’s possible to use a separate interface for EACH VLAN when
+connecting SWITCHES to SWITCHES, and SWITCHES to ROUTERS
+• HOWEVER, when the number of VLANS increases, this is not viable. It will result in wasted interfaces, and
+often ROUTERS won’t have enough INTERFACES for each VLAN
+• You can use TRUNK PORTS to carry traffic from multiple VLANS over a single interface
+A TRUNK PORT carrying multiple VLAN connections over single interface
+How does a packet know WHICH VLAN to send traffic to over the TRUNK PORT ?
+VLAN TAGS !
+SWITCHES will “tag” all frames that they send over a TRUNK LINK. This allows the receiving SWITCH to know
+which VLAN the frame belongs to.
+TRUNK PORT = “Tagged” ports
+ACCESS PORT = “Untagged” ports
+VLAN TAGGING
+• There are TWO main TRUNK protocols:
+○ ISL (Inter-Switch Link)
+○ IEEE 802.1Q (also known as “dot1q”)
+ISL is an old Cisco proprietary protocol created before industry standard IEEE 802.1Q
+IEEE 802.1Q is an industry standard protocol created by the IEEE (Institute of Electrical and Electronics
+Engineers)
+You will probably NEVER use ISL in the real world; even modern Cisco equipment doesn’t use it.
+For the CCNA, you will only need to learn 802.1Q
+ETHERNET HEADER with 802.1Q
+• The 802.1Q TAG Is inserted between the SOURCE and TYPE/LENGTH fields in the ETHERNET FRAME
+• The TAG is 4 bytes (32 bits) in length
+• The TAG consists of TWO main fields:
+○ Tag Protocol Identifier (TPID)
+○ Tag Control Information (TCI)
+§ TCI consists of THREE sub-fields:
+TPID (TAG Protocol Identifier) :
+• 16 bits (2 bytes) in length
+• Always set to a value of 0x8100. This indicates that the frame is 802.1Q TAG
+TCI / PCP (Priority Code Point) :
+• 3 bits in length
+• Used for Class of Service (CoS), which prioritizes important traffic in congested networks
+TCI / DEI (Drop Eligible Indicator) :
+• 1 bit in length
+• Used to indicated frames that can be dropped if the network is congested
+TCI / VID (VLAN ID) :
+• 12 bits in length
+• Identifies the VLAN the frame belongs to
+• 12 bits in length = 4096 total VLANS (2^12), range of 0 - 4095
+• VLANs 0 and 4095 are reserved and can’t be used
+• Therefore, the actual range of VLANs is 1 - 4094
+NOTE : Cisco’s ISL also had a VLAN range of 1 - 4094
+VLAN RANGES
+NATIVE VLAN
+TRUNK CONFIGURATION
+Many modern switches do not support Cisco’s ISL at all. They only support 802.1Q (dot1q)
+However, SWITCHES that do support both (like the one I am using in this example) have a TRUNK
+encapsulation of “AUTO” by default
+To MANUALLY configure the INTERFACE as a TRUNK PORT, you must first set the encapsulation to “802.1Q” or
+“ISL”. On SWITCHES that only support 802.1Q, this is not necessary
+After you set the encapsulation type, you can then configure the interface as a TRUNK
+1. Select the interface to configure
+2. Use “#switchport trunk encapsulation dot1q” to set the encapsulation mode to 802.1Q
+3. Use “#switchport mode trunk” to manually configure the interface to TRUNK
+Use the “#show interfaces trunk” command to confirm INTERFACES on TRUNK
+Commands to allow a VLAN on a given TRUNK
+Command to change the NATIVE VLAN
+Setting up our TRUNKS for this Network
+We will need to configure :
+SW1 : g0/0 interface (already configure above this section)
+SW2: g0/0, and g0/1 interface
+SW2 g0/0
+SW2 g0/1
+What about the ROUTER, R1 ?
+ROUTER ON A STICK (ROAS)
+NOTE the Sub-Interface names (like the network diagram) of 0.10, 0.20 and 0.30
+You assign them IP addresses identically like you would a regular interface (using the last usable IP address of
+a given VLAN subnet)
+Sub-interfaces will appear with the “show ip interface brief” command
+They also appear in the “show ip route” command (Route Table)
+ROAS is used to route between multiple VLANs using a SINGLE interface on a ROUTER and SWITCH
+The SWITCH interface is configured as a regular TRUNK
+The ROUTER interface is configured using SUB-INTERFACES. You configure the VLAN tag and IP address on
+EACH SUB-INTERFACE
+The ROUTER will behave as if frames arriving with a certain VLAN tag have arrived on the SUB-INTERFACE
+configured with that VLAN tag
+The ROUTER will TAG frames sent out of EACH SUB-INTERFACE with the VLAN TAG configured on the SUB-INTERFACE
+
+Day 17 - (VlANs pt 2)
+Saturday, August 22, 2026 2:50 PM
+17. VLANS : PART 2
+Basic VLAN topology from PART 1
+What about THIS Network Topology ?
+Notice this one has TWO Switches (SW1 and SW2) and ENGINEERING (VLAN 10) has two separate locations on
+the network.
+TRUNK PORTS
+• In a small network with few VLANS, it’s possible to use a separate interface for EACH VLAN when
+connecting SWITCHES to SWITCHES, and SWITCHES to ROUTERS
+• HOWEVER, when the number of VLANS increases, this is not viable. It will result in wasted interfaces, and
+often ROUTERS won’t have enough INTERFACES for each VLAN
+• You can use TRUNK PORTS to carry traffic from multiple VLANS over a single interface
+A TRUNK PORT carrying multiple VLAN connections over single interface
+How does a packet know WHICH VLAN to send traffic to over the TRUNK PORT ?
+VLAN TAGS !
+SWITCHES will “tag” all frames that they send over a TRUNK LINK. This allows the receiving SWITCH to know
+which VLAN the frame belongs to.
+TRUNK PORT = “Tagged” ports
+ACCESS PORT = “Untagged” ports
+VLAN TAGGING
+• There are TWO main TRUNK protocols:
+○ ISL (Inter-Switch Link)
+○ IEEE 802.1Q (also known as “dot1q”)
+ISL is an old Cisco proprietary protocol created before industry standard IEEE 802.1Q
+IEEE 802.1Q is an industry standard protocol created by the IEEE (Institute of Electrical and Electronics
+Engineers)
+You will probably NEVER use ISL in the real world; even modern Cisco equipment doesn’t use it.
+For the CCNA, you will only need to learn 802.1Q
+ETHERNET HEADER with 802.1Q
+• The 802.1Q TAG Is inserted between the SOURCE and TYPE/LENGTH fields in the ETHERNET FRAME
+• The TAG is 4 bytes (32 bits) in length
+• The TAG consists of TWO main fields:
+○ Tag Protocol Identifier (TPID)
+○ Tag Control Information (TCI)
+§ TCI consists of THREE sub-fields:
+TPID (TAG Protocol Identifier) :
+• 16 bits (2 bytes) in length
+• Always set to a value of 0x8100. This indicates that the frame is 802.1Q TAG
+TCI / PCP (Priority Code Point) :
+• 3 bits in length
+• Used for Class of Service (CoS), which prioritizes important traffic in congested networks
+TCI / DEI (Drop Eligible Indicator) :
+• 1 bit in length
+• Used to indicated frames that can be dropped if the network is congested
+TCI / VID (VLAN ID) :
+• 12 bits in length
+• Identifies the VLAN the frame belongs to
+• 12 bits in length = 4096 total VLANS (2^12), range of 0 - 4095
+• VLANs 0 and 4095 are reserved and can’t be used
+• Therefore, the actual range of VLANs is 1 - 4094
+NOTE : Cisco’s ISL also had a VLAN range of 1 - 4094
+VLAN RANGES
+NATIVE VLAN
+TRUNK CONFIGURATION
+Many modern switches do not support Cisco’s ISL at all. They only support 802.1Q (dot1q)
+However, SWITCHES that do support both (like the one I am using in this example) have a TRUNK
+encapsulation of “AUTO” by default
+To MANUALLY configure the INTERFACE as a TRUNK PORT, you must first set the encapsulation to “802.1Q” or
+“ISL”. On SWITCHES that only support 802.1Q, this is not necessary
+After you set the encapsulation type, you can then configure the interface as a TRUNK
+1. Select the interface to configure
+2. Use “#switchport trunk encapsulation dot1q” to set the encapsulation mode to 802.1Q
+3. Use “#switchport mode trunk” to manually configure the interface to TRUNK
+Use the “#show interfaces trunk” command to confirm INTERFACES on TRUNK
+Commands to allow a VLAN on a given TRUNK
+Command to change the NATIVE VLAN
+Setting up our TRUNKS for this Network
+We will need to configure :
+SW1 : g0/0 interface (already configure above this section)
+SW2: g0/0, and g0/1 interface
+SW2 g0/0
+SW2 g0/1
+What about the ROUTER, R1 ?
+ROUTER ON A STICK (ROAS)
+NOTE the Sub-Interface names (like the network diagram) of 0.10, 0.20 and 0.30
+You assign them IP addresses identically like you would a regular interface (using the last usable IP address of
+a given VLAN subnet)
+Sub-interfaces will appear with the “show ip interface brief” command
+They also appear in the “show ip route” command (Route Table)
+ROAS is used to route between multiple VLANs using a SINGLE interface on a ROUTER and SWITCH
+The SWITCH interface is configured as a regular TRUNK
+The ROUTER interface is configured using SUB-INTERFACES. You configure the VLAN tag and IP address on
+EACH SUB-INTERFACE
+The ROUTER will behave as if frames arriving with a certain VLAN tag have arrived on the SUB-INTERFACE
+configured with that VLAN tag
+The ROUTER will TAG frames sent out of EACH SUB-INTERFACE with the VLAN TAG configured on the SUB-INTERFACE
+
+Day 17 - (VlANs pt 2)
+Saturday, August 22, 2026 2:50 PM
+17. VLANS : PART 2
+Basic VLAN topology from PART 1
+What about THIS Network Topology ?
+Notice this one has TWO Switches (SW1 and SW2) and ENGINEERING (VLAN 10) has two separate locations on
+the network.
+TRUNK PORTS
+• In a small network with few VLANS, it’s possible to use a separate interface for EACH VLAN when
+connecting SWITCHES to SWITCHES, and SWITCHES to ROUTERS
+• HOWEVER, when the number of VLANS increases, this is not viable. It will result in wasted interfaces, and
+often ROUTERS won’t have enough INTERFACES for each VLAN
+• You can use TRUNK PORTS to carry traffic from multiple VLANS over a single interface
+A TRUNK PORT carrying multiple VLAN connections over single interface
+How does a packet know WHICH VLAN to send traffic to over the TRUNK PORT ?
+VLAN TAGS !
+SWITCHES will “tag” all frames that they send over a TRUNK LINK. This allows the receiving SWITCH to know
+which VLAN the frame belongs to.
+TRUNK PORT = “Tagged” ports
+ACCESS PORT = “Untagged” ports
+VLAN TAGGING
+• There are TWO main TRUNK protocols:
+○ ISL (Inter-Switch Link)
+○ IEEE 802.1Q (also known as “dot1q”)
+ISL is an old Cisco proprietary protocol created before industry standard IEEE 802.1Q
+IEEE 802.1Q is an industry standard protocol created by the IEEE (Institute of Electrical and Electronics
+Engineers)
+You will probably NEVER use ISL in the real world; even modern Cisco equipment doesn’t use it.
+For the CCNA, you will only need to learn 802.1Q
+ETHERNET HEADER with 802.1Q
+• The 802.1Q TAG Is inserted between the SOURCE and TYPE/LENGTH fields in the ETHERNET FRAME
+• The TAG is 4 bytes (32 bits) in length
+• The TAG consists of TWO main fields:
+○ Tag Protocol Identifier (TPID)
+○ Tag Control Information (TCI)
+§ TCI consists of THREE sub-fields:
+TPID (TAG Protocol Identifier) :
+• 16 bits (2 bytes) in length
+• Always set to a value of 0x8100. This indicates that the frame is 802.1Q TAG
+TCI / PCP (Priority Code Point) :
+• 3 bits in length
+• Used for Class of Service (CoS), which prioritizes important traffic in congested networks
+TCI / DEI (Drop Eligible Indicator) :
+• 1 bit in length
+• Used to indicated frames that can be dropped if the network is congested
+TCI / VID (VLAN ID) :
+• 12 bits in length
+• Identifies the VLAN the frame belongs to
+• 12 bits in length = 4096 total VLANS (2^12), range of 0 - 4095
+• VLANs 0 and 4095 are reserved and can’t be used
+• Therefore, the actual range of VLANs is 1 - 4094
+NOTE : Cisco’s ISL also had a VLAN range of 1 - 4094
+VLAN RANGES
+NATIVE VLAN
+TRUNK CONFIGURATION
+Many modern switches do not support Cisco’s ISL at all. They only support 802.1Q (dot1q)
+However, SWITCHES that do support both (like the one I am using in this example) have a TRUNK
+encapsulation of “AUTO” by default
+To MANUALLY configure the INTERFACE as a TRUNK PORT, you must first set the encapsulation to “802.1Q” or
+“ISL”. On SWITCHES that only support 802.1Q, this is not necessary
+After you set the encapsulation type, you can then configure the interface as a TRUNK
+1. Select the interface to configure
+2. Use “#switchport trunk encapsulation dot1q” to set the encapsulation mode to 802.1Q
+3. Use “#switchport mode trunk” to manually configure the interface to TRUNK
+Use the “#show interfaces trunk” command to confirm INTERFACES on TRUNK
+Commands to allow a VLAN on a given TRUNK
+Command to change the NATIVE VLAN
+Setting up our TRUNKS for this Network
+We will need to configure :
+SW1 : g0/0 interface (already configure above this section)
+SW2: g0/0, and g0/1 interface
+SW2 g0/0
+SW2 g0/1
+What about the ROUTER, R1 ?
+ROUTER ON A STICK (ROAS)
+NOTE the Sub-Interface names (like the network diagram) of 0.10, 0.20 and 0.30
+You assign them IP addresses identically like you would a regular interface (using the last usable IP address of
+a given VLAN subnet)
+Sub-interfaces will appear with the “show ip interface brief” command
+They also appear in the “show ip route” command (Route Table)
+ROAS is used to route between multiple VLANs using a SINGLE interface on a ROUTER and SWITCH
+The SWITCH interface is configured as a regular TRUNK
+The ROUTER interface is configured using SUB-INTERFACES. You configure the VLAN tag and IP address on
+EACH SUB-INTERFACE
+The ROUTER will behave as if frames arriving with a certain VLAN tag have arrived on the SUB-INTERFACE
+configured with that VLAN tag
+The ROUTER will TAG frames sent out of EACH SUB-INTERFACE with the VLAN TAG configured on the SUB-INTERFACE</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="day-16.html"><small>← Day 16</small>(VlANs pt 1)</a><a href="day-18.html"><small>Day 18 →</small>(VlANs pt 3)</a></nav></article></div></main><footer class="footer"><div class="wrap">Personal study notes · Jeremy’s IT Lab CCNA course · Exported from OneNote September 20, 2026<br><a href="../../resources.html">Back to all resources</a></div></footer><script src="course.js"></script></body></html>

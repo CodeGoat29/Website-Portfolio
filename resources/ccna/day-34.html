@@ -1,0 +1,165 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 34: Standard ACLs | DiPiazza</title><meta name="description" content="Personal CCNA study notes from OneNote, organized into 63 days with diagrams, original PDFs and searchable text."><link rel="icon" href="../../images/thegoat.png"><link rel="stylesheet" href="course.css"></head><body><header class="top"><div class="wrap"><a class="brand" href="../../index.html">DiPiazza<span aria-hidden="true">.</span></a><nav aria-label="Main"><a href="../../resources.html">Resources</a><a href="index.html">CCNA course</a></nav></div></header><main class="wrap"><div class="crumb"><a href="index.html">CCNA study notes</a> / Day 34</div><header class="lesson-head"><div class="eyebrow">Day 34 / 63 · Routing &amp; addressing</div><h1>Standard ACLs</h1><p class="lead">Original notes and diagrams from my OneNote notebook.</p><div class="pills"><a class="button primary" href="index.html">All 63 days</a></div></header><div class="reading-layout"><aside class="aside" aria-label="Lesson parts"><p class="muted">IN THIS DAY</p><a href="#part-1">Standard ACLs</a><p class="muted">Tap a note image to zoom. Expand the text view to copy or search the exported text.</p></aside><article><section class="note-part" id="part-1"><h2>Standard ACLs</h2><a class="button" href="assets/lesson-35/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="assets/lesson-35/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge Standard ACLs page 1"><img src="assets/lesson-35/page-1.webp" width="1534" height="2056" loading="lazy" alt="Original OneNote notes: Standard ACLs, page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 2</figcaption></figure><figure class="note-image"><a href="assets/lesson-35/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge Standard ACLs page 2"><img src="assets/lesson-35/page-2.webp" width="1471" height="1507" loading="lazy" alt="Original OneNote notes: Standard ACLs, page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 2</figcaption></figure><details class="text-view"><summary>Text view — Standard ACLs</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 34 - Standard ACLs
+Sunday, September 6, 2026 10:46 AM
+ACL Information
+What Are Access Control Lists (ACLs)?
+Access Control Lists (ACLs) are traffic filters which contain ordered lists of rules called ‘Access Control Entries’
+(ACEs).
+• ACLs function as a packet filter, as they instruct the router to permit or deny traffic based on the defined
+ACEs.
+• ACLs can filter traffic based on source/destination IP addresses, source/destination Layer 4 ports, and etc.
+ACL Config General Info
+• ACLs are configured globally on the router (global configuration mode), but they must be applied onto an
+interface in order to take effect.
+• ACLs are applied either inbound or outbound on interfaces.
+• When the router checks a packet against the configured ACL, it processes the ACEs in order, from top to
+bottom.
+• If the packet matches one of the ACEs in the ACL, the router will take action (apply the ACE rule) and stops
+processing the ACL (all entries below the matching entry will be ignored).
+Implicit Deny
+Implicit Deny is a feature that is present in all ACLs. The implicit deny tells the router to deny all traffic that doesn’t
+match any of the configured ACEs in the ACL.
+ACL Types
+There are two types of ACLs with both containing two subtypes:
+1. Standard ACLs
+○ Standard ACLs match based on source IP address only
+○ Standard ACLs can use the number range (1 - 99) and (1300 - 1999)
+○ They should be applied as close to the destination as possible.
+○ They include two subtypes:
+1. Standard numbered ACLs
+2. Standard named ACLs
+2. Extended ACLs
+○ Extended ACLs match based on source/destination IP address, source/destination port address, etc.
+○ Extended ACLs can use the number range (100 - 199) and (2000 - 2699)
+○ They should be applied as close to the source as possible.
+○ They include two subtypes:
+1. Extended numbered ACLs
+2. Extended named ACLs
+Numbered ACLs
+○ Different types of numbered ACLs have a different range of numbers that they can use.
+○ So, each range can be used to identify what type of numbered ACL we’re looking it.
+Standard ACL Types
+1. Standard Numbered ACLs
+Standard numbered ACLs are one of the Standard ACL subtypes. They are identified with a number.
+• (Ex. ACL 1, ACL 2)
+2. Standard Named ACLs
+Standard named ACLs are one of the Standard ACL subtypes. They are identified with a name.
+• (Ex. FIRST_ACL, CCNA_ACL)
+Standard ACL Configuration
+There are two ways to create a standard ACLs:
+1. Global configuration / directly
+○ This method only allows you to create numbered ACLs
+○ Done through the command:
+§ access-list STANDARD-ACL-NUMBER { deny | permit } IP WILDCARD-MASK
+○ Examples:
+§ access-list 1 deny 1.1.1.1 0.0.0.0
+§ access-list 1 deny 1.1.1.1 &lt;-- (only possible in Standard ACLs)
+§ access-list 1 deny host 1.1.1.1
+§ access-list 1 permit any
+§ access-list 1 permit 0.0.0.0 255.255.255.255
+2. ACL configuration mode
+○ Done through the command:
+§ ip access-list standard NAME/NUMBER
+○ Which puts you in Standard ACL configuration mode. ACEs can be set through the following command
+format:
+§ [entry-number] { deny | permit } ip wildcard-mask
+Access-list arguments
+After the ’{ deny | permit }’ part of your command, you usually specify the ip and wildcard-mask. But, there
+are some arguments you could use as well:
+1. host
+○ Instead of specifying a wildcard-mask for a host address (/32) like this:
+§ access-list 1 deny 1.1.1.1 0.0.0.0
+○ You can use the host argument and the router will automatically translate it into a host address (/32):
+§ access-list 1 deny host 1.1.1.1
+1. any
+○ Instead of specifying an ip and wildcard-mask to match/deny all traffic like this:
+§ access-list 1 permit 0.0.0.0 255.255.255.255
+○ You could use the any argument, which will match/deny all traffic:
+§ access-list 1 permit any
+Notes on how routers handle ACLs
+○ The router may re-order the /32 entries.
+○ This improves the efficiency of processing the ACL.
+○ It does not change the effect of the ACL.
+○ This applies to both standard named and standard numbered ACLs.
+
+Day 34 - Standard ACLs
+Sunday, September 6, 2026 10:46 AM
+ACL Information
+What Are Access Control Lists (ACLs)?
+Access Control Lists (ACLs) are traffic filters which contain ordered lists of rules called ‘Access Control Entries’
+(ACEs).
+• ACLs function as a packet filter, as they instruct the router to permit or deny traffic based on the defined
+ACEs.
+• ACLs can filter traffic based on source/destination IP addresses, source/destination Layer 4 ports, and etc.
+ACL Config General Info
+• ACLs are configured globally on the router (global configuration mode), but they must be applied onto an
+interface in order to take effect.
+• ACLs are applied either inbound or outbound on interfaces.
+• When the router checks a packet against the configured ACL, it processes the ACEs in order, from top to
+bottom.
+• If the packet matches one of the ACEs in the ACL, the router will take action (apply the ACE rule) and stops
+processing the ACL (all entries below the matching entry will be ignored).
+Implicit Deny
+Implicit Deny is a feature that is present in all ACLs. The implicit deny tells the router to deny all traffic that doesn’t
+match any of the configured ACEs in the ACL.
+ACL Types
+There are two types of ACLs with both containing two subtypes:
+1. Standard ACLs
+○ Standard ACLs match based on source IP address only
+○ Standard ACLs can use the number range (1 - 99) and (1300 - 1999)
+○ They should be applied as close to the destination as possible.
+○ They include two subtypes:
+1. Standard numbered ACLs
+2. Standard named ACLs
+2. Extended ACLs
+○ Extended ACLs match based on source/destination IP address, source/destination port address, etc.
+○ Extended ACLs can use the number range (100 - 199) and (2000 - 2699)
+○ They should be applied as close to the source as possible.
+○ They include two subtypes:
+1. Extended numbered ACLs
+2. Extended named ACLs
+Numbered ACLs
+○ Different types of numbered ACLs have a different range of numbers that they can use.
+○ So, each range can be used to identify what type of numbered ACL we’re looking it.
+Standard ACL Types
+1. Standard Numbered ACLs
+Standard numbered ACLs are one of the Standard ACL subtypes. They are identified with a number.
+• (Ex. ACL 1, ACL 2)
+2. Standard Named ACLs
+Standard named ACLs are one of the Standard ACL subtypes. They are identified with a name.
+• (Ex. FIRST_ACL, CCNA_ACL)
+Standard ACL Configuration
+There are two ways to create a standard ACLs:
+1. Global configuration / directly
+○ This method only allows you to create numbered ACLs
+○ Done through the command:
+§ access-list STANDARD-ACL-NUMBER { deny | permit } IP WILDCARD-MASK
+○ Examples:
+§ access-list 1 deny 1.1.1.1 0.0.0.0
+§ access-list 1 deny 1.1.1.1 &lt;-- (only possible in Standard ACLs)
+§ access-list 1 deny host 1.1.1.1
+§ access-list 1 permit any
+§ access-list 1 permit 0.0.0.0 255.255.255.255
+2. ACL configuration mode
+○ Done through the command:
+§ ip access-list standard NAME/NUMBER
+○ Which puts you in Standard ACL configuration mode. ACEs can be set through the following command
+format:
+§ [entry-number] { deny | permit } ip wildcard-mask
+Access-list arguments
+After the ’{ deny | permit }’ part of your command, you usually specify the ip and wildcard-mask. But, there
+are some arguments you could use as well:
+1. host
+○ Instead of specifying a wildcard-mask for a host address (/32) like this:
+§ access-list 1 deny 1.1.1.1 0.0.0.0
+○ You can use the host argument and the router will automatically translate it into a host address (/32):
+§ access-list 1 deny host 1.1.1.1
+1. any
+○ Instead of specifying an ip and wildcard-mask to match/deny all traffic like this:
+§ access-list 1 permit 0.0.0.0 255.255.255.255
+○ You could use the any argument, which will match/deny all traffic:
+§ access-list 1 permit any
+Notes on how routers handle ACLs
+○ The router may re-order the /32 entries.
+○ This improves the efficiency of processing the ACL.
+○ It does not change the effect of the ACL.
+○ This applies to both standard named and standard numbered ACLs.</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="day-33.html"><small>← Day 33</small>IPV6 (pt 3)</a><a href="day-35.html"><small>Day 35 →</small>Extended ACLs</a></nav></article></div></main><footer class="footer"><div class="wrap">Personal study notes · Jeremy’s IT Lab CCNA course · Exported from OneNote September 20, 2026<br><a href="../../resources.html">Back to all resources</a></div></footer><script src="course.js"></script></body></html>

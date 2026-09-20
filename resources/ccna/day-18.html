@@ -1,0 +1,299 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 18: (VlANs pt 3) | DiPiazza</title><meta name="description" content="Personal CCNA study notes from OneNote, organized into 63 days with diagrams, original PDFs and searchable text."><link rel="icon" href="../../images/thegoat.png"><link rel="stylesheet" href="course.css"></head><body><header class="top"><div class="wrap"><a class="brand" href="../../index.html">DiPiazza<span aria-hidden="true">.</span></a><nav aria-label="Main"><a href="../../resources.html">Resources</a><a href="index.html">CCNA course</a></nav></div></header><main class="wrap"><div class="crumb"><a href="index.html">CCNA study notes</a> / Day 18</div><header class="lesson-head"><div class="eyebrow">Day 18 / 63 · Switching &amp; VLANs</div><h1>(VlANs pt 3)</h1><p class="lead">Original notes and diagrams from my OneNote notebook.</p><div class="pills"><a class="button primary" href="index.html">All 63 days</a></div></header><div class="reading-layout"><aside class="aside" aria-label="Lesson parts"><p class="muted">IN THIS DAY</p><a href="#part-1">(VlANs pt 3)</a><p class="muted">Tap a note image to zoom. Expand the text view to copy or search the exported text.</p></aside><article><section class="note-part" id="part-1"><h2>(VlANs pt 3)</h2><a class="button" href="assets/lesson-19/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="assets/lesson-19/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge (VlANs pt 3) page 1"><img src="assets/lesson-19/page-1.webp" width="1426" height="2056" loading="lazy" alt="Original OneNote notes: (VlANs pt 3), page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 6</figcaption></figure><figure class="note-image"><a href="assets/lesson-19/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge (VlANs pt 3) page 2"><img src="assets/lesson-19/page-2.webp" width="1332" height="2109" loading="lazy" alt="Original OneNote notes: (VlANs pt 3), page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 6</figcaption></figure><figure class="note-image"><a href="assets/lesson-19/page-3.webp" target="_blank" rel="noopener" aria-label="Enlarge (VlANs pt 3) page 3"><img src="assets/lesson-19/page-3.webp" width="1499" height="2109" loading="lazy" alt="Original OneNote notes: (VlANs pt 3), page 3. Text version follows below."></a><figcaption>Original notes · Page 3 of 6</figcaption></figure><figure class="note-image"><a href="assets/lesson-19/page-4.webp" target="_blank" rel="noopener" aria-label="Enlarge (VlANs pt 3) page 4"><img src="assets/lesson-19/page-4.webp" width="1464" height="2109" loading="lazy" alt="Original OneNote notes: (VlANs pt 3), page 4. Text version follows below."></a><figcaption>Original notes · Page 4 of 6</figcaption></figure><figure class="note-image"><a href="assets/lesson-19/page-5.webp" target="_blank" rel="noopener" aria-label="Enlarge (VlANs pt 3) page 5"><img src="assets/lesson-19/page-5.webp" width="1029" height="2108" loading="lazy" alt="Original OneNote notes: (VlANs pt 3), page 5. Text version follows below."></a><figcaption>Original notes · Page 5 of 6</figcaption></figure><figure class="note-image"><a href="assets/lesson-19/page-6.webp" target="_blank" rel="noopener" aria-label="Enlarge (VlANs pt 3) page 6"><img src="assets/lesson-19/page-6.webp" width="1473" height="1371" loading="lazy" alt="Original OneNote notes: (VlANs pt 3), page 6. Text version follows below."></a><figcaption>Original notes · Page 6 of 6</figcaption></figure><details class="text-view"><summary>Text view — (VlANs pt 3)</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 18 - (VlANs pt 3)
+Wednesday, August 26, 2026 5:05 PM
+18. VLANS : PART 3
+NATIVE VLAN ON A ROUTER (ROAS)
+Native VLAN untagged frames are faster and more efficient (smaller) than tagged ones.
+Let’s reset all SWITCHES (SW1 and SW2) to native vlan 10
+There are TWO methods of configuring the native VLAN on a router:
+• Use the command “encapsulation dot1q ” on a Sub-Interface
+OR
+• Configure the IP address for the native VLAN on the router’s physical interface (the “encapsulation
+dot1q command is not necessary”
+Output of “show running-config” of G0/0 Interface
+LAYER 3 (MULTILAYER) SWITCHES
+ICON APPEARANCE
+• A MULTILAYER SWITCH is capable of both SWITCHING and ROUTING
+• It is LAYER 3 AWARE
+• You can assign IP Addresses to its L3 Virtual Interface, like a router
+• You can create Virtual Interfaces for each VLAN, and assign IP addresses to those interfaces
+• You can configure routes on it, just like a ROUTER
+• It can be used for inter-VLAN routing
+SW2 Replaced with a Layer 3 Switch
+Multi-VLAN connections to R1 removed and replaced with a point-to-point Layer 3 connection
+• SVIs (Switch Virtual Interfaces) are the virtual interfaces you can assign IP addresses to in a MULTILAYER
+SWITCH.
+• Configure each HOST to use the SVI (NOT the ROUTER R1) as their Gateway Address
+• To send traffic to different SUBNETS / VLANS, the PCs will send traffic to the SWITCH, and the SWITCH
+will route the traffic.
+Clearing R1 configuration to set to work with the Layer 3 Point-to-Point connection
+#no interface : removes the VLAN interface
+#default interface g0/0 : resets the g0/0 interface to it’s default settings
+Then configure the default R1 G0/0 interface’s to IP address : 192.168.1.194 (as per the network diagram)
+Configuration of SW2 to use SVI and the Layer 3 Point-to-Point connection with R1
+“default interface ” : resets settings on specified interface to defaults
+“ip routing” : IMPORTANT command to enable Layer 3 routing on the SWITCH
+“no switchport” : configures the interface from a Layer 2 Switchport to a Layer 3 “routed port”
+The sets the Default Route to R1 (192.168.1.194) so that all traffic leaving the network gets routed through
+R1’s Gateway of Last Resort (aka The Default Gateway)
+SVI CONFIGURATION ON SW2 (Virtual LAYER 3 ROUTING INTERFACES)
+SVIs are shut down by default, so remember to use “no shutdown”
+Creating an unknown SVI (VLAN 40) and the Status/Protocol is “down/down”
+What are the conditions for a SVI to be “up/up” ?
+• The VLAN must exist on the SWITCH
+• The SWITCH must have at least ONE access port in the VLAN in an “up/up” state AND/OR one TRUNK
+port that allows the VLAN that is in an “up/up” state
+• The VLAN must not be shutdown (you can use the “shutdown” command to disable a VLAN)
+• The SVI must not be shutdown (SVIs are disabled, by default)
+The VLAN trunk has been successfully replaced by an Layer 3 SWITCH SVI.
+All hosts should be able to connect with each other (tested with “ping”) as well as reach the external internet (via the
+Cloud symbol attached to R1)
+
+Day 18 - (VlANs pt 3)
+Wednesday, August 26, 2026 5:05 PM
+18. VLANS : PART 3
+NATIVE VLAN ON A ROUTER (ROAS)
+Native VLAN untagged frames are faster and more efficient (smaller) than tagged ones.
+Let’s reset all SWITCHES (SW1 and SW2) to native vlan 10
+There are TWO methods of configuring the native VLAN on a router:
+• Use the command “encapsulation dot1q ” on a Sub-Interface
+OR
+• Configure the IP address for the native VLAN on the router’s physical interface (the “encapsulation
+dot1q command is not necessary”
+Output of “show running-config” of G0/0 Interface
+LAYER 3 (MULTILAYER) SWITCHES
+ICON APPEARANCE
+• A MULTILAYER SWITCH is capable of both SWITCHING and ROUTING
+• It is LAYER 3 AWARE
+• You can assign IP Addresses to its L3 Virtual Interface, like a router
+• You can create Virtual Interfaces for each VLAN, and assign IP addresses to those interfaces
+• You can configure routes on it, just like a ROUTER
+• It can be used for inter-VLAN routing
+SW2 Replaced with a Layer 3 Switch
+Multi-VLAN connections to R1 removed and replaced with a point-to-point Layer 3 connection
+• SVIs (Switch Virtual Interfaces) are the virtual interfaces you can assign IP addresses to in a MULTILAYER
+SWITCH.
+• Configure each HOST to use the SVI (NOT the ROUTER R1) as their Gateway Address
+• To send traffic to different SUBNETS / VLANS, the PCs will send traffic to the SWITCH, and the SWITCH
+will route the traffic.
+Clearing R1 configuration to set to work with the Layer 3 Point-to-Point connection
+#no interface : removes the VLAN interface
+#default interface g0/0 : resets the g0/0 interface to it’s default settings
+Then configure the default R1 G0/0 interface’s to IP address : 192.168.1.194 (as per the network diagram)
+Configuration of SW2 to use SVI and the Layer 3 Point-to-Point connection with R1
+“default interface ” : resets settings on specified interface to defaults
+“ip routing” : IMPORTANT command to enable Layer 3 routing on the SWITCH
+“no switchport” : configures the interface from a Layer 2 Switchport to a Layer 3 “routed port”
+The sets the Default Route to R1 (192.168.1.194) so that all traffic leaving the network gets routed through
+R1’s Gateway of Last Resort (aka The Default Gateway)
+SVI CONFIGURATION ON SW2 (Virtual LAYER 3 ROUTING INTERFACES)
+SVIs are shut down by default, so remember to use “no shutdown”
+Creating an unknown SVI (VLAN 40) and the Status/Protocol is “down/down”
+What are the conditions for a SVI to be “up/up” ?
+• The VLAN must exist on the SWITCH
+• The SWITCH must have at least ONE access port in the VLAN in an “up/up” state AND/OR one TRUNK
+port that allows the VLAN that is in an “up/up” state
+• The VLAN must not be shutdown (you can use the “shutdown” command to disable a VLAN)
+• The SVI must not be shutdown (SVIs are disabled, by default)
+The VLAN trunk has been successfully replaced by an Layer 3 SWITCH SVI.
+All hosts should be able to connect with each other (tested with “ping”) as well as reach the external internet (via the
+Cloud symbol attached to R1)
+
+Day 18 - (VlANs pt 3)
+Wednesday, August 26, 2026 5:05 PM
+18. VLANS : PART 3
+NATIVE VLAN ON A ROUTER (ROAS)
+Native VLAN untagged frames are faster and more efficient (smaller) than tagged ones.
+Let’s reset all SWITCHES (SW1 and SW2) to native vlan 10
+There are TWO methods of configuring the native VLAN on a router:
+• Use the command “encapsulation dot1q ” on a Sub-Interface
+OR
+• Configure the IP address for the native VLAN on the router’s physical interface (the “encapsulation
+dot1q command is not necessary”
+Output of “show running-config” of G0/0 Interface
+LAYER 3 (MULTILAYER) SWITCHES
+ICON APPEARANCE
+• A MULTILAYER SWITCH is capable of both SWITCHING and ROUTING
+• It is LAYER 3 AWARE
+• You can assign IP Addresses to its L3 Virtual Interface, like a router
+• You can create Virtual Interfaces for each VLAN, and assign IP addresses to those interfaces
+• You can configure routes on it, just like a ROUTER
+• It can be used for inter-VLAN routing
+SW2 Replaced with a Layer 3 Switch
+Multi-VLAN connections to R1 removed and replaced with a point-to-point Layer 3 connection
+• SVIs (Switch Virtual Interfaces) are the virtual interfaces you can assign IP addresses to in a MULTILAYER
+SWITCH.
+• Configure each HOST to use the SVI (NOT the ROUTER R1) as their Gateway Address
+• To send traffic to different SUBNETS / VLANS, the PCs will send traffic to the SWITCH, and the SWITCH
+will route the traffic.
+Clearing R1 configuration to set to work with the Layer 3 Point-to-Point connection
+#no interface : removes the VLAN interface
+#default interface g0/0 : resets the g0/0 interface to it’s default settings
+Then configure the default R1 G0/0 interface’s to IP address : 192.168.1.194 (as per the network diagram)
+Configuration of SW2 to use SVI and the Layer 3 Point-to-Point connection with R1
+“default interface ” : resets settings on specified interface to defaults
+“ip routing” : IMPORTANT command to enable Layer 3 routing on the SWITCH
+“no switchport” : configures the interface from a Layer 2 Switchport to a Layer 3 “routed port”
+The sets the Default Route to R1 (192.168.1.194) so that all traffic leaving the network gets routed through
+R1’s Gateway of Last Resort (aka The Default Gateway)
+SVI CONFIGURATION ON SW2 (Virtual LAYER 3 ROUTING INTERFACES)
+SVIs are shut down by default, so remember to use “no shutdown”
+Creating an unknown SVI (VLAN 40) and the Status/Protocol is “down/down”
+What are the conditions for a SVI to be “up/up” ?
+• The VLAN must exist on the SWITCH
+• The SWITCH must have at least ONE access port in the VLAN in an “up/up” state AND/OR one TRUNK
+port that allows the VLAN that is in an “up/up” state
+• The VLAN must not be shutdown (you can use the “shutdown” command to disable a VLAN)
+• The SVI must not be shutdown (SVIs are disabled, by default)
+The VLAN trunk has been successfully replaced by an Layer 3 SWITCH SVI.
+All hosts should be able to connect with each other (tested with “ping”) as well as reach the external internet (via the
+Cloud symbol attached to R1)
+
+Day 18 - (VlANs pt 3)
+Wednesday, August 26, 2026 5:05 PM
+18. VLANS : PART 3
+NATIVE VLAN ON A ROUTER (ROAS)
+Native VLAN untagged frames are faster and more efficient (smaller) than tagged ones.
+Let’s reset all SWITCHES (SW1 and SW2) to native vlan 10
+There are TWO methods of configuring the native VLAN on a router:
+• Use the command “encapsulation dot1q ” on a Sub-Interface
+OR
+• Configure the IP address for the native VLAN on the router’s physical interface (the “encapsulation
+dot1q command is not necessary”
+Output of “show running-config” of G0/0 Interface
+LAYER 3 (MULTILAYER) SWITCHES
+ICON APPEARANCE
+• A MULTILAYER SWITCH is capable of both SWITCHING and ROUTING
+• It is LAYER 3 AWARE
+• You can assign IP Addresses to its L3 Virtual Interface, like a router
+• You can create Virtual Interfaces for each VLAN, and assign IP addresses to those interfaces
+• You can configure routes on it, just like a ROUTER
+• It can be used for inter-VLAN routing
+SW2 Replaced with a Layer 3 Switch
+Multi-VLAN connections to R1 removed and replaced with a point-to-point Layer 3 connection
+• SVIs (Switch Virtual Interfaces) are the virtual interfaces you can assign IP addresses to in a MULTILAYER
+SWITCH.
+• Configure each HOST to use the SVI (NOT the ROUTER R1) as their Gateway Address
+• To send traffic to different SUBNETS / VLANS, the PCs will send traffic to the SWITCH, and the SWITCH
+will route the traffic.
+Clearing R1 configuration to set to work with the Layer 3 Point-to-Point connection
+#no interface : removes the VLAN interface
+#default interface g0/0 : resets the g0/0 interface to it’s default settings
+Then configure the default R1 G0/0 interface’s to IP address : 192.168.1.194 (as per the network diagram)
+Configuration of SW2 to use SVI and the Layer 3 Point-to-Point connection with R1
+“default interface ” : resets settings on specified interface to defaults
+“ip routing” : IMPORTANT command to enable Layer 3 routing on the SWITCH
+“no switchport” : configures the interface from a Layer 2 Switchport to a Layer 3 “routed port”
+The sets the Default Route to R1 (192.168.1.194) so that all traffic leaving the network gets routed through
+R1’s Gateway of Last Resort (aka The Default Gateway)
+SVI CONFIGURATION ON SW2 (Virtual LAYER 3 ROUTING INTERFACES)
+SVIs are shut down by default, so remember to use “no shutdown”
+Creating an unknown SVI (VLAN 40) and the Status/Protocol is “down/down”
+What are the conditions for a SVI to be “up/up” ?
+• The VLAN must exist on the SWITCH
+• The SWITCH must have at least ONE access port in the VLAN in an “up/up” state AND/OR one TRUNK
+port that allows the VLAN that is in an “up/up” state
+• The VLAN must not be shutdown (you can use the “shutdown” command to disable a VLAN)
+• The SVI must not be shutdown (SVIs are disabled, by default)
+The VLAN trunk has been successfully replaced by an Layer 3 SWITCH SVI.
+All hosts should be able to connect with each other (tested with “ping”) as well as reach the external internet (via the
+Cloud symbol attached to R1)
+
+Day 18 - (VlANs pt 3)
+Wednesday, August 26, 2026 5:05 PM
+18. VLANS : PART 3
+NATIVE VLAN ON A ROUTER (ROAS)
+Native VLAN untagged frames are faster and more efficient (smaller) than tagged ones.
+Let’s reset all SWITCHES (SW1 and SW2) to native vlan 10
+There are TWO methods of configuring the native VLAN on a router:
+• Use the command “encapsulation dot1q ” on a Sub-Interface
+OR
+• Configure the IP address for the native VLAN on the router’s physical interface (the “encapsulation
+dot1q command is not necessary”
+Output of “show running-config” of G0/0 Interface
+LAYER 3 (MULTILAYER) SWITCHES
+ICON APPEARANCE
+• A MULTILAYER SWITCH is capable of both SWITCHING and ROUTING
+• It is LAYER 3 AWARE
+• You can assign IP Addresses to its L3 Virtual Interface, like a router
+• You can create Virtual Interfaces for each VLAN, and assign IP addresses to those interfaces
+• You can configure routes on it, just like a ROUTER
+• It can be used for inter-VLAN routing
+SW2 Replaced with a Layer 3 Switch
+Multi-VLAN connections to R1 removed and replaced with a point-to-point Layer 3 connection
+• SVIs (Switch Virtual Interfaces) are the virtual interfaces you can assign IP addresses to in a MULTILAYER
+SWITCH.
+• Configure each HOST to use the SVI (NOT the ROUTER R1) as their Gateway Address
+• To send traffic to different SUBNETS / VLANS, the PCs will send traffic to the SWITCH, and the SWITCH
+will route the traffic.
+Clearing R1 configuration to set to work with the Layer 3 Point-to-Point connection
+#no interface : removes the VLAN interface
+#default interface g0/0 : resets the g0/0 interface to it’s default settings
+Then configure the default R1 G0/0 interface’s to IP address : 192.168.1.194 (as per the network diagram)
+Configuration of SW2 to use SVI and the Layer 3 Point-to-Point connection with R1
+“default interface ” : resets settings on specified interface to defaults
+“ip routing” : IMPORTANT command to enable Layer 3 routing on the SWITCH
+“no switchport” : configures the interface from a Layer 2 Switchport to a Layer 3 “routed port”
+The sets the Default Route to R1 (192.168.1.194) so that all traffic leaving the network gets routed through
+R1’s Gateway of Last Resort (aka The Default Gateway)
+SVI CONFIGURATION ON SW2 (Virtual LAYER 3 ROUTING INTERFACES)
+SVIs are shut down by default, so remember to use “no shutdown”
+Creating an unknown SVI (VLAN 40) and the Status/Protocol is “down/down”
+What are the conditions for a SVI to be “up/up” ?
+• The VLAN must exist on the SWITCH
+• The SWITCH must have at least ONE access port in the VLAN in an “up/up” state AND/OR one TRUNK
+port that allows the VLAN that is in an “up/up” state
+• The VLAN must not be shutdown (you can use the “shutdown” command to disable a VLAN)
+• The SVI must not be shutdown (SVIs are disabled, by default)
+The VLAN trunk has been successfully replaced by an Layer 3 SWITCH SVI.
+All hosts should be able to connect with each other (tested with “ping”) as well as reach the external internet (via the
+Cloud symbol attached to R1)
+
+Day 18 - (VlANs pt 3)
+Wednesday, August 26, 2026 5:05 PM
+18. VLANS : PART 3
+NATIVE VLAN ON A ROUTER (ROAS)
+Native VLAN untagged frames are faster and more efficient (smaller) than tagged ones.
+Let’s reset all SWITCHES (SW1 and SW2) to native vlan 10
+There are TWO methods of configuring the native VLAN on a router:
+• Use the command “encapsulation dot1q ” on a Sub-Interface
+OR
+• Configure the IP address for the native VLAN on the router’s physical interface (the “encapsulation
+dot1q command is not necessary”
+Output of “show running-config” of G0/0 Interface
+LAYER 3 (MULTILAYER) SWITCHES
+ICON APPEARANCE
+• A MULTILAYER SWITCH is capable of both SWITCHING and ROUTING
+• It is LAYER 3 AWARE
+• You can assign IP Addresses to its L3 Virtual Interface, like a router
+• You can create Virtual Interfaces for each VLAN, and assign IP addresses to those interfaces
+• You can configure routes on it, just like a ROUTER
+• It can be used for inter-VLAN routing
+SW2 Replaced with a Layer 3 Switch
+Multi-VLAN connections to R1 removed and replaced with a point-to-point Layer 3 connection
+• SVIs (Switch Virtual Interfaces) are the virtual interfaces you can assign IP addresses to in a MULTILAYER
+SWITCH.
+• Configure each HOST to use the SVI (NOT the ROUTER R1) as their Gateway Address
+• To send traffic to different SUBNETS / VLANS, the PCs will send traffic to the SWITCH, and the SWITCH
+will route the traffic.
+Clearing R1 configuration to set to work with the Layer 3 Point-to-Point connection
+#no interface : removes the VLAN interface
+#default interface g0/0 : resets the g0/0 interface to it’s default settings
+Then configure the default R1 G0/0 interface’s to IP address : 192.168.1.194 (as per the network diagram)
+Configuration of SW2 to use SVI and the Layer 3 Point-to-Point connection with R1
+“default interface ” : resets settings on specified interface to defaults
+“ip routing” : IMPORTANT command to enable Layer 3 routing on the SWITCH
+“no switchport” : configures the interface from a Layer 2 Switchport to a Layer 3 “routed port”
+The sets the Default Route to R1 (192.168.1.194) so that all traffic leaving the network gets routed through
+R1’s Gateway of Last Resort (aka The Default Gateway)
+SVI CONFIGURATION ON SW2 (Virtual LAYER 3 ROUTING INTERFACES)
+SVIs are shut down by default, so remember to use “no shutdown”
+Creating an unknown SVI (VLAN 40) and the Status/Protocol is “down/down”
+What are the conditions for a SVI to be “up/up” ?
+• The VLAN must exist on the SWITCH
+• The SWITCH must have at least ONE access port in the VLAN in an “up/up” state AND/OR one TRUNK
+port that allows the VLAN that is in an “up/up” state
+• The VLAN must not be shutdown (you can use the “shutdown” command to disable a VLAN)
+• The SVI must not be shutdown (SVIs are disabled, by default)
+The VLAN trunk has been successfully replaced by an Layer 3 SWITCH SVI.
+All hosts should be able to connect with each other (tested with “ping”) as well as reach the external internet (via the
+Cloud symbol attached to R1)</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="day-17.html"><small>← Day 17</small>(VlANs pt 2)</a><a href="day-19.html"><small>Day 19 →</small>DTP / VTP (Not in Syllabus)</a></nav></article></div></main><footer class="footer"><div class="wrap">Personal study notes · Jeremy’s IT Lab CCNA course · Exported from OneNote September 20, 2026<br><a href="../../resources.html">Back to all resources</a></div></footer><script src="course.js"></script></body></html>

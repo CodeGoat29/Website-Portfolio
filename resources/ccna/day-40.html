@@ -1,0 +1,296 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 40: SNMP | DiPiazza</title><meta name="description" content="Personal CCNA study notes from OneNote, organized into 63 days with diagrams, original PDFs and searchable text."><link rel="icon" href="../../images/thegoat.png"><link rel="stylesheet" href="course.css"></head><body><header class="top"><div class="wrap"><a class="brand" href="../../index.html">DiPiazza<span aria-hidden="true">.</span></a><nav aria-label="Main"><a href="../../resources.html">Resources</a><a href="index.html">CCNA course</a></nav></div></header><main class="wrap"><div class="crumb"><a href="index.html">CCNA study notes</a> / Day 40</div><header class="lesson-head"><div class="eyebrow">Day 40 / 63 · Network services</div><h1>SNMP</h1><p class="lead">Original notes and diagrams from my OneNote notebook.</p><div class="pills"><a class="button primary" href="index.html">All 63 days</a></div></header><div class="reading-layout"><aside class="aside" aria-label="Lesson parts"><p class="muted">IN THIS DAY</p><a href="#part-1">SNMP</a><p class="muted">Tap a note image to zoom. Expand the text view to copy or search the exported text.</p></aside><article><section class="note-part" id="part-1"><h2>SNMP</h2><a class="button" href="assets/lesson-41/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="assets/lesson-41/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge SNMP page 1"><img src="assets/lesson-41/page-1.webp" width="1487" height="2044" loading="lazy" alt="Original OneNote notes: SNMP, page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 3</figcaption></figure><figure class="note-image"><a href="assets/lesson-41/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge SNMP page 2"><img src="assets/lesson-41/page-2.webp" width="1535" height="2100" loading="lazy" alt="Original OneNote notes: SNMP, page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 3</figcaption></figure><figure class="note-image"><a href="assets/lesson-41/page-3.webp" target="_blank" rel="noopener" aria-label="Enlarge SNMP page 3"><img src="assets/lesson-41/page-3.webp" width="1482" height="1464" loading="lazy" alt="Original OneNote notes: SNMP, page 3. Text version follows below."></a><figcaption>Original notes · Page 3 of 3</figcaption></figure><details class="text-view"><summary>Text view — SNMP</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 40 - SNMP
+Sunday, September 6, 2026 10:46 AM
+SNMP Info
+SNMP General Information
+Simple Network Management Protocol (SNMP) is an industry-standard framework and protocol that can be used to
+monitor the status of devices, make configuration changes and etc.
+• SNMP agents (clients) run on port 161 while SNMP managers (servers) run on port 162.
+• There are two main types of devices in SNMP
+1. Managed Devices
+§ These are the devices being managed using SNMP.
+§ (Ex. network devices like routers and switches).
+2. Network Management Station (NMS)
+§ The device/devices managing the managed devices.
+§ This is the SNMP ‘server’.
+SNMP Main Operations
+There are three main operations used in SNMP
+1. Managed devices can notify the NMS of events.
+2. The NMS can ask the managed devices for information about their current status.
+3. The NMS can tell the managed devices to change aspects of their configuration.
+SNMP Components
+SNMP Components Image
+1. NMS
+The NMS has two SNMP components, being:
+1. SNMP Manager
+○ It is the SNMP software on the NMS that interacts with the managed devices.
+○ It receives notifications, sends requests for information, sends configuration changes, and etc.
+2. SNMP Application
+○ Provides an interface for the network admin to interact with.
+○ Displays alerts, statistics, charts and etc.
+2. Managed Devices
+The Managed devices run two SNMP components, being:
+1. SNMP Agent
+○ It is the SNMP software running on the managed devices that interacts with the SNMP manager on the
+NMS.
+2. SNMP Management Information Base (MIB)
+○ It is the structure that contains the variables that are managed by SNMP
+○ Each variable is identified with an Object ID (OID)
+○ Example variables: Interface status, traffic throughout, CPU usage, temperature, and etc.
+SNMP Object IDs (OIDs)
+SNMP Object IDs (OID) are organized in a hierarchical structure
+Example of an Object ID (OID)
+SNMP Versions
+A lot of SNMP versions have been developed. The most used three versions are:
+1. SNMPv1
+○ The original version of SNMP
+2. SNMPv2c ^snmp-snmpv2c
+○ Allows the NMS to retrieve large amounts of information in a single request, so it is more efficient (GetBulk
+message)
+○ The ‘c’ in the name refers to community strings which are used as passwords
+3. SNMPv3
+○ Secure version of SNMP that supports encryption and authentication.
+SNMP Messages
+SNMP Message Types Table
+Message Class Description Messages
+Read Messages sent by the NMS to read information from the managed devices. Get
+GetNext
+GetBulk
+Write Messages sent by the NMS to change information on the managed devices. Set
+Notification Messages sent by the managed devices to alert the NMS of a particular event. Trap
+Inform
+Response Messages sent in response to a previous message/request. Response
+1. SNMP Read Messages
+1. Get
+○ A request sent from the manager to the agent to retrieve the value of a variable (OID), or multiple
+variables.
+○ The agent will send a Response message with the current value of each variable
+2. GetNext
+○ A request sent from the manager to the agent to discover the available variables in the Management
+Information Base (MIB)
+3. GetBulk ^snmp-messages-getbulk
+○ A more efficient version of the GetNext message. (Introduced in SNMPv2)
+2. SNMP Write Messages
+1. Set
+○ A request sent from the manager to the agent to change the value of one or more variables.
+○ The agent will send a Response message with the new updated values.
+3. SNMP Notification Messages
+1. Trap
+○ A notification sent from the agent to the manager.
+○ The manager does not send a Response message to acknowledge that it has received the Trap, so these
+messages are considered ‘unreliable’.
+2. Inform
+○ A notification message that is acknowledged with a Response message
+4. SNMP Response Messages
+1. Response
+○ Sent as a response to a variety of messages, like the ones previously mentioned.
+SNMP Configuration on Cisco IOS
+• snmp-server contact CONTACT-INFO
+○ Sets the SNMP server contact information
+• snmp-server location LOCATION-INFO
+○ Sets the SNMP server location information
+• snmp-server community PASSWORD ro
+○ Sets the community password for read-only operations
+• snmp-server community PASSWORD rw
+○ Sets the community password for read-write operations
+• snmp-server host IP-ADDRESS version 2c COMMUNITY-STRING
+○ Specifies the NMS, version and community string
+• snmp-server enable traps TRAP-TYPES
+○ Enables specific trap (notification) types
+
+Day 40 - SNMP
+Sunday, September 6, 2026 10:46 AM
+SNMP Info
+SNMP General Information
+Simple Network Management Protocol (SNMP) is an industry-standard framework and protocol that can be used to
+monitor the status of devices, make configuration changes and etc.
+• SNMP agents (clients) run on port 161 while SNMP managers (servers) run on port 162.
+• There are two main types of devices in SNMP
+1. Managed Devices
+§ These are the devices being managed using SNMP.
+§ (Ex. network devices like routers and switches).
+2. Network Management Station (NMS)
+§ The device/devices managing the managed devices.
+§ This is the SNMP ‘server’.
+SNMP Main Operations
+There are three main operations used in SNMP
+1. Managed devices can notify the NMS of events.
+2. The NMS can ask the managed devices for information about their current status.
+3. The NMS can tell the managed devices to change aspects of their configuration.
+SNMP Components
+SNMP Components Image
+1. NMS
+The NMS has two SNMP components, being:
+1. SNMP Manager
+○ It is the SNMP software on the NMS that interacts with the managed devices.
+○ It receives notifications, sends requests for information, sends configuration changes, and etc.
+2. SNMP Application
+○ Provides an interface for the network admin to interact with.
+○ Displays alerts, statistics, charts and etc.
+2. Managed Devices
+The Managed devices run two SNMP components, being:
+1. SNMP Agent
+○ It is the SNMP software running on the managed devices that interacts with the SNMP manager on the
+NMS.
+2. SNMP Management Information Base (MIB)
+○ It is the structure that contains the variables that are managed by SNMP
+○ Each variable is identified with an Object ID (OID)
+○ Example variables: Interface status, traffic throughout, CPU usage, temperature, and etc.
+SNMP Object IDs (OIDs)
+SNMP Object IDs (OID) are organized in a hierarchical structure
+Example of an Object ID (OID)
+SNMP Versions
+A lot of SNMP versions have been developed. The most used three versions are:
+1. SNMPv1
+○ The original version of SNMP
+2. SNMPv2c ^snmp-snmpv2c
+○ Allows the NMS to retrieve large amounts of information in a single request, so it is more efficient (GetBulk
+message)
+○ The ‘c’ in the name refers to community strings which are used as passwords
+3. SNMPv3
+○ Secure version of SNMP that supports encryption and authentication.
+SNMP Messages
+SNMP Message Types Table
+Message Class Description Messages
+Read Messages sent by the NMS to read information from the managed devices. Get
+GetNext
+GetBulk
+Write Messages sent by the NMS to change information on the managed devices. Set
+Notification Messages sent by the managed devices to alert the NMS of a particular event. Trap
+Inform
+Response Messages sent in response to a previous message/request. Response
+1. SNMP Read Messages
+1. Get
+○ A request sent from the manager to the agent to retrieve the value of a variable (OID), or multiple
+variables.
+○ The agent will send a Response message with the current value of each variable
+2. GetNext
+○ A request sent from the manager to the agent to discover the available variables in the Management
+Information Base (MIB)
+3. GetBulk ^snmp-messages-getbulk
+○ A more efficient version of the GetNext message. (Introduced in SNMPv2)
+2. SNMP Write Messages
+1. Set
+○ A request sent from the manager to the agent to change the value of one or more variables.
+○ The agent will send a Response message with the new updated values.
+3. SNMP Notification Messages
+1. Trap
+○ A notification sent from the agent to the manager.
+○ The manager does not send a Response message to acknowledge that it has received the Trap, so these
+messages are considered ‘unreliable’.
+2. Inform
+○ A notification message that is acknowledged with a Response message
+4. SNMP Response Messages
+1. Response
+○ Sent as a response to a variety of messages, like the ones previously mentioned.
+SNMP Configuration on Cisco IOS
+• snmp-server contact CONTACT-INFO
+○ Sets the SNMP server contact information
+• snmp-server location LOCATION-INFO
+○ Sets the SNMP server location information
+• snmp-server community PASSWORD ro
+○ Sets the community password for read-only operations
+• snmp-server community PASSWORD rw
+○ Sets the community password for read-write operations
+• snmp-server host IP-ADDRESS version 2c COMMUNITY-STRING
+○ Specifies the NMS, version and community string
+• snmp-server enable traps TRAP-TYPES
+○ Enables specific trap (notification) types
+
+Day 40 - SNMP
+Sunday, September 6, 2026 10:46 AM
+SNMP Info
+SNMP General Information
+Simple Network Management Protocol (SNMP) is an industry-standard framework and protocol that can be used to
+monitor the status of devices, make configuration changes and etc.
+• SNMP agents (clients) run on port 161 while SNMP managers (servers) run on port 162.
+• There are two main types of devices in SNMP
+1. Managed Devices
+§ These are the devices being managed using SNMP.
+§ (Ex. network devices like routers and switches).
+2. Network Management Station (NMS)
+§ The device/devices managing the managed devices.
+§ This is the SNMP ‘server’.
+SNMP Main Operations
+There are three main operations used in SNMP
+1. Managed devices can notify the NMS of events.
+2. The NMS can ask the managed devices for information about their current status.
+3. The NMS can tell the managed devices to change aspects of their configuration.
+SNMP Components
+SNMP Components Image
+1. NMS
+The NMS has two SNMP components, being:
+1. SNMP Manager
+○ It is the SNMP software on the NMS that interacts with the managed devices.
+○ It receives notifications, sends requests for information, sends configuration changes, and etc.
+2. SNMP Application
+○ Provides an interface for the network admin to interact with.
+○ Displays alerts, statistics, charts and etc.
+2. Managed Devices
+The Managed devices run two SNMP components, being:
+1. SNMP Agent
+○ It is the SNMP software running on the managed devices that interacts with the SNMP manager on the
+NMS.
+2. SNMP Management Information Base (MIB)
+○ It is the structure that contains the variables that are managed by SNMP
+○ Each variable is identified with an Object ID (OID)
+○ Example variables: Interface status, traffic throughout, CPU usage, temperature, and etc.
+SNMP Object IDs (OIDs)
+SNMP Object IDs (OID) are organized in a hierarchical structure
+Example of an Object ID (OID)
+SNMP Versions
+A lot of SNMP versions have been developed. The most used three versions are:
+1. SNMPv1
+○ The original version of SNMP
+2. SNMPv2c ^snmp-snmpv2c
+○ Allows the NMS to retrieve large amounts of information in a single request, so it is more efficient (GetBulk
+message)
+○ The ‘c’ in the name refers to community strings which are used as passwords
+3. SNMPv3
+○ Secure version of SNMP that supports encryption and authentication.
+SNMP Messages
+SNMP Message Types Table
+Message Class Description Messages
+Read Messages sent by the NMS to read information from the managed devices. Get
+GetNext
+GetBulk
+Write Messages sent by the NMS to change information on the managed devices. Set
+Notification Messages sent by the managed devices to alert the NMS of a particular event. Trap
+Inform
+Response Messages sent in response to a previous message/request. Response
+1. SNMP Read Messages
+1. Get
+○ A request sent from the manager to the agent to retrieve the value of a variable (OID), or multiple
+variables.
+○ The agent will send a Response message with the current value of each variable
+2. GetNext
+○ A request sent from the manager to the agent to discover the available variables in the Management
+Information Base (MIB)
+3. GetBulk ^snmp-messages-getbulk
+○ A more efficient version of the GetNext message. (Introduced in SNMPv2)
+2. SNMP Write Messages
+1. Set
+○ A request sent from the manager to the agent to change the value of one or more variables.
+○ The agent will send a Response message with the new updated values.
+3. SNMP Notification Messages
+1. Trap
+○ A notification sent from the agent to the manager.
+○ The manager does not send a Response message to acknowledge that it has received the Trap, so these
+messages are considered ‘unreliable’.
+2. Inform
+○ A notification message that is acknowledged with a Response message
+4. SNMP Response Messages
+1. Response
+○ Sent as a response to a variety of messages, like the ones previously mentioned.
+SNMP Configuration on Cisco IOS
+• snmp-server contact CONTACT-INFO
+○ Sets the SNMP server contact information
+• snmp-server location LOCATION-INFO
+○ Sets the SNMP server location information
+• snmp-server community PASSWORD ro
+○ Sets the community password for read-only operations
+• snmp-server community PASSWORD rw
+○ Sets the community password for read-write operations
+• snmp-server host IP-ADDRESS version 2c COMMUNITY-STRING
+○ Specifies the NMS, version and community string
+• snmp-server enable traps TRAP-TYPES
+○ Enables specific trap (notification) types</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="day-39.html"><small>← Day 39</small>DHCP</a><a href="day-41.html"><small>Day 41 →</small>Syslog</a></nav></article></div></main><footer class="footer"><div class="wrap">Personal study notes · Jeremy’s IT Lab CCNA course · Exported from OneNote September 20, 2026<br><a href="../../resources.html">Back to all resources</a></div></footer><script src="course.js"></script></body></html>

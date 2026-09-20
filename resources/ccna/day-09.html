@@ -1,0 +1,497 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 9: Switch Interfaces | DiPiazza</title><meta name="description" content="Personal CCNA study notes from OneNote, organized into 63 days with diagrams, original PDFs and searchable text."><link rel="icon" href="../../images/thegoat.png"><link rel="stylesheet" href="course.css"></head><body><header class="top"><div class="wrap"><a class="brand" href="../../index.html">DiPiazza<span aria-hidden="true">.</span></a><nav aria-label="Main"><a href="../../resources.html">Resources</a><a href="index.html">CCNA course</a></nav></div></header><main class="wrap"><div class="crumb"><a href="index.html">CCNA study notes</a> / Day 09</div><header class="lesson-head"><div class="eyebrow">Day 09 / 63 · Network foundations</div><h1>Switch Interfaces</h1><p class="lead">Original notes and diagrams from my OneNote notebook.</p><div class="pills"><a class="button primary" href="index.html">All 63 days</a></div></header><div class="reading-layout"><aside class="aside" aria-label="Lesson parts"><p class="muted">IN THIS DAY</p><a href="#part-1">Switch Interfaces</a><p class="muted">Tap a note image to zoom. Expand the text view to copy or search the exported text.</p></aside><article><section class="note-part" id="part-1"><h2>Switch Interfaces</h2><a class="button" href="assets/lesson-09/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="assets/lesson-09/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge Switch Interfaces page 1"><img src="assets/lesson-09/page-1.webp" width="1365" height="2025" loading="lazy" alt="Original OneNote notes: Switch Interfaces, page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 6</figcaption></figure><figure class="note-image"><a href="assets/lesson-09/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge Switch Interfaces page 2"><img src="assets/lesson-09/page-2.webp" width="1565" height="2103" loading="lazy" alt="Original OneNote notes: Switch Interfaces, page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 6</figcaption></figure><figure class="note-image"><a href="assets/lesson-09/page-3.webp" target="_blank" rel="noopener" aria-label="Enlarge Switch Interfaces page 3"><img src="assets/lesson-09/page-3.webp" width="1558" height="2109" loading="lazy" alt="Original OneNote notes: Switch Interfaces, page 3. Text version follows below."></a><figcaption>Original notes · Page 3 of 6</figcaption></figure><figure class="note-image"><a href="assets/lesson-09/page-4.webp" target="_blank" rel="noopener" aria-label="Enlarge Switch Interfaces page 4"><img src="assets/lesson-09/page-4.webp" width="1510" height="2099" loading="lazy" alt="Original OneNote notes: Switch Interfaces, page 4. Text version follows below."></a><figcaption>Original notes · Page 4 of 6</figcaption></figure><figure class="note-image"><a href="assets/lesson-09/page-5.webp" target="_blank" rel="noopener" aria-label="Enlarge Switch Interfaces page 5"><img src="assets/lesson-09/page-5.webp" width="1536" height="2096" loading="lazy" alt="Original OneNote notes: Switch Interfaces, page 5. Text version follows below."></a><figcaption>Original notes · Page 5 of 6</figcaption></figure><figure class="note-image"><a href="assets/lesson-09/page-6.webp" target="_blank" rel="noopener" aria-label="Enlarge Switch Interfaces page 6"><img src="assets/lesson-09/page-6.webp" width="1507" height="1211" loading="lazy" alt="Original OneNote notes: Switch Interfaces, page 6. Text version follows below."></a><figcaption>Original notes · Page 6 of 6</figcaption></figure><details class="text-view"><summary>Text view — Switch Interfaces</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 9 - Switch Interfaces
+Saturday, August 22, 2026 2:50 PM
+9. SWITCH INTERFACES
+CISCO CLI for SWITCHES
+// enter Privileged EXEC mode
+SW1&gt;enable
+// Show all interfaces of Switch 1.
+SW# show ip interface brief
+This will show the interfaces currently on Switch 1. It has the same information structure as Cisco Routers.
+Notice the Status (Layer 2) and Protocol (Layer 1) columns are showing &quot;up/up&quot;.
+Unlike ROUTERS, SWITCHES do no DEFAULT to &#x27;administrative down/down&#x27;(shutdown).
+Unconnected devices will show as &quot;down&quot; and &quot;down&quot; (not connected to another device)
+// Show the status of all interfaces on SW1
+SW1#show interfaces status
+This will list:
+• Ports
+• Name (which is description)
+• Status (connection status)
+• Vlan (can be used to divide up LANs) - Vlan 1 is the default.
+• Duplex (can the connection send/receive at same time?) - Auto is default
+• Speed (speed in bps) - Auto is default
+• Type (what medium is being used, speed of interface)
+Config commands
+speed
+duplex
+description
+INTERFACE RANGE
+Unused Interfaces can pose a security risk so it&#x27;s a good idea to deactivate them.
+However, if you have 28+ interfaces not in use, do you have to do them one at a time?
+Answer: No! There is a command to apply configurations to a range of interfaces.
+Inside Global Config Mode (config t):
+SW1(config)#interface range f0/5 - 12 // Choose all interfaces from 0/5 to 0/12
+SW1(config-if-range)#description ## not in use ##
+SW1(config-if-range)#shutdown
+&lt;&lt; this will list all the interfaces being set to administratively down &gt;&gt;
+Confirm with &#x27;show interface status&#x27; in Privileged EXEC mode or if in CONFIG mode, use &#x27;do show interface
+status&#x27;
+FULL / HALF DUPLEX
+HALF DUPLEX:
+• Device cannot send / receive data at the same time. If it is receiving a frame, it must wait before sending
+a frame.
+FULL DUPLEX:
+• Device CAN send / receive data at the same time. It does NOT have to wait.
+MOST modern SWITCHES support FULL DUPLEX.
+WHERE is HALF DUPLEX used? Almost nowhere.
+In the past, LAN HUBS used HALF DUPLEX.
+When multiple packets were received by the HUB, the HUB would simple FLOOD the connections with frame
+data, causing a COLLISION (on the interface), and hosts would not receive the frame intact.
+All devices connected to a HUB are called a COLLISION DOMAIN.
+To DEAL with COLLISIONS, Ethernet devices use a mechanism called CSMA/CD.
+CSMA/CD = CARRIER SENSE MULTIPLE ACCESS with COLLISION DETECTION.
+• Before sending frames, devices &#x27;listen&#x27; to the collision domain until they detect that other devices are
+not sending.
+• IF a collision occurs, the device sends a jamming signal to inform the other devices that a collision
+happened.
+• Each device will wait a random period of time before sending frames again.
+• The process repeats.
+SWITCHES are more sophisticated than HUBS.
+HUBS are Layer 1 Devices - Collisions are common and use CSMA/CD. SWITCHES are Layer 2 Devices -
+Collisions RARELY occur.
+SPEED / DUPLEX AUTONEGOTIATION
+• Interfaces that can run at different speeds (10/100 or 10/100/1000) have a default setting of SPEED
+AUTO and DUPLEX AUTO.
+• Interfaces &#x27;advertise&#x27; their capabilities to the neighbouring device, and they negotiate the best SPEED
+and DUPLEX settings they are both capable of.
+WHAT if AUTONEGOTIATION is DISABLED on the device connected to the SWITCH ?
+• SPEED: The SWITCH will try to send at the speed that the other device is operating at. If it fails to send
+the speed, it will use the slowest supported speed (ie: 10 Mbps on a 10/100/1000 interface).
+• DUPLEX: If the speed is 10 or 100 Mbps the SWITCH will use HALF DUPLEX. If the speed is 1000 Mbps
+or great, it will use FULL DUPLEX.
+INTERFACE COUNTERS AND ERRORS
+Show using the:
+// Privileged EXEC mode
+SW1#show interfaces
+Error stats will be at the bottom.
+Packets Received / Total bytes received.
+Runts: Frames that are smaller than the minimum frame size (64 bytes)
+Giants: Frames that are larger than the maximum frame size (1518 bytes)
+CRC: Frames that failed the CRC check (in the Ethernet FCS trailer)
+Frame: Frames that have an incorrect format (due to an error)
+Input errors: Total of various counters, such as the above four
+Output errors: Frames the SWITCH tried to send, but failed due to an error
+
+Day 9 - Switch Interfaces
+Saturday, August 22, 2026 2:50 PM
+9. SWITCH INTERFACES
+CISCO CLI for SWITCHES
+// enter Privileged EXEC mode
+SW1&gt;enable
+// Show all interfaces of Switch 1.
+SW# show ip interface brief
+This will show the interfaces currently on Switch 1. It has the same information structure as Cisco Routers.
+Notice the Status (Layer 2) and Protocol (Layer 1) columns are showing &quot;up/up&quot;.
+Unlike ROUTERS, SWITCHES do no DEFAULT to &#x27;administrative down/down&#x27;(shutdown).
+Unconnected devices will show as &quot;down&quot; and &quot;down&quot; (not connected to another device)
+// Show the status of all interfaces on SW1
+SW1#show interfaces status
+This will list:
+• Ports
+• Name (which is description)
+• Status (connection status)
+• Vlan (can be used to divide up LANs) - Vlan 1 is the default.
+• Duplex (can the connection send/receive at same time?) - Auto is default
+• Speed (speed in bps) - Auto is default
+• Type (what medium is being used, speed of interface)
+Config commands
+speed
+duplex
+description
+INTERFACE RANGE
+Unused Interfaces can pose a security risk so it&#x27;s a good idea to deactivate them.
+However, if you have 28+ interfaces not in use, do you have to do them one at a time?
+Answer: No! There is a command to apply configurations to a range of interfaces.
+Inside Global Config Mode (config t):
+SW1(config)#interface range f0/5 - 12 // Choose all interfaces from 0/5 to 0/12
+SW1(config-if-range)#description ## not in use ##
+SW1(config-if-range)#shutdown
+&lt;&lt; this will list all the interfaces being set to administratively down &gt;&gt;
+Confirm with &#x27;show interface status&#x27; in Privileged EXEC mode or if in CONFIG mode, use &#x27;do show interface
+status&#x27;
+FULL / HALF DUPLEX
+HALF DUPLEX:
+• Device cannot send / receive data at the same time. If it is receiving a frame, it must wait before sending
+a frame.
+FULL DUPLEX:
+• Device CAN send / receive data at the same time. It does NOT have to wait.
+MOST modern SWITCHES support FULL DUPLEX.
+WHERE is HALF DUPLEX used? Almost nowhere.
+In the past, LAN HUBS used HALF DUPLEX.
+When multiple packets were received by the HUB, the HUB would simple FLOOD the connections with frame
+data, causing a COLLISION (on the interface), and hosts would not receive the frame intact.
+All devices connected to a HUB are called a COLLISION DOMAIN.
+To DEAL with COLLISIONS, Ethernet devices use a mechanism called CSMA/CD.
+CSMA/CD = CARRIER SENSE MULTIPLE ACCESS with COLLISION DETECTION.
+• Before sending frames, devices &#x27;listen&#x27; to the collision domain until they detect that other devices are
+not sending.
+• IF a collision occurs, the device sends a jamming signal to inform the other devices that a collision
+happened.
+• Each device will wait a random period of time before sending frames again.
+• The process repeats.
+SWITCHES are more sophisticated than HUBS.
+HUBS are Layer 1 Devices - Collisions are common and use CSMA/CD. SWITCHES are Layer 2 Devices -
+Collisions RARELY occur.
+SPEED / DUPLEX AUTONEGOTIATION
+• Interfaces that can run at different speeds (10/100 or 10/100/1000) have a default setting of SPEED
+AUTO and DUPLEX AUTO.
+• Interfaces &#x27;advertise&#x27; their capabilities to the neighbouring device, and they negotiate the best SPEED
+and DUPLEX settings they are both capable of.
+WHAT if AUTONEGOTIATION is DISABLED on the device connected to the SWITCH ?
+• SPEED: The SWITCH will try to send at the speed that the other device is operating at. If it fails to send
+the speed, it will use the slowest supported speed (ie: 10 Mbps on a 10/100/1000 interface).
+• DUPLEX: If the speed is 10 or 100 Mbps the SWITCH will use HALF DUPLEX. If the speed is 1000 Mbps
+or great, it will use FULL DUPLEX.
+INTERFACE COUNTERS AND ERRORS
+Show using the:
+// Privileged EXEC mode
+SW1#show interfaces
+Error stats will be at the bottom.
+Packets Received / Total bytes received.
+Runts: Frames that are smaller than the minimum frame size (64 bytes)
+Giants: Frames that are larger than the maximum frame size (1518 bytes)
+CRC: Frames that failed the CRC check (in the Ethernet FCS trailer)
+Frame: Frames that have an incorrect format (due to an error)
+Input errors: Total of various counters, such as the above four
+Output errors: Frames the SWITCH tried to send, but failed due to an error
+
+Day 9 - Switch Interfaces
+Saturday, August 22, 2026 2:50 PM
+9. SWITCH INTERFACES
+CISCO CLI for SWITCHES
+// enter Privileged EXEC mode
+SW1&gt;enable
+// Show all interfaces of Switch 1.
+SW# show ip interface brief
+This will show the interfaces currently on Switch 1. It has the same information structure as Cisco Routers.
+Notice the Status (Layer 2) and Protocol (Layer 1) columns are showing &quot;up/up&quot;.
+Unlike ROUTERS, SWITCHES do no DEFAULT to &#x27;administrative down/down&#x27;(shutdown).
+Unconnected devices will show as &quot;down&quot; and &quot;down&quot; (not connected to another device)
+// Show the status of all interfaces on SW1
+SW1#show interfaces status
+This will list:
+• Ports
+• Name (which is description)
+• Status (connection status)
+• Vlan (can be used to divide up LANs) - Vlan 1 is the default.
+• Duplex (can the connection send/receive at same time?) - Auto is default
+• Speed (speed in bps) - Auto is default
+• Type (what medium is being used, speed of interface)
+Config commands
+speed
+duplex
+description
+INTERFACE RANGE
+Unused Interfaces can pose a security risk so it&#x27;s a good idea to deactivate them.
+However, if you have 28+ interfaces not in use, do you have to do them one at a time?
+Answer: No! There is a command to apply configurations to a range of interfaces.
+Inside Global Config Mode (config t):
+SW1(config)#interface range f0/5 - 12 // Choose all interfaces from 0/5 to 0/12
+SW1(config-if-range)#description ## not in use ##
+SW1(config-if-range)#shutdown
+&lt;&lt; this will list all the interfaces being set to administratively down &gt;&gt;
+Confirm with &#x27;show interface status&#x27; in Privileged EXEC mode or if in CONFIG mode, use &#x27;do show interface
+status&#x27;
+FULL / HALF DUPLEX
+HALF DUPLEX:
+• Device cannot send / receive data at the same time. If it is receiving a frame, it must wait before sending
+a frame.
+FULL DUPLEX:
+• Device CAN send / receive data at the same time. It does NOT have to wait.
+MOST modern SWITCHES support FULL DUPLEX.
+WHERE is HALF DUPLEX used? Almost nowhere.
+In the past, LAN HUBS used HALF DUPLEX.
+When multiple packets were received by the HUB, the HUB would simple FLOOD the connections with frame
+data, causing a COLLISION (on the interface), and hosts would not receive the frame intact.
+All devices connected to a HUB are called a COLLISION DOMAIN.
+To DEAL with COLLISIONS, Ethernet devices use a mechanism called CSMA/CD.
+CSMA/CD = CARRIER SENSE MULTIPLE ACCESS with COLLISION DETECTION.
+• Before sending frames, devices &#x27;listen&#x27; to the collision domain until they detect that other devices are
+not sending.
+• IF a collision occurs, the device sends a jamming signal to inform the other devices that a collision
+happened.
+• Each device will wait a random period of time before sending frames again.
+• The process repeats.
+SWITCHES are more sophisticated than HUBS.
+HUBS are Layer 1 Devices - Collisions are common and use CSMA/CD. SWITCHES are Layer 2 Devices -
+Collisions RARELY occur.
+SPEED / DUPLEX AUTONEGOTIATION
+• Interfaces that can run at different speeds (10/100 or 10/100/1000) have a default setting of SPEED
+AUTO and DUPLEX AUTO.
+• Interfaces &#x27;advertise&#x27; their capabilities to the neighbouring device, and they negotiate the best SPEED
+and DUPLEX settings they are both capable of.
+WHAT if AUTONEGOTIATION is DISABLED on the device connected to the SWITCH ?
+• SPEED: The SWITCH will try to send at the speed that the other device is operating at. If it fails to send
+the speed, it will use the slowest supported speed (ie: 10 Mbps on a 10/100/1000 interface).
+• DUPLEX: If the speed is 10 or 100 Mbps the SWITCH will use HALF DUPLEX. If the speed is 1000 Mbps
+or great, it will use FULL DUPLEX.
+INTERFACE COUNTERS AND ERRORS
+Show using the:
+// Privileged EXEC mode
+SW1#show interfaces
+Error stats will be at the bottom.
+Packets Received / Total bytes received.
+Runts: Frames that are smaller than the minimum frame size (64 bytes)
+Giants: Frames that are larger than the maximum frame size (1518 bytes)
+CRC: Frames that failed the CRC check (in the Ethernet FCS trailer)
+Frame: Frames that have an incorrect format (due to an error)
+Input errors: Total of various counters, such as the above four
+Output errors: Frames the SWITCH tried to send, but failed due to an error
+
+Day 9 - Switch Interfaces
+Saturday, August 22, 2026 2:50 PM
+9. SWITCH INTERFACES
+CISCO CLI for SWITCHES
+// enter Privileged EXEC mode
+SW1&gt;enable
+// Show all interfaces of Switch 1.
+SW# show ip interface brief
+This will show the interfaces currently on Switch 1. It has the same information structure as Cisco Routers.
+Notice the Status (Layer 2) and Protocol (Layer 1) columns are showing &quot;up/up&quot;.
+Unlike ROUTERS, SWITCHES do no DEFAULT to &#x27;administrative down/down&#x27;(shutdown).
+Unconnected devices will show as &quot;down&quot; and &quot;down&quot; (not connected to another device)
+// Show the status of all interfaces on SW1
+SW1#show interfaces status
+This will list:
+• Ports
+• Name (which is description)
+• Status (connection status)
+• Vlan (can be used to divide up LANs) - Vlan 1 is the default.
+• Duplex (can the connection send/receive at same time?) - Auto is default
+• Speed (speed in bps) - Auto is default
+• Type (what medium is being used, speed of interface)
+Config commands
+speed
+duplex
+description
+INTERFACE RANGE
+Unused Interfaces can pose a security risk so it&#x27;s a good idea to deactivate them.
+However, if you have 28+ interfaces not in use, do you have to do them one at a time?
+Answer: No! There is a command to apply configurations to a range of interfaces.
+Inside Global Config Mode (config t):
+SW1(config)#interface range f0/5 - 12 // Choose all interfaces from 0/5 to 0/12
+SW1(config-if-range)#description ## not in use ##
+SW1(config-if-range)#shutdown
+&lt;&lt; this will list all the interfaces being set to administratively down &gt;&gt;
+Confirm with &#x27;show interface status&#x27; in Privileged EXEC mode or if in CONFIG mode, use &#x27;do show interface
+status&#x27;
+FULL / HALF DUPLEX
+HALF DUPLEX:
+• Device cannot send / receive data at the same time. If it is receiving a frame, it must wait before sending
+a frame.
+FULL DUPLEX:
+• Device CAN send / receive data at the same time. It does NOT have to wait.
+MOST modern SWITCHES support FULL DUPLEX.
+WHERE is HALF DUPLEX used? Almost nowhere.
+In the past, LAN HUBS used HALF DUPLEX.
+When multiple packets were received by the HUB, the HUB would simple FLOOD the connections with frame
+data, causing a COLLISION (on the interface), and hosts would not receive the frame intact.
+All devices connected to a HUB are called a COLLISION DOMAIN.
+To DEAL with COLLISIONS, Ethernet devices use a mechanism called CSMA/CD.
+CSMA/CD = CARRIER SENSE MULTIPLE ACCESS with COLLISION DETECTION.
+• Before sending frames, devices &#x27;listen&#x27; to the collision domain until they detect that other devices are
+not sending.
+• IF a collision occurs, the device sends a jamming signal to inform the other devices that a collision
+happened.
+• Each device will wait a random period of time before sending frames again.
+• The process repeats.
+SWITCHES are more sophisticated than HUBS.
+HUBS are Layer 1 Devices - Collisions are common and use CSMA/CD. SWITCHES are Layer 2 Devices -
+Collisions RARELY occur.
+SPEED / DUPLEX AUTONEGOTIATION
+• Interfaces that can run at different speeds (10/100 or 10/100/1000) have a default setting of SPEED
+AUTO and DUPLEX AUTO.
+• Interfaces &#x27;advertise&#x27; their capabilities to the neighbouring device, and they negotiate the best SPEED
+and DUPLEX settings they are both capable of.
+WHAT if AUTONEGOTIATION is DISABLED on the device connected to the SWITCH ?
+• SPEED: The SWITCH will try to send at the speed that the other device is operating at. If it fails to send
+the speed, it will use the slowest supported speed (ie: 10 Mbps on a 10/100/1000 interface).
+• DUPLEX: If the speed is 10 or 100 Mbps the SWITCH will use HALF DUPLEX. If the speed is 1000 Mbps
+or great, it will use FULL DUPLEX.
+INTERFACE COUNTERS AND ERRORS
+Show using the:
+// Privileged EXEC mode
+SW1#show interfaces
+Error stats will be at the bottom.
+Packets Received / Total bytes received.
+Runts: Frames that are smaller than the minimum frame size (64 bytes)
+Giants: Frames that are larger than the maximum frame size (1518 bytes)
+CRC: Frames that failed the CRC check (in the Ethernet FCS trailer)
+Frame: Frames that have an incorrect format (due to an error)
+Input errors: Total of various counters, such as the above four
+Output errors: Frames the SWITCH tried to send, but failed due to an error
+
+Day 9 - Switch Interfaces
+Saturday, August 22, 2026 2:50 PM
+9. SWITCH INTERFACES
+CISCO CLI for SWITCHES
+// enter Privileged EXEC mode
+SW1&gt;enable
+// Show all interfaces of Switch 1.
+SW# show ip interface brief
+This will show the interfaces currently on Switch 1. It has the same information structure as Cisco Routers.
+Notice the Status (Layer 2) and Protocol (Layer 1) columns are showing &quot;up/up&quot;.
+Unlike ROUTERS, SWITCHES do no DEFAULT to &#x27;administrative down/down&#x27;(shutdown).
+Unconnected devices will show as &quot;down&quot; and &quot;down&quot; (not connected to another device)
+// Show the status of all interfaces on SW1
+SW1#show interfaces status
+This will list:
+• Ports
+• Name (which is description)
+• Status (connection status)
+• Vlan (can be used to divide up LANs) - Vlan 1 is the default.
+• Duplex (can the connection send/receive at same time?) - Auto is default
+• Speed (speed in bps) - Auto is default
+• Type (what medium is being used, speed of interface)
+Config commands
+speed
+duplex
+description
+INTERFACE RANGE
+Unused Interfaces can pose a security risk so it&#x27;s a good idea to deactivate them.
+However, if you have 28+ interfaces not in use, do you have to do them one at a time?
+Answer: No! There is a command to apply configurations to a range of interfaces.
+Inside Global Config Mode (config t):
+SW1(config)#interface range f0/5 - 12 // Choose all interfaces from 0/5 to 0/12
+SW1(config-if-range)#description ## not in use ##
+SW1(config-if-range)#shutdown
+&lt;&lt; this will list all the interfaces being set to administratively down &gt;&gt;
+Confirm with &#x27;show interface status&#x27; in Privileged EXEC mode or if in CONFIG mode, use &#x27;do show interface
+status&#x27;
+FULL / HALF DUPLEX
+HALF DUPLEX:
+• Device cannot send / receive data at the same time. If it is receiving a frame, it must wait before sending
+a frame.
+FULL DUPLEX:
+• Device CAN send / receive data at the same time. It does NOT have to wait.
+MOST modern SWITCHES support FULL DUPLEX.
+WHERE is HALF DUPLEX used? Almost nowhere.
+In the past, LAN HUBS used HALF DUPLEX.
+When multiple packets were received by the HUB, the HUB would simple FLOOD the connections with frame
+data, causing a COLLISION (on the interface), and hosts would not receive the frame intact.
+All devices connected to a HUB are called a COLLISION DOMAIN.
+To DEAL with COLLISIONS, Ethernet devices use a mechanism called CSMA/CD.
+CSMA/CD = CARRIER SENSE MULTIPLE ACCESS with COLLISION DETECTION.
+• Before sending frames, devices &#x27;listen&#x27; to the collision domain until they detect that other devices are
+not sending.
+• IF a collision occurs, the device sends a jamming signal to inform the other devices that a collision
+happened.
+• Each device will wait a random period of time before sending frames again.
+• The process repeats.
+SWITCHES are more sophisticated than HUBS.
+HUBS are Layer 1 Devices - Collisions are common and use CSMA/CD. SWITCHES are Layer 2 Devices -
+Collisions RARELY occur.
+SPEED / DUPLEX AUTONEGOTIATION
+• Interfaces that can run at different speeds (10/100 or 10/100/1000) have a default setting of SPEED
+AUTO and DUPLEX AUTO.
+• Interfaces &#x27;advertise&#x27; their capabilities to the neighbouring device, and they negotiate the best SPEED
+and DUPLEX settings they are both capable of.
+WHAT if AUTONEGOTIATION is DISABLED on the device connected to the SWITCH ?
+• SPEED: The SWITCH will try to send at the speed that the other device is operating at. If it fails to send
+the speed, it will use the slowest supported speed (ie: 10 Mbps on a 10/100/1000 interface).
+• DUPLEX: If the speed is 10 or 100 Mbps the SWITCH will use HALF DUPLEX. If the speed is 1000 Mbps
+or great, it will use FULL DUPLEX.
+INTERFACE COUNTERS AND ERRORS
+Show using the:
+// Privileged EXEC mode
+SW1#show interfaces
+Error stats will be at the bottom.
+Packets Received / Total bytes received.
+Runts: Frames that are smaller than the minimum frame size (64 bytes)
+Giants: Frames that are larger than the maximum frame size (1518 bytes)
+CRC: Frames that failed the CRC check (in the Ethernet FCS trailer)
+Frame: Frames that have an incorrect format (due to an error)
+Input errors: Total of various counters, such as the above four
+Output errors: Frames the SWITCH tried to send, but failed due to an error
+
+Day 9 - Switch Interfaces
+Saturday, August 22, 2026 2:50 PM
+9. SWITCH INTERFACES
+CISCO CLI for SWITCHES
+// enter Privileged EXEC mode
+SW1&gt;enable
+// Show all interfaces of Switch 1.
+SW# show ip interface brief
+This will show the interfaces currently on Switch 1. It has the same information structure as Cisco Routers.
+Notice the Status (Layer 2) and Protocol (Layer 1) columns are showing &quot;up/up&quot;.
+Unlike ROUTERS, SWITCHES do no DEFAULT to &#x27;administrative down/down&#x27;(shutdown).
+Unconnected devices will show as &quot;down&quot; and &quot;down&quot; (not connected to another device)
+// Show the status of all interfaces on SW1
+SW1#show interfaces status
+This will list:
+• Ports
+• Name (which is description)
+• Status (connection status)
+• Vlan (can be used to divide up LANs) - Vlan 1 is the default.
+• Duplex (can the connection send/receive at same time?) - Auto is default
+• Speed (speed in bps) - Auto is default
+• Type (what medium is being used, speed of interface)
+Config commands
+speed
+duplex
+description
+INTERFACE RANGE
+Unused Interfaces can pose a security risk so it&#x27;s a good idea to deactivate them.
+However, if you have 28+ interfaces not in use, do you have to do them one at a time?
+Answer: No! There is a command to apply configurations to a range of interfaces.
+Inside Global Config Mode (config t):
+SW1(config)#interface range f0/5 - 12 // Choose all interfaces from 0/5 to 0/12
+SW1(config-if-range)#description ## not in use ##
+SW1(config-if-range)#shutdown
+&lt;&lt; this will list all the interfaces being set to administratively down &gt;&gt;
+Confirm with &#x27;show interface status&#x27; in Privileged EXEC mode or if in CONFIG mode, use &#x27;do show interface
+status&#x27;
+FULL / HALF DUPLEX
+HALF DUPLEX:
+• Device cannot send / receive data at the same time. If it is receiving a frame, it must wait before sending
+a frame.
+FULL DUPLEX:
+• Device CAN send / receive data at the same time. It does NOT have to wait.
+MOST modern SWITCHES support FULL DUPLEX.
+WHERE is HALF DUPLEX used? Almost nowhere.
+In the past, LAN HUBS used HALF DUPLEX.
+When multiple packets were received by the HUB, the HUB would simple FLOOD the connections with frame
+data, causing a COLLISION (on the interface), and hosts would not receive the frame intact.
+All devices connected to a HUB are called a COLLISION DOMAIN.
+To DEAL with COLLISIONS, Ethernet devices use a mechanism called CSMA/CD.
+CSMA/CD = CARRIER SENSE MULTIPLE ACCESS with COLLISION DETECTION.
+• Before sending frames, devices &#x27;listen&#x27; to the collision domain until they detect that other devices are
+not sending.
+• IF a collision occurs, the device sends a jamming signal to inform the other devices that a collision
+happened.
+• Each device will wait a random period of time before sending frames again.
+• The process repeats.
+SWITCHES are more sophisticated than HUBS.
+HUBS are Layer 1 Devices - Collisions are common and use CSMA/CD. SWITCHES are Layer 2 Devices -
+Collisions RARELY occur.
+SPEED / DUPLEX AUTONEGOTIATION
+• Interfaces that can run at different speeds (10/100 or 10/100/1000) have a default setting of SPEED
+AUTO and DUPLEX AUTO.
+• Interfaces &#x27;advertise&#x27; their capabilities to the neighbouring device, and they negotiate the best SPEED
+and DUPLEX settings they are both capable of.
+WHAT if AUTONEGOTIATION is DISABLED on the device connected to the SWITCH ?
+• SPEED: The SWITCH will try to send at the speed that the other device is operating at. If it fails to send
+the speed, it will use the slowest supported speed (ie: 10 Mbps on a 10/100/1000 interface).
+• DUPLEX: If the speed is 10 or 100 Mbps the SWITCH will use HALF DUPLEX. If the speed is 1000 Mbps
+or great, it will use FULL DUPLEX.
+INTERFACE COUNTERS AND ERRORS
+Show using the:
+// Privileged EXEC mode
+SW1#show interfaces
+Error stats will be at the bottom.
+Packets Received / Total bytes received.
+Runts: Frames that are smaller than the minimum frame size (64 bytes)
+Giants: Frames that are larger than the maximum frame size (1518 bytes)
+CRC: Frames that failed the CRC check (in the Ethernet FCS trailer)
+Frame: Frames that have an incorrect format (due to an error)
+Input errors: Total of various counters, such as the above four
+Output errors: Frames the SWITCH tried to send, but failed due to an error</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="day-08.html"><small>← Day 8</small>IPv4 Addressing (pt 2)</a><a href="day-10.html"><small>Day 10 →</small>IPv4 Header</a></nav></article></div></main><footer class="footer"><div class="wrap">Personal study notes · Jeremy’s IT Lab CCNA course · Exported from OneNote September 20, 2026<br><a href="../../resources.html">Back to all resources</a></div></footer><script src="course.js"></script></body></html>

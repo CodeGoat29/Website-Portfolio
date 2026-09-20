@@ -1,0 +1,247 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 5: Ethernet LAN Switching (pt 1) | DiPiazza</title><meta name="description" content="Personal CCNA study notes from OneNote, organized into 63 days with diagrams, original PDFs and searchable text."><link rel="icon" href="../../images/thegoat.png"><link rel="stylesheet" href="course.css"></head><body><header class="top"><div class="wrap"><a class="brand" href="../../index.html">DiPiazza<span aria-hidden="true">.</span></a><nav aria-label="Main"><a href="../../resources.html">Resources</a><a href="index.html">CCNA course</a></nav></div></header><main class="wrap"><div class="crumb"><a href="index.html">CCNA study notes</a> / Day 05</div><header class="lesson-head"><div class="eyebrow">Day 05 / 63 · Network foundations</div><h1>Ethernet LAN Switching (pt 1)</h1><p class="lead">Original notes and diagrams from my OneNote notebook.</p><div class="pills"><a class="button primary" href="index.html">All 63 days</a></div></header><div class="reading-layout"><aside class="aside" aria-label="Lesson parts"><p class="muted">IN THIS DAY</p><a href="#part-1">Ethernet LAN Switching (pt 1)</a><p class="muted">Tap a note image to zoom. Expand the text view to copy or search the exported text.</p></aside><article><section class="note-part" id="part-1"><h2>Ethernet LAN Switching (pt 1)</h2><a class="button" href="assets/lesson-05/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="assets/lesson-05/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge Ethernet LAN Switching (pt 1) page 1"><img src="assets/lesson-05/page-1.webp" width="1424" height="2055" loading="lazy" alt="Original OneNote notes: Ethernet LAN Switching (pt 1), page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 4</figcaption></figure><figure class="note-image"><a href="assets/lesson-05/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge Ethernet LAN Switching (pt 1) page 2"><img src="assets/lesson-05/page-2.webp" width="1443" height="2107" loading="lazy" alt="Original OneNote notes: Ethernet LAN Switching (pt 1), page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 4</figcaption></figure><figure class="note-image"><a href="assets/lesson-05/page-3.webp" target="_blank" rel="noopener" aria-label="Enlarge Ethernet LAN Switching (pt 1) page 3"><img src="assets/lesson-05/page-3.webp" width="1535" height="2100" loading="lazy" alt="Original OneNote notes: Ethernet LAN Switching (pt 1), page 3. Text version follows below."></a><figcaption>Original notes · Page 3 of 4</figcaption></figure><figure class="note-image"><a href="assets/lesson-05/page-4.webp" target="_blank" rel="noopener" aria-label="Enlarge Ethernet LAN Switching (pt 1) page 4"><img src="assets/lesson-05/page-4.webp" width="1546" height="2109" loading="lazy" alt="Original OneNote notes: Ethernet LAN Switching (pt 1), page 4. Text version follows below."></a><figcaption>Original notes · Page 4 of 4</figcaption></figure><details class="text-view"><summary>Text view — Ethernet LAN Switching (pt 1)</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 5 - Ethernet LAN Switching (pt 1)
+Thursday, August 20, 2026 3:28 PM
+LAN&#x27;s
+• A LAN is a network contained in a relatively small area.
+• Routers are used to connect separate LAN&#x27;s
+An ETHERNET FRAME looks like:
+Ethernet Trailer --- PACKET --- Ethernet Header
+The Ethernet Header contains 5 Fields:
+Preamble -- SFD -- Destination -- Source -- Type 7 bytes -- 1 byte -- 6 bytes -- 6 bytes -- 2 bytes
+PREAMBLE:
+• Length: 7 bytes (56 bits)
+• Alternating 1&#x27;s and 0&#x27;s
+• 10101010 * 7x
+• Allows devices to synchronize their receiver clocks
+SFD : ‘Start Frame Delimiter’
+• Length: 1 byte(8 bits)
+• 10101011
+• Marks end of the PREAMBLE and beginning of rest of frame.
+DESTINATION AND SOURCE
+• Layer 2 Address
+• Indicates the devices sending / receiving the frame
+• MAC = ’Media Access Control’
+• = 6 byte (48-bit) address of the physical device
+TYPE / LENGTH
+• 2 bytes (16-bit) field
+• A value of 1500 or less in this field indicates the LENGTH of the encapsulated packet (in bytes)
+• A value of 1536 or greater in this field indicates the TYPE of the encapsulated packet and length is
+determined via other methods.
+• IPv4 = 0x0800 (hexadecimal) = 2048 in decimal
+• IPv6 = 0x86DD (hexadecimal) = 34525 in decimal
+• Layer 3 protocol used in the encapsulated Packet, which is almost always Internet Protocol (IP) version 4
+or version 6.
+The ETHERNET TRAILER contains:
+FCS
+○ ‘FRAME CHECK SEQUENCE’
+○ 4 bytes (32 bits) in length
+○ Detects corrupted data by running a &#x27;CRC&#x27; algorithm over the received data
+○ CRC = &quot;Cyclic Redundancy Check&quot;
+Altogether the ETHERNET FRAME = 26 bytes (header + trailer)
+MAC ADDRESS (48 bits long)
+• 6-bytes (48-bits) physical address assigned to the device when it is made.
+• AKA &#x27;Burned-In Address&#x27; (BIA)
+• Is globally unique
+• First 3 bytes are the OUI (Organizationally Unique Identifier) which is assigned to the company making
+the device
+• The last 3 bytes are unique to the device itself
+• Written as 12 hexadecimal characters
+Example:
+E8:BA:70 // 11:28:74 OUI // Unique Device ID
+HEXADECIMAL
+INTERFACE NAMES
+F0/1, F0/2, F0/3... F stands for &quot;Fast Ethernet&quot; or 100 Mbps interfaces.
+MAC ADDRESS TABLE
+Each Switch stores a DYNAMICALLY LEARNED MAC ADDRESS TABLE, using the SOURCE MAC ADDRESS of
+frames it receives.
+When a Switch doesn&#x27;t know the DESTINATION MAC ADDRESS of a frame (UNKNOWN UNICAST FRAME), it is
+forced to FLOOD the frame - Forward the frame out of ALL it&#x27;s interfaces, except the one it received the packet
+from.
+When a KNOWN Unicast Frame is known (MAC Address is recognized by the entry in the MAC ADDRESS
+TABLE), the frame is FORWARDED like normal.
+• Note: Dynamic MAC Addresses are removed from the MAC ADDRESS TABLE every 5 minutes of inactivity.
+
+Day 5 - Ethernet LAN Switching (pt 1)
+Thursday, August 20, 2026 3:28 PM
+LAN&#x27;s
+• A LAN is a network contained in a relatively small area.
+• Routers are used to connect separate LAN&#x27;s
+An ETHERNET FRAME looks like:
+Ethernet Trailer --- PACKET --- Ethernet Header
+The Ethernet Header contains 5 Fields:
+Preamble -- SFD -- Destination -- Source -- Type 7 bytes -- 1 byte -- 6 bytes -- 6 bytes -- 2 bytes
+PREAMBLE:
+• Length: 7 bytes (56 bits)
+• Alternating 1&#x27;s and 0&#x27;s
+• 10101010 * 7x
+• Allows devices to synchronize their receiver clocks
+SFD : ‘Start Frame Delimiter’
+• Length: 1 byte(8 bits)
+• 10101011
+• Marks end of the PREAMBLE and beginning of rest of frame.
+DESTINATION AND SOURCE
+• Layer 2 Address
+• Indicates the devices sending / receiving the frame
+• MAC = ’Media Access Control’
+• = 6 byte (48-bit) address of the physical device
+TYPE / LENGTH
+• 2 bytes (16-bit) field
+• A value of 1500 or less in this field indicates the LENGTH of the encapsulated packet (in bytes)
+• A value of 1536 or greater in this field indicates the TYPE of the encapsulated packet and length is
+determined via other methods.
+• IPv4 = 0x0800 (hexadecimal) = 2048 in decimal
+• IPv6 = 0x86DD (hexadecimal) = 34525 in decimal
+• Layer 3 protocol used in the encapsulated Packet, which is almost always Internet Protocol (IP) version 4
+or version 6.
+The ETHERNET TRAILER contains:
+FCS
+○ ‘FRAME CHECK SEQUENCE’
+○ 4 bytes (32 bits) in length
+○ Detects corrupted data by running a &#x27;CRC&#x27; algorithm over the received data
+○ CRC = &quot;Cyclic Redundancy Check&quot;
+Altogether the ETHERNET FRAME = 26 bytes (header + trailer)
+MAC ADDRESS (48 bits long)
+• 6-bytes (48-bits) physical address assigned to the device when it is made.
+• AKA &#x27;Burned-In Address&#x27; (BIA)
+• Is globally unique
+• First 3 bytes are the OUI (Organizationally Unique Identifier) which is assigned to the company making
+the device
+• The last 3 bytes are unique to the device itself
+• Written as 12 hexadecimal characters
+Example:
+E8:BA:70 // 11:28:74 OUI // Unique Device ID
+HEXADECIMAL
+INTERFACE NAMES
+F0/1, F0/2, F0/3... F stands for &quot;Fast Ethernet&quot; or 100 Mbps interfaces.
+MAC ADDRESS TABLE
+Each Switch stores a DYNAMICALLY LEARNED MAC ADDRESS TABLE, using the SOURCE MAC ADDRESS of
+frames it receives.
+When a Switch doesn&#x27;t know the DESTINATION MAC ADDRESS of a frame (UNKNOWN UNICAST FRAME), it is
+forced to FLOOD the frame - Forward the frame out of ALL it&#x27;s interfaces, except the one it received the packet
+from.
+When a KNOWN Unicast Frame is known (MAC Address is recognized by the entry in the MAC ADDRESS
+TABLE), the frame is FORWARDED like normal.
+• Note: Dynamic MAC Addresses are removed from the MAC ADDRESS TABLE every 5 minutes of inactivity.
+
+Day 5 - Ethernet LAN Switching (pt 1)
+Thursday, August 20, 2026 3:28 PM
+LAN&#x27;s
+• A LAN is a network contained in a relatively small area.
+• Routers are used to connect separate LAN&#x27;s
+An ETHERNET FRAME looks like:
+Ethernet Trailer --- PACKET --- Ethernet Header
+The Ethernet Header contains 5 Fields:
+Preamble -- SFD -- Destination -- Source -- Type 7 bytes -- 1 byte -- 6 bytes -- 6 bytes -- 2 bytes
+PREAMBLE:
+• Length: 7 bytes (56 bits)
+• Alternating 1&#x27;s and 0&#x27;s
+• 10101010 * 7x
+• Allows devices to synchronize their receiver clocks
+SFD : ‘Start Frame Delimiter’
+• Length: 1 byte(8 bits)
+• 10101011
+• Marks end of the PREAMBLE and beginning of rest of frame.
+DESTINATION AND SOURCE
+• Layer 2 Address
+• Indicates the devices sending / receiving the frame
+• MAC = ’Media Access Control’
+• = 6 byte (48-bit) address of the physical device
+TYPE / LENGTH
+• 2 bytes (16-bit) field
+• A value of 1500 or less in this field indicates the LENGTH of the encapsulated packet (in bytes)
+• A value of 1536 or greater in this field indicates the TYPE of the encapsulated packet and length is
+determined via other methods.
+• IPv4 = 0x0800 (hexadecimal) = 2048 in decimal
+• IPv6 = 0x86DD (hexadecimal) = 34525 in decimal
+• Layer 3 protocol used in the encapsulated Packet, which is almost always Internet Protocol (IP) version 4
+or version 6.
+The ETHERNET TRAILER contains:
+FCS
+○ ‘FRAME CHECK SEQUENCE’
+○ 4 bytes (32 bits) in length
+○ Detects corrupted data by running a &#x27;CRC&#x27; algorithm over the received data
+○ CRC = &quot;Cyclic Redundancy Check&quot;
+Altogether the ETHERNET FRAME = 26 bytes (header + trailer)
+MAC ADDRESS (48 bits long)
+• 6-bytes (48-bits) physical address assigned to the device when it is made.
+• AKA &#x27;Burned-In Address&#x27; (BIA)
+• Is globally unique
+• First 3 bytes are the OUI (Organizationally Unique Identifier) which is assigned to the company making
+the device
+• The last 3 bytes are unique to the device itself
+• Written as 12 hexadecimal characters
+Example:
+E8:BA:70 // 11:28:74 OUI // Unique Device ID
+HEXADECIMAL
+INTERFACE NAMES
+F0/1, F0/2, F0/3... F stands for &quot;Fast Ethernet&quot; or 100 Mbps interfaces.
+MAC ADDRESS TABLE
+Each Switch stores a DYNAMICALLY LEARNED MAC ADDRESS TABLE, using the SOURCE MAC ADDRESS of
+frames it receives.
+When a Switch doesn&#x27;t know the DESTINATION MAC ADDRESS of a frame (UNKNOWN UNICAST FRAME), it is
+forced to FLOOD the frame - Forward the frame out of ALL it&#x27;s interfaces, except the one it received the packet
+from.
+When a KNOWN Unicast Frame is known (MAC Address is recognized by the entry in the MAC ADDRESS
+TABLE), the frame is FORWARDED like normal.
+• Note: Dynamic MAC Addresses are removed from the MAC ADDRESS TABLE every 5 minutes of inactivity.
+
+Day 5 - Ethernet LAN Switching (pt 1)
+Thursday, August 20, 2026 3:28 PM
+LAN&#x27;s
+• A LAN is a network contained in a relatively small area.
+• Routers are used to connect separate LAN&#x27;s
+An ETHERNET FRAME looks like:
+Ethernet Trailer --- PACKET --- Ethernet Header
+The Ethernet Header contains 5 Fields:
+Preamble -- SFD -- Destination -- Source -- Type 7 bytes -- 1 byte -- 6 bytes -- 6 bytes -- 2 bytes
+PREAMBLE:
+• Length: 7 bytes (56 bits)
+• Alternating 1&#x27;s and 0&#x27;s
+• 10101010 * 7x
+• Allows devices to synchronize their receiver clocks
+SFD : ‘Start Frame Delimiter’
+• Length: 1 byte(8 bits)
+• 10101011
+• Marks end of the PREAMBLE and beginning of rest of frame.
+DESTINATION AND SOURCE
+• Layer 2 Address
+• Indicates the devices sending / receiving the frame
+• MAC = ’Media Access Control’
+• = 6 byte (48-bit) address of the physical device
+TYPE / LENGTH
+• 2 bytes (16-bit) field
+• A value of 1500 or less in this field indicates the LENGTH of the encapsulated packet (in bytes)
+• A value of 1536 or greater in this field indicates the TYPE of the encapsulated packet and length is
+determined via other methods.
+• IPv4 = 0x0800 (hexadecimal) = 2048 in decimal
+• IPv6 = 0x86DD (hexadecimal) = 34525 in decimal
+• Layer 3 protocol used in the encapsulated Packet, which is almost always Internet Protocol (IP) version 4
+or version 6.
+The ETHERNET TRAILER contains:
+FCS
+○ ‘FRAME CHECK SEQUENCE’
+○ 4 bytes (32 bits) in length
+○ Detects corrupted data by running a &#x27;CRC&#x27; algorithm over the received data
+○ CRC = &quot;Cyclic Redundancy Check&quot;
+Altogether the ETHERNET FRAME = 26 bytes (header + trailer)
+MAC ADDRESS (48 bits long)
+• 6-bytes (48-bits) physical address assigned to the device when it is made.
+• AKA &#x27;Burned-In Address&#x27; (BIA)
+• Is globally unique
+• First 3 bytes are the OUI (Organizationally Unique Identifier) which is assigned to the company making
+the device
+• The last 3 bytes are unique to the device itself
+• Written as 12 hexadecimal characters
+Example:
+E8:BA:70 // 11:28:74 OUI // Unique Device ID
+HEXADECIMAL
+INTERFACE NAMES
+F0/1, F0/2, F0/3... F stands for &quot;Fast Ethernet&quot; or 100 Mbps interfaces.
+MAC ADDRESS TABLE
+Each Switch stores a DYNAMICALLY LEARNED MAC ADDRESS TABLE, using the SOURCE MAC ADDRESS of
+frames it receives.
+When a Switch doesn&#x27;t know the DESTINATION MAC ADDRESS of a frame (UNKNOWN UNICAST FRAME), it is
+forced to FLOOD the frame - Forward the frame out of ALL it&#x27;s interfaces, except the one it received the packet
+from.
+When a KNOWN Unicast Frame is known (MAC Address is recognized by the entry in the MAC ADDRESS
+TABLE), the frame is FORWARDED like normal.
+• Note: Dynamic MAC Addresses are removed from the MAC ADDRESS TABLE every 5 minutes of inactivity.</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="day-04.html"><small>← Day 4</small>Intro to the CLI</a><a href="day-06.html"><small>Day 6 →</small>Ethernet LAN Switching (pt 2)</a></nav></article></div></main><footer class="footer"><div class="wrap">Personal study notes · Jeremy’s IT Lab CCNA course · Exported from OneNote September 20, 2026<br><a href="../../resources.html">Back to all resources</a></div></footer><script src="course.js"></script></body></html>

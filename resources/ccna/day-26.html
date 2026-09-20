@@ -1,0 +1,171 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 26: OSPF (pt 1) | DiPiazza</title><meta name="description" content="Personal CCNA study notes from OneNote, organized into 63 days with diagrams, original PDFs and searchable text."><link rel="icon" href="../../images/thegoat.png"><link rel="stylesheet" href="course.css"></head><body><header class="top"><div class="wrap"><a class="brand" href="../../index.html">DiPiazza<span aria-hidden="true">.</span></a><nav aria-label="Main"><a href="../../resources.html">Resources</a><a href="index.html">CCNA course</a></nav></div></header><main class="wrap"><div class="crumb"><a href="index.html">CCNA study notes</a> / Day 26</div><header class="lesson-head"><div class="eyebrow">Day 26 / 63 · Routing &amp; addressing</div><h1>OSPF (pt 1)</h1><p class="lead">Original notes and diagrams from my OneNote notebook.</p><div class="pills"><a class="button primary" href="index.html">All 63 days</a></div></header><div class="reading-layout"><aside class="aside" aria-label="Lesson parts"><p class="muted">IN THIS DAY</p><a href="#part-1">OSPF (pt 1)</a><p class="muted">Tap a note image to zoom. Expand the text view to copy or search the exported text.</p></aside><article><section class="note-part" id="part-1"><h2>OSPF (pt 1)</h2><a class="button" href="assets/lesson-27/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="assets/lesson-27/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge OSPF (pt 1) page 1"><img src="assets/lesson-27/page-1.webp" width="1530" height="2055" loading="lazy" alt="Original OneNote notes: OSPF (pt 1), page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 2</figcaption></figure><figure class="note-image"><a href="assets/lesson-27/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge OSPF (pt 1) page 2"><img src="assets/lesson-27/page-2.webp" width="1530" height="1588" loading="lazy" alt="Original OneNote notes: OSPF (pt 1), page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 2</figcaption></figure><details class="text-view"><summary>Text view — OSPF (pt 1)</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 26 - OSPF (pt 1)
+Sunday, September 6, 2026 10:46 AM
+OSPF Information
+Open Shortest Path First (OPSF) is a dynamic routing protocol that is widely used in modern networks. It uses
+the Shortest Path First (SPF) algorithm (also called Dijkstra’s algorithm)
+• OSPF has three versions:
+○ OSPFv1: Old and not in use anymore.
+○ OSPFv2: Used for IPv4
+○ OSPFv3: Used for IPv6 (can also be used for IPv4, but usually v2 is used)
+Routers store information about the network in LSAs (Link State Advertisements) which are organized in LSDBs (Link
+State Databases)
+Routers will flood LSAs until all routers in the OSPF area develop the same map of the network. (until all routers have
+the same LSDB)
+LSA Flooding Process
+• When OSPF is activated on an interface, the router creates an LSA to tell its neighbors about the network on that
+interface.
+• The LSA is flooded throughout the network until it has been received by all routers.
+• Eventually, all routers will have the same LSDB and each router will use the SPF algorithm to calculate the best
+routes
+In OSPF, the three main steps to sharing LSAs and determining the best route are:
+1. Become neighbors with other routers
+2. Exchange LSAs with neighbor routers
+3. Calculate the best routes
+OSPF Areas
+OSPF uses areas to divide up the network.
+Small networks can use a single-area setup without any negative effects.
+However, large networks can suffer from many negative effects if a single-area setup is used.
+The effects of single-area on large networks
+○ The SPF algorithm takes more time to calculate routes
+○ The SPF algorithm requires exponentially more processing power on the routers
+○ The larger LSDB takes up more memory on the routers
+○ Any small change in the network causes every router to flood LSAs and run the SPF algorithm again
+OSPF Terminology
+• Area: An area is a set of routers and links that share the same LSDB.
+• Backbone Area (area 0): A special area that all other areas in the network must connect to.
+• Internal Routers: Routers with all interfaces in the same area.
+• Area Border Routers (ABR): Routers with interfaces in multiple areas.
+• Autonomous System Boundary Router (ASBR): OSPF router that connects the OSPF network to an external router.
+• Backbone Routers: Routers connected to the backbone area.
+• Intra-area Route: A route to a destination inside the same OSPF area.
+• Interarea Route: A route to a destination in a different OSPF area.
+OSPF Area Rules
+• OSPF areas should be contiguous.
+○ (Being non-contiguous would mean having a area 1 be split up into two different places, for example)
+• All OSPF areas must have at least one ABR connected to the backbone area.
+• OSPF interfaces in the same subnet must be in the same area.
+ABRs Maximum Area Connections
+○ ABRs maintain a separate LSDB for each area they are connected to.
+○ It is recommended that you connect an ABR to a maximum of 2 areas.
+§ Connecting an ABR to 3+ areas can overburden the router.
+OSPF Autonomous System Boundary Router (ASBR)
+The Autonomous System Boundary Router (ASBR) is an OSPF router that connects the OSPF network to an external
+router.
+• It is assigned when a router has a default route and the default-information originate command is used on the
+router.
+Basic OSPF Configuration
+OSPF initialization is done through the router ospf PROCESS-ID area AREA-ID command.
+The OSPF process ID is locally significant on the router itself. Routers with different process IDs can
+become OSPF neighbors, they do not need to have matching process IDs.
+• Network command:
+○ The network command in OSPF requires you to specify the area.
+§ Ex. network IP-ADDRESS WILDCARD-MASK area AREA
+○ Also, the network command tells the router to:
+§ Look for interfaces with an IP address that is in the specified range and activate OSPF on them in the
+specified area.
+§ The router will then try to become OSPF neighbors with other OSPF routers.
+• Passive Interface command:
+○ The passive-interface INTERFACE-ID command tells the router to stop sending OSPF Hello messages out of the
+specified interface. It is used on interfaces that don’t have any OSPF neighbors.
+○ However, the router will still continue to send LSAs informing its neighbors about the subnet configured on
+that interface.
+• Default Information command:
+○ The default-information originate command tells the router to advertise its default route to the other protocol
+neighbors.
+OSPF Router ID
+The OSPF router ID is selected through 3 methods, with priority being from top to bottom
+1. Manual Configuration (via router-id A.B.C.D)
+2. Highest IP address on a loopback interface
+3. Highest IP address on a physical interface
+Watch out: Router-ID functionality
+○ If OSPF has already been started on the device (through router ospf PROCESS-ID area AREA-ID) and a Router-
+ID has been assigned either manually or automatically, then the Router-ID will stay the same, and will not
+change until the OSPF process is restarted.
+○ Even if router-id A.B.C.D is used to change the Router-ID, the change will not take effect until an OSPF restart
+is performed.
+
+Day 26 - OSPF (pt 1)
+Sunday, September 6, 2026 10:46 AM
+OSPF Information
+Open Shortest Path First (OPSF) is a dynamic routing protocol that is widely used in modern networks. It uses
+the Shortest Path First (SPF) algorithm (also called Dijkstra’s algorithm)
+• OSPF has three versions:
+○ OSPFv1: Old and not in use anymore.
+○ OSPFv2: Used for IPv4
+○ OSPFv3: Used for IPv6 (can also be used for IPv4, but usually v2 is used)
+Routers store information about the network in LSAs (Link State Advertisements) which are organized in LSDBs (Link
+State Databases)
+Routers will flood LSAs until all routers in the OSPF area develop the same map of the network. (until all routers have
+the same LSDB)
+LSA Flooding Process
+• When OSPF is activated on an interface, the router creates an LSA to tell its neighbors about the network on that
+interface.
+• The LSA is flooded throughout the network until it has been received by all routers.
+• Eventually, all routers will have the same LSDB and each router will use the SPF algorithm to calculate the best
+routes
+In OSPF, the three main steps to sharing LSAs and determining the best route are:
+1. Become neighbors with other routers
+2. Exchange LSAs with neighbor routers
+3. Calculate the best routes
+OSPF Areas
+OSPF uses areas to divide up the network.
+Small networks can use a single-area setup without any negative effects.
+However, large networks can suffer from many negative effects if a single-area setup is used.
+The effects of single-area on large networks
+○ The SPF algorithm takes more time to calculate routes
+○ The SPF algorithm requires exponentially more processing power on the routers
+○ The larger LSDB takes up more memory on the routers
+○ Any small change in the network causes every router to flood LSAs and run the SPF algorithm again
+OSPF Terminology
+• Area: An area is a set of routers and links that share the same LSDB.
+• Backbone Area (area 0): A special area that all other areas in the network must connect to.
+• Internal Routers: Routers with all interfaces in the same area.
+• Area Border Routers (ABR): Routers with interfaces in multiple areas.
+• Autonomous System Boundary Router (ASBR): OSPF router that connects the OSPF network to an external router.
+• Backbone Routers: Routers connected to the backbone area.
+• Intra-area Route: A route to a destination inside the same OSPF area.
+• Interarea Route: A route to a destination in a different OSPF area.
+OSPF Area Rules
+• OSPF areas should be contiguous.
+○ (Being non-contiguous would mean having a area 1 be split up into two different places, for example)
+• All OSPF areas must have at least one ABR connected to the backbone area.
+• OSPF interfaces in the same subnet must be in the same area.
+ABRs Maximum Area Connections
+○ ABRs maintain a separate LSDB for each area they are connected to.
+○ It is recommended that you connect an ABR to a maximum of 2 areas.
+§ Connecting an ABR to 3+ areas can overburden the router.
+OSPF Autonomous System Boundary Router (ASBR)
+The Autonomous System Boundary Router (ASBR) is an OSPF router that connects the OSPF network to an external
+router.
+• It is assigned when a router has a default route and the default-information originate command is used on the
+router.
+Basic OSPF Configuration
+OSPF initialization is done through the router ospf PROCESS-ID area AREA-ID command.
+The OSPF process ID is locally significant on the router itself. Routers with different process IDs can
+become OSPF neighbors, they do not need to have matching process IDs.
+• Network command:
+○ The network command in OSPF requires you to specify the area.
+§ Ex. network IP-ADDRESS WILDCARD-MASK area AREA
+○ Also, the network command tells the router to:
+§ Look for interfaces with an IP address that is in the specified range and activate OSPF on them in the
+specified area.
+§ The router will then try to become OSPF neighbors with other OSPF routers.
+• Passive Interface command:
+○ The passive-interface INTERFACE-ID command tells the router to stop sending OSPF Hello messages out of the
+specified interface. It is used on interfaces that don’t have any OSPF neighbors.
+○ However, the router will still continue to send LSAs informing its neighbors about the subnet configured on
+that interface.
+• Default Information command:
+○ The default-information originate command tells the router to advertise its default route to the other protocol
+neighbors.
+OSPF Router ID
+The OSPF router ID is selected through 3 methods, with priority being from top to bottom
+1. Manual Configuration (via router-id A.B.C.D)
+2. Highest IP address on a loopback interface
+3. Highest IP address on a physical interface
+Watch out: Router-ID functionality
+○ If OSPF has already been started on the device (through router ospf PROCESS-ID area AREA-ID) and a Router-
+ID has been assigned either manually or automatically, then the Router-ID will stay the same, and will not
+change until the OSPF process is restarted.
+○ Even if router-id A.B.C.D is used to change the Router-ID, the change will not take effect until an OSPF restart
+is performed.</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="day-25.html"><small>← Day 25</small>RIP &amp; EIGRP</a><a href="day-27.html"><small>Day 27 →</small>OSPF (pt 2)</a></nav></article></div></main><footer class="footer"><div class="wrap">Personal study notes · Jeremy’s IT Lab CCNA course · Exported from OneNote September 20, 2026<br><a href="../../resources.html">Back to all resources</a></div></footer><script src="course.js"></script></body></html>

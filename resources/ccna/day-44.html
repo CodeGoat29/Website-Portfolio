@@ -1,0 +1,141 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 44: NAT (pt 1) | DiPiazza</title><meta name="description" content="Personal CCNA study notes from OneNote, organized into 63 days with diagrams, original PDFs and searchable text."><link rel="icon" href="../../images/thegoat.png"><link rel="stylesheet" href="course.css"></head><body><header class="top"><div class="wrap"><a class="brand" href="../../index.html">DiPiazza<span aria-hidden="true">.</span></a><nav aria-label="Main"><a href="../../resources.html">Resources</a><a href="index.html">CCNA course</a></nav></div></header><main class="wrap"><div class="crumb"><a href="index.html">CCNA study notes</a> / Day 44</div><header class="lesson-head"><div class="eyebrow">Day 44 / 63 · Network services</div><h1>NAT (pt 1)</h1><p class="lead">Original notes and diagrams from my OneNote notebook.</p><div class="pills"><a class="button primary" href="index.html">All 63 days</a></div></header><div class="reading-layout"><aside class="aside" aria-label="Lesson parts"><p class="muted">IN THIS DAY</p><a href="#part-1">NAT (pt 1)</a><p class="muted">Tap a note image to zoom. Expand the text view to copy or search the exported text.</p></aside><article><section class="note-part" id="part-1"><h2>NAT (pt 1)</h2><a class="button" href="assets/lesson-45/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="assets/lesson-45/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge NAT (pt 1) page 1"><img src="assets/lesson-45/page-1.webp" width="1542" height="2056" loading="lazy" alt="Original OneNote notes: NAT (pt 1), page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 2</figcaption></figure><figure class="note-image"><a href="assets/lesson-45/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge NAT (pt 1) page 2"><img src="assets/lesson-45/page-2.webp" width="1522" height="1331" loading="lazy" alt="Original OneNote notes: NAT (pt 1), page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 2</figcaption></figure><details class="text-view"><summary>Text view — NAT (pt 1)</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 44 - NAT (pt 1)
+Wednesday, September 9, 2026 8:37 PM
+NAT Info
+Private IPv4 Addresses (RFC 1918)
+IPv4 doesn’t provide enough addresses for all devices that need them in the modern world.
+• That’s why RFC 1918 was created as a short term solution for the problem. It specifies three IPv4 ranges as private
+address ranges (meant for local usage), and they are:
+1. 10.0.0.0/8 (10.0.0.0 to 10.255.255.255)
+2. 172.16.0.0/12 (172.16.0.0 to 172.31.255.255)
+3. 192.168.0.0/16 (192.168.0.0 to 192.168.255.255)
+• Private IP addresses cannot be used over the internet.
+• These addresses can be used freely in your local networks. They do not have to be globally unique.
+Network Address Translation (NAT) General Information
+Network Address Translation (NAT) is a protocol that is used to modify the source and/or destination IP addresses of
+packets.
+• There are many reasons to use NAT, but the most common reason is to allow hosts with private IP addresses to
+communicate with other hosts over the internet.
+• Source NAT is the NAT type that you’ll have to understand and know how to configure for the CCNA.
+Source NAT demonstration
+Source NAT types, and what will be discussed in this lecture/note
+○ In this lecture/note, we’ll be focusing on Source Static NAT and how to set it up.
+○ Meanwhile, Dynamic Source NAT and Dynamic Source PAT will be discussed in the next lecture/note. (Day
+45 - NAT (2))
+NAT Address Types
+There are four address types used in NAT, they are:
+1. Inside Local
+○ The IP address of the inside host, from the perspective of the local network
+2. Inside Global
+○ The IP address of the inside host, from the perspective of the global network
+3. Outside Local
+○ The IP address of the outside host, from the perspective of the local network
+4. Outside Global
+○ The IP address of the outside host, from the perspective of the global network
+Good way to remember the types
+○ Inside/Outside refers to the location of the host
+○ Local/Global refers to the perspective
+Note on: Outside Local and Outside Global addresses
+○ For the CCNA, the Outside Local and Outside Global addresses will be the same and will not change.
+○ Unless Destination NAT is used, the two addresses will be the same. (This is outside the scope of the CCNA
+certificate)
+Static NAT
+Static NAT involves statically configuring one-to-one mappings of private IP addresses to public IP addresses.
+• When traffic from the internal host is sent to the outside network, the router will translate the source address.
+• Also, this one-to-one mapping also allows external hosts to access the internal host via the Inside Global address.
+Static NAT Configuration
+• show ip nat translations
+○ Shows information about IP addresses that have been translated through NAT.
+○ Includes the following information:
+§ Protocol used in the connection
+§ Inside Local address
+§ Inside Global address
+§ Outside Local address
+§ Outside Global address
+• show ip nat statistics
+○ Shows statistics about the current NAT process
+○ Includes the following information:
+§ Total active translations (static, dynamic, extended)
+§ Peak translations (highest amount of translations in one time)
+§ Outside interfaces
+§ Inside interfaces
+§ Etc.
+• clear ip nat translation *
+○ Clears all dynamic NAT translations in the NAT translation table
+○ (One type of dynamic translations is IP address translations with a port included)
+• ip nat inside
+○ Defines the ‘inside’ interface(s) connected to the internal network
+• ip nat outside
+○ Defines the ‘outside’ interface(s) connected to the external network
+• ip nat inside source static INSIDE-LOCAL-IP INSIDE-GLOBAL-IP
+○ Configures a one-to-one (Static NAT) IP address mapping
+
+Day 44 - NAT (pt 1)
+Wednesday, September 9, 2026 8:37 PM
+NAT Info
+Private IPv4 Addresses (RFC 1918)
+IPv4 doesn’t provide enough addresses for all devices that need them in the modern world.
+• That’s why RFC 1918 was created as a short term solution for the problem. It specifies three IPv4 ranges as private
+address ranges (meant for local usage), and they are:
+1. 10.0.0.0/8 (10.0.0.0 to 10.255.255.255)
+2. 172.16.0.0/12 (172.16.0.0 to 172.31.255.255)
+3. 192.168.0.0/16 (192.168.0.0 to 192.168.255.255)
+• Private IP addresses cannot be used over the internet.
+• These addresses can be used freely in your local networks. They do not have to be globally unique.
+Network Address Translation (NAT) General Information
+Network Address Translation (NAT) is a protocol that is used to modify the source and/or destination IP addresses of
+packets.
+• There are many reasons to use NAT, but the most common reason is to allow hosts with private IP addresses to
+communicate with other hosts over the internet.
+• Source NAT is the NAT type that you’ll have to understand and know how to configure for the CCNA.
+Source NAT demonstration
+Source NAT types, and what will be discussed in this lecture/note
+○ In this lecture/note, we’ll be focusing on Source Static NAT and how to set it up.
+○ Meanwhile, Dynamic Source NAT and Dynamic Source PAT will be discussed in the next lecture/note. (Day
+45 - NAT (2))
+NAT Address Types
+There are four address types used in NAT, they are:
+1. Inside Local
+○ The IP address of the inside host, from the perspective of the local network
+2. Inside Global
+○ The IP address of the inside host, from the perspective of the global network
+3. Outside Local
+○ The IP address of the outside host, from the perspective of the local network
+4. Outside Global
+○ The IP address of the outside host, from the perspective of the global network
+Good way to remember the types
+○ Inside/Outside refers to the location of the host
+○ Local/Global refers to the perspective
+Note on: Outside Local and Outside Global addresses
+○ For the CCNA, the Outside Local and Outside Global addresses will be the same and will not change.
+○ Unless Destination NAT is used, the two addresses will be the same. (This is outside the scope of the CCNA
+certificate)
+Static NAT
+Static NAT involves statically configuring one-to-one mappings of private IP addresses to public IP addresses.
+• When traffic from the internal host is sent to the outside network, the router will translate the source address.
+• Also, this one-to-one mapping also allows external hosts to access the internal host via the Inside Global address.
+Static NAT Configuration
+• show ip nat translations
+○ Shows information about IP addresses that have been translated through NAT.
+○ Includes the following information:
+§ Protocol used in the connection
+§ Inside Local address
+§ Inside Global address
+§ Outside Local address
+§ Outside Global address
+• show ip nat statistics
+○ Shows statistics about the current NAT process
+○ Includes the following information:
+§ Total active translations (static, dynamic, extended)
+§ Peak translations (highest amount of translations in one time)
+§ Outside interfaces
+§ Inside interfaces
+§ Etc.
+• clear ip nat translation *
+○ Clears all dynamic NAT translations in the NAT translation table
+○ (One type of dynamic translations is IP address translations with a port included)
+• ip nat inside
+○ Defines the ‘inside’ interface(s) connected to the internal network
+• ip nat outside
+○ Defines the ‘outside’ interface(s) connected to the external network
+• ip nat inside source static INSIDE-LOCAL-IP INSIDE-GLOBAL-IP
+○ Configures a one-to-one (Static NAT) IP address mapping</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="day-43.html"><small>← Day 43</small>FTP &amp; TFTP</a><a href="day-45.html"><small>Day 45 →</small>NAT (pt 2)</a></nav></article></div></main><footer class="footer"><div class="wrap">Personal study notes · Jeremy’s IT Lab CCNA course · Exported from OneNote September 20, 2026<br><a href="../../resources.html">Back to all resources</a></div></footer><script src="course.js"></script></body></html>

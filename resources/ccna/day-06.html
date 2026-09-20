@@ -1,0 +1,243 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 6: Ethernet LAN Switching (pt 2) | DiPiazza</title><meta name="description" content="Personal CCNA study notes from OneNote, organized into 63 days with diagrams, original PDFs and searchable text."><link rel="icon" href="../../images/thegoat.png"><link rel="stylesheet" href="course.css"></head><body><header class="top"><div class="wrap"><a class="brand" href="../../index.html">DiPiazza<span aria-hidden="true">.</span></a><nav aria-label="Main"><a href="../../resources.html">Resources</a><a href="index.html">CCNA course</a></nav></div></header><main class="wrap"><div class="crumb"><a href="index.html">CCNA study notes</a> / Day 06</div><header class="lesson-head"><div class="eyebrow">Day 06 / 63 · Network foundations</div><h1>Ethernet LAN Switching (pt 2)</h1><p class="lead">Original notes and diagrams from my OneNote notebook.</p><div class="pills"><a class="button primary" href="index.html">All 63 days</a></div></header><div class="reading-layout"><aside class="aside" aria-label="Lesson parts"><p class="muted">IN THIS DAY</p><a href="#part-1">Ethernet LAN Switching (pt 2)</a><p class="muted">Tap a note image to zoom. Expand the text view to copy or search the exported text.</p></aside><article><section class="note-part" id="part-1"><h2>Ethernet LAN Switching (pt 2)</h2><a class="button" href="assets/lesson-06/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="assets/lesson-06/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge Ethernet LAN Switching (pt 2) page 1"><img src="assets/lesson-06/page-1.webp" width="1526" height="2055" loading="lazy" alt="Original OneNote notes: Ethernet LAN Switching (pt 2), page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 4</figcaption></figure><figure class="note-image"><a href="assets/lesson-06/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge Ethernet LAN Switching (pt 2) page 2"><img src="assets/lesson-06/page-2.webp" width="1532" height="2109" loading="lazy" alt="Original OneNote notes: Ethernet LAN Switching (pt 2), page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 4</figcaption></figure><figure class="note-image"><a href="assets/lesson-06/page-3.webp" target="_blank" rel="noopener" aria-label="Enlarge Ethernet LAN Switching (pt 2) page 3"><img src="assets/lesson-06/page-3.webp" width="1140" height="2109" loading="lazy" alt="Original OneNote notes: Ethernet LAN Switching (pt 2), page 3. Text version follows below."></a><figcaption>Original notes · Page 3 of 4</figcaption></figure><figure class="note-image"><a href="assets/lesson-06/page-4.webp" target="_blank" rel="noopener" aria-label="Enlarge Ethernet LAN Switching (pt 2) page 4"><img src="assets/lesson-06/page-4.webp" width="1509" height="726" loading="lazy" alt="Original OneNote notes: Ethernet LAN Switching (pt 2), page 4. Text version follows below."></a><figcaption>Original notes · Page 4 of 4</figcaption></figure><details class="text-view"><summary>Text view — Ethernet LAN Switching (pt 2)</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 6 - Ethernet LAN Switching (pt 2)
+Thursday, August 20, 2026 3:28 PM
+6. ETHERNET LAN SWITCHING : PART 2
+An ETHERNET FRAME looks like:
+Ethernet Header --- DATA (Packet) --- Ethernet Trailer
+The Ethernet Header contains 5 Fields:
+Preamble -- SFD -- Destination -- Source -- Type/Length 7 bytes -- 1 byte -- 6 bytes -- 6 bytes -- 2 bytes
+Ethernet Trailer contains 1 Field:
+FCS (Frame Check Sequence) = 4 bytes
+• The PREAMBLE + SFD is not usually considered part of the ETHERNET HEADER.
+THEREFORE the size of the ETHERNET HEADER + TRAILER is 18 bytes
+(6 + 6 + 2 + 4 bytes for the FRAME CHECK SEQUENCE)
+The MINIMUM size for an ETHERNET FRAME (Header + Payload [PACKET] + Trailer) is 64 BYTES.
+64 BYTES - 18 BYTES (Header + Trailer size) = 46 BYTES
+THEREFORE the MINIMUM DATA PAYLOAD (PACKET) size is 46 BYTES!
+IF the PAYLOAD is LESS than 46 BYTES then PADDING BYTES are added (padding bytes are a series of 0&#x27;s) until
+it equals to 46 BYTES.
+ARP
+When a PC wants to send a packet to a destination, with a known IP address but an unknown MAC address, it
+first needs to send an ARP Request to learn that destination&#x27;s MAC address.
+• ARP stands for &#x27;Address Resolution Protocol&#x27;.
+• It is used to discover the Layer 2 address (MAC address) of a k nown Layer 3 address (IP address)
+• Consists of two messages:
+○ ARP REQUEST (Source message)
+○ ARP REPLY (Destination message)
+• ARP REQUEST is BROADCAST = sent to all hosts on network, except the one it received the request from.
+An ARP REQUEST frame has:
+• Source IP Address
+• Destination IP Address
+• Source MAC address
+• BROADCAST MAC Address - FFFF.FFFF.FFFF
+An ARP REPLY frame has:
+• Source IP Address
+• Destination IP Address
+• Source MAC address
+• Destination MAC Address
+ARP REPLY is a known UNICAST frame = Sent only to the host that sent the ARP REQUEST.
+PING
+• A network utility that is used to test reachability
+• Measures round-trip time
+• Uses two messages:
+○ ICMP Echo REQUEST
+○ ICMP Echo REPLY
+• Is UNICAST
+• Command to use ping:
+○ ping
+By Default, a CISCO IOS sends 5 ICMP requests/replies (Default size is 100-bytes)
+• A period (.) is a failed ping
+• An exclamation mark (!) is a successful ping
+USEFUL CISCO IOS COMMANDS (from Privileged EXEC mode)
+PC1# show arp // shows hosts ARP table
+SW1#show mac address-table // show the switches MAC table
+Will show:
+Vlan --- MAC Address --- Type --- Ports(interfaces)
+(Vlan = Virtual Local Area Network)
+SW1# clear mac address-table dynamic
+// clears the entire switches MAC table. // IF the optional MAC address is used, it will clear the SPECFIC MAC
+address.
+SW1 #clear mac address-table dynamic interface
+// clears the MAC table entry of the Switch by it&#x27;s INTERFACE name.
+
+Day 6 - Ethernet LAN Switching (pt 2)
+Thursday, August 20, 2026 3:28 PM
+6. ETHERNET LAN SWITCHING : PART 2
+An ETHERNET FRAME looks like:
+Ethernet Header --- DATA (Packet) --- Ethernet Trailer
+The Ethernet Header contains 5 Fields:
+Preamble -- SFD -- Destination -- Source -- Type/Length 7 bytes -- 1 byte -- 6 bytes -- 6 bytes -- 2 bytes
+Ethernet Trailer contains 1 Field:
+FCS (Frame Check Sequence) = 4 bytes
+• The PREAMBLE + SFD is not usually considered part of the ETHERNET HEADER.
+THEREFORE the size of the ETHERNET HEADER + TRAILER is 18 bytes
+(6 + 6 + 2 + 4 bytes for the FRAME CHECK SEQUENCE)
+The MINIMUM size for an ETHERNET FRAME (Header + Payload [PACKET] + Trailer) is 64 BYTES.
+64 BYTES - 18 BYTES (Header + Trailer size) = 46 BYTES
+THEREFORE the MINIMUM DATA PAYLOAD (PACKET) size is 46 BYTES!
+IF the PAYLOAD is LESS than 46 BYTES then PADDING BYTES are added (padding bytes are a series of 0&#x27;s) until
+it equals to 46 BYTES.
+ARP
+When a PC wants to send a packet to a destination, with a known IP address but an unknown MAC address, it
+first needs to send an ARP Request to learn that destination&#x27;s MAC address.
+• ARP stands for &#x27;Address Resolution Protocol&#x27;.
+• It is used to discover the Layer 2 address (MAC address) of a k nown Layer 3 address (IP address)
+• Consists of two messages:
+○ ARP REQUEST (Source message)
+○ ARP REPLY (Destination message)
+• ARP REQUEST is BROADCAST = sent to all hosts on network, except the one it received the request from.
+An ARP REQUEST frame has:
+• Source IP Address
+• Destination IP Address
+• Source MAC address
+• BROADCAST MAC Address - FFFF.FFFF.FFFF
+An ARP REPLY frame has:
+• Source IP Address
+• Destination IP Address
+• Source MAC address
+• Destination MAC Address
+ARP REPLY is a known UNICAST frame = Sent only to the host that sent the ARP REQUEST.
+PING
+• A network utility that is used to test reachability
+• Measures round-trip time
+• Uses two messages:
+○ ICMP Echo REQUEST
+○ ICMP Echo REPLY
+• Is UNICAST
+• Command to use ping:
+○ ping
+By Default, a CISCO IOS sends 5 ICMP requests/replies (Default size is 100-bytes)
+• A period (.) is a failed ping
+• An exclamation mark (!) is a successful ping
+USEFUL CISCO IOS COMMANDS (from Privileged EXEC mode)
+PC1# show arp // shows hosts ARP table
+SW1#show mac address-table // show the switches MAC table
+Will show:
+Vlan --- MAC Address --- Type --- Ports(interfaces)
+(Vlan = Virtual Local Area Network)
+SW1# clear mac address-table dynamic
+// clears the entire switches MAC table. // IF the optional MAC address is used, it will clear the SPECFIC MAC
+address.
+SW1 #clear mac address-table dynamic interface
+// clears the MAC table entry of the Switch by it&#x27;s INTERFACE name.
+
+Day 6 - Ethernet LAN Switching (pt 2)
+Thursday, August 20, 2026 3:28 PM
+6. ETHERNET LAN SWITCHING : PART 2
+An ETHERNET FRAME looks like:
+Ethernet Header --- DATA (Packet) --- Ethernet Trailer
+The Ethernet Header contains 5 Fields:
+Preamble -- SFD -- Destination -- Source -- Type/Length 7 bytes -- 1 byte -- 6 bytes -- 6 bytes -- 2 bytes
+Ethernet Trailer contains 1 Field:
+FCS (Frame Check Sequence) = 4 bytes
+• The PREAMBLE + SFD is not usually considered part of the ETHERNET HEADER.
+THEREFORE the size of the ETHERNET HEADER + TRAILER is 18 bytes
+(6 + 6 + 2 + 4 bytes for the FRAME CHECK SEQUENCE)
+The MINIMUM size for an ETHERNET FRAME (Header + Payload [PACKET] + Trailer) is 64 BYTES.
+64 BYTES - 18 BYTES (Header + Trailer size) = 46 BYTES
+THEREFORE the MINIMUM DATA PAYLOAD (PACKET) size is 46 BYTES!
+IF the PAYLOAD is LESS than 46 BYTES then PADDING BYTES are added (padding bytes are a series of 0&#x27;s) until
+it equals to 46 BYTES.
+ARP
+When a PC wants to send a packet to a destination, with a known IP address but an unknown MAC address, it
+first needs to send an ARP Request to learn that destination&#x27;s MAC address.
+• ARP stands for &#x27;Address Resolution Protocol&#x27;.
+• It is used to discover the Layer 2 address (MAC address) of a k nown Layer 3 address (IP address)
+• Consists of two messages:
+○ ARP REQUEST (Source message)
+○ ARP REPLY (Destination message)
+• ARP REQUEST is BROADCAST = sent to all hosts on network, except the one it received the request from.
+An ARP REQUEST frame has:
+• Source IP Address
+• Destination IP Address
+• Source MAC address
+• BROADCAST MAC Address - FFFF.FFFF.FFFF
+An ARP REPLY frame has:
+• Source IP Address
+• Destination IP Address
+• Source MAC address
+• Destination MAC Address
+ARP REPLY is a known UNICAST frame = Sent only to the host that sent the ARP REQUEST.
+PING
+• A network utility that is used to test reachability
+• Measures round-trip time
+• Uses two messages:
+○ ICMP Echo REQUEST
+○ ICMP Echo REPLY
+• Is UNICAST
+• Command to use ping:
+○ ping
+By Default, a CISCO IOS sends 5 ICMP requests/replies (Default size is 100-bytes)
+• A period (.) is a failed ping
+• An exclamation mark (!) is a successful ping
+USEFUL CISCO IOS COMMANDS (from Privileged EXEC mode)
+PC1# show arp // shows hosts ARP table
+SW1#show mac address-table // show the switches MAC table
+Will show:
+Vlan --- MAC Address --- Type --- Ports(interfaces)
+(Vlan = Virtual Local Area Network)
+SW1# clear mac address-table dynamic
+// clears the entire switches MAC table. // IF the optional MAC address is used, it will clear the SPECFIC MAC
+address.
+SW1 #clear mac address-table dynamic interface
+// clears the MAC table entry of the Switch by it&#x27;s INTERFACE name.
+
+Day 6 - Ethernet LAN Switching (pt 2)
+Thursday, August 20, 2026 3:28 PM
+6. ETHERNET LAN SWITCHING : PART 2
+An ETHERNET FRAME looks like:
+Ethernet Header --- DATA (Packet) --- Ethernet Trailer
+The Ethernet Header contains 5 Fields:
+Preamble -- SFD -- Destination -- Source -- Type/Length 7 bytes -- 1 byte -- 6 bytes -- 6 bytes -- 2 bytes
+Ethernet Trailer contains 1 Field:
+FCS (Frame Check Sequence) = 4 bytes
+• The PREAMBLE + SFD is not usually considered part of the ETHERNET HEADER.
+THEREFORE the size of the ETHERNET HEADER + TRAILER is 18 bytes
+(6 + 6 + 2 + 4 bytes for the FRAME CHECK SEQUENCE)
+The MINIMUM size for an ETHERNET FRAME (Header + Payload [PACKET] + Trailer) is 64 BYTES.
+64 BYTES - 18 BYTES (Header + Trailer size) = 46 BYTES
+THEREFORE the MINIMUM DATA PAYLOAD (PACKET) size is 46 BYTES!
+IF the PAYLOAD is LESS than 46 BYTES then PADDING BYTES are added (padding bytes are a series of 0&#x27;s) until
+it equals to 46 BYTES.
+ARP
+When a PC wants to send a packet to a destination, with a known IP address but an unknown MAC address, it
+first needs to send an ARP Request to learn that destination&#x27;s MAC address.
+• ARP stands for &#x27;Address Resolution Protocol&#x27;.
+• It is used to discover the Layer 2 address (MAC address) of a k nown Layer 3 address (IP address)
+• Consists of two messages:
+○ ARP REQUEST (Source message)
+○ ARP REPLY (Destination message)
+• ARP REQUEST is BROADCAST = sent to all hosts on network, except the one it received the request from.
+An ARP REQUEST frame has:
+• Source IP Address
+• Destination IP Address
+• Source MAC address
+• BROADCAST MAC Address - FFFF.FFFF.FFFF
+An ARP REPLY frame has:
+• Source IP Address
+• Destination IP Address
+• Source MAC address
+• Destination MAC Address
+ARP REPLY is a known UNICAST frame = Sent only to the host that sent the ARP REQUEST.
+PING
+• A network utility that is used to test reachability
+• Measures round-trip time
+• Uses two messages:
+○ ICMP Echo REQUEST
+○ ICMP Echo REPLY
+• Is UNICAST
+• Command to use ping:
+○ ping
+By Default, a CISCO IOS sends 5 ICMP requests/replies (Default size is 100-bytes)
+• A period (.) is a failed ping
+• An exclamation mark (!) is a successful ping
+USEFUL CISCO IOS COMMANDS (from Privileged EXEC mode)
+PC1# show arp // shows hosts ARP table
+SW1#show mac address-table // show the switches MAC table
+Will show:
+Vlan --- MAC Address --- Type --- Ports(interfaces)
+(Vlan = Virtual Local Area Network)
+SW1# clear mac address-table dynamic
+// clears the entire switches MAC table. // IF the optional MAC address is used, it will clear the SPECFIC MAC
+address.
+SW1 #clear mac address-table dynamic interface
+// clears the MAC table entry of the Switch by it&#x27;s INTERFACE name.</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="day-05.html"><small>← Day 5</small>Ethernet LAN Switching (pt 1)</a><a href="day-07.html"><small>Day 7 →</small>IPv4 Addressing (pt 1)</a></nav></article></div></main><footer class="footer"><div class="wrap">Personal study notes · Jeremy’s IT Lab CCNA course · Exported from OneNote September 20, 2026<br><a href="../../resources.html">Back to all resources</a></div></footer><script src="course.js"></script></body></html>

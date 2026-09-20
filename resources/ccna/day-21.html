@@ -1,0 +1,737 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 21: Spanning Tree Protocol (pt 2) | DiPiazza</title><meta name="description" content="Personal CCNA study notes from OneNote, organized into 63 days with diagrams, original PDFs and searchable text."><link rel="icon" href="../../images/thegoat.png"><link rel="stylesheet" href="course.css"></head><body><header class="top"><div class="wrap"><a class="brand" href="../../index.html">DiPiazza<span aria-hidden="true">.</span></a><nav aria-label="Main"><a href="../../resources.html">Resources</a><a href="index.html">CCNA course</a></nav></div></header><main class="wrap"><div class="crumb"><a href="index.html">CCNA study notes</a> / Day 21</div><header class="lesson-head"><div class="eyebrow">Day 21 / 63 · Switching &amp; VLANs</div><h1>Spanning Tree Protocol (pt 2)</h1><p class="lead">Original notes and diagrams from my OneNote notebook.</p><div class="pills"><a class="button primary" href="index.html">All 63 days</a></div></header><div class="reading-layout"><aside class="aside" aria-label="Lesson parts"><p class="muted">IN THIS DAY</p><a href="#part-1">Spanning Tree Protocol (pt 2)</a><p class="muted">Tap a note image to zoom. Expand the text view to copy or search the exported text.</p></aside><article><section class="note-part" id="part-1"><h2>Spanning Tree Protocol (pt 2)</h2><a class="button" href="assets/lesson-22/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="assets/lesson-22/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge Spanning Tree Protocol (pt 2) page 1"><img src="assets/lesson-22/page-1.webp" width="1217" height="2068" loading="lazy" alt="Original OneNote notes: Spanning Tree Protocol (pt 2), page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 6</figcaption></figure><figure class="note-image"><a href="assets/lesson-22/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge Spanning Tree Protocol (pt 2) page 2"><img src="assets/lesson-22/page-2.webp" width="1207" height="2109" loading="lazy" alt="Original OneNote notes: Spanning Tree Protocol (pt 2), page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 6</figcaption></figure><figure class="note-image"><a href="assets/lesson-22/page-3.webp" target="_blank" rel="noopener" aria-label="Enlarge Spanning Tree Protocol (pt 2) page 3"><img src="assets/lesson-22/page-3.webp" width="1143" height="2097" loading="lazy" alt="Original OneNote notes: Spanning Tree Protocol (pt 2), page 3. Text version follows below."></a><figcaption>Original notes · Page 3 of 6</figcaption></figure><figure class="note-image"><a href="assets/lesson-22/page-4.webp" target="_blank" rel="noopener" aria-label="Enlarge Spanning Tree Protocol (pt 2) page 4"><img src="assets/lesson-22/page-4.webp" width="1145" height="2087" loading="lazy" alt="Original OneNote notes: Spanning Tree Protocol (pt 2), page 4. Text version follows below."></a><figcaption>Original notes · Page 4 of 6</figcaption></figure><figure class="note-image"><a href="assets/lesson-22/page-5.webp" target="_blank" rel="noopener" aria-label="Enlarge Spanning Tree Protocol (pt 2) page 5"><img src="assets/lesson-22/page-5.webp" width="1535" height="2109" loading="lazy" alt="Original OneNote notes: Spanning Tree Protocol (pt 2), page 5. Text version follows below."></a><figcaption>Original notes · Page 5 of 6</figcaption></figure><figure class="note-image"><a href="assets/lesson-22/page-6.webp" target="_blank" rel="noopener" aria-label="Enlarge Spanning Tree Protocol (pt 2) page 6"><img src="assets/lesson-22/page-6.webp" width="1435" height="1112" loading="lazy" alt="Original OneNote notes: Spanning Tree Protocol (pt 2), page 6. Text version follows below."></a><figcaption>Original notes · Page 6 of 6</figcaption></figure><details class="text-view"><summary>Text view — Spanning Tree Protocol (pt 2)</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 21 - Spanning Tree Protocol (pt 2)
+Wednesday, August 26, 2026 5:05 PM
+21. SPANNING TREE PROTOCOL (STP) : PART 2
+STP STATES
+• ROOT / DESIGNATED PORTS remain STABLE in a FORWARDING state
+• NON-DESIGNATED PORTS remain STABLE in a BLOCKING state
+• LISTENING and LEARNING are TRANSITIONAL states which are passed through when an interface is
+activated, or when a BLOCKING PORT must transition to a FORWARDING state due to a change in
+network topology.
+1) BLOCKING / STABLE
+• NON-DESIGNATED PORTS are in a BLOCKING state
+• Interfaces in a BLOCKING state are effectively disabled to prevent loops
+• Interfaces in a BLOCKING state do NOT Send/Receive regular network traffic
+• Interfaces in a BLOCKING state do NOT forward STP BPDUs
+• Interfaces in a BLOCKING state do NOT learn MAC ADDRESSES
+2) LISTENING / TRANSITIONAL
+• After the BLOCKING state, interfaces with the DESIGNATED or ROOT role enter the LISTENING state
+• ONLY DESIGNATED or ROOT PORTS enter the LISTENING state (NON-DESIGNATED PORTS are ALWAYS
+BLOCKING)
+• The LISTENING state is 15 seconds long by Default. This is determined by the FORWARD DELAY TIMER
+• Interfaces in a LISTENING state do NOT Send / Receive regular network traffic
+• Interfaces in a LISTENING state ONLY Forward/Receive STP BPDUs
+• Interfaces in a LISTENING state does NOT learn MAC ADDRESSES from regular traffic that arrives on
+the interface
+3) LEARNING / TRANSITIONAL
+• After the LISTENING state, a DESIGNATED or ROOT port will enter the LEARNING state
+• The LEARNING state is 15 seconds long by Default. This is determined by the FORWARD DELAY TIMER
+(same one used for both LISTENING and LEARNING states)
+• Interfaces in a LEARNING state do NOT Send / Receive regular network traffic
+• Interfaces in a LEARNING state ONLY Sends/Receives STP BPDUs
+• Interfaces in a LEARNING state learns MAC ADDRESSES from regular traffic that arrives on the
+interface
+4. FORWARDING / STABLE
+• ROOT and DESIGNATED PORTS are in a FORWARDING state
+• A PORT in the FORWARDING state operate as NORMAL
+• A PORT in the FORWARDING state Sends/Receives regular network traffic
+• A PORT in the FORWARDING state Sends/Receives STP BPDUs
+• A PORT in the FORWARDING state learns MAC ADDRESSES
+SUMMARY :
+STP TIMERS
+💡 SWITCHES do NOT forward the BPDUs out of their ROOT PORTS and NON-DESIGNATED PORTS - ONLY
+their DESIGNATED PORTS !!!
+MAX AGE TIMER:
+• If another BPDU is received BEFORE MAX AGE TIMER counts down to 0, the TIME will RESET to 20
+Seconds and no changes will occur.
+• If another BPDU is not received, the MAX AGE TIMER counts down to 0 and the SWITCH will re-
+evaluate it’s STP choices, including ROOT BRIDGE, LOCAL ROOT, DESIGNATED, and NON-DESIGNATED
+PORTS.
+• If a NON-DESIGNATED PORT is selected to become a DESIGNATED or ROOT PORT, it will transition
+from the BLOCKING state to the LISTENING state (15 Seconds), LEARNING state (15 Seconds), and
+then finally the FORWARDING state.
+○ So… it can take 50 Seconds for a BLOCKING interface to transition to FORWARDING! (MAX AGE
+TIMER + (LISTENING + LEARNING 15 Second timers))
+• These TIMERS and TRANSITIONAL STATES are to make sure that LOOPS are not accidentally created
+by an INTERFACE moving to FORWARDING STATE too soon
+HOWEVER …
+💡 A FORWARDING interface can move DIRECTLY to a BLOCKING state (there is no worry about creating a
+loop)
+💡 A BLOCKING interface can NOT move DIRECTLY to a FORWARDING state. It MUST go through the
+LISTENING and LEARNING states first!
+STP BPDU (BRIDGE PROTOCOL DATA UNIT)
+Ethernet Header of a BPDU
+💡 PVST+ uses the MAC ADDRESS :
+01 : 00 : 0c : cc : cc : cd
+PVST = ONLY ISL Trunk Encapsulation
+PVST+ = Supports 802.1Q
+💡 Regular STP (not Cisco’s PVST+) uses the MAC ADDRESS :
+01 : 80 : c2 : 00 : 00 : 00
+💡 The STP TIMERS on the ROOT BRIDGE determine ALL STP TIMERS for the entire network!
+STP OPTIONAL FEATURES (STP TOOLKIT)
+PORTFAST:
+• Can be Enabled on INTERFACES which are connected to END HOSTS
+💡 PORTFAST allows a PORT to move immediately to the FORWARDING state, bypassing LISTENING and
+LEARNING
+• If used, it MUST be ENABLED only on PORTS connected to END HOSTS
+• If ENABLED on a PORT connected to another SWITCH, it could cause a LAYER 2 LOOP
+You can also ENABLE PORTFAST with the following command:
+💡 SW1(config)# spanning-tree portfast default
+This ENABLES PORTFAST on ALL ACCESS PORTS (not TRUNK PORTS)
+BPDU GUARD:
+• If an INTERFACE with BPDU GUARD ENABLED receives a BPDU from another SWITCH, the INTERFACE
+will be SHUT DOWN to prevent loops from forming.
+You can also ENABLE BPDU GUARD with the following command:
+💡 SW1(config)# spanning-tree portfast bpduguard default
+This ENABLES BPDU GUARD on all PORTFAST-enabled INTERFACES
+ROOT GUARD / LOOP GUARD:
+You probably do NOT have to know these STP optional features (or others such as UplinkFast, Backbone
+Fast, etcetera) for the CCNA.
+BUT…
+💡 Make sure you know PORTFAST and BPDU GUARD.
+STP CONFIGURATION
+Command to CONFIGURE Spanning-Tree mode on a SWITCH
+Modern Cisco SWITCHES run rapid-pvst, by default
+CONFIGURE THE PRIMARY ROOT BRIDGE
+Command to CONFIGURE Spanning-Tree PRIMARY ROOT BRIDGE on a SWITCH
+Confirm with “(do) show spanning-tree”
+Can see in the above example, SW3 has become the “root”
+• The “spanning-tree vlan root primary” command sets the STP PRIORITY to 24576. If another SWITCH
+already has a priority number lower than 24576, it sets this SWITCH’s priority to 4096 LESS THAN the
+other SWITCH’s Priority (remember STP PART 1 lecture)
+SECONDARY ROOT BRIGE (backup ROOT BRIDGE)
+Command to CONFIGURE Spanning-Tree SECONDARY ROOT BRIDGE on a SWITCH
+• The “spanning-tree vlan root secondary” command sets the STP PRIORITY to 28672 (exactly 4096
+higher than 24576).
+VLAN 1 TOPOLOGY running PVST+
+SW1 WAS the PRIMARY ROOT BRIDGE but :
+• We have configured SW3 to be the PRIMARY
+• We have configured SW2 to be the SECONDARY
+The TOPOLOGY for VLAN 2, however, won’t be the same. It will be the OLD Topology.
+WHY? Because we made changes ONLY to the TOPOLOGY found in VLAN 1 (see the commands we used)
+CONFIGURE STP PORT SETTINGS
+“cost” = “ROOT COST”
+“port-priority” = “PORT PRIORITY”
+Day 21 Part 1
+Portfast
+BPDU guard
+Interface spanning-tree pbdguard enable
+Default - spanning-tree portfast bpdguard default
+show errfidable recovery
+BPDU Filter
+Root Guard
+Loop guard
+
+Day 21 - Spanning Tree Protocol (pt 2)
+Wednesday, August 26, 2026 5:05 PM
+21. SPANNING TREE PROTOCOL (STP) : PART 2
+STP STATES
+• ROOT / DESIGNATED PORTS remain STABLE in a FORWARDING state
+• NON-DESIGNATED PORTS remain STABLE in a BLOCKING state
+• LISTENING and LEARNING are TRANSITIONAL states which are passed through when an interface is
+activated, or when a BLOCKING PORT must transition to a FORWARDING state due to a change in
+network topology.
+1) BLOCKING / STABLE
+• NON-DESIGNATED PORTS are in a BLOCKING state
+• Interfaces in a BLOCKING state are effectively disabled to prevent loops
+• Interfaces in a BLOCKING state do NOT Send/Receive regular network traffic
+• Interfaces in a BLOCKING state do NOT forward STP BPDUs
+• Interfaces in a BLOCKING state do NOT learn MAC ADDRESSES
+2) LISTENING / TRANSITIONAL
+• After the BLOCKING state, interfaces with the DESIGNATED or ROOT role enter the LISTENING state
+• ONLY DESIGNATED or ROOT PORTS enter the LISTENING state (NON-DESIGNATED PORTS are ALWAYS
+BLOCKING)
+• The LISTENING state is 15 seconds long by Default. This is determined by the FORWARD DELAY TIMER
+• Interfaces in a LISTENING state do NOT Send / Receive regular network traffic
+• Interfaces in a LISTENING state ONLY Forward/Receive STP BPDUs
+• Interfaces in a LISTENING state does NOT learn MAC ADDRESSES from regular traffic that arrives on
+the interface
+3) LEARNING / TRANSITIONAL
+• After the LISTENING state, a DESIGNATED or ROOT port will enter the LEARNING state
+• The LEARNING state is 15 seconds long by Default. This is determined by the FORWARD DELAY TIMER
+(same one used for both LISTENING and LEARNING states)
+• Interfaces in a LEARNING state do NOT Send / Receive regular network traffic
+• Interfaces in a LEARNING state ONLY Sends/Receives STP BPDUs
+• Interfaces in a LEARNING state learns MAC ADDRESSES from regular traffic that arrives on the
+interface
+4. FORWARDING / STABLE
+• ROOT and DESIGNATED PORTS are in a FORWARDING state
+• A PORT in the FORWARDING state operate as NORMAL
+• A PORT in the FORWARDING state Sends/Receives regular network traffic
+• A PORT in the FORWARDING state Sends/Receives STP BPDUs
+• A PORT in the FORWARDING state learns MAC ADDRESSES
+SUMMARY :
+STP TIMERS
+💡 SWITCHES do NOT forward the BPDUs out of their ROOT PORTS and NON-DESIGNATED PORTS - ONLY
+their DESIGNATED PORTS !!!
+MAX AGE TIMER:
+• If another BPDU is received BEFORE MAX AGE TIMER counts down to 0, the TIME will RESET to 20
+Seconds and no changes will occur.
+• If another BPDU is not received, the MAX AGE TIMER counts down to 0 and the SWITCH will re-
+evaluate it’s STP choices, including ROOT BRIDGE, LOCAL ROOT, DESIGNATED, and NON-DESIGNATED
+PORTS.
+• If a NON-DESIGNATED PORT is selected to become a DESIGNATED or ROOT PORT, it will transition
+from the BLOCKING state to the LISTENING state (15 Seconds), LEARNING state (15 Seconds), and
+then finally the FORWARDING state.
+○ So… it can take 50 Seconds for a BLOCKING interface to transition to FORWARDING! (MAX AGE
+TIMER + (LISTENING + LEARNING 15 Second timers))
+• These TIMERS and TRANSITIONAL STATES are to make sure that LOOPS are not accidentally created
+by an INTERFACE moving to FORWARDING STATE too soon
+HOWEVER …
+💡 A FORWARDING interface can move DIRECTLY to a BLOCKING state (there is no worry about creating a
+loop)
+💡 A BLOCKING interface can NOT move DIRECTLY to a FORWARDING state. It MUST go through the
+LISTENING and LEARNING states first!
+STP BPDU (BRIDGE PROTOCOL DATA UNIT)
+Ethernet Header of a BPDU
+💡 PVST+ uses the MAC ADDRESS :
+01 : 00 : 0c : cc : cc : cd
+PVST = ONLY ISL Trunk Encapsulation
+PVST+ = Supports 802.1Q
+💡 Regular STP (not Cisco’s PVST+) uses the MAC ADDRESS :
+01 : 80 : c2 : 00 : 00 : 00
+💡 The STP TIMERS on the ROOT BRIDGE determine ALL STP TIMERS for the entire network!
+STP OPTIONAL FEATURES (STP TOOLKIT)
+PORTFAST:
+• Can be Enabled on INTERFACES which are connected to END HOSTS
+💡 PORTFAST allows a PORT to move immediately to the FORWARDING state, bypassing LISTENING and
+LEARNING
+• If used, it MUST be ENABLED only on PORTS connected to END HOSTS
+• If ENABLED on a PORT connected to another SWITCH, it could cause a LAYER 2 LOOP
+You can also ENABLE PORTFAST with the following command:
+💡 SW1(config)# spanning-tree portfast default
+This ENABLES PORTFAST on ALL ACCESS PORTS (not TRUNK PORTS)
+BPDU GUARD:
+• If an INTERFACE with BPDU GUARD ENABLED receives a BPDU from another SWITCH, the INTERFACE
+will be SHUT DOWN to prevent loops from forming.
+You can also ENABLE BPDU GUARD with the following command:
+💡 SW1(config)# spanning-tree portfast bpduguard default
+This ENABLES BPDU GUARD on all PORTFAST-enabled INTERFACES
+ROOT GUARD / LOOP GUARD:
+You probably do NOT have to know these STP optional features (or others such as UplinkFast, Backbone
+Fast, etcetera) for the CCNA.
+BUT…
+💡 Make sure you know PORTFAST and BPDU GUARD.
+STP CONFIGURATION
+Command to CONFIGURE Spanning-Tree mode on a SWITCH
+Modern Cisco SWITCHES run rapid-pvst, by default
+CONFIGURE THE PRIMARY ROOT BRIDGE
+Command to CONFIGURE Spanning-Tree PRIMARY ROOT BRIDGE on a SWITCH
+Confirm with “(do) show spanning-tree”
+Can see in the above example, SW3 has become the “root”
+• The “spanning-tree vlan root primary” command sets the STP PRIORITY to 24576. If another SWITCH
+already has a priority number lower than 24576, it sets this SWITCH’s priority to 4096 LESS THAN the
+other SWITCH’s Priority (remember STP PART 1 lecture)
+SECONDARY ROOT BRIGE (backup ROOT BRIDGE)
+Command to CONFIGURE Spanning-Tree SECONDARY ROOT BRIDGE on a SWITCH
+• The “spanning-tree vlan root secondary” command sets the STP PRIORITY to 28672 (exactly 4096
+higher than 24576).
+VLAN 1 TOPOLOGY running PVST+
+SW1 WAS the PRIMARY ROOT BRIDGE but :
+• We have configured SW3 to be the PRIMARY
+• We have configured SW2 to be the SECONDARY
+The TOPOLOGY for VLAN 2, however, won’t be the same. It will be the OLD Topology.
+WHY? Because we made changes ONLY to the TOPOLOGY found in VLAN 1 (see the commands we used)
+CONFIGURE STP PORT SETTINGS
+“cost” = “ROOT COST”
+“port-priority” = “PORT PRIORITY”
+Day 21 Part 1
+Portfast
+BPDU guard
+Interface spanning-tree pbdguard enable
+Default - spanning-tree portfast bpdguard default
+show errfidable recovery
+BPDU Filter
+Root Guard
+Loop guard
+
+Day 21 - Spanning Tree Protocol (pt 2)
+Wednesday, August 26, 2026 5:05 PM
+21. SPANNING TREE PROTOCOL (STP) : PART 2
+STP STATES
+• ROOT / DESIGNATED PORTS remain STABLE in a FORWARDING state
+• NON-DESIGNATED PORTS remain STABLE in a BLOCKING state
+• LISTENING and LEARNING are TRANSITIONAL states which are passed through when an interface is
+activated, or when a BLOCKING PORT must transition to a FORWARDING state due to a change in
+network topology.
+1) BLOCKING / STABLE
+• NON-DESIGNATED PORTS are in a BLOCKING state
+• Interfaces in a BLOCKING state are effectively disabled to prevent loops
+• Interfaces in a BLOCKING state do NOT Send/Receive regular network traffic
+• Interfaces in a BLOCKING state do NOT forward STP BPDUs
+• Interfaces in a BLOCKING state do NOT learn MAC ADDRESSES
+2) LISTENING / TRANSITIONAL
+• After the BLOCKING state, interfaces with the DESIGNATED or ROOT role enter the LISTENING state
+• ONLY DESIGNATED or ROOT PORTS enter the LISTENING state (NON-DESIGNATED PORTS are ALWAYS
+BLOCKING)
+• The LISTENING state is 15 seconds long by Default. This is determined by the FORWARD DELAY TIMER
+• Interfaces in a LISTENING state do NOT Send / Receive regular network traffic
+• Interfaces in a LISTENING state ONLY Forward/Receive STP BPDUs
+• Interfaces in a LISTENING state does NOT learn MAC ADDRESSES from regular traffic that arrives on
+the interface
+3) LEARNING / TRANSITIONAL
+• After the LISTENING state, a DESIGNATED or ROOT port will enter the LEARNING state
+• The LEARNING state is 15 seconds long by Default. This is determined by the FORWARD DELAY TIMER
+(same one used for both LISTENING and LEARNING states)
+• Interfaces in a LEARNING state do NOT Send / Receive regular network traffic
+• Interfaces in a LEARNING state ONLY Sends/Receives STP BPDUs
+• Interfaces in a LEARNING state learns MAC ADDRESSES from regular traffic that arrives on the
+interface
+4. FORWARDING / STABLE
+• ROOT and DESIGNATED PORTS are in a FORWARDING state
+• A PORT in the FORWARDING state operate as NORMAL
+• A PORT in the FORWARDING state Sends/Receives regular network traffic
+• A PORT in the FORWARDING state Sends/Receives STP BPDUs
+• A PORT in the FORWARDING state learns MAC ADDRESSES
+SUMMARY :
+STP TIMERS
+💡 SWITCHES do NOT forward the BPDUs out of their ROOT PORTS and NON-DESIGNATED PORTS - ONLY
+their DESIGNATED PORTS !!!
+MAX AGE TIMER:
+• If another BPDU is received BEFORE MAX AGE TIMER counts down to 0, the TIME will RESET to 20
+Seconds and no changes will occur.
+• If another BPDU is not received, the MAX AGE TIMER counts down to 0 and the SWITCH will re-
+evaluate it’s STP choices, including ROOT BRIDGE, LOCAL ROOT, DESIGNATED, and NON-DESIGNATED
+PORTS.
+• If a NON-DESIGNATED PORT is selected to become a DESIGNATED or ROOT PORT, it will transition
+from the BLOCKING state to the LISTENING state (15 Seconds), LEARNING state (15 Seconds), and
+then finally the FORWARDING state.
+○ So… it can take 50 Seconds for a BLOCKING interface to transition to FORWARDING! (MAX AGE
+TIMER + (LISTENING + LEARNING 15 Second timers))
+• These TIMERS and TRANSITIONAL STATES are to make sure that LOOPS are not accidentally created
+by an INTERFACE moving to FORWARDING STATE too soon
+HOWEVER …
+💡 A FORWARDING interface can move DIRECTLY to a BLOCKING state (there is no worry about creating a
+loop)
+💡 A BLOCKING interface can NOT move DIRECTLY to a FORWARDING state. It MUST go through the
+LISTENING and LEARNING states first!
+STP BPDU (BRIDGE PROTOCOL DATA UNIT)
+Ethernet Header of a BPDU
+💡 PVST+ uses the MAC ADDRESS :
+01 : 00 : 0c : cc : cc : cd
+PVST = ONLY ISL Trunk Encapsulation
+PVST+ = Supports 802.1Q
+💡 Regular STP (not Cisco’s PVST+) uses the MAC ADDRESS :
+01 : 80 : c2 : 00 : 00 : 00
+💡 The STP TIMERS on the ROOT BRIDGE determine ALL STP TIMERS for the entire network!
+STP OPTIONAL FEATURES (STP TOOLKIT)
+PORTFAST:
+• Can be Enabled on INTERFACES which are connected to END HOSTS
+💡 PORTFAST allows a PORT to move immediately to the FORWARDING state, bypassing LISTENING and
+LEARNING
+• If used, it MUST be ENABLED only on PORTS connected to END HOSTS
+• If ENABLED on a PORT connected to another SWITCH, it could cause a LAYER 2 LOOP
+You can also ENABLE PORTFAST with the following command:
+💡 SW1(config)# spanning-tree portfast default
+This ENABLES PORTFAST on ALL ACCESS PORTS (not TRUNK PORTS)
+BPDU GUARD:
+• If an INTERFACE with BPDU GUARD ENABLED receives a BPDU from another SWITCH, the INTERFACE
+will be SHUT DOWN to prevent loops from forming.
+You can also ENABLE BPDU GUARD with the following command:
+💡 SW1(config)# spanning-tree portfast bpduguard default
+This ENABLES BPDU GUARD on all PORTFAST-enabled INTERFACES
+ROOT GUARD / LOOP GUARD:
+You probably do NOT have to know these STP optional features (or others such as UplinkFast, Backbone
+Fast, etcetera) for the CCNA.
+BUT…
+💡 Make sure you know PORTFAST and BPDU GUARD.
+STP CONFIGURATION
+Command to CONFIGURE Spanning-Tree mode on a SWITCH
+Modern Cisco SWITCHES run rapid-pvst, by default
+CONFIGURE THE PRIMARY ROOT BRIDGE
+Command to CONFIGURE Spanning-Tree PRIMARY ROOT BRIDGE on a SWITCH
+Confirm with “(do) show spanning-tree”
+Can see in the above example, SW3 has become the “root”
+• The “spanning-tree vlan root primary” command sets the STP PRIORITY to 24576. If another SWITCH
+already has a priority number lower than 24576, it sets this SWITCH’s priority to 4096 LESS THAN the
+other SWITCH’s Priority (remember STP PART 1 lecture)
+SECONDARY ROOT BRIGE (backup ROOT BRIDGE)
+Command to CONFIGURE Spanning-Tree SECONDARY ROOT BRIDGE on a SWITCH
+• The “spanning-tree vlan root secondary” command sets the STP PRIORITY to 28672 (exactly 4096
+higher than 24576).
+VLAN 1 TOPOLOGY running PVST+
+SW1 WAS the PRIMARY ROOT BRIDGE but :
+• We have configured SW3 to be the PRIMARY
+• We have configured SW2 to be the SECONDARY
+The TOPOLOGY for VLAN 2, however, won’t be the same. It will be the OLD Topology.
+WHY? Because we made changes ONLY to the TOPOLOGY found in VLAN 1 (see the commands we used)
+CONFIGURE STP PORT SETTINGS
+“cost” = “ROOT COST”
+“port-priority” = “PORT PRIORITY”
+Day 21 Part 1
+Portfast
+BPDU guard
+Interface spanning-tree pbdguard enable
+Default - spanning-tree portfast bpdguard default
+show errfidable recovery
+BPDU Filter
+Root Guard
+Loop guard
+
+Day 21 - Spanning Tree Protocol (pt 2)
+Wednesday, August 26, 2026 5:05 PM
+21. SPANNING TREE PROTOCOL (STP) : PART 2
+STP STATES
+• ROOT / DESIGNATED PORTS remain STABLE in a FORWARDING state
+• NON-DESIGNATED PORTS remain STABLE in a BLOCKING state
+• LISTENING and LEARNING are TRANSITIONAL states which are passed through when an interface is
+activated, or when a BLOCKING PORT must transition to a FORWARDING state due to a change in
+network topology.
+1) BLOCKING / STABLE
+• NON-DESIGNATED PORTS are in a BLOCKING state
+• Interfaces in a BLOCKING state are effectively disabled to prevent loops
+• Interfaces in a BLOCKING state do NOT Send/Receive regular network traffic
+• Interfaces in a BLOCKING state do NOT forward STP BPDUs
+• Interfaces in a BLOCKING state do NOT learn MAC ADDRESSES
+2) LISTENING / TRANSITIONAL
+• After the BLOCKING state, interfaces with the DESIGNATED or ROOT role enter the LISTENING state
+• ONLY DESIGNATED or ROOT PORTS enter the LISTENING state (NON-DESIGNATED PORTS are ALWAYS
+BLOCKING)
+• The LISTENING state is 15 seconds long by Default. This is determined by the FORWARD DELAY TIMER
+• Interfaces in a LISTENING state do NOT Send / Receive regular network traffic
+• Interfaces in a LISTENING state ONLY Forward/Receive STP BPDUs
+• Interfaces in a LISTENING state does NOT learn MAC ADDRESSES from regular traffic that arrives on
+the interface
+3) LEARNING / TRANSITIONAL
+• After the LISTENING state, a DESIGNATED or ROOT port will enter the LEARNING state
+• The LEARNING state is 15 seconds long by Default. This is determined by the FORWARD DELAY TIMER
+(same one used for both LISTENING and LEARNING states)
+• Interfaces in a LEARNING state do NOT Send / Receive regular network traffic
+• Interfaces in a LEARNING state ONLY Sends/Receives STP BPDUs
+• Interfaces in a LEARNING state learns MAC ADDRESSES from regular traffic that arrives on the
+interface
+4. FORWARDING / STABLE
+• ROOT and DESIGNATED PORTS are in a FORWARDING state
+• A PORT in the FORWARDING state operate as NORMAL
+• A PORT in the FORWARDING state Sends/Receives regular network traffic
+• A PORT in the FORWARDING state Sends/Receives STP BPDUs
+• A PORT in the FORWARDING state learns MAC ADDRESSES
+SUMMARY :
+STP TIMERS
+💡 SWITCHES do NOT forward the BPDUs out of their ROOT PORTS and NON-DESIGNATED PORTS - ONLY
+their DESIGNATED PORTS !!!
+MAX AGE TIMER:
+• If another BPDU is received BEFORE MAX AGE TIMER counts down to 0, the TIME will RESET to 20
+Seconds and no changes will occur.
+• If another BPDU is not received, the MAX AGE TIMER counts down to 0 and the SWITCH will re-
+evaluate it’s STP choices, including ROOT BRIDGE, LOCAL ROOT, DESIGNATED, and NON-DESIGNATED
+PORTS.
+• If a NON-DESIGNATED PORT is selected to become a DESIGNATED or ROOT PORT, it will transition
+from the BLOCKING state to the LISTENING state (15 Seconds), LEARNING state (15 Seconds), and
+then finally the FORWARDING state.
+○ So… it can take 50 Seconds for a BLOCKING interface to transition to FORWARDING! (MAX AGE
+TIMER + (LISTENING + LEARNING 15 Second timers))
+• These TIMERS and TRANSITIONAL STATES are to make sure that LOOPS are not accidentally created
+by an INTERFACE moving to FORWARDING STATE too soon
+HOWEVER …
+💡 A FORWARDING interface can move DIRECTLY to a BLOCKING state (there is no worry about creating a
+loop)
+💡 A BLOCKING interface can NOT move DIRECTLY to a FORWARDING state. It MUST go through the
+LISTENING and LEARNING states first!
+STP BPDU (BRIDGE PROTOCOL DATA UNIT)
+Ethernet Header of a BPDU
+💡 PVST+ uses the MAC ADDRESS :
+01 : 00 : 0c : cc : cc : cd
+PVST = ONLY ISL Trunk Encapsulation
+PVST+ = Supports 802.1Q
+💡 Regular STP (not Cisco’s PVST+) uses the MAC ADDRESS :
+01 : 80 : c2 : 00 : 00 : 00
+💡 The STP TIMERS on the ROOT BRIDGE determine ALL STP TIMERS for the entire network!
+STP OPTIONAL FEATURES (STP TOOLKIT)
+PORTFAST:
+• Can be Enabled on INTERFACES which are connected to END HOSTS
+💡 PORTFAST allows a PORT to move immediately to the FORWARDING state, bypassing LISTENING and
+LEARNING
+• If used, it MUST be ENABLED only on PORTS connected to END HOSTS
+• If ENABLED on a PORT connected to another SWITCH, it could cause a LAYER 2 LOOP
+You can also ENABLE PORTFAST with the following command:
+💡 SW1(config)# spanning-tree portfast default
+This ENABLES PORTFAST on ALL ACCESS PORTS (not TRUNK PORTS)
+BPDU GUARD:
+• If an INTERFACE with BPDU GUARD ENABLED receives a BPDU from another SWITCH, the INTERFACE
+will be SHUT DOWN to prevent loops from forming.
+You can also ENABLE BPDU GUARD with the following command:
+💡 SW1(config)# spanning-tree portfast bpduguard default
+This ENABLES BPDU GUARD on all PORTFAST-enabled INTERFACES
+ROOT GUARD / LOOP GUARD:
+You probably do NOT have to know these STP optional features (or others such as UplinkFast, Backbone
+Fast, etcetera) for the CCNA.
+BUT…
+💡 Make sure you know PORTFAST and BPDU GUARD.
+STP CONFIGURATION
+Command to CONFIGURE Spanning-Tree mode on a SWITCH
+Modern Cisco SWITCHES run rapid-pvst, by default
+CONFIGURE THE PRIMARY ROOT BRIDGE
+Command to CONFIGURE Spanning-Tree PRIMARY ROOT BRIDGE on a SWITCH
+Confirm with “(do) show spanning-tree”
+Can see in the above example, SW3 has become the “root”
+• The “spanning-tree vlan root primary” command sets the STP PRIORITY to 24576. If another SWITCH
+already has a priority number lower than 24576, it sets this SWITCH’s priority to 4096 LESS THAN the
+other SWITCH’s Priority (remember STP PART 1 lecture)
+SECONDARY ROOT BRIGE (backup ROOT BRIDGE)
+Command to CONFIGURE Spanning-Tree SECONDARY ROOT BRIDGE on a SWITCH
+• The “spanning-tree vlan root secondary” command sets the STP PRIORITY to 28672 (exactly 4096
+higher than 24576).
+VLAN 1 TOPOLOGY running PVST+
+SW1 WAS the PRIMARY ROOT BRIDGE but :
+• We have configured SW3 to be the PRIMARY
+• We have configured SW2 to be the SECONDARY
+The TOPOLOGY for VLAN 2, however, won’t be the same. It will be the OLD Topology.
+WHY? Because we made changes ONLY to the TOPOLOGY found in VLAN 1 (see the commands we used)
+CONFIGURE STP PORT SETTINGS
+“cost” = “ROOT COST”
+“port-priority” = “PORT PRIORITY”
+Day 21 Part 1
+Portfast
+BPDU guard
+Interface spanning-tree pbdguard enable
+Default - spanning-tree portfast bpdguard default
+show errfidable recovery
+BPDU Filter
+Root Guard
+Loop guard
+
+Day 21 - Spanning Tree Protocol (pt 2)
+Wednesday, August 26, 2026 5:05 PM
+21. SPANNING TREE PROTOCOL (STP) : PART 2
+STP STATES
+• ROOT / DESIGNATED PORTS remain STABLE in a FORWARDING state
+• NON-DESIGNATED PORTS remain STABLE in a BLOCKING state
+• LISTENING and LEARNING are TRANSITIONAL states which are passed through when an interface is
+activated, or when a BLOCKING PORT must transition to a FORWARDING state due to a change in
+network topology.
+1) BLOCKING / STABLE
+• NON-DESIGNATED PORTS are in a BLOCKING state
+• Interfaces in a BLOCKING state are effectively disabled to prevent loops
+• Interfaces in a BLOCKING state do NOT Send/Receive regular network traffic
+• Interfaces in a BLOCKING state do NOT forward STP BPDUs
+• Interfaces in a BLOCKING state do NOT learn MAC ADDRESSES
+2) LISTENING / TRANSITIONAL
+• After the BLOCKING state, interfaces with the DESIGNATED or ROOT role enter the LISTENING state
+• ONLY DESIGNATED or ROOT PORTS enter the LISTENING state (NON-DESIGNATED PORTS are ALWAYS
+BLOCKING)
+• The LISTENING state is 15 seconds long by Default. This is determined by the FORWARD DELAY TIMER
+• Interfaces in a LISTENING state do NOT Send / Receive regular network traffic
+• Interfaces in a LISTENING state ONLY Forward/Receive STP BPDUs
+• Interfaces in a LISTENING state does NOT learn MAC ADDRESSES from regular traffic that arrives on
+the interface
+3) LEARNING / TRANSITIONAL
+• After the LISTENING state, a DESIGNATED or ROOT port will enter the LEARNING state
+• The LEARNING state is 15 seconds long by Default. This is determined by the FORWARD DELAY TIMER
+(same one used for both LISTENING and LEARNING states)
+• Interfaces in a LEARNING state do NOT Send / Receive regular network traffic
+• Interfaces in a LEARNING state ONLY Sends/Receives STP BPDUs
+• Interfaces in a LEARNING state learns MAC ADDRESSES from regular traffic that arrives on the
+interface
+4. FORWARDING / STABLE
+• ROOT and DESIGNATED PORTS are in a FORWARDING state
+• A PORT in the FORWARDING state operate as NORMAL
+• A PORT in the FORWARDING state Sends/Receives regular network traffic
+• A PORT in the FORWARDING state Sends/Receives STP BPDUs
+• A PORT in the FORWARDING state learns MAC ADDRESSES
+SUMMARY :
+STP TIMERS
+💡 SWITCHES do NOT forward the BPDUs out of their ROOT PORTS and NON-DESIGNATED PORTS - ONLY
+their DESIGNATED PORTS !!!
+MAX AGE TIMER:
+• If another BPDU is received BEFORE MAX AGE TIMER counts down to 0, the TIME will RESET to 20
+Seconds and no changes will occur.
+• If another BPDU is not received, the MAX AGE TIMER counts down to 0 and the SWITCH will re-
+evaluate it’s STP choices, including ROOT BRIDGE, LOCAL ROOT, DESIGNATED, and NON-DESIGNATED
+PORTS.
+• If a NON-DESIGNATED PORT is selected to become a DESIGNATED or ROOT PORT, it will transition
+from the BLOCKING state to the LISTENING state (15 Seconds), LEARNING state (15 Seconds), and
+then finally the FORWARDING state.
+○ So… it can take 50 Seconds for a BLOCKING interface to transition to FORWARDING! (MAX AGE
+TIMER + (LISTENING + LEARNING 15 Second timers))
+• These TIMERS and TRANSITIONAL STATES are to make sure that LOOPS are not accidentally created
+by an INTERFACE moving to FORWARDING STATE too soon
+HOWEVER …
+💡 A FORWARDING interface can move DIRECTLY to a BLOCKING state (there is no worry about creating a
+loop)
+💡 A BLOCKING interface can NOT move DIRECTLY to a FORWARDING state. It MUST go through the
+LISTENING and LEARNING states first!
+STP BPDU (BRIDGE PROTOCOL DATA UNIT)
+Ethernet Header of a BPDU
+💡 PVST+ uses the MAC ADDRESS :
+01 : 00 : 0c : cc : cc : cd
+PVST = ONLY ISL Trunk Encapsulation
+PVST+ = Supports 802.1Q
+💡 Regular STP (not Cisco’s PVST+) uses the MAC ADDRESS :
+01 : 80 : c2 : 00 : 00 : 00
+💡 The STP TIMERS on the ROOT BRIDGE determine ALL STP TIMERS for the entire network!
+STP OPTIONAL FEATURES (STP TOOLKIT)
+PORTFAST:
+• Can be Enabled on INTERFACES which are connected to END HOSTS
+💡 PORTFAST allows a PORT to move immediately to the FORWARDING state, bypassing LISTENING and
+LEARNING
+• If used, it MUST be ENABLED only on PORTS connected to END HOSTS
+• If ENABLED on a PORT connected to another SWITCH, it could cause a LAYER 2 LOOP
+You can also ENABLE PORTFAST with the following command:
+💡 SW1(config)# spanning-tree portfast default
+This ENABLES PORTFAST on ALL ACCESS PORTS (not TRUNK PORTS)
+BPDU GUARD:
+• If an INTERFACE with BPDU GUARD ENABLED receives a BPDU from another SWITCH, the INTERFACE
+will be SHUT DOWN to prevent loops from forming.
+You can also ENABLE BPDU GUARD with the following command:
+💡 SW1(config)# spanning-tree portfast bpduguard default
+This ENABLES BPDU GUARD on all PORTFAST-enabled INTERFACES
+ROOT GUARD / LOOP GUARD:
+You probably do NOT have to know these STP optional features (or others such as UplinkFast, Backbone
+Fast, etcetera) for the CCNA.
+BUT…
+💡 Make sure you know PORTFAST and BPDU GUARD.
+STP CONFIGURATION
+Command to CONFIGURE Spanning-Tree mode on a SWITCH
+Modern Cisco SWITCHES run rapid-pvst, by default
+CONFIGURE THE PRIMARY ROOT BRIDGE
+Command to CONFIGURE Spanning-Tree PRIMARY ROOT BRIDGE on a SWITCH
+Confirm with “(do) show spanning-tree”
+Can see in the above example, SW3 has become the “root”
+• The “spanning-tree vlan root primary” command sets the STP PRIORITY to 24576. If another SWITCH
+already has a priority number lower than 24576, it sets this SWITCH’s priority to 4096 LESS THAN the
+other SWITCH’s Priority (remember STP PART 1 lecture)
+SECONDARY ROOT BRIGE (backup ROOT BRIDGE)
+Command to CONFIGURE Spanning-Tree SECONDARY ROOT BRIDGE on a SWITCH
+• The “spanning-tree vlan root secondary” command sets the STP PRIORITY to 28672 (exactly 4096
+higher than 24576).
+VLAN 1 TOPOLOGY running PVST+
+SW1 WAS the PRIMARY ROOT BRIDGE but :
+• We have configured SW3 to be the PRIMARY
+• We have configured SW2 to be the SECONDARY
+The TOPOLOGY for VLAN 2, however, won’t be the same. It will be the OLD Topology.
+WHY? Because we made changes ONLY to the TOPOLOGY found in VLAN 1 (see the commands we used)
+CONFIGURE STP PORT SETTINGS
+“cost” = “ROOT COST”
+“port-priority” = “PORT PRIORITY”
+Day 21 Part 1
+Portfast
+BPDU guard
+Interface spanning-tree pbdguard enable
+Default - spanning-tree portfast bpdguard default
+show errfidable recovery
+BPDU Filter
+Root Guard
+Loop guard
+
+Day 21 - Spanning Tree Protocol (pt 2)
+Wednesday, August 26, 2026 5:05 PM
+21. SPANNING TREE PROTOCOL (STP) : PART 2
+STP STATES
+• ROOT / DESIGNATED PORTS remain STABLE in a FORWARDING state
+• NON-DESIGNATED PORTS remain STABLE in a BLOCKING state
+• LISTENING and LEARNING are TRANSITIONAL states which are passed through when an interface is
+activated, or when a BLOCKING PORT must transition to a FORWARDING state due to a change in
+network topology.
+1) BLOCKING / STABLE
+• NON-DESIGNATED PORTS are in a BLOCKING state
+• Interfaces in a BLOCKING state are effectively disabled to prevent loops
+• Interfaces in a BLOCKING state do NOT Send/Receive regular network traffic
+• Interfaces in a BLOCKING state do NOT forward STP BPDUs
+• Interfaces in a BLOCKING state do NOT learn MAC ADDRESSES
+2) LISTENING / TRANSITIONAL
+• After the BLOCKING state, interfaces with the DESIGNATED or ROOT role enter the LISTENING state
+• ONLY DESIGNATED or ROOT PORTS enter the LISTENING state (NON-DESIGNATED PORTS are ALWAYS
+BLOCKING)
+• The LISTENING state is 15 seconds long by Default. This is determined by the FORWARD DELAY TIMER
+• Interfaces in a LISTENING state do NOT Send / Receive regular network traffic
+• Interfaces in a LISTENING state ONLY Forward/Receive STP BPDUs
+• Interfaces in a LISTENING state does NOT learn MAC ADDRESSES from regular traffic that arrives on
+the interface
+3) LEARNING / TRANSITIONAL
+• After the LISTENING state, a DESIGNATED or ROOT port will enter the LEARNING state
+• The LEARNING state is 15 seconds long by Default. This is determined by the FORWARD DELAY TIMER
+(same one used for both LISTENING and LEARNING states)
+• Interfaces in a LEARNING state do NOT Send / Receive regular network traffic
+• Interfaces in a LEARNING state ONLY Sends/Receives STP BPDUs
+• Interfaces in a LEARNING state learns MAC ADDRESSES from regular traffic that arrives on the
+interface
+4. FORWARDING / STABLE
+• ROOT and DESIGNATED PORTS are in a FORWARDING state
+• A PORT in the FORWARDING state operate as NORMAL
+• A PORT in the FORWARDING state Sends/Receives regular network traffic
+• A PORT in the FORWARDING state Sends/Receives STP BPDUs
+• A PORT in the FORWARDING state learns MAC ADDRESSES
+SUMMARY :
+STP TIMERS
+💡 SWITCHES do NOT forward the BPDUs out of their ROOT PORTS and NON-DESIGNATED PORTS - ONLY
+their DESIGNATED PORTS !!!
+MAX AGE TIMER:
+• If another BPDU is received BEFORE MAX AGE TIMER counts down to 0, the TIME will RESET to 20
+Seconds and no changes will occur.
+• If another BPDU is not received, the MAX AGE TIMER counts down to 0 and the SWITCH will re-
+evaluate it’s STP choices, including ROOT BRIDGE, LOCAL ROOT, DESIGNATED, and NON-DESIGNATED
+PORTS.
+• If a NON-DESIGNATED PORT is selected to become a DESIGNATED or ROOT PORT, it will transition
+from the BLOCKING state to the LISTENING state (15 Seconds), LEARNING state (15 Seconds), and
+then finally the FORWARDING state.
+○ So… it can take 50 Seconds for a BLOCKING interface to transition to FORWARDING! (MAX AGE
+TIMER + (LISTENING + LEARNING 15 Second timers))
+• These TIMERS and TRANSITIONAL STATES are to make sure that LOOPS are not accidentally created
+by an INTERFACE moving to FORWARDING STATE too soon
+HOWEVER …
+💡 A FORWARDING interface can move DIRECTLY to a BLOCKING state (there is no worry about creating a
+loop)
+💡 A BLOCKING interface can NOT move DIRECTLY to a FORWARDING state. It MUST go through the
+LISTENING and LEARNING states first!
+STP BPDU (BRIDGE PROTOCOL DATA UNIT)
+Ethernet Header of a BPDU
+💡 PVST+ uses the MAC ADDRESS :
+01 : 00 : 0c : cc : cc : cd
+PVST = ONLY ISL Trunk Encapsulation
+PVST+ = Supports 802.1Q
+💡 Regular STP (not Cisco’s PVST+) uses the MAC ADDRESS :
+01 : 80 : c2 : 00 : 00 : 00
+💡 The STP TIMERS on the ROOT BRIDGE determine ALL STP TIMERS for the entire network!
+STP OPTIONAL FEATURES (STP TOOLKIT)
+PORTFAST:
+• Can be Enabled on INTERFACES which are connected to END HOSTS
+💡 PORTFAST allows a PORT to move immediately to the FORWARDING state, bypassing LISTENING and
+LEARNING
+• If used, it MUST be ENABLED only on PORTS connected to END HOSTS
+• If ENABLED on a PORT connected to another SWITCH, it could cause a LAYER 2 LOOP
+You can also ENABLE PORTFAST with the following command:
+💡 SW1(config)# spanning-tree portfast default
+This ENABLES PORTFAST on ALL ACCESS PORTS (not TRUNK PORTS)
+BPDU GUARD:
+• If an INTERFACE with BPDU GUARD ENABLED receives a BPDU from another SWITCH, the INTERFACE
+will be SHUT DOWN to prevent loops from forming.
+You can also ENABLE BPDU GUARD with the following command:
+💡 SW1(config)# spanning-tree portfast bpduguard default
+This ENABLES BPDU GUARD on all PORTFAST-enabled INTERFACES
+ROOT GUARD / LOOP GUARD:
+You probably do NOT have to know these STP optional features (or others such as UplinkFast, Backbone
+Fast, etcetera) for the CCNA.
+BUT…
+💡 Make sure you know PORTFAST and BPDU GUARD.
+STP CONFIGURATION
+Command to CONFIGURE Spanning-Tree mode on a SWITCH
+Modern Cisco SWITCHES run rapid-pvst, by default
+CONFIGURE THE PRIMARY ROOT BRIDGE
+Command to CONFIGURE Spanning-Tree PRIMARY ROOT BRIDGE on a SWITCH
+Confirm with “(do) show spanning-tree”
+Can see in the above example, SW3 has become the “root”
+• The “spanning-tree vlan root primary” command sets the STP PRIORITY to 24576. If another SWITCH
+already has a priority number lower than 24576, it sets this SWITCH’s priority to 4096 LESS THAN the
+other SWITCH’s Priority (remember STP PART 1 lecture)
+SECONDARY ROOT BRIGE (backup ROOT BRIDGE)
+Command to CONFIGURE Spanning-Tree SECONDARY ROOT BRIDGE on a SWITCH
+• The “spanning-tree vlan root secondary” command sets the STP PRIORITY to 28672 (exactly 4096
+higher than 24576).
+VLAN 1 TOPOLOGY running PVST+
+SW1 WAS the PRIMARY ROOT BRIDGE but :
+• We have configured SW3 to be the PRIMARY
+• We have configured SW2 to be the SECONDARY
+The TOPOLOGY for VLAN 2, however, won’t be the same. It will be the OLD Topology.
+WHY? Because we made changes ONLY to the TOPOLOGY found in VLAN 1 (see the commands we used)
+CONFIGURE STP PORT SETTINGS
+“cost” = “ROOT COST”
+“port-priority” = “PORT PRIORITY”
+Day 21 Part 1
+Portfast
+BPDU guard
+Interface spanning-tree pbdguard enable
+Default - spanning-tree portfast bpdguard default
+show errfidable recovery
+BPDU Filter
+Root Guard
+Loop guard</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="day-20.html"><small>← Day 20</small>Spanning Tree Protocol (pt 1)</a><a href="day-22.html"><small>Day 22 →</small>Rapid Spanning Tree Protocol</a></nav></article></div></main><footer class="footer"><div class="wrap">Personal study notes · Jeremy’s IT Lab CCNA course · Exported from OneNote September 20, 2026<br><a href="../../resources.html">Back to all resources</a></div></footer><script src="course.js"></script></body></html>

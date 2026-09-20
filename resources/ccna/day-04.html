@@ -1,0 +1,1055 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 4: Intro to the CLI | DiPiazza</title><meta name="description" content="Personal CCNA study notes from OneNote, organized into 63 days with diagrams, original PDFs and searchable text."><link rel="icon" href="../../images/thegoat.png"><link rel="stylesheet" href="course.css"></head><body><header class="top"><div class="wrap"><a class="brand" href="../../index.html">DiPiazza<span aria-hidden="true">.</span></a><nav aria-label="Main"><a href="../../resources.html">Resources</a><a href="index.html">CCNA course</a></nav></div></header><main class="wrap"><div class="crumb"><a href="index.html">CCNA study notes</a> / Day 04</div><header class="lesson-head"><div class="eyebrow">Day 04 / 63 · Network foundations</div><h1>Intro to the CLI</h1><p class="lead">Original notes and diagrams from my OneNote notebook.</p><div class="pills"><a class="button primary" href="index.html">All 63 days</a></div></header><div class="reading-layout"><aside class="aside" aria-label="Lesson parts"><p class="muted">IN THIS DAY</p><a href="#part-1">Intro to the CLI</a><p class="muted">Tap a note image to zoom. Expand the text view to copy or search the exported text.</p></aside><article><section class="note-part" id="part-1"><h2>Intro to the CLI</h2><a class="button" href="assets/lesson-04/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="assets/lesson-04/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge Intro to the CLI page 1"><img src="assets/lesson-04/page-1.webp" width="1554" height="1998" loading="lazy" alt="Original OneNote notes: Intro to the CLI, page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 8</figcaption></figure><figure class="note-image"><a href="assets/lesson-04/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge Intro to the CLI page 2"><img src="assets/lesson-04/page-2.webp" width="1506" height="1987" loading="lazy" alt="Original OneNote notes: Intro to the CLI, page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 8</figcaption></figure><figure class="note-image"><a href="assets/lesson-04/page-3.webp" target="_blank" rel="noopener" aria-label="Enlarge Intro to the CLI page 3"><img src="assets/lesson-04/page-3.webp" width="1533" height="2108" loading="lazy" alt="Original OneNote notes: Intro to the CLI, page 3. Text version follows below."></a><figcaption>Original notes · Page 3 of 8</figcaption></figure><figure class="note-image"><a href="assets/lesson-04/page-4.webp" target="_blank" rel="noopener" aria-label="Enlarge Intro to the CLI page 4"><img src="assets/lesson-04/page-4.webp" width="1478" height="2093" loading="lazy" alt="Original OneNote notes: Intro to the CLI, page 4. Text version follows below."></a><figcaption>Original notes · Page 4 of 8</figcaption></figure><figure class="note-image"><a href="assets/lesson-04/page-5.webp" target="_blank" rel="noopener" aria-label="Enlarge Intro to the CLI page 5"><img src="assets/lesson-04/page-5.webp" width="1490" height="2109" loading="lazy" alt="Original OneNote notes: Intro to the CLI, page 5. Text version follows below."></a><figcaption>Original notes · Page 5 of 8</figcaption></figure><figure class="note-image"><a href="assets/lesson-04/page-6.webp" target="_blank" rel="noopener" aria-label="Enlarge Intro to the CLI page 6"><img src="assets/lesson-04/page-6.webp" width="1411" height="2109" loading="lazy" alt="Original OneNote notes: Intro to the CLI, page 6. Text version follows below."></a><figcaption>Original notes · Page 6 of 8</figcaption></figure><figure class="note-image"><a href="assets/lesson-04/page-7.webp" target="_blank" rel="noopener" aria-label="Enlarge Intro to the CLI page 7"><img src="assets/lesson-04/page-7.webp" width="1477" height="2103" loading="lazy" alt="Original OneNote notes: Intro to the CLI, page 7. Text version follows below."></a><figcaption>Original notes · Page 7 of 8</figcaption></figure><figure class="note-image"><a href="assets/lesson-04/page-8.webp" target="_blank" rel="noopener" aria-label="Enlarge Intro to the CLI page 8"><img src="assets/lesson-04/page-8.webp" width="1477" height="741" loading="lazy" alt="Original OneNote notes: Intro to the CLI, page 8. Text version follows below."></a><figcaption>Original notes · Page 8 of 8</figcaption></figure><details class="text-view"><summary>Text view — Intro to the CLI</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 4 - Intro to the CLI
+Thursday, August 20, 2026 3:28 PM
+Mode Prompt Purpose How to Enter
+User EXEC Router&gt; Basic monitoring/access Default
+Privileged EXEC Router# Advanced monitoring and device management enable
+Global Configuration Router(config)# Configure the device configure terminal
+Term / Command What It Does Example
+? Displays available commands/options Router# ?
+command ? Shows available options for a specific command Router# show ?
+TAB Automatically completes a partially typed command Router# conf → TAB →
+configure
+enable Moves from User EXEC → Privileged EXEC Router&gt; enable
+disable Moves from Privileged EXEC → User EXEC Router# disable
+configure terminal Enters Global Configuration Mode Router# configure terminal
+conf t Short version of configure terminal Router# conf t
+exit Moves back one CLI level Router(config)# exit →
+Router#
+end Immediately returns to Privileged EXEC Mode Router(config-if)# end →
+Router#
+do Allows you to run a Privileged EXEC command while in Router(config)# do show
+configuration mode running-config
+enable password Sets a password for entering Privileged EXEC mode Router(config)# enable
+password cisco
+enable secret Sets an encrypted password for Privileged EXEC mode; preferred Router(config)# enable
+over enable password (uses MD5 More secure encryption) secret MyPassword
+service password- Encrypts plaintext passwords in the configuration using Cisco Type Router(config)# service
+encryption 7 encryption (weak encryption) password-encryption
+no service password- Stops future plaintext passwords from being automatically Router(config)# no service
+encryption encrypted; existing Type 7 passwords remain encrypted password-encryption
+show running-config Displays the current active configuration Router# show running-
+config
+show startup-config Displays the configuration saved in NVRAM that will be loaded Router# show startup-
+after reboot config
+write Saves the running configuration to startup configuration Router# write
+write memory Saves the running configuration to startup configuration Router# write memory
+copy running-config Copies the active configuration into the startup configuration Router# copy running-
+startup-config config startup-config
+no Removes/disables a configuration command Router(config)# no service
+password-encryption
+What is a CLI?
+• A &quot;Command-line Interface&quot;
+• The interface you use to configure Cisco devices
+A GUI is a &quot;Graphical User Interface&quot;
+How do you connect to a Cisco Device?
+• Console Port : When you first configure a device, you have to connect via the Console Port.
+You can use a &quot;Rollover cable&quot; : DB9 serial connector to RJ45 OR a DB9 Serial to USB
+How do you actually access the CLI?
+• You need to use a TERMINAL EMULATOR (Example: PuTTy is a popular choice) and connect via &quot;Serial&quot;
+(default settings)
+Cisco Default Settings are:
+Speed (baud) : 9600 bits/second
+Data bits: 8 data bits
+Stop bits: 1 stop bit (sent after 8 data bits are sent)
+Parity: None
+Flow Control: None
+CLI:
+When you first enter the CLI you will DEFAULT be in what is called &#x27;User EXEC&#x27; mode.
+USER EXEC MODE:
+• User EXEC mode is very limited.
+• User can look at some things but can&#x27;t make ANY changes to the configuration.
+• AKA &#x27;User Mode&#x27;
+Privileged EXEC
+• Provides complete access to view the device&#x27;s configuration, restart the device, etc.
+• Cannot change the configuration, but can change the time on the device, save the configuration file, etc.
+Help
+USE a Question Mark (?) to view the available commands in ANY mode.
+Combining ? with a letter or partial command will list all the commands with those letters.
+Using a ? After a command will give you available options for using that command.
+Tab
+USE the TAB key to complete partially entered commands IF the command exists.
+Example entering en (short for enable) will enter you to privilege exec mode.
+Do
+Do allows you to run privlage exec commands in other levels
+No
+Used to remove a command you previously used
+GLOBAL CONFIGURATION MODE:
+To enter Global Configuration Mode, enter the command, within Privileged EXEC mode
+&#x27;configure terminal&#x27; (or &#x27;conf t&#x27;)
+Router# configure terminal
+Type &#x27;exit&#x27; to drop back into &#x27;Privileged EXEC&#x27; mode.
+To Enable Password for User EXEC mode:
+Router(config)# enable password (password)
+• Passwords ARE case-sensitive.
+// This command encrypts plain-text passwords, visible in the config files, using simple encryption.
+Router(config)# service password-encryption
+If you enable &#x27;service password-encryption&#x27;
+• Current passwords WILL be encrypted.
+• Future passwords WILL be encrypted.
+• The &#x27;enable secret&#x27; WILL NOT be effected.
+If you disable &#x27;service password-encryption&#x27;
+• Current passwords WILL NOT be decrypted.
+• Future passwords WILL NOT be encrypted.
+• The &#x27;enable secret&#x27; WILL NOT be effected.
+// This command enables passwords for the Privileged EXEC mode.
+Router(config)# enable secret (password)
+// enable secret will ALWAYS be encrypted (at level 5)
+There are TWO separate configuration files kept on the device at once.
+Running-config :
+• The current, ACTIVE configuration file on the device. As you enter commands in the CLI, you edit the
+active configuration.
+Startup-config :
+• The configuration file that will be loaded upon RESTART of the device.
+To see the configuration files, inside &#x27;Privileged EXEC&#x27; mode:
+Router# show running-config // for running config //
+OR
+Router# show startup-config // for startup config //
+To SAVE the Running configuration file, you can:
+Router# write Building configuration... [OK]
+Router# write memory Building configuration... [OK]
+Router# copy running-config startup-config
+Destination filename [startup-config]?
+Building configuration... [OK]
+To encrypt passwords:
+Router# conf t
+Router(config)# service password-encryption
+This makes all current passwords encrypted
+Future passwords will ALSO be encrypted
+“Enable secret” will not be effected (it’s ALWAYS encrypted)
+Now you will see that the password is no longer in plaintext.
+“7” refers to the type of encryption used to encrypt the password. In this case, “7” uses Cisco’s proprietary
+encryption.
+“7” is fairly easy to crack since the encryption is weak.
+For BETTER / STRONGER encryption, use “enable secret”
+“5” refers to MD5 encryption.
+Can still be cracked but it’s much much stronger.
+Once you use “enable secret” command, this will override “enable password”
+To CANCEL or delete a command you entered, use the “no” keyword
+In this instance, disabling “service password-encryption”:
+• current passwords will NOT be decrypted (unchanged)
+• future passwords will NOT be encrypted
+• the “enable secret” will not be effected
+
+Day 4 - Intro to the CLI
+Thursday, August 20, 2026 3:28 PM
+Mode Prompt Purpose How to Enter
+User EXEC Router&gt; Basic monitoring/access Default
+Privileged EXEC Router# Advanced monitoring and device management enable
+Global Configuration Router(config)# Configure the device configure terminal
+Term / Command What It Does Example
+? Displays available commands/options Router# ?
+command ? Shows available options for a specific command Router# show ?
+TAB Automatically completes a partially typed command Router# conf → TAB →
+configure
+enable Moves from User EXEC → Privileged EXEC Router&gt; enable
+disable Moves from Privileged EXEC → User EXEC Router# disable
+configure terminal Enters Global Configuration Mode Router# configure terminal
+conf t Short version of configure terminal Router# conf t
+exit Moves back one CLI level Router(config)# exit →
+Router#
+end Immediately returns to Privileged EXEC Mode Router(config-if)# end →
+Router#
+do Allows you to run a Privileged EXEC command while in Router(config)# do show
+configuration mode running-config
+enable password Sets a password for entering Privileged EXEC mode Router(config)# enable
+password cisco
+enable secret Sets an encrypted password for Privileged EXEC mode; preferred Router(config)# enable
+over enable password (uses MD5 More secure encryption) secret MyPassword
+service password- Encrypts plaintext passwords in the configuration using Cisco Type Router(config)# service
+encryption 7 encryption (weak encryption) password-encryption
+no service password- Stops future plaintext passwords from being automatically Router(config)# no service
+encryption encrypted; existing Type 7 passwords remain encrypted password-encryption
+show running-config Displays the current active configuration Router# show running-
+config
+show startup-config Displays the configuration saved in NVRAM that will be loaded Router# show startup-
+after reboot config
+write Saves the running configuration to startup configuration Router# write
+write memory Saves the running configuration to startup configuration Router# write memory
+copy running-config Copies the active configuration into the startup configuration Router# copy running-
+startup-config config startup-config
+no Removes/disables a configuration command Router(config)# no service
+password-encryption
+What is a CLI?
+• A &quot;Command-line Interface&quot;
+• The interface you use to configure Cisco devices
+A GUI is a &quot;Graphical User Interface&quot;
+How do you connect to a Cisco Device?
+• Console Port : When you first configure a device, you have to connect via the Console Port.
+You can use a &quot;Rollover cable&quot; : DB9 serial connector to RJ45 OR a DB9 Serial to USB
+How do you actually access the CLI?
+• You need to use a TERMINAL EMULATOR (Example: PuTTy is a popular choice) and connect via &quot;Serial&quot;
+(default settings)
+Cisco Default Settings are:
+Speed (baud) : 9600 bits/second
+Data bits: 8 data bits
+Stop bits: 1 stop bit (sent after 8 data bits are sent)
+Parity: None
+Flow Control: None
+CLI:
+When you first enter the CLI you will DEFAULT be in what is called &#x27;User EXEC&#x27; mode.
+USER EXEC MODE:
+• User EXEC mode is very limited.
+• User can look at some things but can&#x27;t make ANY changes to the configuration.
+• AKA &#x27;User Mode&#x27;
+Privileged EXEC
+• Provides complete access to view the device&#x27;s configuration, restart the device, etc.
+• Cannot change the configuration, but can change the time on the device, save the configuration file, etc.
+Help
+USE a Question Mark (?) to view the available commands in ANY mode.
+Combining ? with a letter or partial command will list all the commands with those letters.
+Using a ? After a command will give you available options for using that command.
+Tab
+USE the TAB key to complete partially entered commands IF the command exists.
+Example entering en (short for enable) will enter you to privilege exec mode.
+Do
+Do allows you to run privlage exec commands in other levels
+No
+Used to remove a command you previously used
+GLOBAL CONFIGURATION MODE:
+To enter Global Configuration Mode, enter the command, within Privileged EXEC mode
+&#x27;configure terminal&#x27; (or &#x27;conf t&#x27;)
+Router# configure terminal
+Type &#x27;exit&#x27; to drop back into &#x27;Privileged EXEC&#x27; mode.
+To Enable Password for User EXEC mode:
+Router(config)# enable password (password)
+• Passwords ARE case-sensitive.
+// This command encrypts plain-text passwords, visible in the config files, using simple encryption.
+Router(config)# service password-encryption
+If you enable &#x27;service password-encryption&#x27;
+• Current passwords WILL be encrypted.
+• Future passwords WILL be encrypted.
+• The &#x27;enable secret&#x27; WILL NOT be effected.
+If you disable &#x27;service password-encryption&#x27;
+• Current passwords WILL NOT be decrypted.
+• Future passwords WILL NOT be encrypted.
+• The &#x27;enable secret&#x27; WILL NOT be effected.
+// This command enables passwords for the Privileged EXEC mode.
+Router(config)# enable secret (password)
+// enable secret will ALWAYS be encrypted (at level 5)
+There are TWO separate configuration files kept on the device at once.
+Running-config :
+• The current, ACTIVE configuration file on the device. As you enter commands in the CLI, you edit the
+active configuration.
+Startup-config :
+• The configuration file that will be loaded upon RESTART of the device.
+To see the configuration files, inside &#x27;Privileged EXEC&#x27; mode:
+Router# show running-config // for running config //
+OR
+Router# show startup-config // for startup config //
+To SAVE the Running configuration file, you can:
+Router# write Building configuration... [OK]
+Router# write memory Building configuration... [OK]
+Router# copy running-config startup-config
+Destination filename [startup-config]?
+Building configuration... [OK]
+To encrypt passwords:
+Router# conf t
+Router(config)# service password-encryption
+This makes all current passwords encrypted
+Future passwords will ALSO be encrypted
+“Enable secret” will not be effected (it’s ALWAYS encrypted)
+Now you will see that the password is no longer in plaintext.
+“7” refers to the type of encryption used to encrypt the password. In this case, “7” uses Cisco’s proprietary
+encryption.
+“7” is fairly easy to crack since the encryption is weak.
+For BETTER / STRONGER encryption, use “enable secret”
+“5” refers to MD5 encryption.
+Can still be cracked but it’s much much stronger.
+Once you use “enable secret” command, this will override “enable password”
+To CANCEL or delete a command you entered, use the “no” keyword
+In this instance, disabling “service password-encryption”:
+• current passwords will NOT be decrypted (unchanged)
+• future passwords will NOT be encrypted
+• the “enable secret” will not be effected
+
+Day 4 - Intro to the CLI
+Thursday, August 20, 2026 3:28 PM
+Mode Prompt Purpose How to Enter
+User EXEC Router&gt; Basic monitoring/access Default
+Privileged EXEC Router# Advanced monitoring and device management enable
+Global Configuration Router(config)# Configure the device configure terminal
+Term / Command What It Does Example
+? Displays available commands/options Router# ?
+command ? Shows available options for a specific command Router# show ?
+TAB Automatically completes a partially typed command Router# conf → TAB →
+configure
+enable Moves from User EXEC → Privileged EXEC Router&gt; enable
+disable Moves from Privileged EXEC → User EXEC Router# disable
+configure terminal Enters Global Configuration Mode Router# configure terminal
+conf t Short version of configure terminal Router# conf t
+exit Moves back one CLI level Router(config)# exit →
+Router#
+end Immediately returns to Privileged EXEC Mode Router(config-if)# end →
+Router#
+do Allows you to run a Privileged EXEC command while in Router(config)# do show
+configuration mode running-config
+enable password Sets a password for entering Privileged EXEC mode Router(config)# enable
+password cisco
+enable secret Sets an encrypted password for Privileged EXEC mode; preferred Router(config)# enable
+over enable password (uses MD5 More secure encryption) secret MyPassword
+service password- Encrypts plaintext passwords in the configuration using Cisco Type Router(config)# service
+encryption 7 encryption (weak encryption) password-encryption
+no service password- Stops future plaintext passwords from being automatically Router(config)# no service
+encryption encrypted; existing Type 7 passwords remain encrypted password-encryption
+show running-config Displays the current active configuration Router# show running-
+config
+show startup-config Displays the configuration saved in NVRAM that will be loaded Router# show startup-
+after reboot config
+write Saves the running configuration to startup configuration Router# write
+write memory Saves the running configuration to startup configuration Router# write memory
+copy running-config Copies the active configuration into the startup configuration Router# copy running-
+startup-config config startup-config
+no Removes/disables a configuration command Router(config)# no service
+password-encryption
+What is a CLI?
+• A &quot;Command-line Interface&quot;
+• The interface you use to configure Cisco devices
+A GUI is a &quot;Graphical User Interface&quot;
+How do you connect to a Cisco Device?
+• Console Port : When you first configure a device, you have to connect via the Console Port.
+You can use a &quot;Rollover cable&quot; : DB9 serial connector to RJ45 OR a DB9 Serial to USB
+How do you actually access the CLI?
+• You need to use a TERMINAL EMULATOR (Example: PuTTy is a popular choice) and connect via &quot;Serial&quot;
+(default settings)
+Cisco Default Settings are:
+Speed (baud) : 9600 bits/second
+Data bits: 8 data bits
+Stop bits: 1 stop bit (sent after 8 data bits are sent)
+Parity: None
+Flow Control: None
+CLI:
+When you first enter the CLI you will DEFAULT be in what is called &#x27;User EXEC&#x27; mode.
+USER EXEC MODE:
+• User EXEC mode is very limited.
+• User can look at some things but can&#x27;t make ANY changes to the configuration.
+• AKA &#x27;User Mode&#x27;
+Privileged EXEC
+• Provides complete access to view the device&#x27;s configuration, restart the device, etc.
+• Cannot change the configuration, but can change the time on the device, save the configuration file, etc.
+Help
+USE a Question Mark (?) to view the available commands in ANY mode.
+Combining ? with a letter or partial command will list all the commands with those letters.
+Using a ? After a command will give you available options for using that command.
+Tab
+USE the TAB key to complete partially entered commands IF the command exists.
+Example entering en (short for enable) will enter you to privilege exec mode.
+Do
+Do allows you to run privlage exec commands in other levels
+No
+Used to remove a command you previously used
+GLOBAL CONFIGURATION MODE:
+To enter Global Configuration Mode, enter the command, within Privileged EXEC mode
+&#x27;configure terminal&#x27; (or &#x27;conf t&#x27;)
+Router# configure terminal
+Type &#x27;exit&#x27; to drop back into &#x27;Privileged EXEC&#x27; mode.
+To Enable Password for User EXEC mode:
+Router(config)# enable password (password)
+• Passwords ARE case-sensitive.
+// This command encrypts plain-text passwords, visible in the config files, using simple encryption.
+Router(config)# service password-encryption
+If you enable &#x27;service password-encryption&#x27;
+• Current passwords WILL be encrypted.
+• Future passwords WILL be encrypted.
+• The &#x27;enable secret&#x27; WILL NOT be effected.
+If you disable &#x27;service password-encryption&#x27;
+• Current passwords WILL NOT be decrypted.
+• Future passwords WILL NOT be encrypted.
+• The &#x27;enable secret&#x27; WILL NOT be effected.
+// This command enables passwords for the Privileged EXEC mode.
+Router(config)# enable secret (password)
+// enable secret will ALWAYS be encrypted (at level 5)
+There are TWO separate configuration files kept on the device at once.
+Running-config :
+• The current, ACTIVE configuration file on the device. As you enter commands in the CLI, you edit the
+active configuration.
+Startup-config :
+• The configuration file that will be loaded upon RESTART of the device.
+To see the configuration files, inside &#x27;Privileged EXEC&#x27; mode:
+Router# show running-config // for running config //
+OR
+Router# show startup-config // for startup config //
+To SAVE the Running configuration file, you can:
+Router# write Building configuration... [OK]
+Router# write memory Building configuration... [OK]
+Router# copy running-config startup-config
+Destination filename [startup-config]?
+Building configuration... [OK]
+To encrypt passwords:
+Router# conf t
+Router(config)# service password-encryption
+This makes all current passwords encrypted
+Future passwords will ALSO be encrypted
+“Enable secret” will not be effected (it’s ALWAYS encrypted)
+Now you will see that the password is no longer in plaintext.
+“7” refers to the type of encryption used to encrypt the password. In this case, “7” uses Cisco’s proprietary
+encryption.
+“7” is fairly easy to crack since the encryption is weak.
+For BETTER / STRONGER encryption, use “enable secret”
+“5” refers to MD5 encryption.
+Can still be cracked but it’s much much stronger.
+Once you use “enable secret” command, this will override “enable password”
+To CANCEL or delete a command you entered, use the “no” keyword
+In this instance, disabling “service password-encryption”:
+• current passwords will NOT be decrypted (unchanged)
+• future passwords will NOT be encrypted
+• the “enable secret” will not be effected
+
+Day 4 - Intro to the CLI
+Thursday, August 20, 2026 3:28 PM
+Mode Prompt Purpose How to Enter
+User EXEC Router&gt; Basic monitoring/access Default
+Privileged EXEC Router# Advanced monitoring and device management enable
+Global Configuration Router(config)# Configure the device configure terminal
+Term / Command What It Does Example
+? Displays available commands/options Router# ?
+command ? Shows available options for a specific command Router# show ?
+TAB Automatically completes a partially typed command Router# conf → TAB →
+configure
+enable Moves from User EXEC → Privileged EXEC Router&gt; enable
+disable Moves from Privileged EXEC → User EXEC Router# disable
+configure terminal Enters Global Configuration Mode Router# configure terminal
+conf t Short version of configure terminal Router# conf t
+exit Moves back one CLI level Router(config)# exit →
+Router#
+end Immediately returns to Privileged EXEC Mode Router(config-if)# end →
+Router#
+do Allows you to run a Privileged EXEC command while in Router(config)# do show
+configuration mode running-config
+enable password Sets a password for entering Privileged EXEC mode Router(config)# enable
+password cisco
+enable secret Sets an encrypted password for Privileged EXEC mode; preferred Router(config)# enable
+over enable password (uses MD5 More secure encryption) secret MyPassword
+service password- Encrypts plaintext passwords in the configuration using Cisco Type Router(config)# service
+encryption 7 encryption (weak encryption) password-encryption
+no service password- Stops future plaintext passwords from being automatically Router(config)# no service
+encryption encrypted; existing Type 7 passwords remain encrypted password-encryption
+show running-config Displays the current active configuration Router# show running-
+config
+show startup-config Displays the configuration saved in NVRAM that will be loaded Router# show startup-
+after reboot config
+write Saves the running configuration to startup configuration Router# write
+write memory Saves the running configuration to startup configuration Router# write memory
+copy running-config Copies the active configuration into the startup configuration Router# copy running-
+startup-config config startup-config
+no Removes/disables a configuration command Router(config)# no service
+password-encryption
+What is a CLI?
+• A &quot;Command-line Interface&quot;
+• The interface you use to configure Cisco devices
+A GUI is a &quot;Graphical User Interface&quot;
+How do you connect to a Cisco Device?
+• Console Port : When you first configure a device, you have to connect via the Console Port.
+You can use a &quot;Rollover cable&quot; : DB9 serial connector to RJ45 OR a DB9 Serial to USB
+How do you actually access the CLI?
+• You need to use a TERMINAL EMULATOR (Example: PuTTy is a popular choice) and connect via &quot;Serial&quot;
+(default settings)
+Cisco Default Settings are:
+Speed (baud) : 9600 bits/second
+Data bits: 8 data bits
+Stop bits: 1 stop bit (sent after 8 data bits are sent)
+Parity: None
+Flow Control: None
+CLI:
+When you first enter the CLI you will DEFAULT be in what is called &#x27;User EXEC&#x27; mode.
+USER EXEC MODE:
+• User EXEC mode is very limited.
+• User can look at some things but can&#x27;t make ANY changes to the configuration.
+• AKA &#x27;User Mode&#x27;
+Privileged EXEC
+• Provides complete access to view the device&#x27;s configuration, restart the device, etc.
+• Cannot change the configuration, but can change the time on the device, save the configuration file, etc.
+Help
+USE a Question Mark (?) to view the available commands in ANY mode.
+Combining ? with a letter or partial command will list all the commands with those letters.
+Using a ? After a command will give you available options for using that command.
+Tab
+USE the TAB key to complete partially entered commands IF the command exists.
+Example entering en (short for enable) will enter you to privilege exec mode.
+Do
+Do allows you to run privlage exec commands in other levels
+No
+Used to remove a command you previously used
+GLOBAL CONFIGURATION MODE:
+To enter Global Configuration Mode, enter the command, within Privileged EXEC mode
+&#x27;configure terminal&#x27; (or &#x27;conf t&#x27;)
+Router# configure terminal
+Type &#x27;exit&#x27; to drop back into &#x27;Privileged EXEC&#x27; mode.
+To Enable Password for User EXEC mode:
+Router(config)# enable password (password)
+• Passwords ARE case-sensitive.
+// This command encrypts plain-text passwords, visible in the config files, using simple encryption.
+Router(config)# service password-encryption
+If you enable &#x27;service password-encryption&#x27;
+• Current passwords WILL be encrypted.
+• Future passwords WILL be encrypted.
+• The &#x27;enable secret&#x27; WILL NOT be effected.
+If you disable &#x27;service password-encryption&#x27;
+• Current passwords WILL NOT be decrypted.
+• Future passwords WILL NOT be encrypted.
+• The &#x27;enable secret&#x27; WILL NOT be effected.
+// This command enables passwords for the Privileged EXEC mode.
+Router(config)# enable secret (password)
+// enable secret will ALWAYS be encrypted (at level 5)
+There are TWO separate configuration files kept on the device at once.
+Running-config :
+• The current, ACTIVE configuration file on the device. As you enter commands in the CLI, you edit the
+active configuration.
+Startup-config :
+• The configuration file that will be loaded upon RESTART of the device.
+To see the configuration files, inside &#x27;Privileged EXEC&#x27; mode:
+Router# show running-config // for running config //
+OR
+Router# show startup-config // for startup config //
+To SAVE the Running configuration file, you can:
+Router# write Building configuration... [OK]
+Router# write memory Building configuration... [OK]
+Router# copy running-config startup-config
+Destination filename [startup-config]?
+Building configuration... [OK]
+To encrypt passwords:
+Router# conf t
+Router(config)# service password-encryption
+This makes all current passwords encrypted
+Future passwords will ALSO be encrypted
+“Enable secret” will not be effected (it’s ALWAYS encrypted)
+Now you will see that the password is no longer in plaintext.
+“7” refers to the type of encryption used to encrypt the password. In this case, “7” uses Cisco’s proprietary
+encryption.
+“7” is fairly easy to crack since the encryption is weak.
+For BETTER / STRONGER encryption, use “enable secret”
+“5” refers to MD5 encryption.
+Can still be cracked but it’s much much stronger.
+Once you use “enable secret” command, this will override “enable password”
+To CANCEL or delete a command you entered, use the “no” keyword
+In this instance, disabling “service password-encryption”:
+• current passwords will NOT be decrypted (unchanged)
+• future passwords will NOT be encrypted
+• the “enable secret” will not be effected
+
+Day 4 - Intro to the CLI
+Thursday, August 20, 2026 3:28 PM
+Mode Prompt Purpose How to Enter
+User EXEC Router&gt; Basic monitoring/access Default
+Privileged EXEC Router# Advanced monitoring and device management enable
+Global Configuration Router(config)# Configure the device configure terminal
+Term / Command What It Does Example
+? Displays available commands/options Router# ?
+command ? Shows available options for a specific command Router# show ?
+TAB Automatically completes a partially typed command Router# conf → TAB →
+configure
+enable Moves from User EXEC → Privileged EXEC Router&gt; enable
+disable Moves from Privileged EXEC → User EXEC Router# disable
+configure terminal Enters Global Configuration Mode Router# configure terminal
+conf t Short version of configure terminal Router# conf t
+exit Moves back one CLI level Router(config)# exit →
+Router#
+end Immediately returns to Privileged EXEC Mode Router(config-if)# end →
+Router#
+do Allows you to run a Privileged EXEC command while in Router(config)# do show
+configuration mode running-config
+enable password Sets a password for entering Privileged EXEC mode Router(config)# enable
+password cisco
+enable secret Sets an encrypted password for Privileged EXEC mode; preferred Router(config)# enable
+over enable password (uses MD5 More secure encryption) secret MyPassword
+service password- Encrypts plaintext passwords in the configuration using Cisco Type Router(config)# service
+encryption 7 encryption (weak encryption) password-encryption
+no service password- Stops future plaintext passwords from being automatically Router(config)# no service
+encryption encrypted; existing Type 7 passwords remain encrypted password-encryption
+show running-config Displays the current active configuration Router# show running-
+config
+show startup-config Displays the configuration saved in NVRAM that will be loaded Router# show startup-
+after reboot config
+write Saves the running configuration to startup configuration Router# write
+write memory Saves the running configuration to startup configuration Router# write memory
+copy running-config Copies the active configuration into the startup configuration Router# copy running-
+startup-config config startup-config
+no Removes/disables a configuration command Router(config)# no service
+password-encryption
+What is a CLI?
+• A &quot;Command-line Interface&quot;
+• The interface you use to configure Cisco devices
+A GUI is a &quot;Graphical User Interface&quot;
+How do you connect to a Cisco Device?
+• Console Port : When you first configure a device, you have to connect via the Console Port.
+You can use a &quot;Rollover cable&quot; : DB9 serial connector to RJ45 OR a DB9 Serial to USB
+How do you actually access the CLI?
+• You need to use a TERMINAL EMULATOR (Example: PuTTy is a popular choice) and connect via &quot;Serial&quot;
+(default settings)
+Cisco Default Settings are:
+Speed (baud) : 9600 bits/second
+Data bits: 8 data bits
+Stop bits: 1 stop bit (sent after 8 data bits are sent)
+Parity: None
+Flow Control: None
+CLI:
+When you first enter the CLI you will DEFAULT be in what is called &#x27;User EXEC&#x27; mode.
+USER EXEC MODE:
+• User EXEC mode is very limited.
+• User can look at some things but can&#x27;t make ANY changes to the configuration.
+• AKA &#x27;User Mode&#x27;
+Privileged EXEC
+• Provides complete access to view the device&#x27;s configuration, restart the device, etc.
+• Cannot change the configuration, but can change the time on the device, save the configuration file, etc.
+Help
+USE a Question Mark (?) to view the available commands in ANY mode.
+Combining ? with a letter or partial command will list all the commands with those letters.
+Using a ? After a command will give you available options for using that command.
+Tab
+USE the TAB key to complete partially entered commands IF the command exists.
+Example entering en (short for enable) will enter you to privilege exec mode.
+Do
+Do allows you to run privlage exec commands in other levels
+No
+Used to remove a command you previously used
+GLOBAL CONFIGURATION MODE:
+To enter Global Configuration Mode, enter the command, within Privileged EXEC mode
+&#x27;configure terminal&#x27; (or &#x27;conf t&#x27;)
+Router# configure terminal
+Type &#x27;exit&#x27; to drop back into &#x27;Privileged EXEC&#x27; mode.
+To Enable Password for User EXEC mode:
+Router(config)# enable password (password)
+• Passwords ARE case-sensitive.
+// This command encrypts plain-text passwords, visible in the config files, using simple encryption.
+Router(config)# service password-encryption
+If you enable &#x27;service password-encryption&#x27;
+• Current passwords WILL be encrypted.
+• Future passwords WILL be encrypted.
+• The &#x27;enable secret&#x27; WILL NOT be effected.
+If you disable &#x27;service password-encryption&#x27;
+• Current passwords WILL NOT be decrypted.
+• Future passwords WILL NOT be encrypted.
+• The &#x27;enable secret&#x27; WILL NOT be effected.
+// This command enables passwords for the Privileged EXEC mode.
+Router(config)# enable secret (password)
+// enable secret will ALWAYS be encrypted (at level 5)
+There are TWO separate configuration files kept on the device at once.
+Running-config :
+• The current, ACTIVE configuration file on the device. As you enter commands in the CLI, you edit the
+active configuration.
+Startup-config :
+• The configuration file that will be loaded upon RESTART of the device.
+To see the configuration files, inside &#x27;Privileged EXEC&#x27; mode:
+Router# show running-config // for running config //
+OR
+Router# show startup-config // for startup config //
+To SAVE the Running configuration file, you can:
+Router# write Building configuration... [OK]
+Router# write memory Building configuration... [OK]
+Router# copy running-config startup-config
+Destination filename [startup-config]?
+Building configuration... [OK]
+To encrypt passwords:
+Router# conf t
+Router(config)# service password-encryption
+This makes all current passwords encrypted
+Future passwords will ALSO be encrypted
+“Enable secret” will not be effected (it’s ALWAYS encrypted)
+Now you will see that the password is no longer in plaintext.
+“7” refers to the type of encryption used to encrypt the password. In this case, “7” uses Cisco’s proprietary
+encryption.
+“7” is fairly easy to crack since the encryption is weak.
+For BETTER / STRONGER encryption, use “enable secret”
+“5” refers to MD5 encryption.
+Can still be cracked but it’s much much stronger.
+Once you use “enable secret” command, this will override “enable password”
+To CANCEL or delete a command you entered, use the “no” keyword
+In this instance, disabling “service password-encryption”:
+• current passwords will NOT be decrypted (unchanged)
+• future passwords will NOT be encrypted
+• the “enable secret” will not be effected
+
+Day 4 - Intro to the CLI
+Thursday, August 20, 2026 3:28 PM
+Mode Prompt Purpose How to Enter
+User EXEC Router&gt; Basic monitoring/access Default
+Privileged EXEC Router# Advanced monitoring and device management enable
+Global Configuration Router(config)# Configure the device configure terminal
+Term / Command What It Does Example
+? Displays available commands/options Router# ?
+command ? Shows available options for a specific command Router# show ?
+TAB Automatically completes a partially typed command Router# conf → TAB →
+configure
+enable Moves from User EXEC → Privileged EXEC Router&gt; enable
+disable Moves from Privileged EXEC → User EXEC Router# disable
+configure terminal Enters Global Configuration Mode Router# configure terminal
+conf t Short version of configure terminal Router# conf t
+exit Moves back one CLI level Router(config)# exit →
+Router#
+end Immediately returns to Privileged EXEC Mode Router(config-if)# end →
+Router#
+do Allows you to run a Privileged EXEC command while in Router(config)# do show
+configuration mode running-config
+enable password Sets a password for entering Privileged EXEC mode Router(config)# enable
+password cisco
+enable secret Sets an encrypted password for Privileged EXEC mode; preferred Router(config)# enable
+over enable password (uses MD5 More secure encryption) secret MyPassword
+service password- Encrypts plaintext passwords in the configuration using Cisco Type Router(config)# service
+encryption 7 encryption (weak encryption) password-encryption
+no service password- Stops future plaintext passwords from being automatically Router(config)# no service
+encryption encrypted; existing Type 7 passwords remain encrypted password-encryption
+show running-config Displays the current active configuration Router# show running-
+config
+show startup-config Displays the configuration saved in NVRAM that will be loaded Router# show startup-
+after reboot config
+write Saves the running configuration to startup configuration Router# write
+write memory Saves the running configuration to startup configuration Router# write memory
+copy running-config Copies the active configuration into the startup configuration Router# copy running-
+startup-config config startup-config
+no Removes/disables a configuration command Router(config)# no service
+password-encryption
+What is a CLI?
+• A &quot;Command-line Interface&quot;
+• The interface you use to configure Cisco devices
+A GUI is a &quot;Graphical User Interface&quot;
+How do you connect to a Cisco Device?
+• Console Port : When you first configure a device, you have to connect via the Console Port.
+You can use a &quot;Rollover cable&quot; : DB9 serial connector to RJ45 OR a DB9 Serial to USB
+How do you actually access the CLI?
+• You need to use a TERMINAL EMULATOR (Example: PuTTy is a popular choice) and connect via &quot;Serial&quot;
+(default settings)
+Cisco Default Settings are:
+Speed (baud) : 9600 bits/second
+Data bits: 8 data bits
+Stop bits: 1 stop bit (sent after 8 data bits are sent)
+Parity: None
+Flow Control: None
+CLI:
+When you first enter the CLI you will DEFAULT be in what is called &#x27;User EXEC&#x27; mode.
+USER EXEC MODE:
+• User EXEC mode is very limited.
+• User can look at some things but can&#x27;t make ANY changes to the configuration.
+• AKA &#x27;User Mode&#x27;
+Privileged EXEC
+• Provides complete access to view the device&#x27;s configuration, restart the device, etc.
+• Cannot change the configuration, but can change the time on the device, save the configuration file, etc.
+Help
+USE a Question Mark (?) to view the available commands in ANY mode.
+Combining ? with a letter or partial command will list all the commands with those letters.
+Using a ? After a command will give you available options for using that command.
+Tab
+USE the TAB key to complete partially entered commands IF the command exists.
+Example entering en (short for enable) will enter you to privilege exec mode.
+Do
+Do allows you to run privlage exec commands in other levels
+No
+Used to remove a command you previously used
+GLOBAL CONFIGURATION MODE:
+To enter Global Configuration Mode, enter the command, within Privileged EXEC mode
+&#x27;configure terminal&#x27; (or &#x27;conf t&#x27;)
+Router# configure terminal
+Type &#x27;exit&#x27; to drop back into &#x27;Privileged EXEC&#x27; mode.
+To Enable Password for User EXEC mode:
+Router(config)# enable password (password)
+• Passwords ARE case-sensitive.
+// This command encrypts plain-text passwords, visible in the config files, using simple encryption.
+Router(config)# service password-encryption
+If you enable &#x27;service password-encryption&#x27;
+• Current passwords WILL be encrypted.
+• Future passwords WILL be encrypted.
+• The &#x27;enable secret&#x27; WILL NOT be effected.
+If you disable &#x27;service password-encryption&#x27;
+• Current passwords WILL NOT be decrypted.
+• Future passwords WILL NOT be encrypted.
+• The &#x27;enable secret&#x27; WILL NOT be effected.
+// This command enables passwords for the Privileged EXEC mode.
+Router(config)# enable secret (password)
+// enable secret will ALWAYS be encrypted (at level 5)
+There are TWO separate configuration files kept on the device at once.
+Running-config :
+• The current, ACTIVE configuration file on the device. As you enter commands in the CLI, you edit the
+active configuration.
+Startup-config :
+• The configuration file that will be loaded upon RESTART of the device.
+To see the configuration files, inside &#x27;Privileged EXEC&#x27; mode:
+Router# show running-config // for running config //
+OR
+Router# show startup-config // for startup config //
+To SAVE the Running configuration file, you can:
+Router# write Building configuration... [OK]
+Router# write memory Building configuration... [OK]
+Router# copy running-config startup-config
+Destination filename [startup-config]?
+Building configuration... [OK]
+To encrypt passwords:
+Router# conf t
+Router(config)# service password-encryption
+This makes all current passwords encrypted
+Future passwords will ALSO be encrypted
+“Enable secret” will not be effected (it’s ALWAYS encrypted)
+Now you will see that the password is no longer in plaintext.
+“7” refers to the type of encryption used to encrypt the password. In this case, “7” uses Cisco’s proprietary
+encryption.
+“7” is fairly easy to crack since the encryption is weak.
+For BETTER / STRONGER encryption, use “enable secret”
+“5” refers to MD5 encryption.
+Can still be cracked but it’s much much stronger.
+Once you use “enable secret” command, this will override “enable password”
+To CANCEL or delete a command you entered, use the “no” keyword
+In this instance, disabling “service password-encryption”:
+• current passwords will NOT be decrypted (unchanged)
+• future passwords will NOT be encrypted
+• the “enable secret” will not be effected
+
+Day 4 - Intro to the CLI
+Thursday, August 20, 2026 3:28 PM
+Mode Prompt Purpose How to Enter
+User EXEC Router&gt; Basic monitoring/access Default
+Privileged EXEC Router# Advanced monitoring and device management enable
+Global Configuration Router(config)# Configure the device configure terminal
+Term / Command What It Does Example
+? Displays available commands/options Router# ?
+command ? Shows available options for a specific command Router# show ?
+TAB Automatically completes a partially typed command Router# conf → TAB →
+configure
+enable Moves from User EXEC → Privileged EXEC Router&gt; enable
+disable Moves from Privileged EXEC → User EXEC Router# disable
+configure terminal Enters Global Configuration Mode Router# configure terminal
+conf t Short version of configure terminal Router# conf t
+exit Moves back one CLI level Router(config)# exit →
+Router#
+end Immediately returns to Privileged EXEC Mode Router(config-if)# end →
+Router#
+do Allows you to run a Privileged EXEC command while in Router(config)# do show
+configuration mode running-config
+enable password Sets a password for entering Privileged EXEC mode Router(config)# enable
+password cisco
+enable secret Sets an encrypted password for Privileged EXEC mode; preferred Router(config)# enable
+over enable password (uses MD5 More secure encryption) secret MyPassword
+service password- Encrypts plaintext passwords in the configuration using Cisco Type Router(config)# service
+encryption 7 encryption (weak encryption) password-encryption
+no service password- Stops future plaintext passwords from being automatically Router(config)# no service
+encryption encrypted; existing Type 7 passwords remain encrypted password-encryption
+show running-config Displays the current active configuration Router# show running-
+config
+show startup-config Displays the configuration saved in NVRAM that will be loaded Router# show startup-
+after reboot config
+write Saves the running configuration to startup configuration Router# write
+write memory Saves the running configuration to startup configuration Router# write memory
+copy running-config Copies the active configuration into the startup configuration Router# copy running-
+startup-config config startup-config
+no Removes/disables a configuration command Router(config)# no service
+password-encryption
+What is a CLI?
+• A &quot;Command-line Interface&quot;
+• The interface you use to configure Cisco devices
+A GUI is a &quot;Graphical User Interface&quot;
+How do you connect to a Cisco Device?
+• Console Port : When you first configure a device, you have to connect via the Console Port.
+You can use a &quot;Rollover cable&quot; : DB9 serial connector to RJ45 OR a DB9 Serial to USB
+How do you actually access the CLI?
+• You need to use a TERMINAL EMULATOR (Example: PuTTy is a popular choice) and connect via &quot;Serial&quot;
+(default settings)
+Cisco Default Settings are:
+Speed (baud) : 9600 bits/second
+Data bits: 8 data bits
+Stop bits: 1 stop bit (sent after 8 data bits are sent)
+Parity: None
+Flow Control: None
+CLI:
+When you first enter the CLI you will DEFAULT be in what is called &#x27;User EXEC&#x27; mode.
+USER EXEC MODE:
+• User EXEC mode is very limited.
+• User can look at some things but can&#x27;t make ANY changes to the configuration.
+• AKA &#x27;User Mode&#x27;
+Privileged EXEC
+• Provides complete access to view the device&#x27;s configuration, restart the device, etc.
+• Cannot change the configuration, but can change the time on the device, save the configuration file, etc.
+Help
+USE a Question Mark (?) to view the available commands in ANY mode.
+Combining ? with a letter or partial command will list all the commands with those letters.
+Using a ? After a command will give you available options for using that command.
+Tab
+USE the TAB key to complete partially entered commands IF the command exists.
+Example entering en (short for enable) will enter you to privilege exec mode.
+Do
+Do allows you to run privlage exec commands in other levels
+No
+Used to remove a command you previously used
+GLOBAL CONFIGURATION MODE:
+To enter Global Configuration Mode, enter the command, within Privileged EXEC mode
+&#x27;configure terminal&#x27; (or &#x27;conf t&#x27;)
+Router# configure terminal
+Type &#x27;exit&#x27; to drop back into &#x27;Privileged EXEC&#x27; mode.
+To Enable Password for User EXEC mode:
+Router(config)# enable password (password)
+• Passwords ARE case-sensitive.
+// This command encrypts plain-text passwords, visible in the config files, using simple encryption.
+Router(config)# service password-encryption
+If you enable &#x27;service password-encryption&#x27;
+• Current passwords WILL be encrypted.
+• Future passwords WILL be encrypted.
+• The &#x27;enable secret&#x27; WILL NOT be effected.
+If you disable &#x27;service password-encryption&#x27;
+• Current passwords WILL NOT be decrypted.
+• Future passwords WILL NOT be encrypted.
+• The &#x27;enable secret&#x27; WILL NOT be effected.
+// This command enables passwords for the Privileged EXEC mode.
+Router(config)# enable secret (password)
+// enable secret will ALWAYS be encrypted (at level 5)
+There are TWO separate configuration files kept on the device at once.
+Running-config :
+• The current, ACTIVE configuration file on the device. As you enter commands in the CLI, you edit the
+active configuration.
+Startup-config :
+• The configuration file that will be loaded upon RESTART of the device.
+To see the configuration files, inside &#x27;Privileged EXEC&#x27; mode:
+Router# show running-config // for running config //
+OR
+Router# show startup-config // for startup config //
+To SAVE the Running configuration file, you can:
+Router# write Building configuration... [OK]
+Router# write memory Building configuration... [OK]
+Router# copy running-config startup-config
+Destination filename [startup-config]?
+Building configuration... [OK]
+To encrypt passwords:
+Router# conf t
+Router(config)# service password-encryption
+This makes all current passwords encrypted
+Future passwords will ALSO be encrypted
+“Enable secret” will not be effected (it’s ALWAYS encrypted)
+Now you will see that the password is no longer in plaintext.
+“7” refers to the type of encryption used to encrypt the password. In this case, “7” uses Cisco’s proprietary
+encryption.
+“7” is fairly easy to crack since the encryption is weak.
+For BETTER / STRONGER encryption, use “enable secret”
+“5” refers to MD5 encryption.
+Can still be cracked but it’s much much stronger.
+Once you use “enable secret” command, this will override “enable password”
+To CANCEL or delete a command you entered, use the “no” keyword
+In this instance, disabling “service password-encryption”:
+• current passwords will NOT be decrypted (unchanged)
+• future passwords will NOT be encrypted
+• the “enable secret” will not be effected
+
+Day 4 - Intro to the CLI
+Thursday, August 20, 2026 3:28 PM
+Mode Prompt Purpose How to Enter
+User EXEC Router&gt; Basic monitoring/access Default
+Privileged EXEC Router# Advanced monitoring and device management enable
+Global Configuration Router(config)# Configure the device configure terminal
+Term / Command What It Does Example
+? Displays available commands/options Router# ?
+command ? Shows available options for a specific command Router# show ?
+TAB Automatically completes a partially typed command Router# conf → TAB →
+configure
+enable Moves from User EXEC → Privileged EXEC Router&gt; enable
+disable Moves from Privileged EXEC → User EXEC Router# disable
+configure terminal Enters Global Configuration Mode Router# configure terminal
+conf t Short version of configure terminal Router# conf t
+exit Moves back one CLI level Router(config)# exit →
+Router#
+end Immediately returns to Privileged EXEC Mode Router(config-if)# end →
+Router#
+do Allows you to run a Privileged EXEC command while in Router(config)# do show
+configuration mode running-config
+enable password Sets a password for entering Privileged EXEC mode Router(config)# enable
+password cisco
+enable secret Sets an encrypted password for Privileged EXEC mode; preferred Router(config)# enable
+over enable password (uses MD5 More secure encryption) secret MyPassword
+service password- Encrypts plaintext passwords in the configuration using Cisco Type Router(config)# service
+encryption 7 encryption (weak encryption) password-encryption
+no service password- Stops future plaintext passwords from being automatically Router(config)# no service
+encryption encrypted; existing Type 7 passwords remain encrypted password-encryption
+show running-config Displays the current active configuration Router# show running-
+config
+show startup-config Displays the configuration saved in NVRAM that will be loaded Router# show startup-
+after reboot config
+write Saves the running configuration to startup configuration Router# write
+write memory Saves the running configuration to startup configuration Router# write memory
+copy running-config Copies the active configuration into the startup configuration Router# copy running-
+startup-config config startup-config
+no Removes/disables a configuration command Router(config)# no service
+password-encryption
+What is a CLI?
+• A &quot;Command-line Interface&quot;
+• The interface you use to configure Cisco devices
+A GUI is a &quot;Graphical User Interface&quot;
+How do you connect to a Cisco Device?
+• Console Port : When you first configure a device, you have to connect via the Console Port.
+You can use a &quot;Rollover cable&quot; : DB9 serial connector to RJ45 OR a DB9 Serial to USB
+How do you actually access the CLI?
+• You need to use a TERMINAL EMULATOR (Example: PuTTy is a popular choice) and connect via &quot;Serial&quot;
+(default settings)
+Cisco Default Settings are:
+Speed (baud) : 9600 bits/second
+Data bits: 8 data bits
+Stop bits: 1 stop bit (sent after 8 data bits are sent)
+Parity: None
+Flow Control: None
+CLI:
+When you first enter the CLI you will DEFAULT be in what is called &#x27;User EXEC&#x27; mode.
+USER EXEC MODE:
+• User EXEC mode is very limited.
+• User can look at some things but can&#x27;t make ANY changes to the configuration.
+• AKA &#x27;User Mode&#x27;
+Privileged EXEC
+• Provides complete access to view the device&#x27;s configuration, restart the device, etc.
+• Cannot change the configuration, but can change the time on the device, save the configuration file, etc.
+Help
+USE a Question Mark (?) to view the available commands in ANY mode.
+Combining ? with a letter or partial command will list all the commands with those letters.
+Using a ? After a command will give you available options for using that command.
+Tab
+USE the TAB key to complete partially entered commands IF the command exists.
+Example entering en (short for enable) will enter you to privilege exec mode.
+Do
+Do allows you to run privlage exec commands in other levels
+No
+Used to remove a command you previously used
+GLOBAL CONFIGURATION MODE:
+To enter Global Configuration Mode, enter the command, within Privileged EXEC mode
+&#x27;configure terminal&#x27; (or &#x27;conf t&#x27;)
+Router# configure terminal
+Type &#x27;exit&#x27; to drop back into &#x27;Privileged EXEC&#x27; mode.
+To Enable Password for User EXEC mode:
+Router(config)# enable password (password)
+• Passwords ARE case-sensitive.
+// This command encrypts plain-text passwords, visible in the config files, using simple encryption.
+Router(config)# service password-encryption
+If you enable &#x27;service password-encryption&#x27;
+• Current passwords WILL be encrypted.
+• Future passwords WILL be encrypted.
+• The &#x27;enable secret&#x27; WILL NOT be effected.
+If you disable &#x27;service password-encryption&#x27;
+• Current passwords WILL NOT be decrypted.
+• Future passwords WILL NOT be encrypted.
+• The &#x27;enable secret&#x27; WILL NOT be effected.
+// This command enables passwords for the Privileged EXEC mode.
+Router(config)# enable secret (password)
+// enable secret will ALWAYS be encrypted (at level 5)
+There are TWO separate configuration files kept on the device at once.
+Running-config :
+• The current, ACTIVE configuration file on the device. As you enter commands in the CLI, you edit the
+active configuration.
+Startup-config :
+• The configuration file that will be loaded upon RESTART of the device.
+To see the configuration files, inside &#x27;Privileged EXEC&#x27; mode:
+Router# show running-config // for running config //
+OR
+Router# show startup-config // for startup config //
+To SAVE the Running configuration file, you can:
+Router# write Building configuration... [OK]
+Router# write memory Building configuration... [OK]
+Router# copy running-config startup-config
+Destination filename [startup-config]?
+Building configuration... [OK]
+To encrypt passwords:
+Router# conf t
+Router(config)# service password-encryption
+This makes all current passwords encrypted
+Future passwords will ALSO be encrypted
+“Enable secret” will not be effected (it’s ALWAYS encrypted)
+Now you will see that the password is no longer in plaintext.
+“7” refers to the type of encryption used to encrypt the password. In this case, “7” uses Cisco’s proprietary
+encryption.
+“7” is fairly easy to crack since the encryption is weak.
+For BETTER / STRONGER encryption, use “enable secret”
+“5” refers to MD5 encryption.
+Can still be cracked but it’s much much stronger.
+Once you use “enable secret” command, this will override “enable password”
+To CANCEL or delete a command you entered, use the “no” keyword
+In this instance, disabling “service password-encryption”:
+• current passwords will NOT be decrypted (unchanged)
+• future passwords will NOT be encrypted
+• the “enable secret” will not be effected</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="day-03.html"><small>← Day 3</small>TCP/IP Model</a><a href="day-05.html"><small>Day 5 →</small>Ethernet LAN Switching (pt 1)</a></nav></article></div></main><footer class="footer"><div class="wrap">Personal study notes · Jeremy’s IT Lab CCNA course · Exported from OneNote September 20, 2026<br><a href="../../resources.html">Back to all resources</a></div></footer><script src="course.js"></script></body></html>

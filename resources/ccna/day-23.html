@@ -1,0 +1,1374 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 23: Etherchannel | DiPiazza</title><meta name="description" content="Personal CCNA study notes from OneNote, organized into 63 days with diagrams, original PDFs and searchable text."><link rel="icon" href="../../images/thegoat.png"><link rel="stylesheet" href="course.css"></head><body><header class="top"><div class="wrap"><a class="brand" href="../../index.html">DiPiazza<span aria-hidden="true">.</span></a><nav aria-label="Main"><a href="../../resources.html">Resources</a><a href="index.html">CCNA course</a></nav></div></header><main class="wrap"><div class="crumb"><a href="index.html">CCNA study notes</a> / Day 23</div><header class="lesson-head"><div class="eyebrow">Day 23 / 63 · Switching &amp; VLANs</div><h1>Etherchannel</h1><p class="lead">Original notes and diagrams from my OneNote notebook.</p><div class="pills"><a class="button primary" href="index.html">All 63 days</a></div></header><div class="reading-layout"><aside class="aside" aria-label="Lesson parts"><p class="muted">IN THIS DAY</p><a href="#part-1">Etherchannel</a><p class="muted">Tap a note image to zoom. Expand the text view to copy or search the exported text.</p></aside><article><section class="note-part" id="part-1"><h2>Etherchannel</h2><a class="button" href="assets/lesson-24/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="assets/lesson-24/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge Etherchannel page 1"><img src="assets/lesson-24/page-1.webp" width="1511" height="2055" loading="lazy" alt="Original OneNote notes: Etherchannel, page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 11</figcaption></figure><figure class="note-image"><a href="assets/lesson-24/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge Etherchannel page 2"><img src="assets/lesson-24/page-2.webp" width="1492" height="2109" loading="lazy" alt="Original OneNote notes: Etherchannel, page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 11</figcaption></figure><figure class="note-image"><a href="assets/lesson-24/page-3.webp" target="_blank" rel="noopener" aria-label="Enlarge Etherchannel page 3"><img src="assets/lesson-24/page-3.webp" width="1434" height="2109" loading="lazy" alt="Original OneNote notes: Etherchannel, page 3. Text version follows below."></a><figcaption>Original notes · Page 3 of 11</figcaption></figure><figure class="note-image"><a href="assets/lesson-24/page-4.webp" target="_blank" rel="noopener" aria-label="Enlarge Etherchannel page 4"><img src="assets/lesson-24/page-4.webp" width="1485" height="2109" loading="lazy" alt="Original OneNote notes: Etherchannel, page 4. Text version follows below."></a><figcaption>Original notes · Page 4 of 11</figcaption></figure><figure class="note-image"><a href="assets/lesson-24/page-5.webp" target="_blank" rel="noopener" aria-label="Enlarge Etherchannel page 5"><img src="assets/lesson-24/page-5.webp" width="1406" height="2064" loading="lazy" alt="Original OneNote notes: Etherchannel, page 5. Text version follows below."></a><figcaption>Original notes · Page 5 of 11</figcaption></figure><figure class="note-image"><a href="assets/lesson-24/page-6.webp" target="_blank" rel="noopener" aria-label="Enlarge Etherchannel page 6"><img src="assets/lesson-24/page-6.webp" width="1452" height="2067" loading="lazy" alt="Original OneNote notes: Etherchannel, page 6. Text version follows below."></a><figcaption>Original notes · Page 6 of 11</figcaption></figure><figure class="note-image"><a href="assets/lesson-24/page-7.webp" target="_blank" rel="noopener" aria-label="Enlarge Etherchannel page 7"><img src="assets/lesson-24/page-7.webp" width="1312" height="2034" loading="lazy" alt="Original OneNote notes: Etherchannel, page 7. Text version follows below."></a><figcaption>Original notes · Page 7 of 11</figcaption></figure><figure class="note-image"><a href="assets/lesson-24/page-8.webp" target="_blank" rel="noopener" aria-label="Enlarge Etherchannel page 8"><img src="assets/lesson-24/page-8.webp" width="1493" height="2109" loading="lazy" alt="Original OneNote notes: Etherchannel, page 8. Text version follows below."></a><figcaption>Original notes · Page 8 of 11</figcaption></figure><figure class="note-image"><a href="assets/lesson-24/page-9.webp" target="_blank" rel="noopener" aria-label="Enlarge Etherchannel page 9"><img src="assets/lesson-24/page-9.webp" width="1069" height="2109" loading="lazy" alt="Original OneNote notes: Etherchannel, page 9. Text version follows below."></a><figcaption>Original notes · Page 9 of 11</figcaption></figure><figure class="note-image"><a href="assets/lesson-24/page-10.webp" target="_blank" rel="noopener" aria-label="Enlarge Etherchannel page 10"><img src="assets/lesson-24/page-10.webp" width="1025" height="2109" loading="lazy" alt="Original OneNote notes: Etherchannel, page 10. Text version follows below."></a><figcaption>Original notes · Page 10 of 11</figcaption></figure><figure class="note-image"><a href="assets/lesson-24/page-11.webp" target="_blank" rel="noopener" aria-label="Enlarge Etherchannel page 11"><img src="assets/lesson-24/page-11.webp" width="1046" height="1378" loading="lazy" alt="Original OneNote notes: Etherchannel, page 11. Text version follows below."></a><figcaption>Original notes · Page 11 of 11</figcaption></figure><details class="text-view"><summary>Text view — Etherchannel</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 23 - Etherchannel
+Sunday, September 6, 2026 10:46 AM
+23. ETHERCHANNEL
+WHAT IS ETHERCHANNEL?
+ETHERCHANNEL allows you to GROUP multiple physical INTERFACES into a group which operates as a SINGLE
+LOGICAL INTERFACE - so they BEHAVE as if they are a single INTERFACE
+A LAYER 2 ETHERCHANNEL is a group of SWITCH PORTS which operate as a SINGLE INTERFACE
+A LAYER 3 ETHERCHANNEL is a group of ROUTED PORTS which operate as a SINGLE INTERFACE which you
+assign an IP ADDRESS to.
+When the bandwidth of the INTERFACES connected to END HOSTS is greater than the bandwidth of the
+connection to the DISTRIBUTION SWITCH(es), this is called OVERSUBSCRIPTION.
+Some OVERSUBSCRIPTION is acceptable, but too much will cause congestion.
+• If you connect TWO SWITCHES together with multiple links, ALL except ONE will be DISABLED by
+SPANNING TREE PROTOCOL (Green Lights vs. Orange Lights above on ASW1)
+WHY?
+• If ALL of ASW1s INTERFACES were FORWARDING, LAYER 2 LOOPS would form between ASW1 and DSW1,
+leading to a BROADCAST STORM (Bad!)
+• Other links will be unused unless the active link fails. In that case, one of the inactive link will start
+forwarding.
+An ETHERCHANNEL (in network topology diagrams) is represented like THIS (circle around
+multi-connections)
+• ETHERCHANNEL groups multiple channels together to act as a SINGLE INTERFACE
+• STP will treat this GROUP as a SINGLE INTERFACE
+(All INTERFACES Green!)
+TRAFFIC using ETHERCHANNEL will be load-balanced among the physical INTERFACES in the group.
+An algorithm is used to determine WHICH TRAFFIC will use WHICH physical INTERFACE (more details later)
+Some other names for an ETHERCHANNEL are:
+• PORT CHANNEL
+• LAG (Link Aggregation Group)
+HOW DOES AN ETHERCHANNEL LOAD-BALANCE?
+• ETHERCHANNEL load-balances based on “flows”
+• A “flow” is a communication between TWO NODES in the NETWORK
+• FRAMES in the same “flow” will be FORWARDED using the SAME physical INTERFACE
+• If FRAMES in the same “flow” were FORWARDED using different physical INTERFACES, some FRAMES
+may arrive at the DESTINATION out of order/sequence, which can cause problems.
+• You can CHANGE the INPUTS used in the INTERFACE SELECTION calculation (for “flows”)
+○ INPUTS that can be used:
+§ SOURCE MAC ADDRESS
+§ DESTINATION MAC ADDRESS
+§ SOURCE and DESTINATION MAC ADDRESS
+§ SOURCE IP ADDRESS
+§ DESTINATION IP ADDRESS
+§ SOURCE and DESTINATION IP ADDRESS
+How to see the configuration for LOAD-BALANCING method
+How to CHANGE the LOAD-BALANCING method
+HOW TO CONFIGURE LAYER 2 / LAYER 3 ETHERCHANNELS
+There are THREE methods of ETHERCHANNEL configuration on Cisco SWITCHES
+PAgP (Port Aggregation Protocol)
+• Cisco proprietary protocol
+• Dynamically negotiates the creation/maintenance of the ETHERCHANNEL (like DTP does for trunks)
+💡 LACP (Link Aggregation Control Protocol)
+• Industry standard protocol (IEEE 802.3ad)
+• Dynamically negotiates the creation/maintenance of the ETHERCHANNEL (like DTP does for trunks)
+Static EtherChannel
+• A protocol isn’t used to determine if an EtherChannel should be formed
+• Interfaces are statically configured to form an EtherChannel
+Up to 8 INTERFACES can be formed into a single ETHERCHANNEL (LACP allows up to 16 but only 8 will be
+ACTIVE, the other 8 will in STANDBY mode, waiting for an active INTERFACE to fail)
+PAgP CONFIGURATION
+💡 NOTE that “auto” and “desirable” are the ONLY available modes for PAgP
+PAgP negotiations to form an ETHERCHANNEL
+💡 AWS1(config-if-range)# channel-group 1 mode desirable. Creating a port-channel interface Port-channel1
+Shows up in the interface as “Port-channel1”
+The “channel-group” number has to MATCH for member INTERFACES on the same SWITCH.
+It DOESN’T have to MATCH the “channel-group” number on the OTHER SWITCH!
+💡 (channel-group 1 on AWS1 can form an ETHERCHANNEL with channel-group 2 on DSW1)
+LACP CONFIGURATION
+💡 NOTE that “active” and “passive” are the ONLY available modes for LACP
+LACP negotiations for form an ETHERCHANNEL
+The “channel-group” number has to MATCH for member INTERFACES on the same SWITCH.
+It DOESN’T have to MATCH the “channel-group” number on the OTHER SWITCH!
+💡 (channel-group 1 on AWS1 can form an ETHERCHANNEL with channel-group 2 on DSW1)
+STATIC ETHERCHANNEL CONFIGURATION
+💡 NOTE that “on” is the ONLY available mode for STATIC ETHERCHANNEL
+ON mode only works with ON Mode
+ON + desirable = DOES NOT WORK)
+ON + active = DOES NOT WORK
+HOW TO MANUALLY CONFIGURE THE NEGOTIATION PROTOCOL
+TWO OPTIONS:
+• LACP Protocol
+• PAgP Protocol
+(Above shows a protocol mismatch error because LACP does not support “desirable” - only PAgP does)
+(“channel-group 1 mode active” works because LACP supports “active”)
+AFTER CONFIGURING THE ETHERCHANNEL MODE
+CONFIGURING THE PORT INTERFACE
+“show running-config” shows “interface Port-channel1” in the configuration
+💡 NOTE the PHYSICAL INTERFACES (g0/0-g0/3) were auto-configured by the Port-channel1 configuration!
+IMPORTANT NOTES ABOUT ETHERCHANNEL CONFIGURATION
+• Member INTERFACES must have matching CONFIGURATIONS
+○ Same DUPLEX (Full / Half)
+○ Same SPEED
+○ Same SWITCHPORT mode (Access / Trunk)
+○ Same allowed VLANs / Native VLAN (for TRUNK interfaces)
+• If an INTERFACE’s configurations do NOT MATCH the others, it will be EXCLUDED from the
+ETHERCHANNEL
+VERIFYING STATUS OF ETHERCHANNEL
+💡 “show etherchannel summary”
+NOTE information at bottom. (”SU” means S - Layer2 + U - in use)
+Protocol = What protocol the Etherchannel is using (in this case, LACP)
+“Ports” = the list of interfaces in the EtherChannel (P = bundled in port-channel)
+OTHER FLAGS
+“D” = Down
+Changing one of the Member interfaces using “switchport mode access” has made it different than the other
+members so it is now appearing as “s” = suspended
+Another useful command
+💡 “show etherchannel port-channel”
+💡 “show spanning-tree” will show the single EtherChannel port interface
+LAYER 3 ETHERCHANNELS
+HOW TO CONFIGURE A LAYER 3 ETHERCHANNEL (from a clean configuration)
+💡 “show running-config”
+NOTE : No SWITCHPORT and NO IP INTERFACE.
+Where do we configure the IP Address? Directly on the PORT INTERFACE !
+(”RU” - “R” = Layer 3, “U” = in use)
+COMMANDS LEARNED IN THIS CHAPTER
+SW(config) port-channel load-balance *mode*
+Configures the EtherChannel load-balancing method on a SWITCH
+SW# show etherchannel load-balance
+Displays information about the load-balancing settings
+SW(config-if)# channel-group *number* mode {desirable | auto | active | passive | on}
+Configures an interface to be PART of an EtherChannel
+SW# show etherchannel summary
+Displays a summary of EtherChannels on a SWITCH
+SW# show etherchannel port-channel
+Displays information about the virtual port-channel interfaces on a SWITCH
+
+Day 23 - Etherchannel
+Sunday, September 6, 2026 10:46 AM
+23. ETHERCHANNEL
+WHAT IS ETHERCHANNEL?
+ETHERCHANNEL allows you to GROUP multiple physical INTERFACES into a group which operates as a SINGLE
+LOGICAL INTERFACE - so they BEHAVE as if they are a single INTERFACE
+A LAYER 2 ETHERCHANNEL is a group of SWITCH PORTS which operate as a SINGLE INTERFACE
+A LAYER 3 ETHERCHANNEL is a group of ROUTED PORTS which operate as a SINGLE INTERFACE which you
+assign an IP ADDRESS to.
+When the bandwidth of the INTERFACES connected to END HOSTS is greater than the bandwidth of the
+connection to the DISTRIBUTION SWITCH(es), this is called OVERSUBSCRIPTION.
+Some OVERSUBSCRIPTION is acceptable, but too much will cause congestion.
+• If you connect TWO SWITCHES together with multiple links, ALL except ONE will be DISABLED by
+SPANNING TREE PROTOCOL (Green Lights vs. Orange Lights above on ASW1)
+WHY?
+• If ALL of ASW1s INTERFACES were FORWARDING, LAYER 2 LOOPS would form between ASW1 and DSW1,
+leading to a BROADCAST STORM (Bad!)
+• Other links will be unused unless the active link fails. In that case, one of the inactive link will start
+forwarding.
+An ETHERCHANNEL (in network topology diagrams) is represented like THIS (circle around
+multi-connections)
+• ETHERCHANNEL groups multiple channels together to act as a SINGLE INTERFACE
+• STP will treat this GROUP as a SINGLE INTERFACE
+(All INTERFACES Green!)
+TRAFFIC using ETHERCHANNEL will be load-balanced among the physical INTERFACES in the group.
+An algorithm is used to determine WHICH TRAFFIC will use WHICH physical INTERFACE (more details later)
+Some other names for an ETHERCHANNEL are:
+• PORT CHANNEL
+• LAG (Link Aggregation Group)
+HOW DOES AN ETHERCHANNEL LOAD-BALANCE?
+• ETHERCHANNEL load-balances based on “flows”
+• A “flow” is a communication between TWO NODES in the NETWORK
+• FRAMES in the same “flow” will be FORWARDED using the SAME physical INTERFACE
+• If FRAMES in the same “flow” were FORWARDED using different physical INTERFACES, some FRAMES
+may arrive at the DESTINATION out of order/sequence, which can cause problems.
+• You can CHANGE the INPUTS used in the INTERFACE SELECTION calculation (for “flows”)
+○ INPUTS that can be used:
+§ SOURCE MAC ADDRESS
+§ DESTINATION MAC ADDRESS
+§ SOURCE and DESTINATION MAC ADDRESS
+§ SOURCE IP ADDRESS
+§ DESTINATION IP ADDRESS
+§ SOURCE and DESTINATION IP ADDRESS
+How to see the configuration for LOAD-BALANCING method
+How to CHANGE the LOAD-BALANCING method
+HOW TO CONFIGURE LAYER 2 / LAYER 3 ETHERCHANNELS
+There are THREE methods of ETHERCHANNEL configuration on Cisco SWITCHES
+PAgP (Port Aggregation Protocol)
+• Cisco proprietary protocol
+• Dynamically negotiates the creation/maintenance of the ETHERCHANNEL (like DTP does for trunks)
+💡 LACP (Link Aggregation Control Protocol)
+• Industry standard protocol (IEEE 802.3ad)
+• Dynamically negotiates the creation/maintenance of the ETHERCHANNEL (like DTP does for trunks)
+Static EtherChannel
+• A protocol isn’t used to determine if an EtherChannel should be formed
+• Interfaces are statically configured to form an EtherChannel
+Up to 8 INTERFACES can be formed into a single ETHERCHANNEL (LACP allows up to 16 but only 8 will be
+ACTIVE, the other 8 will in STANDBY mode, waiting for an active INTERFACE to fail)
+PAgP CONFIGURATION
+💡 NOTE that “auto” and “desirable” are the ONLY available modes for PAgP
+PAgP negotiations to form an ETHERCHANNEL
+💡 AWS1(config-if-range)# channel-group 1 mode desirable. Creating a port-channel interface Port-channel1
+Shows up in the interface as “Port-channel1”
+The “channel-group” number has to MATCH for member INTERFACES on the same SWITCH.
+It DOESN’T have to MATCH the “channel-group” number on the OTHER SWITCH!
+💡 (channel-group 1 on AWS1 can form an ETHERCHANNEL with channel-group 2 on DSW1)
+LACP CONFIGURATION
+💡 NOTE that “active” and “passive” are the ONLY available modes for LACP
+LACP negotiations for form an ETHERCHANNEL
+The “channel-group” number has to MATCH for member INTERFACES on the same SWITCH.
+It DOESN’T have to MATCH the “channel-group” number on the OTHER SWITCH!
+💡 (channel-group 1 on AWS1 can form an ETHERCHANNEL with channel-group 2 on DSW1)
+STATIC ETHERCHANNEL CONFIGURATION
+💡 NOTE that “on” is the ONLY available mode for STATIC ETHERCHANNEL
+ON mode only works with ON Mode
+ON + desirable = DOES NOT WORK)
+ON + active = DOES NOT WORK
+HOW TO MANUALLY CONFIGURE THE NEGOTIATION PROTOCOL
+TWO OPTIONS:
+• LACP Protocol
+• PAgP Protocol
+(Above shows a protocol mismatch error because LACP does not support “desirable” - only PAgP does)
+(“channel-group 1 mode active” works because LACP supports “active”)
+AFTER CONFIGURING THE ETHERCHANNEL MODE
+CONFIGURING THE PORT INTERFACE
+“show running-config” shows “interface Port-channel1” in the configuration
+💡 NOTE the PHYSICAL INTERFACES (g0/0-g0/3) were auto-configured by the Port-channel1 configuration!
+IMPORTANT NOTES ABOUT ETHERCHANNEL CONFIGURATION
+• Member INTERFACES must have matching CONFIGURATIONS
+○ Same DUPLEX (Full / Half)
+○ Same SPEED
+○ Same SWITCHPORT mode (Access / Trunk)
+○ Same allowed VLANs / Native VLAN (for TRUNK interfaces)
+• If an INTERFACE’s configurations do NOT MATCH the others, it will be EXCLUDED from the
+ETHERCHANNEL
+VERIFYING STATUS OF ETHERCHANNEL
+💡 “show etherchannel summary”
+NOTE information at bottom. (”SU” means S - Layer2 + U - in use)
+Protocol = What protocol the Etherchannel is using (in this case, LACP)
+“Ports” = the list of interfaces in the EtherChannel (P = bundled in port-channel)
+OTHER FLAGS
+“D” = Down
+Changing one of the Member interfaces using “switchport mode access” has made it different than the other
+members so it is now appearing as “s” = suspended
+Another useful command
+💡 “show etherchannel port-channel”
+💡 “show spanning-tree” will show the single EtherChannel port interface
+LAYER 3 ETHERCHANNELS
+HOW TO CONFIGURE A LAYER 3 ETHERCHANNEL (from a clean configuration)
+💡 “show running-config”
+NOTE : No SWITCHPORT and NO IP INTERFACE.
+Where do we configure the IP Address? Directly on the PORT INTERFACE !
+(”RU” - “R” = Layer 3, “U” = in use)
+COMMANDS LEARNED IN THIS CHAPTER
+SW(config) port-channel load-balance *mode*
+Configures the EtherChannel load-balancing method on a SWITCH
+SW# show etherchannel load-balance
+Displays information about the load-balancing settings
+SW(config-if)# channel-group *number* mode {desirable | auto | active | passive | on}
+Configures an interface to be PART of an EtherChannel
+SW# show etherchannel summary
+Displays a summary of EtherChannels on a SWITCH
+SW# show etherchannel port-channel
+Displays information about the virtual port-channel interfaces on a SWITCH
+
+Day 23 - Etherchannel
+Sunday, September 6, 2026 10:46 AM
+23. ETHERCHANNEL
+WHAT IS ETHERCHANNEL?
+ETHERCHANNEL allows you to GROUP multiple physical INTERFACES into a group which operates as a SINGLE
+LOGICAL INTERFACE - so they BEHAVE as if they are a single INTERFACE
+A LAYER 2 ETHERCHANNEL is a group of SWITCH PORTS which operate as a SINGLE INTERFACE
+A LAYER 3 ETHERCHANNEL is a group of ROUTED PORTS which operate as a SINGLE INTERFACE which you
+assign an IP ADDRESS to.
+When the bandwidth of the INTERFACES connected to END HOSTS is greater than the bandwidth of the
+connection to the DISTRIBUTION SWITCH(es), this is called OVERSUBSCRIPTION.
+Some OVERSUBSCRIPTION is acceptable, but too much will cause congestion.
+• If you connect TWO SWITCHES together with multiple links, ALL except ONE will be DISABLED by
+SPANNING TREE PROTOCOL (Green Lights vs. Orange Lights above on ASW1)
+WHY?
+• If ALL of ASW1s INTERFACES were FORWARDING, LAYER 2 LOOPS would form between ASW1 and DSW1,
+leading to a BROADCAST STORM (Bad!)
+• Other links will be unused unless the active link fails. In that case, one of the inactive link will start
+forwarding.
+An ETHERCHANNEL (in network topology diagrams) is represented like THIS (circle around
+multi-connections)
+• ETHERCHANNEL groups multiple channels together to act as a SINGLE INTERFACE
+• STP will treat this GROUP as a SINGLE INTERFACE
+(All INTERFACES Green!)
+TRAFFIC using ETHERCHANNEL will be load-balanced among the physical INTERFACES in the group.
+An algorithm is used to determine WHICH TRAFFIC will use WHICH physical INTERFACE (more details later)
+Some other names for an ETHERCHANNEL are:
+• PORT CHANNEL
+• LAG (Link Aggregation Group)
+HOW DOES AN ETHERCHANNEL LOAD-BALANCE?
+• ETHERCHANNEL load-balances based on “flows”
+• A “flow” is a communication between TWO NODES in the NETWORK
+• FRAMES in the same “flow” will be FORWARDED using the SAME physical INTERFACE
+• If FRAMES in the same “flow” were FORWARDED using different physical INTERFACES, some FRAMES
+may arrive at the DESTINATION out of order/sequence, which can cause problems.
+• You can CHANGE the INPUTS used in the INTERFACE SELECTION calculation (for “flows”)
+○ INPUTS that can be used:
+§ SOURCE MAC ADDRESS
+§ DESTINATION MAC ADDRESS
+§ SOURCE and DESTINATION MAC ADDRESS
+§ SOURCE IP ADDRESS
+§ DESTINATION IP ADDRESS
+§ SOURCE and DESTINATION IP ADDRESS
+How to see the configuration for LOAD-BALANCING method
+How to CHANGE the LOAD-BALANCING method
+HOW TO CONFIGURE LAYER 2 / LAYER 3 ETHERCHANNELS
+There are THREE methods of ETHERCHANNEL configuration on Cisco SWITCHES
+PAgP (Port Aggregation Protocol)
+• Cisco proprietary protocol
+• Dynamically negotiates the creation/maintenance of the ETHERCHANNEL (like DTP does for trunks)
+💡 LACP (Link Aggregation Control Protocol)
+• Industry standard protocol (IEEE 802.3ad)
+• Dynamically negotiates the creation/maintenance of the ETHERCHANNEL (like DTP does for trunks)
+Static EtherChannel
+• A protocol isn’t used to determine if an EtherChannel should be formed
+• Interfaces are statically configured to form an EtherChannel
+Up to 8 INTERFACES can be formed into a single ETHERCHANNEL (LACP allows up to 16 but only 8 will be
+ACTIVE, the other 8 will in STANDBY mode, waiting for an active INTERFACE to fail)
+PAgP CONFIGURATION
+💡 NOTE that “auto” and “desirable” are the ONLY available modes for PAgP
+PAgP negotiations to form an ETHERCHANNEL
+💡 AWS1(config-if-range)# channel-group 1 mode desirable. Creating a port-channel interface Port-channel1
+Shows up in the interface as “Port-channel1”
+The “channel-group” number has to MATCH for member INTERFACES on the same SWITCH.
+It DOESN’T have to MATCH the “channel-group” number on the OTHER SWITCH!
+💡 (channel-group 1 on AWS1 can form an ETHERCHANNEL with channel-group 2 on DSW1)
+LACP CONFIGURATION
+💡 NOTE that “active” and “passive” are the ONLY available modes for LACP
+LACP negotiations for form an ETHERCHANNEL
+The “channel-group” number has to MATCH for member INTERFACES on the same SWITCH.
+It DOESN’T have to MATCH the “channel-group” number on the OTHER SWITCH!
+💡 (channel-group 1 on AWS1 can form an ETHERCHANNEL with channel-group 2 on DSW1)
+STATIC ETHERCHANNEL CONFIGURATION
+💡 NOTE that “on” is the ONLY available mode for STATIC ETHERCHANNEL
+ON mode only works with ON Mode
+ON + desirable = DOES NOT WORK)
+ON + active = DOES NOT WORK
+HOW TO MANUALLY CONFIGURE THE NEGOTIATION PROTOCOL
+TWO OPTIONS:
+• LACP Protocol
+• PAgP Protocol
+(Above shows a protocol mismatch error because LACP does not support “desirable” - only PAgP does)
+(“channel-group 1 mode active” works because LACP supports “active”)
+AFTER CONFIGURING THE ETHERCHANNEL MODE
+CONFIGURING THE PORT INTERFACE
+“show running-config” shows “interface Port-channel1” in the configuration
+💡 NOTE the PHYSICAL INTERFACES (g0/0-g0/3) were auto-configured by the Port-channel1 configuration!
+IMPORTANT NOTES ABOUT ETHERCHANNEL CONFIGURATION
+• Member INTERFACES must have matching CONFIGURATIONS
+○ Same DUPLEX (Full / Half)
+○ Same SPEED
+○ Same SWITCHPORT mode (Access / Trunk)
+○ Same allowed VLANs / Native VLAN (for TRUNK interfaces)
+• If an INTERFACE’s configurations do NOT MATCH the others, it will be EXCLUDED from the
+ETHERCHANNEL
+VERIFYING STATUS OF ETHERCHANNEL
+💡 “show etherchannel summary”
+NOTE information at bottom. (”SU” means S - Layer2 + U - in use)
+Protocol = What protocol the Etherchannel is using (in this case, LACP)
+“Ports” = the list of interfaces in the EtherChannel (P = bundled in port-channel)
+OTHER FLAGS
+“D” = Down
+Changing one of the Member interfaces using “switchport mode access” has made it different than the other
+members so it is now appearing as “s” = suspended
+Another useful command
+💡 “show etherchannel port-channel”
+💡 “show spanning-tree” will show the single EtherChannel port interface
+LAYER 3 ETHERCHANNELS
+HOW TO CONFIGURE A LAYER 3 ETHERCHANNEL (from a clean configuration)
+💡 “show running-config”
+NOTE : No SWITCHPORT and NO IP INTERFACE.
+Where do we configure the IP Address? Directly on the PORT INTERFACE !
+(”RU” - “R” = Layer 3, “U” = in use)
+COMMANDS LEARNED IN THIS CHAPTER
+SW(config) port-channel load-balance *mode*
+Configures the EtherChannel load-balancing method on a SWITCH
+SW# show etherchannel load-balance
+Displays information about the load-balancing settings
+SW(config-if)# channel-group *number* mode {desirable | auto | active | passive | on}
+Configures an interface to be PART of an EtherChannel
+SW# show etherchannel summary
+Displays a summary of EtherChannels on a SWITCH
+SW# show etherchannel port-channel
+Displays information about the virtual port-channel interfaces on a SWITCH
+
+Day 23 - Etherchannel
+Sunday, September 6, 2026 10:46 AM
+23. ETHERCHANNEL
+WHAT IS ETHERCHANNEL?
+ETHERCHANNEL allows you to GROUP multiple physical INTERFACES into a group which operates as a SINGLE
+LOGICAL INTERFACE - so they BEHAVE as if they are a single INTERFACE
+A LAYER 2 ETHERCHANNEL is a group of SWITCH PORTS which operate as a SINGLE INTERFACE
+A LAYER 3 ETHERCHANNEL is a group of ROUTED PORTS which operate as a SINGLE INTERFACE which you
+assign an IP ADDRESS to.
+When the bandwidth of the INTERFACES connected to END HOSTS is greater than the bandwidth of the
+connection to the DISTRIBUTION SWITCH(es), this is called OVERSUBSCRIPTION.
+Some OVERSUBSCRIPTION is acceptable, but too much will cause congestion.
+• If you connect TWO SWITCHES together with multiple links, ALL except ONE will be DISABLED by
+SPANNING TREE PROTOCOL (Green Lights vs. Orange Lights above on ASW1)
+WHY?
+• If ALL of ASW1s INTERFACES were FORWARDING, LAYER 2 LOOPS would form between ASW1 and DSW1,
+leading to a BROADCAST STORM (Bad!)
+• Other links will be unused unless the active link fails. In that case, one of the inactive link will start
+forwarding.
+An ETHERCHANNEL (in network topology diagrams) is represented like THIS (circle around
+multi-connections)
+• ETHERCHANNEL groups multiple channels together to act as a SINGLE INTERFACE
+• STP will treat this GROUP as a SINGLE INTERFACE
+(All INTERFACES Green!)
+TRAFFIC using ETHERCHANNEL will be load-balanced among the physical INTERFACES in the group.
+An algorithm is used to determine WHICH TRAFFIC will use WHICH physical INTERFACE (more details later)
+Some other names for an ETHERCHANNEL are:
+• PORT CHANNEL
+• LAG (Link Aggregation Group)
+HOW DOES AN ETHERCHANNEL LOAD-BALANCE?
+• ETHERCHANNEL load-balances based on “flows”
+• A “flow” is a communication between TWO NODES in the NETWORK
+• FRAMES in the same “flow” will be FORWARDED using the SAME physical INTERFACE
+• If FRAMES in the same “flow” were FORWARDED using different physical INTERFACES, some FRAMES
+may arrive at the DESTINATION out of order/sequence, which can cause problems.
+• You can CHANGE the INPUTS used in the INTERFACE SELECTION calculation (for “flows”)
+○ INPUTS that can be used:
+§ SOURCE MAC ADDRESS
+§ DESTINATION MAC ADDRESS
+§ SOURCE and DESTINATION MAC ADDRESS
+§ SOURCE IP ADDRESS
+§ DESTINATION IP ADDRESS
+§ SOURCE and DESTINATION IP ADDRESS
+How to see the configuration for LOAD-BALANCING method
+How to CHANGE the LOAD-BALANCING method
+HOW TO CONFIGURE LAYER 2 / LAYER 3 ETHERCHANNELS
+There are THREE methods of ETHERCHANNEL configuration on Cisco SWITCHES
+PAgP (Port Aggregation Protocol)
+• Cisco proprietary protocol
+• Dynamically negotiates the creation/maintenance of the ETHERCHANNEL (like DTP does for trunks)
+💡 LACP (Link Aggregation Control Protocol)
+• Industry standard protocol (IEEE 802.3ad)
+• Dynamically negotiates the creation/maintenance of the ETHERCHANNEL (like DTP does for trunks)
+Static EtherChannel
+• A protocol isn’t used to determine if an EtherChannel should be formed
+• Interfaces are statically configured to form an EtherChannel
+Up to 8 INTERFACES can be formed into a single ETHERCHANNEL (LACP allows up to 16 but only 8 will be
+ACTIVE, the other 8 will in STANDBY mode, waiting for an active INTERFACE to fail)
+PAgP CONFIGURATION
+💡 NOTE that “auto” and “desirable” are the ONLY available modes for PAgP
+PAgP negotiations to form an ETHERCHANNEL
+💡 AWS1(config-if-range)# channel-group 1 mode desirable. Creating a port-channel interface Port-channel1
+Shows up in the interface as “Port-channel1”
+The “channel-group” number has to MATCH for member INTERFACES on the same SWITCH.
+It DOESN’T have to MATCH the “channel-group” number on the OTHER SWITCH!
+💡 (channel-group 1 on AWS1 can form an ETHERCHANNEL with channel-group 2 on DSW1)
+LACP CONFIGURATION
+💡 NOTE that “active” and “passive” are the ONLY available modes for LACP
+LACP negotiations for form an ETHERCHANNEL
+The “channel-group” number has to MATCH for member INTERFACES on the same SWITCH.
+It DOESN’T have to MATCH the “channel-group” number on the OTHER SWITCH!
+💡 (channel-group 1 on AWS1 can form an ETHERCHANNEL with channel-group 2 on DSW1)
+STATIC ETHERCHANNEL CONFIGURATION
+💡 NOTE that “on” is the ONLY available mode for STATIC ETHERCHANNEL
+ON mode only works with ON Mode
+ON + desirable = DOES NOT WORK)
+ON + active = DOES NOT WORK
+HOW TO MANUALLY CONFIGURE THE NEGOTIATION PROTOCOL
+TWO OPTIONS:
+• LACP Protocol
+• PAgP Protocol
+(Above shows a protocol mismatch error because LACP does not support “desirable” - only PAgP does)
+(“channel-group 1 mode active” works because LACP supports “active”)
+AFTER CONFIGURING THE ETHERCHANNEL MODE
+CONFIGURING THE PORT INTERFACE
+“show running-config” shows “interface Port-channel1” in the configuration
+💡 NOTE the PHYSICAL INTERFACES (g0/0-g0/3) were auto-configured by the Port-channel1 configuration!
+IMPORTANT NOTES ABOUT ETHERCHANNEL CONFIGURATION
+• Member INTERFACES must have matching CONFIGURATIONS
+○ Same DUPLEX (Full / Half)
+○ Same SPEED
+○ Same SWITCHPORT mode (Access / Trunk)
+○ Same allowed VLANs / Native VLAN (for TRUNK interfaces)
+• If an INTERFACE’s configurations do NOT MATCH the others, it will be EXCLUDED from the
+ETHERCHANNEL
+VERIFYING STATUS OF ETHERCHANNEL
+💡 “show etherchannel summary”
+NOTE information at bottom. (”SU” means S - Layer2 + U - in use)
+Protocol = What protocol the Etherchannel is using (in this case, LACP)
+“Ports” = the list of interfaces in the EtherChannel (P = bundled in port-channel)
+OTHER FLAGS
+“D” = Down
+Changing one of the Member interfaces using “switchport mode access” has made it different than the other
+members so it is now appearing as “s” = suspended
+Another useful command
+💡 “show etherchannel port-channel”
+💡 “show spanning-tree” will show the single EtherChannel port interface
+LAYER 3 ETHERCHANNELS
+HOW TO CONFIGURE A LAYER 3 ETHERCHANNEL (from a clean configuration)
+💡 “show running-config”
+NOTE : No SWITCHPORT and NO IP INTERFACE.
+Where do we configure the IP Address? Directly on the PORT INTERFACE !
+(”RU” - “R” = Layer 3, “U” = in use)
+COMMANDS LEARNED IN THIS CHAPTER
+SW(config) port-channel load-balance *mode*
+Configures the EtherChannel load-balancing method on a SWITCH
+SW# show etherchannel load-balance
+Displays information about the load-balancing settings
+SW(config-if)# channel-group *number* mode {desirable | auto | active | passive | on}
+Configures an interface to be PART of an EtherChannel
+SW# show etherchannel summary
+Displays a summary of EtherChannels on a SWITCH
+SW# show etherchannel port-channel
+Displays information about the virtual port-channel interfaces on a SWITCH
+
+Day 23 - Etherchannel
+Sunday, September 6, 2026 10:46 AM
+23. ETHERCHANNEL
+WHAT IS ETHERCHANNEL?
+ETHERCHANNEL allows you to GROUP multiple physical INTERFACES into a group which operates as a SINGLE
+LOGICAL INTERFACE - so they BEHAVE as if they are a single INTERFACE
+A LAYER 2 ETHERCHANNEL is a group of SWITCH PORTS which operate as a SINGLE INTERFACE
+A LAYER 3 ETHERCHANNEL is a group of ROUTED PORTS which operate as a SINGLE INTERFACE which you
+assign an IP ADDRESS to.
+When the bandwidth of the INTERFACES connected to END HOSTS is greater than the bandwidth of the
+connection to the DISTRIBUTION SWITCH(es), this is called OVERSUBSCRIPTION.
+Some OVERSUBSCRIPTION is acceptable, but too much will cause congestion.
+• If you connect TWO SWITCHES together with multiple links, ALL except ONE will be DISABLED by
+SPANNING TREE PROTOCOL (Green Lights vs. Orange Lights above on ASW1)
+WHY?
+• If ALL of ASW1s INTERFACES were FORWARDING, LAYER 2 LOOPS would form between ASW1 and DSW1,
+leading to a BROADCAST STORM (Bad!)
+• Other links will be unused unless the active link fails. In that case, one of the inactive link will start
+forwarding.
+An ETHERCHANNEL (in network topology diagrams) is represented like THIS (circle around
+multi-connections)
+• ETHERCHANNEL groups multiple channels together to act as a SINGLE INTERFACE
+• STP will treat this GROUP as a SINGLE INTERFACE
+(All INTERFACES Green!)
+TRAFFIC using ETHERCHANNEL will be load-balanced among the physical INTERFACES in the group.
+An algorithm is used to determine WHICH TRAFFIC will use WHICH physical INTERFACE (more details later)
+Some other names for an ETHERCHANNEL are:
+• PORT CHANNEL
+• LAG (Link Aggregation Group)
+HOW DOES AN ETHERCHANNEL LOAD-BALANCE?
+• ETHERCHANNEL load-balances based on “flows”
+• A “flow” is a communication between TWO NODES in the NETWORK
+• FRAMES in the same “flow” will be FORWARDED using the SAME physical INTERFACE
+• If FRAMES in the same “flow” were FORWARDED using different physical INTERFACES, some FRAMES
+may arrive at the DESTINATION out of order/sequence, which can cause problems.
+• You can CHANGE the INPUTS used in the INTERFACE SELECTION calculation (for “flows”)
+○ INPUTS that can be used:
+§ SOURCE MAC ADDRESS
+§ DESTINATION MAC ADDRESS
+§ SOURCE and DESTINATION MAC ADDRESS
+§ SOURCE IP ADDRESS
+§ DESTINATION IP ADDRESS
+§ SOURCE and DESTINATION IP ADDRESS
+How to see the configuration for LOAD-BALANCING method
+How to CHANGE the LOAD-BALANCING method
+HOW TO CONFIGURE LAYER 2 / LAYER 3 ETHERCHANNELS
+There are THREE methods of ETHERCHANNEL configuration on Cisco SWITCHES
+PAgP (Port Aggregation Protocol)
+• Cisco proprietary protocol
+• Dynamically negotiates the creation/maintenance of the ETHERCHANNEL (like DTP does for trunks)
+💡 LACP (Link Aggregation Control Protocol)
+• Industry standard protocol (IEEE 802.3ad)
+• Dynamically negotiates the creation/maintenance of the ETHERCHANNEL (like DTP does for trunks)
+Static EtherChannel
+• A protocol isn’t used to determine if an EtherChannel should be formed
+• Interfaces are statically configured to form an EtherChannel
+Up to 8 INTERFACES can be formed into a single ETHERCHANNEL (LACP allows up to 16 but only 8 will be
+ACTIVE, the other 8 will in STANDBY mode, waiting for an active INTERFACE to fail)
+PAgP CONFIGURATION
+💡 NOTE that “auto” and “desirable” are the ONLY available modes for PAgP
+PAgP negotiations to form an ETHERCHANNEL
+💡 AWS1(config-if-range)# channel-group 1 mode desirable. Creating a port-channel interface Port-channel1
+Shows up in the interface as “Port-channel1”
+The “channel-group” number has to MATCH for member INTERFACES on the same SWITCH.
+It DOESN’T have to MATCH the “channel-group” number on the OTHER SWITCH!
+💡 (channel-group 1 on AWS1 can form an ETHERCHANNEL with channel-group 2 on DSW1)
+LACP CONFIGURATION
+💡 NOTE that “active” and “passive” are the ONLY available modes for LACP
+LACP negotiations for form an ETHERCHANNEL
+The “channel-group” number has to MATCH for member INTERFACES on the same SWITCH.
+It DOESN’T have to MATCH the “channel-group” number on the OTHER SWITCH!
+💡 (channel-group 1 on AWS1 can form an ETHERCHANNEL with channel-group 2 on DSW1)
+STATIC ETHERCHANNEL CONFIGURATION
+💡 NOTE that “on” is the ONLY available mode for STATIC ETHERCHANNEL
+ON mode only works with ON Mode
+ON + desirable = DOES NOT WORK)
+ON + active = DOES NOT WORK
+HOW TO MANUALLY CONFIGURE THE NEGOTIATION PROTOCOL
+TWO OPTIONS:
+• LACP Protocol
+• PAgP Protocol
+(Above shows a protocol mismatch error because LACP does not support “desirable” - only PAgP does)
+(“channel-group 1 mode active” works because LACP supports “active”)
+AFTER CONFIGURING THE ETHERCHANNEL MODE
+CONFIGURING THE PORT INTERFACE
+“show running-config” shows “interface Port-channel1” in the configuration
+💡 NOTE the PHYSICAL INTERFACES (g0/0-g0/3) were auto-configured by the Port-channel1 configuration!
+IMPORTANT NOTES ABOUT ETHERCHANNEL CONFIGURATION
+• Member INTERFACES must have matching CONFIGURATIONS
+○ Same DUPLEX (Full / Half)
+○ Same SPEED
+○ Same SWITCHPORT mode (Access / Trunk)
+○ Same allowed VLANs / Native VLAN (for TRUNK interfaces)
+• If an INTERFACE’s configurations do NOT MATCH the others, it will be EXCLUDED from the
+ETHERCHANNEL
+VERIFYING STATUS OF ETHERCHANNEL
+💡 “show etherchannel summary”
+NOTE information at bottom. (”SU” means S - Layer2 + U - in use)
+Protocol = What protocol the Etherchannel is using (in this case, LACP)
+“Ports” = the list of interfaces in the EtherChannel (P = bundled in port-channel)
+OTHER FLAGS
+“D” = Down
+Changing one of the Member interfaces using “switchport mode access” has made it different than the other
+members so it is now appearing as “s” = suspended
+Another useful command
+💡 “show etherchannel port-channel”
+💡 “show spanning-tree” will show the single EtherChannel port interface
+LAYER 3 ETHERCHANNELS
+HOW TO CONFIGURE A LAYER 3 ETHERCHANNEL (from a clean configuration)
+💡 “show running-config”
+NOTE : No SWITCHPORT and NO IP INTERFACE.
+Where do we configure the IP Address? Directly on the PORT INTERFACE !
+(”RU” - “R” = Layer 3, “U” = in use)
+COMMANDS LEARNED IN THIS CHAPTER
+SW(config) port-channel load-balance *mode*
+Configures the EtherChannel load-balancing method on a SWITCH
+SW# show etherchannel load-balance
+Displays information about the load-balancing settings
+SW(config-if)# channel-group *number* mode {desirable | auto | active | passive | on}
+Configures an interface to be PART of an EtherChannel
+SW# show etherchannel summary
+Displays a summary of EtherChannels on a SWITCH
+SW# show etherchannel port-channel
+Displays information about the virtual port-channel interfaces on a SWITCH
+
+Day 23 - Etherchannel
+Sunday, September 6, 2026 10:46 AM
+23. ETHERCHANNEL
+WHAT IS ETHERCHANNEL?
+ETHERCHANNEL allows you to GROUP multiple physical INTERFACES into a group which operates as a SINGLE
+LOGICAL INTERFACE - so they BEHAVE as if they are a single INTERFACE
+A LAYER 2 ETHERCHANNEL is a group of SWITCH PORTS which operate as a SINGLE INTERFACE
+A LAYER 3 ETHERCHANNEL is a group of ROUTED PORTS which operate as a SINGLE INTERFACE which you
+assign an IP ADDRESS to.
+When the bandwidth of the INTERFACES connected to END HOSTS is greater than the bandwidth of the
+connection to the DISTRIBUTION SWITCH(es), this is called OVERSUBSCRIPTION.
+Some OVERSUBSCRIPTION is acceptable, but too much will cause congestion.
+• If you connect TWO SWITCHES together with multiple links, ALL except ONE will be DISABLED by
+SPANNING TREE PROTOCOL (Green Lights vs. Orange Lights above on ASW1)
+WHY?
+• If ALL of ASW1s INTERFACES were FORWARDING, LAYER 2 LOOPS would form between ASW1 and DSW1,
+leading to a BROADCAST STORM (Bad!)
+• Other links will be unused unless the active link fails. In that case, one of the inactive link will start
+forwarding.
+An ETHERCHANNEL (in network topology diagrams) is represented like THIS (circle around
+multi-connections)
+• ETHERCHANNEL groups multiple channels together to act as a SINGLE INTERFACE
+• STP will treat this GROUP as a SINGLE INTERFACE
+(All INTERFACES Green!)
+TRAFFIC using ETHERCHANNEL will be load-balanced among the physical INTERFACES in the group.
+An algorithm is used to determine WHICH TRAFFIC will use WHICH physical INTERFACE (more details later)
+Some other names for an ETHERCHANNEL are:
+• PORT CHANNEL
+• LAG (Link Aggregation Group)
+HOW DOES AN ETHERCHANNEL LOAD-BALANCE?
+• ETHERCHANNEL load-balances based on “flows”
+• A “flow” is a communication between TWO NODES in the NETWORK
+• FRAMES in the same “flow” will be FORWARDED using the SAME physical INTERFACE
+• If FRAMES in the same “flow” were FORWARDED using different physical INTERFACES, some FRAMES
+may arrive at the DESTINATION out of order/sequence, which can cause problems.
+• You can CHANGE the INPUTS used in the INTERFACE SELECTION calculation (for “flows”)
+○ INPUTS that can be used:
+§ SOURCE MAC ADDRESS
+§ DESTINATION MAC ADDRESS
+§ SOURCE and DESTINATION MAC ADDRESS
+§ SOURCE IP ADDRESS
+§ DESTINATION IP ADDRESS
+§ SOURCE and DESTINATION IP ADDRESS
+How to see the configuration for LOAD-BALANCING method
+How to CHANGE the LOAD-BALANCING method
+HOW TO CONFIGURE LAYER 2 / LAYER 3 ETHERCHANNELS
+There are THREE methods of ETHERCHANNEL configuration on Cisco SWITCHES
+PAgP (Port Aggregation Protocol)
+• Cisco proprietary protocol
+• Dynamically negotiates the creation/maintenance of the ETHERCHANNEL (like DTP does for trunks)
+💡 LACP (Link Aggregation Control Protocol)
+• Industry standard protocol (IEEE 802.3ad)
+• Dynamically negotiates the creation/maintenance of the ETHERCHANNEL (like DTP does for trunks)
+Static EtherChannel
+• A protocol isn’t used to determine if an EtherChannel should be formed
+• Interfaces are statically configured to form an EtherChannel
+Up to 8 INTERFACES can be formed into a single ETHERCHANNEL (LACP allows up to 16 but only 8 will be
+ACTIVE, the other 8 will in STANDBY mode, waiting for an active INTERFACE to fail)
+PAgP CONFIGURATION
+💡 NOTE that “auto” and “desirable” are the ONLY available modes for PAgP
+PAgP negotiations to form an ETHERCHANNEL
+💡 AWS1(config-if-range)# channel-group 1 mode desirable. Creating a port-channel interface Port-channel1
+Shows up in the interface as “Port-channel1”
+The “channel-group” number has to MATCH for member INTERFACES on the same SWITCH.
+It DOESN’T have to MATCH the “channel-group” number on the OTHER SWITCH!
+💡 (channel-group 1 on AWS1 can form an ETHERCHANNEL with channel-group 2 on DSW1)
+LACP CONFIGURATION
+💡 NOTE that “active” and “passive” are the ONLY available modes for LACP
+LACP negotiations for form an ETHERCHANNEL
+The “channel-group” number has to MATCH for member INTERFACES on the same SWITCH.
+It DOESN’T have to MATCH the “channel-group” number on the OTHER SWITCH!
+💡 (channel-group 1 on AWS1 can form an ETHERCHANNEL with channel-group 2 on DSW1)
+STATIC ETHERCHANNEL CONFIGURATION
+💡 NOTE that “on” is the ONLY available mode for STATIC ETHERCHANNEL
+ON mode only works with ON Mode
+ON + desirable = DOES NOT WORK)
+ON + active = DOES NOT WORK
+HOW TO MANUALLY CONFIGURE THE NEGOTIATION PROTOCOL
+TWO OPTIONS:
+• LACP Protocol
+• PAgP Protocol
+(Above shows a protocol mismatch error because LACP does not support “desirable” - only PAgP does)
+(“channel-group 1 mode active” works because LACP supports “active”)
+AFTER CONFIGURING THE ETHERCHANNEL MODE
+CONFIGURING THE PORT INTERFACE
+“show running-config” shows “interface Port-channel1” in the configuration
+💡 NOTE the PHYSICAL INTERFACES (g0/0-g0/3) were auto-configured by the Port-channel1 configuration!
+IMPORTANT NOTES ABOUT ETHERCHANNEL CONFIGURATION
+• Member INTERFACES must have matching CONFIGURATIONS
+○ Same DUPLEX (Full / Half)
+○ Same SPEED
+○ Same SWITCHPORT mode (Access / Trunk)
+○ Same allowed VLANs / Native VLAN (for TRUNK interfaces)
+• If an INTERFACE’s configurations do NOT MATCH the others, it will be EXCLUDED from the
+ETHERCHANNEL
+VERIFYING STATUS OF ETHERCHANNEL
+💡 “show etherchannel summary”
+NOTE information at bottom. (”SU” means S - Layer2 + U - in use)
+Protocol = What protocol the Etherchannel is using (in this case, LACP)
+“Ports” = the list of interfaces in the EtherChannel (P = bundled in port-channel)
+OTHER FLAGS
+“D” = Down
+Changing one of the Member interfaces using “switchport mode access” has made it different than the other
+members so it is now appearing as “s” = suspended
+Another useful command
+💡 “show etherchannel port-channel”
+💡 “show spanning-tree” will show the single EtherChannel port interface
+LAYER 3 ETHERCHANNELS
+HOW TO CONFIGURE A LAYER 3 ETHERCHANNEL (from a clean configuration)
+💡 “show running-config”
+NOTE : No SWITCHPORT and NO IP INTERFACE.
+Where do we configure the IP Address? Directly on the PORT INTERFACE !
+(”RU” - “R” = Layer 3, “U” = in use)
+COMMANDS LEARNED IN THIS CHAPTER
+SW(config) port-channel load-balance *mode*
+Configures the EtherChannel load-balancing method on a SWITCH
+SW# show etherchannel load-balance
+Displays information about the load-balancing settings
+SW(config-if)# channel-group *number* mode {desirable | auto | active | passive | on}
+Configures an interface to be PART of an EtherChannel
+SW# show etherchannel summary
+Displays a summary of EtherChannels on a SWITCH
+SW# show etherchannel port-channel
+Displays information about the virtual port-channel interfaces on a SWITCH
+
+Day 23 - Etherchannel
+Sunday, September 6, 2026 10:46 AM
+23. ETHERCHANNEL
+WHAT IS ETHERCHANNEL?
+ETHERCHANNEL allows you to GROUP multiple physical INTERFACES into a group which operates as a SINGLE
+LOGICAL INTERFACE - so they BEHAVE as if they are a single INTERFACE
+A LAYER 2 ETHERCHANNEL is a group of SWITCH PORTS which operate as a SINGLE INTERFACE
+A LAYER 3 ETHERCHANNEL is a group of ROUTED PORTS which operate as a SINGLE INTERFACE which you
+assign an IP ADDRESS to.
+When the bandwidth of the INTERFACES connected to END HOSTS is greater than the bandwidth of the
+connection to the DISTRIBUTION SWITCH(es), this is called OVERSUBSCRIPTION.
+Some OVERSUBSCRIPTION is acceptable, but too much will cause congestion.
+• If you connect TWO SWITCHES together with multiple links, ALL except ONE will be DISABLED by
+SPANNING TREE PROTOCOL (Green Lights vs. Orange Lights above on ASW1)
+WHY?
+• If ALL of ASW1s INTERFACES were FORWARDING, LAYER 2 LOOPS would form between ASW1 and DSW1,
+leading to a BROADCAST STORM (Bad!)
+• Other links will be unused unless the active link fails. In that case, one of the inactive link will start
+forwarding.
+An ETHERCHANNEL (in network topology diagrams) is represented like THIS (circle around
+multi-connections)
+• ETHERCHANNEL groups multiple channels together to act as a SINGLE INTERFACE
+• STP will treat this GROUP as a SINGLE INTERFACE
+(All INTERFACES Green!)
+TRAFFIC using ETHERCHANNEL will be load-balanced among the physical INTERFACES in the group.
+An algorithm is used to determine WHICH TRAFFIC will use WHICH physical INTERFACE (more details later)
+Some other names for an ETHERCHANNEL are:
+• PORT CHANNEL
+• LAG (Link Aggregation Group)
+HOW DOES AN ETHERCHANNEL LOAD-BALANCE?
+• ETHERCHANNEL load-balances based on “flows”
+• A “flow” is a communication between TWO NODES in the NETWORK
+• FRAMES in the same “flow” will be FORWARDED using the SAME physical INTERFACE
+• If FRAMES in the same “flow” were FORWARDED using different physical INTERFACES, some FRAMES
+may arrive at the DESTINATION out of order/sequence, which can cause problems.
+• You can CHANGE the INPUTS used in the INTERFACE SELECTION calculation (for “flows”)
+○ INPUTS that can be used:
+§ SOURCE MAC ADDRESS
+§ DESTINATION MAC ADDRESS
+§ SOURCE and DESTINATION MAC ADDRESS
+§ SOURCE IP ADDRESS
+§ DESTINATION IP ADDRESS
+§ SOURCE and DESTINATION IP ADDRESS
+How to see the configuration for LOAD-BALANCING method
+How to CHANGE the LOAD-BALANCING method
+HOW TO CONFIGURE LAYER 2 / LAYER 3 ETHERCHANNELS
+There are THREE methods of ETHERCHANNEL configuration on Cisco SWITCHES
+PAgP (Port Aggregation Protocol)
+• Cisco proprietary protocol
+• Dynamically negotiates the creation/maintenance of the ETHERCHANNEL (like DTP does for trunks)
+💡 LACP (Link Aggregation Control Protocol)
+• Industry standard protocol (IEEE 802.3ad)
+• Dynamically negotiates the creation/maintenance of the ETHERCHANNEL (like DTP does for trunks)
+Static EtherChannel
+• A protocol isn’t used to determine if an EtherChannel should be formed
+• Interfaces are statically configured to form an EtherChannel
+Up to 8 INTERFACES can be formed into a single ETHERCHANNEL (LACP allows up to 16 but only 8 will be
+ACTIVE, the other 8 will in STANDBY mode, waiting for an active INTERFACE to fail)
+PAgP CONFIGURATION
+💡 NOTE that “auto” and “desirable” are the ONLY available modes for PAgP
+PAgP negotiations to form an ETHERCHANNEL
+💡 AWS1(config-if-range)# channel-group 1 mode desirable. Creating a port-channel interface Port-channel1
+Shows up in the interface as “Port-channel1”
+The “channel-group” number has to MATCH for member INTERFACES on the same SWITCH.
+It DOESN’T have to MATCH the “channel-group” number on the OTHER SWITCH!
+💡 (channel-group 1 on AWS1 can form an ETHERCHANNEL with channel-group 2 on DSW1)
+LACP CONFIGURATION
+💡 NOTE that “active” and “passive” are the ONLY available modes for LACP
+LACP negotiations for form an ETHERCHANNEL
+The “channel-group” number has to MATCH for member INTERFACES on the same SWITCH.
+It DOESN’T have to MATCH the “channel-group” number on the OTHER SWITCH!
+💡 (channel-group 1 on AWS1 can form an ETHERCHANNEL with channel-group 2 on DSW1)
+STATIC ETHERCHANNEL CONFIGURATION
+💡 NOTE that “on” is the ONLY available mode for STATIC ETHERCHANNEL
+ON mode only works with ON Mode
+ON + desirable = DOES NOT WORK)
+ON + active = DOES NOT WORK
+HOW TO MANUALLY CONFIGURE THE NEGOTIATION PROTOCOL
+TWO OPTIONS:
+• LACP Protocol
+• PAgP Protocol
+(Above shows a protocol mismatch error because LACP does not support “desirable” - only PAgP does)
+(“channel-group 1 mode active” works because LACP supports “active”)
+AFTER CONFIGURING THE ETHERCHANNEL MODE
+CONFIGURING THE PORT INTERFACE
+“show running-config” shows “interface Port-channel1” in the configuration
+💡 NOTE the PHYSICAL INTERFACES (g0/0-g0/3) were auto-configured by the Port-channel1 configuration!
+IMPORTANT NOTES ABOUT ETHERCHANNEL CONFIGURATION
+• Member INTERFACES must have matching CONFIGURATIONS
+○ Same DUPLEX (Full / Half)
+○ Same SPEED
+○ Same SWITCHPORT mode (Access / Trunk)
+○ Same allowed VLANs / Native VLAN (for TRUNK interfaces)
+• If an INTERFACE’s configurations do NOT MATCH the others, it will be EXCLUDED from the
+ETHERCHANNEL
+VERIFYING STATUS OF ETHERCHANNEL
+💡 “show etherchannel summary”
+NOTE information at bottom. (”SU” means S - Layer2 + U - in use)
+Protocol = What protocol the Etherchannel is using (in this case, LACP)
+“Ports” = the list of interfaces in the EtherChannel (P = bundled in port-channel)
+OTHER FLAGS
+“D” = Down
+Changing one of the Member interfaces using “switchport mode access” has made it different than the other
+members so it is now appearing as “s” = suspended
+Another useful command
+💡 “show etherchannel port-channel”
+💡 “show spanning-tree” will show the single EtherChannel port interface
+LAYER 3 ETHERCHANNELS
+HOW TO CONFIGURE A LAYER 3 ETHERCHANNEL (from a clean configuration)
+💡 “show running-config”
+NOTE : No SWITCHPORT and NO IP INTERFACE.
+Where do we configure the IP Address? Directly on the PORT INTERFACE !
+(”RU” - “R” = Layer 3, “U” = in use)
+COMMANDS LEARNED IN THIS CHAPTER
+SW(config) port-channel load-balance *mode*
+Configures the EtherChannel load-balancing method on a SWITCH
+SW# show etherchannel load-balance
+Displays information about the load-balancing settings
+SW(config-if)# channel-group *number* mode {desirable | auto | active | passive | on}
+Configures an interface to be PART of an EtherChannel
+SW# show etherchannel summary
+Displays a summary of EtherChannels on a SWITCH
+SW# show etherchannel port-channel
+Displays information about the virtual port-channel interfaces on a SWITCH
+
+Day 23 - Etherchannel
+Sunday, September 6, 2026 10:46 AM
+23. ETHERCHANNEL
+WHAT IS ETHERCHANNEL?
+ETHERCHANNEL allows you to GROUP multiple physical INTERFACES into a group which operates as a SINGLE
+LOGICAL INTERFACE - so they BEHAVE as if they are a single INTERFACE
+A LAYER 2 ETHERCHANNEL is a group of SWITCH PORTS which operate as a SINGLE INTERFACE
+A LAYER 3 ETHERCHANNEL is a group of ROUTED PORTS which operate as a SINGLE INTERFACE which you
+assign an IP ADDRESS to.
+When the bandwidth of the INTERFACES connected to END HOSTS is greater than the bandwidth of the
+connection to the DISTRIBUTION SWITCH(es), this is called OVERSUBSCRIPTION.
+Some OVERSUBSCRIPTION is acceptable, but too much will cause congestion.
+• If you connect TWO SWITCHES together with multiple links, ALL except ONE will be DISABLED by
+SPANNING TREE PROTOCOL (Green Lights vs. Orange Lights above on ASW1)
+WHY?
+• If ALL of ASW1s INTERFACES were FORWARDING, LAYER 2 LOOPS would form between ASW1 and DSW1,
+leading to a BROADCAST STORM (Bad!)
+• Other links will be unused unless the active link fails. In that case, one of the inactive link will start
+forwarding.
+An ETHERCHANNEL (in network topology diagrams) is represented like THIS (circle around
+multi-connections)
+• ETHERCHANNEL groups multiple channels together to act as a SINGLE INTERFACE
+• STP will treat this GROUP as a SINGLE INTERFACE
+(All INTERFACES Green!)
+TRAFFIC using ETHERCHANNEL will be load-balanced among the physical INTERFACES in the group.
+An algorithm is used to determine WHICH TRAFFIC will use WHICH physical INTERFACE (more details later)
+Some other names for an ETHERCHANNEL are:
+• PORT CHANNEL
+• LAG (Link Aggregation Group)
+HOW DOES AN ETHERCHANNEL LOAD-BALANCE?
+• ETHERCHANNEL load-balances based on “flows”
+• A “flow” is a communication between TWO NODES in the NETWORK
+• FRAMES in the same “flow” will be FORWARDED using the SAME physical INTERFACE
+• If FRAMES in the same “flow” were FORWARDED using different physical INTERFACES, some FRAMES
+may arrive at the DESTINATION out of order/sequence, which can cause problems.
+• You can CHANGE the INPUTS used in the INTERFACE SELECTION calculation (for “flows”)
+○ INPUTS that can be used:
+§ SOURCE MAC ADDRESS
+§ DESTINATION MAC ADDRESS
+§ SOURCE and DESTINATION MAC ADDRESS
+§ SOURCE IP ADDRESS
+§ DESTINATION IP ADDRESS
+§ SOURCE and DESTINATION IP ADDRESS
+How to see the configuration for LOAD-BALANCING method
+How to CHANGE the LOAD-BALANCING method
+HOW TO CONFIGURE LAYER 2 / LAYER 3 ETHERCHANNELS
+There are THREE methods of ETHERCHANNEL configuration on Cisco SWITCHES
+PAgP (Port Aggregation Protocol)
+• Cisco proprietary protocol
+• Dynamically negotiates the creation/maintenance of the ETHERCHANNEL (like DTP does for trunks)
+💡 LACP (Link Aggregation Control Protocol)
+• Industry standard protocol (IEEE 802.3ad)
+• Dynamically negotiates the creation/maintenance of the ETHERCHANNEL (like DTP does for trunks)
+Static EtherChannel
+• A protocol isn’t used to determine if an EtherChannel should be formed
+• Interfaces are statically configured to form an EtherChannel
+Up to 8 INTERFACES can be formed into a single ETHERCHANNEL (LACP allows up to 16 but only 8 will be
+ACTIVE, the other 8 will in STANDBY mode, waiting for an active INTERFACE to fail)
+PAgP CONFIGURATION
+💡 NOTE that “auto” and “desirable” are the ONLY available modes for PAgP
+PAgP negotiations to form an ETHERCHANNEL
+💡 AWS1(config-if-range)# channel-group 1 mode desirable. Creating a port-channel interface Port-channel1
+Shows up in the interface as “Port-channel1”
+The “channel-group” number has to MATCH for member INTERFACES on the same SWITCH.
+It DOESN’T have to MATCH the “channel-group” number on the OTHER SWITCH!
+💡 (channel-group 1 on AWS1 can form an ETHERCHANNEL with channel-group 2 on DSW1)
+LACP CONFIGURATION
+💡 NOTE that “active” and “passive” are the ONLY available modes for LACP
+LACP negotiations for form an ETHERCHANNEL
+The “channel-group” number has to MATCH for member INTERFACES on the same SWITCH.
+It DOESN’T have to MATCH the “channel-group” number on the OTHER SWITCH!
+💡 (channel-group 1 on AWS1 can form an ETHERCHANNEL with channel-group 2 on DSW1)
+STATIC ETHERCHANNEL CONFIGURATION
+💡 NOTE that “on” is the ONLY available mode for STATIC ETHERCHANNEL
+ON mode only works with ON Mode
+ON + desirable = DOES NOT WORK)
+ON + active = DOES NOT WORK
+HOW TO MANUALLY CONFIGURE THE NEGOTIATION PROTOCOL
+TWO OPTIONS:
+• LACP Protocol
+• PAgP Protocol
+(Above shows a protocol mismatch error because LACP does not support “desirable” - only PAgP does)
+(“channel-group 1 mode active” works because LACP supports “active”)
+AFTER CONFIGURING THE ETHERCHANNEL MODE
+CONFIGURING THE PORT INTERFACE
+“show running-config” shows “interface Port-channel1” in the configuration
+💡 NOTE the PHYSICAL INTERFACES (g0/0-g0/3) were auto-configured by the Port-channel1 configuration!
+IMPORTANT NOTES ABOUT ETHERCHANNEL CONFIGURATION
+• Member INTERFACES must have matching CONFIGURATIONS
+○ Same DUPLEX (Full / Half)
+○ Same SPEED
+○ Same SWITCHPORT mode (Access / Trunk)
+○ Same allowed VLANs / Native VLAN (for TRUNK interfaces)
+• If an INTERFACE’s configurations do NOT MATCH the others, it will be EXCLUDED from the
+ETHERCHANNEL
+VERIFYING STATUS OF ETHERCHANNEL
+💡 “show etherchannel summary”
+NOTE information at bottom. (”SU” means S - Layer2 + U - in use)
+Protocol = What protocol the Etherchannel is using (in this case, LACP)
+“Ports” = the list of interfaces in the EtherChannel (P = bundled in port-channel)
+OTHER FLAGS
+“D” = Down
+Changing one of the Member interfaces using “switchport mode access” has made it different than the other
+members so it is now appearing as “s” = suspended
+Another useful command
+💡 “show etherchannel port-channel”
+💡 “show spanning-tree” will show the single EtherChannel port interface
+LAYER 3 ETHERCHANNELS
+HOW TO CONFIGURE A LAYER 3 ETHERCHANNEL (from a clean configuration)
+💡 “show running-config”
+NOTE : No SWITCHPORT and NO IP INTERFACE.
+Where do we configure the IP Address? Directly on the PORT INTERFACE !
+(”RU” - “R” = Layer 3, “U” = in use)
+COMMANDS LEARNED IN THIS CHAPTER
+SW(config) port-channel load-balance *mode*
+Configures the EtherChannel load-balancing method on a SWITCH
+SW# show etherchannel load-balance
+Displays information about the load-balancing settings
+SW(config-if)# channel-group *number* mode {desirable | auto | active | passive | on}
+Configures an interface to be PART of an EtherChannel
+SW# show etherchannel summary
+Displays a summary of EtherChannels on a SWITCH
+SW# show etherchannel port-channel
+Displays information about the virtual port-channel interfaces on a SWITCH
+
+Day 23 - Etherchannel
+Sunday, September 6, 2026 10:46 AM
+23. ETHERCHANNEL
+WHAT IS ETHERCHANNEL?
+ETHERCHANNEL allows you to GROUP multiple physical INTERFACES into a group which operates as a SINGLE
+LOGICAL INTERFACE - so they BEHAVE as if they are a single INTERFACE
+A LAYER 2 ETHERCHANNEL is a group of SWITCH PORTS which operate as a SINGLE INTERFACE
+A LAYER 3 ETHERCHANNEL is a group of ROUTED PORTS which operate as a SINGLE INTERFACE which you
+assign an IP ADDRESS to.
+When the bandwidth of the INTERFACES connected to END HOSTS is greater than the bandwidth of the
+connection to the DISTRIBUTION SWITCH(es), this is called OVERSUBSCRIPTION.
+Some OVERSUBSCRIPTION is acceptable, but too much will cause congestion.
+• If you connect TWO SWITCHES together with multiple links, ALL except ONE will be DISABLED by
+SPANNING TREE PROTOCOL (Green Lights vs. Orange Lights above on ASW1)
+WHY?
+• If ALL of ASW1s INTERFACES were FORWARDING, LAYER 2 LOOPS would form between ASW1 and DSW1,
+leading to a BROADCAST STORM (Bad!)
+• Other links will be unused unless the active link fails. In that case, one of the inactive link will start
+forwarding.
+An ETHERCHANNEL (in network topology diagrams) is represented like THIS (circle around
+multi-connections)
+• ETHERCHANNEL groups multiple channels together to act as a SINGLE INTERFACE
+• STP will treat this GROUP as a SINGLE INTERFACE
+(All INTERFACES Green!)
+TRAFFIC using ETHERCHANNEL will be load-balanced among the physical INTERFACES in the group.
+An algorithm is used to determine WHICH TRAFFIC will use WHICH physical INTERFACE (more details later)
+Some other names for an ETHERCHANNEL are:
+• PORT CHANNEL
+• LAG (Link Aggregation Group)
+HOW DOES AN ETHERCHANNEL LOAD-BALANCE?
+• ETHERCHANNEL load-balances based on “flows”
+• A “flow” is a communication between TWO NODES in the NETWORK
+• FRAMES in the same “flow” will be FORWARDED using the SAME physical INTERFACE
+• If FRAMES in the same “flow” were FORWARDED using different physical INTERFACES, some FRAMES
+may arrive at the DESTINATION out of order/sequence, which can cause problems.
+• You can CHANGE the INPUTS used in the INTERFACE SELECTION calculation (for “flows”)
+○ INPUTS that can be used:
+§ SOURCE MAC ADDRESS
+§ DESTINATION MAC ADDRESS
+§ SOURCE and DESTINATION MAC ADDRESS
+§ SOURCE IP ADDRESS
+§ DESTINATION IP ADDRESS
+§ SOURCE and DESTINATION IP ADDRESS
+How to see the configuration for LOAD-BALANCING method
+How to CHANGE the LOAD-BALANCING method
+HOW TO CONFIGURE LAYER 2 / LAYER 3 ETHERCHANNELS
+There are THREE methods of ETHERCHANNEL configuration on Cisco SWITCHES
+PAgP (Port Aggregation Protocol)
+• Cisco proprietary protocol
+• Dynamically negotiates the creation/maintenance of the ETHERCHANNEL (like DTP does for trunks)
+💡 LACP (Link Aggregation Control Protocol)
+• Industry standard protocol (IEEE 802.3ad)
+• Dynamically negotiates the creation/maintenance of the ETHERCHANNEL (like DTP does for trunks)
+Static EtherChannel
+• A protocol isn’t used to determine if an EtherChannel should be formed
+• Interfaces are statically configured to form an EtherChannel
+Up to 8 INTERFACES can be formed into a single ETHERCHANNEL (LACP allows up to 16 but only 8 will be
+ACTIVE, the other 8 will in STANDBY mode, waiting for an active INTERFACE to fail)
+PAgP CONFIGURATION
+💡 NOTE that “auto” and “desirable” are the ONLY available modes for PAgP
+PAgP negotiations to form an ETHERCHANNEL
+💡 AWS1(config-if-range)# channel-group 1 mode desirable. Creating a port-channel interface Port-channel1
+Shows up in the interface as “Port-channel1”
+The “channel-group” number has to MATCH for member INTERFACES on the same SWITCH.
+It DOESN’T have to MATCH the “channel-group” number on the OTHER SWITCH!
+💡 (channel-group 1 on AWS1 can form an ETHERCHANNEL with channel-group 2 on DSW1)
+LACP CONFIGURATION
+💡 NOTE that “active” and “passive” are the ONLY available modes for LACP
+LACP negotiations for form an ETHERCHANNEL
+The “channel-group” number has to MATCH for member INTERFACES on the same SWITCH.
+It DOESN’T have to MATCH the “channel-group” number on the OTHER SWITCH!
+💡 (channel-group 1 on AWS1 can form an ETHERCHANNEL with channel-group 2 on DSW1)
+STATIC ETHERCHANNEL CONFIGURATION
+💡 NOTE that “on” is the ONLY available mode for STATIC ETHERCHANNEL
+ON mode only works with ON Mode
+ON + desirable = DOES NOT WORK)
+ON + active = DOES NOT WORK
+HOW TO MANUALLY CONFIGURE THE NEGOTIATION PROTOCOL
+TWO OPTIONS:
+• LACP Protocol
+• PAgP Protocol
+(Above shows a protocol mismatch error because LACP does not support “desirable” - only PAgP does)
+(“channel-group 1 mode active” works because LACP supports “active”)
+AFTER CONFIGURING THE ETHERCHANNEL MODE
+CONFIGURING THE PORT INTERFACE
+“show running-config” shows “interface Port-channel1” in the configuration
+💡 NOTE the PHYSICAL INTERFACES (g0/0-g0/3) were auto-configured by the Port-channel1 configuration!
+IMPORTANT NOTES ABOUT ETHERCHANNEL CONFIGURATION
+• Member INTERFACES must have matching CONFIGURATIONS
+○ Same DUPLEX (Full / Half)
+○ Same SPEED
+○ Same SWITCHPORT mode (Access / Trunk)
+○ Same allowed VLANs / Native VLAN (for TRUNK interfaces)
+• If an INTERFACE’s configurations do NOT MATCH the others, it will be EXCLUDED from the
+ETHERCHANNEL
+VERIFYING STATUS OF ETHERCHANNEL
+💡 “show etherchannel summary”
+NOTE information at bottom. (”SU” means S - Layer2 + U - in use)
+Protocol = What protocol the Etherchannel is using (in this case, LACP)
+“Ports” = the list of interfaces in the EtherChannel (P = bundled in port-channel)
+OTHER FLAGS
+“D” = Down
+Changing one of the Member interfaces using “switchport mode access” has made it different than the other
+members so it is now appearing as “s” = suspended
+Another useful command
+💡 “show etherchannel port-channel”
+💡 “show spanning-tree” will show the single EtherChannel port interface
+LAYER 3 ETHERCHANNELS
+HOW TO CONFIGURE A LAYER 3 ETHERCHANNEL (from a clean configuration)
+💡 “show running-config”
+NOTE : No SWITCHPORT and NO IP INTERFACE.
+Where do we configure the IP Address? Directly on the PORT INTERFACE !
+(”RU” - “R” = Layer 3, “U” = in use)
+COMMANDS LEARNED IN THIS CHAPTER
+SW(config) port-channel load-balance *mode*
+Configures the EtherChannel load-balancing method on a SWITCH
+SW# show etherchannel load-balance
+Displays information about the load-balancing settings
+SW(config-if)# channel-group *number* mode {desirable | auto | active | passive | on}
+Configures an interface to be PART of an EtherChannel
+SW# show etherchannel summary
+Displays a summary of EtherChannels on a SWITCH
+SW# show etherchannel port-channel
+Displays information about the virtual port-channel interfaces on a SWITCH
+
+Day 23 - Etherchannel
+Sunday, September 6, 2026 10:46 AM
+23. ETHERCHANNEL
+WHAT IS ETHERCHANNEL?
+ETHERCHANNEL allows you to GROUP multiple physical INTERFACES into a group which operates as a SINGLE
+LOGICAL INTERFACE - so they BEHAVE as if they are a single INTERFACE
+A LAYER 2 ETHERCHANNEL is a group of SWITCH PORTS which operate as a SINGLE INTERFACE
+A LAYER 3 ETHERCHANNEL is a group of ROUTED PORTS which operate as a SINGLE INTERFACE which you
+assign an IP ADDRESS to.
+When the bandwidth of the INTERFACES connected to END HOSTS is greater than the bandwidth of the
+connection to the DISTRIBUTION SWITCH(es), this is called OVERSUBSCRIPTION.
+Some OVERSUBSCRIPTION is acceptable, but too much will cause congestion.
+• If you connect TWO SWITCHES together with multiple links, ALL except ONE will be DISABLED by
+SPANNING TREE PROTOCOL (Green Lights vs. Orange Lights above on ASW1)
+WHY?
+• If ALL of ASW1s INTERFACES were FORWARDING, LAYER 2 LOOPS would form between ASW1 and DSW1,
+leading to a BROADCAST STORM (Bad!)
+• Other links will be unused unless the active link fails. In that case, one of the inactive link will start
+forwarding.
+An ETHERCHANNEL (in network topology diagrams) is represented like THIS (circle around
+multi-connections)
+• ETHERCHANNEL groups multiple channels together to act as a SINGLE INTERFACE
+• STP will treat this GROUP as a SINGLE INTERFACE
+(All INTERFACES Green!)
+TRAFFIC using ETHERCHANNEL will be load-balanced among the physical INTERFACES in the group.
+An algorithm is used to determine WHICH TRAFFIC will use WHICH physical INTERFACE (more details later)
+Some other names for an ETHERCHANNEL are:
+• PORT CHANNEL
+• LAG (Link Aggregation Group)
+HOW DOES AN ETHERCHANNEL LOAD-BALANCE?
+• ETHERCHANNEL load-balances based on “flows”
+• A “flow” is a communication between TWO NODES in the NETWORK
+• FRAMES in the same “flow” will be FORWARDED using the SAME physical INTERFACE
+• If FRAMES in the same “flow” were FORWARDED using different physical INTERFACES, some FRAMES
+may arrive at the DESTINATION out of order/sequence, which can cause problems.
+• You can CHANGE the INPUTS used in the INTERFACE SELECTION calculation (for “flows”)
+○ INPUTS that can be used:
+§ SOURCE MAC ADDRESS
+§ DESTINATION MAC ADDRESS
+§ SOURCE and DESTINATION MAC ADDRESS
+§ SOURCE IP ADDRESS
+§ DESTINATION IP ADDRESS
+§ SOURCE and DESTINATION IP ADDRESS
+How to see the configuration for LOAD-BALANCING method
+How to CHANGE the LOAD-BALANCING method
+HOW TO CONFIGURE LAYER 2 / LAYER 3 ETHERCHANNELS
+There are THREE methods of ETHERCHANNEL configuration on Cisco SWITCHES
+PAgP (Port Aggregation Protocol)
+• Cisco proprietary protocol
+• Dynamically negotiates the creation/maintenance of the ETHERCHANNEL (like DTP does for trunks)
+💡 LACP (Link Aggregation Control Protocol)
+• Industry standard protocol (IEEE 802.3ad)
+• Dynamically negotiates the creation/maintenance of the ETHERCHANNEL (like DTP does for trunks)
+Static EtherChannel
+• A protocol isn’t used to determine if an EtherChannel should be formed
+• Interfaces are statically configured to form an EtherChannel
+Up to 8 INTERFACES can be formed into a single ETHERCHANNEL (LACP allows up to 16 but only 8 will be
+ACTIVE, the other 8 will in STANDBY mode, waiting for an active INTERFACE to fail)
+PAgP CONFIGURATION
+💡 NOTE that “auto” and “desirable” are the ONLY available modes for PAgP
+PAgP negotiations to form an ETHERCHANNEL
+💡 AWS1(config-if-range)# channel-group 1 mode desirable. Creating a port-channel interface Port-channel1
+Shows up in the interface as “Port-channel1”
+The “channel-group” number has to MATCH for member INTERFACES on the same SWITCH.
+It DOESN’T have to MATCH the “channel-group” number on the OTHER SWITCH!
+💡 (channel-group 1 on AWS1 can form an ETHERCHANNEL with channel-group 2 on DSW1)
+LACP CONFIGURATION
+💡 NOTE that “active” and “passive” are the ONLY available modes for LACP
+LACP negotiations for form an ETHERCHANNEL
+The “channel-group” number has to MATCH for member INTERFACES on the same SWITCH.
+It DOESN’T have to MATCH the “channel-group” number on the OTHER SWITCH!
+💡 (channel-group 1 on AWS1 can form an ETHERCHANNEL with channel-group 2 on DSW1)
+STATIC ETHERCHANNEL CONFIGURATION
+💡 NOTE that “on” is the ONLY available mode for STATIC ETHERCHANNEL
+ON mode only works with ON Mode
+ON + desirable = DOES NOT WORK)
+ON + active = DOES NOT WORK
+HOW TO MANUALLY CONFIGURE THE NEGOTIATION PROTOCOL
+TWO OPTIONS:
+• LACP Protocol
+• PAgP Protocol
+(Above shows a protocol mismatch error because LACP does not support “desirable” - only PAgP does)
+(“channel-group 1 mode active” works because LACP supports “active”)
+AFTER CONFIGURING THE ETHERCHANNEL MODE
+CONFIGURING THE PORT INTERFACE
+“show running-config” shows “interface Port-channel1” in the configuration
+💡 NOTE the PHYSICAL INTERFACES (g0/0-g0/3) were auto-configured by the Port-channel1 configuration!
+IMPORTANT NOTES ABOUT ETHERCHANNEL CONFIGURATION
+• Member INTERFACES must have matching CONFIGURATIONS
+○ Same DUPLEX (Full / Half)
+○ Same SPEED
+○ Same SWITCHPORT mode (Access / Trunk)
+○ Same allowed VLANs / Native VLAN (for TRUNK interfaces)
+• If an INTERFACE’s configurations do NOT MATCH the others, it will be EXCLUDED from the
+ETHERCHANNEL
+VERIFYING STATUS OF ETHERCHANNEL
+💡 “show etherchannel summary”
+NOTE information at bottom. (”SU” means S - Layer2 + U - in use)
+Protocol = What protocol the Etherchannel is using (in this case, LACP)
+“Ports” = the list of interfaces in the EtherChannel (P = bundled in port-channel)
+OTHER FLAGS
+“D” = Down
+Changing one of the Member interfaces using “switchport mode access” has made it different than the other
+members so it is now appearing as “s” = suspended
+Another useful command
+💡 “show etherchannel port-channel”
+💡 “show spanning-tree” will show the single EtherChannel port interface
+LAYER 3 ETHERCHANNELS
+HOW TO CONFIGURE A LAYER 3 ETHERCHANNEL (from a clean configuration)
+💡 “show running-config”
+NOTE : No SWITCHPORT and NO IP INTERFACE.
+Where do we configure the IP Address? Directly on the PORT INTERFACE !
+(”RU” - “R” = Layer 3, “U” = in use)
+COMMANDS LEARNED IN THIS CHAPTER
+SW(config) port-channel load-balance *mode*
+Configures the EtherChannel load-balancing method on a SWITCH
+SW# show etherchannel load-balance
+Displays information about the load-balancing settings
+SW(config-if)# channel-group *number* mode {desirable | auto | active | passive | on}
+Configures an interface to be PART of an EtherChannel
+SW# show etherchannel summary
+Displays a summary of EtherChannels on a SWITCH
+SW# show etherchannel port-channel
+Displays information about the virtual port-channel interfaces on a SWITCH
+
+Day 23 - Etherchannel
+Sunday, September 6, 2026 10:46 AM
+23. ETHERCHANNEL
+WHAT IS ETHERCHANNEL?
+ETHERCHANNEL allows you to GROUP multiple physical INTERFACES into a group which operates as a SINGLE
+LOGICAL INTERFACE - so they BEHAVE as if they are a single INTERFACE
+A LAYER 2 ETHERCHANNEL is a group of SWITCH PORTS which operate as a SINGLE INTERFACE
+A LAYER 3 ETHERCHANNEL is a group of ROUTED PORTS which operate as a SINGLE INTERFACE which you
+assign an IP ADDRESS to.
+When the bandwidth of the INTERFACES connected to END HOSTS is greater than the bandwidth of the
+connection to the DISTRIBUTION SWITCH(es), this is called OVERSUBSCRIPTION.
+Some OVERSUBSCRIPTION is acceptable, but too much will cause congestion.
+• If you connect TWO SWITCHES together with multiple links, ALL except ONE will be DISABLED by
+SPANNING TREE PROTOCOL (Green Lights vs. Orange Lights above on ASW1)
+WHY?
+• If ALL of ASW1s INTERFACES were FORWARDING, LAYER 2 LOOPS would form between ASW1 and DSW1,
+leading to a BROADCAST STORM (Bad!)
+• Other links will be unused unless the active link fails. In that case, one of the inactive link will start
+forwarding.
+An ETHERCHANNEL (in network topology diagrams) is represented like THIS (circle around
+multi-connections)
+• ETHERCHANNEL groups multiple channels together to act as a SINGLE INTERFACE
+• STP will treat this GROUP as a SINGLE INTERFACE
+(All INTERFACES Green!)
+TRAFFIC using ETHERCHANNEL will be load-balanced among the physical INTERFACES in the group.
+An algorithm is used to determine WHICH TRAFFIC will use WHICH physical INTERFACE (more details later)
+Some other names for an ETHERCHANNEL are:
+• PORT CHANNEL
+• LAG (Link Aggregation Group)
+HOW DOES AN ETHERCHANNEL LOAD-BALANCE?
+• ETHERCHANNEL load-balances based on “flows”
+• A “flow” is a communication between TWO NODES in the NETWORK
+• FRAMES in the same “flow” will be FORWARDED using the SAME physical INTERFACE
+• If FRAMES in the same “flow” were FORWARDED using different physical INTERFACES, some FRAMES
+may arrive at the DESTINATION out of order/sequence, which can cause problems.
+• You can CHANGE the INPUTS used in the INTERFACE SELECTION calculation (for “flows”)
+○ INPUTS that can be used:
+§ SOURCE MAC ADDRESS
+§ DESTINATION MAC ADDRESS
+§ SOURCE and DESTINATION MAC ADDRESS
+§ SOURCE IP ADDRESS
+§ DESTINATION IP ADDRESS
+§ SOURCE and DESTINATION IP ADDRESS
+How to see the configuration for LOAD-BALANCING method
+How to CHANGE the LOAD-BALANCING method
+HOW TO CONFIGURE LAYER 2 / LAYER 3 ETHERCHANNELS
+There are THREE methods of ETHERCHANNEL configuration on Cisco SWITCHES
+PAgP (Port Aggregation Protocol)
+• Cisco proprietary protocol
+• Dynamically negotiates the creation/maintenance of the ETHERCHANNEL (like DTP does for trunks)
+💡 LACP (Link Aggregation Control Protocol)
+• Industry standard protocol (IEEE 802.3ad)
+• Dynamically negotiates the creation/maintenance of the ETHERCHANNEL (like DTP does for trunks)
+Static EtherChannel
+• A protocol isn’t used to determine if an EtherChannel should be formed
+• Interfaces are statically configured to form an EtherChannel
+Up to 8 INTERFACES can be formed into a single ETHERCHANNEL (LACP allows up to 16 but only 8 will be
+ACTIVE, the other 8 will in STANDBY mode, waiting for an active INTERFACE to fail)
+PAgP CONFIGURATION
+💡 NOTE that “auto” and “desirable” are the ONLY available modes for PAgP
+PAgP negotiations to form an ETHERCHANNEL
+💡 AWS1(config-if-range)# channel-group 1 mode desirable. Creating a port-channel interface Port-channel1
+Shows up in the interface as “Port-channel1”
+The “channel-group” number has to MATCH for member INTERFACES on the same SWITCH.
+It DOESN’T have to MATCH the “channel-group” number on the OTHER SWITCH!
+💡 (channel-group 1 on AWS1 can form an ETHERCHANNEL with channel-group 2 on DSW1)
+LACP CONFIGURATION
+💡 NOTE that “active” and “passive” are the ONLY available modes for LACP
+LACP negotiations for form an ETHERCHANNEL
+The “channel-group” number has to MATCH for member INTERFACES on the same SWITCH.
+It DOESN’T have to MATCH the “channel-group” number on the OTHER SWITCH!
+💡 (channel-group 1 on AWS1 can form an ETHERCHANNEL with channel-group 2 on DSW1)
+STATIC ETHERCHANNEL CONFIGURATION
+💡 NOTE that “on” is the ONLY available mode for STATIC ETHERCHANNEL
+ON mode only works with ON Mode
+ON + desirable = DOES NOT WORK)
+ON + active = DOES NOT WORK
+HOW TO MANUALLY CONFIGURE THE NEGOTIATION PROTOCOL
+TWO OPTIONS:
+• LACP Protocol
+• PAgP Protocol
+(Above shows a protocol mismatch error because LACP does not support “desirable” - only PAgP does)
+(“channel-group 1 mode active” works because LACP supports “active”)
+AFTER CONFIGURING THE ETHERCHANNEL MODE
+CONFIGURING THE PORT INTERFACE
+“show running-config” shows “interface Port-channel1” in the configuration
+💡 NOTE the PHYSICAL INTERFACES (g0/0-g0/3) were auto-configured by the Port-channel1 configuration!
+IMPORTANT NOTES ABOUT ETHERCHANNEL CONFIGURATION
+• Member INTERFACES must have matching CONFIGURATIONS
+○ Same DUPLEX (Full / Half)
+○ Same SPEED
+○ Same SWITCHPORT mode (Access / Trunk)
+○ Same allowed VLANs / Native VLAN (for TRUNK interfaces)
+• If an INTERFACE’s configurations do NOT MATCH the others, it will be EXCLUDED from the
+ETHERCHANNEL
+VERIFYING STATUS OF ETHERCHANNEL
+💡 “show etherchannel summary”
+NOTE information at bottom. (”SU” means S - Layer2 + U - in use)
+Protocol = What protocol the Etherchannel is using (in this case, LACP)
+“Ports” = the list of interfaces in the EtherChannel (P = bundled in port-channel)
+OTHER FLAGS
+“D” = Down
+Changing one of the Member interfaces using “switchport mode access” has made it different than the other
+members so it is now appearing as “s” = suspended
+Another useful command
+💡 “show etherchannel port-channel”
+💡 “show spanning-tree” will show the single EtherChannel port interface
+LAYER 3 ETHERCHANNELS
+HOW TO CONFIGURE A LAYER 3 ETHERCHANNEL (from a clean configuration)
+💡 “show running-config”
+NOTE : No SWITCHPORT and NO IP INTERFACE.
+Where do we configure the IP Address? Directly on the PORT INTERFACE !
+(”RU” - “R” = Layer 3, “U” = in use)
+COMMANDS LEARNED IN THIS CHAPTER
+SW(config) port-channel load-balance *mode*
+Configures the EtherChannel load-balancing method on a SWITCH
+SW# show etherchannel load-balance
+Displays information about the load-balancing settings
+SW(config-if)# channel-group *number* mode {desirable | auto | active | passive | on}
+Configures an interface to be PART of an EtherChannel
+SW# show etherchannel summary
+Displays a summary of EtherChannels on a SWITCH
+SW# show etherchannel port-channel
+Displays information about the virtual port-channel interfaces on a SWITCH</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="day-22.html"><small>← Day 22</small>Rapid Spanning Tree Protocol</a><a href="day-24.html"><small>Day 24 →</small>Dynamic Routing</a></nav></article></div></main><footer class="footer"><div class="wrap">Personal study notes · Jeremy’s IT Lab CCNA course · Exported from OneNote September 20, 2026<br><a href="../../resources.html">Back to all resources</a></div></footer><script src="course.js"></script></body></html>

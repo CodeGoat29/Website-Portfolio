@@ -1,0 +1,347 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 51: Dynamic ARP Inspection (DAI) | DiPiazza</title><meta name="description" content="Personal CCNA study notes from OneNote, organized into 63 days with diagrams, original PDFs and searchable text."><link rel="icon" href="../../images/thegoat.png"><link rel="stylesheet" href="course.css"></head><body><header class="top"><div class="wrap"><a class="brand" href="../../index.html">DiPiazza<span aria-hidden="true">.</span></a><nav aria-label="Main"><a href="../../resources.html">Resources</a><a href="index.html">CCNA course</a></nav></div></header><main class="wrap"><div class="crumb"><a href="index.html">CCNA study notes</a> / Day 51</div><header class="lesson-head"><div class="eyebrow">Day 51 / 63 · Network security</div><h1>Dynamic ARP Inspection (DAI)</h1><p class="lead">Original notes and diagrams from my OneNote notebook.</p><div class="pills"><a class="button primary" href="index.html">All 63 days</a></div></header><div class="reading-layout"><aside class="aside" aria-label="Lesson parts"><p class="muted">IN THIS DAY</p><a href="#part-1">Dynamic ARP Inspection (DAI)</a><p class="muted">Tap a note image to zoom. Expand the text view to copy or search the exported text.</p></aside><article><section class="note-part" id="part-1"><h2>Dynamic ARP Inspection (DAI)</h2><a class="button" href="assets/lesson-52/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="assets/lesson-52/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge Dynamic ARP Inspection (DAI) page 1"><img src="assets/lesson-52/page-1.webp" width="1542" height="2056" loading="lazy" alt="Original OneNote notes: Dynamic ARP Inspection (DAI), page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 3</figcaption></figure><figure class="note-image"><a href="assets/lesson-52/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge Dynamic ARP Inspection (DAI) page 2"><img src="assets/lesson-52/page-2.webp" width="1533" height="2103" loading="lazy" alt="Original OneNote notes: Dynamic ARP Inspection (DAI), page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 3</figcaption></figure><figure class="note-image"><a href="assets/lesson-52/page-3.webp" target="_blank" rel="noopener" aria-label="Enlarge Dynamic ARP Inspection (DAI) page 3"><img src="assets/lesson-52/page-3.webp" width="1534" height="1207" loading="lazy" alt="Original OneNote notes: Dynamic ARP Inspection (DAI), page 3. Text version follows below."></a><figcaption>Original notes · Page 3 of 3</figcaption></figure><details class="text-view"><summary>Text view — Dynamic ARP Inspection (DAI)</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 51 - Dynamic ARP Inspection (DAI)
+Wednesday, September 9, 2026 8:37 PM
+DAI Info
+ARP Review
+ARP is a protocol that is used to learn the MAC address of another device with a known IP address.
+• Typically, it is a two message exchange consisting of:
+1. ARP Request
+2. ARP Reply
+• The ARP message itself is a Layer 2 message, but within the ARP header, it contains the sender MAC and IP, as well
+as the target MAC and IP.
+Gratuitous ARP
+A Gratuitous ARP message is an ARP Reply that is sent without receiving an ARP Request.
+• It is sent to the broadcast MAC address.
+• It allows other devices to learn the MAC address of the sending device without having to send ARP Requests.
+• Some devices automatically send GARP messages when an interface is enabled, IP address is changed, MAC
+address is changed, and etc.
+Dynamic ARP Inspection
+Dynamic ARP Inspection (DAI) is a security feature of switches that is used to filter ARP messages received on untrusted
+ports.
+• DAI only filters ARP messages. Non-ARP messages are not affected by it.
+• By default, all ports are untrusted. There’s also a standard to follow while assigning trusted ports.
+○ Trusted ports should be all the ports connected to other network devices (switches, routers)
+○ Untrusted ports should be all ports connected to end hosts.
+ARP Poisoning (man-in-the-middle attack)
+ARP Poisoning is an attack that’s similar to the DHCP Poisoning attack. It involves an attacker manipulating targets’ ARP
+tables so traffic is sent to the attacker.
+• In order for the attacker to accomplish this, the attacker can send GARP messages using another device’s IP
+address.
+• Other devices in the network will receive the GARP and update their ARP tables, which will cause them to send
+traffic to the attacker instead of the legitimate destination.
+ARP Poisoning Attack Demonstration
+DAI Operations
+• When an ARP packet is received, DAI will do the following checks:
+○ If a message arrived on a trusted port:
+§ DAI does not inspect the messages and they are forwarded as normal.
+○ If a message arrived on an untrusted port, do the following:
+§ Examine the sender MAC and sender IP fields of ARP messages received on untrusted port, and checks
+that there is a matching entry in the DHCP snooping binding table.
+□ Match = Forward the ARP message
+□ No match = Discard the ARP message
+• ARP ACLs can be manually configured to map IP/MAC addresses for DAI to check.
+○ They are mainly used for hosts which do not utilize DHCP, therefore, they do not have an entry in the DHCP
+snooping binding table.
+• DAI can also be configured to perform more optional in-depth checks.
+• Like DHCP snooping, DAI also supports rate-limiting to prevent attackers from overwhelming the switch with ARP
+messages.
+○ The reason this exists is because features like DHCP snooping and DAI both require work from the switch’s
+CPU.
+○ Even if an attacker’s messages are blocked, they can overload the switch’s CPU with excessive ARP
+messages.
+DAI Configurations
+• show ip arp inspection
+○ Shows a summary of the Dynamic ARP Inspection configuration as well as statistics.
+• show ip arp inspection interfaces
+○ Shows the status of Dynamic ARP Inspection on the switch’s interfaces.
+• ip arp inspection vlan VLAN-ID
+○ Enables Dynamic ARP Inspection on the specified VLAN.
+○ (Unlike DHCP snooping, DAI doesn’t have to be enabled globally beforehand)
+• ip arp inspection validate VALIDATION-MODE ( SRC-MAC | DST-MAC | IP ) ^arp-inspection-validate-cmd
+○ Configures the current ARP Inspection validation method(s).
+○ Supports 3 validation modes, being src-mac, dst-mac, ip.
+○ (You can use multiple by specifying them in the same command)
+• ip arp inspection trust
+○ Configures the current interface as trusted for ARP inspections,
+• ip arp inspection limit rate PACKETS burst interval SECONDS
+○ Limits how many ARP packets are allowed per burst interval
+○ (Default settings are: 15 packets per 1 burst interval, in other words, 15 packets per second)
+• arp access-list ARP-ACL-ID
+○ Creates an ARP ACL and enters ARP ACL configuration mode.
+§ In configuration mode:
+§ { permit | deny } ip host ip-address mac host mac-address
+• ip arp inspection filter ARP-ACL-ID vlan VLAN-ID
+○ Applies an ARP ACL on the specified VLAN
+DAI Rate-Limiting
+DAI rate-limiting is enabled on untrusted ports by default with a rate of 15 packets per second.
+• It is disabled on trusted ports by default.
+• DAI also supports a burst interval, which means it can handle data that arrives in quick short bursts, and will not
+err-disable the interface (If the bursts don’t go over the configured limit set through ip arp inspection limit
+rate PACKETS burst interval SECONDS).
+• Can be re-enabled with shutdown ⇒ no shutdown, or through ErrDisable Recovery (errdisable recovery cause arp-
+inspection).
+Difference between rate-limiting on DHCP snooping and DAI
+1. DHCP snooping
+○ Rate-limiting is disabled on all interfaces by default.
+○ Rate-limit format: ==X packets per second==.
+§ Default: 15 packets per second
+1. DAI
+○ Rate-limiting is enabled on untrusted ports and disabled on trusted ports by default.
+○ Rate-limit format: ==X packets per Y seconds==.
+§ Default: 15 packets per 1 second
+DAI Optional Checks
+There are optional DAI checks that you can enable (with ip arp inspection validate MODE) to further secure your
+network from attacks.
+They include:
+1. src-mac
+○ Enables validation of the source MAC address in the Ethernet header against the sender MAC address in the
+ARP body for ARP Requests and ARP Responses.
+○ The devices classifies packets with different MAC addresses as invalid and drops them.
+2. dst-mac
+○ Enables validation of the destination MAC address in the Ethernet header against the target MAC address in
+the ARP body for ARP Responses.
+○ The device classifies packets with different MAC addresses as invalid and drops them.
+3. ip
+○ Enables validation of the ARP body for invalid and unexpected IP addresses. Addresses include (0.0.0.0,
+255.255.255.255), and all IP multicast addresses.
+○ The device checks the sender IP addresses in all ARP Requests and ARP Responses and checks the target IP
+addresses only in ARP Responses.
+Optional checks and DAI
+○ These checks are done in addition to the standard DAI check (sender MAC/IP).
+○ If optional checks are configured, an ARP message must pass all of the checks to be considered valid.
+DAI ARP ACL
+For hosts which do not use DHCP, you can create an ARP ACL that will permit ARP messages from said devices.
+• You’ll need to create an ARP ACL with arp access-list ARP-ACL-ID and set a rule to permit ARP traffic from that
+specific host.
+• Then you can apply it with DAI through the ip arp inspection filter ARP-ACL-ID vlan VLAN-ID command
+
+Day 51 - Dynamic ARP Inspection (DAI)
+Wednesday, September 9, 2026 8:37 PM
+DAI Info
+ARP Review
+ARP is a protocol that is used to learn the MAC address of another device with a known IP address.
+• Typically, it is a two message exchange consisting of:
+1. ARP Request
+2. ARP Reply
+• The ARP message itself is a Layer 2 message, but within the ARP header, it contains the sender MAC and IP, as well
+as the target MAC and IP.
+Gratuitous ARP
+A Gratuitous ARP message is an ARP Reply that is sent without receiving an ARP Request.
+• It is sent to the broadcast MAC address.
+• It allows other devices to learn the MAC address of the sending device without having to send ARP Requests.
+• Some devices automatically send GARP messages when an interface is enabled, IP address is changed, MAC
+address is changed, and etc.
+Dynamic ARP Inspection
+Dynamic ARP Inspection (DAI) is a security feature of switches that is used to filter ARP messages received on untrusted
+ports.
+• DAI only filters ARP messages. Non-ARP messages are not affected by it.
+• By default, all ports are untrusted. There’s also a standard to follow while assigning trusted ports.
+○ Trusted ports should be all the ports connected to other network devices (switches, routers)
+○ Untrusted ports should be all ports connected to end hosts.
+ARP Poisoning (man-in-the-middle attack)
+ARP Poisoning is an attack that’s similar to the DHCP Poisoning attack. It involves an attacker manipulating targets’ ARP
+tables so traffic is sent to the attacker.
+• In order for the attacker to accomplish this, the attacker can send GARP messages using another device’s IP
+address.
+• Other devices in the network will receive the GARP and update their ARP tables, which will cause them to send
+traffic to the attacker instead of the legitimate destination.
+ARP Poisoning Attack Demonstration
+DAI Operations
+• When an ARP packet is received, DAI will do the following checks:
+○ If a message arrived on a trusted port:
+§ DAI does not inspect the messages and they are forwarded as normal.
+○ If a message arrived on an untrusted port, do the following:
+§ Examine the sender MAC and sender IP fields of ARP messages received on untrusted port, and checks
+that there is a matching entry in the DHCP snooping binding table.
+□ Match = Forward the ARP message
+□ No match = Discard the ARP message
+• ARP ACLs can be manually configured to map IP/MAC addresses for DAI to check.
+○ They are mainly used for hosts which do not utilize DHCP, therefore, they do not have an entry in the DHCP
+snooping binding table.
+• DAI can also be configured to perform more optional in-depth checks.
+• Like DHCP snooping, DAI also supports rate-limiting to prevent attackers from overwhelming the switch with ARP
+messages.
+○ The reason this exists is because features like DHCP snooping and DAI both require work from the switch’s
+CPU.
+○ Even if an attacker’s messages are blocked, they can overload the switch’s CPU with excessive ARP
+messages.
+DAI Configurations
+• show ip arp inspection
+○ Shows a summary of the Dynamic ARP Inspection configuration as well as statistics.
+• show ip arp inspection interfaces
+○ Shows the status of Dynamic ARP Inspection on the switch’s interfaces.
+• ip arp inspection vlan VLAN-ID
+○ Enables Dynamic ARP Inspection on the specified VLAN.
+○ (Unlike DHCP snooping, DAI doesn’t have to be enabled globally beforehand)
+• ip arp inspection validate VALIDATION-MODE ( SRC-MAC | DST-MAC | IP ) ^arp-inspection-validate-cmd
+○ Configures the current ARP Inspection validation method(s).
+○ Supports 3 validation modes, being src-mac, dst-mac, ip.
+○ (You can use multiple by specifying them in the same command)
+• ip arp inspection trust
+○ Configures the current interface as trusted for ARP inspections,
+• ip arp inspection limit rate PACKETS burst interval SECONDS
+○ Limits how many ARP packets are allowed per burst interval
+○ (Default settings are: 15 packets per 1 burst interval, in other words, 15 packets per second)
+• arp access-list ARP-ACL-ID
+○ Creates an ARP ACL and enters ARP ACL configuration mode.
+§ In configuration mode:
+§ { permit | deny } ip host ip-address mac host mac-address
+• ip arp inspection filter ARP-ACL-ID vlan VLAN-ID
+○ Applies an ARP ACL on the specified VLAN
+DAI Rate-Limiting
+DAI rate-limiting is enabled on untrusted ports by default with a rate of 15 packets per second.
+• It is disabled on trusted ports by default.
+• DAI also supports a burst interval, which means it can handle data that arrives in quick short bursts, and will not
+err-disable the interface (If the bursts don’t go over the configured limit set through ip arp inspection limit
+rate PACKETS burst interval SECONDS).
+• Can be re-enabled with shutdown ⇒ no shutdown, or through ErrDisable Recovery (errdisable recovery cause arp-
+inspection).
+Difference between rate-limiting on DHCP snooping and DAI
+1. DHCP snooping
+○ Rate-limiting is disabled on all interfaces by default.
+○ Rate-limit format: ==X packets per second==.
+§ Default: 15 packets per second
+1. DAI
+○ Rate-limiting is enabled on untrusted ports and disabled on trusted ports by default.
+○ Rate-limit format: ==X packets per Y seconds==.
+§ Default: 15 packets per 1 second
+DAI Optional Checks
+There are optional DAI checks that you can enable (with ip arp inspection validate MODE) to further secure your
+network from attacks.
+They include:
+1. src-mac
+○ Enables validation of the source MAC address in the Ethernet header against the sender MAC address in the
+ARP body for ARP Requests and ARP Responses.
+○ The devices classifies packets with different MAC addresses as invalid and drops them.
+2. dst-mac
+○ Enables validation of the destination MAC address in the Ethernet header against the target MAC address in
+the ARP body for ARP Responses.
+○ The device classifies packets with different MAC addresses as invalid and drops them.
+3. ip
+○ Enables validation of the ARP body for invalid and unexpected IP addresses. Addresses include (0.0.0.0,
+255.255.255.255), and all IP multicast addresses.
+○ The device checks the sender IP addresses in all ARP Requests and ARP Responses and checks the target IP
+addresses only in ARP Responses.
+Optional checks and DAI
+○ These checks are done in addition to the standard DAI check (sender MAC/IP).
+○ If optional checks are configured, an ARP message must pass all of the checks to be considered valid.
+DAI ARP ACL
+For hosts which do not use DHCP, you can create an ARP ACL that will permit ARP messages from said devices.
+• You’ll need to create an ARP ACL with arp access-list ARP-ACL-ID and set a rule to permit ARP traffic from that
+specific host.
+• Then you can apply it with DAI through the ip arp inspection filter ARP-ACL-ID vlan VLAN-ID command
+
+Day 51 - Dynamic ARP Inspection (DAI)
+Wednesday, September 9, 2026 8:37 PM
+DAI Info
+ARP Review
+ARP is a protocol that is used to learn the MAC address of another device with a known IP address.
+• Typically, it is a two message exchange consisting of:
+1. ARP Request
+2. ARP Reply
+• The ARP message itself is a Layer 2 message, but within the ARP header, it contains the sender MAC and IP, as well
+as the target MAC and IP.
+Gratuitous ARP
+A Gratuitous ARP message is an ARP Reply that is sent without receiving an ARP Request.
+• It is sent to the broadcast MAC address.
+• It allows other devices to learn the MAC address of the sending device without having to send ARP Requests.
+• Some devices automatically send GARP messages when an interface is enabled, IP address is changed, MAC
+address is changed, and etc.
+Dynamic ARP Inspection
+Dynamic ARP Inspection (DAI) is a security feature of switches that is used to filter ARP messages received on untrusted
+ports.
+• DAI only filters ARP messages. Non-ARP messages are not affected by it.
+• By default, all ports are untrusted. There’s also a standard to follow while assigning trusted ports.
+○ Trusted ports should be all the ports connected to other network devices (switches, routers)
+○ Untrusted ports should be all ports connected to end hosts.
+ARP Poisoning (man-in-the-middle attack)
+ARP Poisoning is an attack that’s similar to the DHCP Poisoning attack. It involves an attacker manipulating targets’ ARP
+tables so traffic is sent to the attacker.
+• In order for the attacker to accomplish this, the attacker can send GARP messages using another device’s IP
+address.
+• Other devices in the network will receive the GARP and update their ARP tables, which will cause them to send
+traffic to the attacker instead of the legitimate destination.
+ARP Poisoning Attack Demonstration
+DAI Operations
+• When an ARP packet is received, DAI will do the following checks:
+○ If a message arrived on a trusted port:
+§ DAI does not inspect the messages and they are forwarded as normal.
+○ If a message arrived on an untrusted port, do the following:
+§ Examine the sender MAC and sender IP fields of ARP messages received on untrusted port, and checks
+that there is a matching entry in the DHCP snooping binding table.
+□ Match = Forward the ARP message
+□ No match = Discard the ARP message
+• ARP ACLs can be manually configured to map IP/MAC addresses for DAI to check.
+○ They are mainly used for hosts which do not utilize DHCP, therefore, they do not have an entry in the DHCP
+snooping binding table.
+• DAI can also be configured to perform more optional in-depth checks.
+• Like DHCP snooping, DAI also supports rate-limiting to prevent attackers from overwhelming the switch with ARP
+messages.
+○ The reason this exists is because features like DHCP snooping and DAI both require work from the switch’s
+CPU.
+○ Even if an attacker’s messages are blocked, they can overload the switch’s CPU with excessive ARP
+messages.
+DAI Configurations
+• show ip arp inspection
+○ Shows a summary of the Dynamic ARP Inspection configuration as well as statistics.
+• show ip arp inspection interfaces
+○ Shows the status of Dynamic ARP Inspection on the switch’s interfaces.
+• ip arp inspection vlan VLAN-ID
+○ Enables Dynamic ARP Inspection on the specified VLAN.
+○ (Unlike DHCP snooping, DAI doesn’t have to be enabled globally beforehand)
+• ip arp inspection validate VALIDATION-MODE ( SRC-MAC | DST-MAC | IP ) ^arp-inspection-validate-cmd
+○ Configures the current ARP Inspection validation method(s).
+○ Supports 3 validation modes, being src-mac, dst-mac, ip.
+○ (You can use multiple by specifying them in the same command)
+• ip arp inspection trust
+○ Configures the current interface as trusted for ARP inspections,
+• ip arp inspection limit rate PACKETS burst interval SECONDS
+○ Limits how many ARP packets are allowed per burst interval
+○ (Default settings are: 15 packets per 1 burst interval, in other words, 15 packets per second)
+• arp access-list ARP-ACL-ID
+○ Creates an ARP ACL and enters ARP ACL configuration mode.
+§ In configuration mode:
+§ { permit | deny } ip host ip-address mac host mac-address
+• ip arp inspection filter ARP-ACL-ID vlan VLAN-ID
+○ Applies an ARP ACL on the specified VLAN
+DAI Rate-Limiting
+DAI rate-limiting is enabled on untrusted ports by default with a rate of 15 packets per second.
+• It is disabled on trusted ports by default.
+• DAI also supports a burst interval, which means it can handle data that arrives in quick short bursts, and will not
+err-disable the interface (If the bursts don’t go over the configured limit set through ip arp inspection limit
+rate PACKETS burst interval SECONDS).
+• Can be re-enabled with shutdown ⇒ no shutdown, or through ErrDisable Recovery (errdisable recovery cause arp-
+inspection).
+Difference between rate-limiting on DHCP snooping and DAI
+1. DHCP snooping
+○ Rate-limiting is disabled on all interfaces by default.
+○ Rate-limit format: ==X packets per second==.
+§ Default: 15 packets per second
+1. DAI
+○ Rate-limiting is enabled on untrusted ports and disabled on trusted ports by default.
+○ Rate-limit format: ==X packets per Y seconds==.
+§ Default: 15 packets per 1 second
+DAI Optional Checks
+There are optional DAI checks that you can enable (with ip arp inspection validate MODE) to further secure your
+network from attacks.
+They include:
+1. src-mac
+○ Enables validation of the source MAC address in the Ethernet header against the sender MAC address in the
+ARP body for ARP Requests and ARP Responses.
+○ The devices classifies packets with different MAC addresses as invalid and drops them.
+2. dst-mac
+○ Enables validation of the destination MAC address in the Ethernet header against the target MAC address in
+the ARP body for ARP Responses.
+○ The device classifies packets with different MAC addresses as invalid and drops them.
+3. ip
+○ Enables validation of the ARP body for invalid and unexpected IP addresses. Addresses include (0.0.0.0,
+255.255.255.255), and all IP multicast addresses.
+○ The device checks the sender IP addresses in all ARP Requests and ARP Responses and checks the target IP
+addresses only in ARP Responses.
+Optional checks and DAI
+○ These checks are done in addition to the standard DAI check (sender MAC/IP).
+○ If optional checks are configured, an ARP message must pass all of the checks to be considered valid.
+DAI ARP ACL
+For hosts which do not use DHCP, you can create an ARP ACL that will permit ARP messages from said devices.
+• You’ll need to create an ARP ACL with arp access-list ARP-ACL-ID and set a rule to permit ARP traffic from that
+specific host.
+• Then you can apply it with DAI through the ip arp inspection filter ARP-ACL-ID vlan VLAN-ID command</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="day-50.html"><small>← Day 50</small>DHCP Snooping</a><a href="day-52.html"><small>Day 52 →</small>LAN Architectures</a></nav></article></div></main><footer class="footer"><div class="wrap">Personal study notes · Jeremy’s IT Lab CCNA course · Exported from OneNote September 20, 2026<br><a href="../../resources.html">Back to all resources</a></div></footer><script src="course.js"></script></body></html>

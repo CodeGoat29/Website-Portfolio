@@ -1,0 +1,463 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 19: DTP / VTP (Not in Syllabus) | DiPiazza</title><meta name="description" content="Personal CCNA study notes from OneNote, organized into 63 days with diagrams, original PDFs and searchable text."><link rel="icon" href="../../images/thegoat.png"><link rel="stylesheet" href="course.css"></head><body><header class="top"><div class="wrap"><a class="brand" href="../../index.html">DiPiazza<span aria-hidden="true">.</span></a><nav aria-label="Main"><a href="../../resources.html">Resources</a><a href="index.html">CCNA course</a></nav></div></header><main class="wrap"><div class="crumb"><a href="index.html">CCNA study notes</a> / Day 19</div><header class="lesson-head"><div class="eyebrow">Day 19 / 63 · Switching &amp; VLANs</div><h1>DTP / VTP (Not in Syllabus)</h1><p class="lead">Original notes and diagrams from my OneNote notebook.</p><div class="pills"><a class="button primary" href="index.html">All 63 days</a></div></header><div class="reading-layout"><aside class="aside" aria-label="Lesson parts"><p class="muted">IN THIS DAY</p><a href="#part-1">DTP / VTP (Not in Syllabus)</a><p class="muted">Tap a note image to zoom. Expand the text view to copy or search the exported text.</p></aside><article><section class="note-part" id="part-1"><h2>DTP / VTP (Not in Syllabus)</h2><a class="button" href="assets/lesson-20/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="assets/lesson-20/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge DTP / VTP (Not in Syllabus) page 1"><img src="assets/lesson-20/page-1.webp" width="1497" height="2058" loading="lazy" alt="Original OneNote notes: DTP / VTP (Not in Syllabus), page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 4</figcaption></figure><figure class="note-image"><a href="assets/lesson-20/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge DTP / VTP (Not in Syllabus) page 2"><img src="assets/lesson-20/page-2.webp" width="1485" height="2109" loading="lazy" alt="Original OneNote notes: DTP / VTP (Not in Syllabus), page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 4</figcaption></figure><figure class="note-image"><a href="assets/lesson-20/page-3.webp" target="_blank" rel="noopener" aria-label="Enlarge DTP / VTP (Not in Syllabus) page 3"><img src="assets/lesson-20/page-3.webp" width="1500" height="2109" loading="lazy" alt="Original OneNote notes: DTP / VTP (Not in Syllabus), page 3. Text version follows below."></a><figcaption>Original notes · Page 3 of 4</figcaption></figure><figure class="note-image"><a href="assets/lesson-20/page-4.webp" target="_blank" rel="noopener" aria-label="Enlarge DTP / VTP (Not in Syllabus) page 4"><img src="assets/lesson-20/page-4.webp" width="1515" height="1577" loading="lazy" alt="Original OneNote notes: DTP / VTP (Not in Syllabus), page 4. Text version follows below."></a><figcaption>Original notes · Page 4 of 4</figcaption></figure><details class="text-view"><summary>Text view — DTP / VTP (Not in Syllabus)</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 19 - DTP / VTP (Not in Syllabus)
+Wednesday, August 26, 2026 5:05 PM
+19. DTP / VTP (Not in Syllabus)
+DTP (Dynamic Trunking Protocol)
+• Protocol that allows SWITCHES to negotiate the status of their SWITCHPORTS, without manual
+configuration, to be:
+○ ACCESS PORTS
+○ TRUNK PORTS
+• DTP is ENABLED by default on all Cisco SWITCH interfaces
+We’ve been manually configuring SWITCHPORTS using :
+• “switchport mode access”
+• “switchport mode trunk”
+💡 &#x27;show interfaces &lt;interface-id&gt; switchport&#x27; will show you a switchport’s settings.
+For security purposes, manual configuration is recommended. DTP should be disabled on ALL SWITCHPORTS
+DYNAMIC DESIRABLE:
+• This MODE will actively try to form a TRUNK with other Cisco SWITCHES.
+• Will form a TRUNK if connected to another SWITCHPORT in the following modes:
+○ “switchport mode trunk”
+○ “switchport mode dynamic desirable”
+○ “switchport mode dynamic auto”
+HOWEVER … if the other interface is set to “static access” (ACCESS mode), it will NOT form a TRUNK, it will be
+an ACCESS PORT
+DYNAMIC AUTO:
+• This MODE will NOT actively try to form a TRUNK with other Cisco SWITCHES
+• Will form a TRUNK if connected SWTICH is actively trying to form a TRUNK.
+• It will form a TRUNK with a SWITCHPORT in the following modes:
+○ “switchport mode trunk”
+○ “switchport mode dynamic desirable”
+TRUNK to ACCESS connection will operate in a Mismatched Mode.
+This configuration does NOT work and SHOULD result in an error. Traffic will NOT work.
+TABLE SHOWING THE DIFFERENT MODES AND COMPATIBILITY IN FORMING A TRUNK
+DTP will NOT form a TRUNK with:
+a ROUTER
+a PC
+etcetera …
+The SWITCHPORT will be in ACCESS Mode only!
+OLD SWITCHES:
+• “switchport mode dynamic desirable” = Default administrative mode.
+NEWER SWITCHES:
+• “switchport mode dynamic auto” = Default administrative mode.
+HOW TO DISABLE DTP NEGOTIATION ON AN INTERFACE:
+• “switchport nonegotiate”
+• “switchport mode access”
+It is a security recommendation to disable DTP on all SWITCHPORTS and manually configure them as ACCESS
+or TRUNK ports.
+ENCAPSULATION:
+SWITCHES that support both:
+• 802.1Q
+• ISL
+TRUNK encapsulation can use DTP to negotiate the encapsulation they will use.
+• Negotiation is Enabled by default
+💡 &#x27;switchport trunk encapsulation negotiate&#x27;
+• ISL is favored over 802.1Q
+○ If BOTH SWITCHES support ISL, ISL will be selected.
+• DTP frames are sent in:
+○ VLAN1 when using ISL
+○ Native VLAN when using 802.1Q (the default native VLAN is VLAN1, however)
+VTP (VLAN Trunking Protocol)
+In Privileged EXEC mode:
+💡 #show vtp status
+• Protocol for configuring VLANs on a Central SWITCH
+○ A SERVER that other SWITCHES synch. to (auto configuring by connection)
+• Other switches (VTP CLIENTS) will synchronize their VLAN database to the SERVER
+• Designed for large networks with many VLANs (reduces manual configuration)
+• RARELY used. Recommended you DO NOT USE it
+• There are THREE VTP Versions :
+○ v1
+§ Does NOT supports Extended VLAN Range 1006-4094
+○ v2
+§ Does NOT supports Extended VLAN Range 1006-4094
+§ Supports Token Ring VLANs ; otherwise similar to V1
+○ v3
+§ Supports Extended VLAN Range 1006-4094
+§ CLIENTS store VLAN dBase in NVRAM
+• There are THREE VTP modes:
+○ SERVER
+○ CLIENT
+○ TRANSPARENT
+• Cisco SWITCHES operate in VTP SERVER mode, by default
+VTP SERVERS:
+• Can ADD / MODIFY / DELETE VLANs
+• Store the VLAN dBase in NVRAM
+• Increase Revision Number every time VLAN is Added / Modified / Deleted
+• Advertises Latest Version of VLAN dBase on TRUNK interfaces.
+• VTP CLIENTS synchronize their VLAN dBase to it
+• VTP SERVERS also function as VTP CLIENTS
+○ THEREFORE, a VTP SERVER will synchronize to another VTP SERVER with a higher Revision Number
+🚨 One danger of VTP: Connecting an old SWITCH with higher Revision Number to network (and if the VTP Domain
+Name matches), all SWITCHES in Domain will synchronize their VLAN dBase to SWITCH
+VTP CLIENTS:
+💡 (config)# vtp mode client
+• Cannot Add / Modify / Delete VLANs
+• Does NOT store the VLAN database in NVRAM
+○ VTP v3 CLIENTS DO
+• Will synchronize their VLAN dBase to the SERVER with the highest version number in their VTP Domain
+• Advertise their VLAN dBase and forward VTP Advertisements to other CLIENTS over TRUNK Ports
+VTP TRANSPARENT MODE:
+💡 (config)# vtp mode transparent
+• Does NOT participate in VTP Domain (does NOT sync VLAN database)
+• Maintains own VLAN dBase in NVRAM.
+• Can Add / Modify / Delete VLANs
+• Won’t Advertise to other SWITCHES
+• Will forward VTP advertisements to SWITCHES in the same Domain as it.
+VTP DOMAINS
+If a SWITCH with no VTP Domain (Domain NULL) receives a VTP advertisement with a VTP Domain name, it will
+automatically join that VTP Domain
+If a SWITCH receives a VTP advertisement in the same VTP domain with a higher revision number, it will
+update it’s VLAN database to match
+REVISION NUMBERS:
+There are TWO ways to RESET a REVISION NUMBER to 0:
+• Change VTP Domain to an unused Domain
+• Change VTP mode to TRANSPARENT
+VTP VERSION NUMBER
+💡 (config)#vtp version &lt;version number&gt;
+Changing the Version # will force sync/update all connected SWITCHES to the latest Version #
+
+Day 19 - DTP / VTP (Not in Syllabus)
+Wednesday, August 26, 2026 5:05 PM
+19. DTP / VTP (Not in Syllabus)
+DTP (Dynamic Trunking Protocol)
+• Protocol that allows SWITCHES to negotiate the status of their SWITCHPORTS, without manual
+configuration, to be:
+○ ACCESS PORTS
+○ TRUNK PORTS
+• DTP is ENABLED by default on all Cisco SWITCH interfaces
+We’ve been manually configuring SWITCHPORTS using :
+• “switchport mode access”
+• “switchport mode trunk”
+💡 &#x27;show interfaces &lt;interface-id&gt; switchport&#x27; will show you a switchport’s settings.
+For security purposes, manual configuration is recommended. DTP should be disabled on ALL SWITCHPORTS
+DYNAMIC DESIRABLE:
+• This MODE will actively try to form a TRUNK with other Cisco SWITCHES.
+• Will form a TRUNK if connected to another SWITCHPORT in the following modes:
+○ “switchport mode trunk”
+○ “switchport mode dynamic desirable”
+○ “switchport mode dynamic auto”
+HOWEVER … if the other interface is set to “static access” (ACCESS mode), it will NOT form a TRUNK, it will be
+an ACCESS PORT
+DYNAMIC AUTO:
+• This MODE will NOT actively try to form a TRUNK with other Cisco SWITCHES
+• Will form a TRUNK if connected SWTICH is actively trying to form a TRUNK.
+• It will form a TRUNK with a SWITCHPORT in the following modes:
+○ “switchport mode trunk”
+○ “switchport mode dynamic desirable”
+TRUNK to ACCESS connection will operate in a Mismatched Mode.
+This configuration does NOT work and SHOULD result in an error. Traffic will NOT work.
+TABLE SHOWING THE DIFFERENT MODES AND COMPATIBILITY IN FORMING A TRUNK
+DTP will NOT form a TRUNK with:
+a ROUTER
+a PC
+etcetera …
+The SWITCHPORT will be in ACCESS Mode only!
+OLD SWITCHES:
+• “switchport mode dynamic desirable” = Default administrative mode.
+NEWER SWITCHES:
+• “switchport mode dynamic auto” = Default administrative mode.
+HOW TO DISABLE DTP NEGOTIATION ON AN INTERFACE:
+• “switchport nonegotiate”
+• “switchport mode access”
+It is a security recommendation to disable DTP on all SWITCHPORTS and manually configure them as ACCESS
+or TRUNK ports.
+ENCAPSULATION:
+SWITCHES that support both:
+• 802.1Q
+• ISL
+TRUNK encapsulation can use DTP to negotiate the encapsulation they will use.
+• Negotiation is Enabled by default
+💡 &#x27;switchport trunk encapsulation negotiate&#x27;
+• ISL is favored over 802.1Q
+○ If BOTH SWITCHES support ISL, ISL will be selected.
+• DTP frames are sent in:
+○ VLAN1 when using ISL
+○ Native VLAN when using 802.1Q (the default native VLAN is VLAN1, however)
+VTP (VLAN Trunking Protocol)
+In Privileged EXEC mode:
+💡 #show vtp status
+• Protocol for configuring VLANs on a Central SWITCH
+○ A SERVER that other SWITCHES synch. to (auto configuring by connection)
+• Other switches (VTP CLIENTS) will synchronize their VLAN database to the SERVER
+• Designed for large networks with many VLANs (reduces manual configuration)
+• RARELY used. Recommended you DO NOT USE it
+• There are THREE VTP Versions :
+○ v1
+§ Does NOT supports Extended VLAN Range 1006-4094
+○ v2
+§ Does NOT supports Extended VLAN Range 1006-4094
+§ Supports Token Ring VLANs ; otherwise similar to V1
+○ v3
+§ Supports Extended VLAN Range 1006-4094
+§ CLIENTS store VLAN dBase in NVRAM
+• There are THREE VTP modes:
+○ SERVER
+○ CLIENT
+○ TRANSPARENT
+• Cisco SWITCHES operate in VTP SERVER mode, by default
+VTP SERVERS:
+• Can ADD / MODIFY / DELETE VLANs
+• Store the VLAN dBase in NVRAM
+• Increase Revision Number every time VLAN is Added / Modified / Deleted
+• Advertises Latest Version of VLAN dBase on TRUNK interfaces.
+• VTP CLIENTS synchronize their VLAN dBase to it
+• VTP SERVERS also function as VTP CLIENTS
+○ THEREFORE, a VTP SERVER will synchronize to another VTP SERVER with a higher Revision Number
+🚨 One danger of VTP: Connecting an old SWITCH with higher Revision Number to network (and if the VTP Domain
+Name matches), all SWITCHES in Domain will synchronize their VLAN dBase to SWITCH
+VTP CLIENTS:
+💡 (config)# vtp mode client
+• Cannot Add / Modify / Delete VLANs
+• Does NOT store the VLAN database in NVRAM
+○ VTP v3 CLIENTS DO
+• Will synchronize their VLAN dBase to the SERVER with the highest version number in their VTP Domain
+• Advertise their VLAN dBase and forward VTP Advertisements to other CLIENTS over TRUNK Ports
+VTP TRANSPARENT MODE:
+💡 (config)# vtp mode transparent
+• Does NOT participate in VTP Domain (does NOT sync VLAN database)
+• Maintains own VLAN dBase in NVRAM.
+• Can Add / Modify / Delete VLANs
+• Won’t Advertise to other SWITCHES
+• Will forward VTP advertisements to SWITCHES in the same Domain as it.
+VTP DOMAINS
+If a SWITCH with no VTP Domain (Domain NULL) receives a VTP advertisement with a VTP Domain name, it will
+automatically join that VTP Domain
+If a SWITCH receives a VTP advertisement in the same VTP domain with a higher revision number, it will
+update it’s VLAN database to match
+REVISION NUMBERS:
+There are TWO ways to RESET a REVISION NUMBER to 0:
+• Change VTP Domain to an unused Domain
+• Change VTP mode to TRANSPARENT
+VTP VERSION NUMBER
+💡 (config)#vtp version &lt;version number&gt;
+Changing the Version # will force sync/update all connected SWITCHES to the latest Version #
+
+Day 19 - DTP / VTP (Not in Syllabus)
+Wednesday, August 26, 2026 5:05 PM
+19. DTP / VTP (Not in Syllabus)
+DTP (Dynamic Trunking Protocol)
+• Protocol that allows SWITCHES to negotiate the status of their SWITCHPORTS, without manual
+configuration, to be:
+○ ACCESS PORTS
+○ TRUNK PORTS
+• DTP is ENABLED by default on all Cisco SWITCH interfaces
+We’ve been manually configuring SWITCHPORTS using :
+• “switchport mode access”
+• “switchport mode trunk”
+💡 &#x27;show interfaces &lt;interface-id&gt; switchport&#x27; will show you a switchport’s settings.
+For security purposes, manual configuration is recommended. DTP should be disabled on ALL SWITCHPORTS
+DYNAMIC DESIRABLE:
+• This MODE will actively try to form a TRUNK with other Cisco SWITCHES.
+• Will form a TRUNK if connected to another SWITCHPORT in the following modes:
+○ “switchport mode trunk”
+○ “switchport mode dynamic desirable”
+○ “switchport mode dynamic auto”
+HOWEVER … if the other interface is set to “static access” (ACCESS mode), it will NOT form a TRUNK, it will be
+an ACCESS PORT
+DYNAMIC AUTO:
+• This MODE will NOT actively try to form a TRUNK with other Cisco SWITCHES
+• Will form a TRUNK if connected SWTICH is actively trying to form a TRUNK.
+• It will form a TRUNK with a SWITCHPORT in the following modes:
+○ “switchport mode trunk”
+○ “switchport mode dynamic desirable”
+TRUNK to ACCESS connection will operate in a Mismatched Mode.
+This configuration does NOT work and SHOULD result in an error. Traffic will NOT work.
+TABLE SHOWING THE DIFFERENT MODES AND COMPATIBILITY IN FORMING A TRUNK
+DTP will NOT form a TRUNK with:
+a ROUTER
+a PC
+etcetera …
+The SWITCHPORT will be in ACCESS Mode only!
+OLD SWITCHES:
+• “switchport mode dynamic desirable” = Default administrative mode.
+NEWER SWITCHES:
+• “switchport mode dynamic auto” = Default administrative mode.
+HOW TO DISABLE DTP NEGOTIATION ON AN INTERFACE:
+• “switchport nonegotiate”
+• “switchport mode access”
+It is a security recommendation to disable DTP on all SWITCHPORTS and manually configure them as ACCESS
+or TRUNK ports.
+ENCAPSULATION:
+SWITCHES that support both:
+• 802.1Q
+• ISL
+TRUNK encapsulation can use DTP to negotiate the encapsulation they will use.
+• Negotiation is Enabled by default
+💡 &#x27;switchport trunk encapsulation negotiate&#x27;
+• ISL is favored over 802.1Q
+○ If BOTH SWITCHES support ISL, ISL will be selected.
+• DTP frames are sent in:
+○ VLAN1 when using ISL
+○ Native VLAN when using 802.1Q (the default native VLAN is VLAN1, however)
+VTP (VLAN Trunking Protocol)
+In Privileged EXEC mode:
+💡 #show vtp status
+• Protocol for configuring VLANs on a Central SWITCH
+○ A SERVER that other SWITCHES synch. to (auto configuring by connection)
+• Other switches (VTP CLIENTS) will synchronize their VLAN database to the SERVER
+• Designed for large networks with many VLANs (reduces manual configuration)
+• RARELY used. Recommended you DO NOT USE it
+• There are THREE VTP Versions :
+○ v1
+§ Does NOT supports Extended VLAN Range 1006-4094
+○ v2
+§ Does NOT supports Extended VLAN Range 1006-4094
+§ Supports Token Ring VLANs ; otherwise similar to V1
+○ v3
+§ Supports Extended VLAN Range 1006-4094
+§ CLIENTS store VLAN dBase in NVRAM
+• There are THREE VTP modes:
+○ SERVER
+○ CLIENT
+○ TRANSPARENT
+• Cisco SWITCHES operate in VTP SERVER mode, by default
+VTP SERVERS:
+• Can ADD / MODIFY / DELETE VLANs
+• Store the VLAN dBase in NVRAM
+• Increase Revision Number every time VLAN is Added / Modified / Deleted
+• Advertises Latest Version of VLAN dBase on TRUNK interfaces.
+• VTP CLIENTS synchronize their VLAN dBase to it
+• VTP SERVERS also function as VTP CLIENTS
+○ THEREFORE, a VTP SERVER will synchronize to another VTP SERVER with a higher Revision Number
+🚨 One danger of VTP: Connecting an old SWITCH with higher Revision Number to network (and if the VTP Domain
+Name matches), all SWITCHES in Domain will synchronize their VLAN dBase to SWITCH
+VTP CLIENTS:
+💡 (config)# vtp mode client
+• Cannot Add / Modify / Delete VLANs
+• Does NOT store the VLAN database in NVRAM
+○ VTP v3 CLIENTS DO
+• Will synchronize their VLAN dBase to the SERVER with the highest version number in their VTP Domain
+• Advertise their VLAN dBase and forward VTP Advertisements to other CLIENTS over TRUNK Ports
+VTP TRANSPARENT MODE:
+💡 (config)# vtp mode transparent
+• Does NOT participate in VTP Domain (does NOT sync VLAN database)
+• Maintains own VLAN dBase in NVRAM.
+• Can Add / Modify / Delete VLANs
+• Won’t Advertise to other SWITCHES
+• Will forward VTP advertisements to SWITCHES in the same Domain as it.
+VTP DOMAINS
+If a SWITCH with no VTP Domain (Domain NULL) receives a VTP advertisement with a VTP Domain name, it will
+automatically join that VTP Domain
+If a SWITCH receives a VTP advertisement in the same VTP domain with a higher revision number, it will
+update it’s VLAN database to match
+REVISION NUMBERS:
+There are TWO ways to RESET a REVISION NUMBER to 0:
+• Change VTP Domain to an unused Domain
+• Change VTP mode to TRANSPARENT
+VTP VERSION NUMBER
+💡 (config)#vtp version &lt;version number&gt;
+Changing the Version # will force sync/update all connected SWITCHES to the latest Version #
+
+Day 19 - DTP / VTP (Not in Syllabus)
+Wednesday, August 26, 2026 5:05 PM
+19. DTP / VTP (Not in Syllabus)
+DTP (Dynamic Trunking Protocol)
+• Protocol that allows SWITCHES to negotiate the status of their SWITCHPORTS, without manual
+configuration, to be:
+○ ACCESS PORTS
+○ TRUNK PORTS
+• DTP is ENABLED by default on all Cisco SWITCH interfaces
+We’ve been manually configuring SWITCHPORTS using :
+• “switchport mode access”
+• “switchport mode trunk”
+💡 &#x27;show interfaces &lt;interface-id&gt; switchport&#x27; will show you a switchport’s settings.
+For security purposes, manual configuration is recommended. DTP should be disabled on ALL SWITCHPORTS
+DYNAMIC DESIRABLE:
+• This MODE will actively try to form a TRUNK with other Cisco SWITCHES.
+• Will form a TRUNK if connected to another SWITCHPORT in the following modes:
+○ “switchport mode trunk”
+○ “switchport mode dynamic desirable”
+○ “switchport mode dynamic auto”
+HOWEVER … if the other interface is set to “static access” (ACCESS mode), it will NOT form a TRUNK, it will be
+an ACCESS PORT
+DYNAMIC AUTO:
+• This MODE will NOT actively try to form a TRUNK with other Cisco SWITCHES
+• Will form a TRUNK if connected SWTICH is actively trying to form a TRUNK.
+• It will form a TRUNK with a SWITCHPORT in the following modes:
+○ “switchport mode trunk”
+○ “switchport mode dynamic desirable”
+TRUNK to ACCESS connection will operate in a Mismatched Mode.
+This configuration does NOT work and SHOULD result in an error. Traffic will NOT work.
+TABLE SHOWING THE DIFFERENT MODES AND COMPATIBILITY IN FORMING A TRUNK
+DTP will NOT form a TRUNK with:
+a ROUTER
+a PC
+etcetera …
+The SWITCHPORT will be in ACCESS Mode only!
+OLD SWITCHES:
+• “switchport mode dynamic desirable” = Default administrative mode.
+NEWER SWITCHES:
+• “switchport mode dynamic auto” = Default administrative mode.
+HOW TO DISABLE DTP NEGOTIATION ON AN INTERFACE:
+• “switchport nonegotiate”
+• “switchport mode access”
+It is a security recommendation to disable DTP on all SWITCHPORTS and manually configure them as ACCESS
+or TRUNK ports.
+ENCAPSULATION:
+SWITCHES that support both:
+• 802.1Q
+• ISL
+TRUNK encapsulation can use DTP to negotiate the encapsulation they will use.
+• Negotiation is Enabled by default
+💡 &#x27;switchport trunk encapsulation negotiate&#x27;
+• ISL is favored over 802.1Q
+○ If BOTH SWITCHES support ISL, ISL will be selected.
+• DTP frames are sent in:
+○ VLAN1 when using ISL
+○ Native VLAN when using 802.1Q (the default native VLAN is VLAN1, however)
+VTP (VLAN Trunking Protocol)
+In Privileged EXEC mode:
+💡 #show vtp status
+• Protocol for configuring VLANs on a Central SWITCH
+○ A SERVER that other SWITCHES synch. to (auto configuring by connection)
+• Other switches (VTP CLIENTS) will synchronize their VLAN database to the SERVER
+• Designed for large networks with many VLANs (reduces manual configuration)
+• RARELY used. Recommended you DO NOT USE it
+• There are THREE VTP Versions :
+○ v1
+§ Does NOT supports Extended VLAN Range 1006-4094
+○ v2
+§ Does NOT supports Extended VLAN Range 1006-4094
+§ Supports Token Ring VLANs ; otherwise similar to V1
+○ v3
+§ Supports Extended VLAN Range 1006-4094
+§ CLIENTS store VLAN dBase in NVRAM
+• There are THREE VTP modes:
+○ SERVER
+○ CLIENT
+○ TRANSPARENT
+• Cisco SWITCHES operate in VTP SERVER mode, by default
+VTP SERVERS:
+• Can ADD / MODIFY / DELETE VLANs
+• Store the VLAN dBase in NVRAM
+• Increase Revision Number every time VLAN is Added / Modified / Deleted
+• Advertises Latest Version of VLAN dBase on TRUNK interfaces.
+• VTP CLIENTS synchronize their VLAN dBase to it
+• VTP SERVERS also function as VTP CLIENTS
+○ THEREFORE, a VTP SERVER will synchronize to another VTP SERVER with a higher Revision Number
+🚨 One danger of VTP: Connecting an old SWITCH with higher Revision Number to network (and if the VTP Domain
+Name matches), all SWITCHES in Domain will synchronize their VLAN dBase to SWITCH
+VTP CLIENTS:
+💡 (config)# vtp mode client
+• Cannot Add / Modify / Delete VLANs
+• Does NOT store the VLAN database in NVRAM
+○ VTP v3 CLIENTS DO
+• Will synchronize their VLAN dBase to the SERVER with the highest version number in their VTP Domain
+• Advertise their VLAN dBase and forward VTP Advertisements to other CLIENTS over TRUNK Ports
+VTP TRANSPARENT MODE:
+💡 (config)# vtp mode transparent
+• Does NOT participate in VTP Domain (does NOT sync VLAN database)
+• Maintains own VLAN dBase in NVRAM.
+• Can Add / Modify / Delete VLANs
+• Won’t Advertise to other SWITCHES
+• Will forward VTP advertisements to SWITCHES in the same Domain as it.
+VTP DOMAINS
+If a SWITCH with no VTP Domain (Domain NULL) receives a VTP advertisement with a VTP Domain name, it will
+automatically join that VTP Domain
+If a SWITCH receives a VTP advertisement in the same VTP domain with a higher revision number, it will
+update it’s VLAN database to match
+REVISION NUMBERS:
+There are TWO ways to RESET a REVISION NUMBER to 0:
+• Change VTP Domain to an unused Domain
+• Change VTP mode to TRANSPARENT
+VTP VERSION NUMBER
+💡 (config)#vtp version &lt;version number&gt;
+Changing the Version # will force sync/update all connected SWITCHES to the latest Version #</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="day-18.html"><small>← Day 18</small>(VlANs pt 3)</a><a href="day-20.html"><small>Day 20 →</small>Spanning Tree Protocol (pt 1)</a></nav></article></div></main><footer class="footer"><div class="wrap">Personal study notes · Jeremy’s IT Lab CCNA course · Exported from OneNote September 20, 2026<br><a href="../../resources.html">Back to all resources</a></div></footer><script src="course.js"></script></body></html>

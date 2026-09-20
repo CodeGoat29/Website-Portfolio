@@ -1,0 +1,303 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 60: JSON, XML, &amp; YAML | DiPiazza</title><meta name="description" content="Personal CCNA study notes from OneNote, organized into 63 days with diagrams, original PDFs and searchable text."><link rel="icon" href="../../images/thegoat.png"><link rel="stylesheet" href="course.css"></head><body><header class="top"><div class="wrap"><a class="brand" href="../../index.html">DiPiazza<span aria-hidden="true">.</span></a><nav aria-label="Main"><a href="../../resources.html">Resources</a><a href="index.html">CCNA course</a></nav></div></header><main class="wrap"><div class="crumb"><a href="index.html">CCNA study notes</a> / Day 60</div><header class="lesson-head"><div class="eyebrow">Day 60 / 63 · Network automation</div><h1>JSON, XML, &amp; YAML</h1><p class="lead">Original notes and diagrams from my OneNote notebook.</p><div class="pills"><a class="button primary" href="index.html">All 63 days</a></div></header><div class="reading-layout"><aside class="aside" aria-label="Lesson parts"><p class="muted">IN THIS DAY</p><a href="#part-1">JSON, XML, &amp; YAML</a><p class="muted">Tap a note image to zoom. Expand the text view to copy or search the exported text.</p></aside><article><section class="note-part" id="part-1"><h2>JSON, XML, &amp; YAML</h2><a class="button" href="assets/lesson-63/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="assets/lesson-63/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge JSON, XML, &amp; YAML page 1"><img src="assets/lesson-63/page-1.webp" width="1545" height="2053" loading="lazy" alt="Original OneNote notes: JSON, XML, &amp; YAML, page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 4</figcaption></figure><figure class="note-image"><a href="assets/lesson-63/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge JSON, XML, &amp; YAML page 2"><img src="assets/lesson-63/page-2.webp" width="1208" height="2109" loading="lazy" alt="Original OneNote notes: JSON, XML, &amp; YAML, page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 4</figcaption></figure><figure class="note-image"><a href="assets/lesson-63/page-3.webp" target="_blank" rel="noopener" aria-label="Enlarge JSON, XML, &amp; YAML page 3"><img src="assets/lesson-63/page-3.webp" width="1327" height="2109" loading="lazy" alt="Original OneNote notes: JSON, XML, &amp; YAML, page 3. Text version follows below."></a><figcaption>Original notes · Page 3 of 4</figcaption></figure><figure class="note-image"><a href="assets/lesson-63/page-4.webp" target="_blank" rel="noopener" aria-label="Enlarge JSON, XML, &amp; YAML page 4"><img src="assets/lesson-63/page-4.webp" width="1099" height="743" loading="lazy" alt="Original OneNote notes: JSON, XML, &amp; YAML, page 4. Text version follows below."></a><figcaption>Original notes · Page 4 of 4</figcaption></figure><details class="text-view"><summary>Text view — JSON, XML, &amp; YAML</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 60 - JSON, XML, &amp; YAML
+Wednesday, September 9, 2026 8:37 PM
+JSON, XML, &amp; YAML Info
+Data serialization is the process of converting data into a standardized format/structure that can be stored (in a
+file) or transmitted (over a network) and reconstructed later (by a different application).
+• This allows the data to be communicated between applications in a way both applications can understand.
+• Data serialization languages allow us to represent variables with text.
+Example of Data Serialization
+Data Serialization Languages
+There are three different data serialization languages you need to know for the CCNA, being:
+1. JSON
+2. XML
+3. YAML
+1. JSON
+JavaScript Object Notation (JSON) is an open standard file format and data interchange format that uses human-
+readable text to store and transmit data objects.
+• It was derived from JavaScript, but it is language-independent and many modern programming languages are
+able to generate and read JSON data.
+JSON Properties
+• JSON is very human-readable
+• REST APIs often use JSON.
+• Whitespace is insignificant
+• JSON can represent four ‘primitive’ data types
+1. String
+§ A string is a text value. It is surrounded by double quotes ” ”.
+§ Examples: ( “Hello.” | “five” | “5” | “true” | “null” )
+2. Number
+§ A number is a numeric value. It is not surrounded by quotes.
+§ Examples: ( 5 | 100 )
+3. Boolean
+§ A boolean is a data type that has only two possible values. It is not surrounded by quotes.
+§ ( true | false )
+4. Null
+§ A null value represents the intentional absence of any object value. It is not surrounded by
+quotes.
+§ ( null )
+• JSON also has two ‘structured’ data types:
+1. Object
+§ Sometimes called a dictionary
+§ An object is an unordered list of key-value pairs (variables)
+§ The key is a string.
+§ The value is any valid JSON data type (string, number, boolean, null, object, array).
+§ The key and value are enclosed with curly brackets ( { } )
+§ The key and value are separated by a colon ( : )
+§ If there are multiple key-value pairs, each pair is separated by a comma ( , )
+§ Objects within objects are called ‘nested objects’.
+2. Array
+§ Values are enclosed with square brackets ( [ ] )
+§ An array is a series of values separated by commas ( , )
+§ The values can be any type of data type.
+§ The values don’t have to be the same data type.
+JSON Object Example (1)
+JSON Object Example (2)
+JSON Object Example (3)
+JSON Array Example (4)
+2. XML
+Extensible Markup Language (XML) was developed as markup language, but is now used a general data
+serialization language.
+XML Properties
+• XML is generally less human-readable than JSON.
+• REST APIs often use XML.
+• Whitespace is insignificant.
+• XML is represented as key-value pairs.
+• It is presented as &lt;key&gt;value&lt;/key&gt;.
+XML Example (1)
+3. YAML
+Yet Another Markup Language (YAML) is also used a data serialization language.
+• YAML is used by the network automation tool Ansible.
+YAML Properties
+• YAML is the most human-readable language.
+• Whitespace is significant (unlike JSON and XML). That means that indentation is very important.
+• YAML files start with ---.
+• - is used to indicate a list.
+• Keys and values are represented as key:value
+YAML Example (1)
+
+Day 60 - JSON, XML, &amp; YAML
+Wednesday, September 9, 2026 8:37 PM
+JSON, XML, &amp; YAML Info
+Data serialization is the process of converting data into a standardized format/structure that can be stored (in a
+file) or transmitted (over a network) and reconstructed later (by a different application).
+• This allows the data to be communicated between applications in a way both applications can understand.
+• Data serialization languages allow us to represent variables with text.
+Example of Data Serialization
+Data Serialization Languages
+There are three different data serialization languages you need to know for the CCNA, being:
+1. JSON
+2. XML
+3. YAML
+1. JSON
+JavaScript Object Notation (JSON) is an open standard file format and data interchange format that uses human-
+readable text to store and transmit data objects.
+• It was derived from JavaScript, but it is language-independent and many modern programming languages are
+able to generate and read JSON data.
+JSON Properties
+• JSON is very human-readable
+• REST APIs often use JSON.
+• Whitespace is insignificant
+• JSON can represent four ‘primitive’ data types
+1. String
+§ A string is a text value. It is surrounded by double quotes ” ”.
+§ Examples: ( “Hello.” | “five” | “5” | “true” | “null” )
+2. Number
+§ A number is a numeric value. It is not surrounded by quotes.
+§ Examples: ( 5 | 100 )
+3. Boolean
+§ A boolean is a data type that has only two possible values. It is not surrounded by quotes.
+§ ( true | false )
+4. Null
+§ A null value represents the intentional absence of any object value. It is not surrounded by
+quotes.
+§ ( null )
+• JSON also has two ‘structured’ data types:
+1. Object
+§ Sometimes called a dictionary
+§ An object is an unordered list of key-value pairs (variables)
+§ The key is a string.
+§ The value is any valid JSON data type (string, number, boolean, null, object, array).
+§ The key and value are enclosed with curly brackets ( { } )
+§ The key and value are separated by a colon ( : )
+§ If there are multiple key-value pairs, each pair is separated by a comma ( , )
+§ Objects within objects are called ‘nested objects’.
+2. Array
+§ Values are enclosed with square brackets ( [ ] )
+§ An array is a series of values separated by commas ( , )
+§ The values can be any type of data type.
+§ The values don’t have to be the same data type.
+JSON Object Example (1)
+JSON Object Example (2)
+JSON Object Example (3)
+JSON Array Example (4)
+2. XML
+Extensible Markup Language (XML) was developed as markup language, but is now used a general data
+serialization language.
+XML Properties
+• XML is generally less human-readable than JSON.
+• REST APIs often use XML.
+• Whitespace is insignificant.
+• XML is represented as key-value pairs.
+• It is presented as &lt;key&gt;value&lt;/key&gt;.
+XML Example (1)
+3. YAML
+Yet Another Markup Language (YAML) is also used a data serialization language.
+• YAML is used by the network automation tool Ansible.
+YAML Properties
+• YAML is the most human-readable language.
+• Whitespace is significant (unlike JSON and XML). That means that indentation is very important.
+• YAML files start with ---.
+• - is used to indicate a list.
+• Keys and values are represented as key:value
+YAML Example (1)
+
+Day 60 - JSON, XML, &amp; YAML
+Wednesday, September 9, 2026 8:37 PM
+JSON, XML, &amp; YAML Info
+Data serialization is the process of converting data into a standardized format/structure that can be stored (in a
+file) or transmitted (over a network) and reconstructed later (by a different application).
+• This allows the data to be communicated between applications in a way both applications can understand.
+• Data serialization languages allow us to represent variables with text.
+Example of Data Serialization
+Data Serialization Languages
+There are three different data serialization languages you need to know for the CCNA, being:
+1. JSON
+2. XML
+3. YAML
+1. JSON
+JavaScript Object Notation (JSON) is an open standard file format and data interchange format that uses human-
+readable text to store and transmit data objects.
+• It was derived from JavaScript, but it is language-independent and many modern programming languages are
+able to generate and read JSON data.
+JSON Properties
+• JSON is very human-readable
+• REST APIs often use JSON.
+• Whitespace is insignificant
+• JSON can represent four ‘primitive’ data types
+1. String
+§ A string is a text value. It is surrounded by double quotes ” ”.
+§ Examples: ( “Hello.” | “five” | “5” | “true” | “null” )
+2. Number
+§ A number is a numeric value. It is not surrounded by quotes.
+§ Examples: ( 5 | 100 )
+3. Boolean
+§ A boolean is a data type that has only two possible values. It is not surrounded by quotes.
+§ ( true | false )
+4. Null
+§ A null value represents the intentional absence of any object value. It is not surrounded by
+quotes.
+§ ( null )
+• JSON also has two ‘structured’ data types:
+1. Object
+§ Sometimes called a dictionary
+§ An object is an unordered list of key-value pairs (variables)
+§ The key is a string.
+§ The value is any valid JSON data type (string, number, boolean, null, object, array).
+§ The key and value are enclosed with curly brackets ( { } )
+§ The key and value are separated by a colon ( : )
+§ If there are multiple key-value pairs, each pair is separated by a comma ( , )
+§ Objects within objects are called ‘nested objects’.
+2. Array
+§ Values are enclosed with square brackets ( [ ] )
+§ An array is a series of values separated by commas ( , )
+§ The values can be any type of data type.
+§ The values don’t have to be the same data type.
+JSON Object Example (1)
+JSON Object Example (2)
+JSON Object Example (3)
+JSON Array Example (4)
+2. XML
+Extensible Markup Language (XML) was developed as markup language, but is now used a general data
+serialization language.
+XML Properties
+• XML is generally less human-readable than JSON.
+• REST APIs often use XML.
+• Whitespace is insignificant.
+• XML is represented as key-value pairs.
+• It is presented as &lt;key&gt;value&lt;/key&gt;.
+XML Example (1)
+3. YAML
+Yet Another Markup Language (YAML) is also used a data serialization language.
+• YAML is used by the network automation tool Ansible.
+YAML Properties
+• YAML is the most human-readable language.
+• Whitespace is significant (unlike JSON and XML). That means that indentation is very important.
+• YAML files start with ---.
+• - is used to indicate a list.
+• Keys and values are represented as key:value
+YAML Example (1)
+
+Day 60 - JSON, XML, &amp; YAML
+Wednesday, September 9, 2026 8:37 PM
+JSON, XML, &amp; YAML Info
+Data serialization is the process of converting data into a standardized format/structure that can be stored (in a
+file) or transmitted (over a network) and reconstructed later (by a different application).
+• This allows the data to be communicated between applications in a way both applications can understand.
+• Data serialization languages allow us to represent variables with text.
+Example of Data Serialization
+Data Serialization Languages
+There are three different data serialization languages you need to know for the CCNA, being:
+1. JSON
+2. XML
+3. YAML
+1. JSON
+JavaScript Object Notation (JSON) is an open standard file format and data interchange format that uses human-
+readable text to store and transmit data objects.
+• It was derived from JavaScript, but it is language-independent and many modern programming languages are
+able to generate and read JSON data.
+JSON Properties
+• JSON is very human-readable
+• REST APIs often use JSON.
+• Whitespace is insignificant
+• JSON can represent four ‘primitive’ data types
+1. String
+§ A string is a text value. It is surrounded by double quotes ” ”.
+§ Examples: ( “Hello.” | “five” | “5” | “true” | “null” )
+2. Number
+§ A number is a numeric value. It is not surrounded by quotes.
+§ Examples: ( 5 | 100 )
+3. Boolean
+§ A boolean is a data type that has only two possible values. It is not surrounded by quotes.
+§ ( true | false )
+4. Null
+§ A null value represents the intentional absence of any object value. It is not surrounded by
+quotes.
+§ ( null )
+• JSON also has two ‘structured’ data types:
+1. Object
+§ Sometimes called a dictionary
+§ An object is an unordered list of key-value pairs (variables)
+§ The key is a string.
+§ The value is any valid JSON data type (string, number, boolean, null, object, array).
+§ The key and value are enclosed with curly brackets ( { } )
+§ The key and value are separated by a colon ( : )
+§ If there are multiple key-value pairs, each pair is separated by a comma ( , )
+§ Objects within objects are called ‘nested objects’.
+2. Array
+§ Values are enclosed with square brackets ( [ ] )
+§ An array is a series of values separated by commas ( , )
+§ The values can be any type of data type.
+§ The values don’t have to be the same data type.
+JSON Object Example (1)
+JSON Object Example (2)
+JSON Object Example (3)
+JSON Array Example (4)
+2. XML
+Extensible Markup Language (XML) was developed as markup language, but is now used a general data
+serialization language.
+XML Properties
+• XML is generally less human-readable than JSON.
+• REST APIs often use XML.
+• Whitespace is insignificant.
+• XML is represented as key-value pairs.
+• It is presented as &lt;key&gt;value&lt;/key&gt;.
+XML Example (1)
+3. YAML
+Yet Another Markup Language (YAML) is also used a data serialization language.
+• YAML is used by the network automation tool Ansible.
+YAML Properties
+• YAML is the most human-readable language.
+• Whitespace is significant (unlike JSON and XML). That means that indentation is very important.
+• YAML files start with ---.
+• - is used to indicate a list.
+• Keys and values are represented as key:value
+YAML Example (1)</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="day-59.html"><small>← Day 59</small>Intro to Network Automation</a><a href="day-61.html"><small>Day 61 →</small>REST API</a></nav></article></div></main><footer class="footer"><div class="wrap">Personal study notes · Jeremy’s IT Lab CCNA course · Exported from OneNote September 20, 2026<br><a href="../../resources.html">Back to all resources</a></div></footer><script src="course.js"></script></body></html>

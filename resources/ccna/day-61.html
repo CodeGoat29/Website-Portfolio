@@ -1,0 +1,371 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 61: REST API | DiPiazza</title><meta name="description" content="Personal CCNA study notes from OneNote, organized into 63 days with diagrams, original PDFs and searchable text."><link rel="icon" href="../../images/thegoat.png"><link rel="stylesheet" href="course.css"></head><body><header class="top"><div class="wrap"><a class="brand" href="../../index.html">DiPiazza<span aria-hidden="true">.</span></a><nav aria-label="Main"><a href="../../resources.html">Resources</a><a href="index.html">CCNA course</a></nav></div></header><main class="wrap"><div class="crumb"><a href="index.html">CCNA study notes</a> / Day 61</div><header class="lesson-head"><div class="eyebrow">Day 61 / 63 · Network automation</div><h1>REST API</h1><p class="lead">Original notes and diagrams from my OneNote notebook.</p><div class="pills"><a class="button primary" href="index.html">All 63 days</a></div></header><div class="reading-layout"><aside class="aside" aria-label="Lesson parts"><p class="muted">IN THIS DAY</p><a href="#part-1">REST API</a><p class="muted">Tap a note image to zoom. Expand the text view to copy or search the exported text.</p></aside><article><section class="note-part" id="part-1"><h2>REST API</h2><a class="button" href="assets/lesson-64/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="assets/lesson-64/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge REST API page 1"><img src="assets/lesson-64/page-1.webp" width="1493" height="2052" loading="lazy" alt="Original OneNote notes: REST API, page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 3</figcaption></figure><figure class="note-image"><a href="assets/lesson-64/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge REST API page 2"><img src="assets/lesson-64/page-2.webp" width="1513" height="2101" loading="lazy" alt="Original OneNote notes: REST API, page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 3</figcaption></figure><figure class="note-image"><a href="assets/lesson-64/page-3.webp" target="_blank" rel="noopener" aria-label="Enlarge REST API page 3"><img src="assets/lesson-64/page-3.webp" width="1486" height="1956" loading="lazy" alt="Original OneNote notes: REST API, page 3. Text version follows below."></a><figcaption>Original notes · Page 3 of 3</figcaption></figure><details class="text-view"><summary>Text view — REST API</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 61 - REST API
+Thursday, September 10, 2026 11:16 AM
+REST API Info
+An API is a software interface that allows two applications to communicate with each other.
+• APIs are essential not just for network automation, but for all kinds of applications.
+• IN SDN architecture, APIs are used to communicate between apps and the SDN Controller (via the NBI), and
+between the SDN Controller and the network devices (via the SBI).
+• The NBI typically uses REST APIs
+• Netconf and Restconf are popular Southbound APIs.
+CRUD
+CRUD (Create, Read, Update, Delete) refers to the operations we perform using REST APIs.
+1. Create
+○ Create operations are used to create new variables and set their initial values.
+○ Example: Create variable “ip_address” and set the value to “10.1.1.1”
+2. Read
+○ Read operations are used to retrieve the value of a variable.
+○ Example: What is the value of variable “ip_address”?
+3. Update
+○ Update operations are used to change the value of variable.
+○ Example: Change the value of variable “ip_address” to “10.2.3.4”
+4. Delete
+○ Delete operations are used to delete variables.
+○ Example: Delete variables “ip_address”.
+• HTTP uses verbs (aka. methods) to map these CRUD operations.
+• REST APIs typically use HTTP.
+Purpose CRUD Operation HTTP Verb
+Create new variable Create POST
+Retrieve value of a value Read GET
+Change the value of variable Update PUT, PATCH
+Delete variable Delete DELETE
+HTTP Request
+When an HTTP client sends a request to an HTTP server, the HTTP header includes information like this:
+• An HTTP Verb (ie. GET).
+• A URI (Uniform Resource Identifier), indicating the resource it is trying to access.
+HTTP Request Example
+• A URI consists of three different parts
+1. Scheme
+2. Authority
+3. Paths
+• Example: https://sandboxdnac.cisco.com/dna/intent/api/v1/network-device
+○ Scheme: https
+○ Authority: sandboxdnac.cisco.com
+○ Paths: dna/intent/api/v1/network-device
+HTTP Request - Headers
+• HTTP request can include additional headers which pass additional information to the server.
+Example HTTP Request with extra headers
+• An example would an Accept header, which informs the server about the type(s) of data that can be sent back
+to the client.
+• When a REST client makes an API call (request) to a REST server, it will send an HTTP request like the one above.
+• REST APIs don’t have to use HTTP specifically for communication, although HTTP is the most common choice.
+HTTP Response
+• The server’s response will include a status code indicating the request succeeded or failed, as well as the other
+details.
+• The first digit indicates the class of the response:
+1. 1xx Informational
+§ The request was received, continuing process.
+2. 2xx Successful
+§ The request was successfully received, understood, and accepted.
+3. 3xx Redirection
+§ Further action needs to be taken in order to complete the request.
+4. 4xx Client Error
+§ The request contains bad syntax or cannot be fulfilled.
+5. 5xx Server Error
+§ The server failed to fulfill an apparently valid request.
+HTTP Request &amp; Response Example (1)
+HTTP Response - Example Codes
+1. 1xx Information
+○ 102 Processing:
+§ Indicates that the server has received the request and is processing it, but the response is not yet
+available.
+2. 2xx Successful
+○ 200 OK
+§ Indicates that the request succeeded.
+○ 201 Created
+§ Indicates that the request succeeded and a new resource was created (ie. in response to POST)
+3. 3xx Redirection
+○ 301 Moved Permanently
+§ Permanently indicates that the requested resource has been moved, and the server indicates its
+new location.
+4. 4xx Client Error
+○ 403 Unauthorized
+§ Means the client must authenticate to get a response.
+○ 404 Not Found
+§ Means the requested resource was not found.
+5. 5xx Server Error
+○ 500 Internal Server Error
+§ Means the server encountered something unexpected that it doesn’t know how to handle.
+REST
+REST stands for Representational State Transfer.
+• REST APIs are also known as REST-based APIs OR RESTful APIs
+• REST isn’t a specific API. Instead, it describes a set of rules about how the API should work.
+• The six constraints of RESTful architecture are:
+1. Uniform Interface
+2. Client-server
+3. Stateless
+4. Cacheable or non-cacheable
+5. Layered system
+6. Code-on-demand
+REST - Client-server
+REST APIs use a client-server architecture.
+• The client uses API calls (HTTP Requests) to access the resources on the server.
+• The separation between the client and server means they can both change and evolve independently of each
+other.
+○ Therefore, when the client application changes or the server application changes, the interface between
+them must NOT break.
+HTTP Request &amp; Response Example (2)
+REST - Stateless
+REST APIs exchanges are stateless
+• This means that each API exchange is a separate event, independent of all past exchanges between the client
+and server.
+• The server does not store information about previous requests from the client to determine how it should
+respond to new requests.
+• If authentication is required, this means that the client must authenticate with the server for each request it
+makes.
+• TCP is an example of a stateful protocol.
+• UDP is an example of a stateless protocol.
+REST APIs and TCP - Stateful and Stateless
+○ Although REST APIs use HTTP, which uses TCP (stateful) as its Layer 4 protocol, HTTP and REST APIs
+themselves aren’t stateful. The functions of each layer are separate.
+REST - Cacheable or Non-Cacheable
+REST APIs must support caching of data.
+• Caching refers to storing data for future use.
+• Not all resources have to be cacheable, but cacheable resources MUST be declared as cacheable.
+
+Day 61 - REST API
+Thursday, September 10, 2026 11:16 AM
+REST API Info
+An API is a software interface that allows two applications to communicate with each other.
+• APIs are essential not just for network automation, but for all kinds of applications.
+• IN SDN architecture, APIs are used to communicate between apps and the SDN Controller (via the NBI), and
+between the SDN Controller and the network devices (via the SBI).
+• The NBI typically uses REST APIs
+• Netconf and Restconf are popular Southbound APIs.
+CRUD
+CRUD (Create, Read, Update, Delete) refers to the operations we perform using REST APIs.
+1. Create
+○ Create operations are used to create new variables and set their initial values.
+○ Example: Create variable “ip_address” and set the value to “10.1.1.1”
+2. Read
+○ Read operations are used to retrieve the value of a variable.
+○ Example: What is the value of variable “ip_address”?
+3. Update
+○ Update operations are used to change the value of variable.
+○ Example: Change the value of variable “ip_address” to “10.2.3.4”
+4. Delete
+○ Delete operations are used to delete variables.
+○ Example: Delete variables “ip_address”.
+• HTTP uses verbs (aka. methods) to map these CRUD operations.
+• REST APIs typically use HTTP.
+Purpose CRUD Operation HTTP Verb
+Create new variable Create POST
+Retrieve value of a value Read GET
+Change the value of variable Update PUT, PATCH
+Delete variable Delete DELETE
+HTTP Request
+When an HTTP client sends a request to an HTTP server, the HTTP header includes information like this:
+• An HTTP Verb (ie. GET).
+• A URI (Uniform Resource Identifier), indicating the resource it is trying to access.
+HTTP Request Example
+• A URI consists of three different parts
+1. Scheme
+2. Authority
+3. Paths
+• Example: https://sandboxdnac.cisco.com/dna/intent/api/v1/network-device
+○ Scheme: https
+○ Authority: sandboxdnac.cisco.com
+○ Paths: dna/intent/api/v1/network-device
+HTTP Request - Headers
+• HTTP request can include additional headers which pass additional information to the server.
+Example HTTP Request with extra headers
+• An example would an Accept header, which informs the server about the type(s) of data that can be sent back
+to the client.
+• When a REST client makes an API call (request) to a REST server, it will send an HTTP request like the one above.
+• REST APIs don’t have to use HTTP specifically for communication, although HTTP is the most common choice.
+HTTP Response
+• The server’s response will include a status code indicating the request succeeded or failed, as well as the other
+details.
+• The first digit indicates the class of the response:
+1. 1xx Informational
+§ The request was received, continuing process.
+2. 2xx Successful
+§ The request was successfully received, understood, and accepted.
+3. 3xx Redirection
+§ Further action needs to be taken in order to complete the request.
+4. 4xx Client Error
+§ The request contains bad syntax or cannot be fulfilled.
+5. 5xx Server Error
+§ The server failed to fulfill an apparently valid request.
+HTTP Request &amp; Response Example (1)
+HTTP Response - Example Codes
+1. 1xx Information
+○ 102 Processing:
+§ Indicates that the server has received the request and is processing it, but the response is not yet
+available.
+2. 2xx Successful
+○ 200 OK
+§ Indicates that the request succeeded.
+○ 201 Created
+§ Indicates that the request succeeded and a new resource was created (ie. in response to POST)
+3. 3xx Redirection
+○ 301 Moved Permanently
+§ Permanently indicates that the requested resource has been moved, and the server indicates its
+new location.
+4. 4xx Client Error
+○ 403 Unauthorized
+§ Means the client must authenticate to get a response.
+○ 404 Not Found
+§ Means the requested resource was not found.
+5. 5xx Server Error
+○ 500 Internal Server Error
+§ Means the server encountered something unexpected that it doesn’t know how to handle.
+REST
+REST stands for Representational State Transfer.
+• REST APIs are also known as REST-based APIs OR RESTful APIs
+• REST isn’t a specific API. Instead, it describes a set of rules about how the API should work.
+• The six constraints of RESTful architecture are:
+1. Uniform Interface
+2. Client-server
+3. Stateless
+4. Cacheable or non-cacheable
+5. Layered system
+6. Code-on-demand
+REST - Client-server
+REST APIs use a client-server architecture.
+• The client uses API calls (HTTP Requests) to access the resources on the server.
+• The separation between the client and server means they can both change and evolve independently of each
+other.
+○ Therefore, when the client application changes or the server application changes, the interface between
+them must NOT break.
+HTTP Request &amp; Response Example (2)
+REST - Stateless
+REST APIs exchanges are stateless
+• This means that each API exchange is a separate event, independent of all past exchanges between the client
+and server.
+• The server does not store information about previous requests from the client to determine how it should
+respond to new requests.
+• If authentication is required, this means that the client must authenticate with the server for each request it
+makes.
+• TCP is an example of a stateful protocol.
+• UDP is an example of a stateless protocol.
+REST APIs and TCP - Stateful and Stateless
+○ Although REST APIs use HTTP, which uses TCP (stateful) as its Layer 4 protocol, HTTP and REST APIs
+themselves aren’t stateful. The functions of each layer are separate.
+REST - Cacheable or Non-Cacheable
+REST APIs must support caching of data.
+• Caching refers to storing data for future use.
+• Not all resources have to be cacheable, but cacheable resources MUST be declared as cacheable.
+
+Day 61 - REST API
+Thursday, September 10, 2026 11:16 AM
+REST API Info
+An API is a software interface that allows two applications to communicate with each other.
+• APIs are essential not just for network automation, but for all kinds of applications.
+• IN SDN architecture, APIs are used to communicate between apps and the SDN Controller (via the NBI), and
+between the SDN Controller and the network devices (via the SBI).
+• The NBI typically uses REST APIs
+• Netconf and Restconf are popular Southbound APIs.
+CRUD
+CRUD (Create, Read, Update, Delete) refers to the operations we perform using REST APIs.
+1. Create
+○ Create operations are used to create new variables and set their initial values.
+○ Example: Create variable “ip_address” and set the value to “10.1.1.1”
+2. Read
+○ Read operations are used to retrieve the value of a variable.
+○ Example: What is the value of variable “ip_address”?
+3. Update
+○ Update operations are used to change the value of variable.
+○ Example: Change the value of variable “ip_address” to “10.2.3.4”
+4. Delete
+○ Delete operations are used to delete variables.
+○ Example: Delete variables “ip_address”.
+• HTTP uses verbs (aka. methods) to map these CRUD operations.
+• REST APIs typically use HTTP.
+Purpose CRUD Operation HTTP Verb
+Create new variable Create POST
+Retrieve value of a value Read GET
+Change the value of variable Update PUT, PATCH
+Delete variable Delete DELETE
+HTTP Request
+When an HTTP client sends a request to an HTTP server, the HTTP header includes information like this:
+• An HTTP Verb (ie. GET).
+• A URI (Uniform Resource Identifier), indicating the resource it is trying to access.
+HTTP Request Example
+• A URI consists of three different parts
+1. Scheme
+2. Authority
+3. Paths
+• Example: https://sandboxdnac.cisco.com/dna/intent/api/v1/network-device
+○ Scheme: https
+○ Authority: sandboxdnac.cisco.com
+○ Paths: dna/intent/api/v1/network-device
+HTTP Request - Headers
+• HTTP request can include additional headers which pass additional information to the server.
+Example HTTP Request with extra headers
+• An example would an Accept header, which informs the server about the type(s) of data that can be sent back
+to the client.
+• When a REST client makes an API call (request) to a REST server, it will send an HTTP request like the one above.
+• REST APIs don’t have to use HTTP specifically for communication, although HTTP is the most common choice.
+HTTP Response
+• The server’s response will include a status code indicating the request succeeded or failed, as well as the other
+details.
+• The first digit indicates the class of the response:
+1. 1xx Informational
+§ The request was received, continuing process.
+2. 2xx Successful
+§ The request was successfully received, understood, and accepted.
+3. 3xx Redirection
+§ Further action needs to be taken in order to complete the request.
+4. 4xx Client Error
+§ The request contains bad syntax or cannot be fulfilled.
+5. 5xx Server Error
+§ The server failed to fulfill an apparently valid request.
+HTTP Request &amp; Response Example (1)
+HTTP Response - Example Codes
+1. 1xx Information
+○ 102 Processing:
+§ Indicates that the server has received the request and is processing it, but the response is not yet
+available.
+2. 2xx Successful
+○ 200 OK
+§ Indicates that the request succeeded.
+○ 201 Created
+§ Indicates that the request succeeded and a new resource was created (ie. in response to POST)
+3. 3xx Redirection
+○ 301 Moved Permanently
+§ Permanently indicates that the requested resource has been moved, and the server indicates its
+new location.
+4. 4xx Client Error
+○ 403 Unauthorized
+§ Means the client must authenticate to get a response.
+○ 404 Not Found
+§ Means the requested resource was not found.
+5. 5xx Server Error
+○ 500 Internal Server Error
+§ Means the server encountered something unexpected that it doesn’t know how to handle.
+REST
+REST stands for Representational State Transfer.
+• REST APIs are also known as REST-based APIs OR RESTful APIs
+• REST isn’t a specific API. Instead, it describes a set of rules about how the API should work.
+• The six constraints of RESTful architecture are:
+1. Uniform Interface
+2. Client-server
+3. Stateless
+4. Cacheable or non-cacheable
+5. Layered system
+6. Code-on-demand
+REST - Client-server
+REST APIs use a client-server architecture.
+• The client uses API calls (HTTP Requests) to access the resources on the server.
+• The separation between the client and server means they can both change and evolve independently of each
+other.
+○ Therefore, when the client application changes or the server application changes, the interface between
+them must NOT break.
+HTTP Request &amp; Response Example (2)
+REST - Stateless
+REST APIs exchanges are stateless
+• This means that each API exchange is a separate event, independent of all past exchanges between the client
+and server.
+• The server does not store information about previous requests from the client to determine how it should
+respond to new requests.
+• If authentication is required, this means that the client must authenticate with the server for each request it
+makes.
+• TCP is an example of a stateful protocol.
+• UDP is an example of a stateless protocol.
+REST APIs and TCP - Stateful and Stateless
+○ Although REST APIs use HTTP, which uses TCP (stateful) as its Layer 4 protocol, HTTP and REST APIs
+themselves aren’t stateful. The functions of each layer are separate.
+REST - Cacheable or Non-Cacheable
+REST APIs must support caching of data.
+• Caching refers to storing data for future use.
+• Not all resources have to be cacheable, but cacheable resources MUST be declared as cacheable.</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="day-60.html"><small>← Day 60</small>JSON, XML, &amp; YAML</a><a href="day-62.html"><small>Day 62 →</small>Software-Defined Networking</a></nav></article></div></main><footer class="footer"><div class="wrap">Personal study notes · Jeremy’s IT Lab CCNA course · Exported from OneNote September 20, 2026<br><a href="../../resources.html">Back to all resources</a></div></footer><script src="course.js"></script></body></html>

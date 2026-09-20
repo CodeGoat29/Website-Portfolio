@@ -1,0 +1,419 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 49: Port Security | DiPiazza</title><meta name="description" content="Personal CCNA study notes from OneNote, organized into 63 days with diagrams, original PDFs and searchable text."><link rel="icon" href="../../images/thegoat.png"><link rel="stylesheet" href="course.css"></head><body><header class="top"><div class="wrap"><a class="brand" href="../../index.html">DiPiazza<span aria-hidden="true">.</span></a><nav aria-label="Main"><a href="../../resources.html">Resources</a><a href="index.html">CCNA course</a></nav></div></header><main class="wrap"><div class="crumb"><a href="index.html">CCNA study notes</a> / Day 49</div><header class="lesson-head"><div class="eyebrow">Day 49 / 63 · Network security</div><h1>Port Security</h1><p class="lead">Original notes and diagrams from my OneNote notebook.</p><div class="pills"><a class="button primary" href="index.html">All 63 days</a></div></header><div class="reading-layout"><aside class="aside" aria-label="Lesson parts"><p class="muted">IN THIS DAY</p><a href="#part-1">Port Security</a><p class="muted">Tap a note image to zoom. Expand the text view to copy or search the exported text.</p></aside><article><section class="note-part" id="part-1"><h2>Port Security</h2><a class="button" href="assets/lesson-50/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="assets/lesson-50/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge Port Security page 1"><img src="assets/lesson-50/page-1.webp" width="1541" height="2047" loading="lazy" alt="Original OneNote notes: Port Security, page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 3</figcaption></figure><figure class="note-image"><a href="assets/lesson-50/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge Port Security page 2"><img src="assets/lesson-50/page-2.webp" width="1538" height="2104" loading="lazy" alt="Original OneNote notes: Port Security, page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 3</figcaption></figure><figure class="note-image"><a href="assets/lesson-50/page-3.webp" target="_blank" rel="noopener" aria-label="Enlarge Port Security page 3"><img src="assets/lesson-50/page-3.webp" width="1534" height="1567" loading="lazy" alt="Original OneNote notes: Port Security, page 3. Text version follows below."></a><figcaption>Original notes · Page 3 of 3</figcaption></figure><details class="text-view"><summary>Text view — Port Security</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 49 - Port Security
+Wednesday, September 9, 2026 8:37 PM
+Port Security Info
+Port Security General Information
+Port Security is a feature of Cisco switches that allows you to control which source MAC address(es) are allowed to enter
+the switchport.
+• If an unauthorized source MAC address enters the port, an action will be taken.
+• The default action is to place the interface in an ‘err-disabled’ state.
+• When you enable port security on an interface, one MAC address is allowed by default.
+○ You can configure the allowed MAC address manually.
+○ The allowed MAC addresses can be configured manually or dynamically. A combination of both is also
+possible.
+○ If not configured manually, the switch will allow the first source MAC address that enters the interface.
+○ You can also change the maximum number of MAC addresses allowed.
+Reasons to Use Port Security
+Port Security allows network admins to control which devices are allowed to access the network.
+• Despite MAC address spoofing being a simple task and commonly used to deploy attacks on networks, port
+security’s main benefit is the ability to limit the number of MAC addresses allowed on the interface. This is
+beneficial as it can limit the amount of attacks that can be deployed on the network.
+General Configuration - Port Security
+• show port-security
+○ Shows general information about the current port security configuration
+○ Includes information like:
+§ Ports that have port security enabled
+§ Max Secure MAC addresses
+§ Currently configured MAC addresses
+§ Current security violations
+§ Configured security action
+§ Total addresses in the system
+§ Max addresses limit in the system
+• show port-security interface INTERFACE-ID
+○ Shows port security information of the specified interface.
+○ Includes information such as:
+§ Port security status
+§ Port status
+§ Aging time (for static MAC addresses)
+§ Aging type (for static MAC addresses)
+§ Status of Secure Static MAC address aging
+§ Maximum MAC addresses allowed
+§ Total MAC addresses (Dynamic and Static addresses)
+§ Configured MAC addresses (Manually configured)
+§ Sticky MAC addresses (Sticky Dynamic addresses)
+§ Last source MAC address + VLAN
+§ Security violation count
+• show errdisable recovery
+○ Shows information about the current ‘err-disable recovery’ configuration
+○ Includes information such as:
+§ Every disabled/enabled protocol
+§ Timer interval
+• show mac address-table secure ^show-mac-addresstable-secure
+○ Shows all configured Secure MAC addresses on the switch.
+○ Includes information such as:
+§ VLAN
+§ The Secure MAC address
+§ Secure MAC address type
+§ Port
+• switchport port-security
+○ Enables port security on the current interface.
+○ The interface must be in access or trunk mode for the command to work. If it’s dynamic mode, the switch
+will reject the command.
+• switchport port-security violation VIOLATION-MODE { SHUTDOWN | RESTRICT | PROTECT }
+○ Configures the violation mode for the port security enabled interface
+• switchport port-security mac-address sticky ^sw-ps-mac-sticky
+○ Enables ‘Sticky’ Secure MAC address learning for port-security
+• switchport port-security mac-address sticky MAC-ADDRESS
+○ Manually adds a ‘Sticky’ Secure MAC address for port-security
+• switchport port-security mac-address MAC-ADDRESS
+○ Manually configures a Secure MAC address for port security.
+• switchport port-security maximum MAXIMUM-MAC-ADDRESSES
+○ Changes the maximum amount of allowed Secure MAC addresses on the port security-enabled interface
+• switchport port-security aging static ^sw-ps-age-static
+○ Enables aging for port security Secure Static MAC addresses
+• switchport port-security aging time MINUTES ^sw-ps-age-time
+○ Configures the port security Secure MAC address aging time
+• switchport port-security aging type TYPE { ABSOLUTE | INACTIVITY } ^sw-ps-age-type
+○ Configures the port security Secure MAC address aging type
+Re-Enabling an Interface (Manually)
+An err-disabled interface can be manually re-enabled by running the shutdown command followed by the no shutdown
+command.
+Re-Enabling an Interface (ErrDisable Recovery)
+• errdisable recovery cause psecure-violation
+○ Enables err-disable recovery for port security violations
+• errdisable recovery interval SECONDS
+○ Determines how long the switch should wait before enabling an err-disabled interface (if the err-disable
+recovery for that cause is enabled)
+Watch out: ErrDisable Recovery and Manual Recovery
+Make sure to disconnect any unauthorized devices before enabling ErrDisable recovery or manually re-enabling
+disabled interfaces.
+○ If you manually configured a MAC address for port security and the unauthorized device is still connected, it
+will lead to the interface getting err-disabled again.
+○ If the port security system is dynamically learning MAC addresses, then it will clear its dynamic MAC
+addresses when the interface is disabled; and when the interface becomes enabled again, the unauthorized
+device might become the new Secure MAC address on the interface.
+Port Security - Violation Modes
+There are three different port security violation modes that determine what the switch will do if an unauthorized frame
+enters an interface configured with port security.
+1. Shutdown
+○ Discards traffic from unauthorized MAC addresses.
+○ Shuts down the port by putting it in an err-disabled state.
+○ Generates a Syslog and/or SNMP message when the interface is disabled.
+○ Violation counter is set to 1 when the interface is disabled. (Resets when the interface is enabled)
+2. Restrict
+○ Discards traffic from unauthorized MAC addresses.
+○ The interface is NOT disabled.
+○ Generates a Syslog and/or SNMP message each time an unauthorized MAC is detected.
+○ Violation counter is incremented by 1 for each unauthorized frame.
+3. Protect
+○ Discards traffic from unauthorized MAC addresses.
+○ The interface is NOT disabled.
+○ It does NOT generate Syslog/SNMP messages for unauthorized traffic.
+○ It does NOT increment the violation counter.
+Secure MAC Address Aging
+By default, Secure MAC addresses will not age out/expire (Aging Time: 0 mins).
+You can enable Secure Static MAC address aging with switchport port-security aging static
+• There are two types of aging for port security:
+1. Absolute
+§ After the Secure MAC address is learned, the aging timer starts and the MAC is removed after the
+timer expires, even if the switch continues receiving frames from that source MAC address.
+2. Inactivity
+§ After the Secure MAC address is learned, the aging timer starts counting down but is reset every time
+a frame from that source MAC address is received on the interface.
+○ They can be configured with the switchport port-security aging type command.
+○ The timer can also be configured with switchport port-security aging time.
+Sticky Secure MAC Addresses
+Sticky Secure MAC addresses are dynamically-learned Secure MAC addresses that will be added to the running-config
+and will never age out.
+• It can be enabled with switchport port-security mac-address sticky
+• Once enabled, dynamically-learned MAC addresses will be added to the running-config like this:
+○ switchport port-security mac-address sticky MAC-ADDRESS
+○ (You will need to save the running-config to make them permanent)
+• When you issue the switchport port-security mac-address sticky command, all current dynamically-learned Secure
+MAC addresses will be converted into Sticky Secure MAC addresses.
+• If you issue the no switchport port-security mac-address sticky command, all current Sticky Secure MAC addresses
+will be converted to regular dynamically-learned Secure MAC addresses.
+MAC Address Table
+Secure MAC addresses will be added to the MAC address table like any other MAC address.
+• You can view all secure MAC addresses with the show mac address-table secure command.
+• Sticky and Static Secure MAC addresses will have a type of STATIC.
+• Dynamically-learned Secure MAC addresses will have a type of DYNAMIC.
+
+Day 49 - Port Security
+Wednesday, September 9, 2026 8:37 PM
+Port Security Info
+Port Security General Information
+Port Security is a feature of Cisco switches that allows you to control which source MAC address(es) are allowed to enter
+the switchport.
+• If an unauthorized source MAC address enters the port, an action will be taken.
+• The default action is to place the interface in an ‘err-disabled’ state.
+• When you enable port security on an interface, one MAC address is allowed by default.
+○ You can configure the allowed MAC address manually.
+○ The allowed MAC addresses can be configured manually or dynamically. A combination of both is also
+possible.
+○ If not configured manually, the switch will allow the first source MAC address that enters the interface.
+○ You can also change the maximum number of MAC addresses allowed.
+Reasons to Use Port Security
+Port Security allows network admins to control which devices are allowed to access the network.
+• Despite MAC address spoofing being a simple task and commonly used to deploy attacks on networks, port
+security’s main benefit is the ability to limit the number of MAC addresses allowed on the interface. This is
+beneficial as it can limit the amount of attacks that can be deployed on the network.
+General Configuration - Port Security
+• show port-security
+○ Shows general information about the current port security configuration
+○ Includes information like:
+§ Ports that have port security enabled
+§ Max Secure MAC addresses
+§ Currently configured MAC addresses
+§ Current security violations
+§ Configured security action
+§ Total addresses in the system
+§ Max addresses limit in the system
+• show port-security interface INTERFACE-ID
+○ Shows port security information of the specified interface.
+○ Includes information such as:
+§ Port security status
+§ Port status
+§ Aging time (for static MAC addresses)
+§ Aging type (for static MAC addresses)
+§ Status of Secure Static MAC address aging
+§ Maximum MAC addresses allowed
+§ Total MAC addresses (Dynamic and Static addresses)
+§ Configured MAC addresses (Manually configured)
+§ Sticky MAC addresses (Sticky Dynamic addresses)
+§ Last source MAC address + VLAN
+§ Security violation count
+• show errdisable recovery
+○ Shows information about the current ‘err-disable recovery’ configuration
+○ Includes information such as:
+§ Every disabled/enabled protocol
+§ Timer interval
+• show mac address-table secure ^show-mac-addresstable-secure
+○ Shows all configured Secure MAC addresses on the switch.
+○ Includes information such as:
+§ VLAN
+§ The Secure MAC address
+§ Secure MAC address type
+§ Port
+• switchport port-security
+○ Enables port security on the current interface.
+○ The interface must be in access or trunk mode for the command to work. If it’s dynamic mode, the switch
+will reject the command.
+• switchport port-security violation VIOLATION-MODE { SHUTDOWN | RESTRICT | PROTECT }
+○ Configures the violation mode for the port security enabled interface
+• switchport port-security mac-address sticky ^sw-ps-mac-sticky
+○ Enables ‘Sticky’ Secure MAC address learning for port-security
+• switchport port-security mac-address sticky MAC-ADDRESS
+○ Manually adds a ‘Sticky’ Secure MAC address for port-security
+• switchport port-security mac-address MAC-ADDRESS
+○ Manually configures a Secure MAC address for port security.
+• switchport port-security maximum MAXIMUM-MAC-ADDRESSES
+○ Changes the maximum amount of allowed Secure MAC addresses on the port security-enabled interface
+• switchport port-security aging static ^sw-ps-age-static
+○ Enables aging for port security Secure Static MAC addresses
+• switchport port-security aging time MINUTES ^sw-ps-age-time
+○ Configures the port security Secure MAC address aging time
+• switchport port-security aging type TYPE { ABSOLUTE | INACTIVITY } ^sw-ps-age-type
+○ Configures the port security Secure MAC address aging type
+Re-Enabling an Interface (Manually)
+An err-disabled interface can be manually re-enabled by running the shutdown command followed by the no shutdown
+command.
+Re-Enabling an Interface (ErrDisable Recovery)
+• errdisable recovery cause psecure-violation
+○ Enables err-disable recovery for port security violations
+• errdisable recovery interval SECONDS
+○ Determines how long the switch should wait before enabling an err-disabled interface (if the err-disable
+recovery for that cause is enabled)
+Watch out: ErrDisable Recovery and Manual Recovery
+Make sure to disconnect any unauthorized devices before enabling ErrDisable recovery or manually re-enabling
+disabled interfaces.
+○ If you manually configured a MAC address for port security and the unauthorized device is still connected, it
+will lead to the interface getting err-disabled again.
+○ If the port security system is dynamically learning MAC addresses, then it will clear its dynamic MAC
+addresses when the interface is disabled; and when the interface becomes enabled again, the unauthorized
+device might become the new Secure MAC address on the interface.
+Port Security - Violation Modes
+There are three different port security violation modes that determine what the switch will do if an unauthorized frame
+enters an interface configured with port security.
+1. Shutdown
+○ Discards traffic from unauthorized MAC addresses.
+○ Shuts down the port by putting it in an err-disabled state.
+○ Generates a Syslog and/or SNMP message when the interface is disabled.
+○ Violation counter is set to 1 when the interface is disabled. (Resets when the interface is enabled)
+2. Restrict
+○ Discards traffic from unauthorized MAC addresses.
+○ The interface is NOT disabled.
+○ Generates a Syslog and/or SNMP message each time an unauthorized MAC is detected.
+○ Violation counter is incremented by 1 for each unauthorized frame.
+3. Protect
+○ Discards traffic from unauthorized MAC addresses.
+○ The interface is NOT disabled.
+○ It does NOT generate Syslog/SNMP messages for unauthorized traffic.
+○ It does NOT increment the violation counter.
+Secure MAC Address Aging
+By default, Secure MAC addresses will not age out/expire (Aging Time: 0 mins).
+You can enable Secure Static MAC address aging with switchport port-security aging static
+• There are two types of aging for port security:
+1. Absolute
+§ After the Secure MAC address is learned, the aging timer starts and the MAC is removed after the
+timer expires, even if the switch continues receiving frames from that source MAC address.
+2. Inactivity
+§ After the Secure MAC address is learned, the aging timer starts counting down but is reset every time
+a frame from that source MAC address is received on the interface.
+○ They can be configured with the switchport port-security aging type command.
+○ The timer can also be configured with switchport port-security aging time.
+Sticky Secure MAC Addresses
+Sticky Secure MAC addresses are dynamically-learned Secure MAC addresses that will be added to the running-config
+and will never age out.
+• It can be enabled with switchport port-security mac-address sticky
+• Once enabled, dynamically-learned MAC addresses will be added to the running-config like this:
+○ switchport port-security mac-address sticky MAC-ADDRESS
+○ (You will need to save the running-config to make them permanent)
+• When you issue the switchport port-security mac-address sticky command, all current dynamically-learned Secure
+MAC addresses will be converted into Sticky Secure MAC addresses.
+• If you issue the no switchport port-security mac-address sticky command, all current Sticky Secure MAC addresses
+will be converted to regular dynamically-learned Secure MAC addresses.
+MAC Address Table
+Secure MAC addresses will be added to the MAC address table like any other MAC address.
+• You can view all secure MAC addresses with the show mac address-table secure command.
+• Sticky and Static Secure MAC addresses will have a type of STATIC.
+• Dynamically-learned Secure MAC addresses will have a type of DYNAMIC.
+
+Day 49 - Port Security
+Wednesday, September 9, 2026 8:37 PM
+Port Security Info
+Port Security General Information
+Port Security is a feature of Cisco switches that allows you to control which source MAC address(es) are allowed to enter
+the switchport.
+• If an unauthorized source MAC address enters the port, an action will be taken.
+• The default action is to place the interface in an ‘err-disabled’ state.
+• When you enable port security on an interface, one MAC address is allowed by default.
+○ You can configure the allowed MAC address manually.
+○ The allowed MAC addresses can be configured manually or dynamically. A combination of both is also
+possible.
+○ If not configured manually, the switch will allow the first source MAC address that enters the interface.
+○ You can also change the maximum number of MAC addresses allowed.
+Reasons to Use Port Security
+Port Security allows network admins to control which devices are allowed to access the network.
+• Despite MAC address spoofing being a simple task and commonly used to deploy attacks on networks, port
+security’s main benefit is the ability to limit the number of MAC addresses allowed on the interface. This is
+beneficial as it can limit the amount of attacks that can be deployed on the network.
+General Configuration - Port Security
+• show port-security
+○ Shows general information about the current port security configuration
+○ Includes information like:
+§ Ports that have port security enabled
+§ Max Secure MAC addresses
+§ Currently configured MAC addresses
+§ Current security violations
+§ Configured security action
+§ Total addresses in the system
+§ Max addresses limit in the system
+• show port-security interface INTERFACE-ID
+○ Shows port security information of the specified interface.
+○ Includes information such as:
+§ Port security status
+§ Port status
+§ Aging time (for static MAC addresses)
+§ Aging type (for static MAC addresses)
+§ Status of Secure Static MAC address aging
+§ Maximum MAC addresses allowed
+§ Total MAC addresses (Dynamic and Static addresses)
+§ Configured MAC addresses (Manually configured)
+§ Sticky MAC addresses (Sticky Dynamic addresses)
+§ Last source MAC address + VLAN
+§ Security violation count
+• show errdisable recovery
+○ Shows information about the current ‘err-disable recovery’ configuration
+○ Includes information such as:
+§ Every disabled/enabled protocol
+§ Timer interval
+• show mac address-table secure ^show-mac-addresstable-secure
+○ Shows all configured Secure MAC addresses on the switch.
+○ Includes information such as:
+§ VLAN
+§ The Secure MAC address
+§ Secure MAC address type
+§ Port
+• switchport port-security
+○ Enables port security on the current interface.
+○ The interface must be in access or trunk mode for the command to work. If it’s dynamic mode, the switch
+will reject the command.
+• switchport port-security violation VIOLATION-MODE { SHUTDOWN | RESTRICT | PROTECT }
+○ Configures the violation mode for the port security enabled interface
+• switchport port-security mac-address sticky ^sw-ps-mac-sticky
+○ Enables ‘Sticky’ Secure MAC address learning for port-security
+• switchport port-security mac-address sticky MAC-ADDRESS
+○ Manually adds a ‘Sticky’ Secure MAC address for port-security
+• switchport port-security mac-address MAC-ADDRESS
+○ Manually configures a Secure MAC address for port security.
+• switchport port-security maximum MAXIMUM-MAC-ADDRESSES
+○ Changes the maximum amount of allowed Secure MAC addresses on the port security-enabled interface
+• switchport port-security aging static ^sw-ps-age-static
+○ Enables aging for port security Secure Static MAC addresses
+• switchport port-security aging time MINUTES ^sw-ps-age-time
+○ Configures the port security Secure MAC address aging time
+• switchport port-security aging type TYPE { ABSOLUTE | INACTIVITY } ^sw-ps-age-type
+○ Configures the port security Secure MAC address aging type
+Re-Enabling an Interface (Manually)
+An err-disabled interface can be manually re-enabled by running the shutdown command followed by the no shutdown
+command.
+Re-Enabling an Interface (ErrDisable Recovery)
+• errdisable recovery cause psecure-violation
+○ Enables err-disable recovery for port security violations
+• errdisable recovery interval SECONDS
+○ Determines how long the switch should wait before enabling an err-disabled interface (if the err-disable
+recovery for that cause is enabled)
+Watch out: ErrDisable Recovery and Manual Recovery
+Make sure to disconnect any unauthorized devices before enabling ErrDisable recovery or manually re-enabling
+disabled interfaces.
+○ If you manually configured a MAC address for port security and the unauthorized device is still connected, it
+will lead to the interface getting err-disabled again.
+○ If the port security system is dynamically learning MAC addresses, then it will clear its dynamic MAC
+addresses when the interface is disabled; and when the interface becomes enabled again, the unauthorized
+device might become the new Secure MAC address on the interface.
+Port Security - Violation Modes
+There are three different port security violation modes that determine what the switch will do if an unauthorized frame
+enters an interface configured with port security.
+1. Shutdown
+○ Discards traffic from unauthorized MAC addresses.
+○ Shuts down the port by putting it in an err-disabled state.
+○ Generates a Syslog and/or SNMP message when the interface is disabled.
+○ Violation counter is set to 1 when the interface is disabled. (Resets when the interface is enabled)
+2. Restrict
+○ Discards traffic from unauthorized MAC addresses.
+○ The interface is NOT disabled.
+○ Generates a Syslog and/or SNMP message each time an unauthorized MAC is detected.
+○ Violation counter is incremented by 1 for each unauthorized frame.
+3. Protect
+○ Discards traffic from unauthorized MAC addresses.
+○ The interface is NOT disabled.
+○ It does NOT generate Syslog/SNMP messages for unauthorized traffic.
+○ It does NOT increment the violation counter.
+Secure MAC Address Aging
+By default, Secure MAC addresses will not age out/expire (Aging Time: 0 mins).
+You can enable Secure Static MAC address aging with switchport port-security aging static
+• There are two types of aging for port security:
+1. Absolute
+§ After the Secure MAC address is learned, the aging timer starts and the MAC is removed after the
+timer expires, even if the switch continues receiving frames from that source MAC address.
+2. Inactivity
+§ After the Secure MAC address is learned, the aging timer starts counting down but is reset every time
+a frame from that source MAC address is received on the interface.
+○ They can be configured with the switchport port-security aging type command.
+○ The timer can also be configured with switchport port-security aging time.
+Sticky Secure MAC Addresses
+Sticky Secure MAC addresses are dynamically-learned Secure MAC addresses that will be added to the running-config
+and will never age out.
+• It can be enabled with switchport port-security mac-address sticky
+• Once enabled, dynamically-learned MAC addresses will be added to the running-config like this:
+○ switchport port-security mac-address sticky MAC-ADDRESS
+○ (You will need to save the running-config to make them permanent)
+• When you issue the switchport port-security mac-address sticky command, all current dynamically-learned Secure
+MAC addresses will be converted into Sticky Secure MAC addresses.
+• If you issue the no switchport port-security mac-address sticky command, all current Sticky Secure MAC addresses
+will be converted to regular dynamically-learned Secure MAC addresses.
+MAC Address Table
+Secure MAC addresses will be added to the MAC address table like any other MAC address.
+• You can view all secure MAC addresses with the show mac address-table secure command.
+• Sticky and Static Secure MAC addresses will have a type of STATIC.
+• Dynamically-learned Secure MAC addresses will have a type of DYNAMIC.</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="day-48.html"><small>← Day 48</small>Security Fundamentals</a><a href="day-50.html"><small>Day 50 →</small>DHCP Snooping</a></nav></article></div></main><footer class="footer"><div class="wrap">Personal study notes · Jeremy’s IT Lab CCNA course · Exported from OneNote September 20, 2026<br><a href="../../resources.html">Back to all resources</a></div></footer><script src="course.js"></script></body></html>

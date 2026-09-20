@@ -1,0 +1,120 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 11: Routing Fundamentals (pt 1) / Static Routing (pt 2) | DiPiazza</title><meta name="description" content="Personal CCNA study notes from OneNote, organized into 63 days with diagrams, original PDFs and searchable text."><link rel="icon" href="../../images/thegoat.png"><link rel="stylesheet" href="course.css"></head><body><header class="top"><div class="wrap"><a class="brand" href="../../index.html">DiPiazza<span aria-hidden="true">.</span></a><nav aria-label="Main"><a href="../../resources.html">Resources</a><a href="index.html">CCNA course</a></nav></div></header><main class="wrap"><div class="crumb"><a href="index.html">CCNA study notes</a> / Day 11</div><header class="lesson-head"><div class="eyebrow">Day 11 / 63 · Network foundations</div><h1>Routing Fundamentals (pt 1) / Static Routing (pt 2)</h1><p class="lead">Original notes and diagrams from my OneNote notebook.</p><div class="pills"><a class="button primary" href="index.html">All 63 days</a></div></header><div class="reading-layout"><aside class="aside" aria-label="Lesson parts"><p class="muted">IN THIS DAY</p><a href="#part-1">Routing Fundamentals (pt 1)</a><a href="#part-2">Static Routing (pt 2)</a><p class="muted">Tap a note image to zoom. Expand the text view to copy or search the exported text.</p></aside><article><section class="note-part" id="part-1"><h2>Routing Fundamentals (pt 1)</h2><a class="button" href="assets/lesson-11/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="assets/lesson-11/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge Routing Fundamentals (pt 1) page 1"><img src="assets/lesson-11/page-1.webp" width="1609" height="2067" loading="lazy" alt="Original OneNote notes: Routing Fundamentals (pt 1), page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 3</figcaption></figure><figure class="note-image"><a href="assets/lesson-11/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge Routing Fundamentals (pt 1) page 2"><img src="assets/lesson-11/page-2.webp" width="1590" height="2109" loading="lazy" alt="Original OneNote notes: Routing Fundamentals (pt 1), page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 3</figcaption></figure><figure class="note-image"><a href="assets/lesson-11/page-3.webp" target="_blank" rel="noopener" aria-label="Enlarge Routing Fundamentals (pt 1) page 3"><img src="assets/lesson-11/page-3.webp" width="1561" height="1243" loading="lazy" alt="Original OneNote notes: Routing Fundamentals (pt 1), page 3. Text version follows below."></a><figcaption>Original notes · Page 3 of 3</figcaption></figure><details class="text-view"><summary>Text view — Routing Fundamentals (pt 1)</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 11 - Routing Fundamentals (pt 1)
+Saturday, August 22, 2026 2:50 PM
+11. ROUTING FUNDAMENTALS : PART 1
+WHAT IS ROUTING ?
+ROUTING is the process that routers use to determine the path that IP packets should take over a network to
+reach their destination.
+• ROUTERS store routes to all their known destinations in a ROUTING TABLE
+• When ROUTERS receive PACKETS, they look in the ROUTING TABLE to find the best route to forward that
+packet.
+There are two main routing methods (methods that routers use to learn routes):
+• DYNAMIC ROUTING : ROUTERS use Dynamic Routing Protocols (ie: OSPF) to share routing information
+with each other automatically and build their routing tables.
+• STATIC ROUTING : A network engineer / Admin manually configures routes on the router.
+A ROUTE tells the ROUTER :
+• to send a packet to Destination X, you should send the pack to next-hop Y
+• or if the Destination is directly connected to the router, send the packet directly to the destination.
+• or if the Destination is the router’s own IP address, receive the packet for yourself (don’t forward it).
+WAN (Wide Area Network) = network that extends over a large geographic area.
+Shop ip route
+Term Definition Example
+Connected A route to the network directly connected to one Interface G0/0 = 192.168.1.1/24 → Connected
+Route (C) of the router&#x27;s interfaces. route = 192.168.1.0/24
+Local Route (L) A route to the specific IP address assigned to the Interface G0/0 = 192.168.1.1/24 → Local route
+router&#x27;s own interface. = 192.168.1.1/32
+
+Day 11 - Routing Fundamentals (pt 1)
+Saturday, August 22, 2026 2:50 PM
+11. ROUTING FUNDAMENTALS : PART 1
+WHAT IS ROUTING ?
+ROUTING is the process that routers use to determine the path that IP packets should take over a network to
+reach their destination.
+• ROUTERS store routes to all their known destinations in a ROUTING TABLE
+• When ROUTERS receive PACKETS, they look in the ROUTING TABLE to find the best route to forward that
+packet.
+There are two main routing methods (methods that routers use to learn routes):
+• DYNAMIC ROUTING : ROUTERS use Dynamic Routing Protocols (ie: OSPF) to share routing information
+with each other automatically and build their routing tables.
+• STATIC ROUTING : A network engineer / Admin manually configures routes on the router.
+A ROUTE tells the ROUTER :
+• to send a packet to Destination X, you should send the pack to next-hop Y
+• or if the Destination is directly connected to the router, send the packet directly to the destination.
+• or if the Destination is the router’s own IP address, receive the packet for yourself (don’t forward it).
+WAN (Wide Area Network) = network that extends over a large geographic area.
+Shop ip route
+Term Definition Example
+Connected A route to the network directly connected to one Interface G0/0 = 192.168.1.1/24 → Connected
+Route (C) of the router&#x27;s interfaces. route = 192.168.1.0/24
+Local Route (L) A route to the specific IP address assigned to the Interface G0/0 = 192.168.1.1/24 → Local route
+router&#x27;s own interface. = 192.168.1.1/32
+
+Day 11 - Routing Fundamentals (pt 1)
+Saturday, August 22, 2026 2:50 PM
+11. ROUTING FUNDAMENTALS : PART 1
+WHAT IS ROUTING ?
+ROUTING is the process that routers use to determine the path that IP packets should take over a network to
+reach their destination.
+• ROUTERS store routes to all their known destinations in a ROUTING TABLE
+• When ROUTERS receive PACKETS, they look in the ROUTING TABLE to find the best route to forward that
+packet.
+There are two main routing methods (methods that routers use to learn routes):
+• DYNAMIC ROUTING : ROUTERS use Dynamic Routing Protocols (ie: OSPF) to share routing information
+with each other automatically and build their routing tables.
+• STATIC ROUTING : A network engineer / Admin manually configures routes on the router.
+A ROUTE tells the ROUTER :
+• to send a packet to Destination X, you should send the pack to next-hop Y
+• or if the Destination is directly connected to the router, send the packet directly to the destination.
+• or if the Destination is the router’s own IP address, receive the packet for yourself (don’t forward it).
+WAN (Wide Area Network) = network that extends over a large geographic area.
+Shop ip route
+Term Definition Example
+Connected A route to the network directly connected to one Interface G0/0 = 192.168.1.1/24 → Connected
+Route (C) of the router&#x27;s interfaces. route = 192.168.1.0/24
+Local Route (L) A route to the specific IP address assigned to the Interface G0/0 = 192.168.1.1/24 → Local route
+router&#x27;s own interface. = 192.168.1.1/32</pre></details></section><section class="note-part" id="part-2"><h2>Static Routing (pt 2)</h2><a class="button" href="assets/lesson-12/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="assets/lesson-12/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge Static Routing (pt 2) page 1"><img src="assets/lesson-12/page-1.webp" width="1153" height="2069" loading="lazy" alt="Original OneNote notes: Static Routing (pt 2), page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 4</figcaption></figure><figure class="note-image"><a href="assets/lesson-12/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge Static Routing (pt 2) page 2"><img src="assets/lesson-12/page-2.webp" width="1595" height="2109" loading="lazy" alt="Original OneNote notes: Static Routing (pt 2), page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 4</figcaption></figure><figure class="note-image"><a href="assets/lesson-12/page-3.webp" target="_blank" rel="noopener" aria-label="Enlarge Static Routing (pt 2) page 3"><img src="assets/lesson-12/page-3.webp" width="1591" height="2109" loading="lazy" alt="Original OneNote notes: Static Routing (pt 2), page 3. Text version follows below."></a><figcaption>Original notes · Page 3 of 4</figcaption></figure><figure class="note-image"><a href="assets/lesson-12/page-4.webp" target="_blank" rel="noopener" aria-label="Enlarge Static Routing (pt 2) page 4"><img src="assets/lesson-12/page-4.webp" width="792" height="1072" loading="lazy" alt="Original OneNote notes: Static Routing (pt 2), page 4. Text version follows below."></a><figcaption>Original notes · Page 4 of 4</figcaption></figure><details class="text-view"><summary>Text view — Static Routing (pt 2)</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 11 - Static Routing (pt 2)
+Saturday, August 22, 2026 2:50 PM
+11. STATIC ROUTING : PART 2
+REVIEW:
+SWITCHES forward traffic WITHIN LAN&#x27;s ROUTERS forward traffic BETWEEN LAN&#x27;s
+WAN (Wide Area Network)
+• Network spread over a large area
+STATIC ROUTES:
+STATIC ROUTE CONFIGURATION:
+STATIC ROUTE CONFIGURATION with exit-interface
+DEFAULT ROUTE
+
+Day 11 - Static Routing (pt 2)
+Saturday, August 22, 2026 2:50 PM
+11. STATIC ROUTING : PART 2
+REVIEW:
+SWITCHES forward traffic WITHIN LAN&#x27;s ROUTERS forward traffic BETWEEN LAN&#x27;s
+WAN (Wide Area Network)
+• Network spread over a large area
+STATIC ROUTES:
+STATIC ROUTE CONFIGURATION:
+STATIC ROUTE CONFIGURATION with exit-interface
+DEFAULT ROUTE
+
+Day 11 - Static Routing (pt 2)
+Saturday, August 22, 2026 2:50 PM
+11. STATIC ROUTING : PART 2
+REVIEW:
+SWITCHES forward traffic WITHIN LAN&#x27;s ROUTERS forward traffic BETWEEN LAN&#x27;s
+WAN (Wide Area Network)
+• Network spread over a large area
+STATIC ROUTES:
+STATIC ROUTE CONFIGURATION:
+STATIC ROUTE CONFIGURATION with exit-interface
+DEFAULT ROUTE
+
+Day 11 - Static Routing (pt 2)
+Saturday, August 22, 2026 2:50 PM
+11. STATIC ROUTING : PART 2
+REVIEW:
+SWITCHES forward traffic WITHIN LAN&#x27;s ROUTERS forward traffic BETWEEN LAN&#x27;s
+WAN (Wide Area Network)
+• Network spread over a large area
+STATIC ROUTES:
+STATIC ROUTE CONFIGURATION:
+STATIC ROUTE CONFIGURATION with exit-interface
+DEFAULT ROUTE</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="day-10.html"><small>← Day 10</small>IPv4 Header</a><a href="day-12.html"><small>Day 12 →</small>The life of a packet</a></nav></article></div></main><footer class="footer"><div class="wrap">Personal study notes · Jeremy’s IT Lab CCNA course · Exported from OneNote September 20, 2026<br><a href="../../resources.html">Back to all resources</a></div></footer><script src="course.js"></script></body></html>
