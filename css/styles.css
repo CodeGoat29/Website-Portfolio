@@ -199,26 +199,26 @@ header {
 }
 
 .logo {
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
-    border: 1px solid #e3e8ef;
-    transition: transform 0.3s;
-    box-shadow: 0 10px 30px rgba(15, 26, 42, 0.08);
+    width: 90px;
+    height: 90px;
+    max-width: none;
+    flex-shrink: 0;
+    object-fit: contain;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
 }
 
 .logo-link {
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex: 0 0 64px;
+    width: 64px;
+    height: 64px;
+    overflow: hidden;
     text-decoration: none;
-}
-
-.dark-mode .logo {
-    border-color: #2a3f5f;
-}
-
-.logo:hover {
-    transform: scale(1.05);
 }
 
 .header-text h1 {
