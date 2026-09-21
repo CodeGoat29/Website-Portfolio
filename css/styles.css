@@ -199,8 +199,8 @@ header {
 }
 
 .logo {
-    width: 90px;
-    height: 90px;
+    width: 76px;
+    height: 76px;
     max-width: none;
     flex-shrink: 0;
     object-fit: contain;
@@ -214,9 +214,9 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 0 0 64px;
-    width: 64px;
-    height: 64px;
+    flex: 0 0 76px;
+    width: 76px;
+    height: 76px;
     overflow: hidden;
     text-decoration: none;
 }
