@@ -1,0 +1,436 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 33: IPV6 (pt 3) | DiPiazza</title><link rel="icon" href="/images/dipiazza-icon.png"><link rel="stylesheet" href="/css/styles.css"><link rel="stylesheet" href="/resources/ccna/course.css?v=2"></head><body><header class="site-header">
+        <div class="container header-content">
+            <a href="/" class="logo-link"><img src="/images/dipiazza-icon.png" alt="DiPiazza Logo" class="logo"></a>
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Where I break stuff, then write about it.</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/resources/" class="active">Resources</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/resume/">Resume</a></li>
+                    <li><button class="nav-cta" type="button" data-contact-open>Get in Touch</button></li>
+                </ul>
+            </nav>
+        <div class="top-controls">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-inner"></span>
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div></div>
+    </header>
+
+<main class="wrap ccna-main"><div class="crumb"><a href="/resources/ccna/">CCNA study notes</a> / Day 33</div><div class="reading-layout"><aside class="course-sidebar"><details open><summary>Browse CCNA</summary><div class="sidebar-shortcuts"><a href="/resources/ccna/">Course overview</a><a href="/resources/ccna/commands/">Command reference</a></div><label class="day-search-label" for="day-search">Find a day</label><input id="day-search" type="search" placeholder="Day number or topic"><nav class="day-scroll" aria-label="CCNA study days" tabindex="0"><a href="/resources/ccna/day-01/"><span>Day 01</span><span>Network Devices</span></a><a href="/resources/ccna/day-02/"><span>Day 02</span><span>Interfaces and Cables</span></a><a href="/resources/ccna/day-03/"><span>Day 03</span><span>TCP/IP Model</span></a><a href="/resources/ccna/day-04/"><span>Day 04</span><span>Intro to the CLI</span></a><a href="/resources/ccna/day-05/"><span>Day 05</span><span>Ethernet LAN Switching (pt 1)</span></a><a href="/resources/ccna/day-06/"><span>Day 06</span><span>Ethernet LAN Switching (pt 2)</span></a><a href="/resources/ccna/day-07/"><span>Day 07</span><span>IPv4 Addressing (pt 1)</span></a><a href="/resources/ccna/day-08/"><span>Day 08</span><span>IPv4 Addressing (pt 2)</span></a><a href="/resources/ccna/day-09/"><span>Day 09</span><span>Switch Interfaces</span></a><a href="/resources/ccna/day-10/"><span>Day 10</span><span>IPv4 Header</span></a><a href="/resources/ccna/day-11/"><span>Day 11</span><span>Routing Fundamentals (pt 1) / Static Routing (pt 2)</span></a><a href="/resources/ccna/day-12/"><span>Day 12</span><span>The life of a packet</span></a><a href="/resources/ccna/day-13/"><span>Day 13</span><span>Subnetting (pt 1)</span></a><a href="/resources/ccna/day-14/"><span>Day 14</span><span>Subnetting (pt 2)</span></a><a href="/resources/ccna/day-15/"><span>Day 15</span><span>Subnetting (pt 3 VLSM)</span></a><a href="/resources/ccna/day-16/"><span>Day 16</span><span>(VlANs pt 1)</span></a><a href="/resources/ccna/day-17/"><span>Day 17</span><span>(VlANs pt 2)</span></a><a href="/resources/ccna/day-18/"><span>Day 18</span><span>(VlANs pt 3)</span></a><a href="/resources/ccna/day-19/"><span>Day 19</span><span>DTP / VTP (Not in Syllabus)</span></a><a href="/resources/ccna/day-20/"><span>Day 20</span><span>Spanning Tree Protocol (pt 1)</span></a><a href="/resources/ccna/day-21/"><span>Day 21</span><span>Spanning Tree Protocol (pt 2)</span></a><a href="/resources/ccna/day-22/"><span>Day 22</span><span>Rapid Spanning Tree Protocol</span></a><a href="/resources/ccna/day-23/"><span>Day 23</span><span>Etherchannel</span></a><a href="/resources/ccna/day-24/"><span>Day 24</span><span>Dynamic Routing</span></a><a href="/resources/ccna/day-25/"><span>Day 25</span><span>RIP &amp; EIGRP</span></a><a href="/resources/ccna/day-26/"><span>Day 26</span><span>OSPF (pt 1)</span></a><a href="/resources/ccna/day-27/"><span>Day 27</span><span>OSPF (pt 2)</span></a><a href="/resources/ccna/day-28/"><span>Day 28</span><span>OSPF (pt 3)</span></a><a href="/resources/ccna/day-29/"><span>Day 29</span><span>First Hop Redundancy Protocols</span></a><a href="/resources/ccna/day-30/"><span>Day 30</span><span>TCP &amp; UDP</span></a><a href="/resources/ccna/day-31/"><span>Day 31</span><span>IPV6 (pt 1)</span></a><a href="/resources/ccna/day-32/"><span>Day 32</span><span>IPV6 (pt 2)</span></a><a href="/resources/ccna/day-33/" aria-current="page"><span>Day 33</span><span>IPV6 (pt 3)</span></a><a href="/resources/ccna/day-34/"><span>Day 34</span><span>Standard ACLs</span></a><a href="/resources/ccna/day-35/"><span>Day 35</span><span>Extended ACLs</span></a><a href="/resources/ccna/day-36/"><span>Day 36</span><span>CDP &amp; LLDP</span></a><a href="/resources/ccna/day-37/"><span>Day 37</span><span>NTP</span></a><a href="/resources/ccna/day-38/"><span>Day 38</span><span>DNS</span></a><a href="/resources/ccna/day-39/"><span>Day 39</span><span>DHCP</span></a><a href="/resources/ccna/day-40/"><span>Day 40</span><span>SNMP</span></a><a href="/resources/ccna/day-41/"><span>Day 41</span><span>Syslog</span></a><a href="/resources/ccna/day-42/"><span>Day 42</span><span>SSH</span></a><a href="/resources/ccna/day-43/"><span>Day 43</span><span>FTP &amp; TFTP</span></a><a href="/resources/ccna/day-44/"><span>Day 44</span><span>NAT (pt 1)</span></a><a href="/resources/ccna/day-45/"><span>Day 45</span><span>NAT (pt 2)</span></a><a href="/resources/ccna/day-46/"><span>Day 46</span><span>QoS (pt 1)</span></a><a href="/resources/ccna/day-47/"><span>Day 47</span><span>QoS (pt 2)</span></a><a href="/resources/ccna/day-48/"><span>Day 48</span><span>Security Fundamentals</span></a><a href="/resources/ccna/day-49/"><span>Day 49</span><span>Port Security</span></a><a href="/resources/ccna/day-50/"><span>Day 50</span><span>DHCP Snooping</span></a><a href="/resources/ccna/day-51/"><span>Day 51</span><span>Dynamic ARP Inspection (DAI)</span></a><a href="/resources/ccna/day-52/"><span>Day 52</span><span>LAN Architectures</span></a><a href="/resources/ccna/day-53/"><span>Day 53</span><span>WAN Architectures</span></a><a href="/resources/ccna/day-54/"><span>Day 54</span><span>Virtualization &amp; Cloud / Containers / VRF</span></a><a href="/resources/ccna/day-55/"><span>Day 55</span><span>Wireless Fundamentals</span></a><a href="/resources/ccna/day-56/"><span>Day 56</span><span>Wireless Architectures</span></a><a href="/resources/ccna/day-57/"><span>Day 57</span><span>Wireless Security</span></a><a href="/resources/ccna/day-58/"><span>Day 58</span><span>Wireless Configuration</span></a><a href="/resources/ccna/day-59/"><span>Day 59</span><span>Intro to Network Automation</span></a><a href="/resources/ccna/day-60/"><span>Day 60</span><span>JSON, XML, &amp; YAML</span></a><a href="/resources/ccna/day-61/"><span>Day 61</span><span>REST API</span></a><a href="/resources/ccna/day-62/"><span>Day 62</span><span>Software-Defined Networking</span></a><a href="/resources/ccna/day-63/"><span>Day 63</span><span>Ansible, Puppet, Chef, &amp; Terraform</span></a></nav><p id="day-empty" hidden>No matching days.</p></details></aside><article class="lesson-content"><header class="lesson-head"><div class="eyebrow">Day 33 / 63 · Routing &amp; addressing</div><h1>IPV6 (pt 3)</h1><p class="lead">Study notes based primarily on Jeremy’s IT Lab CCNA learning videos. Credit to Jeremy’s IT Lab for the source lessons and diagrams.</p><div class="pills"><a class="button" href="/resources/ccna/commands/">Command reference</a><a class="button primary" href="/resources/ccna/">All 63 days</a></div></header><section class="note-part" id="part-1"><h2>IPV6 (pt 3)</h2><a class="button" href="/resources/ccna/assets/lesson-34/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="/resources/ccna/assets/lesson-34/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge IPV6 (pt 3) page 1"><img src="/resources/ccna/assets/lesson-34/page-1.webp" width="1516" height="2056" loading="lazy" alt="Original OneNote notes: IPV6 (pt 3), page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 3</figcaption></figure><figure class="note-image"><a href="/resources/ccna/assets/lesson-34/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge IPV6 (pt 3) page 2"><img src="/resources/ccna/assets/lesson-34/page-2.webp" width="1509" height="2110" loading="lazy" alt="Original OneNote notes: IPV6 (pt 3), page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 3</figcaption></figure><figure class="note-image"><a href="/resources/ccna/assets/lesson-34/page-3.webp" target="_blank" rel="noopener" aria-label="Enlarge IPV6 (pt 3) page 3"><img src="/resources/ccna/assets/lesson-34/page-3.webp" width="1495" height="1286" loading="lazy" alt="Original OneNote notes: IPV6 (pt 3), page 3. Text version follows below."></a><figcaption>Original notes · Page 3 of 3</figcaption></figure><details class="text-view"><summary>Text view — IPV6 (pt 3)</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 33 - IPV6 (pt 3)
+Sunday, September 6, 2026 10:46 AM
+IPv6 Information
+IPv6 Header
+The IPv6 header is much simpler than the IPv4 header.
+• Two of the biggest differences are
+○ The amount of fields in the header, as it has less fields than the IPv4 header. This helps with
+performance.
+○ The fixed header size of 40 bytes for IPv6.
+IPv6 Header - Fields
+The IPv6 header consists of 8 fields in total, being:
+1. Version (4 bits)
+○ Indicates the version of IP that is used.
+○ Fixed value of 6 (0b0110) to indicate IPv6
+2. Traffic Class (8 bits)
+○ Used for QoS (Quality of Service) to indicate high-priority traffic
+3. Flow Label (20 bits)
+○ Used to identify specific traffic ‘flows’ (communications between a specific source and destination)
+4. Payload Length (16 bits)
+○ Indicates the length of the payload (the encapsulated Layer 4 segment) in bytes.
+5. Next Header (8 bits)
+○ Indicates the type of the ‘next header’ (header of the encapsulated segment), for example TCP or UDP.
+○ Same function as the IPv4 header’s ‘protocol’ field
+6. Hop Limit (8 bits)
+○ Value is decremented by 1 for each router that forwards it. If it reaches 0, the packet is discarded.
+7. Source Address (128 bits)
+8. Destination Address (128 bits)
+Solicited-Node Multicast Address
+An IPv6 solicited-node multicast address is calculated from a unicast address through the following calculation:
+• ff02::1:ff + the last 6 hex digits from a unicast address
+Example of the solicited-node multicast address calculation
+○ Example 1:
+§ Unicast address: 2001 : 0db8 : 0000 : 0001 : 0f2a : 4fff : fea3 : 00b1
+§ We take the last 6 hex digits and add them onto ff02::1:ff and get:
+§ ff02 :: 1 : ffa3 : 00b1
+○ Example 2:
+§ Unicast address: 2001 : 0db8 : 0000 : 0001 : 0489 : 4eda : 073a : 12b8
+§ We take the last 6 hex digits and add them onto ff02::1:ff and get:
+§ ff02 :: 1: ff3a : 12b8
+Neighbor Discovery Protocol (NDP)
+Neighbor Discovery Protocol (NDP) is a protocol used with IPv6. It was made to replace ARP which is no longer used
+in IPv6.
+• It uses ICMPv6 and solicited-node multicast addresses to learn the MAC address of other hosts.
+• Two message types are used:
+1. Neighbor Solicitation (NS) = ICMPv6 Type 135
+2. Neighbor Advertisement (NA) = ICMPv6 Type 136
+• Another function of NDP is that it allows hosts to automatically discover routers on the local network.
+1. Router Solicitation (NS) = ICMPv6 Type 133
+2. Router Advertisement (NA) = ICMPv6 Type 134
+IPv6 Neighbor Table
+IPv6 doesn’t have an ARP Table as it doesn’t use ARP. However, it does have a neighbor table that is accessible
+through the command show ipv6 neighbor
+Neighbor Solicitation (NS)
+When an NS is sent, it uses a few different addresses:
+• The source IP is set as the sending interface’s IP
+• The destination IP is the destination’s solicited-node multicast address.
+• The source MAC is the sending interface’s MAC
+• The destination MAC is the destination’s multicast MAC address, based on the destination’s solicited-node
+multicast address.
+Neighbor Advertisement (NA)
+When an NA is sent, it uses normal address values:
+• The source IP is set as the sending interface’s IP
+• The destination IP is the destination’s IP address
+• The source MAC is the sending interface’s MAC
+• The destination MAC is the destination’s MAC address
+Router Solicitation (RS)
+Sent when an interface is enabled or when a host connects to a network.
+• Sent to multicast address FF02::2 (all routers).
+• Asks all routers on the local link to identify themselves.
+Router Advertisement (RA)
+Theses messages are sent in response to RS messages, and sometimes periodically.
+• Sent to multicast address FF02::1 (all nodes).
+• The router announces its presence, as well as other information about the network.
+• They are also sent periodically, even if the router hasn’t received an RS.
+Stateless Address Auto-Configuration (SLAAC)
+Stateless Address Auto-Configuration (SLAAC) is a new functionality of IPv6 that allows hosts to use the RS/RA
+messages to learn the IPv6 prefix of the local link, and then automatically generate an IPv6 address.
+• When you use the ipv6 address PREFIX/PREFIX-LENGTH eui-64 command, you need to manually specify the prefix.
+• However, using the ipv6 address autoconfig command, the device uses NDP to learn the prefix on the local link,
+and will automatically generate an IPv6 address. (The device will use EUI-64 to generate the interface identifier,
+or it will be randomly generated.)
+Duplicate Address Detection (DAD)
+Duplicate Address Detection (DAD) allows hosts to check if other devices on the local link are using the same IPv6
+address
+• DAD uses to messages to perform this check:
+1. NS
+2. NA
+• Anytime an IPv6-enabled interface initializes, or an IPv6 address is configured on an interface through any
+method, it performs DAD
+• The host will send an NS to its own solicited-node multicast IPv6 address. If it doesn’t get a reply, it knows the
+address is unique.
+• However, if it gets a reply, it means the address is already in use by another host on the network.
+IPv6 Routing
+The way that IPv6 routing functions is the same as IPv4.
+However, the two processes are separate on the router and have their own separate routing tables as well.
+• IPv4 routing is enabled by default
+• IPv6 routing is disabled by default, and must be enabled through ipv6 unicast-routing
+○ If IPv6 routing is disabled, that means the router will be able to send and receive IPv6 traffic, but will not
+be able to route/forward IPv6 traffic.
+Definitions reminder:
+○ Connected network route: A route that is automatically added for each connected network.
+○ Local host route: A route that is automatically added for each address configured on the router.
+IPv6 route tables and Link-local addresses
+Routes for link-local addresses are not added to the routing table.
+IPv6 Static Routing
+In IPv6 static routes are setup through this command:
+ipv6 route DESTINATION/PREFIX-LENGTH {NEXT-HOP | EXIT-INTERFACE [NEXT-HOP]} [AD]
+There are also three different types of static routes that are used in both IPv4 and IPv6:
+1. Directly attached
+○ Only the exit-interface is specified
+2. Recursive
+○ Only the next-hop is specified
+3. Fully specified
+○ Both the exit-interface and next-hop are specified
+IPv6 Ethernet Directly Attached routes
+In IPv6, you cannot use directly attached static routes if the interface is an Ethernet interface.
+○ The router will let you enter the command and it’ll look like it worked, but it will not be active and won’t
+be used for routing.
+○ You’d have to use a recursive or fully specified route instead.
+Link-Local Next-Hops
+For a link-local address to be used as a next-hop, you have to also specify the exit-interface or it’ll not work.
+The command would be:
+ipv6 route PREFIX/PREFIX-LENGTH EXIT-INTERFACE NEXT-HOP-IP
+
+Day 33 - IPV6 (pt 3)
+Sunday, September 6, 2026 10:46 AM
+IPv6 Information
+IPv6 Header
+The IPv6 header is much simpler than the IPv4 header.
+• Two of the biggest differences are
+○ The amount of fields in the header, as it has less fields than the IPv4 header. This helps with
+performance.
+○ The fixed header size of 40 bytes for IPv6.
+IPv6 Header - Fields
+The IPv6 header consists of 8 fields in total, being:
+1. Version (4 bits)
+○ Indicates the version of IP that is used.
+○ Fixed value of 6 (0b0110) to indicate IPv6
+2. Traffic Class (8 bits)
+○ Used for QoS (Quality of Service) to indicate high-priority traffic
+3. Flow Label (20 bits)
+○ Used to identify specific traffic ‘flows’ (communications between a specific source and destination)
+4. Payload Length (16 bits)
+○ Indicates the length of the payload (the encapsulated Layer 4 segment) in bytes.
+5. Next Header (8 bits)
+○ Indicates the type of the ‘next header’ (header of the encapsulated segment), for example TCP or UDP.
+○ Same function as the IPv4 header’s ‘protocol’ field
+6. Hop Limit (8 bits)
+○ Value is decremented by 1 for each router that forwards it. If it reaches 0, the packet is discarded.
+7. Source Address (128 bits)
+8. Destination Address (128 bits)
+Solicited-Node Multicast Address
+An IPv6 solicited-node multicast address is calculated from a unicast address through the following calculation:
+• ff02::1:ff + the last 6 hex digits from a unicast address
+Example of the solicited-node multicast address calculation
+○ Example 1:
+§ Unicast address: 2001 : 0db8 : 0000 : 0001 : 0f2a : 4fff : fea3 : 00b1
+§ We take the last 6 hex digits and add them onto ff02::1:ff and get:
+§ ff02 :: 1 : ffa3 : 00b1
+○ Example 2:
+§ Unicast address: 2001 : 0db8 : 0000 : 0001 : 0489 : 4eda : 073a : 12b8
+§ We take the last 6 hex digits and add them onto ff02::1:ff and get:
+§ ff02 :: 1: ff3a : 12b8
+Neighbor Discovery Protocol (NDP)
+Neighbor Discovery Protocol (NDP) is a protocol used with IPv6. It was made to replace ARP which is no longer used
+in IPv6.
+• It uses ICMPv6 and solicited-node multicast addresses to learn the MAC address of other hosts.
+• Two message types are used:
+1. Neighbor Solicitation (NS) = ICMPv6 Type 135
+2. Neighbor Advertisement (NA) = ICMPv6 Type 136
+• Another function of NDP is that it allows hosts to automatically discover routers on the local network.
+1. Router Solicitation (NS) = ICMPv6 Type 133
+2. Router Advertisement (NA) = ICMPv6 Type 134
+IPv6 Neighbor Table
+IPv6 doesn’t have an ARP Table as it doesn’t use ARP. However, it does have a neighbor table that is accessible
+through the command show ipv6 neighbor
+Neighbor Solicitation (NS)
+When an NS is sent, it uses a few different addresses:
+• The source IP is set as the sending interface’s IP
+• The destination IP is the destination’s solicited-node multicast address.
+• The source MAC is the sending interface’s MAC
+• The destination MAC is the destination’s multicast MAC address, based on the destination’s solicited-node
+multicast address.
+Neighbor Advertisement (NA)
+When an NA is sent, it uses normal address values:
+• The source IP is set as the sending interface’s IP
+• The destination IP is the destination’s IP address
+• The source MAC is the sending interface’s MAC
+• The destination MAC is the destination’s MAC address
+Router Solicitation (RS)
+Sent when an interface is enabled or when a host connects to a network.
+• Sent to multicast address FF02::2 (all routers).
+• Asks all routers on the local link to identify themselves.
+Router Advertisement (RA)
+Theses messages are sent in response to RS messages, and sometimes periodically.
+• Sent to multicast address FF02::1 (all nodes).
+• The router announces its presence, as well as other information about the network.
+• They are also sent periodically, even if the router hasn’t received an RS.
+Stateless Address Auto-Configuration (SLAAC)
+Stateless Address Auto-Configuration (SLAAC) is a new functionality of IPv6 that allows hosts to use the RS/RA
+messages to learn the IPv6 prefix of the local link, and then automatically generate an IPv6 address.
+• When you use the ipv6 address PREFIX/PREFIX-LENGTH eui-64 command, you need to manually specify the prefix.
+• However, using the ipv6 address autoconfig command, the device uses NDP to learn the prefix on the local link,
+and will automatically generate an IPv6 address. (The device will use EUI-64 to generate the interface identifier,
+or it will be randomly generated.)
+Duplicate Address Detection (DAD)
+Duplicate Address Detection (DAD) allows hosts to check if other devices on the local link are using the same IPv6
+address
+• DAD uses to messages to perform this check:
+1. NS
+2. NA
+• Anytime an IPv6-enabled interface initializes, or an IPv6 address is configured on an interface through any
+method, it performs DAD
+• The host will send an NS to its own solicited-node multicast IPv6 address. If it doesn’t get a reply, it knows the
+address is unique.
+• However, if it gets a reply, it means the address is already in use by another host on the network.
+IPv6 Routing
+The way that IPv6 routing functions is the same as IPv4.
+However, the two processes are separate on the router and have their own separate routing tables as well.
+• IPv4 routing is enabled by default
+• IPv6 routing is disabled by default, and must be enabled through ipv6 unicast-routing
+○ If IPv6 routing is disabled, that means the router will be able to send and receive IPv6 traffic, but will not
+be able to route/forward IPv6 traffic.
+Definitions reminder:
+○ Connected network route: A route that is automatically added for each connected network.
+○ Local host route: A route that is automatically added for each address configured on the router.
+IPv6 route tables and Link-local addresses
+Routes for link-local addresses are not added to the routing table.
+IPv6 Static Routing
+In IPv6 static routes are setup through this command:
+ipv6 route DESTINATION/PREFIX-LENGTH {NEXT-HOP | EXIT-INTERFACE [NEXT-HOP]} [AD]
+There are also three different types of static routes that are used in both IPv4 and IPv6:
+1. Directly attached
+○ Only the exit-interface is specified
+2. Recursive
+○ Only the next-hop is specified
+3. Fully specified
+○ Both the exit-interface and next-hop are specified
+IPv6 Ethernet Directly Attached routes
+In IPv6, you cannot use directly attached static routes if the interface is an Ethernet interface.
+○ The router will let you enter the command and it’ll look like it worked, but it will not be active and won’t
+be used for routing.
+○ You’d have to use a recursive or fully specified route instead.
+Link-Local Next-Hops
+For a link-local address to be used as a next-hop, you have to also specify the exit-interface or it’ll not work.
+The command would be:
+ipv6 route PREFIX/PREFIX-LENGTH EXIT-INTERFACE NEXT-HOP-IP
+
+Day 33 - IPV6 (pt 3)
+Sunday, September 6, 2026 10:46 AM
+IPv6 Information
+IPv6 Header
+The IPv6 header is much simpler than the IPv4 header.
+• Two of the biggest differences are
+○ The amount of fields in the header, as it has less fields than the IPv4 header. This helps with
+performance.
+○ The fixed header size of 40 bytes for IPv6.
+IPv6 Header - Fields
+The IPv6 header consists of 8 fields in total, being:
+1. Version (4 bits)
+○ Indicates the version of IP that is used.
+○ Fixed value of 6 (0b0110) to indicate IPv6
+2. Traffic Class (8 bits)
+○ Used for QoS (Quality of Service) to indicate high-priority traffic
+3. Flow Label (20 bits)
+○ Used to identify specific traffic ‘flows’ (communications between a specific source and destination)
+4. Payload Length (16 bits)
+○ Indicates the length of the payload (the encapsulated Layer 4 segment) in bytes.
+5. Next Header (8 bits)
+○ Indicates the type of the ‘next header’ (header of the encapsulated segment), for example TCP or UDP.
+○ Same function as the IPv4 header’s ‘protocol’ field
+6. Hop Limit (8 bits)
+○ Value is decremented by 1 for each router that forwards it. If it reaches 0, the packet is discarded.
+7. Source Address (128 bits)
+8. Destination Address (128 bits)
+Solicited-Node Multicast Address
+An IPv6 solicited-node multicast address is calculated from a unicast address through the following calculation:
+• ff02::1:ff + the last 6 hex digits from a unicast address
+Example of the solicited-node multicast address calculation
+○ Example 1:
+§ Unicast address: 2001 : 0db8 : 0000 : 0001 : 0f2a : 4fff : fea3 : 00b1
+§ We take the last 6 hex digits and add them onto ff02::1:ff and get:
+§ ff02 :: 1 : ffa3 : 00b1
+○ Example 2:
+§ Unicast address: 2001 : 0db8 : 0000 : 0001 : 0489 : 4eda : 073a : 12b8
+§ We take the last 6 hex digits and add them onto ff02::1:ff and get:
+§ ff02 :: 1: ff3a : 12b8
+Neighbor Discovery Protocol (NDP)
+Neighbor Discovery Protocol (NDP) is a protocol used with IPv6. It was made to replace ARP which is no longer used
+in IPv6.
+• It uses ICMPv6 and solicited-node multicast addresses to learn the MAC address of other hosts.
+• Two message types are used:
+1. Neighbor Solicitation (NS) = ICMPv6 Type 135
+2. Neighbor Advertisement (NA) = ICMPv6 Type 136
+• Another function of NDP is that it allows hosts to automatically discover routers on the local network.
+1. Router Solicitation (NS) = ICMPv6 Type 133
+2. Router Advertisement (NA) = ICMPv6 Type 134
+IPv6 Neighbor Table
+IPv6 doesn’t have an ARP Table as it doesn’t use ARP. However, it does have a neighbor table that is accessible
+through the command show ipv6 neighbor
+Neighbor Solicitation (NS)
+When an NS is sent, it uses a few different addresses:
+• The source IP is set as the sending interface’s IP
+• The destination IP is the destination’s solicited-node multicast address.
+• The source MAC is the sending interface’s MAC
+• The destination MAC is the destination’s multicast MAC address, based on the destination’s solicited-node
+multicast address.
+Neighbor Advertisement (NA)
+When an NA is sent, it uses normal address values:
+• The source IP is set as the sending interface’s IP
+• The destination IP is the destination’s IP address
+• The source MAC is the sending interface’s MAC
+• The destination MAC is the destination’s MAC address
+Router Solicitation (RS)
+Sent when an interface is enabled or when a host connects to a network.
+• Sent to multicast address FF02::2 (all routers).
+• Asks all routers on the local link to identify themselves.
+Router Advertisement (RA)
+Theses messages are sent in response to RS messages, and sometimes periodically.
+• Sent to multicast address FF02::1 (all nodes).
+• The router announces its presence, as well as other information about the network.
+• They are also sent periodically, even if the router hasn’t received an RS.
+Stateless Address Auto-Configuration (SLAAC)
+Stateless Address Auto-Configuration (SLAAC) is a new functionality of IPv6 that allows hosts to use the RS/RA
+messages to learn the IPv6 prefix of the local link, and then automatically generate an IPv6 address.
+• When you use the ipv6 address PREFIX/PREFIX-LENGTH eui-64 command, you need to manually specify the prefix.
+• However, using the ipv6 address autoconfig command, the device uses NDP to learn the prefix on the local link,
+and will automatically generate an IPv6 address. (The device will use EUI-64 to generate the interface identifier,
+or it will be randomly generated.)
+Duplicate Address Detection (DAD)
+Duplicate Address Detection (DAD) allows hosts to check if other devices on the local link are using the same IPv6
+address
+• DAD uses to messages to perform this check:
+1. NS
+2. NA
+• Anytime an IPv6-enabled interface initializes, or an IPv6 address is configured on an interface through any
+method, it performs DAD
+• The host will send an NS to its own solicited-node multicast IPv6 address. If it doesn’t get a reply, it knows the
+address is unique.
+• However, if it gets a reply, it means the address is already in use by another host on the network.
+IPv6 Routing
+The way that IPv6 routing functions is the same as IPv4.
+However, the two processes are separate on the router and have their own separate routing tables as well.
+• IPv4 routing is enabled by default
+• IPv6 routing is disabled by default, and must be enabled through ipv6 unicast-routing
+○ If IPv6 routing is disabled, that means the router will be able to send and receive IPv6 traffic, but will not
+be able to route/forward IPv6 traffic.
+Definitions reminder:
+○ Connected network route: A route that is automatically added for each connected network.
+○ Local host route: A route that is automatically added for each address configured on the router.
+IPv6 route tables and Link-local addresses
+Routes for link-local addresses are not added to the routing table.
+IPv6 Static Routing
+In IPv6 static routes are setup through this command:
+ipv6 route DESTINATION/PREFIX-LENGTH {NEXT-HOP | EXIT-INTERFACE [NEXT-HOP]} [AD]
+There are also three different types of static routes that are used in both IPv4 and IPv6:
+1. Directly attached
+○ Only the exit-interface is specified
+2. Recursive
+○ Only the next-hop is specified
+3. Fully specified
+○ Both the exit-interface and next-hop are specified
+IPv6 Ethernet Directly Attached routes
+In IPv6, you cannot use directly attached static routes if the interface is an Ethernet interface.
+○ The router will let you enter the command and it’ll look like it worked, but it will not be active and won’t
+be used for routing.
+○ You’d have to use a recursive or fully specified route instead.
+Link-Local Next-Hops
+For a link-local address to be used as a next-hop, you have to also specify the exit-interface or it’ll not work.
+The command would be:
+ipv6 route PREFIX/PREFIX-LENGTH EXIT-INTERFACE NEXT-HOP-IP</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="/resources/ccna/day-32/"><small>← Day 32</small>IPV6 (pt 2)</a><a href="/resources/ccna/day-34/"><small>Day 34 →</small>Standard ACLs</a></nav></article></div></main>    <div class="contact-modal" id="contactModal">
+        <div class="contact-modal-content">
+            <div class="contact-modal-header">
+                <h3>Get in Touch</h3>
+                <button class="contact-modal-close" type="button" id="contactModalClose">✕</button>
+            </div>
+            <div class="contact-modal-links">
+                <a href="mailto:daviddipiazza29@gmail.com" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/CodeGoat29" target="_blank" class="contact-link">GitHub</a>
+            </div>
+        </div>
+    </div>
+
+            <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="/resources/">Resources</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/resume/">Resume</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="mailto:daviddipiazza29@gmail.com">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/CodeGoat29" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bar">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+<script src="/js/site.js"></script><script src="/resources/ccna/course.js?v=2"></script></body></html>

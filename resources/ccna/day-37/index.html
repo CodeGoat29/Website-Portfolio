@@ -1,0 +1,397 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 37: NTP | DiPiazza</title><link rel="icon" href="/images/dipiazza-icon.png"><link rel="stylesheet" href="/css/styles.css"><link rel="stylesheet" href="/resources/ccna/course.css?v=2"></head><body><header class="site-header">
+        <div class="container header-content">
+            <a href="/" class="logo-link"><img src="/images/dipiazza-icon.png" alt="DiPiazza Logo" class="logo"></a>
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Where I break stuff, then write about it.</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/resources/" class="active">Resources</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/resume/">Resume</a></li>
+                    <li><button class="nav-cta" type="button" data-contact-open>Get in Touch</button></li>
+                </ul>
+            </nav>
+        <div class="top-controls">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-inner"></span>
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div></div>
+    </header>
+
+<main class="wrap ccna-main"><div class="crumb"><a href="/resources/ccna/">CCNA study notes</a> / Day 37</div><div class="reading-layout"><aside class="course-sidebar"><details open><summary>Browse CCNA</summary><div class="sidebar-shortcuts"><a href="/resources/ccna/">Course overview</a><a href="/resources/ccna/commands/">Command reference</a></div><label class="day-search-label" for="day-search">Find a day</label><input id="day-search" type="search" placeholder="Day number or topic"><nav class="day-scroll" aria-label="CCNA study days" tabindex="0"><a href="/resources/ccna/day-01/"><span>Day 01</span><span>Network Devices</span></a><a href="/resources/ccna/day-02/"><span>Day 02</span><span>Interfaces and Cables</span></a><a href="/resources/ccna/day-03/"><span>Day 03</span><span>TCP/IP Model</span></a><a href="/resources/ccna/day-04/"><span>Day 04</span><span>Intro to the CLI</span></a><a href="/resources/ccna/day-05/"><span>Day 05</span><span>Ethernet LAN Switching (pt 1)</span></a><a href="/resources/ccna/day-06/"><span>Day 06</span><span>Ethernet LAN Switching (pt 2)</span></a><a href="/resources/ccna/day-07/"><span>Day 07</span><span>IPv4 Addressing (pt 1)</span></a><a href="/resources/ccna/day-08/"><span>Day 08</span><span>IPv4 Addressing (pt 2)</span></a><a href="/resources/ccna/day-09/"><span>Day 09</span><span>Switch Interfaces</span></a><a href="/resources/ccna/day-10/"><span>Day 10</span><span>IPv4 Header</span></a><a href="/resources/ccna/day-11/"><span>Day 11</span><span>Routing Fundamentals (pt 1) / Static Routing (pt 2)</span></a><a href="/resources/ccna/day-12/"><span>Day 12</span><span>The life of a packet</span></a><a href="/resources/ccna/day-13/"><span>Day 13</span><span>Subnetting (pt 1)</span></a><a href="/resources/ccna/day-14/"><span>Day 14</span><span>Subnetting (pt 2)</span></a><a href="/resources/ccna/day-15/"><span>Day 15</span><span>Subnetting (pt 3 VLSM)</span></a><a href="/resources/ccna/day-16/"><span>Day 16</span><span>(VlANs pt 1)</span></a><a href="/resources/ccna/day-17/"><span>Day 17</span><span>(VlANs pt 2)</span></a><a href="/resources/ccna/day-18/"><span>Day 18</span><span>(VlANs pt 3)</span></a><a href="/resources/ccna/day-19/"><span>Day 19</span><span>DTP / VTP (Not in Syllabus)</span></a><a href="/resources/ccna/day-20/"><span>Day 20</span><span>Spanning Tree Protocol (pt 1)</span></a><a href="/resources/ccna/day-21/"><span>Day 21</span><span>Spanning Tree Protocol (pt 2)</span></a><a href="/resources/ccna/day-22/"><span>Day 22</span><span>Rapid Spanning Tree Protocol</span></a><a href="/resources/ccna/day-23/"><span>Day 23</span><span>Etherchannel</span></a><a href="/resources/ccna/day-24/"><span>Day 24</span><span>Dynamic Routing</span></a><a href="/resources/ccna/day-25/"><span>Day 25</span><span>RIP &amp; EIGRP</span></a><a href="/resources/ccna/day-26/"><span>Day 26</span><span>OSPF (pt 1)</span></a><a href="/resources/ccna/day-27/"><span>Day 27</span><span>OSPF (pt 2)</span></a><a href="/resources/ccna/day-28/"><span>Day 28</span><span>OSPF (pt 3)</span></a><a href="/resources/ccna/day-29/"><span>Day 29</span><span>First Hop Redundancy Protocols</span></a><a href="/resources/ccna/day-30/"><span>Day 30</span><span>TCP &amp; UDP</span></a><a href="/resources/ccna/day-31/"><span>Day 31</span><span>IPV6 (pt 1)</span></a><a href="/resources/ccna/day-32/"><span>Day 32</span><span>IPV6 (pt 2)</span></a><a href="/resources/ccna/day-33/"><span>Day 33</span><span>IPV6 (pt 3)</span></a><a href="/resources/ccna/day-34/"><span>Day 34</span><span>Standard ACLs</span></a><a href="/resources/ccna/day-35/"><span>Day 35</span><span>Extended ACLs</span></a><a href="/resources/ccna/day-36/"><span>Day 36</span><span>CDP &amp; LLDP</span></a><a href="/resources/ccna/day-37/" aria-current="page"><span>Day 37</span><span>NTP</span></a><a href="/resources/ccna/day-38/"><span>Day 38</span><span>DNS</span></a><a href="/resources/ccna/day-39/"><span>Day 39</span><span>DHCP</span></a><a href="/resources/ccna/day-40/"><span>Day 40</span><span>SNMP</span></a><a href="/resources/ccna/day-41/"><span>Day 41</span><span>Syslog</span></a><a href="/resources/ccna/day-42/"><span>Day 42</span><span>SSH</span></a><a href="/resources/ccna/day-43/"><span>Day 43</span><span>FTP &amp; TFTP</span></a><a href="/resources/ccna/day-44/"><span>Day 44</span><span>NAT (pt 1)</span></a><a href="/resources/ccna/day-45/"><span>Day 45</span><span>NAT (pt 2)</span></a><a href="/resources/ccna/day-46/"><span>Day 46</span><span>QoS (pt 1)</span></a><a href="/resources/ccna/day-47/"><span>Day 47</span><span>QoS (pt 2)</span></a><a href="/resources/ccna/day-48/"><span>Day 48</span><span>Security Fundamentals</span></a><a href="/resources/ccna/day-49/"><span>Day 49</span><span>Port Security</span></a><a href="/resources/ccna/day-50/"><span>Day 50</span><span>DHCP Snooping</span></a><a href="/resources/ccna/day-51/"><span>Day 51</span><span>Dynamic ARP Inspection (DAI)</span></a><a href="/resources/ccna/day-52/"><span>Day 52</span><span>LAN Architectures</span></a><a href="/resources/ccna/day-53/"><span>Day 53</span><span>WAN Architectures</span></a><a href="/resources/ccna/day-54/"><span>Day 54</span><span>Virtualization &amp; Cloud / Containers / VRF</span></a><a href="/resources/ccna/day-55/"><span>Day 55</span><span>Wireless Fundamentals</span></a><a href="/resources/ccna/day-56/"><span>Day 56</span><span>Wireless Architectures</span></a><a href="/resources/ccna/day-57/"><span>Day 57</span><span>Wireless Security</span></a><a href="/resources/ccna/day-58/"><span>Day 58</span><span>Wireless Configuration</span></a><a href="/resources/ccna/day-59/"><span>Day 59</span><span>Intro to Network Automation</span></a><a href="/resources/ccna/day-60/"><span>Day 60</span><span>JSON, XML, &amp; YAML</span></a><a href="/resources/ccna/day-61/"><span>Day 61</span><span>REST API</span></a><a href="/resources/ccna/day-62/"><span>Day 62</span><span>Software-Defined Networking</span></a><a href="/resources/ccna/day-63/"><span>Day 63</span><span>Ansible, Puppet, Chef, &amp; Terraform</span></a></nav><p id="day-empty" hidden>No matching days.</p></details></aside><article class="lesson-content"><header class="lesson-head"><div class="eyebrow">Day 37 / 63 · Network services</div><h1>NTP</h1><p class="lead">Study notes based primarily on Jeremy’s IT Lab CCNA learning videos. Credit to Jeremy’s IT Lab for the source lessons and diagrams.</p><div class="pills"><a class="button" href="/resources/ccna/commands/">Command reference</a><a class="button primary" href="/resources/ccna/">All 63 days</a></div></header><section class="note-part" id="part-1"><h2>NTP</h2><a class="button" href="/resources/ccna/assets/lesson-38/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="/resources/ccna/assets/lesson-38/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge NTP page 1"><img src="/resources/ccna/assets/lesson-38/page-1.webp" width="1537" height="2052" loading="lazy" alt="Original OneNote notes: NTP, page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 3</figcaption></figure><figure class="note-image"><a href="/resources/ccna/assets/lesson-38/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge NTP page 2"><img src="/resources/ccna/assets/lesson-38/page-2.webp" width="1547" height="2103" loading="lazy" alt="Original OneNote notes: NTP, page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 3</figcaption></figure><figure class="note-image"><a href="/resources/ccna/assets/lesson-38/page-3.webp" target="_blank" rel="noopener" aria-label="Enlarge NTP page 3"><img src="/resources/ccna/assets/lesson-38/page-3.webp" width="1430" height="528" loading="lazy" alt="Original OneNote notes: NTP, page 3. Text version follows below."></a><figcaption>Original notes · Page 3 of 3</figcaption></figure><details class="text-view"><summary>Text view — NTP</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 37 - NTP
+Sunday, September 6, 2026 10:46 AM
+NTP Info
+General Information
+All devices have two types of clocks, software (clock) and hardware (calendar) clocks.
+• Software clock (aka. Clock) runs digitally on the operating system of the device.
+• Hardware clock (aka. Calendar) is an internal physical clock built into the device.
+• The default time zone for Cisco devices is UTC (Coordinated Universal Time)
+• The most important reason to have accurate time on a device is to have accurate logs for troubleshooting. (with
+show logging)
+The calendar of a device tracks the date and time on the device even if it restarts, power is lost, etc. When the system is
+restarted the calendar is used to initialize the clock. The calendar does have a flaw though, and it’s that it will drift over
+time and become inaccurate, so it is not an ideal time source. That’s why the Network Time Protocol (NTP) is used to
+mitigate this problem.
+Clock and Calendar Commands
+Clock/Calendar Show Commands
+• show clock
+○ You can view basic details about the clock through this command.
+○ It’ll display the current time.
+○ Sometimes, an asterisk ( * ) will be displayed to indicate that the time is not authoritative (not from a
+trusted source)
+• show clock detail
+○ Using this command will show the previous information as well as the time source (set to the hardware
+calendar by default)
+Clock/Calendar Config Commands
+• clock set HH:MM:SS DAY MONTH YEAR
+○ You can use this command to manually configure the clock on the device.
+• calendar set HH:MM:SS DAY MONTH YEAR
+○ You can also use this command to manually configure the calendar on the device.
+• Typically, you will want to synchronize both the clock and calendar, which can be done through two commands:
+○ clock update-calendar to sync the calendar to the clock’s time.
+○ clock read-calendar to sync the clock to the calendar’s time.
+• clock timezone TIMEZONE-NAME HOURS-OFFSET [MINUTES-OFFSET]
+○ The time zone can be configured with this command.
+• clock summer-time TIMEZONE-NAME recurring START END [OFFSET]
+○ The daylight savings time (summer time) can be configured with this command.
+○ The default offset is 60 minutes, but it can be specified at the end if it’s necessary to change it.
+○ (start and end each require the week (first, last or number), weekday, month and time)
+Network Time Protocol (NTP)
+Network Time Protocol (NTP) is a protocol that allows automatic syncing of time over a network.
+• It communicates over UDP port 123.
+• NTP uses the UTC time zone by default. The appropriate time zone must be configured on each device.
+• NTP clients request the time from NTP servers.
+• A device can be an NTP client and an NTP server at the same time.
+Stratum Levels
+Some NTP servers are better (more reliable) than others. That is determined through a factor which is called stratum
+level and it defines the ‘distance’ of an NTP server from the original reference clock.
+The stratum level range is (1 - 16), however, we start counting from (stratum 0).
+Reference Clocks
+A reference clock is usually a very accurate time device like an atomic clock or GPS clock. They are assigned stratum (0)
+within the NTP hierarchy.
+• NTP servers connected directly to reference clocks are stratum 1.
+NTP Hierarchy
+• Reference clocks are stratum (0).
+• Stratum (1) NTP servers get their time from reference clocks.
+• Stratum (2) NTP servers get their time from stratum (1) NTP servers.
+• Stratum (3) NTP servers get their time from stratum (2) NTP servers.
+• Stratum (15) is the maximum. Anything above that is considered unreliable.
+• Devices can also ‘peer’ with devices at the same stratum to become in a symmetric active mode in order to
+provide more accurate time.
+Cisco NTP operational modes
+Cisco devices can operate in three NTP modes:
+1. Server mode
+2. Client mode
+3. Symmetric Active mode
+Stratum level names
+○ NTP servers which get their time directly from reference clocks are also referred to as ‘primary servers’
+○ NTP servers which get their time from other NTP servers are referred to as ‘secondary servers’. They operate
+in server mode and client mode at the same time.
+NTP Configurations
+NTP Show Commands
+• show ntp associations
+○ Shows connected NTP servers
+○ It’ll show you a bunch of information for each server like:
+1. The address of the NTP servers the device is connected to along with a symbol to indicate the status.
+2. Their reference clocks
+3. Their stratum level
+• show ntp status
+○ Shows information about the current NTP instance running on the device
+○ It includes this info:
+1. The current device’s stratum level.
+2. The IP of the NTP server which is being used as reference.
+NTP Config Commands
+• ntp server IP-ADDRESS [prefer]
+○ Forms a connection to an NTP server.
+• ntp server IP-ADDRESS key KEY-NUMBER
+○ Forms a connection to an NTP server with an authentication key.
+• ntp peer IP-ADDRESS
+○ Forms a symmetric active connection with another NTP device. Both devices will have the same stratum
+level.
+• ntp peer IP-ADDRESS key KEY-NUMBER
+○ Forms a peering to another NTP device with an authentication key.
+• clock timezone TIMEZONE-NAME HOURS-OFFSET [MINUTES-OFFSET]
+○ Allows you to configure the time zone on the current device.
+• clock summer-time NAME recurring START END [OFFSET]
+○ Sets the daylight saving time (summer time) configuration for the clock.
+○ The default offset is 60 minutes, but it can be specified at the end if it’s necessary to change it.
+○ (start and end each require the week (first, last or number), weekday, month and time)
+• ntp source INTERFACE-ID
+○ Lets you assign the interface which the NTP messages will source/originate from.
+• ntp master [STRATUM]
+○ This will assign the current device as an NTP server with an optional stratum level.
+○ If the stratum level is not specified, it will default to 8 (displayed as 7 in the show commands, because
+stratum levels begin counting from 0)
+• ntp authenticate
+○ Enables NTP authentication on the device.
+• ntp authentication-key KEY-NUMBER md5 KEY/PASSWORD
+○ Initializes an NTP key number along with a password assigned to it.
+• ntp trusted-key KEY-NUMBER
+○ Trusts an NTP key for it to be used in authentications.
+
+Day 37 - NTP
+Sunday, September 6, 2026 10:46 AM
+NTP Info
+General Information
+All devices have two types of clocks, software (clock) and hardware (calendar) clocks.
+• Software clock (aka. Clock) runs digitally on the operating system of the device.
+• Hardware clock (aka. Calendar) is an internal physical clock built into the device.
+• The default time zone for Cisco devices is UTC (Coordinated Universal Time)
+• The most important reason to have accurate time on a device is to have accurate logs for troubleshooting. (with
+show logging)
+The calendar of a device tracks the date and time on the device even if it restarts, power is lost, etc. When the system is
+restarted the calendar is used to initialize the clock. The calendar does have a flaw though, and it’s that it will drift over
+time and become inaccurate, so it is not an ideal time source. That’s why the Network Time Protocol (NTP) is used to
+mitigate this problem.
+Clock and Calendar Commands
+Clock/Calendar Show Commands
+• show clock
+○ You can view basic details about the clock through this command.
+○ It’ll display the current time.
+○ Sometimes, an asterisk ( * ) will be displayed to indicate that the time is not authoritative (not from a
+trusted source)
+• show clock detail
+○ Using this command will show the previous information as well as the time source (set to the hardware
+calendar by default)
+Clock/Calendar Config Commands
+• clock set HH:MM:SS DAY MONTH YEAR
+○ You can use this command to manually configure the clock on the device.
+• calendar set HH:MM:SS DAY MONTH YEAR
+○ You can also use this command to manually configure the calendar on the device.
+• Typically, you will want to synchronize both the clock and calendar, which can be done through two commands:
+○ clock update-calendar to sync the calendar to the clock’s time.
+○ clock read-calendar to sync the clock to the calendar’s time.
+• clock timezone TIMEZONE-NAME HOURS-OFFSET [MINUTES-OFFSET]
+○ The time zone can be configured with this command.
+• clock summer-time TIMEZONE-NAME recurring START END [OFFSET]
+○ The daylight savings time (summer time) can be configured with this command.
+○ The default offset is 60 minutes, but it can be specified at the end if it’s necessary to change it.
+○ (start and end each require the week (first, last or number), weekday, month and time)
+Network Time Protocol (NTP)
+Network Time Protocol (NTP) is a protocol that allows automatic syncing of time over a network.
+• It communicates over UDP port 123.
+• NTP uses the UTC time zone by default. The appropriate time zone must be configured on each device.
+• NTP clients request the time from NTP servers.
+• A device can be an NTP client and an NTP server at the same time.
+Stratum Levels
+Some NTP servers are better (more reliable) than others. That is determined through a factor which is called stratum
+level and it defines the ‘distance’ of an NTP server from the original reference clock.
+The stratum level range is (1 - 16), however, we start counting from (stratum 0).
+Reference Clocks
+A reference clock is usually a very accurate time device like an atomic clock or GPS clock. They are assigned stratum (0)
+within the NTP hierarchy.
+• NTP servers connected directly to reference clocks are stratum 1.
+NTP Hierarchy
+• Reference clocks are stratum (0).
+• Stratum (1) NTP servers get their time from reference clocks.
+• Stratum (2) NTP servers get their time from stratum (1) NTP servers.
+• Stratum (3) NTP servers get their time from stratum (2) NTP servers.
+• Stratum (15) is the maximum. Anything above that is considered unreliable.
+• Devices can also ‘peer’ with devices at the same stratum to become in a symmetric active mode in order to
+provide more accurate time.
+Cisco NTP operational modes
+Cisco devices can operate in three NTP modes:
+1. Server mode
+2. Client mode
+3. Symmetric Active mode
+Stratum level names
+○ NTP servers which get their time directly from reference clocks are also referred to as ‘primary servers’
+○ NTP servers which get their time from other NTP servers are referred to as ‘secondary servers’. They operate
+in server mode and client mode at the same time.
+NTP Configurations
+NTP Show Commands
+• show ntp associations
+○ Shows connected NTP servers
+○ It’ll show you a bunch of information for each server like:
+1. The address of the NTP servers the device is connected to along with a symbol to indicate the status.
+2. Their reference clocks
+3. Their stratum level
+• show ntp status
+○ Shows information about the current NTP instance running on the device
+○ It includes this info:
+1. The current device’s stratum level.
+2. The IP of the NTP server which is being used as reference.
+NTP Config Commands
+• ntp server IP-ADDRESS [prefer]
+○ Forms a connection to an NTP server.
+• ntp server IP-ADDRESS key KEY-NUMBER
+○ Forms a connection to an NTP server with an authentication key.
+• ntp peer IP-ADDRESS
+○ Forms a symmetric active connection with another NTP device. Both devices will have the same stratum
+level.
+• ntp peer IP-ADDRESS key KEY-NUMBER
+○ Forms a peering to another NTP device with an authentication key.
+• clock timezone TIMEZONE-NAME HOURS-OFFSET [MINUTES-OFFSET]
+○ Allows you to configure the time zone on the current device.
+• clock summer-time NAME recurring START END [OFFSET]
+○ Sets the daylight saving time (summer time) configuration for the clock.
+○ The default offset is 60 minutes, but it can be specified at the end if it’s necessary to change it.
+○ (start and end each require the week (first, last or number), weekday, month and time)
+• ntp source INTERFACE-ID
+○ Lets you assign the interface which the NTP messages will source/originate from.
+• ntp master [STRATUM]
+○ This will assign the current device as an NTP server with an optional stratum level.
+○ If the stratum level is not specified, it will default to 8 (displayed as 7 in the show commands, because
+stratum levels begin counting from 0)
+• ntp authenticate
+○ Enables NTP authentication on the device.
+• ntp authentication-key KEY-NUMBER md5 KEY/PASSWORD
+○ Initializes an NTP key number along with a password assigned to it.
+• ntp trusted-key KEY-NUMBER
+○ Trusts an NTP key for it to be used in authentications.
+
+Day 37 - NTP
+Sunday, September 6, 2026 10:46 AM
+NTP Info
+General Information
+All devices have two types of clocks, software (clock) and hardware (calendar) clocks.
+• Software clock (aka. Clock) runs digitally on the operating system of the device.
+• Hardware clock (aka. Calendar) is an internal physical clock built into the device.
+• The default time zone for Cisco devices is UTC (Coordinated Universal Time)
+• The most important reason to have accurate time on a device is to have accurate logs for troubleshooting. (with
+show logging)
+The calendar of a device tracks the date and time on the device even if it restarts, power is lost, etc. When the system is
+restarted the calendar is used to initialize the clock. The calendar does have a flaw though, and it’s that it will drift over
+time and become inaccurate, so it is not an ideal time source. That’s why the Network Time Protocol (NTP) is used to
+mitigate this problem.
+Clock and Calendar Commands
+Clock/Calendar Show Commands
+• show clock
+○ You can view basic details about the clock through this command.
+○ It’ll display the current time.
+○ Sometimes, an asterisk ( * ) will be displayed to indicate that the time is not authoritative (not from a
+trusted source)
+• show clock detail
+○ Using this command will show the previous information as well as the time source (set to the hardware
+calendar by default)
+Clock/Calendar Config Commands
+• clock set HH:MM:SS DAY MONTH YEAR
+○ You can use this command to manually configure the clock on the device.
+• calendar set HH:MM:SS DAY MONTH YEAR
+○ You can also use this command to manually configure the calendar on the device.
+• Typically, you will want to synchronize both the clock and calendar, which can be done through two commands:
+○ clock update-calendar to sync the calendar to the clock’s time.
+○ clock read-calendar to sync the clock to the calendar’s time.
+• clock timezone TIMEZONE-NAME HOURS-OFFSET [MINUTES-OFFSET]
+○ The time zone can be configured with this command.
+• clock summer-time TIMEZONE-NAME recurring START END [OFFSET]
+○ The daylight savings time (summer time) can be configured with this command.
+○ The default offset is 60 minutes, but it can be specified at the end if it’s necessary to change it.
+○ (start and end each require the week (first, last or number), weekday, month and time)
+Network Time Protocol (NTP)
+Network Time Protocol (NTP) is a protocol that allows automatic syncing of time over a network.
+• It communicates over UDP port 123.
+• NTP uses the UTC time zone by default. The appropriate time zone must be configured on each device.
+• NTP clients request the time from NTP servers.
+• A device can be an NTP client and an NTP server at the same time.
+Stratum Levels
+Some NTP servers are better (more reliable) than others. That is determined through a factor which is called stratum
+level and it defines the ‘distance’ of an NTP server from the original reference clock.
+The stratum level range is (1 - 16), however, we start counting from (stratum 0).
+Reference Clocks
+A reference clock is usually a very accurate time device like an atomic clock or GPS clock. They are assigned stratum (0)
+within the NTP hierarchy.
+• NTP servers connected directly to reference clocks are stratum 1.
+NTP Hierarchy
+• Reference clocks are stratum (0).
+• Stratum (1) NTP servers get their time from reference clocks.
+• Stratum (2) NTP servers get their time from stratum (1) NTP servers.
+• Stratum (3) NTP servers get their time from stratum (2) NTP servers.
+• Stratum (15) is the maximum. Anything above that is considered unreliable.
+• Devices can also ‘peer’ with devices at the same stratum to become in a symmetric active mode in order to
+provide more accurate time.
+Cisco NTP operational modes
+Cisco devices can operate in three NTP modes:
+1. Server mode
+2. Client mode
+3. Symmetric Active mode
+Stratum level names
+○ NTP servers which get their time directly from reference clocks are also referred to as ‘primary servers’
+○ NTP servers which get their time from other NTP servers are referred to as ‘secondary servers’. They operate
+in server mode and client mode at the same time.
+NTP Configurations
+NTP Show Commands
+• show ntp associations
+○ Shows connected NTP servers
+○ It’ll show you a bunch of information for each server like:
+1. The address of the NTP servers the device is connected to along with a symbol to indicate the status.
+2. Their reference clocks
+3. Their stratum level
+• show ntp status
+○ Shows information about the current NTP instance running on the device
+○ It includes this info:
+1. The current device’s stratum level.
+2. The IP of the NTP server which is being used as reference.
+NTP Config Commands
+• ntp server IP-ADDRESS [prefer]
+○ Forms a connection to an NTP server.
+• ntp server IP-ADDRESS key KEY-NUMBER
+○ Forms a connection to an NTP server with an authentication key.
+• ntp peer IP-ADDRESS
+○ Forms a symmetric active connection with another NTP device. Both devices will have the same stratum
+level.
+• ntp peer IP-ADDRESS key KEY-NUMBER
+○ Forms a peering to another NTP device with an authentication key.
+• clock timezone TIMEZONE-NAME HOURS-OFFSET [MINUTES-OFFSET]
+○ Allows you to configure the time zone on the current device.
+• clock summer-time NAME recurring START END [OFFSET]
+○ Sets the daylight saving time (summer time) configuration for the clock.
+○ The default offset is 60 minutes, but it can be specified at the end if it’s necessary to change it.
+○ (start and end each require the week (first, last or number), weekday, month and time)
+• ntp source INTERFACE-ID
+○ Lets you assign the interface which the NTP messages will source/originate from.
+• ntp master [STRATUM]
+○ This will assign the current device as an NTP server with an optional stratum level.
+○ If the stratum level is not specified, it will default to 8 (displayed as 7 in the show commands, because
+stratum levels begin counting from 0)
+• ntp authenticate
+○ Enables NTP authentication on the device.
+• ntp authentication-key KEY-NUMBER md5 KEY/PASSWORD
+○ Initializes an NTP key number along with a password assigned to it.
+• ntp trusted-key KEY-NUMBER
+○ Trusts an NTP key for it to be used in authentications.</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="/resources/ccna/day-36/"><small>← Day 36</small>CDP &amp; LLDP</a><a href="/resources/ccna/day-38/"><small>Day 38 →</small>DNS</a></nav></article></div></main>    <div class="contact-modal" id="contactModal">
+        <div class="contact-modal-content">
+            <div class="contact-modal-header">
+                <h3>Get in Touch</h3>
+                <button class="contact-modal-close" type="button" id="contactModalClose">✕</button>
+            </div>
+            <div class="contact-modal-links">
+                <a href="mailto:daviddipiazza29@gmail.com" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/CodeGoat29" target="_blank" class="contact-link">GitHub</a>
+            </div>
+        </div>
+    </div>
+
+            <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="/resources/">Resources</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/resume/">Resume</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="mailto:daviddipiazza29@gmail.com">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/CodeGoat29" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bar">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+<script src="/js/site.js"></script><script src="/resources/ccna/course.js?v=2"></script></body></html>

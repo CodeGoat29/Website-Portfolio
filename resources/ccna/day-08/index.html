@@ -1,0 +1,534 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 8: IPv4 Addressing (pt 2) | DiPiazza</title><link rel="icon" href="/images/dipiazza-icon.png"><link rel="stylesheet" href="/css/styles.css"><link rel="stylesheet" href="/resources/ccna/course.css?v=2"></head><body><header class="site-header">
+        <div class="container header-content">
+            <a href="/" class="logo-link"><img src="/images/dipiazza-icon.png" alt="DiPiazza Logo" class="logo"></a>
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Where I break stuff, then write about it.</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/resources/" class="active">Resources</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/resume/">Resume</a></li>
+                    <li><button class="nav-cta" type="button" data-contact-open>Get in Touch</button></li>
+                </ul>
+            </nav>
+        <div class="top-controls">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-inner"></span>
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div></div>
+    </header>
+
+<main class="wrap ccna-main"><div class="crumb"><a href="/resources/ccna/">CCNA study notes</a> / Day 08</div><div class="reading-layout"><aside class="course-sidebar"><details open><summary>Browse CCNA</summary><div class="sidebar-shortcuts"><a href="/resources/ccna/">Course overview</a><a href="/resources/ccna/commands/">Command reference</a></div><label class="day-search-label" for="day-search">Find a day</label><input id="day-search" type="search" placeholder="Day number or topic"><nav class="day-scroll" aria-label="CCNA study days" tabindex="0"><a href="/resources/ccna/day-01/"><span>Day 01</span><span>Network Devices</span></a><a href="/resources/ccna/day-02/"><span>Day 02</span><span>Interfaces and Cables</span></a><a href="/resources/ccna/day-03/"><span>Day 03</span><span>TCP/IP Model</span></a><a href="/resources/ccna/day-04/"><span>Day 04</span><span>Intro to the CLI</span></a><a href="/resources/ccna/day-05/"><span>Day 05</span><span>Ethernet LAN Switching (pt 1)</span></a><a href="/resources/ccna/day-06/"><span>Day 06</span><span>Ethernet LAN Switching (pt 2)</span></a><a href="/resources/ccna/day-07/"><span>Day 07</span><span>IPv4 Addressing (pt 1)</span></a><a href="/resources/ccna/day-08/" aria-current="page"><span>Day 08</span><span>IPv4 Addressing (pt 2)</span></a><a href="/resources/ccna/day-09/"><span>Day 09</span><span>Switch Interfaces</span></a><a href="/resources/ccna/day-10/"><span>Day 10</span><span>IPv4 Header</span></a><a href="/resources/ccna/day-11/"><span>Day 11</span><span>Routing Fundamentals (pt 1) / Static Routing (pt 2)</span></a><a href="/resources/ccna/day-12/"><span>Day 12</span><span>The life of a packet</span></a><a href="/resources/ccna/day-13/"><span>Day 13</span><span>Subnetting (pt 1)</span></a><a href="/resources/ccna/day-14/"><span>Day 14</span><span>Subnetting (pt 2)</span></a><a href="/resources/ccna/day-15/"><span>Day 15</span><span>Subnetting (pt 3 VLSM)</span></a><a href="/resources/ccna/day-16/"><span>Day 16</span><span>(VlANs pt 1)</span></a><a href="/resources/ccna/day-17/"><span>Day 17</span><span>(VlANs pt 2)</span></a><a href="/resources/ccna/day-18/"><span>Day 18</span><span>(VlANs pt 3)</span></a><a href="/resources/ccna/day-19/"><span>Day 19</span><span>DTP / VTP (Not in Syllabus)</span></a><a href="/resources/ccna/day-20/"><span>Day 20</span><span>Spanning Tree Protocol (pt 1)</span></a><a href="/resources/ccna/day-21/"><span>Day 21</span><span>Spanning Tree Protocol (pt 2)</span></a><a href="/resources/ccna/day-22/"><span>Day 22</span><span>Rapid Spanning Tree Protocol</span></a><a href="/resources/ccna/day-23/"><span>Day 23</span><span>Etherchannel</span></a><a href="/resources/ccna/day-24/"><span>Day 24</span><span>Dynamic Routing</span></a><a href="/resources/ccna/day-25/"><span>Day 25</span><span>RIP &amp; EIGRP</span></a><a href="/resources/ccna/day-26/"><span>Day 26</span><span>OSPF (pt 1)</span></a><a href="/resources/ccna/day-27/"><span>Day 27</span><span>OSPF (pt 2)</span></a><a href="/resources/ccna/day-28/"><span>Day 28</span><span>OSPF (pt 3)</span></a><a href="/resources/ccna/day-29/"><span>Day 29</span><span>First Hop Redundancy Protocols</span></a><a href="/resources/ccna/day-30/"><span>Day 30</span><span>TCP &amp; UDP</span></a><a href="/resources/ccna/day-31/"><span>Day 31</span><span>IPV6 (pt 1)</span></a><a href="/resources/ccna/day-32/"><span>Day 32</span><span>IPV6 (pt 2)</span></a><a href="/resources/ccna/day-33/"><span>Day 33</span><span>IPV6 (pt 3)</span></a><a href="/resources/ccna/day-34/"><span>Day 34</span><span>Standard ACLs</span></a><a href="/resources/ccna/day-35/"><span>Day 35</span><span>Extended ACLs</span></a><a href="/resources/ccna/day-36/"><span>Day 36</span><span>CDP &amp; LLDP</span></a><a href="/resources/ccna/day-37/"><span>Day 37</span><span>NTP</span></a><a href="/resources/ccna/day-38/"><span>Day 38</span><span>DNS</span></a><a href="/resources/ccna/day-39/"><span>Day 39</span><span>DHCP</span></a><a href="/resources/ccna/day-40/"><span>Day 40</span><span>SNMP</span></a><a href="/resources/ccna/day-41/"><span>Day 41</span><span>Syslog</span></a><a href="/resources/ccna/day-42/"><span>Day 42</span><span>SSH</span></a><a href="/resources/ccna/day-43/"><span>Day 43</span><span>FTP &amp; TFTP</span></a><a href="/resources/ccna/day-44/"><span>Day 44</span><span>NAT (pt 1)</span></a><a href="/resources/ccna/day-45/"><span>Day 45</span><span>NAT (pt 2)</span></a><a href="/resources/ccna/day-46/"><span>Day 46</span><span>QoS (pt 1)</span></a><a href="/resources/ccna/day-47/"><span>Day 47</span><span>QoS (pt 2)</span></a><a href="/resources/ccna/day-48/"><span>Day 48</span><span>Security Fundamentals</span></a><a href="/resources/ccna/day-49/"><span>Day 49</span><span>Port Security</span></a><a href="/resources/ccna/day-50/"><span>Day 50</span><span>DHCP Snooping</span></a><a href="/resources/ccna/day-51/"><span>Day 51</span><span>Dynamic ARP Inspection (DAI)</span></a><a href="/resources/ccna/day-52/"><span>Day 52</span><span>LAN Architectures</span></a><a href="/resources/ccna/day-53/"><span>Day 53</span><span>WAN Architectures</span></a><a href="/resources/ccna/day-54/"><span>Day 54</span><span>Virtualization &amp; Cloud / Containers / VRF</span></a><a href="/resources/ccna/day-55/"><span>Day 55</span><span>Wireless Fundamentals</span></a><a href="/resources/ccna/day-56/"><span>Day 56</span><span>Wireless Architectures</span></a><a href="/resources/ccna/day-57/"><span>Day 57</span><span>Wireless Security</span></a><a href="/resources/ccna/day-58/"><span>Day 58</span><span>Wireless Configuration</span></a><a href="/resources/ccna/day-59/"><span>Day 59</span><span>Intro to Network Automation</span></a><a href="/resources/ccna/day-60/"><span>Day 60</span><span>JSON, XML, &amp; YAML</span></a><a href="/resources/ccna/day-61/"><span>Day 61</span><span>REST API</span></a><a href="/resources/ccna/day-62/"><span>Day 62</span><span>Software-Defined Networking</span></a><a href="/resources/ccna/day-63/"><span>Day 63</span><span>Ansible, Puppet, Chef, &amp; Terraform</span></a></nav><p id="day-empty" hidden>No matching days.</p></details></aside><article class="lesson-content"><header class="lesson-head"><div class="eyebrow">Day 08 / 63 · Network foundations</div><h1>IPv4 Addressing (pt 2)</h1><p class="lead">Study notes based primarily on Jeremy’s IT Lab CCNA learning videos. Credit to Jeremy’s IT Lab for the source lessons and diagrams.</p><div class="pills"><a class="button" href="/resources/ccna/commands/">Command reference</a><a class="button primary" href="/resources/ccna/">All 63 days</a></div></header><section class="note-part" id="part-1"><h2>IPv4 Addressing (pt 2)</h2><a class="button" href="/resources/ccna/assets/lesson-08/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="/resources/ccna/assets/lesson-08/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge IPv4 Addressing (pt 2) page 1"><img src="/resources/ccna/assets/lesson-08/page-1.webp" width="918" height="2035" loading="lazy" alt="Original OneNote notes: IPv4 Addressing (pt 2), page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 5</figcaption></figure><figure class="note-image"><a href="/resources/ccna/assets/lesson-08/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge IPv4 Addressing (pt 2) page 2"><img src="/resources/ccna/assets/lesson-08/page-2.webp" width="892" height="2036" loading="lazy" alt="Original OneNote notes: IPv4 Addressing (pt 2), page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 5</figcaption></figure><figure class="note-image"><a href="/resources/ccna/assets/lesson-08/page-3.webp" target="_blank" rel="noopener" aria-label="Enlarge IPv4 Addressing (pt 2) page 3"><img src="/resources/ccna/assets/lesson-08/page-3.webp" width="1240" height="2075" loading="lazy" alt="Original OneNote notes: IPv4 Addressing (pt 2), page 3. Text version follows below."></a><figcaption>Original notes · Page 3 of 5</figcaption></figure><figure class="note-image"><a href="/resources/ccna/assets/lesson-08/page-4.webp" target="_blank" rel="noopener" aria-label="Enlarge IPv4 Addressing (pt 2) page 4"><img src="/resources/ccna/assets/lesson-08/page-4.webp" width="1464" height="2109" loading="lazy" alt="Original OneNote notes: IPv4 Addressing (pt 2), page 4. Text version follows below."></a><figcaption>Original notes · Page 4 of 5</figcaption></figure><figure class="note-image"><a href="/resources/ccna/assets/lesson-08/page-5.webp" target="_blank" rel="noopener" aria-label="Enlarge IPv4 Addressing (pt 2) page 5"><img src="/resources/ccna/assets/lesson-08/page-5.webp" width="636" height="342" loading="lazy" alt="Original OneNote notes: IPv4 Addressing (pt 2), page 5. Text version follows below."></a><figcaption>Original notes · Page 5 of 5</figcaption></figure><details class="text-view"><summary>Text view — IPv4 Addressing (pt 2)</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 8 - IPv4 Addressing (pt 2)
+Saturday, August 22, 2026 2:50 PM
+8. IPv4 ADDRESSING : PART 2
+MAXIMUM HOSTS PER NETWORK
+Let&#x27;s take a Class C Network:
+192.168.1.0/24
+(gives a range of 0 ---&gt; 255)
+Said another way, the HOST portion (the .0) is equal to 8 bits so...
+Host portion = 8 bits = 2^8 = 256
+HOWEVER, since the Network Address (Network ID)
+192.168.1.0 is Reserved
+AND
+192.168.1.255 (BROADCAST ADDRESS) is ALSO reserved.
+The MAXIMUM Hosts per Network = 2^8-2 = 254 hosts
+What about a Class B Network ?
+172.16.0.0/16 ----&gt; 172.16.255.255/16
+Host portion = 16 bits = 2^16 = 65,536
+Maximum hosts per network = 2^16-2 = 65,534 hosts
+What about a Class A Network ?
+10.0.0.0/8 -------------&gt; 10.255.255.255/8
+Host portion = 24 bits = 2^24 = 16,777,216
+Maximum hosts per network = 2^24-2 = 16,777,214 hosts
+THEREFORE:
+The formula for calculating the number of HOSTS on a network is:
+2 ^ N - 2 (2 to the power of N - 2)
+where N = number of HOST bits
+FIRST / LAST USABLE ADDRESSES
+Class C Network
+192.168.1.0/24 (NETWORK ADDRESS)
+Add 1 so the Host Portion = 00000001
+192.168.1.1/24 = FIRST USABLE ADDRESS
+192.168.1.255/24 (BROADCAST ADDRESS)
+Subtract 1 from the BROADCAST ADDRESS = 11111110
+192.168.1.254/24 = LAST USABLE ADDRESS
+Class B Network
+172.16.0.0/16 (NETWORK ADDRESS)
+Add 1 to Host portion so 0000 0000 0000 0001
+172.16.0.1/16 is the FIRST USABLE ADDRESS
+172.16.255.255/16 (BROADCAST ADDRESS)
+Subtract 1 to Broadcast Address so 1111 1111 1111 1110
+172.16.255.254/16 is the LAST USABLE ADDRESS
+Class A Network
+10.0.0.0/8 (NETWORK ADDRESS)
+Add 1 to Host portion so 00000000 00000000 00000001
+10.0.0.1/8 is the FIRST USABLE ADDRESS
+10.255.255.255/8 (BROADCAST ADDRESS)
+Subtract 1 to Broadcast Address so 1111 1111 1111 1110
+10.255.255.254/16 is the LAST USABLE ADDRESS
+CISCO CLI DEVICE CONFIGURATION
+R1&gt; enable R1# show ip interface brief
+Lists the Interfaces, IP Addresses, Method, Status, and Protocol.
+Interfaces:
+• What port interfaces are available/connected
+IP Addresses
+• Self explanatory. What IP Address is assigned.
+Method
+• What method was the IP address assigned?
+Status (Layer 1 Status)
+• Current status of interface
+• &#x27;administratively down&#x27; = Interface has been disabled with the &#x27;shutdown&#x27; command
+Administratively down is the DEFAULT status of Cisco Router interfaces.
+Cisco Switch interfaces are NOT administratively down by DEFAULT.
+Protocol (Layer 2 Status)
+• Cannot operate if Status (Layer 1) is down
+// configure terminal cmd
+R1# conf t
+// This enters interface configuration mode
+R1(config)# interface gigabitethernet 0/0
+This can be shortened to &#x27;g0/0&#x27; like they are listed in physical network maps.
+// This sets the IP ADDRESS and SUBNET MASK of device
+R1(config-if) #ip address 10.255.255.254 255.0.0.0
+// This enables the device
+R1(config-if) #no shutdown
+Two messages should appear showing the state has changed to &#x27;up&#x27; (Status). Second message should show
+line protocol is now &#x27;up&#x27; (Protocol).
+// &#x27;do&#x27; allows you to run a Privileged EXEC command from outside the mode.
+R1(config-if) #do show ip interface brief
+Good to confirm that the device/interface you have configured is up and running.
+More &#x27;show&#x27; CLI Commands
+&#x27;show interfaces &#x27;
+• Shows Layer 1 and Layer 2 information about the interface and some Layer 3.
+• Shows MAC Address (or BIA address)
+• IP Address
+• ... and so much more
+&#x27;show interfaces description&#x27;
+• show description for interface.
+Example:
+// Configure mode for interface Gigabyte Interface 0/0
+R1(config) #int g0/0
+R1(config) #description ## to SW1 ##
+This sets the &#x27;Description&#x27; column to display:
+Interface Description
+Gi0/0 ## to SW1 ##
+
+Day 8 - IPv4 Addressing (pt 2)
+Saturday, August 22, 2026 2:50 PM
+8. IPv4 ADDRESSING : PART 2
+MAXIMUM HOSTS PER NETWORK
+Let&#x27;s take a Class C Network:
+192.168.1.0/24
+(gives a range of 0 ---&gt; 255)
+Said another way, the HOST portion (the .0) is equal to 8 bits so...
+Host portion = 8 bits = 2^8 = 256
+HOWEVER, since the Network Address (Network ID)
+192.168.1.0 is Reserved
+AND
+192.168.1.255 (BROADCAST ADDRESS) is ALSO reserved.
+The MAXIMUM Hosts per Network = 2^8-2 = 254 hosts
+What about a Class B Network ?
+172.16.0.0/16 ----&gt; 172.16.255.255/16
+Host portion = 16 bits = 2^16 = 65,536
+Maximum hosts per network = 2^16-2 = 65,534 hosts
+What about a Class A Network ?
+10.0.0.0/8 -------------&gt; 10.255.255.255/8
+Host portion = 24 bits = 2^24 = 16,777,216
+Maximum hosts per network = 2^24-2 = 16,777,214 hosts
+THEREFORE:
+The formula for calculating the number of HOSTS on a network is:
+2 ^ N - 2 (2 to the power of N - 2)
+where N = number of HOST bits
+FIRST / LAST USABLE ADDRESSES
+Class C Network
+192.168.1.0/24 (NETWORK ADDRESS)
+Add 1 so the Host Portion = 00000001
+192.168.1.1/24 = FIRST USABLE ADDRESS
+192.168.1.255/24 (BROADCAST ADDRESS)
+Subtract 1 from the BROADCAST ADDRESS = 11111110
+192.168.1.254/24 = LAST USABLE ADDRESS
+Class B Network
+172.16.0.0/16 (NETWORK ADDRESS)
+Add 1 to Host portion so 0000 0000 0000 0001
+172.16.0.1/16 is the FIRST USABLE ADDRESS
+172.16.255.255/16 (BROADCAST ADDRESS)
+Subtract 1 to Broadcast Address so 1111 1111 1111 1110
+172.16.255.254/16 is the LAST USABLE ADDRESS
+Class A Network
+10.0.0.0/8 (NETWORK ADDRESS)
+Add 1 to Host portion so 00000000 00000000 00000001
+10.0.0.1/8 is the FIRST USABLE ADDRESS
+10.255.255.255/8 (BROADCAST ADDRESS)
+Subtract 1 to Broadcast Address so 1111 1111 1111 1110
+10.255.255.254/16 is the LAST USABLE ADDRESS
+CISCO CLI DEVICE CONFIGURATION
+R1&gt; enable R1# show ip interface brief
+Lists the Interfaces, IP Addresses, Method, Status, and Protocol.
+Interfaces:
+• What port interfaces are available/connected
+IP Addresses
+• Self explanatory. What IP Address is assigned.
+Method
+• What method was the IP address assigned?
+Status (Layer 1 Status)
+• Current status of interface
+• &#x27;administratively down&#x27; = Interface has been disabled with the &#x27;shutdown&#x27; command
+Administratively down is the DEFAULT status of Cisco Router interfaces.
+Cisco Switch interfaces are NOT administratively down by DEFAULT.
+Protocol (Layer 2 Status)
+• Cannot operate if Status (Layer 1) is down
+// configure terminal cmd
+R1# conf t
+// This enters interface configuration mode
+R1(config)# interface gigabitethernet 0/0
+This can be shortened to &#x27;g0/0&#x27; like they are listed in physical network maps.
+// This sets the IP ADDRESS and SUBNET MASK of device
+R1(config-if) #ip address 10.255.255.254 255.0.0.0
+// This enables the device
+R1(config-if) #no shutdown
+Two messages should appear showing the state has changed to &#x27;up&#x27; (Status). Second message should show
+line protocol is now &#x27;up&#x27; (Protocol).
+// &#x27;do&#x27; allows you to run a Privileged EXEC command from outside the mode.
+R1(config-if) #do show ip interface brief
+Good to confirm that the device/interface you have configured is up and running.
+More &#x27;show&#x27; CLI Commands
+&#x27;show interfaces &#x27;
+• Shows Layer 1 and Layer 2 information about the interface and some Layer 3.
+• Shows MAC Address (or BIA address)
+• IP Address
+• ... and so much more
+&#x27;show interfaces description&#x27;
+• show description for interface.
+Example:
+// Configure mode for interface Gigabyte Interface 0/0
+R1(config) #int g0/0
+R1(config) #description ## to SW1 ##
+This sets the &#x27;Description&#x27; column to display:
+Interface Description
+Gi0/0 ## to SW1 ##
+
+Day 8 - IPv4 Addressing (pt 2)
+Saturday, August 22, 2026 2:50 PM
+8. IPv4 ADDRESSING : PART 2
+MAXIMUM HOSTS PER NETWORK
+Let&#x27;s take a Class C Network:
+192.168.1.0/24
+(gives a range of 0 ---&gt; 255)
+Said another way, the HOST portion (the .0) is equal to 8 bits so...
+Host portion = 8 bits = 2^8 = 256
+HOWEVER, since the Network Address (Network ID)
+192.168.1.0 is Reserved
+AND
+192.168.1.255 (BROADCAST ADDRESS) is ALSO reserved.
+The MAXIMUM Hosts per Network = 2^8-2 = 254 hosts
+What about a Class B Network ?
+172.16.0.0/16 ----&gt; 172.16.255.255/16
+Host portion = 16 bits = 2^16 = 65,536
+Maximum hosts per network = 2^16-2 = 65,534 hosts
+What about a Class A Network ?
+10.0.0.0/8 -------------&gt; 10.255.255.255/8
+Host portion = 24 bits = 2^24 = 16,777,216
+Maximum hosts per network = 2^24-2 = 16,777,214 hosts
+THEREFORE:
+The formula for calculating the number of HOSTS on a network is:
+2 ^ N - 2 (2 to the power of N - 2)
+where N = number of HOST bits
+FIRST / LAST USABLE ADDRESSES
+Class C Network
+192.168.1.0/24 (NETWORK ADDRESS)
+Add 1 so the Host Portion = 00000001
+192.168.1.1/24 = FIRST USABLE ADDRESS
+192.168.1.255/24 (BROADCAST ADDRESS)
+Subtract 1 from the BROADCAST ADDRESS = 11111110
+192.168.1.254/24 = LAST USABLE ADDRESS
+Class B Network
+172.16.0.0/16 (NETWORK ADDRESS)
+Add 1 to Host portion so 0000 0000 0000 0001
+172.16.0.1/16 is the FIRST USABLE ADDRESS
+172.16.255.255/16 (BROADCAST ADDRESS)
+Subtract 1 to Broadcast Address so 1111 1111 1111 1110
+172.16.255.254/16 is the LAST USABLE ADDRESS
+Class A Network
+10.0.0.0/8 (NETWORK ADDRESS)
+Add 1 to Host portion so 00000000 00000000 00000001
+10.0.0.1/8 is the FIRST USABLE ADDRESS
+10.255.255.255/8 (BROADCAST ADDRESS)
+Subtract 1 to Broadcast Address so 1111 1111 1111 1110
+10.255.255.254/16 is the LAST USABLE ADDRESS
+CISCO CLI DEVICE CONFIGURATION
+R1&gt; enable R1# show ip interface brief
+Lists the Interfaces, IP Addresses, Method, Status, and Protocol.
+Interfaces:
+• What port interfaces are available/connected
+IP Addresses
+• Self explanatory. What IP Address is assigned.
+Method
+• What method was the IP address assigned?
+Status (Layer 1 Status)
+• Current status of interface
+• &#x27;administratively down&#x27; = Interface has been disabled with the &#x27;shutdown&#x27; command
+Administratively down is the DEFAULT status of Cisco Router interfaces.
+Cisco Switch interfaces are NOT administratively down by DEFAULT.
+Protocol (Layer 2 Status)
+• Cannot operate if Status (Layer 1) is down
+// configure terminal cmd
+R1# conf t
+// This enters interface configuration mode
+R1(config)# interface gigabitethernet 0/0
+This can be shortened to &#x27;g0/0&#x27; like they are listed in physical network maps.
+// This sets the IP ADDRESS and SUBNET MASK of device
+R1(config-if) #ip address 10.255.255.254 255.0.0.0
+// This enables the device
+R1(config-if) #no shutdown
+Two messages should appear showing the state has changed to &#x27;up&#x27; (Status). Second message should show
+line protocol is now &#x27;up&#x27; (Protocol).
+// &#x27;do&#x27; allows you to run a Privileged EXEC command from outside the mode.
+R1(config-if) #do show ip interface brief
+Good to confirm that the device/interface you have configured is up and running.
+More &#x27;show&#x27; CLI Commands
+&#x27;show interfaces &#x27;
+• Shows Layer 1 and Layer 2 information about the interface and some Layer 3.
+• Shows MAC Address (or BIA address)
+• IP Address
+• ... and so much more
+&#x27;show interfaces description&#x27;
+• show description for interface.
+Example:
+// Configure mode for interface Gigabyte Interface 0/0
+R1(config) #int g0/0
+R1(config) #description ## to SW1 ##
+This sets the &#x27;Description&#x27; column to display:
+Interface Description
+Gi0/0 ## to SW1 ##
+
+Day 8 - IPv4 Addressing (pt 2)
+Saturday, August 22, 2026 2:50 PM
+8. IPv4 ADDRESSING : PART 2
+MAXIMUM HOSTS PER NETWORK
+Let&#x27;s take a Class C Network:
+192.168.1.0/24
+(gives a range of 0 ---&gt; 255)
+Said another way, the HOST portion (the .0) is equal to 8 bits so...
+Host portion = 8 bits = 2^8 = 256
+HOWEVER, since the Network Address (Network ID)
+192.168.1.0 is Reserved
+AND
+192.168.1.255 (BROADCAST ADDRESS) is ALSO reserved.
+The MAXIMUM Hosts per Network = 2^8-2 = 254 hosts
+What about a Class B Network ?
+172.16.0.0/16 ----&gt; 172.16.255.255/16
+Host portion = 16 bits = 2^16 = 65,536
+Maximum hosts per network = 2^16-2 = 65,534 hosts
+What about a Class A Network ?
+10.0.0.0/8 -------------&gt; 10.255.255.255/8
+Host portion = 24 bits = 2^24 = 16,777,216
+Maximum hosts per network = 2^24-2 = 16,777,214 hosts
+THEREFORE:
+The formula for calculating the number of HOSTS on a network is:
+2 ^ N - 2 (2 to the power of N - 2)
+where N = number of HOST bits
+FIRST / LAST USABLE ADDRESSES
+Class C Network
+192.168.1.0/24 (NETWORK ADDRESS)
+Add 1 so the Host Portion = 00000001
+192.168.1.1/24 = FIRST USABLE ADDRESS
+192.168.1.255/24 (BROADCAST ADDRESS)
+Subtract 1 from the BROADCAST ADDRESS = 11111110
+192.168.1.254/24 = LAST USABLE ADDRESS
+Class B Network
+172.16.0.0/16 (NETWORK ADDRESS)
+Add 1 to Host portion so 0000 0000 0000 0001
+172.16.0.1/16 is the FIRST USABLE ADDRESS
+172.16.255.255/16 (BROADCAST ADDRESS)
+Subtract 1 to Broadcast Address so 1111 1111 1111 1110
+172.16.255.254/16 is the LAST USABLE ADDRESS
+Class A Network
+10.0.0.0/8 (NETWORK ADDRESS)
+Add 1 to Host portion so 00000000 00000000 00000001
+10.0.0.1/8 is the FIRST USABLE ADDRESS
+10.255.255.255/8 (BROADCAST ADDRESS)
+Subtract 1 to Broadcast Address so 1111 1111 1111 1110
+10.255.255.254/16 is the LAST USABLE ADDRESS
+CISCO CLI DEVICE CONFIGURATION
+R1&gt; enable R1# show ip interface brief
+Lists the Interfaces, IP Addresses, Method, Status, and Protocol.
+Interfaces:
+• What port interfaces are available/connected
+IP Addresses
+• Self explanatory. What IP Address is assigned.
+Method
+• What method was the IP address assigned?
+Status (Layer 1 Status)
+• Current status of interface
+• &#x27;administratively down&#x27; = Interface has been disabled with the &#x27;shutdown&#x27; command
+Administratively down is the DEFAULT status of Cisco Router interfaces.
+Cisco Switch interfaces are NOT administratively down by DEFAULT.
+Protocol (Layer 2 Status)
+• Cannot operate if Status (Layer 1) is down
+// configure terminal cmd
+R1# conf t
+// This enters interface configuration mode
+R1(config)# interface gigabitethernet 0/0
+This can be shortened to &#x27;g0/0&#x27; like they are listed in physical network maps.
+// This sets the IP ADDRESS and SUBNET MASK of device
+R1(config-if) #ip address 10.255.255.254 255.0.0.0
+// This enables the device
+R1(config-if) #no shutdown
+Two messages should appear showing the state has changed to &#x27;up&#x27; (Status). Second message should show
+line protocol is now &#x27;up&#x27; (Protocol).
+// &#x27;do&#x27; allows you to run a Privileged EXEC command from outside the mode.
+R1(config-if) #do show ip interface brief
+Good to confirm that the device/interface you have configured is up and running.
+More &#x27;show&#x27; CLI Commands
+&#x27;show interfaces &#x27;
+• Shows Layer 1 and Layer 2 information about the interface and some Layer 3.
+• Shows MAC Address (or BIA address)
+• IP Address
+• ... and so much more
+&#x27;show interfaces description&#x27;
+• show description for interface.
+Example:
+// Configure mode for interface Gigabyte Interface 0/0
+R1(config) #int g0/0
+R1(config) #description ## to SW1 ##
+This sets the &#x27;Description&#x27; column to display:
+Interface Description
+Gi0/0 ## to SW1 ##
+
+Day 8 - IPv4 Addressing (pt 2)
+Saturday, August 22, 2026 2:50 PM
+8. IPv4 ADDRESSING : PART 2
+MAXIMUM HOSTS PER NETWORK
+Let&#x27;s take a Class C Network:
+192.168.1.0/24
+(gives a range of 0 ---&gt; 255)
+Said another way, the HOST portion (the .0) is equal to 8 bits so...
+Host portion = 8 bits = 2^8 = 256
+HOWEVER, since the Network Address (Network ID)
+192.168.1.0 is Reserved
+AND
+192.168.1.255 (BROADCAST ADDRESS) is ALSO reserved.
+The MAXIMUM Hosts per Network = 2^8-2 = 254 hosts
+What about a Class B Network ?
+172.16.0.0/16 ----&gt; 172.16.255.255/16
+Host portion = 16 bits = 2^16 = 65,536
+Maximum hosts per network = 2^16-2 = 65,534 hosts
+What about a Class A Network ?
+10.0.0.0/8 -------------&gt; 10.255.255.255/8
+Host portion = 24 bits = 2^24 = 16,777,216
+Maximum hosts per network = 2^24-2 = 16,777,214 hosts
+THEREFORE:
+The formula for calculating the number of HOSTS on a network is:
+2 ^ N - 2 (2 to the power of N - 2)
+where N = number of HOST bits
+FIRST / LAST USABLE ADDRESSES
+Class C Network
+192.168.1.0/24 (NETWORK ADDRESS)
+Add 1 so the Host Portion = 00000001
+192.168.1.1/24 = FIRST USABLE ADDRESS
+192.168.1.255/24 (BROADCAST ADDRESS)
+Subtract 1 from the BROADCAST ADDRESS = 11111110
+192.168.1.254/24 = LAST USABLE ADDRESS
+Class B Network
+172.16.0.0/16 (NETWORK ADDRESS)
+Add 1 to Host portion so 0000 0000 0000 0001
+172.16.0.1/16 is the FIRST USABLE ADDRESS
+172.16.255.255/16 (BROADCAST ADDRESS)
+Subtract 1 to Broadcast Address so 1111 1111 1111 1110
+172.16.255.254/16 is the LAST USABLE ADDRESS
+Class A Network
+10.0.0.0/8 (NETWORK ADDRESS)
+Add 1 to Host portion so 00000000 00000000 00000001
+10.0.0.1/8 is the FIRST USABLE ADDRESS
+10.255.255.255/8 (BROADCAST ADDRESS)
+Subtract 1 to Broadcast Address so 1111 1111 1111 1110
+10.255.255.254/16 is the LAST USABLE ADDRESS
+CISCO CLI DEVICE CONFIGURATION
+R1&gt; enable R1# show ip interface brief
+Lists the Interfaces, IP Addresses, Method, Status, and Protocol.
+Interfaces:
+• What port interfaces are available/connected
+IP Addresses
+• Self explanatory. What IP Address is assigned.
+Method
+• What method was the IP address assigned?
+Status (Layer 1 Status)
+• Current status of interface
+• &#x27;administratively down&#x27; = Interface has been disabled with the &#x27;shutdown&#x27; command
+Administratively down is the DEFAULT status of Cisco Router interfaces.
+Cisco Switch interfaces are NOT administratively down by DEFAULT.
+Protocol (Layer 2 Status)
+• Cannot operate if Status (Layer 1) is down
+// configure terminal cmd
+R1# conf t
+// This enters interface configuration mode
+R1(config)# interface gigabitethernet 0/0
+This can be shortened to &#x27;g0/0&#x27; like they are listed in physical network maps.
+// This sets the IP ADDRESS and SUBNET MASK of device
+R1(config-if) #ip address 10.255.255.254 255.0.0.0
+// This enables the device
+R1(config-if) #no shutdown
+Two messages should appear showing the state has changed to &#x27;up&#x27; (Status). Second message should show
+line protocol is now &#x27;up&#x27; (Protocol).
+// &#x27;do&#x27; allows you to run a Privileged EXEC command from outside the mode.
+R1(config-if) #do show ip interface brief
+Good to confirm that the device/interface you have configured is up and running.
+More &#x27;show&#x27; CLI Commands
+&#x27;show interfaces &#x27;
+• Shows Layer 1 and Layer 2 information about the interface and some Layer 3.
+• Shows MAC Address (or BIA address)
+• IP Address
+• ... and so much more
+&#x27;show interfaces description&#x27;
+• show description for interface.
+Example:
+// Configure mode for interface Gigabyte Interface 0/0
+R1(config) #int g0/0
+R1(config) #description ## to SW1 ##
+This sets the &#x27;Description&#x27; column to display:
+Interface Description
+Gi0/0 ## to SW1 ##</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="/resources/ccna/day-07/"><small>← Day 7</small>IPv4 Addressing (pt 1)</a><a href="/resources/ccna/day-09/"><small>Day 9 →</small>Switch Interfaces</a></nav></article></div></main>    <div class="contact-modal" id="contactModal">
+        <div class="contact-modal-content">
+            <div class="contact-modal-header">
+                <h3>Get in Touch</h3>
+                <button class="contact-modal-close" type="button" id="contactModalClose">✕</button>
+            </div>
+            <div class="contact-modal-links">
+                <a href="mailto:daviddipiazza29@gmail.com" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/CodeGoat29" target="_blank" class="contact-link">GitHub</a>
+            </div>
+        </div>
+    </div>
+
+            <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="/resources/">Resources</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/resume/">Resume</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="mailto:daviddipiazza29@gmail.com">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/CodeGoat29" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bar">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+<script src="/js/site.js"></script><script src="/resources/ccna/course.js?v=2"></script></body></html>

@@ -1,0 +1,964 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 45: NAT (pt 2) | DiPiazza</title><link rel="icon" href="/images/dipiazza-icon.png"><link rel="stylesheet" href="/css/styles.css"><link rel="stylesheet" href="/resources/ccna/course.css?v=2"></head><body><header class="site-header">
+        <div class="container header-content">
+            <a href="/" class="logo-link"><img src="/images/dipiazza-icon.png" alt="DiPiazza Logo" class="logo"></a>
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Where I break stuff, then write about it.</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/resources/" class="active">Resources</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/resume/">Resume</a></li>
+                    <li><button class="nav-cta" type="button" data-contact-open>Get in Touch</button></li>
+                </ul>
+            </nav>
+        <div class="top-controls">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-inner"></span>
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div></div>
+    </header>
+
+<main class="wrap ccna-main"><div class="crumb"><a href="/resources/ccna/">CCNA study notes</a> / Day 45</div><div class="reading-layout"><aside class="course-sidebar"><details open><summary>Browse CCNA</summary><div class="sidebar-shortcuts"><a href="/resources/ccna/">Course overview</a><a href="/resources/ccna/commands/">Command reference</a></div><label class="day-search-label" for="day-search">Find a day</label><input id="day-search" type="search" placeholder="Day number or topic"><nav class="day-scroll" aria-label="CCNA study days" tabindex="0"><a href="/resources/ccna/day-01/"><span>Day 01</span><span>Network Devices</span></a><a href="/resources/ccna/day-02/"><span>Day 02</span><span>Interfaces and Cables</span></a><a href="/resources/ccna/day-03/"><span>Day 03</span><span>TCP/IP Model</span></a><a href="/resources/ccna/day-04/"><span>Day 04</span><span>Intro to the CLI</span></a><a href="/resources/ccna/day-05/"><span>Day 05</span><span>Ethernet LAN Switching (pt 1)</span></a><a href="/resources/ccna/day-06/"><span>Day 06</span><span>Ethernet LAN Switching (pt 2)</span></a><a href="/resources/ccna/day-07/"><span>Day 07</span><span>IPv4 Addressing (pt 1)</span></a><a href="/resources/ccna/day-08/"><span>Day 08</span><span>IPv4 Addressing (pt 2)</span></a><a href="/resources/ccna/day-09/"><span>Day 09</span><span>Switch Interfaces</span></a><a href="/resources/ccna/day-10/"><span>Day 10</span><span>IPv4 Header</span></a><a href="/resources/ccna/day-11/"><span>Day 11</span><span>Routing Fundamentals (pt 1) / Static Routing (pt 2)</span></a><a href="/resources/ccna/day-12/"><span>Day 12</span><span>The life of a packet</span></a><a href="/resources/ccna/day-13/"><span>Day 13</span><span>Subnetting (pt 1)</span></a><a href="/resources/ccna/day-14/"><span>Day 14</span><span>Subnetting (pt 2)</span></a><a href="/resources/ccna/day-15/"><span>Day 15</span><span>Subnetting (pt 3 VLSM)</span></a><a href="/resources/ccna/day-16/"><span>Day 16</span><span>(VlANs pt 1)</span></a><a href="/resources/ccna/day-17/"><span>Day 17</span><span>(VlANs pt 2)</span></a><a href="/resources/ccna/day-18/"><span>Day 18</span><span>(VlANs pt 3)</span></a><a href="/resources/ccna/day-19/"><span>Day 19</span><span>DTP / VTP (Not in Syllabus)</span></a><a href="/resources/ccna/day-20/"><span>Day 20</span><span>Spanning Tree Protocol (pt 1)</span></a><a href="/resources/ccna/day-21/"><span>Day 21</span><span>Spanning Tree Protocol (pt 2)</span></a><a href="/resources/ccna/day-22/"><span>Day 22</span><span>Rapid Spanning Tree Protocol</span></a><a href="/resources/ccna/day-23/"><span>Day 23</span><span>Etherchannel</span></a><a href="/resources/ccna/day-24/"><span>Day 24</span><span>Dynamic Routing</span></a><a href="/resources/ccna/day-25/"><span>Day 25</span><span>RIP &amp; EIGRP</span></a><a href="/resources/ccna/day-26/"><span>Day 26</span><span>OSPF (pt 1)</span></a><a href="/resources/ccna/day-27/"><span>Day 27</span><span>OSPF (pt 2)</span></a><a href="/resources/ccna/day-28/"><span>Day 28</span><span>OSPF (pt 3)</span></a><a href="/resources/ccna/day-29/"><span>Day 29</span><span>First Hop Redundancy Protocols</span></a><a href="/resources/ccna/day-30/"><span>Day 30</span><span>TCP &amp; UDP</span></a><a href="/resources/ccna/day-31/"><span>Day 31</span><span>IPV6 (pt 1)</span></a><a href="/resources/ccna/day-32/"><span>Day 32</span><span>IPV6 (pt 2)</span></a><a href="/resources/ccna/day-33/"><span>Day 33</span><span>IPV6 (pt 3)</span></a><a href="/resources/ccna/day-34/"><span>Day 34</span><span>Standard ACLs</span></a><a href="/resources/ccna/day-35/"><span>Day 35</span><span>Extended ACLs</span></a><a href="/resources/ccna/day-36/"><span>Day 36</span><span>CDP &amp; LLDP</span></a><a href="/resources/ccna/day-37/"><span>Day 37</span><span>NTP</span></a><a href="/resources/ccna/day-38/"><span>Day 38</span><span>DNS</span></a><a href="/resources/ccna/day-39/"><span>Day 39</span><span>DHCP</span></a><a href="/resources/ccna/day-40/"><span>Day 40</span><span>SNMP</span></a><a href="/resources/ccna/day-41/"><span>Day 41</span><span>Syslog</span></a><a href="/resources/ccna/day-42/"><span>Day 42</span><span>SSH</span></a><a href="/resources/ccna/day-43/"><span>Day 43</span><span>FTP &amp; TFTP</span></a><a href="/resources/ccna/day-44/"><span>Day 44</span><span>NAT (pt 1)</span></a><a href="/resources/ccna/day-45/" aria-current="page"><span>Day 45</span><span>NAT (pt 2)</span></a><a href="/resources/ccna/day-46/"><span>Day 46</span><span>QoS (pt 1)</span></a><a href="/resources/ccna/day-47/"><span>Day 47</span><span>QoS (pt 2)</span></a><a href="/resources/ccna/day-48/"><span>Day 48</span><span>Security Fundamentals</span></a><a href="/resources/ccna/day-49/"><span>Day 49</span><span>Port Security</span></a><a href="/resources/ccna/day-50/"><span>Day 50</span><span>DHCP Snooping</span></a><a href="/resources/ccna/day-51/"><span>Day 51</span><span>Dynamic ARP Inspection (DAI)</span></a><a href="/resources/ccna/day-52/"><span>Day 52</span><span>LAN Architectures</span></a><a href="/resources/ccna/day-53/"><span>Day 53</span><span>WAN Architectures</span></a><a href="/resources/ccna/day-54/"><span>Day 54</span><span>Virtualization &amp; Cloud / Containers / VRF</span></a><a href="/resources/ccna/day-55/"><span>Day 55</span><span>Wireless Fundamentals</span></a><a href="/resources/ccna/day-56/"><span>Day 56</span><span>Wireless Architectures</span></a><a href="/resources/ccna/day-57/"><span>Day 57</span><span>Wireless Security</span></a><a href="/resources/ccna/day-58/"><span>Day 58</span><span>Wireless Configuration</span></a><a href="/resources/ccna/day-59/"><span>Day 59</span><span>Intro to Network Automation</span></a><a href="/resources/ccna/day-60/"><span>Day 60</span><span>JSON, XML, &amp; YAML</span></a><a href="/resources/ccna/day-61/"><span>Day 61</span><span>REST API</span></a><a href="/resources/ccna/day-62/"><span>Day 62</span><span>Software-Defined Networking</span></a><a href="/resources/ccna/day-63/"><span>Day 63</span><span>Ansible, Puppet, Chef, &amp; Terraform</span></a></nav><p id="day-empty" hidden>No matching days.</p></details></aside><article class="lesson-content"><header class="lesson-head"><div class="eyebrow">Day 45 / 63 · Network services</div><h1>NAT (pt 2)</h1><p class="lead">Study notes based primarily on Jeremy’s IT Lab CCNA learning videos. Credit to Jeremy’s IT Lab for the source lessons and diagrams.</p><div class="pills"><a class="button" href="/resources/ccna/commands/">Command reference</a><a class="button primary" href="/resources/ccna/">All 63 days</a></div></header><section class="note-part" id="part-1"><h2>NAT (pt 2)</h2><a class="button" href="/resources/ccna/assets/lesson-46/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="/resources/ccna/assets/lesson-46/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge NAT (pt 2) page 1"><img src="/resources/ccna/assets/lesson-46/page-1.webp" width="1534" height="2056" loading="lazy" alt="Original OneNote notes: NAT (pt 2), page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 5</figcaption></figure><figure class="note-image"><a href="/resources/ccna/assets/lesson-46/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge NAT (pt 2) page 2"><img src="/resources/ccna/assets/lesson-46/page-2.webp" width="1548" height="2109" loading="lazy" alt="Original OneNote notes: NAT (pt 2), page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 5</figcaption></figure><figure class="note-image"><a href="/resources/ccna/assets/lesson-46/page-3.webp" target="_blank" rel="noopener" aria-label="Enlarge NAT (pt 2) page 3"><img src="/resources/ccna/assets/lesson-46/page-3.webp" width="1543" height="2110" loading="lazy" alt="Original OneNote notes: NAT (pt 2), page 3. Text version follows below."></a><figcaption>Original notes · Page 3 of 5</figcaption></figure><figure class="note-image"><a href="/resources/ccna/assets/lesson-46/page-4.webp" target="_blank" rel="noopener" aria-label="Enlarge NAT (pt 2) page 4"><img src="/resources/ccna/assets/lesson-46/page-4.webp" width="1522" height="2110" loading="lazy" alt="Original OneNote notes: NAT (pt 2), page 4. Text version follows below."></a><figcaption>Original notes · Page 4 of 5</figcaption></figure><figure class="note-image"><a href="/resources/ccna/assets/lesson-46/page-5.webp" target="_blank" rel="noopener" aria-label="Enlarge NAT (pt 2) page 5"><img src="/resources/ccna/assets/lesson-46/page-5.webp" width="1068" height="392" loading="lazy" alt="Original OneNote notes: NAT (pt 2), page 5. Text version follows below."></a><figcaption>Original notes · Page 5 of 5</figcaption></figure><details class="text-view"><summary>Text view — NAT (pt 2)</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 45 - NAT (pt 2)
+Wednesday, September 9, 2026 8:37 PM
+NAT Info
+Static NAT Reminder
+Static NAT
+Static NAT involves statically configuring one-to-one mappings of private IP addresses to public IP addresses.
+○ When traffic from the internal host is sent to the outside network, the router will translate the source
+address.
+○ Also, this one-to-one mapping also allows external hosts to access the internal host via the Inside Global
+address.
+Static NAT Configuration
+○ show ip nat translations
+§ Shows information about IP addresses that have been translated through NAT.
+§ Includes the following information:
+□ Protocol used in the connection
+□ Inside Local address
+□ Inside Global address
+□ Outside Local address
+□ Outside Global address
+○ show ip nat statistics
+§ Shows statistics about the current NAT process
+§ Includes the following information:
+□ Total active translations (static, dynamic, extended)
+□ Peak translations (highest amount of translations in one time)
+□ Outside interfaces
+□ Inside interfaces
+□ Etc.
+○ clear ip nat translation *
+§ Clears all dynamic NAT translations in the NAT translation table
+§ (One type of dynamic translations is IP address translations with a port included)
+○ ip nat inside
+§ Defines the ‘inside’ interface(s) connected to the internal network
+○ ip nat outside
+§ Defines the ‘outside’ interface(s) connected to the external network
+○ ip nat inside source static INSIDE-LOCAL-IP INSIDE-GLOBAL-IP
+§ Configures a one-to-one (Static NAT) IP address mapping
+Link to original
+Dynamic NAT
+Dynamic NAT involves dynamically mapping Inside Local addresses to Inside Global addresses as needed.
+• Although they are dynamically assigned, the mappings are still one-to-one. (One Inside Local IP address per Inside
+Global IP address)
+• It uses an ACL to identify which traffic should be translated.
+○ If the source IP is permitted by the ACL, the source IP will be translated.
+○ If the source IP is denied by the ACL, the source IP will not be translated.
+• A NAT Pool is also used to define the available Inside Global addresses to be used for the translation.
+What does it mean if an address is &#x27;not translated&#x27;?
+○ When an address is not translated (due to NAT Pool Exhaustion or being denied by the ACL), that does NOT
+mean that the traffic will get dropped.
+○ Instead, it simply means that the traffic won’t go through the NAT process and will be sent with its original
+source IP address.
+Dynamic NAT demonstration
+NAT Pool Exhaustion
+If there aren’t enough Inside Global IP addresses available in the NAT Pool (all the addresses are currently being used),
+that is called ‘NAT Pool Exhaustion’
+• If a packet from another inside host arrives and needs NAT but there are no available addresses, the router will
+drop the packet.
+• The host will be unable to access outside networks (which requires NAT translations) until one of the Inside Global
+IP addresses becomes available.
+• Dynamic NAT entries will time out automatically if they’re not used, or they can be cleared manually through clear
+ip nat translation *
+Be careful: &#x27;Not translated&#x27; traffic and &#x27;dropped&#x27; traffic
+○ Watch out for these two similar terms.
+§ When traffic is ‘not translated’ it means that it won’t go through the NAT process and will retain its
+original source IP address, therefore, and it can still be sent to others devices in the LAN for example.
+§ When traffic needs a NAT translation (in order to reach outside networks) and the Dynamic NAT Pool
+is full and completely in use, the traffic will be completely ‘dropped’ and discarded.
+Dynamic NAT Configuration
+• show ip nat translations
+○ Shows information about IP addresses that have been translated through NAT.
+○ Includes the following information:
+§ Protocol used in the connection
+§ Inside Local address
+§ Inside Global address
+§ Outside Local address
+§ Outside Global address
+• show ip nat statistics
+○ Shows statistics about the current NAT process.
+○ Includes the following information:
+§ Total active translations (static, dynamic, extended)
+§ Peak translations (highest amount of translations in one time)
+§ Outside interfaces
+§ Inside interfaces
+§ Etc.
+• clear ip nat translation *
+○ Clears all dynamic NAT translations in the NAT translation table.
+○ (One type of dynamic translations is IP address translations with a port included)
+• ip nat inside
+○ Defines the ‘inside’ interface(s) connected to the internal network.
+• ip nat outside
+○ Defines the ‘outside’ interface(s) connected to the external network.
+• access-list ACL-ID permit ARGUMENTS
+○ Defines the traffic that should be translated
+○ (Permitted traffic by the ACL will be translated)
+• ip nat pool POOL-NAME START-IP END-IP { prefix-length PREFIX-LENGTH | netmask SUBNET-MASK }
+○ Defines the NAT Pool of Inside Global IP addresses.
+• ip nat inside source list ACL-ID pool POOL-NAME
+○ Configures Dynamic NAT on the router by mapping the ACL to the NAT Pool.
+Info: show ip nat translations command with Dynamic NAT
+○ When the command is used, the one-to-one dynamic mappings will show, just like Static NAT, as well as any
+translated addresses and their ports.
+○ Using the clear ip nat translation * command will clear all the translations except the one-to-one mappings.
+Port Address Translation (PAT) / NAT Overload
+Port Address Translation (PAT) or NAT Overload is a protocol that translates both the IP address and port number (if
+necessary)
+• By using a unique port number for each communication flow, a single public IP address can be used by many
+different internal hosts.
+• (Port numbers are 16 bits, which is over 65,000 available port numbers)
+• The router will keep track of which Inside Local address is using which Inside Global address and port.
+• PAT is really good for preserving public IP addresses, as many inside hosts can share a single public IP.
+PAT Demonstration
+(In this case, PAT translated both the IP address and ports, as both of the hosts were using the same port of
+54321)
+PAT Configuration (Pools)
+• show ip nat translations
+○ Shows information about IP addresses that have been translated through NAT.
+○ Includes the following information:
+§ Protocol used in the connection
+§ Inside Local address
+§ Inside Global address
+§ Outside Local address
+§ Outside Global address
+• show ip nat statistics
+○ Shows statistics about the current NAT process.
+○ Includes the following information:
+§ Total active translations (static, dynamic, extended)
+§ Peak translations (highest amount of translations in one time)
+§ Outside interfaces
+§ Inside interfaces
+§ Etc.
+• clear ip nat translation *
+○ Clears all dynamic NAT translations in the NAT translation table.
+○ (One type of dynamic translations is IP address translations with a port included)
+• ip nat inside
+○ Defines the ‘inside’ interface(s) connected to the internal network.
+• ip nat outside
+○ Defines the ‘outside’ interface(s) connected to the external network.
+• access-list ACL-ID permit ARGUMENTS
+○ Defines the traffic that should be translated
+○ (Permitted traffic by the ACL will be translated)
+• ip nat pool POOL-NAME START-IP END-IP { prefix-length PREFIX-LENGTH | netmask SUBNET-MASK }
+○ Defines the NAT Pool of Inside Global IP addresses.
+• ip nat inside source list ACL-ID pool POOL-NAME overload
+○ Configures PAT on the router by mapping the ACL to the NAT Pool with the overload argument at the end.
+Info: show ip nat translations command with PAT
+○ When the command is used, only translated addresses and their ports will show up.
+○ PAT does not have any ‘one-to-one’ mappings like Static and Dynamic NAT.
+○ Using the clear ip nat translation * command will clear all the translations.
+PAT Configuration (Interface)
+• show ip nat translations
+○ Shows information about IP addresses that have been translated through NAT.
+○ Includes the following information:
+§ Protocol used in the connection
+§ Inside Local address
+§ Inside Global address
+§ Outside Local address
+§ Outside Global address
+• show ip nat statistics
+○ Shows statistics about the current NAT process.
+○ Includes the following information:
+§ Total active translations (static, dynamic, extended)
+§ Peak translations (highest amount of translations in one time)
+§ Outside interfaces
+§ Inside interfaces
+§ Etc.
+• clear ip nat translation *
+○ Clears all dynamic NAT translations in the NAT translation table.
+○ (One type of dynamic translations is IP address translations with a port included)
+• ip nat inside
+○ Defines the ‘inside’ interface(s) connected to the internal network.
+• ip nat outside
+○ Defines the ‘outside’ interface(s) connected to the external network.
+• access-list ACL-ID permit ARGUMENTS
+○ Defines the traffic that should be translated
+○ (Permitted traffic by the ACL will be translated)
+• ip nat inside source list ACL-ID interface INTERFACE-ID overload
+○ Configures PAT on the router by mapping the ACL to an interface on the router with the overload argument
+at the end.
+○ When traffic is translated, it will use the IP address of the specified interface.
+PAT via interface Demonstration
+
+Day 45 - NAT (pt 2)
+Wednesday, September 9, 2026 8:37 PM
+NAT Info
+Static NAT Reminder
+Static NAT
+Static NAT involves statically configuring one-to-one mappings of private IP addresses to public IP addresses.
+○ When traffic from the internal host is sent to the outside network, the router will translate the source
+address.
+○ Also, this one-to-one mapping also allows external hosts to access the internal host via the Inside Global
+address.
+Static NAT Configuration
+○ show ip nat translations
+§ Shows information about IP addresses that have been translated through NAT.
+§ Includes the following information:
+□ Protocol used in the connection
+□ Inside Local address
+□ Inside Global address
+□ Outside Local address
+□ Outside Global address
+○ show ip nat statistics
+§ Shows statistics about the current NAT process
+§ Includes the following information:
+□ Total active translations (static, dynamic, extended)
+□ Peak translations (highest amount of translations in one time)
+□ Outside interfaces
+□ Inside interfaces
+□ Etc.
+○ clear ip nat translation *
+§ Clears all dynamic NAT translations in the NAT translation table
+§ (One type of dynamic translations is IP address translations with a port included)
+○ ip nat inside
+§ Defines the ‘inside’ interface(s) connected to the internal network
+○ ip nat outside
+§ Defines the ‘outside’ interface(s) connected to the external network
+○ ip nat inside source static INSIDE-LOCAL-IP INSIDE-GLOBAL-IP
+§ Configures a one-to-one (Static NAT) IP address mapping
+Link to original
+Dynamic NAT
+Dynamic NAT involves dynamically mapping Inside Local addresses to Inside Global addresses as needed.
+• Although they are dynamically assigned, the mappings are still one-to-one. (One Inside Local IP address per Inside
+Global IP address)
+• It uses an ACL to identify which traffic should be translated.
+○ If the source IP is permitted by the ACL, the source IP will be translated.
+○ If the source IP is denied by the ACL, the source IP will not be translated.
+• A NAT Pool is also used to define the available Inside Global addresses to be used for the translation.
+What does it mean if an address is &#x27;not translated&#x27;?
+○ When an address is not translated (due to NAT Pool Exhaustion or being denied by the ACL), that does NOT
+mean that the traffic will get dropped.
+○ Instead, it simply means that the traffic won’t go through the NAT process and will be sent with its original
+source IP address.
+Dynamic NAT demonstration
+NAT Pool Exhaustion
+If there aren’t enough Inside Global IP addresses available in the NAT Pool (all the addresses are currently being used),
+that is called ‘NAT Pool Exhaustion’
+• If a packet from another inside host arrives and needs NAT but there are no available addresses, the router will
+drop the packet.
+• The host will be unable to access outside networks (which requires NAT translations) until one of the Inside Global
+IP addresses becomes available.
+• Dynamic NAT entries will time out automatically if they’re not used, or they can be cleared manually through clear
+ip nat translation *
+Be careful: &#x27;Not translated&#x27; traffic and &#x27;dropped&#x27; traffic
+○ Watch out for these two similar terms.
+§ When traffic is ‘not translated’ it means that it won’t go through the NAT process and will retain its
+original source IP address, therefore, and it can still be sent to others devices in the LAN for example.
+§ When traffic needs a NAT translation (in order to reach outside networks) and the Dynamic NAT Pool
+is full and completely in use, the traffic will be completely ‘dropped’ and discarded.
+Dynamic NAT Configuration
+• show ip nat translations
+○ Shows information about IP addresses that have been translated through NAT.
+○ Includes the following information:
+§ Protocol used in the connection
+§ Inside Local address
+§ Inside Global address
+§ Outside Local address
+§ Outside Global address
+• show ip nat statistics
+○ Shows statistics about the current NAT process.
+○ Includes the following information:
+§ Total active translations (static, dynamic, extended)
+§ Peak translations (highest amount of translations in one time)
+§ Outside interfaces
+§ Inside interfaces
+§ Etc.
+• clear ip nat translation *
+○ Clears all dynamic NAT translations in the NAT translation table.
+○ (One type of dynamic translations is IP address translations with a port included)
+• ip nat inside
+○ Defines the ‘inside’ interface(s) connected to the internal network.
+• ip nat outside
+○ Defines the ‘outside’ interface(s) connected to the external network.
+• access-list ACL-ID permit ARGUMENTS
+○ Defines the traffic that should be translated
+○ (Permitted traffic by the ACL will be translated)
+• ip nat pool POOL-NAME START-IP END-IP { prefix-length PREFIX-LENGTH | netmask SUBNET-MASK }
+○ Defines the NAT Pool of Inside Global IP addresses.
+• ip nat inside source list ACL-ID pool POOL-NAME
+○ Configures Dynamic NAT on the router by mapping the ACL to the NAT Pool.
+Info: show ip nat translations command with Dynamic NAT
+○ When the command is used, the one-to-one dynamic mappings will show, just like Static NAT, as well as any
+translated addresses and their ports.
+○ Using the clear ip nat translation * command will clear all the translations except the one-to-one mappings.
+Port Address Translation (PAT) / NAT Overload
+Port Address Translation (PAT) or NAT Overload is a protocol that translates both the IP address and port number (if
+necessary)
+• By using a unique port number for each communication flow, a single public IP address can be used by many
+different internal hosts.
+• (Port numbers are 16 bits, which is over 65,000 available port numbers)
+• The router will keep track of which Inside Local address is using which Inside Global address and port.
+• PAT is really good for preserving public IP addresses, as many inside hosts can share a single public IP.
+PAT Demonstration
+(In this case, PAT translated both the IP address and ports, as both of the hosts were using the same port of
+54321)
+PAT Configuration (Pools)
+• show ip nat translations
+○ Shows information about IP addresses that have been translated through NAT.
+○ Includes the following information:
+§ Protocol used in the connection
+§ Inside Local address
+§ Inside Global address
+§ Outside Local address
+§ Outside Global address
+• show ip nat statistics
+○ Shows statistics about the current NAT process.
+○ Includes the following information:
+§ Total active translations (static, dynamic, extended)
+§ Peak translations (highest amount of translations in one time)
+§ Outside interfaces
+§ Inside interfaces
+§ Etc.
+• clear ip nat translation *
+○ Clears all dynamic NAT translations in the NAT translation table.
+○ (One type of dynamic translations is IP address translations with a port included)
+• ip nat inside
+○ Defines the ‘inside’ interface(s) connected to the internal network.
+• ip nat outside
+○ Defines the ‘outside’ interface(s) connected to the external network.
+• access-list ACL-ID permit ARGUMENTS
+○ Defines the traffic that should be translated
+○ (Permitted traffic by the ACL will be translated)
+• ip nat pool POOL-NAME START-IP END-IP { prefix-length PREFIX-LENGTH | netmask SUBNET-MASK }
+○ Defines the NAT Pool of Inside Global IP addresses.
+• ip nat inside source list ACL-ID pool POOL-NAME overload
+○ Configures PAT on the router by mapping the ACL to the NAT Pool with the overload argument at the end.
+Info: show ip nat translations command with PAT
+○ When the command is used, only translated addresses and their ports will show up.
+○ PAT does not have any ‘one-to-one’ mappings like Static and Dynamic NAT.
+○ Using the clear ip nat translation * command will clear all the translations.
+PAT Configuration (Interface)
+• show ip nat translations
+○ Shows information about IP addresses that have been translated through NAT.
+○ Includes the following information:
+§ Protocol used in the connection
+§ Inside Local address
+§ Inside Global address
+§ Outside Local address
+§ Outside Global address
+• show ip nat statistics
+○ Shows statistics about the current NAT process.
+○ Includes the following information:
+§ Total active translations (static, dynamic, extended)
+§ Peak translations (highest amount of translations in one time)
+§ Outside interfaces
+§ Inside interfaces
+§ Etc.
+• clear ip nat translation *
+○ Clears all dynamic NAT translations in the NAT translation table.
+○ (One type of dynamic translations is IP address translations with a port included)
+• ip nat inside
+○ Defines the ‘inside’ interface(s) connected to the internal network.
+• ip nat outside
+○ Defines the ‘outside’ interface(s) connected to the external network.
+• access-list ACL-ID permit ARGUMENTS
+○ Defines the traffic that should be translated
+○ (Permitted traffic by the ACL will be translated)
+• ip nat inside source list ACL-ID interface INTERFACE-ID overload
+○ Configures PAT on the router by mapping the ACL to an interface on the router with the overload argument
+at the end.
+○ When traffic is translated, it will use the IP address of the specified interface.
+PAT via interface Demonstration
+
+Day 45 - NAT (pt 2)
+Wednesday, September 9, 2026 8:37 PM
+NAT Info
+Static NAT Reminder
+Static NAT
+Static NAT involves statically configuring one-to-one mappings of private IP addresses to public IP addresses.
+○ When traffic from the internal host is sent to the outside network, the router will translate the source
+address.
+○ Also, this one-to-one mapping also allows external hosts to access the internal host via the Inside Global
+address.
+Static NAT Configuration
+○ show ip nat translations
+§ Shows information about IP addresses that have been translated through NAT.
+§ Includes the following information:
+□ Protocol used in the connection
+□ Inside Local address
+□ Inside Global address
+□ Outside Local address
+□ Outside Global address
+○ show ip nat statistics
+§ Shows statistics about the current NAT process
+§ Includes the following information:
+□ Total active translations (static, dynamic, extended)
+□ Peak translations (highest amount of translations in one time)
+□ Outside interfaces
+□ Inside interfaces
+□ Etc.
+○ clear ip nat translation *
+§ Clears all dynamic NAT translations in the NAT translation table
+§ (One type of dynamic translations is IP address translations with a port included)
+○ ip nat inside
+§ Defines the ‘inside’ interface(s) connected to the internal network
+○ ip nat outside
+§ Defines the ‘outside’ interface(s) connected to the external network
+○ ip nat inside source static INSIDE-LOCAL-IP INSIDE-GLOBAL-IP
+§ Configures a one-to-one (Static NAT) IP address mapping
+Link to original
+Dynamic NAT
+Dynamic NAT involves dynamically mapping Inside Local addresses to Inside Global addresses as needed.
+• Although they are dynamically assigned, the mappings are still one-to-one. (One Inside Local IP address per Inside
+Global IP address)
+• It uses an ACL to identify which traffic should be translated.
+○ If the source IP is permitted by the ACL, the source IP will be translated.
+○ If the source IP is denied by the ACL, the source IP will not be translated.
+• A NAT Pool is also used to define the available Inside Global addresses to be used for the translation.
+What does it mean if an address is &#x27;not translated&#x27;?
+○ When an address is not translated (due to NAT Pool Exhaustion or being denied by the ACL), that does NOT
+mean that the traffic will get dropped.
+○ Instead, it simply means that the traffic won’t go through the NAT process and will be sent with its original
+source IP address.
+Dynamic NAT demonstration
+NAT Pool Exhaustion
+If there aren’t enough Inside Global IP addresses available in the NAT Pool (all the addresses are currently being used),
+that is called ‘NAT Pool Exhaustion’
+• If a packet from another inside host arrives and needs NAT but there are no available addresses, the router will
+drop the packet.
+• The host will be unable to access outside networks (which requires NAT translations) until one of the Inside Global
+IP addresses becomes available.
+• Dynamic NAT entries will time out automatically if they’re not used, or they can be cleared manually through clear
+ip nat translation *
+Be careful: &#x27;Not translated&#x27; traffic and &#x27;dropped&#x27; traffic
+○ Watch out for these two similar terms.
+§ When traffic is ‘not translated’ it means that it won’t go through the NAT process and will retain its
+original source IP address, therefore, and it can still be sent to others devices in the LAN for example.
+§ When traffic needs a NAT translation (in order to reach outside networks) and the Dynamic NAT Pool
+is full and completely in use, the traffic will be completely ‘dropped’ and discarded.
+Dynamic NAT Configuration
+• show ip nat translations
+○ Shows information about IP addresses that have been translated through NAT.
+○ Includes the following information:
+§ Protocol used in the connection
+§ Inside Local address
+§ Inside Global address
+§ Outside Local address
+§ Outside Global address
+• show ip nat statistics
+○ Shows statistics about the current NAT process.
+○ Includes the following information:
+§ Total active translations (static, dynamic, extended)
+§ Peak translations (highest amount of translations in one time)
+§ Outside interfaces
+§ Inside interfaces
+§ Etc.
+• clear ip nat translation *
+○ Clears all dynamic NAT translations in the NAT translation table.
+○ (One type of dynamic translations is IP address translations with a port included)
+• ip nat inside
+○ Defines the ‘inside’ interface(s) connected to the internal network.
+• ip nat outside
+○ Defines the ‘outside’ interface(s) connected to the external network.
+• access-list ACL-ID permit ARGUMENTS
+○ Defines the traffic that should be translated
+○ (Permitted traffic by the ACL will be translated)
+• ip nat pool POOL-NAME START-IP END-IP { prefix-length PREFIX-LENGTH | netmask SUBNET-MASK }
+○ Defines the NAT Pool of Inside Global IP addresses.
+• ip nat inside source list ACL-ID pool POOL-NAME
+○ Configures Dynamic NAT on the router by mapping the ACL to the NAT Pool.
+Info: show ip nat translations command with Dynamic NAT
+○ When the command is used, the one-to-one dynamic mappings will show, just like Static NAT, as well as any
+translated addresses and their ports.
+○ Using the clear ip nat translation * command will clear all the translations except the one-to-one mappings.
+Port Address Translation (PAT) / NAT Overload
+Port Address Translation (PAT) or NAT Overload is a protocol that translates both the IP address and port number (if
+necessary)
+• By using a unique port number for each communication flow, a single public IP address can be used by many
+different internal hosts.
+• (Port numbers are 16 bits, which is over 65,000 available port numbers)
+• The router will keep track of which Inside Local address is using which Inside Global address and port.
+• PAT is really good for preserving public IP addresses, as many inside hosts can share a single public IP.
+PAT Demonstration
+(In this case, PAT translated both the IP address and ports, as both of the hosts were using the same port of
+54321)
+PAT Configuration (Pools)
+• show ip nat translations
+○ Shows information about IP addresses that have been translated through NAT.
+○ Includes the following information:
+§ Protocol used in the connection
+§ Inside Local address
+§ Inside Global address
+§ Outside Local address
+§ Outside Global address
+• show ip nat statistics
+○ Shows statistics about the current NAT process.
+○ Includes the following information:
+§ Total active translations (static, dynamic, extended)
+§ Peak translations (highest amount of translations in one time)
+§ Outside interfaces
+§ Inside interfaces
+§ Etc.
+• clear ip nat translation *
+○ Clears all dynamic NAT translations in the NAT translation table.
+○ (One type of dynamic translations is IP address translations with a port included)
+• ip nat inside
+○ Defines the ‘inside’ interface(s) connected to the internal network.
+• ip nat outside
+○ Defines the ‘outside’ interface(s) connected to the external network.
+• access-list ACL-ID permit ARGUMENTS
+○ Defines the traffic that should be translated
+○ (Permitted traffic by the ACL will be translated)
+• ip nat pool POOL-NAME START-IP END-IP { prefix-length PREFIX-LENGTH | netmask SUBNET-MASK }
+○ Defines the NAT Pool of Inside Global IP addresses.
+• ip nat inside source list ACL-ID pool POOL-NAME overload
+○ Configures PAT on the router by mapping the ACL to the NAT Pool with the overload argument at the end.
+Info: show ip nat translations command with PAT
+○ When the command is used, only translated addresses and their ports will show up.
+○ PAT does not have any ‘one-to-one’ mappings like Static and Dynamic NAT.
+○ Using the clear ip nat translation * command will clear all the translations.
+PAT Configuration (Interface)
+• show ip nat translations
+○ Shows information about IP addresses that have been translated through NAT.
+○ Includes the following information:
+§ Protocol used in the connection
+§ Inside Local address
+§ Inside Global address
+§ Outside Local address
+§ Outside Global address
+• show ip nat statistics
+○ Shows statistics about the current NAT process.
+○ Includes the following information:
+§ Total active translations (static, dynamic, extended)
+§ Peak translations (highest amount of translations in one time)
+§ Outside interfaces
+§ Inside interfaces
+§ Etc.
+• clear ip nat translation *
+○ Clears all dynamic NAT translations in the NAT translation table.
+○ (One type of dynamic translations is IP address translations with a port included)
+• ip nat inside
+○ Defines the ‘inside’ interface(s) connected to the internal network.
+• ip nat outside
+○ Defines the ‘outside’ interface(s) connected to the external network.
+• access-list ACL-ID permit ARGUMENTS
+○ Defines the traffic that should be translated
+○ (Permitted traffic by the ACL will be translated)
+• ip nat inside source list ACL-ID interface INTERFACE-ID overload
+○ Configures PAT on the router by mapping the ACL to an interface on the router with the overload argument
+at the end.
+○ When traffic is translated, it will use the IP address of the specified interface.
+PAT via interface Demonstration
+
+Day 45 - NAT (pt 2)
+Wednesday, September 9, 2026 8:37 PM
+NAT Info
+Static NAT Reminder
+Static NAT
+Static NAT involves statically configuring one-to-one mappings of private IP addresses to public IP addresses.
+○ When traffic from the internal host is sent to the outside network, the router will translate the source
+address.
+○ Also, this one-to-one mapping also allows external hosts to access the internal host via the Inside Global
+address.
+Static NAT Configuration
+○ show ip nat translations
+§ Shows information about IP addresses that have been translated through NAT.
+§ Includes the following information:
+□ Protocol used in the connection
+□ Inside Local address
+□ Inside Global address
+□ Outside Local address
+□ Outside Global address
+○ show ip nat statistics
+§ Shows statistics about the current NAT process
+§ Includes the following information:
+□ Total active translations (static, dynamic, extended)
+□ Peak translations (highest amount of translations in one time)
+□ Outside interfaces
+□ Inside interfaces
+□ Etc.
+○ clear ip nat translation *
+§ Clears all dynamic NAT translations in the NAT translation table
+§ (One type of dynamic translations is IP address translations with a port included)
+○ ip nat inside
+§ Defines the ‘inside’ interface(s) connected to the internal network
+○ ip nat outside
+§ Defines the ‘outside’ interface(s) connected to the external network
+○ ip nat inside source static INSIDE-LOCAL-IP INSIDE-GLOBAL-IP
+§ Configures a one-to-one (Static NAT) IP address mapping
+Link to original
+Dynamic NAT
+Dynamic NAT involves dynamically mapping Inside Local addresses to Inside Global addresses as needed.
+• Although they are dynamically assigned, the mappings are still one-to-one. (One Inside Local IP address per Inside
+Global IP address)
+• It uses an ACL to identify which traffic should be translated.
+○ If the source IP is permitted by the ACL, the source IP will be translated.
+○ If the source IP is denied by the ACL, the source IP will not be translated.
+• A NAT Pool is also used to define the available Inside Global addresses to be used for the translation.
+What does it mean if an address is &#x27;not translated&#x27;?
+○ When an address is not translated (due to NAT Pool Exhaustion or being denied by the ACL), that does NOT
+mean that the traffic will get dropped.
+○ Instead, it simply means that the traffic won’t go through the NAT process and will be sent with its original
+source IP address.
+Dynamic NAT demonstration
+NAT Pool Exhaustion
+If there aren’t enough Inside Global IP addresses available in the NAT Pool (all the addresses are currently being used),
+that is called ‘NAT Pool Exhaustion’
+• If a packet from another inside host arrives and needs NAT but there are no available addresses, the router will
+drop the packet.
+• The host will be unable to access outside networks (which requires NAT translations) until one of the Inside Global
+IP addresses becomes available.
+• Dynamic NAT entries will time out automatically if they’re not used, or they can be cleared manually through clear
+ip nat translation *
+Be careful: &#x27;Not translated&#x27; traffic and &#x27;dropped&#x27; traffic
+○ Watch out for these two similar terms.
+§ When traffic is ‘not translated’ it means that it won’t go through the NAT process and will retain its
+original source IP address, therefore, and it can still be sent to others devices in the LAN for example.
+§ When traffic needs a NAT translation (in order to reach outside networks) and the Dynamic NAT Pool
+is full and completely in use, the traffic will be completely ‘dropped’ and discarded.
+Dynamic NAT Configuration
+• show ip nat translations
+○ Shows information about IP addresses that have been translated through NAT.
+○ Includes the following information:
+§ Protocol used in the connection
+§ Inside Local address
+§ Inside Global address
+§ Outside Local address
+§ Outside Global address
+• show ip nat statistics
+○ Shows statistics about the current NAT process.
+○ Includes the following information:
+§ Total active translations (static, dynamic, extended)
+§ Peak translations (highest amount of translations in one time)
+§ Outside interfaces
+§ Inside interfaces
+§ Etc.
+• clear ip nat translation *
+○ Clears all dynamic NAT translations in the NAT translation table.
+○ (One type of dynamic translations is IP address translations with a port included)
+• ip nat inside
+○ Defines the ‘inside’ interface(s) connected to the internal network.
+• ip nat outside
+○ Defines the ‘outside’ interface(s) connected to the external network.
+• access-list ACL-ID permit ARGUMENTS
+○ Defines the traffic that should be translated
+○ (Permitted traffic by the ACL will be translated)
+• ip nat pool POOL-NAME START-IP END-IP { prefix-length PREFIX-LENGTH | netmask SUBNET-MASK }
+○ Defines the NAT Pool of Inside Global IP addresses.
+• ip nat inside source list ACL-ID pool POOL-NAME
+○ Configures Dynamic NAT on the router by mapping the ACL to the NAT Pool.
+Info: show ip nat translations command with Dynamic NAT
+○ When the command is used, the one-to-one dynamic mappings will show, just like Static NAT, as well as any
+translated addresses and their ports.
+○ Using the clear ip nat translation * command will clear all the translations except the one-to-one mappings.
+Port Address Translation (PAT) / NAT Overload
+Port Address Translation (PAT) or NAT Overload is a protocol that translates both the IP address and port number (if
+necessary)
+• By using a unique port number for each communication flow, a single public IP address can be used by many
+different internal hosts.
+• (Port numbers are 16 bits, which is over 65,000 available port numbers)
+• The router will keep track of which Inside Local address is using which Inside Global address and port.
+• PAT is really good for preserving public IP addresses, as many inside hosts can share a single public IP.
+PAT Demonstration
+(In this case, PAT translated both the IP address and ports, as both of the hosts were using the same port of
+54321)
+PAT Configuration (Pools)
+• show ip nat translations
+○ Shows information about IP addresses that have been translated through NAT.
+○ Includes the following information:
+§ Protocol used in the connection
+§ Inside Local address
+§ Inside Global address
+§ Outside Local address
+§ Outside Global address
+• show ip nat statistics
+○ Shows statistics about the current NAT process.
+○ Includes the following information:
+§ Total active translations (static, dynamic, extended)
+§ Peak translations (highest amount of translations in one time)
+§ Outside interfaces
+§ Inside interfaces
+§ Etc.
+• clear ip nat translation *
+○ Clears all dynamic NAT translations in the NAT translation table.
+○ (One type of dynamic translations is IP address translations with a port included)
+• ip nat inside
+○ Defines the ‘inside’ interface(s) connected to the internal network.
+• ip nat outside
+○ Defines the ‘outside’ interface(s) connected to the external network.
+• access-list ACL-ID permit ARGUMENTS
+○ Defines the traffic that should be translated
+○ (Permitted traffic by the ACL will be translated)
+• ip nat pool POOL-NAME START-IP END-IP { prefix-length PREFIX-LENGTH | netmask SUBNET-MASK }
+○ Defines the NAT Pool of Inside Global IP addresses.
+• ip nat inside source list ACL-ID pool POOL-NAME overload
+○ Configures PAT on the router by mapping the ACL to the NAT Pool with the overload argument at the end.
+Info: show ip nat translations command with PAT
+○ When the command is used, only translated addresses and their ports will show up.
+○ PAT does not have any ‘one-to-one’ mappings like Static and Dynamic NAT.
+○ Using the clear ip nat translation * command will clear all the translations.
+PAT Configuration (Interface)
+• show ip nat translations
+○ Shows information about IP addresses that have been translated through NAT.
+○ Includes the following information:
+§ Protocol used in the connection
+§ Inside Local address
+§ Inside Global address
+§ Outside Local address
+§ Outside Global address
+• show ip nat statistics
+○ Shows statistics about the current NAT process.
+○ Includes the following information:
+§ Total active translations (static, dynamic, extended)
+§ Peak translations (highest amount of translations in one time)
+§ Outside interfaces
+§ Inside interfaces
+§ Etc.
+• clear ip nat translation *
+○ Clears all dynamic NAT translations in the NAT translation table.
+○ (One type of dynamic translations is IP address translations with a port included)
+• ip nat inside
+○ Defines the ‘inside’ interface(s) connected to the internal network.
+• ip nat outside
+○ Defines the ‘outside’ interface(s) connected to the external network.
+• access-list ACL-ID permit ARGUMENTS
+○ Defines the traffic that should be translated
+○ (Permitted traffic by the ACL will be translated)
+• ip nat inside source list ACL-ID interface INTERFACE-ID overload
+○ Configures PAT on the router by mapping the ACL to an interface on the router with the overload argument
+at the end.
+○ When traffic is translated, it will use the IP address of the specified interface.
+PAT via interface Demonstration
+
+Day 45 - NAT (pt 2)
+Wednesday, September 9, 2026 8:37 PM
+NAT Info
+Static NAT Reminder
+Static NAT
+Static NAT involves statically configuring one-to-one mappings of private IP addresses to public IP addresses.
+○ When traffic from the internal host is sent to the outside network, the router will translate the source
+address.
+○ Also, this one-to-one mapping also allows external hosts to access the internal host via the Inside Global
+address.
+Static NAT Configuration
+○ show ip nat translations
+§ Shows information about IP addresses that have been translated through NAT.
+§ Includes the following information:
+□ Protocol used in the connection
+□ Inside Local address
+□ Inside Global address
+□ Outside Local address
+□ Outside Global address
+○ show ip nat statistics
+§ Shows statistics about the current NAT process
+§ Includes the following information:
+□ Total active translations (static, dynamic, extended)
+□ Peak translations (highest amount of translations in one time)
+□ Outside interfaces
+□ Inside interfaces
+□ Etc.
+○ clear ip nat translation *
+§ Clears all dynamic NAT translations in the NAT translation table
+§ (One type of dynamic translations is IP address translations with a port included)
+○ ip nat inside
+§ Defines the ‘inside’ interface(s) connected to the internal network
+○ ip nat outside
+§ Defines the ‘outside’ interface(s) connected to the external network
+○ ip nat inside source static INSIDE-LOCAL-IP INSIDE-GLOBAL-IP
+§ Configures a one-to-one (Static NAT) IP address mapping
+Link to original
+Dynamic NAT
+Dynamic NAT involves dynamically mapping Inside Local addresses to Inside Global addresses as needed.
+• Although they are dynamically assigned, the mappings are still one-to-one. (One Inside Local IP address per Inside
+Global IP address)
+• It uses an ACL to identify which traffic should be translated.
+○ If the source IP is permitted by the ACL, the source IP will be translated.
+○ If the source IP is denied by the ACL, the source IP will not be translated.
+• A NAT Pool is also used to define the available Inside Global addresses to be used for the translation.
+What does it mean if an address is &#x27;not translated&#x27;?
+○ When an address is not translated (due to NAT Pool Exhaustion or being denied by the ACL), that does NOT
+mean that the traffic will get dropped.
+○ Instead, it simply means that the traffic won’t go through the NAT process and will be sent with its original
+source IP address.
+Dynamic NAT demonstration
+NAT Pool Exhaustion
+If there aren’t enough Inside Global IP addresses available in the NAT Pool (all the addresses are currently being used),
+that is called ‘NAT Pool Exhaustion’
+• If a packet from another inside host arrives and needs NAT but there are no available addresses, the router will
+drop the packet.
+• The host will be unable to access outside networks (which requires NAT translations) until one of the Inside Global
+IP addresses becomes available.
+• Dynamic NAT entries will time out automatically if they’re not used, or they can be cleared manually through clear
+ip nat translation *
+Be careful: &#x27;Not translated&#x27; traffic and &#x27;dropped&#x27; traffic
+○ Watch out for these two similar terms.
+§ When traffic is ‘not translated’ it means that it won’t go through the NAT process and will retain its
+original source IP address, therefore, and it can still be sent to others devices in the LAN for example.
+§ When traffic needs a NAT translation (in order to reach outside networks) and the Dynamic NAT Pool
+is full and completely in use, the traffic will be completely ‘dropped’ and discarded.
+Dynamic NAT Configuration
+• show ip nat translations
+○ Shows information about IP addresses that have been translated through NAT.
+○ Includes the following information:
+§ Protocol used in the connection
+§ Inside Local address
+§ Inside Global address
+§ Outside Local address
+§ Outside Global address
+• show ip nat statistics
+○ Shows statistics about the current NAT process.
+○ Includes the following information:
+§ Total active translations (static, dynamic, extended)
+§ Peak translations (highest amount of translations in one time)
+§ Outside interfaces
+§ Inside interfaces
+§ Etc.
+• clear ip nat translation *
+○ Clears all dynamic NAT translations in the NAT translation table.
+○ (One type of dynamic translations is IP address translations with a port included)
+• ip nat inside
+○ Defines the ‘inside’ interface(s) connected to the internal network.
+• ip nat outside
+○ Defines the ‘outside’ interface(s) connected to the external network.
+• access-list ACL-ID permit ARGUMENTS
+○ Defines the traffic that should be translated
+○ (Permitted traffic by the ACL will be translated)
+• ip nat pool POOL-NAME START-IP END-IP { prefix-length PREFIX-LENGTH | netmask SUBNET-MASK }
+○ Defines the NAT Pool of Inside Global IP addresses.
+• ip nat inside source list ACL-ID pool POOL-NAME
+○ Configures Dynamic NAT on the router by mapping the ACL to the NAT Pool.
+Info: show ip nat translations command with Dynamic NAT
+○ When the command is used, the one-to-one dynamic mappings will show, just like Static NAT, as well as any
+translated addresses and their ports.
+○ Using the clear ip nat translation * command will clear all the translations except the one-to-one mappings.
+Port Address Translation (PAT) / NAT Overload
+Port Address Translation (PAT) or NAT Overload is a protocol that translates both the IP address and port number (if
+necessary)
+• By using a unique port number for each communication flow, a single public IP address can be used by many
+different internal hosts.
+• (Port numbers are 16 bits, which is over 65,000 available port numbers)
+• The router will keep track of which Inside Local address is using which Inside Global address and port.
+• PAT is really good for preserving public IP addresses, as many inside hosts can share a single public IP.
+PAT Demonstration
+(In this case, PAT translated both the IP address and ports, as both of the hosts were using the same port of
+54321)
+PAT Configuration (Pools)
+• show ip nat translations
+○ Shows information about IP addresses that have been translated through NAT.
+○ Includes the following information:
+§ Protocol used in the connection
+§ Inside Local address
+§ Inside Global address
+§ Outside Local address
+§ Outside Global address
+• show ip nat statistics
+○ Shows statistics about the current NAT process.
+○ Includes the following information:
+§ Total active translations (static, dynamic, extended)
+§ Peak translations (highest amount of translations in one time)
+§ Outside interfaces
+§ Inside interfaces
+§ Etc.
+• clear ip nat translation *
+○ Clears all dynamic NAT translations in the NAT translation table.
+○ (One type of dynamic translations is IP address translations with a port included)
+• ip nat inside
+○ Defines the ‘inside’ interface(s) connected to the internal network.
+• ip nat outside
+○ Defines the ‘outside’ interface(s) connected to the external network.
+• access-list ACL-ID permit ARGUMENTS
+○ Defines the traffic that should be translated
+○ (Permitted traffic by the ACL will be translated)
+• ip nat pool POOL-NAME START-IP END-IP { prefix-length PREFIX-LENGTH | netmask SUBNET-MASK }
+○ Defines the NAT Pool of Inside Global IP addresses.
+• ip nat inside source list ACL-ID pool POOL-NAME overload
+○ Configures PAT on the router by mapping the ACL to the NAT Pool with the overload argument at the end.
+Info: show ip nat translations command with PAT
+○ When the command is used, only translated addresses and their ports will show up.
+○ PAT does not have any ‘one-to-one’ mappings like Static and Dynamic NAT.
+○ Using the clear ip nat translation * command will clear all the translations.
+PAT Configuration (Interface)
+• show ip nat translations
+○ Shows information about IP addresses that have been translated through NAT.
+○ Includes the following information:
+§ Protocol used in the connection
+§ Inside Local address
+§ Inside Global address
+§ Outside Local address
+§ Outside Global address
+• show ip nat statistics
+○ Shows statistics about the current NAT process.
+○ Includes the following information:
+§ Total active translations (static, dynamic, extended)
+§ Peak translations (highest amount of translations in one time)
+§ Outside interfaces
+§ Inside interfaces
+§ Etc.
+• clear ip nat translation *
+○ Clears all dynamic NAT translations in the NAT translation table.
+○ (One type of dynamic translations is IP address translations with a port included)
+• ip nat inside
+○ Defines the ‘inside’ interface(s) connected to the internal network.
+• ip nat outside
+○ Defines the ‘outside’ interface(s) connected to the external network.
+• access-list ACL-ID permit ARGUMENTS
+○ Defines the traffic that should be translated
+○ (Permitted traffic by the ACL will be translated)
+• ip nat inside source list ACL-ID interface INTERFACE-ID overload
+○ Configures PAT on the router by mapping the ACL to an interface on the router with the overload argument
+at the end.
+○ When traffic is translated, it will use the IP address of the specified interface.
+PAT via interface Demonstration</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="/resources/ccna/day-44/"><small>← Day 44</small>NAT (pt 1)</a><a href="/resources/ccna/day-46/"><small>Day 46 →</small>QoS (pt 1)</a></nav></article></div></main>    <div class="contact-modal" id="contactModal">
+        <div class="contact-modal-content">
+            <div class="contact-modal-header">
+                <h3>Get in Touch</h3>
+                <button class="contact-modal-close" type="button" id="contactModalClose">✕</button>
+            </div>
+            <div class="contact-modal-links">
+                <a href="mailto:daviddipiazza29@gmail.com" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/CodeGoat29" target="_blank" class="contact-link">GitHub</a>
+            </div>
+        </div>
+    </div>
+
+            <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="/resources/">Resources</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/resume/">Resume</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="mailto:daviddipiazza29@gmail.com">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/CodeGoat29" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bar">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+<script src="/js/site.js"></script><script src="/resources/ccna/course.js?v=2"></script></body></html>

@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test UI - DiPiazza</title>
+    <link rel="icon" type="image/png" href="/images/dipiazza-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f6f7f9;
+            --surface: #ffffff;
+            --surface-2: #f0f3f7;
+            --ink: #0f1a2a;
+            --muted: #5b6b7a;
+            --line: #e3e8ef;
+            --primary: #2263f3;
+            --primary-2: #1b4cc2;
+            --accent: #f4a340;
+            --shadow: 0 10px 30px rgba(15, 26, 42, 0.08);
+            --radius: 18px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: radial-gradient(1200px 500px at 80% -10%, #e9f0ff 0%, rgba(233, 240, 255, 0) 60%), var(--bg);
+            color: var(--ink);
+            font-family: "Source Sans 3", "Segoe UI", Tahoma, sans-serif;
+        }
+
+        h1, h2, h3 {
+            font-family: "Sora", "Trebuchet MS", sans-serif;
+            letter-spacing: -0.02em;
+            margin: 0 0 12px 0;
+        }
+
+        p {
+            margin: 0 0 16px 0;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .site-nav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(246, 247, 249, 0.8);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: var(--shadow);
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand span {
+            font-size: 0.9em;
+            color: var(--muted);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-link {
+            padding: 8px 14px;
+            border-radius: 999px;
+            color: var(--muted);
+            font-weight: 600;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .nav-link.active {
+            background: var(--surface);
+            color: var(--ink);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--line);
+        }
+
+        .nav-link:hover {
+            color: var(--ink);
+        }
+
+        .nav-cta {
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: transparent;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 8px 10px;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 32px;
+            align-items: center;
+            padding: 48px 0;
+        }
+
+        .hero-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 32px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--line);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 3vw, 3.2rem);
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: var(--surface-2);
+            color: var(--muted);
+            font-weight: 600;
+            font-size: 0.85em;
+            margin-bottom: 16px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-weight: 600;
+            border: 1px solid var(--line);
+            background: var(--surface);
+        }
+
+        .btn.primary {
+            background: var(--primary);
+            color: #fff;
+            border-color: transparent;
+        }
+
+        .btn.ghost {
+            color: var(--primary-2);
+        }
+
+        .hero-panel {
+            display: grid;
+            gap: 16px;
+        }
+
+        .stat {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 18px;
+            display: grid;
+            gap: 6px;
+        }
+
+        .stat strong {
+            font-size: 1.6em;
+        }
+
+        .section {
+            margin: 40px 0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+        }
+
+        .card-grid {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow);
+            display: grid;
+            gap: 12px;
+        }
+
+        .card .tag {
+            display: inline-flex;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(244, 163, 64, 0.15);
+            color: #9a5d10;
+            font-weight: 600;
+            font-size: 0.8em;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 28px;
+        }
+
+        .toc {
+            position: sticky;
+            top: 90px;
+            align-self: start;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: var(--shadow);
+        }
+
+        .toc a {
+            display: block;
+            color: var(--muted);
+            padding: 8px 0;
+            font-weight: 600;
+        }
+
+        .toc a:hover {
+            color: var(--ink);
+        }
+
+        .search {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 12px 16px;
+        }
+
+        .search input {
+            border: none;
+            outline: none;
+            flex: 1;
+            font-size: 1em;
+            background: transparent;
+        }
+
+        .footer {
+            margin-top: 60px;
+            padding: 30px 0 40px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+        }
+
+        .site-footer {
+            margin-top: 48px;
+            padding: 18px 0 14px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            background: transparent;
+        }
+
+        .site-footer .footer-grid {
+            gap: 12px;
+            padding: 6px 0;
+        }
+
+        .site-footer h4 {
+            margin: 0 0 6px;
+            font-size: 0.82em;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .site-footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .site-footer li {
+            margin-bottom: 4px;
+            font-size: 0.92em;
+        }
+
+        .site-footer a {
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        .site-footer a:hover {
+            color: var(--primary);
+        }
+
+        .site-footer .footer-bar {
+            margin-top: 8px;
+            font-size: 0.8em;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .toc {
+                position: relative;
+                top: auto;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+            }
+        }
+    
+        .terminal-dark {
+            background: #0b1118;
+            border-color: #1f2937;
+            color: #d7e2ef;
+        }
+
+        .terminal-dark .terminal-header {
+            background: #0f1722;
+        }
+
+        .terminal-dark .terminal-header span:nth-child(1) { background: #ef4444; }
+        .terminal-dark .terminal-header span:nth-child(2) { background: #f59e0b; }
+        .terminal-dark .terminal-header span:nth-child(3) { background: #22c55e; }
+
+        .terminal-dark .terminal-body {
+            font-family: "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+            font-size: 0.9em;
+        }
+
+        .terminal-dark .prompt {
+            color: #7dd3fc;
+            margin-right: 6px;
+        }
+
+        .terminal-dark .output {
+            color: #a7f3d0;
+        }
+
+        .terminal-dark .cursor {
+            color: #e2e8f0;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+
+        .footer-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px;
+            background: var(--surface-2);
+            padding: 16px;
+            border-radius: 14px;
+        }
+
+        .footer-preview ul {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0 0 0;
+        }
+
+        .footer-preview li {
+            margin-bottom: 6px;
+            color: var(--muted);
+        }
+
+        .footer-preview a {
+            color: var(--primary);
+        }
+
+</style>
+</head>
+<body>
+    <header class="site-nav">
+        <div class="container nav-inner">
+            <div class="logo-wrap">
+                <a href="/" class="logo-link"><img src="/images/dipiazza-icon.png" alt="DiPiazza Logo" class="logo"></a>
+                <div class="brand">
+                    <strong>DiPiazza</strong>
+                    <span>Systems + Security Notes</span>
+                </div>
+            </div>
+            <nav class="nav-links">
+                <a class="nav-link active" href="#">Home</a>
+                <a class="nav-link" href="#">Resources</a>
+                <a class="nav-link" href="#">Blog</a>
+                <a class="nav-link" href="#">Resume</a>
+                <a class="nav-cta" href="#">Get in Touch</a>
+            </nav>
+            <button class="nav-toggle" type="button">Menu</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-card">
+                <div class="pill">Modern UI test build</div>
+                <div class="theme-switch">
+                    <button class="theme-chip active" data-theme="sky">Sky</button>
+                    <button class="theme-chip" data-theme="ember">Ember</button>
+                    <button class="theme-chip" data-theme="forest">Forest</button>
+                    <button class="theme-chip" data-theme="mono">Mono</button>
+                </div>
+                <h1>Welcome to the Digital Workshop</h1>
+                <p>Clean cards, tighter typography, a sticky nav, and a calmer palette make the site easier to scan without losing personality.</p>
+                <div class="actions">
+                    <a class="btn primary" href="#resources">Explore Resources</a>
+                    <a class="btn ghost" href="#notes">View Notes</a>
+                </div>
+            </div>
+            <div class="hero-panel">
+                <div class="hero-illustration">
+                    <div class="hero-grid"></div>
+                    <div class="hero-scan"></div>
+                    <div class="hero-terminal terminal-dark">
+                        <div class="terminal-header">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <div class="terminal-body">
+                            <p><span class="prompt">$</span> whoami</p>
+                            <p><span class="output">systems-engineer</span></p>
+                            <p><span class="prompt">$</span> tail -f notes.log</p>
+                            <p class="output">+ Added SAR notes · Updated PenTest+</p>
+                            <p><span class="prompt">$</span> git status</p>
+                            <p class="output">modified: cysa-notes.html</p>
+                            <p class="cursor">▌</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="hero-caption">Live notes, labs, and security experiments in one place.</p>
+            </div>
+        </section>
+
+        <section class="section" id="resources">
+            <div class="section-header">
+                <h2>Featured Resources</h2>
+                <a class="btn" href="#">View all</a>
+            </div>
+            <div class="card-grid">
+                <article class="card">
+                    <span class="tag">Asterisk</span>
+                    <h3>Command Reference</h3>
+                    <p>Quick lookups for everyday VoIP troubleshooting and server management.</p>
+                    <a class="btn ghost" href="#">Open guide →</a>
+                </article>
+                <article class="card">
+                    <span class="tag">CompTIA</span>
+                    <h3>Certification Notes</h3>
+                    <p>Structured notes for CySA+, Linux+, PenTest+, and Network+.</p>
+                    <a class="btn ghost" href="#">Open guide →</a>
+                </article>
+                <article class="card">
+                    <span class="tag">Labs</span>
+                    <h3>Practice Environments</h3>
+                    <p>Lab notes for routing, DNS, firewalling, and packet capture.</p>
+                    <a class="btn ghost" href="#">Open guide →</a>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="notes">
+            <div class="section-header">
+                <h2>Notes Layout</h2>
+                <div class="search">
+                    <input type="text" placeholder="Search notes">
+                    <span>⌘K</span>
+                </div>
+            </div>
+            <div class="layout">
+                <aside class="toc">
+                    <h3>On this page</h3>
+                    <a href="#sec-1">1. Security Operations</a>
+                    <a href="#sec-2">2. Vulnerability Mgmt</a>
+                    <a href="#sec-3">3. Incident Response</a>
+                    <a href="#sec-4">4. Reporting</a>
+                </aside>
+                <div>
+                    <div class="card" id="sec-1">
+                        <h3>Security Operations</h3>
+                        <p>Use cards for quick scanning and keep key commands in highlighted blocks.</p>
+                    </div>
+                    <div class="card" id="sec-2">
+                        <h3>Vulnerability Management</h3>
+                        <p>Group related tools, keep separators light, and favor short descriptions.</p>
+                    </div>
+                    <div class="card" id="sec-3">
+                        <h3>Incident Response</h3>
+                        <p>Use color accents sparingly to highlight warnings or timelines.</p>
+                    </div>
+                    <div class="card" id="sec-4">
+                        <h3>Reporting & Communication</h3>
+                        <p>Use a calm background and high contrast for readability.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+            <section class="section" id="ui">
+            <div class="section-header">
+                <h2>UI Upgrades</h2>
+                <a class="btn" href="#">See specs</a>
+            </div>
+            <div class="card-grid">
+                <article class="card">
+                    <span class="tag">Navigation</span>
+                    <h3>Floating quick actions</h3>
+                    <p>Compact action cluster that keeps Search, Theme, and Contact accessible without a heavy header.</p>
+                    <div class="actions">
+                        <button class="btn">Search</button>
+                        <button class="btn">Theme</button>
+                    </div>
+                </article>
+                <article class="card">
+                    <span class="tag">Layout</span>
+                    <h3>Split content grid</h3>
+                    <p>Hero + stats + dense cards create a layered, editorial feel while keeping content scannable.</p>
+                    <div class="note-block">
+                        Keep 40–48px vertical rhythm for calm pacing.
+                    </div>
+                </article>
+                <article class="card">
+                    <span class="tag">Cards</span>
+                    <h3>Highlighted calls</h3>
+                    <p>Use subtle gradients and colored borders to draw attention without overpowering the page.</p>
+                    <div class="highlight-row">
+                        <span>Priority Guide</span>
+                        <button class="btn primary">Open</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+    <div class="quick-actions">
+        <button title="Search">⌕</button>
+        <button title="Theme">◐</button>
+        <button title="Contact">✉</button>
+    </div>
+</main>
+
+        <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="/resources/">Resources</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/resume/">Resume</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="mailto:daviddipiazza29@gmail.com">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/CodeGoat29" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bar">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+    <script>
+        const themeMap = {
+            sky: {
+                primary: '#2263f3',
+                primary2: '#1b4cc2',
+                accent: '#f4a340',
+                bg: '#f6f7f9',
+                surface: '#ffffff',
+                surface2: '#f0f3f7',
+                ink: '#0f1a2a',
+                muted: '#5b6b7a',
+                line: '#e3e8ef'
+            },
+            ember: {
+                primary: '#ef5b25',
+                primary2: '#c9491d',
+                accent: '#f7c948',
+                bg: '#fbf6f2',
+                surface: '#ffffff',
+                surface2: '#f8efe8',
+                ink: '#2b1a12',
+                muted: '#7a5a4b',
+                line: '#ead8cf'
+            },
+            forest: {
+                primary: '#2f7f5f',
+                primary2: '#25664b',
+                accent: '#b7e1a1',
+                bg: '#f4f8f6',
+                surface: '#ffffff',
+                surface2: '#eef5f1',
+                ink: '#143028',
+                muted: '#4c6b60',
+                line: '#d9e7df'
+            },
+            mono: {
+                primary: '#1f2937',
+                primary2: '#111827',
+                accent: '#9ca3af',
+                bg: '#f7f7f7',
+                surface: '#ffffff',
+                surface2: '#efefef',
+                ink: '#111827',
+                muted: '#4b5563',
+                line: '#e5e7eb'
+            }
+        };
+
+        const chips = document.querySelectorAll('.theme-chip');
+        chips.forEach((chip) => {
+            chip.addEventListener('click', () => {
+                chips.forEach((item) => item.classList.remove('active'));
+                chip.classList.add('active');
+                const theme = themeMap[chip.dataset.theme];
+                const root = document.documentElement;
+                root.style.setProperty('--primary', theme.primary);
+                root.style.setProperty('--primary-2', theme.primary2);
+                root.style.setProperty('--accent', theme.accent);
+                root.style.setProperty('--bg', theme.bg);
+                root.style.setProperty('--surface', theme.surface);
+                root.style.setProperty('--surface-2', theme.surface2);
+                root.style.setProperty('--ink', theme.ink);
+                root.style.setProperty('--muted', theme.muted);
+                root.style.setProperty('--line', theme.line);
+            });
+        });
+    </script>
+</body>
+</html>

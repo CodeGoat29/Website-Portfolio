@@ -1,0 +1,250 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 29: First Hop Redundancy Protocols | DiPiazza</title><link rel="icon" href="/images/dipiazza-icon.png"><link rel="stylesheet" href="/css/styles.css"><link rel="stylesheet" href="/resources/ccna/course.css?v=2"></head><body><header class="site-header">
+        <div class="container header-content">
+            <a href="/" class="logo-link"><img src="/images/dipiazza-icon.png" alt="DiPiazza Logo" class="logo"></a>
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Where I break stuff, then write about it.</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/resources/" class="active">Resources</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/resume/">Resume</a></li>
+                    <li><button class="nav-cta" type="button" data-contact-open>Get in Touch</button></li>
+                </ul>
+            </nav>
+        <div class="top-controls">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-inner"></span>
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div></div>
+    </header>
+
+<main class="wrap ccna-main"><div class="crumb"><a href="/resources/ccna/">CCNA study notes</a> / Day 29</div><div class="reading-layout"><aside class="course-sidebar"><details open><summary>Browse CCNA</summary><div class="sidebar-shortcuts"><a href="/resources/ccna/">Course overview</a><a href="/resources/ccna/commands/">Command reference</a></div><label class="day-search-label" for="day-search">Find a day</label><input id="day-search" type="search" placeholder="Day number or topic"><nav class="day-scroll" aria-label="CCNA study days" tabindex="0"><a href="/resources/ccna/day-01/"><span>Day 01</span><span>Network Devices</span></a><a href="/resources/ccna/day-02/"><span>Day 02</span><span>Interfaces and Cables</span></a><a href="/resources/ccna/day-03/"><span>Day 03</span><span>TCP/IP Model</span></a><a href="/resources/ccna/day-04/"><span>Day 04</span><span>Intro to the CLI</span></a><a href="/resources/ccna/day-05/"><span>Day 05</span><span>Ethernet LAN Switching (pt 1)</span></a><a href="/resources/ccna/day-06/"><span>Day 06</span><span>Ethernet LAN Switching (pt 2)</span></a><a href="/resources/ccna/day-07/"><span>Day 07</span><span>IPv4 Addressing (pt 1)</span></a><a href="/resources/ccna/day-08/"><span>Day 08</span><span>IPv4 Addressing (pt 2)</span></a><a href="/resources/ccna/day-09/"><span>Day 09</span><span>Switch Interfaces</span></a><a href="/resources/ccna/day-10/"><span>Day 10</span><span>IPv4 Header</span></a><a href="/resources/ccna/day-11/"><span>Day 11</span><span>Routing Fundamentals (pt 1) / Static Routing (pt 2)</span></a><a href="/resources/ccna/day-12/"><span>Day 12</span><span>The life of a packet</span></a><a href="/resources/ccna/day-13/"><span>Day 13</span><span>Subnetting (pt 1)</span></a><a href="/resources/ccna/day-14/"><span>Day 14</span><span>Subnetting (pt 2)</span></a><a href="/resources/ccna/day-15/"><span>Day 15</span><span>Subnetting (pt 3 VLSM)</span></a><a href="/resources/ccna/day-16/"><span>Day 16</span><span>(VlANs pt 1)</span></a><a href="/resources/ccna/day-17/"><span>Day 17</span><span>(VlANs pt 2)</span></a><a href="/resources/ccna/day-18/"><span>Day 18</span><span>(VlANs pt 3)</span></a><a href="/resources/ccna/day-19/"><span>Day 19</span><span>DTP / VTP (Not in Syllabus)</span></a><a href="/resources/ccna/day-20/"><span>Day 20</span><span>Spanning Tree Protocol (pt 1)</span></a><a href="/resources/ccna/day-21/"><span>Day 21</span><span>Spanning Tree Protocol (pt 2)</span></a><a href="/resources/ccna/day-22/"><span>Day 22</span><span>Rapid Spanning Tree Protocol</span></a><a href="/resources/ccna/day-23/"><span>Day 23</span><span>Etherchannel</span></a><a href="/resources/ccna/day-24/"><span>Day 24</span><span>Dynamic Routing</span></a><a href="/resources/ccna/day-25/"><span>Day 25</span><span>RIP &amp; EIGRP</span></a><a href="/resources/ccna/day-26/"><span>Day 26</span><span>OSPF (pt 1)</span></a><a href="/resources/ccna/day-27/"><span>Day 27</span><span>OSPF (pt 2)</span></a><a href="/resources/ccna/day-28/"><span>Day 28</span><span>OSPF (pt 3)</span></a><a href="/resources/ccna/day-29/" aria-current="page"><span>Day 29</span><span>First Hop Redundancy Protocols</span></a><a href="/resources/ccna/day-30/"><span>Day 30</span><span>TCP &amp; UDP</span></a><a href="/resources/ccna/day-31/"><span>Day 31</span><span>IPV6 (pt 1)</span></a><a href="/resources/ccna/day-32/"><span>Day 32</span><span>IPV6 (pt 2)</span></a><a href="/resources/ccna/day-33/"><span>Day 33</span><span>IPV6 (pt 3)</span></a><a href="/resources/ccna/day-34/"><span>Day 34</span><span>Standard ACLs</span></a><a href="/resources/ccna/day-35/"><span>Day 35</span><span>Extended ACLs</span></a><a href="/resources/ccna/day-36/"><span>Day 36</span><span>CDP &amp; LLDP</span></a><a href="/resources/ccna/day-37/"><span>Day 37</span><span>NTP</span></a><a href="/resources/ccna/day-38/"><span>Day 38</span><span>DNS</span></a><a href="/resources/ccna/day-39/"><span>Day 39</span><span>DHCP</span></a><a href="/resources/ccna/day-40/"><span>Day 40</span><span>SNMP</span></a><a href="/resources/ccna/day-41/"><span>Day 41</span><span>Syslog</span></a><a href="/resources/ccna/day-42/"><span>Day 42</span><span>SSH</span></a><a href="/resources/ccna/day-43/"><span>Day 43</span><span>FTP &amp; TFTP</span></a><a href="/resources/ccna/day-44/"><span>Day 44</span><span>NAT (pt 1)</span></a><a href="/resources/ccna/day-45/"><span>Day 45</span><span>NAT (pt 2)</span></a><a href="/resources/ccna/day-46/"><span>Day 46</span><span>QoS (pt 1)</span></a><a href="/resources/ccna/day-47/"><span>Day 47</span><span>QoS (pt 2)</span></a><a href="/resources/ccna/day-48/"><span>Day 48</span><span>Security Fundamentals</span></a><a href="/resources/ccna/day-49/"><span>Day 49</span><span>Port Security</span></a><a href="/resources/ccna/day-50/"><span>Day 50</span><span>DHCP Snooping</span></a><a href="/resources/ccna/day-51/"><span>Day 51</span><span>Dynamic ARP Inspection (DAI)</span></a><a href="/resources/ccna/day-52/"><span>Day 52</span><span>LAN Architectures</span></a><a href="/resources/ccna/day-53/"><span>Day 53</span><span>WAN Architectures</span></a><a href="/resources/ccna/day-54/"><span>Day 54</span><span>Virtualization &amp; Cloud / Containers / VRF</span></a><a href="/resources/ccna/day-55/"><span>Day 55</span><span>Wireless Fundamentals</span></a><a href="/resources/ccna/day-56/"><span>Day 56</span><span>Wireless Architectures</span></a><a href="/resources/ccna/day-57/"><span>Day 57</span><span>Wireless Security</span></a><a href="/resources/ccna/day-58/"><span>Day 58</span><span>Wireless Configuration</span></a><a href="/resources/ccna/day-59/"><span>Day 59</span><span>Intro to Network Automation</span></a><a href="/resources/ccna/day-60/"><span>Day 60</span><span>JSON, XML, &amp; YAML</span></a><a href="/resources/ccna/day-61/"><span>Day 61</span><span>REST API</span></a><a href="/resources/ccna/day-62/"><span>Day 62</span><span>Software-Defined Networking</span></a><a href="/resources/ccna/day-63/"><span>Day 63</span><span>Ansible, Puppet, Chef, &amp; Terraform</span></a></nav><p id="day-empty" hidden>No matching days.</p></details></aside><article class="lesson-content"><header class="lesson-head"><div class="eyebrow">Day 29 / 63 · Routing &amp; addressing</div><h1>First Hop Redundancy Protocols</h1><p class="lead">Study notes based primarily on Jeremy’s IT Lab CCNA learning videos. Credit to Jeremy’s IT Lab for the source lessons and diagrams.</p><div class="pills"><a class="button" href="/resources/ccna/commands/">Command reference</a><a class="button primary" href="/resources/ccna/">All 63 days</a></div></header><section class="note-part" id="part-1"><h2>First Hop Redundancy Protocols</h2><a class="button" href="/resources/ccna/assets/lesson-30/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="/resources/ccna/assets/lesson-30/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge First Hop Redundancy Protocols page 1"><img src="/resources/ccna/assets/lesson-30/page-1.webp" width="1082" height="2075" loading="lazy" alt="Original OneNote notes: First Hop Redundancy Protocols, page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 2</figcaption></figure><figure class="note-image"><a href="/resources/ccna/assets/lesson-30/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge First Hop Redundancy Protocols page 2"><img src="/resources/ccna/assets/lesson-30/page-2.webp" width="1564" height="701" loading="lazy" alt="Original OneNote notes: First Hop Redundancy Protocols, page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 2</figcaption></figure><details class="text-view"><summary>Text view — First Hop Redundancy Protocols</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 29 - First Hop Redundancy Protocols
+Sunday, September 6, 2026 10:46 AM
+FHRP Information
+A First Hop Redundancy Protocol (FHRP) is a networking protocol, which is designed to protect the default gateway used on a
+subnet by allowing two or more routers to provide backup for that address. If a failure does occur on the active router,
+the backup router will take over the address.
+• FHRP works by assigning routers in the network a Virtual IP (VIP) address which will be set as the default gateway on all end-
+hosts, rather than the actual IP address of the routers in the network.
+• FHRP also assigns the routers a unified Virtual MAC Address for the end-hosts to use in order to send frames to the routers.
+The Virtual MAC is decided by the FHRP protocol that’s being used on the network.
+• The routers in the FHRP negotiate and communicate with each other through multicast Hello messages, in order to decide
+their roles. (Active &amp; Standby / Master &amp; Backup / etc.)
+• When a change in roles happens (ie. Router goes from standby to active), the new active router will broadcast Gratuitous
+ARP messages on the ffff.ffff.ffff MAC Address, which are basically ARP Reply messages that get sent without even being
+requested (through an ARP Request). This is used to update the switches’ MAC Address Tables.
+What do Gratuitous ARP messages do exactly?
+○ The problem that Gratuitous ARP fixes is that when a router goes from standby to active, the switches in the network
+won’t automatically know that the current active FHRP router in the network has changed. Therefore, they will keep
+forwarding frames/packets to the former active router location.
+○ The solution to this was to make it so when a router gets assigned the active role in FHRP, it’ll broadcast Gratuitous
+ARP messages that’ll reach all the switches in the network; in order for them to get informed about the
+new active router’s location and update their MAC Address Tables accordingly.
+FHRP Routers and End-Hosts
+FHRP Active and Standby Routers
+If the currently active FHRP router goes down, the standby router will stop receiving Hello messages and assume that
+the active router has gone down.
+• This is when it’ll switch its FHRP role from standby to active.
+• It’ll also start sending out Gratuitous ARP to inform the switches in the network of the new standby router’s location.
+FHRPs are ‘non-preemptive’. Meaning that the current active router will not give up its role, even if the former active router gets
+reactivated. (Preemption can be enabled on different FHRP protocols, which would let the old router take back its role if it gets back
+up and running)
+Process of End-host Communication with FHRP Routers
+Usually, when an end-host wants to send a frame out of its subnet, it’ll send it to its own default gateway which is the router
+interface’s IP. However, when FHRP is set up, the default gateway’s address is the Virtual IP (VIP) that was assigned onto
+the FHRP routers. Additionally, the end-host still needs a MAC address (which will be the Virtual MAC Address) so it could forward
+the frame to its default gateway.
+• The end-host will send an ARP Request with the source IP being its own, and the destination IP being the VIP.
+• Once the active FHRP router receives the request, it’ll send back an ARP Reply containing the router’s Virtual MAC Address.
+• The end-host will then send traffic as normal to their default gateway. Frames that the end-host sends will have:
+○ The source IP of the end-host
+○ The destination IP which is the VIP
+○ The source MAC address of the end-host
+○ The destination MAC address which is the Virtual MAC
+FHRP Protocols
+FHRP Protocol Table Summary
+FHRP Protocol Terminology Multicast IP Virtual MAC Proprietary?
+HSRP Active/Standby V1: 224.0.0.2 V1: 0000.0c07.acXX Yes
+V2: 224.0.0.102 V2: 0000.0c9f.fXXX
+VRRP Master/Backup 224.0.0.18 0000.5e00.01XX No
+GLBP AVG/AVF 224.0.0.102 0007.b400.XXYY Yes
+1. HSRP (Hot Standby Router Protocol)
+• Cisco proprietary
+• Active and Standby routers are elected.
+• In a situation with multiple subnets/VLANs, you can configure a different active router in each subnet/VLAN to load balance.
+• Has two versions:
+○ Version 1
+§ Multicast IP: 224.0.0.2
+§ Virtual MAC: 0000.0c07.acXX (XX = HSRP group number)
+○ Version 2 which adds IPv6 support and increases the number of groups that can be configured
+§ Multicast IP: 224.0.0.102
+§ Virtual MAC: 0000.0c9f.fXXX (XXX = HSRP group number)
+How the active role is assigned:
+○ The active router is determined in this order
+1. Highest HSRP priority (Default is 100)
+2. Highest IP address
+2. VRRP (Virtual Router Redundancy Protocol)
+• Open standard
+• Master and Backup routers are elected.
+• In a situation with multiple subnets/VLANs, you can configure a different master router in each subnet/VLAN to load balance.
+• Multicast IP: 224.0.0.18
+• Virtual MAC: 0000.5e00.01XX (XX = VRRP group number)
+3. GLBP (Gateway Load Balancing Protocol)
+• Cisco proprietary
+• Load balances among multiple routers within a single subnet
+• An AVG (Active Virtual Gateway) is elected along with four AVFs (Active Virtual Forwarder)
+○ The AVG itself can be an AVF as well.
+○ Each AVF acts as the default gateway for a portion of hosts in the subnet.
+• Multicast IP: 224.0.0.102
+• Virtual MAC: 0007.b400.XXYY (XX = GLBP AVG group number, YY = GLBP AVF group number)
+Extra: FRSP HSRP Configuration
+HSRP is configured through the standby command.
+• The Virtual IP can be assigned through this command:
+○ standby GROUP-NUMBER ip VIRTUAL-IP
+• The interface’s priority can be set through this command: (default is 100, if both are same router with highest IP will be the
+active)
+○ standby GROUP-NUMBER priority PRIORITY-VALUE
+• Preemption can be enabled through this command:
+○ standby GROUP-NUMBER preempt
+• You can see the current HSRP configuration and settings on the router through this command:
+○ show standby
+Preemption in HSRP
+Preempt causes the router to take the role of the active router, even if another router already has the role.
+
+Day 29 - First Hop Redundancy Protocols
+Sunday, September 6, 2026 10:46 AM
+FHRP Information
+A First Hop Redundancy Protocol (FHRP) is a networking protocol, which is designed to protect the default gateway used on a
+subnet by allowing two or more routers to provide backup for that address. If a failure does occur on the active router,
+the backup router will take over the address.
+• FHRP works by assigning routers in the network a Virtual IP (VIP) address which will be set as the default gateway on all end-
+hosts, rather than the actual IP address of the routers in the network.
+• FHRP also assigns the routers a unified Virtual MAC Address for the end-hosts to use in order to send frames to the routers.
+The Virtual MAC is decided by the FHRP protocol that’s being used on the network.
+• The routers in the FHRP negotiate and communicate with each other through multicast Hello messages, in order to decide
+their roles. (Active &amp; Standby / Master &amp; Backup / etc.)
+• When a change in roles happens (ie. Router goes from standby to active), the new active router will broadcast Gratuitous
+ARP messages on the ffff.ffff.ffff MAC Address, which are basically ARP Reply messages that get sent without even being
+requested (through an ARP Request). This is used to update the switches’ MAC Address Tables.
+What do Gratuitous ARP messages do exactly?
+○ The problem that Gratuitous ARP fixes is that when a router goes from standby to active, the switches in the network
+won’t automatically know that the current active FHRP router in the network has changed. Therefore, they will keep
+forwarding frames/packets to the former active router location.
+○ The solution to this was to make it so when a router gets assigned the active role in FHRP, it’ll broadcast Gratuitous
+ARP messages that’ll reach all the switches in the network; in order for them to get informed about the
+new active router’s location and update their MAC Address Tables accordingly.
+FHRP Routers and End-Hosts
+FHRP Active and Standby Routers
+If the currently active FHRP router goes down, the standby router will stop receiving Hello messages and assume that
+the active router has gone down.
+• This is when it’ll switch its FHRP role from standby to active.
+• It’ll also start sending out Gratuitous ARP to inform the switches in the network of the new standby router’s location.
+FHRPs are ‘non-preemptive’. Meaning that the current active router will not give up its role, even if the former active router gets
+reactivated. (Preemption can be enabled on different FHRP protocols, which would let the old router take back its role if it gets back
+up and running)
+Process of End-host Communication with FHRP Routers
+Usually, when an end-host wants to send a frame out of its subnet, it’ll send it to its own default gateway which is the router
+interface’s IP. However, when FHRP is set up, the default gateway’s address is the Virtual IP (VIP) that was assigned onto
+the FHRP routers. Additionally, the end-host still needs a MAC address (which will be the Virtual MAC Address) so it could forward
+the frame to its default gateway.
+• The end-host will send an ARP Request with the source IP being its own, and the destination IP being the VIP.
+• Once the active FHRP router receives the request, it’ll send back an ARP Reply containing the router’s Virtual MAC Address.
+• The end-host will then send traffic as normal to their default gateway. Frames that the end-host sends will have:
+○ The source IP of the end-host
+○ The destination IP which is the VIP
+○ The source MAC address of the end-host
+○ The destination MAC address which is the Virtual MAC
+FHRP Protocols
+FHRP Protocol Table Summary
+FHRP Protocol Terminology Multicast IP Virtual MAC Proprietary?
+HSRP Active/Standby V1: 224.0.0.2 V1: 0000.0c07.acXX Yes
+V2: 224.0.0.102 V2: 0000.0c9f.fXXX
+VRRP Master/Backup 224.0.0.18 0000.5e00.01XX No
+GLBP AVG/AVF 224.0.0.102 0007.b400.XXYY Yes
+1. HSRP (Hot Standby Router Protocol)
+• Cisco proprietary
+• Active and Standby routers are elected.
+• In a situation with multiple subnets/VLANs, you can configure a different active router in each subnet/VLAN to load balance.
+• Has two versions:
+○ Version 1
+§ Multicast IP: 224.0.0.2
+§ Virtual MAC: 0000.0c07.acXX (XX = HSRP group number)
+○ Version 2 which adds IPv6 support and increases the number of groups that can be configured
+§ Multicast IP: 224.0.0.102
+§ Virtual MAC: 0000.0c9f.fXXX (XXX = HSRP group number)
+How the active role is assigned:
+○ The active router is determined in this order
+1. Highest HSRP priority (Default is 100)
+2. Highest IP address
+2. VRRP (Virtual Router Redundancy Protocol)
+• Open standard
+• Master and Backup routers are elected.
+• In a situation with multiple subnets/VLANs, you can configure a different master router in each subnet/VLAN to load balance.
+• Multicast IP: 224.0.0.18
+• Virtual MAC: 0000.5e00.01XX (XX = VRRP group number)
+3. GLBP (Gateway Load Balancing Protocol)
+• Cisco proprietary
+• Load balances among multiple routers within a single subnet
+• An AVG (Active Virtual Gateway) is elected along with four AVFs (Active Virtual Forwarder)
+○ The AVG itself can be an AVF as well.
+○ Each AVF acts as the default gateway for a portion of hosts in the subnet.
+• Multicast IP: 224.0.0.102
+• Virtual MAC: 0007.b400.XXYY (XX = GLBP AVG group number, YY = GLBP AVF group number)
+Extra: FRSP HSRP Configuration
+HSRP is configured through the standby command.
+• The Virtual IP can be assigned through this command:
+○ standby GROUP-NUMBER ip VIRTUAL-IP
+• The interface’s priority can be set through this command: (default is 100, if both are same router with highest IP will be the
+active)
+○ standby GROUP-NUMBER priority PRIORITY-VALUE
+• Preemption can be enabled through this command:
+○ standby GROUP-NUMBER preempt
+• You can see the current HSRP configuration and settings on the router through this command:
+○ show standby
+Preemption in HSRP
+Preempt causes the router to take the role of the active router, even if another router already has the role.</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="/resources/ccna/day-28/"><small>← Day 28</small>OSPF (pt 3)</a><a href="/resources/ccna/day-30/"><small>Day 30 →</small>TCP &amp; UDP</a></nav></article></div></main>    <div class="contact-modal" id="contactModal">
+        <div class="contact-modal-content">
+            <div class="contact-modal-header">
+                <h3>Get in Touch</h3>
+                <button class="contact-modal-close" type="button" id="contactModalClose">✕</button>
+            </div>
+            <div class="contact-modal-links">
+                <a href="mailto:daviddipiazza29@gmail.com" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/CodeGoat29" target="_blank" class="contact-link">GitHub</a>
+            </div>
+        </div>
+    </div>
+
+            <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="/resources/">Resources</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/resume/">Resume</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="mailto:daviddipiazza29@gmail.com">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/CodeGoat29" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bar">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+<script src="/js/site.js"></script><script src="/resources/ccna/course.js?v=2"></script></body></html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TryHackMe PT1 Experience - DiPiazza</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" type="image/png" href="/images/dipiazza-icon.png">
+    <style>
+        .post-hero {
+            margin-bottom: 18px;
+        }
+
+        .post-title {
+            margin-bottom: 8px;
+        }
+
+        .post-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            color: #657786;
+            font-size: 0.95em;
+            margin-top: 8px;
+        }
+
+        .dark-mode .post-meta {
+            color: #8899a6;
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 980px;
+            border-radius: 14px;
+            border: 1px solid #d6e2f0;
+            margin: 16px auto 8px;
+            display: block;
+        }
+
+        .post-image-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #6a7b8d;
+            margin-bottom: 10px;
+        }
+
+        .dark-mode .post-image-caption {
+            color: #9aa8b6;
+        }
+
+        .post-body {
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto 40px;
+        }
+
+        .dark-mode .post-body {
+            color: #b8c4d1;
+        }
+
+        .post-body h2 {
+            margin-top: 24px;
+            color: var(--primary-blue);
+            font-size: 1.35em;
+            padding-top: 16px;
+        }
+
+        .post-body h2:first-of-type {
+            border-top: 0;
+            padding-top: 0;
+        }
+
+        .post-body h2::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 1px;
+            background: #e6edf6;
+            margin-top: 10px;
+        }
+
+        .post-body ul {
+            list-style: none;
+            padding-left: 0;
+            display: grid;
+            gap: 8px;
+        }
+
+        .post-body li {
+            padding-left: 18px;
+            position: relative;
+        }
+
+        .post-body li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+        }
+
+        .post-callout {
+            background: #f6f9fc;
+            border-left: 4px solid var(--primary-blue);
+            padding: 12px 14px;
+            border-radius: 10px;
+            margin: 12px 0 6px;
+            color: #4a5a6a;
+        }
+
+        .dark-mode .post-callout {
+            background: #243447;
+            color: #b8c4d1;
+        }
+
+        .post-takeaways {
+            background: #f7f9fc;
+            border: 1px solid #e1e8ed;
+            border-radius: 12px;
+            padding: 16px 18px;
+            margin: 14px 0 22px;
+        }
+
+        .dark-mode .post-takeaways {
+            background: #1c2a3a;
+            border-color: #2a3f5f;
+        }
+
+        .post-takeaways h3 {
+            margin-top: 0;
+            color: var(--primary-blue);
+        }
+
+        .post-takeaways ul {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 900px) {
+            .post-body {
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-controls">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <a href="/" class="logo-link"><img src="/images/dipiazza-icon.png" alt="DiPiazza Logo" class="logo"></a>
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Where I break stuff, then write about it.</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/resources/">Resources</a></li>
+                    <li><a href="/blog/" class="active">Blog</a></li>
+                    <li><a href="/resume/">Resume</a></li>
+                    <li><button class="nav-cta" type="button" data-contact-open>Get in Touch</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="post-hero">
+            <h1 class="post-title">My Experience Earning the TryHackMe Pentest 1 Certification</h1>
+            <div class="post-meta">
+                <span>November 13, 2025</span>
+                <span>Security</span>
+                <span>Training</span>
+            </div>
+            <img class="post-image" src="/images/blog/tryhackme-pt1.png" alt="TryHackMe PT1 overview">
+            <div class="post-image-caption">Hands-on, guided penetration testing practice.</div>
+            <div class="post-callout">
+                All testing described here was performed in authorized lab environments.
+            </div>
+        </section>
+
+        <section class="post-body">
+            <p>I recently completed the TryHackMe Pentest 1 (PT1) certification. I submitted the exam at around 47 hours in, after roughly 16 hours a day over two days. The experience was hands-on and task-driven, which is exactly how I learn best.</p>
+
+            <h2>Approach and methodology</h2>
+            <p>I followed a structured penetration testing methodology that mirrors real engagement flow:</p>
+            <ul>
+                <li>Reconnaissance and enumeration</li>
+                <li>Vulnerability identification</li>
+                <li>Exploitation</li>
+                <li>Privilege escalation</li>
+                <li>Post-exploitation validation</li>
+                <li>Reporting and documentation</li>
+            </ul>
+
+            <h2>Web application testing focus</h2>
+            <p>Web testing emphasized understanding how applications are intended to behave, then validating what happens when inputs change or trust assumptions break.</p>
+            <ul>
+                <li>Endpoint discovery and parameter mapping</li>
+                <li>Input validation and access control checks</li>
+                <li>Session and token handling review</li>
+                <li>Workflow logic testing for edge cases</li>
+            </ul>
+
+            <h2>Network testing focus</h2>
+            <p>The network portion was about discovery, service identification, and safe validation of common weaknesses in Linux environments.</p>
+            <ul>
+                <li>Service enumeration and version discovery</li>
+                <li>Attack surface mapping and prioritization</li>
+                <li>Post-exploitation validation and cleanup mindset</li>
+            </ul>
+
+            <h2>Active Directory testing focus</h2>
+            <p>This section required a different mindset. It was less about one big exploit and more about chaining small misconfigurations.</p>
+            <ul>
+                <li>Domain enumeration and trust relationships</li>
+                <li>Credential hygiene and lateral movement awareness</li>
+                <li>Privilege pathways and access graph thinking</li>
+            </ul>
+
+            <div class="post-takeaways">
+                <h3>Key Takeaways</h3>
+                <ul>
+                    <li>Methodical enumeration beats rushing into exploitation.</li>
+                    <li>Most wins come from small misconfigurations, not flashy exploits.</li>
+                    <li>Reporting quality matters as much as technical skill.</li>
+                </ul>
+            </div>
+
+            <h2>What I would improve next</h2>
+            <p>My biggest improvement area is keeping even tighter notes on commands and repeatable steps, so I can quickly reproduce findings and build cleaner reports.</p>
+
+            <h2>Final thoughts</h2>
+            <p>PT1 was one of the most practical training experiences I have completed. It reinforced the value of structured methodology, careful validation, and clear reporting. Most importantly, it sharpened the exact skills I want to use in real-world security work.</p>
+        </section>
+    </main>
+
+    <div class="contact-modal" id="contactModal">
+        <div class="contact-modal-content">
+            <div class="contact-modal-header">
+                <h3>Get in Touch</h3>
+                <button class="contact-modal-close" type="button" id="contactModalClose">✕</button>
+            </div>
+            <div class="contact-modal-links">
+                <a href="mailto:daviddipiazza29@gmail.com" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/CodeGoat29" target="_blank" class="contact-link">GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="/resources/">Resources</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/resume/">Resume</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="mailto:daviddipiazza29@gmail.com">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/CodeGoat29" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bar">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homelab Cheat Sheet - DiPiazza</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" type="image/png" href="/images/dipiazza-icon.png">
+    <style>
+        .search-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-modal.show {
+            display: flex;
+        }
+
+        .search-modal-content {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode .search-modal-content {
+            background: #1c2938;
+        }
+
+        .search-modal h3 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .search-modal-fields {
+            display: grid;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .search-modal-field span {
+            display: block;
+            font-size: 0.85em;
+            color: #657786;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .dark-mode .search-modal-field span {
+            color: #8899a6;
+        }
+
+        .search-modal-input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1em;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .dark-mode .search-modal-input {
+            background: #0f1419;
+            color: var(--primary-blue);
+            border-color: #2a3f5f;
+        }
+
+        .search-modal-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        .search-modal-btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .search-modal-btn.btn-search {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .search-modal-btn.btn-search:hover {
+            background: var(--main-blue);
+        }
+
+        .search-modal-btn.btn-cancel {
+            background: #e1e8ed;
+            color: #2c3e50;
+        }
+
+        .dark-mode .search-modal-btn.btn-cancel {
+            background: #2a3f5f;
+            color: #e4e6eb;
+        }
+
+        .search-modal-btn.btn-cancel:hover {
+            background: #657786;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-controls">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <a href="/" class="logo-link"><img src="/images/dipiazza-icon.png" alt="DiPiazza Logo" class="logo"></a>
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Where I break stuff, then write about it.</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/resources/" class="active">Resources</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/resume/">Resume</a></li>
+                    <li><button class="nav-cta" type="button" data-contact-open>Get in Touch</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="notes-header">
+            <h1>Homelab Cheat Sheet</h1>
+            <p class="subtitle">Quick commands for Fail2Ban, SSH, logs, networking, and Docker basics.</p>
+
+            <div class="quick-nav">
+                <h3>Quick Navigation</h3>
+                <div class="nav-links">
+                    <a href="#fail2ban" class="nav-link">Fail2Ban</a>
+                    <a href="#logs" class="nav-link">Logs & Monitoring</a>
+                    <a href="#networking" class="nav-link">Networking</a>
+                    <a href="#ssh" class="nav-link">SSH Sessions</a>
+                    <a href="#docker" class="nav-link">Docker Basics</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="fail2ban" class="command-category">
+            <h2 class="category-toggle">Fail2Ban Commands</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="fail2ban status jail">
+                    <div class="command-header"><h3>Overall Status</h3></div>
+                    <p class="command-description">Check the main Fail2Ban status and list active jails.</p>
+                    <div class="command-block">
+                        <code>sudo fail2ban-client status</code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="fail2ban sshd jail status">
+                    <div class="command-header"><h3>Specific Jail Status</h3></div>
+                    <p class="command-description">Show banned IPs, failed attempts, and jail settings.</p>
+                    <div class="command-block" data-template="sudo fail2ban-client status {jail}">
+                        <code>sudo fail2ban-client status <span class="placeholder">sshd</span></code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="fail2ban unban all">
+                    <div class="command-header"><h3>Unban All IPs</h3></div>
+                    <p class="command-description">Remove all bans across all jails.</p>
+                    <div class="command-block">
+                        <code>sudo fail2ban-client unban --all</code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <div class="command-notes">
+                        <strong>Note:</strong> If unsupported, unban by jail with <code>fail2ban-client set &lt;jail&gt; unbanip &lt;ip&gt;</code>.
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="fail2ban unban ip sshd">
+                    <div class="command-header"><h3>Unban Specific IP (SSH)</h3></div>
+                    <p class="command-description">Remove a single IP from the SSH jail.</p>
+                    <div class="command-block" data-template="sudo fail2ban-client set {jail} unbanip {ip}">
+                        <code>sudo fail2ban-client set <span class="placeholder">sshd</span> unbanip <span class="placeholder">IP_ADDRESS</span></code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="logs" class="command-category">
+            <h2 class="category-toggle">Logs & Monitoring</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="journalctl ssh logs">
+                    <div class="command-header"><h3>Recent SSH Activity</h3></div>
+                    <p class="command-description">View recent SSH logins, failures, and disconnects.</p>
+                    <div class="command-block">
+                        <code>sudo journalctl -u ssh -n 20</code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <div class="command-notes">
+                        <strong>Note:</strong> Some systems use <code>sshd</code> instead of <code>ssh</code>.
+                    </div>
+                    <div class="command-block">
+                        <code>sudo journalctl -u sshd -n 20</code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="fail2ban logs journalctl">
+                    <div class="command-header"><h3>Fail2Ban Logs</h3></div>
+                    <p class="command-description">Show recent Fail2Ban bans, unbans, and errors.</p>
+                    <div class="command-block">
+                        <code>sudo journalctl -u fail2ban -n 50 --no-pager</code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="networking" class="command-category">
+            <h2 class="category-toggle">Networking</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="public ip curl">
+                    <div class="command-header"><h3>Get Public IP</h3></div>
+                    <p class="command-description">Useful for whitelisting or verifying outbound IP.</p>
+                    <div class="command-block">
+                        <code>curl ifconfig.me</code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ssh" class="command-category">
+            <h2 class="category-toggle">SSH Sessions</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="ssh sessions who">
+                    <div class="command-header"><h3>Who Is Logged In</h3></div>
+                    <p class="command-description">See active users, IPs, and login times.</p>
+                    <div class="command-block">
+                        <code>who</code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="docker" class="command-category">
+            <h2 class="category-toggle">Docker Basics</h2>
+            <div class="category-content">
+                <div class="command-card" data-tags="docker ps running">
+                    <div class="command-header"><h3>List Running Containers</h3></div>
+                    <div class="command-block">
+                        <code>docker ps</code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="docker ps all">
+                    <div class="command-header"><h3>List All Containers</h3></div>
+                    <div class="command-block">
+                        <code>docker ps -a</code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="docker stop">
+                    <div class="command-header"><h3>Stop a Container</h3></div>
+                    <div class="command-block" data-template="docker stop {container}">
+                        <code>docker stop <span class="placeholder">container_name</span></code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="docker rm remove">
+                    <div class="command-header"><h3>Remove a Container</h3></div>
+                    <div class="command-block" data-template="docker rm {container}">
+                        <code>docker rm <span class="placeholder">container_name</span></code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="docker rm volumes">
+                    <div class="command-header"><h3>Remove Container + Anonymous Volumes</h3></div>
+                    <div class="command-block" data-template="docker rm -v {container}">
+                        <code>docker rm -v <span class="placeholder">container_name</span></code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="docker volume list">
+                    <div class="command-header"><h3>List Volumes</h3></div>
+                    <div class="command-block">
+                        <code>docker volume ls</code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="docker volume prune">
+                    <div class="command-header"><h3>Remove Unused Volumes</h3></div>
+                    <div class="command-block">
+                        <code>docker volume prune</code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="docker system prune cleanup">
+                    <div class="command-header"><h3>Full Cleanup (Aggressive)</h3></div>
+                    <p class="command-description">Removes stopped containers, unused images, networks, and volumes.</p>
+                    <div class="command-block">
+                        <code>docker system prune -a --volumes</code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+
+                <div class="command-card" data-tags="docker inspect mounts">
+                    <div class="command-header"><h3>Inspect Container Mounts</h3></div>
+                    <p class="command-description">Find where data is stored on the host.</p>
+                    <div class="command-block" data-template="docker inspect {container}">
+                        <code>docker inspect <span class="placeholder">container_name</span></code>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <h3>Fill in values</h3>
+            <div class="search-modal-fields" id="searchModalFields"></div>
+            <div class="search-modal-buttons">
+                <button class="search-modal-btn btn-cancel" id="searchModalCancel">Cancel</button>
+                <button class="search-modal-btn btn-search" id="searchModalSearch">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-modal" id="contactModal">
+        <div class="contact-modal-content">
+            <div class="contact-modal-header">
+                <h3>Get in Touch</h3>
+                <button class="contact-modal-close" type="button" id="contactModalClose">✕</button>
+            </div>
+            <div class="contact-modal-links">
+                <a href="mailto:daviddipiazza29@gmail.com" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/CodeGoat29" target="_blank" class="contact-link">GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="/resources/">Resources</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/resume/">Resume</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="mailto:daviddipiazza29@gmail.com">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/CodeGoat29" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bar">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="/js/site.js"></script>
+    <script>
+        document.querySelectorAll('.category-toggle').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                toggle.classList.toggle('collapsed');
+                content.classList.toggle('collapsed');
+            });
+        });
+
+        const searchModal = document.getElementById('searchModal');
+        const searchModalFields = document.getElementById('searchModalFields');
+        const searchModalCancel = document.getElementById('searchModalCancel');
+        const searchModalDone = document.getElementById('searchModalSearch');
+        let currentCopyButton = null;
+        let currentTemplate = null;
+
+        function extractTemplateFields(template) {
+            const fields = [];
+            const matches = template.matchAll(/{([^}]+)}/g);
+            for (const match of matches) {
+                const field = match[1];
+                if (!fields.includes(field)) {
+                    fields.push(field);
+                }
+            }
+            return fields;
+        }
+
+        function formatFieldLabel(field) {
+            const map = {
+                jail: 'Jail name',
+                ip: 'IP address',
+                container: 'Container name'
+            };
+            return map[field] || field.replace(/[-_]/g, ' ');
+        }
+
+        function setCopiedState(button) {
+            if (!button) return;
+            button.textContent = 'Copied!';
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.textContent = 'Copy';
+                button.classList.remove('copied');
+            }, 2000);
+        }
+
+        function openFillModal(button, commandBlock) {
+            const template = commandBlock.getAttribute('data-template');
+            if (!template) return;
+            const fields = extractTemplateFields(template);
+            if (fields.length === 0) {
+                return;
+            }
+
+            currentCopyButton = button;
+            currentTemplate = template;
+            searchModalFields.innerHTML = '';
+
+            fields.forEach(field => {
+                const label = formatFieldLabel(field);
+                const wrapper = document.createElement('label');
+                wrapper.className = 'search-modal-field';
+                const title = document.createElement('span');
+                title.textContent = label;
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.className = 'search-modal-input';
+                input.dataset.field = field;
+                input.placeholder = label;
+                wrapper.appendChild(title);
+                wrapper.appendChild(input);
+                searchModalFields.appendChild(wrapper);
+            });
+
+            searchModal.classList.add('show');
+            const firstInput = searchModalFields.querySelector('.search-modal-input');
+            if (firstInput) {
+                firstInput.focus();
+            }
+        }
+
+        function closeFillModal() {
+            searchModal.classList.remove('show');
+            currentCopyButton = null;
+            currentTemplate = null;
+            searchModalFields.innerHTML = '';
+        }
+
+        searchModalCancel.addEventListener('click', closeFillModal);
+
+        searchModalDone.addEventListener('click', () => {
+            if (!currentTemplate) return;
+            let filled = currentTemplate;
+            const inputs = Array.from(searchModalFields.querySelectorAll('.search-modal-input'));
+            for (const input of inputs) {
+                const value = input.value.trim();
+                if (!value) {
+                    alert('Please fill in all fields');
+                    input.focus();
+                    return;
+                }
+                const field = input.dataset.field;
+                const fieldRegex = new RegExp(`{${field}}`, 'g');
+                filled = filled.replace(fieldRegex, value);
+            }
+
+            navigator.clipboard.writeText(filled).then(() => {
+                setCopiedState(currentCopyButton);
+                closeFillModal();
+            });
+        });
+
+        searchModal.addEventListener('click', (e) => {
+            if (e.target.id === 'searchModal') {
+                closeFillModal();
+            }
+        });
+
+        searchModal.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                searchModalDone.click();
+            }
+        });
+
+        function handleCopyClick(button) {
+            const commandBlock = button.parentElement;
+            const template = commandBlock.getAttribute('data-template');
+
+            if (template) {
+                const fields = extractTemplateFields(template);
+                if (fields.length > 0) {
+                    openFillModal(button, commandBlock);
+                    return;
+                }
+                navigator.clipboard.writeText(template).then(() => {
+                    setCopiedState(button);
+                });
+                return;
+            }
+
+            const code = commandBlock.querySelector('code');
+            const text = code ? code.textContent : '';
+            navigator.clipboard.writeText(text).then(() => {
+                setCopiedState(button);
+            });
+        }
+
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                handleCopyClick(this);
+            });
+        });
+    </script>
+</body>
+</html>

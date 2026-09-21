@@ -1,0 +1,466 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 30: TCP &amp; UDP | DiPiazza</title><link rel="icon" href="/images/dipiazza-icon.png"><link rel="stylesheet" href="/css/styles.css"><link rel="stylesheet" href="/resources/ccna/course.css?v=2"></head><body><header class="site-header">
+        <div class="container header-content">
+            <a href="/" class="logo-link"><img src="/images/dipiazza-icon.png" alt="DiPiazza Logo" class="logo"></a>
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Where I break stuff, then write about it.</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/resources/" class="active">Resources</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/resume/">Resume</a></li>
+                    <li><button class="nav-cta" type="button" data-contact-open>Get in Touch</button></li>
+                </ul>
+            </nav>
+        <div class="top-controls">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-inner"></span>
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div></div>
+    </header>
+
+<main class="wrap ccna-main"><div class="crumb"><a href="/resources/ccna/">CCNA study notes</a> / Day 30</div><div class="reading-layout"><aside class="course-sidebar"><details open><summary>Browse CCNA</summary><div class="sidebar-shortcuts"><a href="/resources/ccna/">Course overview</a><a href="/resources/ccna/commands/">Command reference</a></div><label class="day-search-label" for="day-search">Find a day</label><input id="day-search" type="search" placeholder="Day number or topic"><nav class="day-scroll" aria-label="CCNA study days" tabindex="0"><a href="/resources/ccna/day-01/"><span>Day 01</span><span>Network Devices</span></a><a href="/resources/ccna/day-02/"><span>Day 02</span><span>Interfaces and Cables</span></a><a href="/resources/ccna/day-03/"><span>Day 03</span><span>TCP/IP Model</span></a><a href="/resources/ccna/day-04/"><span>Day 04</span><span>Intro to the CLI</span></a><a href="/resources/ccna/day-05/"><span>Day 05</span><span>Ethernet LAN Switching (pt 1)</span></a><a href="/resources/ccna/day-06/"><span>Day 06</span><span>Ethernet LAN Switching (pt 2)</span></a><a href="/resources/ccna/day-07/"><span>Day 07</span><span>IPv4 Addressing (pt 1)</span></a><a href="/resources/ccna/day-08/"><span>Day 08</span><span>IPv4 Addressing (pt 2)</span></a><a href="/resources/ccna/day-09/"><span>Day 09</span><span>Switch Interfaces</span></a><a href="/resources/ccna/day-10/"><span>Day 10</span><span>IPv4 Header</span></a><a href="/resources/ccna/day-11/"><span>Day 11</span><span>Routing Fundamentals (pt 1) / Static Routing (pt 2)</span></a><a href="/resources/ccna/day-12/"><span>Day 12</span><span>The life of a packet</span></a><a href="/resources/ccna/day-13/"><span>Day 13</span><span>Subnetting (pt 1)</span></a><a href="/resources/ccna/day-14/"><span>Day 14</span><span>Subnetting (pt 2)</span></a><a href="/resources/ccna/day-15/"><span>Day 15</span><span>Subnetting (pt 3 VLSM)</span></a><a href="/resources/ccna/day-16/"><span>Day 16</span><span>(VlANs pt 1)</span></a><a href="/resources/ccna/day-17/"><span>Day 17</span><span>(VlANs pt 2)</span></a><a href="/resources/ccna/day-18/"><span>Day 18</span><span>(VlANs pt 3)</span></a><a href="/resources/ccna/day-19/"><span>Day 19</span><span>DTP / VTP (Not in Syllabus)</span></a><a href="/resources/ccna/day-20/"><span>Day 20</span><span>Spanning Tree Protocol (pt 1)</span></a><a href="/resources/ccna/day-21/"><span>Day 21</span><span>Spanning Tree Protocol (pt 2)</span></a><a href="/resources/ccna/day-22/"><span>Day 22</span><span>Rapid Spanning Tree Protocol</span></a><a href="/resources/ccna/day-23/"><span>Day 23</span><span>Etherchannel</span></a><a href="/resources/ccna/day-24/"><span>Day 24</span><span>Dynamic Routing</span></a><a href="/resources/ccna/day-25/"><span>Day 25</span><span>RIP &amp; EIGRP</span></a><a href="/resources/ccna/day-26/"><span>Day 26</span><span>OSPF (pt 1)</span></a><a href="/resources/ccna/day-27/"><span>Day 27</span><span>OSPF (pt 2)</span></a><a href="/resources/ccna/day-28/"><span>Day 28</span><span>OSPF (pt 3)</span></a><a href="/resources/ccna/day-29/"><span>Day 29</span><span>First Hop Redundancy Protocols</span></a><a href="/resources/ccna/day-30/" aria-current="page"><span>Day 30</span><span>TCP &amp; UDP</span></a><a href="/resources/ccna/day-31/"><span>Day 31</span><span>IPV6 (pt 1)</span></a><a href="/resources/ccna/day-32/"><span>Day 32</span><span>IPV6 (pt 2)</span></a><a href="/resources/ccna/day-33/"><span>Day 33</span><span>IPV6 (pt 3)</span></a><a href="/resources/ccna/day-34/"><span>Day 34</span><span>Standard ACLs</span></a><a href="/resources/ccna/day-35/"><span>Day 35</span><span>Extended ACLs</span></a><a href="/resources/ccna/day-36/"><span>Day 36</span><span>CDP &amp; LLDP</span></a><a href="/resources/ccna/day-37/"><span>Day 37</span><span>NTP</span></a><a href="/resources/ccna/day-38/"><span>Day 38</span><span>DNS</span></a><a href="/resources/ccna/day-39/"><span>Day 39</span><span>DHCP</span></a><a href="/resources/ccna/day-40/"><span>Day 40</span><span>SNMP</span></a><a href="/resources/ccna/day-41/"><span>Day 41</span><span>Syslog</span></a><a href="/resources/ccna/day-42/"><span>Day 42</span><span>SSH</span></a><a href="/resources/ccna/day-43/"><span>Day 43</span><span>FTP &amp; TFTP</span></a><a href="/resources/ccna/day-44/"><span>Day 44</span><span>NAT (pt 1)</span></a><a href="/resources/ccna/day-45/"><span>Day 45</span><span>NAT (pt 2)</span></a><a href="/resources/ccna/day-46/"><span>Day 46</span><span>QoS (pt 1)</span></a><a href="/resources/ccna/day-47/"><span>Day 47</span><span>QoS (pt 2)</span></a><a href="/resources/ccna/day-48/"><span>Day 48</span><span>Security Fundamentals</span></a><a href="/resources/ccna/day-49/"><span>Day 49</span><span>Port Security</span></a><a href="/resources/ccna/day-50/"><span>Day 50</span><span>DHCP Snooping</span></a><a href="/resources/ccna/day-51/"><span>Day 51</span><span>Dynamic ARP Inspection (DAI)</span></a><a href="/resources/ccna/day-52/"><span>Day 52</span><span>LAN Architectures</span></a><a href="/resources/ccna/day-53/"><span>Day 53</span><span>WAN Architectures</span></a><a href="/resources/ccna/day-54/"><span>Day 54</span><span>Virtualization &amp; Cloud / Containers / VRF</span></a><a href="/resources/ccna/day-55/"><span>Day 55</span><span>Wireless Fundamentals</span></a><a href="/resources/ccna/day-56/"><span>Day 56</span><span>Wireless Architectures</span></a><a href="/resources/ccna/day-57/"><span>Day 57</span><span>Wireless Security</span></a><a href="/resources/ccna/day-58/"><span>Day 58</span><span>Wireless Configuration</span></a><a href="/resources/ccna/day-59/"><span>Day 59</span><span>Intro to Network Automation</span></a><a href="/resources/ccna/day-60/"><span>Day 60</span><span>JSON, XML, &amp; YAML</span></a><a href="/resources/ccna/day-61/"><span>Day 61</span><span>REST API</span></a><a href="/resources/ccna/day-62/"><span>Day 62</span><span>Software-Defined Networking</span></a><a href="/resources/ccna/day-63/"><span>Day 63</span><span>Ansible, Puppet, Chef, &amp; Terraform</span></a></nav><p id="day-empty" hidden>No matching days.</p></details></aside><article class="lesson-content"><header class="lesson-head"><div class="eyebrow">Day 30 / 63 · Routing &amp; addressing</div><h1>TCP &amp; UDP</h1><p class="lead">Study notes based primarily on Jeremy’s IT Lab CCNA learning videos. Credit to Jeremy’s IT Lab for the source lessons and diagrams.</p><div class="pills"><a class="button" href="/resources/ccna/commands/">Command reference</a><a class="button primary" href="/resources/ccna/">All 63 days</a></div></header><section class="note-part" id="part-1"><h2>TCP &amp; UDP</h2><a class="button" href="/resources/ccna/assets/lesson-31/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="/resources/ccna/assets/lesson-31/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge TCP &amp; UDP page 1"><img src="/resources/ccna/assets/lesson-31/page-1.webp" width="1551" height="2038" loading="lazy" alt="Original OneNote notes: TCP &amp; UDP, page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 3</figcaption></figure><figure class="note-image"><a href="/resources/ccna/assets/lesson-31/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge TCP &amp; UDP page 2"><img src="/resources/ccna/assets/lesson-31/page-2.webp" width="1526" height="2108" loading="lazy" alt="Original OneNote notes: TCP &amp; UDP, page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 3</figcaption></figure><figure class="note-image"><a href="/resources/ccna/assets/lesson-31/page-3.webp" target="_blank" rel="noopener" aria-label="Enlarge TCP &amp; UDP page 3"><img src="/resources/ccna/assets/lesson-31/page-3.webp" width="1552" height="1899" loading="lazy" alt="Original OneNote notes: TCP &amp; UDP, page 3. Text version follows below."></a><figcaption>Original notes · Page 3 of 3</figcaption></figure><details class="text-view"><summary>Text view — TCP &amp; UDP</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 30 - TCP &amp; UDP
+Sunday, September 6, 2026 10:46 AM
+TCP &amp; UDP Information
+Functions and Purpose of Layer 4 (Transport Layer)
+Transport Layer of the OSI model is responsible for providing the layer 4 addressing also known as port numbers. They
+are used to identify the Application Layer protocol and allow session multiplexing.
+• The Transport Layer also provides various different services to applications, including:
+○ Transparent transfer of data between end-hosts.
+○ Reliable data transfer
+○ Error Recovery
+○ Data Sequencing
+○ Flow Control
+What is Session Multiplexing?
+A session is an exchange of data between two or more communicating devices.
+Session multiplexing is service provided by the Transport Layer that allows a communicating device to establish
+several sessions at the same time through randomized source ports (from the ephemeral port range) and
+specific destination ports.
+○ Let’s say the first device is a PC and the second device is a Web Server.
+§ When the PC establishes a connection with the Web Server, it’ll send a TCP packet with a
+randomized source port that is used to identify the session (from the ephemeral port range), and
+a destination port that is specific to the protocol it’s trying to access. In this example, it’d
+be destination port 80, as that’s the port for HTTP web servers.
+○ Session multiplexing would occur if the PC decides to start a new session with the current Web Server, or if
+it wants to start a new session with any other device. At that point, it’ll simply initiate a new session by
+selecting a randomized source port (from the ephemeral port range) and use the destination port of the
+protocol it’s trying to access.
+Port Ranges Table
+Name Port Range
+Well-known 0 - 1023
+Registered 1024 - 49151
+Ephemeral 49152 - 65535
+1. TCP (Transmission Control Protocol)
+TCP is a reliable protocol that is used for critical data like sending and downloading files, hosting websites and etc. It is
+used for these purposes because of the features it provides, which are:
+1. Connection-oriented
+○ Before any data is sent between hosts, the two hosts communicate to establish a connection. Once it has
+been established, the data exchange begins.
+2. Reliable communication
+○ The destination host must acknowledge that it received each TCP segment
+○ If a segment isn’t acknowledged, it is sent again.
+3. Sequencing
+○ Sequence numbers in the TCP header allow for destination hosts to assemble segments in the correct order,
+even if they arrive out of order.
+4. Flow control ^tcp-flow-control
+○ The destination host can tell the source host to increase/decrease the rate at which the data is being sent.
+TCP Header
+The TCP protocol provides the features mentioned above through the fields in its header. The most important ones to
+know for the CCNA are:
+1. Source port (16 bits)
+2. Destination port (16 bits)
+3. Sequence number (32 bits)
+○ Used for the sequencing function which allows the destination host to assemble segments together even if
+they arrive out of order.
+4. Acknowledgement number (32 bits)
+○ Used for the reliable communication function that ensures that segments reach the destination host.
+5. Flags (SYN, ACK, FIN) (16 bits in total)
+○ There are a lot of flags in the Flags field of the TCP header, however TCP, ACK and FIN are the most
+important ones as they’re used in establishing and terminating connections.
+6. Window size (32 bits)
+○ Used for the flow control function.
+Three-Way Handshake (Establishing Connections)
+For TCP to establish a connection between two hosts, a three-way handshake is used.
+• The steps for a three-way handshake are:
+1. The source host sends a SYN flag to the destination host.
+2. The destination host responds with a SYN flag and an ACK flag.
+3. The source host sends an ACK flag back.
+Example of the three-way handshake
+Four-Way Handshake (Terminating Connections)
+For TCP to terminate a connection between two hosts, a four-way handshake is used.
+• The steps for a four-way handshake are:
+1. The source host sends a FIN flag to the destination host
+2. The destination host responds with an ACK flag.
+3. The destination host then sends a FIN flag.
+4. The source host sends an ACK flag back.
+Example of the four-way handshake
+TCP Sequencing &amp; Acknowledgement
+In a TCP communication, the hosts set a random initial sequence number.
+• Forward acknowledgement is used to indicate the sequence number of the next segment the host expects to
+receive.
+How do forward acknowledgements work?
+○ Let’s say that we have two devices in this communication, PC1 and PC2. When both devices are
+communicating and sending segments between each other, they will send an ACK flag that indicates
+the next segment the host is expecting to receive.
+○ Example with random numbers:
+§ PC1 sends a segment with a sequence number of 10
+§ PC2 responds with a segment with its own sequence number of 50 and an ACK number of 11
+§ PC1 sends a new segment with a sequence number of 11 and an ACK number of 51
+§ PC2 responds with a segment with a sequence number of 51 and an number ACK of 12
+§ PC1 sends a new segment with a sequence number of 12 and an ACK number of 52
+§ PC2 responds with a segment with a sequence number of 52 and an number ACK of 13
+§ And so on and so forth.
+Example of the forward acknowledgement system
+TCP Retransmission
+When TCP is used to send a segment, the source host waits for the destination host to send an acknowledgement that it
+has received the segment.
+• If the source host doesn’t receive that acknowledgement, it’ll wait for a certain amount of time with
+no acknowledgement, then the source host will send the segment again.
+TCP Window Size (Flow Control)
+The TCP Window Size field allows for more data (segments) to be sent before an acknowledgement is required. This is
+done because acknowledging every single segment is inefficient, regardless of size.
+• A ‘sliding window’ can be used to dynamically adjust how large the window size is.
+Example of Window Size
+For this example, the window size has been set so that every three segments, an acknowledgement is required.
+○ The source host sends out three segments to the destination host
+○ The destination host waits until all three segments have been received, then it sends back
+an acknowledgement to indicate that it has received the segments.
+2. UDP (User Datagram Protocol)
+The UDP protocol is almost the exact opposite of the TCP protocol in the way that it functions. It is mostly used for non-
+critical data like voice calls, video calls and etc. Here are some of its characteristics:
+1. Not connection-oriented
+○ The source host does not establish a connection with the destination host. Data is simply sent.
+2. No reliable communication
+○ Segments are sent ‘best-effort’.
+○ There are no acknowledgements sent for received segments. If a segment is lost in transmission, UDP has
+no way to re-transmit it.
+3. No sequencing
+○ The UDP header does not include a sequence number field.
+○ If segments arrive out of order, UDP has no mechanism to put assemble them back in order.
+4. No flow control
+○ The UDP header does not include a window size field.
+○ It has no mechanism to control the flow of data.
+Comparison between TCP and UDP
+The TCP protocol provides more features than UDP, but that is at the cost of additional overhead.
+• TCP is preferred for applications that require reliable communications (ie. sharing files)
+• UDP is preferred for applications that are real-time (ie. voice and video)
+○ There are some applications that use UDP, but provide reliability within the application itself.
+Comparison Table between TCP and UDP
+TCP UDP
+Connection-oriented Connectionless
+Reliable Unreliable
+Sequencing No sequencing
+Flow control No flow control
+Used for reliable communication Used for real-time applications
+
+Day 30 - TCP &amp; UDP
+Sunday, September 6, 2026 10:46 AM
+TCP &amp; UDP Information
+Functions and Purpose of Layer 4 (Transport Layer)
+Transport Layer of the OSI model is responsible for providing the layer 4 addressing also known as port numbers. They
+are used to identify the Application Layer protocol and allow session multiplexing.
+• The Transport Layer also provides various different services to applications, including:
+○ Transparent transfer of data between end-hosts.
+○ Reliable data transfer
+○ Error Recovery
+○ Data Sequencing
+○ Flow Control
+What is Session Multiplexing?
+A session is an exchange of data between two or more communicating devices.
+Session multiplexing is service provided by the Transport Layer that allows a communicating device to establish
+several sessions at the same time through randomized source ports (from the ephemeral port range) and
+specific destination ports.
+○ Let’s say the first device is a PC and the second device is a Web Server.
+§ When the PC establishes a connection with the Web Server, it’ll send a TCP packet with a
+randomized source port that is used to identify the session (from the ephemeral port range), and
+a destination port that is specific to the protocol it’s trying to access. In this example, it’d
+be destination port 80, as that’s the port for HTTP web servers.
+○ Session multiplexing would occur if the PC decides to start a new session with the current Web Server, or if
+it wants to start a new session with any other device. At that point, it’ll simply initiate a new session by
+selecting a randomized source port (from the ephemeral port range) and use the destination port of the
+protocol it’s trying to access.
+Port Ranges Table
+Name Port Range
+Well-known 0 - 1023
+Registered 1024 - 49151
+Ephemeral 49152 - 65535
+1. TCP (Transmission Control Protocol)
+TCP is a reliable protocol that is used for critical data like sending and downloading files, hosting websites and etc. It is
+used for these purposes because of the features it provides, which are:
+1. Connection-oriented
+○ Before any data is sent between hosts, the two hosts communicate to establish a connection. Once it has
+been established, the data exchange begins.
+2. Reliable communication
+○ The destination host must acknowledge that it received each TCP segment
+○ If a segment isn’t acknowledged, it is sent again.
+3. Sequencing
+○ Sequence numbers in the TCP header allow for destination hosts to assemble segments in the correct order,
+even if they arrive out of order.
+4. Flow control ^tcp-flow-control
+○ The destination host can tell the source host to increase/decrease the rate at which the data is being sent.
+TCP Header
+The TCP protocol provides the features mentioned above through the fields in its header. The most important ones to
+know for the CCNA are:
+1. Source port (16 bits)
+2. Destination port (16 bits)
+3. Sequence number (32 bits)
+○ Used for the sequencing function which allows the destination host to assemble segments together even if
+they arrive out of order.
+4. Acknowledgement number (32 bits)
+○ Used for the reliable communication function that ensures that segments reach the destination host.
+5. Flags (SYN, ACK, FIN) (16 bits in total)
+○ There are a lot of flags in the Flags field of the TCP header, however TCP, ACK and FIN are the most
+important ones as they’re used in establishing and terminating connections.
+6. Window size (32 bits)
+○ Used for the flow control function.
+Three-Way Handshake (Establishing Connections)
+For TCP to establish a connection between two hosts, a three-way handshake is used.
+• The steps for a three-way handshake are:
+1. The source host sends a SYN flag to the destination host.
+2. The destination host responds with a SYN flag and an ACK flag.
+3. The source host sends an ACK flag back.
+Example of the three-way handshake
+Four-Way Handshake (Terminating Connections)
+For TCP to terminate a connection between two hosts, a four-way handshake is used.
+• The steps for a four-way handshake are:
+1. The source host sends a FIN flag to the destination host
+2. The destination host responds with an ACK flag.
+3. The destination host then sends a FIN flag.
+4. The source host sends an ACK flag back.
+Example of the four-way handshake
+TCP Sequencing &amp; Acknowledgement
+In a TCP communication, the hosts set a random initial sequence number.
+• Forward acknowledgement is used to indicate the sequence number of the next segment the host expects to
+receive.
+How do forward acknowledgements work?
+○ Let’s say that we have two devices in this communication, PC1 and PC2. When both devices are
+communicating and sending segments between each other, they will send an ACK flag that indicates
+the next segment the host is expecting to receive.
+○ Example with random numbers:
+§ PC1 sends a segment with a sequence number of 10
+§ PC2 responds with a segment with its own sequence number of 50 and an ACK number of 11
+§ PC1 sends a new segment with a sequence number of 11 and an ACK number of 51
+§ PC2 responds with a segment with a sequence number of 51 and an number ACK of 12
+§ PC1 sends a new segment with a sequence number of 12 and an ACK number of 52
+§ PC2 responds with a segment with a sequence number of 52 and an number ACK of 13
+§ And so on and so forth.
+Example of the forward acknowledgement system
+TCP Retransmission
+When TCP is used to send a segment, the source host waits for the destination host to send an acknowledgement that it
+has received the segment.
+• If the source host doesn’t receive that acknowledgement, it’ll wait for a certain amount of time with
+no acknowledgement, then the source host will send the segment again.
+TCP Window Size (Flow Control)
+The TCP Window Size field allows for more data (segments) to be sent before an acknowledgement is required. This is
+done because acknowledging every single segment is inefficient, regardless of size.
+• A ‘sliding window’ can be used to dynamically adjust how large the window size is.
+Example of Window Size
+For this example, the window size has been set so that every three segments, an acknowledgement is required.
+○ The source host sends out three segments to the destination host
+○ The destination host waits until all three segments have been received, then it sends back
+an acknowledgement to indicate that it has received the segments.
+2. UDP (User Datagram Protocol)
+The UDP protocol is almost the exact opposite of the TCP protocol in the way that it functions. It is mostly used for non-
+critical data like voice calls, video calls and etc. Here are some of its characteristics:
+1. Not connection-oriented
+○ The source host does not establish a connection with the destination host. Data is simply sent.
+2. No reliable communication
+○ Segments are sent ‘best-effort’.
+○ There are no acknowledgements sent for received segments. If a segment is lost in transmission, UDP has
+no way to re-transmit it.
+3. No sequencing
+○ The UDP header does not include a sequence number field.
+○ If segments arrive out of order, UDP has no mechanism to put assemble them back in order.
+4. No flow control
+○ The UDP header does not include a window size field.
+○ It has no mechanism to control the flow of data.
+Comparison between TCP and UDP
+The TCP protocol provides more features than UDP, but that is at the cost of additional overhead.
+• TCP is preferred for applications that require reliable communications (ie. sharing files)
+• UDP is preferred for applications that are real-time (ie. voice and video)
+○ There are some applications that use UDP, but provide reliability within the application itself.
+Comparison Table between TCP and UDP
+TCP UDP
+Connection-oriented Connectionless
+Reliable Unreliable
+Sequencing No sequencing
+Flow control No flow control
+Used for reliable communication Used for real-time applications
+
+Day 30 - TCP &amp; UDP
+Sunday, September 6, 2026 10:46 AM
+TCP &amp; UDP Information
+Functions and Purpose of Layer 4 (Transport Layer)
+Transport Layer of the OSI model is responsible for providing the layer 4 addressing also known as port numbers. They
+are used to identify the Application Layer protocol and allow session multiplexing.
+• The Transport Layer also provides various different services to applications, including:
+○ Transparent transfer of data between end-hosts.
+○ Reliable data transfer
+○ Error Recovery
+○ Data Sequencing
+○ Flow Control
+What is Session Multiplexing?
+A session is an exchange of data between two or more communicating devices.
+Session multiplexing is service provided by the Transport Layer that allows a communicating device to establish
+several sessions at the same time through randomized source ports (from the ephemeral port range) and
+specific destination ports.
+○ Let’s say the first device is a PC and the second device is a Web Server.
+§ When the PC establishes a connection with the Web Server, it’ll send a TCP packet with a
+randomized source port that is used to identify the session (from the ephemeral port range), and
+a destination port that is specific to the protocol it’s trying to access. In this example, it’d
+be destination port 80, as that’s the port for HTTP web servers.
+○ Session multiplexing would occur if the PC decides to start a new session with the current Web Server, or if
+it wants to start a new session with any other device. At that point, it’ll simply initiate a new session by
+selecting a randomized source port (from the ephemeral port range) and use the destination port of the
+protocol it’s trying to access.
+Port Ranges Table
+Name Port Range
+Well-known 0 - 1023
+Registered 1024 - 49151
+Ephemeral 49152 - 65535
+1. TCP (Transmission Control Protocol)
+TCP is a reliable protocol that is used for critical data like sending and downloading files, hosting websites and etc. It is
+used for these purposes because of the features it provides, which are:
+1. Connection-oriented
+○ Before any data is sent between hosts, the two hosts communicate to establish a connection. Once it has
+been established, the data exchange begins.
+2. Reliable communication
+○ The destination host must acknowledge that it received each TCP segment
+○ If a segment isn’t acknowledged, it is sent again.
+3. Sequencing
+○ Sequence numbers in the TCP header allow for destination hosts to assemble segments in the correct order,
+even if they arrive out of order.
+4. Flow control ^tcp-flow-control
+○ The destination host can tell the source host to increase/decrease the rate at which the data is being sent.
+TCP Header
+The TCP protocol provides the features mentioned above through the fields in its header. The most important ones to
+know for the CCNA are:
+1. Source port (16 bits)
+2. Destination port (16 bits)
+3. Sequence number (32 bits)
+○ Used for the sequencing function which allows the destination host to assemble segments together even if
+they arrive out of order.
+4. Acknowledgement number (32 bits)
+○ Used for the reliable communication function that ensures that segments reach the destination host.
+5. Flags (SYN, ACK, FIN) (16 bits in total)
+○ There are a lot of flags in the Flags field of the TCP header, however TCP, ACK and FIN are the most
+important ones as they’re used in establishing and terminating connections.
+6. Window size (32 bits)
+○ Used for the flow control function.
+Three-Way Handshake (Establishing Connections)
+For TCP to establish a connection between two hosts, a three-way handshake is used.
+• The steps for a three-way handshake are:
+1. The source host sends a SYN flag to the destination host.
+2. The destination host responds with a SYN flag and an ACK flag.
+3. The source host sends an ACK flag back.
+Example of the three-way handshake
+Four-Way Handshake (Terminating Connections)
+For TCP to terminate a connection between two hosts, a four-way handshake is used.
+• The steps for a four-way handshake are:
+1. The source host sends a FIN flag to the destination host
+2. The destination host responds with an ACK flag.
+3. The destination host then sends a FIN flag.
+4. The source host sends an ACK flag back.
+Example of the four-way handshake
+TCP Sequencing &amp; Acknowledgement
+In a TCP communication, the hosts set a random initial sequence number.
+• Forward acknowledgement is used to indicate the sequence number of the next segment the host expects to
+receive.
+How do forward acknowledgements work?
+○ Let’s say that we have two devices in this communication, PC1 and PC2. When both devices are
+communicating and sending segments between each other, they will send an ACK flag that indicates
+the next segment the host is expecting to receive.
+○ Example with random numbers:
+§ PC1 sends a segment with a sequence number of 10
+§ PC2 responds with a segment with its own sequence number of 50 and an ACK number of 11
+§ PC1 sends a new segment with a sequence number of 11 and an ACK number of 51
+§ PC2 responds with a segment with a sequence number of 51 and an number ACK of 12
+§ PC1 sends a new segment with a sequence number of 12 and an ACK number of 52
+§ PC2 responds with a segment with a sequence number of 52 and an number ACK of 13
+§ And so on and so forth.
+Example of the forward acknowledgement system
+TCP Retransmission
+When TCP is used to send a segment, the source host waits for the destination host to send an acknowledgement that it
+has received the segment.
+• If the source host doesn’t receive that acknowledgement, it’ll wait for a certain amount of time with
+no acknowledgement, then the source host will send the segment again.
+TCP Window Size (Flow Control)
+The TCP Window Size field allows for more data (segments) to be sent before an acknowledgement is required. This is
+done because acknowledging every single segment is inefficient, regardless of size.
+• A ‘sliding window’ can be used to dynamically adjust how large the window size is.
+Example of Window Size
+For this example, the window size has been set so that every three segments, an acknowledgement is required.
+○ The source host sends out three segments to the destination host
+○ The destination host waits until all three segments have been received, then it sends back
+an acknowledgement to indicate that it has received the segments.
+2. UDP (User Datagram Protocol)
+The UDP protocol is almost the exact opposite of the TCP protocol in the way that it functions. It is mostly used for non-
+critical data like voice calls, video calls and etc. Here are some of its characteristics:
+1. Not connection-oriented
+○ The source host does not establish a connection with the destination host. Data is simply sent.
+2. No reliable communication
+○ Segments are sent ‘best-effort’.
+○ There are no acknowledgements sent for received segments. If a segment is lost in transmission, UDP has
+no way to re-transmit it.
+3. No sequencing
+○ The UDP header does not include a sequence number field.
+○ If segments arrive out of order, UDP has no mechanism to put assemble them back in order.
+4. No flow control
+○ The UDP header does not include a window size field.
+○ It has no mechanism to control the flow of data.
+Comparison between TCP and UDP
+The TCP protocol provides more features than UDP, but that is at the cost of additional overhead.
+• TCP is preferred for applications that require reliable communications (ie. sharing files)
+• UDP is preferred for applications that are real-time (ie. voice and video)
+○ There are some applications that use UDP, but provide reliability within the application itself.
+Comparison Table between TCP and UDP
+TCP UDP
+Connection-oriented Connectionless
+Reliable Unreliable
+Sequencing No sequencing
+Flow control No flow control
+Used for reliable communication Used for real-time applications</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="/resources/ccna/day-29/"><small>← Day 29</small>First Hop Redundancy Protocols</a><a href="/resources/ccna/day-31/"><small>Day 31 →</small>IPV6 (pt 1)</a></nav></article></div></main>    <div class="contact-modal" id="contactModal">
+        <div class="contact-modal-content">
+            <div class="contact-modal-header">
+                <h3>Get in Touch</h3>
+                <button class="contact-modal-close" type="button" id="contactModalClose">✕</button>
+            </div>
+            <div class="contact-modal-links">
+                <a href="mailto:daviddipiazza29@gmail.com" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/CodeGoat29" target="_blank" class="contact-link">GitHub</a>
+            </div>
+        </div>
+    </div>
+
+            <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="/resources/">Resources</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/resume/">Resume</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="mailto:daviddipiazza29@gmail.com">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/CodeGoat29" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bar">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+<script src="/js/site.js"></script><script src="/resources/ccna/course.js?v=2"></script></body></html>

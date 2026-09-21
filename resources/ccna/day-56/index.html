@@ -1,0 +1,1338 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 56: Wireless Architectures | DiPiazza</title><link rel="icon" href="/images/dipiazza-icon.png"><link rel="stylesheet" href="/css/styles.css"><link rel="stylesheet" href="/resources/ccna/course.css?v=2"></head><body><header class="site-header">
+        <div class="container header-content">
+            <a href="/" class="logo-link"><img src="/images/dipiazza-icon.png" alt="DiPiazza Logo" class="logo"></a>
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Where I break stuff, then write about it.</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/resources/" class="active">Resources</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/resume/">Resume</a></li>
+                    <li><button class="nav-cta" type="button" data-contact-open>Get in Touch</button></li>
+                </ul>
+            </nav>
+        <div class="top-controls">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-inner"></span>
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div></div>
+    </header>
+
+<main class="wrap ccna-main"><div class="crumb"><a href="/resources/ccna/">CCNA study notes</a> / Day 56</div><div class="reading-layout"><aside class="course-sidebar"><details open><summary>Browse CCNA</summary><div class="sidebar-shortcuts"><a href="/resources/ccna/">Course overview</a><a href="/resources/ccna/commands/">Command reference</a></div><label class="day-search-label" for="day-search">Find a day</label><input id="day-search" type="search" placeholder="Day number or topic"><nav class="day-scroll" aria-label="CCNA study days" tabindex="0"><a href="/resources/ccna/day-01/"><span>Day 01</span><span>Network Devices</span></a><a href="/resources/ccna/day-02/"><span>Day 02</span><span>Interfaces and Cables</span></a><a href="/resources/ccna/day-03/"><span>Day 03</span><span>TCP/IP Model</span></a><a href="/resources/ccna/day-04/"><span>Day 04</span><span>Intro to the CLI</span></a><a href="/resources/ccna/day-05/"><span>Day 05</span><span>Ethernet LAN Switching (pt 1)</span></a><a href="/resources/ccna/day-06/"><span>Day 06</span><span>Ethernet LAN Switching (pt 2)</span></a><a href="/resources/ccna/day-07/"><span>Day 07</span><span>IPv4 Addressing (pt 1)</span></a><a href="/resources/ccna/day-08/"><span>Day 08</span><span>IPv4 Addressing (pt 2)</span></a><a href="/resources/ccna/day-09/"><span>Day 09</span><span>Switch Interfaces</span></a><a href="/resources/ccna/day-10/"><span>Day 10</span><span>IPv4 Header</span></a><a href="/resources/ccna/day-11/"><span>Day 11</span><span>Routing Fundamentals (pt 1) / Static Routing (pt 2)</span></a><a href="/resources/ccna/day-12/"><span>Day 12</span><span>The life of a packet</span></a><a href="/resources/ccna/day-13/"><span>Day 13</span><span>Subnetting (pt 1)</span></a><a href="/resources/ccna/day-14/"><span>Day 14</span><span>Subnetting (pt 2)</span></a><a href="/resources/ccna/day-15/"><span>Day 15</span><span>Subnetting (pt 3 VLSM)</span></a><a href="/resources/ccna/day-16/"><span>Day 16</span><span>(VlANs pt 1)</span></a><a href="/resources/ccna/day-17/"><span>Day 17</span><span>(VlANs pt 2)</span></a><a href="/resources/ccna/day-18/"><span>Day 18</span><span>(VlANs pt 3)</span></a><a href="/resources/ccna/day-19/"><span>Day 19</span><span>DTP / VTP (Not in Syllabus)</span></a><a href="/resources/ccna/day-20/"><span>Day 20</span><span>Spanning Tree Protocol (pt 1)</span></a><a href="/resources/ccna/day-21/"><span>Day 21</span><span>Spanning Tree Protocol (pt 2)</span></a><a href="/resources/ccna/day-22/"><span>Day 22</span><span>Rapid Spanning Tree Protocol</span></a><a href="/resources/ccna/day-23/"><span>Day 23</span><span>Etherchannel</span></a><a href="/resources/ccna/day-24/"><span>Day 24</span><span>Dynamic Routing</span></a><a href="/resources/ccna/day-25/"><span>Day 25</span><span>RIP &amp; EIGRP</span></a><a href="/resources/ccna/day-26/"><span>Day 26</span><span>OSPF (pt 1)</span></a><a href="/resources/ccna/day-27/"><span>Day 27</span><span>OSPF (pt 2)</span></a><a href="/resources/ccna/day-28/"><span>Day 28</span><span>OSPF (pt 3)</span></a><a href="/resources/ccna/day-29/"><span>Day 29</span><span>First Hop Redundancy Protocols</span></a><a href="/resources/ccna/day-30/"><span>Day 30</span><span>TCP &amp; UDP</span></a><a href="/resources/ccna/day-31/"><span>Day 31</span><span>IPV6 (pt 1)</span></a><a href="/resources/ccna/day-32/"><span>Day 32</span><span>IPV6 (pt 2)</span></a><a href="/resources/ccna/day-33/"><span>Day 33</span><span>IPV6 (pt 3)</span></a><a href="/resources/ccna/day-34/"><span>Day 34</span><span>Standard ACLs</span></a><a href="/resources/ccna/day-35/"><span>Day 35</span><span>Extended ACLs</span></a><a href="/resources/ccna/day-36/"><span>Day 36</span><span>CDP &amp; LLDP</span></a><a href="/resources/ccna/day-37/"><span>Day 37</span><span>NTP</span></a><a href="/resources/ccna/day-38/"><span>Day 38</span><span>DNS</span></a><a href="/resources/ccna/day-39/"><span>Day 39</span><span>DHCP</span></a><a href="/resources/ccna/day-40/"><span>Day 40</span><span>SNMP</span></a><a href="/resources/ccna/day-41/"><span>Day 41</span><span>Syslog</span></a><a href="/resources/ccna/day-42/"><span>Day 42</span><span>SSH</span></a><a href="/resources/ccna/day-43/"><span>Day 43</span><span>FTP &amp; TFTP</span></a><a href="/resources/ccna/day-44/"><span>Day 44</span><span>NAT (pt 1)</span></a><a href="/resources/ccna/day-45/"><span>Day 45</span><span>NAT (pt 2)</span></a><a href="/resources/ccna/day-46/"><span>Day 46</span><span>QoS (pt 1)</span></a><a href="/resources/ccna/day-47/"><span>Day 47</span><span>QoS (pt 2)</span></a><a href="/resources/ccna/day-48/"><span>Day 48</span><span>Security Fundamentals</span></a><a href="/resources/ccna/day-49/"><span>Day 49</span><span>Port Security</span></a><a href="/resources/ccna/day-50/"><span>Day 50</span><span>DHCP Snooping</span></a><a href="/resources/ccna/day-51/"><span>Day 51</span><span>Dynamic ARP Inspection (DAI)</span></a><a href="/resources/ccna/day-52/"><span>Day 52</span><span>LAN Architectures</span></a><a href="/resources/ccna/day-53/"><span>Day 53</span><span>WAN Architectures</span></a><a href="/resources/ccna/day-54/"><span>Day 54</span><span>Virtualization &amp; Cloud / Containers / VRF</span></a><a href="/resources/ccna/day-55/"><span>Day 55</span><span>Wireless Fundamentals</span></a><a href="/resources/ccna/day-56/" aria-current="page"><span>Day 56</span><span>Wireless Architectures</span></a><a href="/resources/ccna/day-57/"><span>Day 57</span><span>Wireless Security</span></a><a href="/resources/ccna/day-58/"><span>Day 58</span><span>Wireless Configuration</span></a><a href="/resources/ccna/day-59/"><span>Day 59</span><span>Intro to Network Automation</span></a><a href="/resources/ccna/day-60/"><span>Day 60</span><span>JSON, XML, &amp; YAML</span></a><a href="/resources/ccna/day-61/"><span>Day 61</span><span>REST API</span></a><a href="/resources/ccna/day-62/"><span>Day 62</span><span>Software-Defined Networking</span></a><a href="/resources/ccna/day-63/"><span>Day 63</span><span>Ansible, Puppet, Chef, &amp; Terraform</span></a></nav><p id="day-empty" hidden>No matching days.</p></details></aside><article class="lesson-content"><header class="lesson-head"><div class="eyebrow">Day 56 / 63 · Architecture &amp; wireless</div><h1>Wireless Architectures</h1><p class="lead">Study notes based primarily on Jeremy’s IT Lab CCNA learning videos. Credit to Jeremy’s IT Lab for the source lessons and diagrams.</p><div class="pills"><a class="button" href="/resources/ccna/commands/">Command reference</a><a class="button primary" href="/resources/ccna/">All 63 days</a></div></header><section class="note-part" id="part-1"><h2>Wireless Architectures</h2><a class="button" href="/resources/ccna/assets/lesson-59/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="/resources/ccna/assets/lesson-59/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge Wireless Architectures page 1"><img src="/resources/ccna/assets/lesson-59/page-1.webp" width="1550" height="2063" loading="lazy" alt="Original OneNote notes: Wireless Architectures, page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 7</figcaption></figure><figure class="note-image"><a href="/resources/ccna/assets/lesson-59/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge Wireless Architectures page 2"><img src="/resources/ccna/assets/lesson-59/page-2.webp" width="1542" height="2105" loading="lazy" alt="Original OneNote notes: Wireless Architectures, page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 7</figcaption></figure><figure class="note-image"><a href="/resources/ccna/assets/lesson-59/page-3.webp" target="_blank" rel="noopener" aria-label="Enlarge Wireless Architectures page 3"><img src="/resources/ccna/assets/lesson-59/page-3.webp" width="1502" height="2102" loading="lazy" alt="Original OneNote notes: Wireless Architectures, page 3. Text version follows below."></a><figcaption>Original notes · Page 3 of 7</figcaption></figure><figure class="note-image"><a href="/resources/ccna/assets/lesson-59/page-4.webp" target="_blank" rel="noopener" aria-label="Enlarge Wireless Architectures page 4"><img src="/resources/ccna/assets/lesson-59/page-4.webp" width="1498" height="2109" loading="lazy" alt="Original OneNote notes: Wireless Architectures, page 4. Text version follows below."></a><figcaption>Original notes · Page 4 of 7</figcaption></figure><figure class="note-image"><a href="/resources/ccna/assets/lesson-59/page-5.webp" target="_blank" rel="noopener" aria-label="Enlarge Wireless Architectures page 5"><img src="/resources/ccna/assets/lesson-59/page-5.webp" width="1584" height="2109" loading="lazy" alt="Original OneNote notes: Wireless Architectures, page 5. Text version follows below."></a><figcaption>Original notes · Page 5 of 7</figcaption></figure><figure class="note-image"><a href="/resources/ccna/assets/lesson-59/page-6.webp" target="_blank" rel="noopener" aria-label="Enlarge Wireless Architectures page 6"><img src="/resources/ccna/assets/lesson-59/page-6.webp" width="1598" height="2109" loading="lazy" alt="Original OneNote notes: Wireless Architectures, page 6. Text version follows below."></a><figcaption>Original notes · Page 6 of 7</figcaption></figure><figure class="note-image"><a href="/resources/ccna/assets/lesson-59/page-7.webp" target="_blank" rel="noopener" aria-label="Enlarge Wireless Architectures page 7"><img src="/resources/ccna/assets/lesson-59/page-7.webp" width="1589" height="1443" loading="lazy" alt="Original OneNote notes: Wireless Architectures, page 7. Text version follows below."></a><figcaption>Original notes · Page 7 of 7</figcaption></figure><details class="text-view"><summary>Text view — Wireless Architectures</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 56 - Wireless Architectures
+Wednesday, September 9, 2026 8:38 PM
+Wireless Architectures Info
+802.11 - Frame Format
+802.11 frames have a different format than the 802.3 Ethernet frames. The frame can change depending on the 802.11
+version and message type, some of the fields might not be present in the frame. (like the 4 address fields)
+802.11 Frame Format
+1. Frame Control - (2 bytes)
+○ Provides information such as the message type and subtype
+2. Duration/ID - (2 bytes)
+○ Depending on the message type, this field can indicate:
+§ Duration, the time (in microseconds) the channel will be dedicated for transmission of the frame.
+§ ID, the identifier for the association (connection).
+3. Address 1/2/3/4 - (6 bytes)
+○ Up to four addresses can be present in an 802.11 frame. It depends on the message type.
+§ Destination Address (DA): Final recipient of the frame
+§ Source Address (DA): Original sender of the frame
+§ Receiver Address (DA): Immediate recipient of the frame
+§ Transmitter Address (DA): Immediate sender of the frame
+4. Sequence Control - (2 bytes)
+○ Used to reassemble fragments and eliminate duplicate frames.
+5. QoS Control - (2 bytes)
+○ Used in QoS to prioritize certain traffic.
+6. HT Control - (4 bytes)
+○ Added in 802.11n to enable High Throughput operations.
+§ 802.11n is also known as ‘High Throughput’ (HT) Wi-Fi.
+§ 802.11ac is also known as ‘Very High Throughput’ (VHT) Wi-Fi.
+7. Frame Body (Packet) - (variable size in bytes)
+○ Contains the actual packet being sent over the network.
+8. FCS - (4 bytes)
+○ Used to check for errors, same as in the Ethernet frame.
+802.11 - Association Process
+APs are used to bridge traffic between wireless stations and other devices.
+• For a station to send traffic through the AP, it must be authenticated and associated with the AP.
+• There are three 802.11 connection states:
+○ Not authenticated, not associated
+○ Authenticated, not associated
+○ Authenticated, associated
+Station authentication &amp; association Process
+Station scanning modes
+○ There are two ways a station can scan for a BSS:
+1. Active Scanning
+□ The station sends probe requests and listens for a probe response from an AP.
+2. Passive Scanning
+□ The station listens for beacon messages from an AP.
+□ Beacon messages are sent periodically by APs to advertise the BSS.
+802.11 - Message Types
+There are three 802.11 message types:
+1. Management
+○ Used to manage the BSS.
+○ Includes the following messages:
+§ Beacon
+§ Probe request, probe response
+§ Authentication request, authentication response
+§ Association request, association response
+2. Control
+○ Used to control access to the medium (radio frequency).
+○ Assists with the delivery of management and data frames.
+○ Includes the following messages:
+§ Request To Send (RTS)
+§ Call To Send (CTS)
+§ ACK
+3. Data
+○ Used to send actual data packets.
+Wireless Access Point (AP) Deployments
+There are three main wireless AP deployment methods:
+1. Autonomous
+2. Lightweight
+3. Cloud-based
+1. Autonomous
+Autonomous APs are self-contained systems that don’t rely on a Wireless LAN Controller (WLC).
+• They are configured individually, and there is no central monitoring or management of APs.
+○ Can be configured through console cable (CLI), SSH/Telnet (CLI), or HTTP/HTTPS web connection (GUI).
+○ An IP address for remote management should be configured.
+○ Radio frequency parameters must be manually configured.
+○ Security policies are configured and handled individually by each AP.
+○ QoS rules and etc. are configured and handled individually by each AP.
+• Autonomous APs connect to the wired network with a ==trunk== link
+• Data traffic from the wireless clients will have a direct path to the wired network or to any other wireless clients
+associated with the same AP.
+• Each VLAN has to stretch across the entire network. This is considered bad as it leads to a few issues:
+○ Large broadcast domains.
+○ STP will disable links.
+○ Adding/deleting VLANs is very labor-intensive
+• Autonomous APs can be used for small networks, but they are not very viable in medium to large networks
+because of scalability issues.
+• Autonomous APs can function in any of the wireless AP modes (Repeater, outdoor bridge, workgroup bridge).
+Autonomous AP Demonstration
+2. Lightweight
+In this deployment mode, the functions of an AP can be split between the AP and a Wireless LAN Controller (WLC).
+• Lightweight APs handle ‘real-time’ operations (transmitting/receiving RF traffic, encryption/decryption, sending
+out beacon/probe messages, etc.)
+• Other functions are carried out by the WLC (RF management, security/QoS management, client
+authentication/association, roaming management, etc.)
+• This is called Split-MAC Architecture, as the operations are split between the AP and the WLC.
+WLC Information
+• The WLC is also use to centrally configure the lightweight APs.
+• The WLC can be located in the same subnet/VLAN as the lightweight APs it manages, or in a different
+subnet/VLAN.
+• The WLC and lightweight APs authenticate each other using digital certificates installed on each device (X.509
+standard certificates).
+Lightweight AP Information
+• The WLC and lightweight AP use a protocol called Control and Provisioning of Wireless Access Points (CAPWAP)
+to communicate with each other.
+○ Based on an older protocol called Lightweight Access Point Protocol (LWAPP).
+• Two CAPWAP tunnels are created between each AP and the WLC:
+1. Control tunnel (UDP port 5246):
+§ This tunnel is used to configure the APs, and control/manage the operations.
+§ All traffic in this tunnel is encrypted by default.
+2. Data tunnel (UDP port 5247):
+§ All traffic from wireless clients is sent through this tunnel to the WLC. (It does not go directly to the
+wired network)
+§ Traffic in this tunnel is not encrypted by default, but you can configure it to be encrypted with
+Datagram Transport Layer Security (DTLS).
+• Because all traffic from wireless clients is tunneled to the WLC with CAPWAP, APs connect to switch ==access==
+ports, not trunk ports.
+Lightweight AP Demonstration
+Lightweight Operation Modes
+Lightweight APs can be configured to operate in various modes:
+1. Local
+○ This is the default mode where the AP offers a BSS (more multiple BSSs) for clients to associate with.
+2. FlexConnect
+○ Like a lightweight AP in Local mode, it offers one or more BSSs for clients to associate with. However,
+FlexConnect allows the AP to locally switch traffic between the wired and wireless networks if the tunnels to
+the WLC go down.
+3. Sniffer
+○ The AP does not offer a BSS for clients.
+○ It is dedicated to capturing 802.11 frames and sending them to a device running software such as Wireshark.
+4. Monitor
+○ The AP does not offer a BSS for clients. It is dedicated to receiving 802.11 frames to detect rogue devices.
+○ If a client is found to be a rogue device, an AP can send de-authentication messages to disassociate the
+rogue device from the AP.
+5. Rogue Detector
+○ The AP does not even use its radio. It listens to traffic on the wired network only, but it receives a list of
+suspected rogue clients and AP MAC addresses from the WLC.
+○ By listening to ARP messages on the wired network and correlating it with the information it receives from
+the WLC, it can detect rogue devices.
+6. SE-Connect (Spectrum Expert Connect)
+○ The AP does not offer a BSS for clients.
+○ It is dedicated to RF spectrum analysis on all channels. It can send information to software such as Cisco
+Spectrum Expert on a PC to collect and analyze the data.
+7. Bridge/Mesh
+○ Like the autonomous AP’s Outdoor Bridge, the lightweight AP can be a dedicated bridge between sites, for
+example over long distances.
+○ A mesh can be made between the APs.
+8. Flex plus Bridge
+○ Adds FlexConnect functionality to the Bridge/Mesh mode.
+○ Allows wireless APs to locally forward traffic even if connectivity to the WLC is lost.
+Local / FlexConnect
+Bridge/Mesh Demonstration
+Autonomous / Lightweight - Traffic Flow Comparison
+How traffic flows through Lightweight APs compared to Autonomous APs
+3. Cloud-based
+Cloud-based AP architecture is in between autonomous AP and Split-MAC Architecture.
+• This deployment method is basically autonomous APs that are centrally managed in the cloud.
+• However, data traffic is not sent to the cloud. It is sent directly to the wired network like when using autonomous
+APs.
+○ Only management/control traffic is sent to the cloud.
+• Cisco Meraki is a popular cloud-based Wi-Fi solution.
+○ The Meraki dashboard can be used to configure APs, monitor the network, generate performance reports,
+etc.
+○ Meraki also tells each AP which channel to use, transmit power, etc.
+Cloud-based AP Demonstration
+Wireless LAN Controller (WLC) Deployments
+In a Split-MAC Architecture (Lightweight AP deployment), there are four main WLC deployment models:
+1. Unified
+○ Supports up to 6000 APs.
+○ The WLC is a hardware appliance in a central location of the network.
+2. Cloud-based
+○ Supports up to 3000 APs.
+○ The WLC is a VM running on a server, usually in a private cloud in a data center.
+○ (This is not related to the Wireless AP Cloud-based deployment)
+3. Embedded
+○ Supports up to 200 APs.
+○ The WLC is integrated within a switch.
+4. Mobility Express
+○ Supports up to 100 APs.
+○ The WLC is integrated within an AP.
+Extra Tip: WLC and EtherChannels
+○ WLCs only support static LAG (EtherChannel).
+○ Therefore, they can’t run PAgP or LACP.
+
+Day 56 - Wireless Architectures
+Wednesday, September 9, 2026 8:38 PM
+Wireless Architectures Info
+802.11 - Frame Format
+802.11 frames have a different format than the 802.3 Ethernet frames. The frame can change depending on the 802.11
+version and message type, some of the fields might not be present in the frame. (like the 4 address fields)
+802.11 Frame Format
+1. Frame Control - (2 bytes)
+○ Provides information such as the message type and subtype
+2. Duration/ID - (2 bytes)
+○ Depending on the message type, this field can indicate:
+§ Duration, the time (in microseconds) the channel will be dedicated for transmission of the frame.
+§ ID, the identifier for the association (connection).
+3. Address 1/2/3/4 - (6 bytes)
+○ Up to four addresses can be present in an 802.11 frame. It depends on the message type.
+§ Destination Address (DA): Final recipient of the frame
+§ Source Address (DA): Original sender of the frame
+§ Receiver Address (DA): Immediate recipient of the frame
+§ Transmitter Address (DA): Immediate sender of the frame
+4. Sequence Control - (2 bytes)
+○ Used to reassemble fragments and eliminate duplicate frames.
+5. QoS Control - (2 bytes)
+○ Used in QoS to prioritize certain traffic.
+6. HT Control - (4 bytes)
+○ Added in 802.11n to enable High Throughput operations.
+§ 802.11n is also known as ‘High Throughput’ (HT) Wi-Fi.
+§ 802.11ac is also known as ‘Very High Throughput’ (VHT) Wi-Fi.
+7. Frame Body (Packet) - (variable size in bytes)
+○ Contains the actual packet being sent over the network.
+8. FCS - (4 bytes)
+○ Used to check for errors, same as in the Ethernet frame.
+802.11 - Association Process
+APs are used to bridge traffic between wireless stations and other devices.
+• For a station to send traffic through the AP, it must be authenticated and associated with the AP.
+• There are three 802.11 connection states:
+○ Not authenticated, not associated
+○ Authenticated, not associated
+○ Authenticated, associated
+Station authentication &amp; association Process
+Station scanning modes
+○ There are two ways a station can scan for a BSS:
+1. Active Scanning
+□ The station sends probe requests and listens for a probe response from an AP.
+2. Passive Scanning
+□ The station listens for beacon messages from an AP.
+□ Beacon messages are sent periodically by APs to advertise the BSS.
+802.11 - Message Types
+There are three 802.11 message types:
+1. Management
+○ Used to manage the BSS.
+○ Includes the following messages:
+§ Beacon
+§ Probe request, probe response
+§ Authentication request, authentication response
+§ Association request, association response
+2. Control
+○ Used to control access to the medium (radio frequency).
+○ Assists with the delivery of management and data frames.
+○ Includes the following messages:
+§ Request To Send (RTS)
+§ Call To Send (CTS)
+§ ACK
+3. Data
+○ Used to send actual data packets.
+Wireless Access Point (AP) Deployments
+There are three main wireless AP deployment methods:
+1. Autonomous
+2. Lightweight
+3. Cloud-based
+1. Autonomous
+Autonomous APs are self-contained systems that don’t rely on a Wireless LAN Controller (WLC).
+• They are configured individually, and there is no central monitoring or management of APs.
+○ Can be configured through console cable (CLI), SSH/Telnet (CLI), or HTTP/HTTPS web connection (GUI).
+○ An IP address for remote management should be configured.
+○ Radio frequency parameters must be manually configured.
+○ Security policies are configured and handled individually by each AP.
+○ QoS rules and etc. are configured and handled individually by each AP.
+• Autonomous APs connect to the wired network with a ==trunk== link
+• Data traffic from the wireless clients will have a direct path to the wired network or to any other wireless clients
+associated with the same AP.
+• Each VLAN has to stretch across the entire network. This is considered bad as it leads to a few issues:
+○ Large broadcast domains.
+○ STP will disable links.
+○ Adding/deleting VLANs is very labor-intensive
+• Autonomous APs can be used for small networks, but they are not very viable in medium to large networks
+because of scalability issues.
+• Autonomous APs can function in any of the wireless AP modes (Repeater, outdoor bridge, workgroup bridge).
+Autonomous AP Demonstration
+2. Lightweight
+In this deployment mode, the functions of an AP can be split between the AP and a Wireless LAN Controller (WLC).
+• Lightweight APs handle ‘real-time’ operations (transmitting/receiving RF traffic, encryption/decryption, sending
+out beacon/probe messages, etc.)
+• Other functions are carried out by the WLC (RF management, security/QoS management, client
+authentication/association, roaming management, etc.)
+• This is called Split-MAC Architecture, as the operations are split between the AP and the WLC.
+WLC Information
+• The WLC is also use to centrally configure the lightweight APs.
+• The WLC can be located in the same subnet/VLAN as the lightweight APs it manages, or in a different
+subnet/VLAN.
+• The WLC and lightweight APs authenticate each other using digital certificates installed on each device (X.509
+standard certificates).
+Lightweight AP Information
+• The WLC and lightweight AP use a protocol called Control and Provisioning of Wireless Access Points (CAPWAP)
+to communicate with each other.
+○ Based on an older protocol called Lightweight Access Point Protocol (LWAPP).
+• Two CAPWAP tunnels are created between each AP and the WLC:
+1. Control tunnel (UDP port 5246):
+§ This tunnel is used to configure the APs, and control/manage the operations.
+§ All traffic in this tunnel is encrypted by default.
+2. Data tunnel (UDP port 5247):
+§ All traffic from wireless clients is sent through this tunnel to the WLC. (It does not go directly to the
+wired network)
+§ Traffic in this tunnel is not encrypted by default, but you can configure it to be encrypted with
+Datagram Transport Layer Security (DTLS).
+• Because all traffic from wireless clients is tunneled to the WLC with CAPWAP, APs connect to switch ==access==
+ports, not trunk ports.
+Lightweight AP Demonstration
+Lightweight Operation Modes
+Lightweight APs can be configured to operate in various modes:
+1. Local
+○ This is the default mode where the AP offers a BSS (more multiple BSSs) for clients to associate with.
+2. FlexConnect
+○ Like a lightweight AP in Local mode, it offers one or more BSSs for clients to associate with. However,
+FlexConnect allows the AP to locally switch traffic between the wired and wireless networks if the tunnels to
+the WLC go down.
+3. Sniffer
+○ The AP does not offer a BSS for clients.
+○ It is dedicated to capturing 802.11 frames and sending them to a device running software such as Wireshark.
+4. Monitor
+○ The AP does not offer a BSS for clients. It is dedicated to receiving 802.11 frames to detect rogue devices.
+○ If a client is found to be a rogue device, an AP can send de-authentication messages to disassociate the
+rogue device from the AP.
+5. Rogue Detector
+○ The AP does not even use its radio. It listens to traffic on the wired network only, but it receives a list of
+suspected rogue clients and AP MAC addresses from the WLC.
+○ By listening to ARP messages on the wired network and correlating it with the information it receives from
+the WLC, it can detect rogue devices.
+6. SE-Connect (Spectrum Expert Connect)
+○ The AP does not offer a BSS for clients.
+○ It is dedicated to RF spectrum analysis on all channels. It can send information to software such as Cisco
+Spectrum Expert on a PC to collect and analyze the data.
+7. Bridge/Mesh
+○ Like the autonomous AP’s Outdoor Bridge, the lightweight AP can be a dedicated bridge between sites, for
+example over long distances.
+○ A mesh can be made between the APs.
+8. Flex plus Bridge
+○ Adds FlexConnect functionality to the Bridge/Mesh mode.
+○ Allows wireless APs to locally forward traffic even if connectivity to the WLC is lost.
+Local / FlexConnect
+Bridge/Mesh Demonstration
+Autonomous / Lightweight - Traffic Flow Comparison
+How traffic flows through Lightweight APs compared to Autonomous APs
+3. Cloud-based
+Cloud-based AP architecture is in between autonomous AP and Split-MAC Architecture.
+• This deployment method is basically autonomous APs that are centrally managed in the cloud.
+• However, data traffic is not sent to the cloud. It is sent directly to the wired network like when using autonomous
+APs.
+○ Only management/control traffic is sent to the cloud.
+• Cisco Meraki is a popular cloud-based Wi-Fi solution.
+○ The Meraki dashboard can be used to configure APs, monitor the network, generate performance reports,
+etc.
+○ Meraki also tells each AP which channel to use, transmit power, etc.
+Cloud-based AP Demonstration
+Wireless LAN Controller (WLC) Deployments
+In a Split-MAC Architecture (Lightweight AP deployment), there are four main WLC deployment models:
+1. Unified
+○ Supports up to 6000 APs.
+○ The WLC is a hardware appliance in a central location of the network.
+2. Cloud-based
+○ Supports up to 3000 APs.
+○ The WLC is a VM running on a server, usually in a private cloud in a data center.
+○ (This is not related to the Wireless AP Cloud-based deployment)
+3. Embedded
+○ Supports up to 200 APs.
+○ The WLC is integrated within a switch.
+4. Mobility Express
+○ Supports up to 100 APs.
+○ The WLC is integrated within an AP.
+Extra Tip: WLC and EtherChannels
+○ WLCs only support static LAG (EtherChannel).
+○ Therefore, they can’t run PAgP or LACP.
+
+Day 56 - Wireless Architectures
+Wednesday, September 9, 2026 8:38 PM
+Wireless Architectures Info
+802.11 - Frame Format
+802.11 frames have a different format than the 802.3 Ethernet frames. The frame can change depending on the 802.11
+version and message type, some of the fields might not be present in the frame. (like the 4 address fields)
+802.11 Frame Format
+1. Frame Control - (2 bytes)
+○ Provides information such as the message type and subtype
+2. Duration/ID - (2 bytes)
+○ Depending on the message type, this field can indicate:
+§ Duration, the time (in microseconds) the channel will be dedicated for transmission of the frame.
+§ ID, the identifier for the association (connection).
+3. Address 1/2/3/4 - (6 bytes)
+○ Up to four addresses can be present in an 802.11 frame. It depends on the message type.
+§ Destination Address (DA): Final recipient of the frame
+§ Source Address (DA): Original sender of the frame
+§ Receiver Address (DA): Immediate recipient of the frame
+§ Transmitter Address (DA): Immediate sender of the frame
+4. Sequence Control - (2 bytes)
+○ Used to reassemble fragments and eliminate duplicate frames.
+5. QoS Control - (2 bytes)
+○ Used in QoS to prioritize certain traffic.
+6. HT Control - (4 bytes)
+○ Added in 802.11n to enable High Throughput operations.
+§ 802.11n is also known as ‘High Throughput’ (HT) Wi-Fi.
+§ 802.11ac is also known as ‘Very High Throughput’ (VHT) Wi-Fi.
+7. Frame Body (Packet) - (variable size in bytes)
+○ Contains the actual packet being sent over the network.
+8. FCS - (4 bytes)
+○ Used to check for errors, same as in the Ethernet frame.
+802.11 - Association Process
+APs are used to bridge traffic between wireless stations and other devices.
+• For a station to send traffic through the AP, it must be authenticated and associated with the AP.
+• There are three 802.11 connection states:
+○ Not authenticated, not associated
+○ Authenticated, not associated
+○ Authenticated, associated
+Station authentication &amp; association Process
+Station scanning modes
+○ There are two ways a station can scan for a BSS:
+1. Active Scanning
+□ The station sends probe requests and listens for a probe response from an AP.
+2. Passive Scanning
+□ The station listens for beacon messages from an AP.
+□ Beacon messages are sent periodically by APs to advertise the BSS.
+802.11 - Message Types
+There are three 802.11 message types:
+1. Management
+○ Used to manage the BSS.
+○ Includes the following messages:
+§ Beacon
+§ Probe request, probe response
+§ Authentication request, authentication response
+§ Association request, association response
+2. Control
+○ Used to control access to the medium (radio frequency).
+○ Assists with the delivery of management and data frames.
+○ Includes the following messages:
+§ Request To Send (RTS)
+§ Call To Send (CTS)
+§ ACK
+3. Data
+○ Used to send actual data packets.
+Wireless Access Point (AP) Deployments
+There are three main wireless AP deployment methods:
+1. Autonomous
+2. Lightweight
+3. Cloud-based
+1. Autonomous
+Autonomous APs are self-contained systems that don’t rely on a Wireless LAN Controller (WLC).
+• They are configured individually, and there is no central monitoring or management of APs.
+○ Can be configured through console cable (CLI), SSH/Telnet (CLI), or HTTP/HTTPS web connection (GUI).
+○ An IP address for remote management should be configured.
+○ Radio frequency parameters must be manually configured.
+○ Security policies are configured and handled individually by each AP.
+○ QoS rules and etc. are configured and handled individually by each AP.
+• Autonomous APs connect to the wired network with a ==trunk== link
+• Data traffic from the wireless clients will have a direct path to the wired network or to any other wireless clients
+associated with the same AP.
+• Each VLAN has to stretch across the entire network. This is considered bad as it leads to a few issues:
+○ Large broadcast domains.
+○ STP will disable links.
+○ Adding/deleting VLANs is very labor-intensive
+• Autonomous APs can be used for small networks, but they are not very viable in medium to large networks
+because of scalability issues.
+• Autonomous APs can function in any of the wireless AP modes (Repeater, outdoor bridge, workgroup bridge).
+Autonomous AP Demonstration
+2. Lightweight
+In this deployment mode, the functions of an AP can be split between the AP and a Wireless LAN Controller (WLC).
+• Lightweight APs handle ‘real-time’ operations (transmitting/receiving RF traffic, encryption/decryption, sending
+out beacon/probe messages, etc.)
+• Other functions are carried out by the WLC (RF management, security/QoS management, client
+authentication/association, roaming management, etc.)
+• This is called Split-MAC Architecture, as the operations are split between the AP and the WLC.
+WLC Information
+• The WLC is also use to centrally configure the lightweight APs.
+• The WLC can be located in the same subnet/VLAN as the lightweight APs it manages, or in a different
+subnet/VLAN.
+• The WLC and lightweight APs authenticate each other using digital certificates installed on each device (X.509
+standard certificates).
+Lightweight AP Information
+• The WLC and lightweight AP use a protocol called Control and Provisioning of Wireless Access Points (CAPWAP)
+to communicate with each other.
+○ Based on an older protocol called Lightweight Access Point Protocol (LWAPP).
+• Two CAPWAP tunnels are created between each AP and the WLC:
+1. Control tunnel (UDP port 5246):
+§ This tunnel is used to configure the APs, and control/manage the operations.
+§ All traffic in this tunnel is encrypted by default.
+2. Data tunnel (UDP port 5247):
+§ All traffic from wireless clients is sent through this tunnel to the WLC. (It does not go directly to the
+wired network)
+§ Traffic in this tunnel is not encrypted by default, but you can configure it to be encrypted with
+Datagram Transport Layer Security (DTLS).
+• Because all traffic from wireless clients is tunneled to the WLC with CAPWAP, APs connect to switch ==access==
+ports, not trunk ports.
+Lightweight AP Demonstration
+Lightweight Operation Modes
+Lightweight APs can be configured to operate in various modes:
+1. Local
+○ This is the default mode where the AP offers a BSS (more multiple BSSs) for clients to associate with.
+2. FlexConnect
+○ Like a lightweight AP in Local mode, it offers one or more BSSs for clients to associate with. However,
+FlexConnect allows the AP to locally switch traffic between the wired and wireless networks if the tunnels to
+the WLC go down.
+3. Sniffer
+○ The AP does not offer a BSS for clients.
+○ It is dedicated to capturing 802.11 frames and sending them to a device running software such as Wireshark.
+4. Monitor
+○ The AP does not offer a BSS for clients. It is dedicated to receiving 802.11 frames to detect rogue devices.
+○ If a client is found to be a rogue device, an AP can send de-authentication messages to disassociate the
+rogue device from the AP.
+5. Rogue Detector
+○ The AP does not even use its radio. It listens to traffic on the wired network only, but it receives a list of
+suspected rogue clients and AP MAC addresses from the WLC.
+○ By listening to ARP messages on the wired network and correlating it with the information it receives from
+the WLC, it can detect rogue devices.
+6. SE-Connect (Spectrum Expert Connect)
+○ The AP does not offer a BSS for clients.
+○ It is dedicated to RF spectrum analysis on all channels. It can send information to software such as Cisco
+Spectrum Expert on a PC to collect and analyze the data.
+7. Bridge/Mesh
+○ Like the autonomous AP’s Outdoor Bridge, the lightweight AP can be a dedicated bridge between sites, for
+example over long distances.
+○ A mesh can be made between the APs.
+8. Flex plus Bridge
+○ Adds FlexConnect functionality to the Bridge/Mesh mode.
+○ Allows wireless APs to locally forward traffic even if connectivity to the WLC is lost.
+Local / FlexConnect
+Bridge/Mesh Demonstration
+Autonomous / Lightweight - Traffic Flow Comparison
+How traffic flows through Lightweight APs compared to Autonomous APs
+3. Cloud-based
+Cloud-based AP architecture is in between autonomous AP and Split-MAC Architecture.
+• This deployment method is basically autonomous APs that are centrally managed in the cloud.
+• However, data traffic is not sent to the cloud. It is sent directly to the wired network like when using autonomous
+APs.
+○ Only management/control traffic is sent to the cloud.
+• Cisco Meraki is a popular cloud-based Wi-Fi solution.
+○ The Meraki dashboard can be used to configure APs, monitor the network, generate performance reports,
+etc.
+○ Meraki also tells each AP which channel to use, transmit power, etc.
+Cloud-based AP Demonstration
+Wireless LAN Controller (WLC) Deployments
+In a Split-MAC Architecture (Lightweight AP deployment), there are four main WLC deployment models:
+1. Unified
+○ Supports up to 6000 APs.
+○ The WLC is a hardware appliance in a central location of the network.
+2. Cloud-based
+○ Supports up to 3000 APs.
+○ The WLC is a VM running on a server, usually in a private cloud in a data center.
+○ (This is not related to the Wireless AP Cloud-based deployment)
+3. Embedded
+○ Supports up to 200 APs.
+○ The WLC is integrated within a switch.
+4. Mobility Express
+○ Supports up to 100 APs.
+○ The WLC is integrated within an AP.
+Extra Tip: WLC and EtherChannels
+○ WLCs only support static LAG (EtherChannel).
+○ Therefore, they can’t run PAgP or LACP.
+
+Day 56 - Wireless Architectures
+Wednesday, September 9, 2026 8:38 PM
+Wireless Architectures Info
+802.11 - Frame Format
+802.11 frames have a different format than the 802.3 Ethernet frames. The frame can change depending on the 802.11
+version and message type, some of the fields might not be present in the frame. (like the 4 address fields)
+802.11 Frame Format
+1. Frame Control - (2 bytes)
+○ Provides information such as the message type and subtype
+2. Duration/ID - (2 bytes)
+○ Depending on the message type, this field can indicate:
+§ Duration, the time (in microseconds) the channel will be dedicated for transmission of the frame.
+§ ID, the identifier for the association (connection).
+3. Address 1/2/3/4 - (6 bytes)
+○ Up to four addresses can be present in an 802.11 frame. It depends on the message type.
+§ Destination Address (DA): Final recipient of the frame
+§ Source Address (DA): Original sender of the frame
+§ Receiver Address (DA): Immediate recipient of the frame
+§ Transmitter Address (DA): Immediate sender of the frame
+4. Sequence Control - (2 bytes)
+○ Used to reassemble fragments and eliminate duplicate frames.
+5. QoS Control - (2 bytes)
+○ Used in QoS to prioritize certain traffic.
+6. HT Control - (4 bytes)
+○ Added in 802.11n to enable High Throughput operations.
+§ 802.11n is also known as ‘High Throughput’ (HT) Wi-Fi.
+§ 802.11ac is also known as ‘Very High Throughput’ (VHT) Wi-Fi.
+7. Frame Body (Packet) - (variable size in bytes)
+○ Contains the actual packet being sent over the network.
+8. FCS - (4 bytes)
+○ Used to check for errors, same as in the Ethernet frame.
+802.11 - Association Process
+APs are used to bridge traffic between wireless stations and other devices.
+• For a station to send traffic through the AP, it must be authenticated and associated with the AP.
+• There are three 802.11 connection states:
+○ Not authenticated, not associated
+○ Authenticated, not associated
+○ Authenticated, associated
+Station authentication &amp; association Process
+Station scanning modes
+○ There are two ways a station can scan for a BSS:
+1. Active Scanning
+□ The station sends probe requests and listens for a probe response from an AP.
+2. Passive Scanning
+□ The station listens for beacon messages from an AP.
+□ Beacon messages are sent periodically by APs to advertise the BSS.
+802.11 - Message Types
+There are three 802.11 message types:
+1. Management
+○ Used to manage the BSS.
+○ Includes the following messages:
+§ Beacon
+§ Probe request, probe response
+§ Authentication request, authentication response
+§ Association request, association response
+2. Control
+○ Used to control access to the medium (radio frequency).
+○ Assists with the delivery of management and data frames.
+○ Includes the following messages:
+§ Request To Send (RTS)
+§ Call To Send (CTS)
+§ ACK
+3. Data
+○ Used to send actual data packets.
+Wireless Access Point (AP) Deployments
+There are three main wireless AP deployment methods:
+1. Autonomous
+2. Lightweight
+3. Cloud-based
+1. Autonomous
+Autonomous APs are self-contained systems that don’t rely on a Wireless LAN Controller (WLC).
+• They are configured individually, and there is no central monitoring or management of APs.
+○ Can be configured through console cable (CLI), SSH/Telnet (CLI), or HTTP/HTTPS web connection (GUI).
+○ An IP address for remote management should be configured.
+○ Radio frequency parameters must be manually configured.
+○ Security policies are configured and handled individually by each AP.
+○ QoS rules and etc. are configured and handled individually by each AP.
+• Autonomous APs connect to the wired network with a ==trunk== link
+• Data traffic from the wireless clients will have a direct path to the wired network or to any other wireless clients
+associated with the same AP.
+• Each VLAN has to stretch across the entire network. This is considered bad as it leads to a few issues:
+○ Large broadcast domains.
+○ STP will disable links.
+○ Adding/deleting VLANs is very labor-intensive
+• Autonomous APs can be used for small networks, but they are not very viable in medium to large networks
+because of scalability issues.
+• Autonomous APs can function in any of the wireless AP modes (Repeater, outdoor bridge, workgroup bridge).
+Autonomous AP Demonstration
+2. Lightweight
+In this deployment mode, the functions of an AP can be split between the AP and a Wireless LAN Controller (WLC).
+• Lightweight APs handle ‘real-time’ operations (transmitting/receiving RF traffic, encryption/decryption, sending
+out beacon/probe messages, etc.)
+• Other functions are carried out by the WLC (RF management, security/QoS management, client
+authentication/association, roaming management, etc.)
+• This is called Split-MAC Architecture, as the operations are split between the AP and the WLC.
+WLC Information
+• The WLC is also use to centrally configure the lightweight APs.
+• The WLC can be located in the same subnet/VLAN as the lightweight APs it manages, or in a different
+subnet/VLAN.
+• The WLC and lightweight APs authenticate each other using digital certificates installed on each device (X.509
+standard certificates).
+Lightweight AP Information
+• The WLC and lightweight AP use a protocol called Control and Provisioning of Wireless Access Points (CAPWAP)
+to communicate with each other.
+○ Based on an older protocol called Lightweight Access Point Protocol (LWAPP).
+• Two CAPWAP tunnels are created between each AP and the WLC:
+1. Control tunnel (UDP port 5246):
+§ This tunnel is used to configure the APs, and control/manage the operations.
+§ All traffic in this tunnel is encrypted by default.
+2. Data tunnel (UDP port 5247):
+§ All traffic from wireless clients is sent through this tunnel to the WLC. (It does not go directly to the
+wired network)
+§ Traffic in this tunnel is not encrypted by default, but you can configure it to be encrypted with
+Datagram Transport Layer Security (DTLS).
+• Because all traffic from wireless clients is tunneled to the WLC with CAPWAP, APs connect to switch ==access==
+ports, not trunk ports.
+Lightweight AP Demonstration
+Lightweight Operation Modes
+Lightweight APs can be configured to operate in various modes:
+1. Local
+○ This is the default mode where the AP offers a BSS (more multiple BSSs) for clients to associate with.
+2. FlexConnect
+○ Like a lightweight AP in Local mode, it offers one or more BSSs for clients to associate with. However,
+FlexConnect allows the AP to locally switch traffic between the wired and wireless networks if the tunnels to
+the WLC go down.
+3. Sniffer
+○ The AP does not offer a BSS for clients.
+○ It is dedicated to capturing 802.11 frames and sending them to a device running software such as Wireshark.
+4. Monitor
+○ The AP does not offer a BSS for clients. It is dedicated to receiving 802.11 frames to detect rogue devices.
+○ If a client is found to be a rogue device, an AP can send de-authentication messages to disassociate the
+rogue device from the AP.
+5. Rogue Detector
+○ The AP does not even use its radio. It listens to traffic on the wired network only, but it receives a list of
+suspected rogue clients and AP MAC addresses from the WLC.
+○ By listening to ARP messages on the wired network and correlating it with the information it receives from
+the WLC, it can detect rogue devices.
+6. SE-Connect (Spectrum Expert Connect)
+○ The AP does not offer a BSS for clients.
+○ It is dedicated to RF spectrum analysis on all channels. It can send information to software such as Cisco
+Spectrum Expert on a PC to collect and analyze the data.
+7. Bridge/Mesh
+○ Like the autonomous AP’s Outdoor Bridge, the lightweight AP can be a dedicated bridge between sites, for
+example over long distances.
+○ A mesh can be made between the APs.
+8. Flex plus Bridge
+○ Adds FlexConnect functionality to the Bridge/Mesh mode.
+○ Allows wireless APs to locally forward traffic even if connectivity to the WLC is lost.
+Local / FlexConnect
+Bridge/Mesh Demonstration
+Autonomous / Lightweight - Traffic Flow Comparison
+How traffic flows through Lightweight APs compared to Autonomous APs
+3. Cloud-based
+Cloud-based AP architecture is in between autonomous AP and Split-MAC Architecture.
+• This deployment method is basically autonomous APs that are centrally managed in the cloud.
+• However, data traffic is not sent to the cloud. It is sent directly to the wired network like when using autonomous
+APs.
+○ Only management/control traffic is sent to the cloud.
+• Cisco Meraki is a popular cloud-based Wi-Fi solution.
+○ The Meraki dashboard can be used to configure APs, monitor the network, generate performance reports,
+etc.
+○ Meraki also tells each AP which channel to use, transmit power, etc.
+Cloud-based AP Demonstration
+Wireless LAN Controller (WLC) Deployments
+In a Split-MAC Architecture (Lightweight AP deployment), there are four main WLC deployment models:
+1. Unified
+○ Supports up to 6000 APs.
+○ The WLC is a hardware appliance in a central location of the network.
+2. Cloud-based
+○ Supports up to 3000 APs.
+○ The WLC is a VM running on a server, usually in a private cloud in a data center.
+○ (This is not related to the Wireless AP Cloud-based deployment)
+3. Embedded
+○ Supports up to 200 APs.
+○ The WLC is integrated within a switch.
+4. Mobility Express
+○ Supports up to 100 APs.
+○ The WLC is integrated within an AP.
+Extra Tip: WLC and EtherChannels
+○ WLCs only support static LAG (EtherChannel).
+○ Therefore, they can’t run PAgP or LACP.
+
+Day 56 - Wireless Architectures
+Wednesday, September 9, 2026 8:38 PM
+Wireless Architectures Info
+802.11 - Frame Format
+802.11 frames have a different format than the 802.3 Ethernet frames. The frame can change depending on the 802.11
+version and message type, some of the fields might not be present in the frame. (like the 4 address fields)
+802.11 Frame Format
+1. Frame Control - (2 bytes)
+○ Provides information such as the message type and subtype
+2. Duration/ID - (2 bytes)
+○ Depending on the message type, this field can indicate:
+§ Duration, the time (in microseconds) the channel will be dedicated for transmission of the frame.
+§ ID, the identifier for the association (connection).
+3. Address 1/2/3/4 - (6 bytes)
+○ Up to four addresses can be present in an 802.11 frame. It depends on the message type.
+§ Destination Address (DA): Final recipient of the frame
+§ Source Address (DA): Original sender of the frame
+§ Receiver Address (DA): Immediate recipient of the frame
+§ Transmitter Address (DA): Immediate sender of the frame
+4. Sequence Control - (2 bytes)
+○ Used to reassemble fragments and eliminate duplicate frames.
+5. QoS Control - (2 bytes)
+○ Used in QoS to prioritize certain traffic.
+6. HT Control - (4 bytes)
+○ Added in 802.11n to enable High Throughput operations.
+§ 802.11n is also known as ‘High Throughput’ (HT) Wi-Fi.
+§ 802.11ac is also known as ‘Very High Throughput’ (VHT) Wi-Fi.
+7. Frame Body (Packet) - (variable size in bytes)
+○ Contains the actual packet being sent over the network.
+8. FCS - (4 bytes)
+○ Used to check for errors, same as in the Ethernet frame.
+802.11 - Association Process
+APs are used to bridge traffic between wireless stations and other devices.
+• For a station to send traffic through the AP, it must be authenticated and associated with the AP.
+• There are three 802.11 connection states:
+○ Not authenticated, not associated
+○ Authenticated, not associated
+○ Authenticated, associated
+Station authentication &amp; association Process
+Station scanning modes
+○ There are two ways a station can scan for a BSS:
+1. Active Scanning
+□ The station sends probe requests and listens for a probe response from an AP.
+2. Passive Scanning
+□ The station listens for beacon messages from an AP.
+□ Beacon messages are sent periodically by APs to advertise the BSS.
+802.11 - Message Types
+There are three 802.11 message types:
+1. Management
+○ Used to manage the BSS.
+○ Includes the following messages:
+§ Beacon
+§ Probe request, probe response
+§ Authentication request, authentication response
+§ Association request, association response
+2. Control
+○ Used to control access to the medium (radio frequency).
+○ Assists with the delivery of management and data frames.
+○ Includes the following messages:
+§ Request To Send (RTS)
+§ Call To Send (CTS)
+§ ACK
+3. Data
+○ Used to send actual data packets.
+Wireless Access Point (AP) Deployments
+There are three main wireless AP deployment methods:
+1. Autonomous
+2. Lightweight
+3. Cloud-based
+1. Autonomous
+Autonomous APs are self-contained systems that don’t rely on a Wireless LAN Controller (WLC).
+• They are configured individually, and there is no central monitoring or management of APs.
+○ Can be configured through console cable (CLI), SSH/Telnet (CLI), or HTTP/HTTPS web connection (GUI).
+○ An IP address for remote management should be configured.
+○ Radio frequency parameters must be manually configured.
+○ Security policies are configured and handled individually by each AP.
+○ QoS rules and etc. are configured and handled individually by each AP.
+• Autonomous APs connect to the wired network with a ==trunk== link
+• Data traffic from the wireless clients will have a direct path to the wired network or to any other wireless clients
+associated with the same AP.
+• Each VLAN has to stretch across the entire network. This is considered bad as it leads to a few issues:
+○ Large broadcast domains.
+○ STP will disable links.
+○ Adding/deleting VLANs is very labor-intensive
+• Autonomous APs can be used for small networks, but they are not very viable in medium to large networks
+because of scalability issues.
+• Autonomous APs can function in any of the wireless AP modes (Repeater, outdoor bridge, workgroup bridge).
+Autonomous AP Demonstration
+2. Lightweight
+In this deployment mode, the functions of an AP can be split between the AP and a Wireless LAN Controller (WLC).
+• Lightweight APs handle ‘real-time’ operations (transmitting/receiving RF traffic, encryption/decryption, sending
+out beacon/probe messages, etc.)
+• Other functions are carried out by the WLC (RF management, security/QoS management, client
+authentication/association, roaming management, etc.)
+• This is called Split-MAC Architecture, as the operations are split between the AP and the WLC.
+WLC Information
+• The WLC is also use to centrally configure the lightweight APs.
+• The WLC can be located in the same subnet/VLAN as the lightweight APs it manages, or in a different
+subnet/VLAN.
+• The WLC and lightweight APs authenticate each other using digital certificates installed on each device (X.509
+standard certificates).
+Lightweight AP Information
+• The WLC and lightweight AP use a protocol called Control and Provisioning of Wireless Access Points (CAPWAP)
+to communicate with each other.
+○ Based on an older protocol called Lightweight Access Point Protocol (LWAPP).
+• Two CAPWAP tunnels are created between each AP and the WLC:
+1. Control tunnel (UDP port 5246):
+§ This tunnel is used to configure the APs, and control/manage the operations.
+§ All traffic in this tunnel is encrypted by default.
+2. Data tunnel (UDP port 5247):
+§ All traffic from wireless clients is sent through this tunnel to the WLC. (It does not go directly to the
+wired network)
+§ Traffic in this tunnel is not encrypted by default, but you can configure it to be encrypted with
+Datagram Transport Layer Security (DTLS).
+• Because all traffic from wireless clients is tunneled to the WLC with CAPWAP, APs connect to switch ==access==
+ports, not trunk ports.
+Lightweight AP Demonstration
+Lightweight Operation Modes
+Lightweight APs can be configured to operate in various modes:
+1. Local
+○ This is the default mode where the AP offers a BSS (more multiple BSSs) for clients to associate with.
+2. FlexConnect
+○ Like a lightweight AP in Local mode, it offers one or more BSSs for clients to associate with. However,
+FlexConnect allows the AP to locally switch traffic between the wired and wireless networks if the tunnels to
+the WLC go down.
+3. Sniffer
+○ The AP does not offer a BSS for clients.
+○ It is dedicated to capturing 802.11 frames and sending them to a device running software such as Wireshark.
+4. Monitor
+○ The AP does not offer a BSS for clients. It is dedicated to receiving 802.11 frames to detect rogue devices.
+○ If a client is found to be a rogue device, an AP can send de-authentication messages to disassociate the
+rogue device from the AP.
+5. Rogue Detector
+○ The AP does not even use its radio. It listens to traffic on the wired network only, but it receives a list of
+suspected rogue clients and AP MAC addresses from the WLC.
+○ By listening to ARP messages on the wired network and correlating it with the information it receives from
+the WLC, it can detect rogue devices.
+6. SE-Connect (Spectrum Expert Connect)
+○ The AP does not offer a BSS for clients.
+○ It is dedicated to RF spectrum analysis on all channels. It can send information to software such as Cisco
+Spectrum Expert on a PC to collect and analyze the data.
+7. Bridge/Mesh
+○ Like the autonomous AP’s Outdoor Bridge, the lightweight AP can be a dedicated bridge between sites, for
+example over long distances.
+○ A mesh can be made between the APs.
+8. Flex plus Bridge
+○ Adds FlexConnect functionality to the Bridge/Mesh mode.
+○ Allows wireless APs to locally forward traffic even if connectivity to the WLC is lost.
+Local / FlexConnect
+Bridge/Mesh Demonstration
+Autonomous / Lightweight - Traffic Flow Comparison
+How traffic flows through Lightweight APs compared to Autonomous APs
+3. Cloud-based
+Cloud-based AP architecture is in between autonomous AP and Split-MAC Architecture.
+• This deployment method is basically autonomous APs that are centrally managed in the cloud.
+• However, data traffic is not sent to the cloud. It is sent directly to the wired network like when using autonomous
+APs.
+○ Only management/control traffic is sent to the cloud.
+• Cisco Meraki is a popular cloud-based Wi-Fi solution.
+○ The Meraki dashboard can be used to configure APs, monitor the network, generate performance reports,
+etc.
+○ Meraki also tells each AP which channel to use, transmit power, etc.
+Cloud-based AP Demonstration
+Wireless LAN Controller (WLC) Deployments
+In a Split-MAC Architecture (Lightweight AP deployment), there are four main WLC deployment models:
+1. Unified
+○ Supports up to 6000 APs.
+○ The WLC is a hardware appliance in a central location of the network.
+2. Cloud-based
+○ Supports up to 3000 APs.
+○ The WLC is a VM running on a server, usually in a private cloud in a data center.
+○ (This is not related to the Wireless AP Cloud-based deployment)
+3. Embedded
+○ Supports up to 200 APs.
+○ The WLC is integrated within a switch.
+4. Mobility Express
+○ Supports up to 100 APs.
+○ The WLC is integrated within an AP.
+Extra Tip: WLC and EtherChannels
+○ WLCs only support static LAG (EtherChannel).
+○ Therefore, they can’t run PAgP or LACP.
+
+Day 56 - Wireless Architectures
+Wednesday, September 9, 2026 8:38 PM
+Wireless Architectures Info
+802.11 - Frame Format
+802.11 frames have a different format than the 802.3 Ethernet frames. The frame can change depending on the 802.11
+version and message type, some of the fields might not be present in the frame. (like the 4 address fields)
+802.11 Frame Format
+1. Frame Control - (2 bytes)
+○ Provides information such as the message type and subtype
+2. Duration/ID - (2 bytes)
+○ Depending on the message type, this field can indicate:
+§ Duration, the time (in microseconds) the channel will be dedicated for transmission of the frame.
+§ ID, the identifier for the association (connection).
+3. Address 1/2/3/4 - (6 bytes)
+○ Up to four addresses can be present in an 802.11 frame. It depends on the message type.
+§ Destination Address (DA): Final recipient of the frame
+§ Source Address (DA): Original sender of the frame
+§ Receiver Address (DA): Immediate recipient of the frame
+§ Transmitter Address (DA): Immediate sender of the frame
+4. Sequence Control - (2 bytes)
+○ Used to reassemble fragments and eliminate duplicate frames.
+5. QoS Control - (2 bytes)
+○ Used in QoS to prioritize certain traffic.
+6. HT Control - (4 bytes)
+○ Added in 802.11n to enable High Throughput operations.
+§ 802.11n is also known as ‘High Throughput’ (HT) Wi-Fi.
+§ 802.11ac is also known as ‘Very High Throughput’ (VHT) Wi-Fi.
+7. Frame Body (Packet) - (variable size in bytes)
+○ Contains the actual packet being sent over the network.
+8. FCS - (4 bytes)
+○ Used to check for errors, same as in the Ethernet frame.
+802.11 - Association Process
+APs are used to bridge traffic between wireless stations and other devices.
+• For a station to send traffic through the AP, it must be authenticated and associated with the AP.
+• There are three 802.11 connection states:
+○ Not authenticated, not associated
+○ Authenticated, not associated
+○ Authenticated, associated
+Station authentication &amp; association Process
+Station scanning modes
+○ There are two ways a station can scan for a BSS:
+1. Active Scanning
+□ The station sends probe requests and listens for a probe response from an AP.
+2. Passive Scanning
+□ The station listens for beacon messages from an AP.
+□ Beacon messages are sent periodically by APs to advertise the BSS.
+802.11 - Message Types
+There are three 802.11 message types:
+1. Management
+○ Used to manage the BSS.
+○ Includes the following messages:
+§ Beacon
+§ Probe request, probe response
+§ Authentication request, authentication response
+§ Association request, association response
+2. Control
+○ Used to control access to the medium (radio frequency).
+○ Assists with the delivery of management and data frames.
+○ Includes the following messages:
+§ Request To Send (RTS)
+§ Call To Send (CTS)
+§ ACK
+3. Data
+○ Used to send actual data packets.
+Wireless Access Point (AP) Deployments
+There are three main wireless AP deployment methods:
+1. Autonomous
+2. Lightweight
+3. Cloud-based
+1. Autonomous
+Autonomous APs are self-contained systems that don’t rely on a Wireless LAN Controller (WLC).
+• They are configured individually, and there is no central monitoring or management of APs.
+○ Can be configured through console cable (CLI), SSH/Telnet (CLI), or HTTP/HTTPS web connection (GUI).
+○ An IP address for remote management should be configured.
+○ Radio frequency parameters must be manually configured.
+○ Security policies are configured and handled individually by each AP.
+○ QoS rules and etc. are configured and handled individually by each AP.
+• Autonomous APs connect to the wired network with a ==trunk== link
+• Data traffic from the wireless clients will have a direct path to the wired network or to any other wireless clients
+associated with the same AP.
+• Each VLAN has to stretch across the entire network. This is considered bad as it leads to a few issues:
+○ Large broadcast domains.
+○ STP will disable links.
+○ Adding/deleting VLANs is very labor-intensive
+• Autonomous APs can be used for small networks, but they are not very viable in medium to large networks
+because of scalability issues.
+• Autonomous APs can function in any of the wireless AP modes (Repeater, outdoor bridge, workgroup bridge).
+Autonomous AP Demonstration
+2. Lightweight
+In this deployment mode, the functions of an AP can be split between the AP and a Wireless LAN Controller (WLC).
+• Lightweight APs handle ‘real-time’ operations (transmitting/receiving RF traffic, encryption/decryption, sending
+out beacon/probe messages, etc.)
+• Other functions are carried out by the WLC (RF management, security/QoS management, client
+authentication/association, roaming management, etc.)
+• This is called Split-MAC Architecture, as the operations are split between the AP and the WLC.
+WLC Information
+• The WLC is also use to centrally configure the lightweight APs.
+• The WLC can be located in the same subnet/VLAN as the lightweight APs it manages, or in a different
+subnet/VLAN.
+• The WLC and lightweight APs authenticate each other using digital certificates installed on each device (X.509
+standard certificates).
+Lightweight AP Information
+• The WLC and lightweight AP use a protocol called Control and Provisioning of Wireless Access Points (CAPWAP)
+to communicate with each other.
+○ Based on an older protocol called Lightweight Access Point Protocol (LWAPP).
+• Two CAPWAP tunnels are created between each AP and the WLC:
+1. Control tunnel (UDP port 5246):
+§ This tunnel is used to configure the APs, and control/manage the operations.
+§ All traffic in this tunnel is encrypted by default.
+2. Data tunnel (UDP port 5247):
+§ All traffic from wireless clients is sent through this tunnel to the WLC. (It does not go directly to the
+wired network)
+§ Traffic in this tunnel is not encrypted by default, but you can configure it to be encrypted with
+Datagram Transport Layer Security (DTLS).
+• Because all traffic from wireless clients is tunneled to the WLC with CAPWAP, APs connect to switch ==access==
+ports, not trunk ports.
+Lightweight AP Demonstration
+Lightweight Operation Modes
+Lightweight APs can be configured to operate in various modes:
+1. Local
+○ This is the default mode where the AP offers a BSS (more multiple BSSs) for clients to associate with.
+2. FlexConnect
+○ Like a lightweight AP in Local mode, it offers one or more BSSs for clients to associate with. However,
+FlexConnect allows the AP to locally switch traffic between the wired and wireless networks if the tunnels to
+the WLC go down.
+3. Sniffer
+○ The AP does not offer a BSS for clients.
+○ It is dedicated to capturing 802.11 frames and sending them to a device running software such as Wireshark.
+4. Monitor
+○ The AP does not offer a BSS for clients. It is dedicated to receiving 802.11 frames to detect rogue devices.
+○ If a client is found to be a rogue device, an AP can send de-authentication messages to disassociate the
+rogue device from the AP.
+5. Rogue Detector
+○ The AP does not even use its radio. It listens to traffic on the wired network only, but it receives a list of
+suspected rogue clients and AP MAC addresses from the WLC.
+○ By listening to ARP messages on the wired network and correlating it with the information it receives from
+the WLC, it can detect rogue devices.
+6. SE-Connect (Spectrum Expert Connect)
+○ The AP does not offer a BSS for clients.
+○ It is dedicated to RF spectrum analysis on all channels. It can send information to software such as Cisco
+Spectrum Expert on a PC to collect and analyze the data.
+7. Bridge/Mesh
+○ Like the autonomous AP’s Outdoor Bridge, the lightweight AP can be a dedicated bridge between sites, for
+example over long distances.
+○ A mesh can be made between the APs.
+8. Flex plus Bridge
+○ Adds FlexConnect functionality to the Bridge/Mesh mode.
+○ Allows wireless APs to locally forward traffic even if connectivity to the WLC is lost.
+Local / FlexConnect
+Bridge/Mesh Demonstration
+Autonomous / Lightweight - Traffic Flow Comparison
+How traffic flows through Lightweight APs compared to Autonomous APs
+3. Cloud-based
+Cloud-based AP architecture is in between autonomous AP and Split-MAC Architecture.
+• This deployment method is basically autonomous APs that are centrally managed in the cloud.
+• However, data traffic is not sent to the cloud. It is sent directly to the wired network like when using autonomous
+APs.
+○ Only management/control traffic is sent to the cloud.
+• Cisco Meraki is a popular cloud-based Wi-Fi solution.
+○ The Meraki dashboard can be used to configure APs, monitor the network, generate performance reports,
+etc.
+○ Meraki also tells each AP which channel to use, transmit power, etc.
+Cloud-based AP Demonstration
+Wireless LAN Controller (WLC) Deployments
+In a Split-MAC Architecture (Lightweight AP deployment), there are four main WLC deployment models:
+1. Unified
+○ Supports up to 6000 APs.
+○ The WLC is a hardware appliance in a central location of the network.
+2. Cloud-based
+○ Supports up to 3000 APs.
+○ The WLC is a VM running on a server, usually in a private cloud in a data center.
+○ (This is not related to the Wireless AP Cloud-based deployment)
+3. Embedded
+○ Supports up to 200 APs.
+○ The WLC is integrated within a switch.
+4. Mobility Express
+○ Supports up to 100 APs.
+○ The WLC is integrated within an AP.
+Extra Tip: WLC and EtherChannels
+○ WLCs only support static LAG (EtherChannel).
+○ Therefore, they can’t run PAgP or LACP.
+
+Day 56 - Wireless Architectures
+Wednesday, September 9, 2026 8:38 PM
+Wireless Architectures Info
+802.11 - Frame Format
+802.11 frames have a different format than the 802.3 Ethernet frames. The frame can change depending on the 802.11
+version and message type, some of the fields might not be present in the frame. (like the 4 address fields)
+802.11 Frame Format
+1. Frame Control - (2 bytes)
+○ Provides information such as the message type and subtype
+2. Duration/ID - (2 bytes)
+○ Depending on the message type, this field can indicate:
+§ Duration, the time (in microseconds) the channel will be dedicated for transmission of the frame.
+§ ID, the identifier for the association (connection).
+3. Address 1/2/3/4 - (6 bytes)
+○ Up to four addresses can be present in an 802.11 frame. It depends on the message type.
+§ Destination Address (DA): Final recipient of the frame
+§ Source Address (DA): Original sender of the frame
+§ Receiver Address (DA): Immediate recipient of the frame
+§ Transmitter Address (DA): Immediate sender of the frame
+4. Sequence Control - (2 bytes)
+○ Used to reassemble fragments and eliminate duplicate frames.
+5. QoS Control - (2 bytes)
+○ Used in QoS to prioritize certain traffic.
+6. HT Control - (4 bytes)
+○ Added in 802.11n to enable High Throughput operations.
+§ 802.11n is also known as ‘High Throughput’ (HT) Wi-Fi.
+§ 802.11ac is also known as ‘Very High Throughput’ (VHT) Wi-Fi.
+7. Frame Body (Packet) - (variable size in bytes)
+○ Contains the actual packet being sent over the network.
+8. FCS - (4 bytes)
+○ Used to check for errors, same as in the Ethernet frame.
+802.11 - Association Process
+APs are used to bridge traffic between wireless stations and other devices.
+• For a station to send traffic through the AP, it must be authenticated and associated with the AP.
+• There are three 802.11 connection states:
+○ Not authenticated, not associated
+○ Authenticated, not associated
+○ Authenticated, associated
+Station authentication &amp; association Process
+Station scanning modes
+○ There are two ways a station can scan for a BSS:
+1. Active Scanning
+□ The station sends probe requests and listens for a probe response from an AP.
+2. Passive Scanning
+□ The station listens for beacon messages from an AP.
+□ Beacon messages are sent periodically by APs to advertise the BSS.
+802.11 - Message Types
+There are three 802.11 message types:
+1. Management
+○ Used to manage the BSS.
+○ Includes the following messages:
+§ Beacon
+§ Probe request, probe response
+§ Authentication request, authentication response
+§ Association request, association response
+2. Control
+○ Used to control access to the medium (radio frequency).
+○ Assists with the delivery of management and data frames.
+○ Includes the following messages:
+§ Request To Send (RTS)
+§ Call To Send (CTS)
+§ ACK
+3. Data
+○ Used to send actual data packets.
+Wireless Access Point (AP) Deployments
+There are three main wireless AP deployment methods:
+1. Autonomous
+2. Lightweight
+3. Cloud-based
+1. Autonomous
+Autonomous APs are self-contained systems that don’t rely on a Wireless LAN Controller (WLC).
+• They are configured individually, and there is no central monitoring or management of APs.
+○ Can be configured through console cable (CLI), SSH/Telnet (CLI), or HTTP/HTTPS web connection (GUI).
+○ An IP address for remote management should be configured.
+○ Radio frequency parameters must be manually configured.
+○ Security policies are configured and handled individually by each AP.
+○ QoS rules and etc. are configured and handled individually by each AP.
+• Autonomous APs connect to the wired network with a ==trunk== link
+• Data traffic from the wireless clients will have a direct path to the wired network or to any other wireless clients
+associated with the same AP.
+• Each VLAN has to stretch across the entire network. This is considered bad as it leads to a few issues:
+○ Large broadcast domains.
+○ STP will disable links.
+○ Adding/deleting VLANs is very labor-intensive
+• Autonomous APs can be used for small networks, but they are not very viable in medium to large networks
+because of scalability issues.
+• Autonomous APs can function in any of the wireless AP modes (Repeater, outdoor bridge, workgroup bridge).
+Autonomous AP Demonstration
+2. Lightweight
+In this deployment mode, the functions of an AP can be split between the AP and a Wireless LAN Controller (WLC).
+• Lightweight APs handle ‘real-time’ operations (transmitting/receiving RF traffic, encryption/decryption, sending
+out beacon/probe messages, etc.)
+• Other functions are carried out by the WLC (RF management, security/QoS management, client
+authentication/association, roaming management, etc.)
+• This is called Split-MAC Architecture, as the operations are split between the AP and the WLC.
+WLC Information
+• The WLC is also use to centrally configure the lightweight APs.
+• The WLC can be located in the same subnet/VLAN as the lightweight APs it manages, or in a different
+subnet/VLAN.
+• The WLC and lightweight APs authenticate each other using digital certificates installed on each device (X.509
+standard certificates).
+Lightweight AP Information
+• The WLC and lightweight AP use a protocol called Control and Provisioning of Wireless Access Points (CAPWAP)
+to communicate with each other.
+○ Based on an older protocol called Lightweight Access Point Protocol (LWAPP).
+• Two CAPWAP tunnels are created between each AP and the WLC:
+1. Control tunnel (UDP port 5246):
+§ This tunnel is used to configure the APs, and control/manage the operations.
+§ All traffic in this tunnel is encrypted by default.
+2. Data tunnel (UDP port 5247):
+§ All traffic from wireless clients is sent through this tunnel to the WLC. (It does not go directly to the
+wired network)
+§ Traffic in this tunnel is not encrypted by default, but you can configure it to be encrypted with
+Datagram Transport Layer Security (DTLS).
+• Because all traffic from wireless clients is tunneled to the WLC with CAPWAP, APs connect to switch ==access==
+ports, not trunk ports.
+Lightweight AP Demonstration
+Lightweight Operation Modes
+Lightweight APs can be configured to operate in various modes:
+1. Local
+○ This is the default mode where the AP offers a BSS (more multiple BSSs) for clients to associate with.
+2. FlexConnect
+○ Like a lightweight AP in Local mode, it offers one or more BSSs for clients to associate with. However,
+FlexConnect allows the AP to locally switch traffic between the wired and wireless networks if the tunnels to
+the WLC go down.
+3. Sniffer
+○ The AP does not offer a BSS for clients.
+○ It is dedicated to capturing 802.11 frames and sending them to a device running software such as Wireshark.
+4. Monitor
+○ The AP does not offer a BSS for clients. It is dedicated to receiving 802.11 frames to detect rogue devices.
+○ If a client is found to be a rogue device, an AP can send de-authentication messages to disassociate the
+rogue device from the AP.
+5. Rogue Detector
+○ The AP does not even use its radio. It listens to traffic on the wired network only, but it receives a list of
+suspected rogue clients and AP MAC addresses from the WLC.
+○ By listening to ARP messages on the wired network and correlating it with the information it receives from
+the WLC, it can detect rogue devices.
+6. SE-Connect (Spectrum Expert Connect)
+○ The AP does not offer a BSS for clients.
+○ It is dedicated to RF spectrum analysis on all channels. It can send information to software such as Cisco
+Spectrum Expert on a PC to collect and analyze the data.
+7. Bridge/Mesh
+○ Like the autonomous AP’s Outdoor Bridge, the lightweight AP can be a dedicated bridge between sites, for
+example over long distances.
+○ A mesh can be made between the APs.
+8. Flex plus Bridge
+○ Adds FlexConnect functionality to the Bridge/Mesh mode.
+○ Allows wireless APs to locally forward traffic even if connectivity to the WLC is lost.
+Local / FlexConnect
+Bridge/Mesh Demonstration
+Autonomous / Lightweight - Traffic Flow Comparison
+How traffic flows through Lightweight APs compared to Autonomous APs
+3. Cloud-based
+Cloud-based AP architecture is in between autonomous AP and Split-MAC Architecture.
+• This deployment method is basically autonomous APs that are centrally managed in the cloud.
+• However, data traffic is not sent to the cloud. It is sent directly to the wired network like when using autonomous
+APs.
+○ Only management/control traffic is sent to the cloud.
+• Cisco Meraki is a popular cloud-based Wi-Fi solution.
+○ The Meraki dashboard can be used to configure APs, monitor the network, generate performance reports,
+etc.
+○ Meraki also tells each AP which channel to use, transmit power, etc.
+Cloud-based AP Demonstration
+Wireless LAN Controller (WLC) Deployments
+In a Split-MAC Architecture (Lightweight AP deployment), there are four main WLC deployment models:
+1. Unified
+○ Supports up to 6000 APs.
+○ The WLC is a hardware appliance in a central location of the network.
+2. Cloud-based
+○ Supports up to 3000 APs.
+○ The WLC is a VM running on a server, usually in a private cloud in a data center.
+○ (This is not related to the Wireless AP Cloud-based deployment)
+3. Embedded
+○ Supports up to 200 APs.
+○ The WLC is integrated within a switch.
+4. Mobility Express
+○ Supports up to 100 APs.
+○ The WLC is integrated within an AP.
+Extra Tip: WLC and EtherChannels
+○ WLCs only support static LAG (EtherChannel).
+○ Therefore, they can’t run PAgP or LACP.</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="/resources/ccna/day-55/"><small>← Day 55</small>Wireless Fundamentals</a><a href="/resources/ccna/day-57/"><small>Day 57 →</small>Wireless Security</a></nav></article></div></main>    <div class="contact-modal" id="contactModal">
+        <div class="contact-modal-content">
+            <div class="contact-modal-header">
+                <h3>Get in Touch</h3>
+                <button class="contact-modal-close" type="button" id="contactModalClose">✕</button>
+            </div>
+            <div class="contact-modal-links">
+                <a href="mailto:daviddipiazza29@gmail.com" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/CodeGoat29" target="_blank" class="contact-link">GitHub</a>
+            </div>
+        </div>
+    </div>
+
+            <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="/resources/">Resources</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/resume/">Resume</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="mailto:daviddipiazza29@gmail.com">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/CodeGoat29" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bar">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+<script src="/js/site.js"></script><script src="/resources/ccna/course.js?v=2"></script></body></html>

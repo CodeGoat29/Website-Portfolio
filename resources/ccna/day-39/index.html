@@ -1,0 +1,648 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 39: DHCP | DiPiazza</title><link rel="icon" href="/images/dipiazza-icon.png"><link rel="stylesheet" href="/css/styles.css"><link rel="stylesheet" href="/resources/ccna/course.css?v=2"></head><body><header class="site-header">
+        <div class="container header-content">
+            <a href="/" class="logo-link"><img src="/images/dipiazza-icon.png" alt="DiPiazza Logo" class="logo"></a>
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Where I break stuff, then write about it.</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/resources/" class="active">Resources</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/resume/">Resume</a></li>
+                    <li><button class="nav-cta" type="button" data-contact-open>Get in Touch</button></li>
+                </ul>
+            </nav>
+        <div class="top-controls">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-inner"></span>
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div></div>
+    </header>
+
+<main class="wrap ccna-main"><div class="crumb"><a href="/resources/ccna/">CCNA study notes</a> / Day 39</div><div class="reading-layout"><aside class="course-sidebar"><details open><summary>Browse CCNA</summary><div class="sidebar-shortcuts"><a href="/resources/ccna/">Course overview</a><a href="/resources/ccna/commands/">Command reference</a></div><label class="day-search-label" for="day-search">Find a day</label><input id="day-search" type="search" placeholder="Day number or topic"><nav class="day-scroll" aria-label="CCNA study days" tabindex="0"><a href="/resources/ccna/day-01/"><span>Day 01</span><span>Network Devices</span></a><a href="/resources/ccna/day-02/"><span>Day 02</span><span>Interfaces and Cables</span></a><a href="/resources/ccna/day-03/"><span>Day 03</span><span>TCP/IP Model</span></a><a href="/resources/ccna/day-04/"><span>Day 04</span><span>Intro to the CLI</span></a><a href="/resources/ccna/day-05/"><span>Day 05</span><span>Ethernet LAN Switching (pt 1)</span></a><a href="/resources/ccna/day-06/"><span>Day 06</span><span>Ethernet LAN Switching (pt 2)</span></a><a href="/resources/ccna/day-07/"><span>Day 07</span><span>IPv4 Addressing (pt 1)</span></a><a href="/resources/ccna/day-08/"><span>Day 08</span><span>IPv4 Addressing (pt 2)</span></a><a href="/resources/ccna/day-09/"><span>Day 09</span><span>Switch Interfaces</span></a><a href="/resources/ccna/day-10/"><span>Day 10</span><span>IPv4 Header</span></a><a href="/resources/ccna/day-11/"><span>Day 11</span><span>Routing Fundamentals (pt 1) / Static Routing (pt 2)</span></a><a href="/resources/ccna/day-12/"><span>Day 12</span><span>The life of a packet</span></a><a href="/resources/ccna/day-13/"><span>Day 13</span><span>Subnetting (pt 1)</span></a><a href="/resources/ccna/day-14/"><span>Day 14</span><span>Subnetting (pt 2)</span></a><a href="/resources/ccna/day-15/"><span>Day 15</span><span>Subnetting (pt 3 VLSM)</span></a><a href="/resources/ccna/day-16/"><span>Day 16</span><span>(VlANs pt 1)</span></a><a href="/resources/ccna/day-17/"><span>Day 17</span><span>(VlANs pt 2)</span></a><a href="/resources/ccna/day-18/"><span>Day 18</span><span>(VlANs pt 3)</span></a><a href="/resources/ccna/day-19/"><span>Day 19</span><span>DTP / VTP (Not in Syllabus)</span></a><a href="/resources/ccna/day-20/"><span>Day 20</span><span>Spanning Tree Protocol (pt 1)</span></a><a href="/resources/ccna/day-21/"><span>Day 21</span><span>Spanning Tree Protocol (pt 2)</span></a><a href="/resources/ccna/day-22/"><span>Day 22</span><span>Rapid Spanning Tree Protocol</span></a><a href="/resources/ccna/day-23/"><span>Day 23</span><span>Etherchannel</span></a><a href="/resources/ccna/day-24/"><span>Day 24</span><span>Dynamic Routing</span></a><a href="/resources/ccna/day-25/"><span>Day 25</span><span>RIP &amp; EIGRP</span></a><a href="/resources/ccna/day-26/"><span>Day 26</span><span>OSPF (pt 1)</span></a><a href="/resources/ccna/day-27/"><span>Day 27</span><span>OSPF (pt 2)</span></a><a href="/resources/ccna/day-28/"><span>Day 28</span><span>OSPF (pt 3)</span></a><a href="/resources/ccna/day-29/"><span>Day 29</span><span>First Hop Redundancy Protocols</span></a><a href="/resources/ccna/day-30/"><span>Day 30</span><span>TCP &amp; UDP</span></a><a href="/resources/ccna/day-31/"><span>Day 31</span><span>IPV6 (pt 1)</span></a><a href="/resources/ccna/day-32/"><span>Day 32</span><span>IPV6 (pt 2)</span></a><a href="/resources/ccna/day-33/"><span>Day 33</span><span>IPV6 (pt 3)</span></a><a href="/resources/ccna/day-34/"><span>Day 34</span><span>Standard ACLs</span></a><a href="/resources/ccna/day-35/"><span>Day 35</span><span>Extended ACLs</span></a><a href="/resources/ccna/day-36/"><span>Day 36</span><span>CDP &amp; LLDP</span></a><a href="/resources/ccna/day-37/"><span>Day 37</span><span>NTP</span></a><a href="/resources/ccna/day-38/"><span>Day 38</span><span>DNS</span></a><a href="/resources/ccna/day-39/" aria-current="page"><span>Day 39</span><span>DHCP</span></a><a href="/resources/ccna/day-40/"><span>Day 40</span><span>SNMP</span></a><a href="/resources/ccna/day-41/"><span>Day 41</span><span>Syslog</span></a><a href="/resources/ccna/day-42/"><span>Day 42</span><span>SSH</span></a><a href="/resources/ccna/day-43/"><span>Day 43</span><span>FTP &amp; TFTP</span></a><a href="/resources/ccna/day-44/"><span>Day 44</span><span>NAT (pt 1)</span></a><a href="/resources/ccna/day-45/"><span>Day 45</span><span>NAT (pt 2)</span></a><a href="/resources/ccna/day-46/"><span>Day 46</span><span>QoS (pt 1)</span></a><a href="/resources/ccna/day-47/"><span>Day 47</span><span>QoS (pt 2)</span></a><a href="/resources/ccna/day-48/"><span>Day 48</span><span>Security Fundamentals</span></a><a href="/resources/ccna/day-49/"><span>Day 49</span><span>Port Security</span></a><a href="/resources/ccna/day-50/"><span>Day 50</span><span>DHCP Snooping</span></a><a href="/resources/ccna/day-51/"><span>Day 51</span><span>Dynamic ARP Inspection (DAI)</span></a><a href="/resources/ccna/day-52/"><span>Day 52</span><span>LAN Architectures</span></a><a href="/resources/ccna/day-53/"><span>Day 53</span><span>WAN Architectures</span></a><a href="/resources/ccna/day-54/"><span>Day 54</span><span>Virtualization &amp; Cloud / Containers / VRF</span></a><a href="/resources/ccna/day-55/"><span>Day 55</span><span>Wireless Fundamentals</span></a><a href="/resources/ccna/day-56/"><span>Day 56</span><span>Wireless Architectures</span></a><a href="/resources/ccna/day-57/"><span>Day 57</span><span>Wireless Security</span></a><a href="/resources/ccna/day-58/"><span>Day 58</span><span>Wireless Configuration</span></a><a href="/resources/ccna/day-59/"><span>Day 59</span><span>Intro to Network Automation</span></a><a href="/resources/ccna/day-60/"><span>Day 60</span><span>JSON, XML, &amp; YAML</span></a><a href="/resources/ccna/day-61/"><span>Day 61</span><span>REST API</span></a><a href="/resources/ccna/day-62/"><span>Day 62</span><span>Software-Defined Networking</span></a><a href="/resources/ccna/day-63/"><span>Day 63</span><span>Ansible, Puppet, Chef, &amp; Terraform</span></a></nav><p id="day-empty" hidden>No matching days.</p></details></aside><article class="lesson-content"><header class="lesson-head"><div class="eyebrow">Day 39 / 63 · Network services</div><h1>DHCP</h1><p class="lead">Study notes based primarily on Jeremy’s IT Lab CCNA learning videos. Credit to Jeremy’s IT Lab for the source lessons and diagrams.</p><div class="pills"><a class="button" href="/resources/ccna/commands/">Command reference</a><a class="button primary" href="/resources/ccna/">All 63 days</a></div></header><section class="note-part" id="part-1"><h2>DHCP</h2><a class="button" href="/resources/ccna/assets/lesson-40/notes.pdf" download>Download original PDF</a><figure class="note-image"><a href="/resources/ccna/assets/lesson-40/page-1.webp" target="_blank" rel="noopener" aria-label="Enlarge DHCP page 1"><img src="/resources/ccna/assets/lesson-40/page-1.webp" width="1541" height="2055" loading="lazy" alt="Original OneNote notes: DHCP, page 1. Text version follows below."></a><figcaption>Original notes · Page 1 of 4</figcaption></figure><figure class="note-image"><a href="/resources/ccna/assets/lesson-40/page-2.webp" target="_blank" rel="noopener" aria-label="Enlarge DHCP page 2"><img src="/resources/ccna/assets/lesson-40/page-2.webp" width="1552" height="2110" loading="lazy" alt="Original OneNote notes: DHCP, page 2. Text version follows below."></a><figcaption>Original notes · Page 2 of 4</figcaption></figure><figure class="note-image"><a href="/resources/ccna/assets/lesson-40/page-3.webp" target="_blank" rel="noopener" aria-label="Enlarge DHCP page 3"><img src="/resources/ccna/assets/lesson-40/page-3.webp" width="1539" height="2103" loading="lazy" alt="Original OneNote notes: DHCP, page 3. Text version follows below."></a><figcaption>Original notes · Page 3 of 4</figcaption></figure><figure class="note-image"><a href="/resources/ccna/assets/lesson-40/page-4.webp" target="_blank" rel="noopener" aria-label="Enlarge DHCP page 4"><img src="/resources/ccna/assets/lesson-40/page-4.webp" width="1523" height="1177" loading="lazy" alt="Original OneNote notes: DHCP, page 4. Text version follows below."></a><figcaption>Original notes · Page 4 of 4</figcaption></figure><details class="text-view"><summary>Text view — DHCP</summary><p>Extracted from the original export. Diagrams and some formatting appear in the notes above.</p><pre>Day 39 - DHCP
+Sunday, September 6, 2026 10:46 AM
+DHCP Info
+DHCP General Information
+Dynamic Host Configuration Protocol (DHCP) is a protocol that allows hosts to automatically/dynamically learn various
+aspects of their network configuration without manual configuration, including information such as:
+• IP address
+• Subnet mask
+• Default gateway
+• DNS server
+• DHCP is typically used for ‘client devices’, while devices like routers, servers and etc, are manually configured
+• DHCP servers run on port 67 while DHCP clients run on port 68.
+What devices are usually DHCP servers?
+○ In small networks (like homes and small offices), the router usually acts as the DHCP server.
+○ In large networks, a dedicated server usually running Windows/Linux acts as the DHCP server.
+DHCP server leasing
+DHCP servers ‘lease’ IP addresses to clients.
+This means that any IP addresses assigned to clients are not permanent, and the client must give up the address at
+the end of the lease.
+DHCP DORA Steps
+For a DHCP client to contact and get information from the DHCP server, it has to go through four steps sometimes called
+‘DORA’ for short:
+1. DHCP Discover
+2. DHCP Offer
+3. DHCP Request
+4. DHCP Ack
+1. DHCP Discover
+A DHCP Discover is the first message that clients send when they are looking for a DHCP server to connect to. Some of
+the message properties are:
+• It is a broadcast message
+• The source MAC is the client’s MAC address
+• The destination MAC is the broadcast MAC address (ffff.ffff.ffff)
+• The source IP is 0.0.0.0
+• The destination IP is the broadcast IP address (255.255.255.255)
+The message contains some general information about the client for the DHCP server to use, like whether the client
+wants the response messages sent back to be unicast or broadcast, or if the client would like a specific IP address.
+2. DHCP Offer
+The DHCP Offer message is sent by the DHCP server after receiving a DHCP Discover message. It offers an IP address to
+the client. Some of the message properties are:
+• It can be a broadcast or a unicast message.
+• The source MAC is the server’s MAC address
+• The destination MAC is the client’s MAC address, which the server learned from the Discover message.
+• The source IP is the IP address of the server
+• The destination IP is the IP address that’s being offered to the client
+3. DHCP Request
+The DHCP Request is a message that is sent from the client to a DHCP server, informing the server that it is requesting
+the IP address that has been previously offered to it. Some of the message properties are:
+• It is a broadcast message
+• The source MAC is the client’s MAC address
+• The destination MAC is the broadcast MAC address (ffff.ffff.ffff)
+• The source IP is 0.0.0.0
+• The destination IP is the broadcast IP address (255.255.255.255)
+In the DHCP Request message, the client uses an option called ‘Option 54 - DHCP Server Identifier’ to indicate which
+DHCP server it is communicating with.
+4. DHCP Ack
+The DHCP Ack message is sent by the DHCP server as a response to the DHCP Request, informing the client that it has
+accepted its request, and will provide it with the requested IP address. Some of the message properties are:
+• It can be a broadcast or a unicast message.
+• The source MAC is the server’s MAC address
+• The destination MAC is the client’s MAC address, which the server learned from the Discover message.
+• The source IP is the IP address of the server
+• The destination IP is the IP address that’s being offered to the client
+How does a client tell the servers if it wants a unicast or broadcast response?
+The client informs the servers if it wants a unicast or broadcast response through the “Bootp flag” that’s contained
+in the DHCP Discover message.
+○ If the Bootp flag value is 0x0000 then the response will be unicast.
+○ If the Bootp flag value is 0x8000 then the response will be broadcast.
+Why would the client want a unicast or broadcast response?
+Some clients may be configured in a way that does not let them accept unicast packets unless an IP address has
+already been assigned to them. In that case, the DHCP server is instructed to send the Offer message as a
+broadcast.
+DHCP DORA + Release Table and Summary Image
+Step Location --&gt; Location Message Type
+Discover Client --&gt; Server Broadcast
+Offer Server --&gt; Client Broadcast or Unicast
+Request Client --&gt; Server Broadcast
+Ack Server --&gt; Client Broadcast or Unicast
+Release Client --&gt; Server Unicast
+DORA Summary Image
+DHCP Relay
+Smaller networks may opt to use one of the router’s as a DHCP server, but in bigger networks, a centralized DHCP server
+is often used. This is when DHCP Relays are used.
+• Having a centralized DHCP server means that the server won’t be able to receive the clients’ broadcast DHCP
+messages. (Broadcast messages don’t leave the local subnet)
+• To fix this issue, we can configure routers to act as a DHCP relay agent.
+○ A relay agent will forward the client’s broadcast DHCP messages to the remote centralized DHCP server in
+the form of unicast messages.
+DHCP Relay Example
+DHCP and Windows OS
+There are a few commands you can use on Windows to view DHCP information, as well as release and renew DHCP
+leases.
+• ipconfig /all
+○ Shows the IP configuration settings on Windows, including:
+§ The current IP address and whether it’s ‘preferred’ or not (An IP address being preferred means that it
+has been assigned to the device by DHCP previously)
+§ The lease obtain and expiration dates
+§ The current DHCP server
+• ipconfig /release
+○ Sends a DHCP Release message to the DHCP server, informing it that it’d like to release the current IP
+address. The DHCP server will now consider this IP address to be free and usable by other devices.
+○ Some of the Release message’s properties are:
+§ It is a unicast message.
+§ The source MAC is the client’s MAC address
+§ The destination MAC is the server’s MAC address
+§ The source IP is the current IP address configured on the device
+§ The destination IP is the IP address of the DHCP server
+• ipconfig /renew
+○ Initiates a communication with a DHCP server by following the DORA steps.
+○ By the end of it, the client will have received an IP address from the server.
+DHCP Server Configuration in Cisco IOS
+DHCP Show Command
+There’s one show command to see the hosts which have been assigned an IP through the DHCP protocol
+• show ip dhcp binding
+○ Shows the hosts that have been assigned an IP address from the DHCP server
+○ Displays information about the hosts including:
+§ IP address
+§ Client ID / MAC address / Username
+§ Lease expiration date
+DHCP Server Configuration
+DHCP server configuration is done through some commands in global config mode, and a few through DHCP-config
+mode.
+1. Global Config
+○ ip dhcp excluded-address LOW-ADDRESS HIGH-ADDRESS
+§ Specifies the range of addresses that won’t be given to DHCP clients
+○ ip dhcp pool POOL-NAME
+§ Initiates a DHCP pool and enters DHCP pool configuration mode or enters DHCP pool configuration if
+the pool already exists
+2. DHCP Config
+○ network IP-ADDRESS { /PREFIX-LENGTH | SUBNET-MASK }
+§ Specifies the subnet of addressed to be assigned to clients (Except the excluded addresses)
+○ dns-server IP-ADDRESS
+§ Specifies the DNS server that DHCP clients should use
+○ domain-name DOMAIN-NAME
+§ Specifies the domain name of the network
+○ default-router IP-ADDRESS
+§ Specifies the default gateway that the DHCP clients should use
+○ lease TIME { days hours minutes | infinite }
+§ Specifies the DHCP IP address lease time
+DHCP Router Relay Agent Configuration
+To configure a router to be a DHCP relay agent, you’d have to enter the configuration mode of an interface that’s
+connected to clients and use the following command:
+• ip helper-address IP-ADDRESS
+○ Configures the current interface as a DHCP relay agent.
+○ It will then forward DHCP Discover messages to the DHCP server in the form of unicast messages. (Instead
+of being broadcast)
+
+Day 39 - DHCP
+Sunday, September 6, 2026 10:46 AM
+DHCP Info
+DHCP General Information
+Dynamic Host Configuration Protocol (DHCP) is a protocol that allows hosts to automatically/dynamically learn various
+aspects of their network configuration without manual configuration, including information such as:
+• IP address
+• Subnet mask
+• Default gateway
+• DNS server
+• DHCP is typically used for ‘client devices’, while devices like routers, servers and etc, are manually configured
+• DHCP servers run on port 67 while DHCP clients run on port 68.
+What devices are usually DHCP servers?
+○ In small networks (like homes and small offices), the router usually acts as the DHCP server.
+○ In large networks, a dedicated server usually running Windows/Linux acts as the DHCP server.
+DHCP server leasing
+DHCP servers ‘lease’ IP addresses to clients.
+This means that any IP addresses assigned to clients are not permanent, and the client must give up the address at
+the end of the lease.
+DHCP DORA Steps
+For a DHCP client to contact and get information from the DHCP server, it has to go through four steps sometimes called
+‘DORA’ for short:
+1. DHCP Discover
+2. DHCP Offer
+3. DHCP Request
+4. DHCP Ack
+1. DHCP Discover
+A DHCP Discover is the first message that clients send when they are looking for a DHCP server to connect to. Some of
+the message properties are:
+• It is a broadcast message
+• The source MAC is the client’s MAC address
+• The destination MAC is the broadcast MAC address (ffff.ffff.ffff)
+• The source IP is 0.0.0.0
+• The destination IP is the broadcast IP address (255.255.255.255)
+The message contains some general information about the client for the DHCP server to use, like whether the client
+wants the response messages sent back to be unicast or broadcast, or if the client would like a specific IP address.
+2. DHCP Offer
+The DHCP Offer message is sent by the DHCP server after receiving a DHCP Discover message. It offers an IP address to
+the client. Some of the message properties are:
+• It can be a broadcast or a unicast message.
+• The source MAC is the server’s MAC address
+• The destination MAC is the client’s MAC address, which the server learned from the Discover message.
+• The source IP is the IP address of the server
+• The destination IP is the IP address that’s being offered to the client
+3. DHCP Request
+The DHCP Request is a message that is sent from the client to a DHCP server, informing the server that it is requesting
+the IP address that has been previously offered to it. Some of the message properties are:
+• It is a broadcast message
+• The source MAC is the client’s MAC address
+• The destination MAC is the broadcast MAC address (ffff.ffff.ffff)
+• The source IP is 0.0.0.0
+• The destination IP is the broadcast IP address (255.255.255.255)
+In the DHCP Request message, the client uses an option called ‘Option 54 - DHCP Server Identifier’ to indicate which
+DHCP server it is communicating with.
+4. DHCP Ack
+The DHCP Ack message is sent by the DHCP server as a response to the DHCP Request, informing the client that it has
+accepted its request, and will provide it with the requested IP address. Some of the message properties are:
+• It can be a broadcast or a unicast message.
+• The source MAC is the server’s MAC address
+• The destination MAC is the client’s MAC address, which the server learned from the Discover message.
+• The source IP is the IP address of the server
+• The destination IP is the IP address that’s being offered to the client
+How does a client tell the servers if it wants a unicast or broadcast response?
+The client informs the servers if it wants a unicast or broadcast response through the “Bootp flag” that’s contained
+in the DHCP Discover message.
+○ If the Bootp flag value is 0x0000 then the response will be unicast.
+○ If the Bootp flag value is 0x8000 then the response will be broadcast.
+Why would the client want a unicast or broadcast response?
+Some clients may be configured in a way that does not let them accept unicast packets unless an IP address has
+already been assigned to them. In that case, the DHCP server is instructed to send the Offer message as a
+broadcast.
+DHCP DORA + Release Table and Summary Image
+Step Location --&gt; Location Message Type
+Discover Client --&gt; Server Broadcast
+Offer Server --&gt; Client Broadcast or Unicast
+Request Client --&gt; Server Broadcast
+Ack Server --&gt; Client Broadcast or Unicast
+Release Client --&gt; Server Unicast
+DORA Summary Image
+DHCP Relay
+Smaller networks may opt to use one of the router’s as a DHCP server, but in bigger networks, a centralized DHCP server
+is often used. This is when DHCP Relays are used.
+• Having a centralized DHCP server means that the server won’t be able to receive the clients’ broadcast DHCP
+messages. (Broadcast messages don’t leave the local subnet)
+• To fix this issue, we can configure routers to act as a DHCP relay agent.
+○ A relay agent will forward the client’s broadcast DHCP messages to the remote centralized DHCP server in
+the form of unicast messages.
+DHCP Relay Example
+DHCP and Windows OS
+There are a few commands you can use on Windows to view DHCP information, as well as release and renew DHCP
+leases.
+• ipconfig /all
+○ Shows the IP configuration settings on Windows, including:
+§ The current IP address and whether it’s ‘preferred’ or not (An IP address being preferred means that it
+has been assigned to the device by DHCP previously)
+§ The lease obtain and expiration dates
+§ The current DHCP server
+• ipconfig /release
+○ Sends a DHCP Release message to the DHCP server, informing it that it’d like to release the current IP
+address. The DHCP server will now consider this IP address to be free and usable by other devices.
+○ Some of the Release message’s properties are:
+§ It is a unicast message.
+§ The source MAC is the client’s MAC address
+§ The destination MAC is the server’s MAC address
+§ The source IP is the current IP address configured on the device
+§ The destination IP is the IP address of the DHCP server
+• ipconfig /renew
+○ Initiates a communication with a DHCP server by following the DORA steps.
+○ By the end of it, the client will have received an IP address from the server.
+DHCP Server Configuration in Cisco IOS
+DHCP Show Command
+There’s one show command to see the hosts which have been assigned an IP through the DHCP protocol
+• show ip dhcp binding
+○ Shows the hosts that have been assigned an IP address from the DHCP server
+○ Displays information about the hosts including:
+§ IP address
+§ Client ID / MAC address / Username
+§ Lease expiration date
+DHCP Server Configuration
+DHCP server configuration is done through some commands in global config mode, and a few through DHCP-config
+mode.
+1. Global Config
+○ ip dhcp excluded-address LOW-ADDRESS HIGH-ADDRESS
+§ Specifies the range of addresses that won’t be given to DHCP clients
+○ ip dhcp pool POOL-NAME
+§ Initiates a DHCP pool and enters DHCP pool configuration mode or enters DHCP pool configuration if
+the pool already exists
+2. DHCP Config
+○ network IP-ADDRESS { /PREFIX-LENGTH | SUBNET-MASK }
+§ Specifies the subnet of addressed to be assigned to clients (Except the excluded addresses)
+○ dns-server IP-ADDRESS
+§ Specifies the DNS server that DHCP clients should use
+○ domain-name DOMAIN-NAME
+§ Specifies the domain name of the network
+○ default-router IP-ADDRESS
+§ Specifies the default gateway that the DHCP clients should use
+○ lease TIME { days hours minutes | infinite }
+§ Specifies the DHCP IP address lease time
+DHCP Router Relay Agent Configuration
+To configure a router to be a DHCP relay agent, you’d have to enter the configuration mode of an interface that’s
+connected to clients and use the following command:
+• ip helper-address IP-ADDRESS
+○ Configures the current interface as a DHCP relay agent.
+○ It will then forward DHCP Discover messages to the DHCP server in the form of unicast messages. (Instead
+of being broadcast)
+
+Day 39 - DHCP
+Sunday, September 6, 2026 10:46 AM
+DHCP Info
+DHCP General Information
+Dynamic Host Configuration Protocol (DHCP) is a protocol that allows hosts to automatically/dynamically learn various
+aspects of their network configuration without manual configuration, including information such as:
+• IP address
+• Subnet mask
+• Default gateway
+• DNS server
+• DHCP is typically used for ‘client devices’, while devices like routers, servers and etc, are manually configured
+• DHCP servers run on port 67 while DHCP clients run on port 68.
+What devices are usually DHCP servers?
+○ In small networks (like homes and small offices), the router usually acts as the DHCP server.
+○ In large networks, a dedicated server usually running Windows/Linux acts as the DHCP server.
+DHCP server leasing
+DHCP servers ‘lease’ IP addresses to clients.
+This means that any IP addresses assigned to clients are not permanent, and the client must give up the address at
+the end of the lease.
+DHCP DORA Steps
+For a DHCP client to contact and get information from the DHCP server, it has to go through four steps sometimes called
+‘DORA’ for short:
+1. DHCP Discover
+2. DHCP Offer
+3. DHCP Request
+4. DHCP Ack
+1. DHCP Discover
+A DHCP Discover is the first message that clients send when they are looking for a DHCP server to connect to. Some of
+the message properties are:
+• It is a broadcast message
+• The source MAC is the client’s MAC address
+• The destination MAC is the broadcast MAC address (ffff.ffff.ffff)
+• The source IP is 0.0.0.0
+• The destination IP is the broadcast IP address (255.255.255.255)
+The message contains some general information about the client for the DHCP server to use, like whether the client
+wants the response messages sent back to be unicast or broadcast, or if the client would like a specific IP address.
+2. DHCP Offer
+The DHCP Offer message is sent by the DHCP server after receiving a DHCP Discover message. It offers an IP address to
+the client. Some of the message properties are:
+• It can be a broadcast or a unicast message.
+• The source MAC is the server’s MAC address
+• The destination MAC is the client’s MAC address, which the server learned from the Discover message.
+• The source IP is the IP address of the server
+• The destination IP is the IP address that’s being offered to the client
+3. DHCP Request
+The DHCP Request is a message that is sent from the client to a DHCP server, informing the server that it is requesting
+the IP address that has been previously offered to it. Some of the message properties are:
+• It is a broadcast message
+• The source MAC is the client’s MAC address
+• The destination MAC is the broadcast MAC address (ffff.ffff.ffff)
+• The source IP is 0.0.0.0
+• The destination IP is the broadcast IP address (255.255.255.255)
+In the DHCP Request message, the client uses an option called ‘Option 54 - DHCP Server Identifier’ to indicate which
+DHCP server it is communicating with.
+4. DHCP Ack
+The DHCP Ack message is sent by the DHCP server as a response to the DHCP Request, informing the client that it has
+accepted its request, and will provide it with the requested IP address. Some of the message properties are:
+• It can be a broadcast or a unicast message.
+• The source MAC is the server’s MAC address
+• The destination MAC is the client’s MAC address, which the server learned from the Discover message.
+• The source IP is the IP address of the server
+• The destination IP is the IP address that’s being offered to the client
+How does a client tell the servers if it wants a unicast or broadcast response?
+The client informs the servers if it wants a unicast or broadcast response through the “Bootp flag” that’s contained
+in the DHCP Discover message.
+○ If the Bootp flag value is 0x0000 then the response will be unicast.
+○ If the Bootp flag value is 0x8000 then the response will be broadcast.
+Why would the client want a unicast or broadcast response?
+Some clients may be configured in a way that does not let them accept unicast packets unless an IP address has
+already been assigned to them. In that case, the DHCP server is instructed to send the Offer message as a
+broadcast.
+DHCP DORA + Release Table and Summary Image
+Step Location --&gt; Location Message Type
+Discover Client --&gt; Server Broadcast
+Offer Server --&gt; Client Broadcast or Unicast
+Request Client --&gt; Server Broadcast
+Ack Server --&gt; Client Broadcast or Unicast
+Release Client --&gt; Server Unicast
+DORA Summary Image
+DHCP Relay
+Smaller networks may opt to use one of the router’s as a DHCP server, but in bigger networks, a centralized DHCP server
+is often used. This is when DHCP Relays are used.
+• Having a centralized DHCP server means that the server won’t be able to receive the clients’ broadcast DHCP
+messages. (Broadcast messages don’t leave the local subnet)
+• To fix this issue, we can configure routers to act as a DHCP relay agent.
+○ A relay agent will forward the client’s broadcast DHCP messages to the remote centralized DHCP server in
+the form of unicast messages.
+DHCP Relay Example
+DHCP and Windows OS
+There are a few commands you can use on Windows to view DHCP information, as well as release and renew DHCP
+leases.
+• ipconfig /all
+○ Shows the IP configuration settings on Windows, including:
+§ The current IP address and whether it’s ‘preferred’ or not (An IP address being preferred means that it
+has been assigned to the device by DHCP previously)
+§ The lease obtain and expiration dates
+§ The current DHCP server
+• ipconfig /release
+○ Sends a DHCP Release message to the DHCP server, informing it that it’d like to release the current IP
+address. The DHCP server will now consider this IP address to be free and usable by other devices.
+○ Some of the Release message’s properties are:
+§ It is a unicast message.
+§ The source MAC is the client’s MAC address
+§ The destination MAC is the server’s MAC address
+§ The source IP is the current IP address configured on the device
+§ The destination IP is the IP address of the DHCP server
+• ipconfig /renew
+○ Initiates a communication with a DHCP server by following the DORA steps.
+○ By the end of it, the client will have received an IP address from the server.
+DHCP Server Configuration in Cisco IOS
+DHCP Show Command
+There’s one show command to see the hosts which have been assigned an IP through the DHCP protocol
+• show ip dhcp binding
+○ Shows the hosts that have been assigned an IP address from the DHCP server
+○ Displays information about the hosts including:
+§ IP address
+§ Client ID / MAC address / Username
+§ Lease expiration date
+DHCP Server Configuration
+DHCP server configuration is done through some commands in global config mode, and a few through DHCP-config
+mode.
+1. Global Config
+○ ip dhcp excluded-address LOW-ADDRESS HIGH-ADDRESS
+§ Specifies the range of addresses that won’t be given to DHCP clients
+○ ip dhcp pool POOL-NAME
+§ Initiates a DHCP pool and enters DHCP pool configuration mode or enters DHCP pool configuration if
+the pool already exists
+2. DHCP Config
+○ network IP-ADDRESS { /PREFIX-LENGTH | SUBNET-MASK }
+§ Specifies the subnet of addressed to be assigned to clients (Except the excluded addresses)
+○ dns-server IP-ADDRESS
+§ Specifies the DNS server that DHCP clients should use
+○ domain-name DOMAIN-NAME
+§ Specifies the domain name of the network
+○ default-router IP-ADDRESS
+§ Specifies the default gateway that the DHCP clients should use
+○ lease TIME { days hours minutes | infinite }
+§ Specifies the DHCP IP address lease time
+DHCP Router Relay Agent Configuration
+To configure a router to be a DHCP relay agent, you’d have to enter the configuration mode of an interface that’s
+connected to clients and use the following command:
+• ip helper-address IP-ADDRESS
+○ Configures the current interface as a DHCP relay agent.
+○ It will then forward DHCP Discover messages to the DHCP server in the form of unicast messages. (Instead
+of being broadcast)
+
+Day 39 - DHCP
+Sunday, September 6, 2026 10:46 AM
+DHCP Info
+DHCP General Information
+Dynamic Host Configuration Protocol (DHCP) is a protocol that allows hosts to automatically/dynamically learn various
+aspects of their network configuration without manual configuration, including information such as:
+• IP address
+• Subnet mask
+• Default gateway
+• DNS server
+• DHCP is typically used for ‘client devices’, while devices like routers, servers and etc, are manually configured
+• DHCP servers run on port 67 while DHCP clients run on port 68.
+What devices are usually DHCP servers?
+○ In small networks (like homes and small offices), the router usually acts as the DHCP server.
+○ In large networks, a dedicated server usually running Windows/Linux acts as the DHCP server.
+DHCP server leasing
+DHCP servers ‘lease’ IP addresses to clients.
+This means that any IP addresses assigned to clients are not permanent, and the client must give up the address at
+the end of the lease.
+DHCP DORA Steps
+For a DHCP client to contact and get information from the DHCP server, it has to go through four steps sometimes called
+‘DORA’ for short:
+1. DHCP Discover
+2. DHCP Offer
+3. DHCP Request
+4. DHCP Ack
+1. DHCP Discover
+A DHCP Discover is the first message that clients send when they are looking for a DHCP server to connect to. Some of
+the message properties are:
+• It is a broadcast message
+• The source MAC is the client’s MAC address
+• The destination MAC is the broadcast MAC address (ffff.ffff.ffff)
+• The source IP is 0.0.0.0
+• The destination IP is the broadcast IP address (255.255.255.255)
+The message contains some general information about the client for the DHCP server to use, like whether the client
+wants the response messages sent back to be unicast or broadcast, or if the client would like a specific IP address.
+2. DHCP Offer
+The DHCP Offer message is sent by the DHCP server after receiving a DHCP Discover message. It offers an IP address to
+the client. Some of the message properties are:
+• It can be a broadcast or a unicast message.
+• The source MAC is the server’s MAC address
+• The destination MAC is the client’s MAC address, which the server learned from the Discover message.
+• The source IP is the IP address of the server
+• The destination IP is the IP address that’s being offered to the client
+3. DHCP Request
+The DHCP Request is a message that is sent from the client to a DHCP server, informing the server that it is requesting
+the IP address that has been previously offered to it. Some of the message properties are:
+• It is a broadcast message
+• The source MAC is the client’s MAC address
+• The destination MAC is the broadcast MAC address (ffff.ffff.ffff)
+• The source IP is 0.0.0.0
+• The destination IP is the broadcast IP address (255.255.255.255)
+In the DHCP Request message, the client uses an option called ‘Option 54 - DHCP Server Identifier’ to indicate which
+DHCP server it is communicating with.
+4. DHCP Ack
+The DHCP Ack message is sent by the DHCP server as a response to the DHCP Request, informing the client that it has
+accepted its request, and will provide it with the requested IP address. Some of the message properties are:
+• It can be a broadcast or a unicast message.
+• The source MAC is the server’s MAC address
+• The destination MAC is the client’s MAC address, which the server learned from the Discover message.
+• The source IP is the IP address of the server
+• The destination IP is the IP address that’s being offered to the client
+How does a client tell the servers if it wants a unicast or broadcast response?
+The client informs the servers if it wants a unicast or broadcast response through the “Bootp flag” that’s contained
+in the DHCP Discover message.
+○ If the Bootp flag value is 0x0000 then the response will be unicast.
+○ If the Bootp flag value is 0x8000 then the response will be broadcast.
+Why would the client want a unicast or broadcast response?
+Some clients may be configured in a way that does not let them accept unicast packets unless an IP address has
+already been assigned to them. In that case, the DHCP server is instructed to send the Offer message as a
+broadcast.
+DHCP DORA + Release Table and Summary Image
+Step Location --&gt; Location Message Type
+Discover Client --&gt; Server Broadcast
+Offer Server --&gt; Client Broadcast or Unicast
+Request Client --&gt; Server Broadcast
+Ack Server --&gt; Client Broadcast or Unicast
+Release Client --&gt; Server Unicast
+DORA Summary Image
+DHCP Relay
+Smaller networks may opt to use one of the router’s as a DHCP server, but in bigger networks, a centralized DHCP server
+is often used. This is when DHCP Relays are used.
+• Having a centralized DHCP server means that the server won’t be able to receive the clients’ broadcast DHCP
+messages. (Broadcast messages don’t leave the local subnet)
+• To fix this issue, we can configure routers to act as a DHCP relay agent.
+○ A relay agent will forward the client’s broadcast DHCP messages to the remote centralized DHCP server in
+the form of unicast messages.
+DHCP Relay Example
+DHCP and Windows OS
+There are a few commands you can use on Windows to view DHCP information, as well as release and renew DHCP
+leases.
+• ipconfig /all
+○ Shows the IP configuration settings on Windows, including:
+§ The current IP address and whether it’s ‘preferred’ or not (An IP address being preferred means that it
+has been assigned to the device by DHCP previously)
+§ The lease obtain and expiration dates
+§ The current DHCP server
+• ipconfig /release
+○ Sends a DHCP Release message to the DHCP server, informing it that it’d like to release the current IP
+address. The DHCP server will now consider this IP address to be free and usable by other devices.
+○ Some of the Release message’s properties are:
+§ It is a unicast message.
+§ The source MAC is the client’s MAC address
+§ The destination MAC is the server’s MAC address
+§ The source IP is the current IP address configured on the device
+§ The destination IP is the IP address of the DHCP server
+• ipconfig /renew
+○ Initiates a communication with a DHCP server by following the DORA steps.
+○ By the end of it, the client will have received an IP address from the server.
+DHCP Server Configuration in Cisco IOS
+DHCP Show Command
+There’s one show command to see the hosts which have been assigned an IP through the DHCP protocol
+• show ip dhcp binding
+○ Shows the hosts that have been assigned an IP address from the DHCP server
+○ Displays information about the hosts including:
+§ IP address
+§ Client ID / MAC address / Username
+§ Lease expiration date
+DHCP Server Configuration
+DHCP server configuration is done through some commands in global config mode, and a few through DHCP-config
+mode.
+1. Global Config
+○ ip dhcp excluded-address LOW-ADDRESS HIGH-ADDRESS
+§ Specifies the range of addresses that won’t be given to DHCP clients
+○ ip dhcp pool POOL-NAME
+§ Initiates a DHCP pool and enters DHCP pool configuration mode or enters DHCP pool configuration if
+the pool already exists
+2. DHCP Config
+○ network IP-ADDRESS { /PREFIX-LENGTH | SUBNET-MASK }
+§ Specifies the subnet of addressed to be assigned to clients (Except the excluded addresses)
+○ dns-server IP-ADDRESS
+§ Specifies the DNS server that DHCP clients should use
+○ domain-name DOMAIN-NAME
+§ Specifies the domain name of the network
+○ default-router IP-ADDRESS
+§ Specifies the default gateway that the DHCP clients should use
+○ lease TIME { days hours minutes | infinite }
+§ Specifies the DHCP IP address lease time
+DHCP Router Relay Agent Configuration
+To configure a router to be a DHCP relay agent, you’d have to enter the configuration mode of an interface that’s
+connected to clients and use the following command:
+• ip helper-address IP-ADDRESS
+○ Configures the current interface as a DHCP relay agent.
+○ It will then forward DHCP Discover messages to the DHCP server in the form of unicast messages. (Instead
+of being broadcast)</pre></details></section><nav class="pager" aria-label="Previous and next day"><a href="/resources/ccna/day-38/"><small>← Day 38</small>DNS</a><a href="/resources/ccna/day-40/"><small>Day 40 →</small>SNMP</a></nav></article></div></main>    <div class="contact-modal" id="contactModal">
+        <div class="contact-modal-content">
+            <div class="contact-modal-header">
+                <h3>Get in Touch</h3>
+                <button class="contact-modal-close" type="button" id="contactModalClose">✕</button>
+            </div>
+            <div class="contact-modal-links">
+                <a href="mailto:daviddipiazza29@gmail.com" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/CodeGoat29" target="_blank" class="contact-link">GitHub</a>
+            </div>
+        </div>
+    </div>
+
+            <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="/resources/">Resources</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/resume/">Resume</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="mailto:daviddipiazza29@gmail.com">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/CodeGoat29" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bar">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+<script src="/js/site.js"></script><script src="/resources/ccna/course.js?v=2"></script></body></html>
