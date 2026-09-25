@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | DiPiazza</title>
+    <link rel="stylesheet" href="/css/styles.css?v=server-logo-20260921">
+    <link rel="icon" type="image/png" href="/images/dipiazza-logo-20260925.png">
+    <link rel="stylesheet" href="/css/projects.css">
+</head>
+<body>
+    <div class="top-controls">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-inner"></span>
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div>
+
+        <header>
+        <div class="container header-content">
+            <a href="/" class="logo-link"><img src="/images/dipiazza-logo-20260925.png" alt="DiPiazza Logo" class="logo"></a>
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Where I break stuff, then write about it.</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/resources/">Resources</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/projects/" class="active">Projects</a></li>
+                    <li><a href="/resume/">Resume</a></li>
+                    <li><button class="nav-cta" type="button" data-contact-open>Get in Touch</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container projects-page">
+        <section class="projects-intro">
+            <p class="project-eyebrow">BUILT WITH PYTHON · TRY IT HERE</p>
+            <h2>Small projects. Hands-on learning.</h2>
+            <p>Two Python projects from my coding practice, with interactive browser demos. Explore the ideas, try them out, and read the original code on GitHub.</p>
+            <a class="project-link" href="https://github.com/CodeGoat29/Python" target="_blank" rel="noopener noreferrer">Explore my Python repository ↗</a>
+        </section>
+        <div class="project-grid">
+            <article class="project-panel" id="password-generator">
+                <p class="project-eyebrow">01 / STRINGS & RANDOMNESS</p>
+                <h3>Password Generator</h3>
+                <p>A Python utility that combines letters, numbers, and punctuation into a password of a chosen length. The repository includes both a command-line version and a Tkinter desktop interface.</p>
+                <p class="project-concepts">Concepts: functions, string handling, random selection, and GUI input.</p>
+                <a class="project-link" href="https://github.com/CodeGoat29/Python/tree/main/password%20generator" target="_blank" rel="noopener noreferrer">View original Python code ↗</a>
+                <div class="project-demo">
+                    <h4>Try the generator</h4>
+                    <form id="password-form" novalidate>
+                        <label for="password-length">Password length <span>(4–128 characters)</span></label>
+                        <input id="password-length" type="number" min="4" max="128" step="1" value="20" required>
+                        <button class="demo-button" type="submit">Generate password</button>
+                    </form>
+                    <label for="password-result">Generated password</label>
+                    <textarea id="password-result" rows="3" readonly spellcheck="false" autocomplete="off" placeholder="Your password will appear here"></textarea>
+                    <button class="demo-button secondary" id="copy-password" type="button" disabled>Copy password</button>
+                    <p class="demo-status" id="password-status" role="status" aria-live="polite"></p>
+                    <p class="demo-note">Generated locally in your browser using secure randomness. Passwords are not sent to a server or saved by this demo.</p>
+                </div>
+            </article>
+            <article class="project-panel" id="number-game">
+                <p class="project-eyebrow">02 / LOOPS & LOGIC</p>
+                <h3>Number Guessing Game</h3>
+                <p>Find the secret number between 1 and 100 in 10 guesses. Each attempt tells you to go higher or lower. Like the Python original, out-of-range guesses do not cost an attempt.</p>
+                <p class="project-concepts">Concepts: loops, conditionals, input validation, and game state.</p>
+                <a class="project-link" href="https://github.com/CodeGoat29/Python/blob/main/Number%20Guessing%20Game/Number_Guess_Game.py" target="_blank" rel="noopener noreferrer">View original Python code ↗</a>
+                <div class="project-demo">
+                    <h4>Take a guess</h4>
+                    <p class="attempt-count"><strong id="attempts-left">10</strong> guesses remaining</p>
+                    <form id="guess-form" novalidate>
+                        <label for="guess-input">Your guess <span>(1–100)</span></label>
+                        <input id="guess-input" type="number" min="1" max="100" step="1" required autocomplete="off">
+                        <button class="demo-button" id="guess-button" type="submit">Check guess</button>
+                    </form>
+                    <p class="demo-status" id="game-status" role="status" aria-live="polite">A number is ready. Make your first guess!</p>
+                    <ol id="guess-history" aria-label="Guess history"></ol>
+                    <button class="demo-button secondary" id="new-game" type="button">New game</button>
+                </div>
+            </article>
+        </div>
+        <p class="demo-note project-footnote">These interactive demos are JavaScript adaptations of my Python projects so you can try them directly in your browser. The original Python source is linked above.</p>
+    </main>
+
+    <div class="contact-modal" id="contactModal">
+        <div class="contact-modal-content">
+            <div class="contact-modal-header">
+                <h3>Get in Touch</h3>
+                <button class="contact-modal-close" type="button" id="contactModalClose">✕</button>
+            </div>
+            <div class="contact-modal-links">
+                <a href="mailto:daviddipiazza29@gmail.com" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/CodeGoat29" target="_blank" class="contact-link">GitHub</a>
+            </div>
+        </div>
+    </div>
+
+            <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="/resources/">Resources</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/projects/">Projects</a></li>
+                    <li><a href="/resume/">Resume</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="mailto:daviddipiazza29@gmail.com">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/CodeGoat29" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bar">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="/js/site.js"></script>
+    <script src="/js/projects.js"></script>
+</body>
+</html>
