@@ -45,7 +45,6 @@
         const topologyImage = get('lab-topology-image');
         topologyImage.src = data.topology.image;
         topologyImage.alt = data.topology.alt;
-        get('lab-topology-full').href = data.topology.image;
         data.equipment.forEach((device, index) => {
             const card = el('article', 'hardware-card');
             card.id = 'hardware-' + device.id;

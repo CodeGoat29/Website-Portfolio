@@ -1,6 +1,6 @@
 {
   "lastUpdated": "2026-09-30",
-  "overview": "I’m building my homelab from step zero: a hands-on environment for networking practice, testing, and future server and service hosting. This is a tour of the equipment and how the lab is taking shape; setup guides and lessons learned will live on the blog.",
+  "overview": "I’m documenting my homelab: a hands-on environment for networking practice and testing, with room for future server and service hosting. This is a tour of my equipment and how it connects. Setup guides, troubleshooting, and lessons learned live on the blog.",
   "equipment": [
     {
       "id": "ont",
@@ -9,10 +9,10 @@
       "role": "ISP connection",
       "description": "The starting point of the network: the fiber connection from my ISP.",
       "status": "Setup not recorded",
-      "photo": "",
-      "photoAlt": "",
+      "photo": "/images/homelab/ont.png",
+      "photoAlt": "Frontier fiber ONT box",
       "photoCaption": "",
-      "showPhoto": false
+      "showPhoto": true
     },
     {
       "id": "nighthawk",

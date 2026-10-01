@@ -6,7 +6,7 @@
     <title>Homelab | DiPiazza</title>
     <link rel="stylesheet" href="/css/styles.css?v=server-logo-20260921">
     <link rel="icon" type="image/png" href="/images/dipiazza-logo-20260925.png">
-    <link rel="stylesheet" href="/css/homelab.css">
+    <link rel="stylesheet" href="/css/homelab.css?v=static-topology-2">
 </head>
 <body>
     <a class="lab-skip" href="#main-content">Skip to content</a>
@@ -32,7 +32,6 @@
                     <li><a href="/">Home</a></li>
                     <li><a href="/resources/">Resources</a></li>
                     <li><a href="/blog/">Blog</a></li>
-                    <li><a href="/projects/">Projects</a></li>
                     <li><a href="/homelab/" class="active" aria-current="page">Homelab</a></li>
                     <li><a href="/resume/">Resume</a></li>
                     <li><button class="nav-cta" type="button" data-contact-open>Get in Touch</button></li>
@@ -43,8 +42,8 @@
 
     <main class="container homelab-page" id="main-content">
         <section class="lab-overview" aria-labelledby="overview-title">
-            <p class="lab-eyebrow">HOMELAB / A WORK IN PROGRESS</p>
-            <h2 id="overview-title">A place to build. A place to learn.</h2>
+            <p class="lab-eyebrow">HOMELAB / NETWORK & EQUIPMENT</p>
+            <h2 id="overview-title">Documenting my homelab.</h2>
             <p id="lab-overview">A hands-on environment for networking practice, testing, and future server and service hosting.</p>
             <p class="lab-updated">Last updated: <time id="lab-updated">September 30, 2026</time> <span>· Manually maintained</span></p>
         </section>
@@ -52,10 +51,9 @@
             <div class="lab-heading"><div><p class="lab-eyebrow">01 / THE BIG PICTURE</p><h2 id="topology-title">Network topology</h2></div><span class="lab-badge">Provisional layout</span></div>
             <figure class="topology-panel">
                 <p class="lab-muted">From the fiber connection to the home network and homelab.</p>
-                <a id="lab-topology-full" class="topology-image-link" href="/images/homelab/topology.png" target="_blank" rel="noopener" aria-label="Open full-size network topology (new tab)">
+                <div class="topology-image">
                     <img id="lab-topology-image" src="/images/homelab/topology.png" alt="Internet → Fiber ONT → Nighthawk RAX45 → Cisco C1111-4P → Cisco 3560CX-8PC-S. Switch uplink planned, not confirmed." width="2187" height="2000">
-                </a>
-                <p class="lab-muted">Select the diagram to view it at full size.</p>
+                </div>
                 <figcaption>This diagram shows the provisional layout. The switch uplink is <strong>planned, not confirmed</strong>. Connections and setup progress are recorded manually.</figcaption>
             </figure>
         </section>
@@ -102,7 +100,6 @@
                 <ul>
                     <li><a href="/resources/">Resources</a></li>
                     <li><a href="/blog/">Blog</a></li>
-                    <li><a href="/projects/">Projects</a></li>
                     <li><a href="/homelab/">Homelab</a></li>
                     <li><a href="/resume/">Resume</a></li>
                 </ul>
@@ -122,6 +119,6 @@
     </footer>
 
     <script src="/js/site.js"></script>
-    <script src="/js/homelab.js?v=provided-topology"></script>
+    <script src="/js/homelab.js?v=static-topology-2"></script>
 </body>
 </html>
