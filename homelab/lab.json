@@ -1,0 +1,77 @@
+{
+  "lastUpdated": "2026-09-30",
+  "overview": "I’m building my homelab from step zero: a hands-on environment for networking practice, testing, and future server and service hosting. This is a tour of the equipment and how the lab is taking shape; setup guides and lessons learned will live on the blog.",
+  "equipment": [
+    {
+      "id": "ont",
+      "manufacturer": "ISP equipment",
+      "model": "Fiber ONT",
+      "role": "ISP connection",
+      "description": "The starting point of the network: the fiber connection from my ISP.",
+      "status": "Setup not recorded",
+      "photo": "",
+      "photoAlt": "",
+      "photoCaption": "",
+      "showPhoto": false
+    },
+    {
+      "id": "nighthawk",
+      "manufacturer": "Netgear",
+      "model": "Nighthawk RAX45",
+      "role": "Home router",
+      "description": "My home router, between the ISP connection and the proposed lab network.",
+      "status": "Setup not recorded",
+      "photo": "/images/homelab/nighthawk-rax45.png",
+      "photoAlt": "Netgear Nighthawk RAX45 router",
+      "photoCaption": ""
+    },
+    {
+      "id": "cisco-router",
+      "manufacturer": "Cisco",
+      "model": "C1111-4P",
+      "role": "Lab router",
+      "description": "The router I’ll use for hands-on networking practice and testing.",
+      "status": "Awaiting setup",
+      "photo": "/images/homelab/cisco-router-reference.png",
+      "photoAlt": "Supplied reference image of a Cisco router",
+      "photoCaption": "Reference image · personal photo coming soon"
+    },
+    {
+      "id": "cisco-switch",
+      "manufacturer": "Cisco",
+      "model": "3560CX-8PC-S",
+      "role": "Lab switch",
+      "description": "The switch for expanding the lab. Its upstream connection is still to be confirmed.",
+      "status": "Awaiting setup",
+      "photo": "/images/homelab/cisco-switch-reference.png",
+      "photoAlt": "Supplied reference image of a Cisco Catalyst switch",
+      "photoCaption": "Reference image · personal photo coming soon"
+    }
+  ],
+  "connections": [
+    {
+      "from": "ont",
+      "to": "nighthawk",
+      "label": "ISP → home",
+      "status": "Provisional"
+    },
+    {
+      "from": "nighthawk",
+      "to": "cisco-router",
+      "label": "Home → lab",
+      "status": "Provisional"
+    },
+    {
+      "from": "cisco-router",
+      "to": "cisco-switch",
+      "label": "Switch uplink unconfirmed",
+      "status": "Planned"
+    }
+  ],
+  "configuration": [],
+  "services": [],
+  "topology": {
+    "image": "/images/homelab/topology.png",
+    "alt": "Internet connects to the ISP ONT, then the Nighthawk RAX45 home router. The home network branches to IoT and computers. The homelab extends to the Cisco C1111-4P router and Cisco 3560CX-8PC-S switch. The switch uplink is planned, not confirmed."
+  }
+}

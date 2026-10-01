@@ -2324,3 +2324,11 @@ footer {
     color: #8fa39a;
     font-size: 0.82em;
 }
+
+/* Keep the expanded primary navigation and theme control usable at every width. */
+header .header-content { flex-wrap: wrap; }
+header nav a { display: inline-block; }
+header nav { padding-right: 44px; }
+.toggle-checkbox { display: block; position: absolute; width: 1px; height: 1px; opacity: 0; }
+.toggle-checkbox:focus-visible + .toggle-label { outline: 3px solid #2f7f5f; outline-offset: 4px; }
+@media (max-width: 768px) { header nav { margin-left: 0; padding-right: 0; } }

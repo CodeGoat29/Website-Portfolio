@@ -2,6 +2,7 @@
     function initDarkMode() {
         const toggle = document.getElementById('darkModeToggle');
         if (!toggle) return;
+        toggle.setAttribute('aria-label', 'Dark mode');
         const body = document.body;
         if (localStorage.getItem('darkMode') === 'enabled') {
             body.classList.add('dark-mode');

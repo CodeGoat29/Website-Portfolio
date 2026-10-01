@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homelab | DiPiazza</title>
+    <link rel="stylesheet" href="/css/styles.css?v=server-logo-20260921">
+    <link rel="icon" type="image/png" href="/images/dipiazza-logo-20260925.png">
+    <link rel="stylesheet" href="/css/homelab.css">
+</head>
+<body>
+    <a class="lab-skip" href="#main-content">Skip to content</a>
+    <div class="top-controls">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" aria-label="Dark mode" class="toggle-checkbox">
+            <label for="darkModeToggle" class="toggle-label">
+                <span class="toggle-inner"></span>
+                <span class="toggle-switch"></span>
+            </label>
+        </div>
+    </div>
+
+        <header>
+        <div class="container header-content">
+            <a href="/" class="logo-link"><img src="/images/dipiazza-logo-20260925.png" alt="DiPiazza Logo" class="logo"></a>
+            <div class="header-text">
+                <h1>DiPiazza</h1>
+                <p class="tagline">Where I break stuff, then write about it.</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/resources/">Resources</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/projects/">Projects</a></li>
+                    <li><a href="/homelab/" class="active" aria-current="page">Homelab</a></li>
+                    <li><a href="/resume/">Resume</a></li>
+                    <li><button class="nav-cta" type="button" data-contact-open>Get in Touch</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container homelab-page" id="main-content">
+        <section class="lab-overview" aria-labelledby="overview-title">
+            <p class="lab-eyebrow">HOMELAB / A WORK IN PROGRESS</p>
+            <h2 id="overview-title">A place to build. A place to learn.</h2>
+            <p id="lab-overview">A hands-on environment for networking practice, testing, and future server and service hosting.</p>
+            <p class="lab-updated">Last updated: <time id="lab-updated">September 30, 2026</time> <span>· Manually maintained</span></p>
+        </section>
+        <section aria-labelledby="topology-title">
+            <div class="lab-heading"><div><p class="lab-eyebrow">01 / THE BIG PICTURE</p><h2 id="topology-title">Network topology</h2></div><span class="lab-badge">Provisional layout</span></div>
+            <figure class="topology-panel">
+                <p class="lab-muted">From the fiber connection to the home network and homelab.</p>
+                <a id="lab-topology-full" class="topology-image-link" href="/images/homelab/topology.png" target="_blank" rel="noopener" aria-label="Open full-size network topology (new tab)">
+                    <img id="lab-topology-image" src="/images/homelab/topology.png" alt="Internet → Fiber ONT → Nighthawk RAX45 → Cisco C1111-4P → Cisco 3560CX-8PC-S. Switch uplink planned, not confirmed." width="2187" height="2000">
+                </a>
+                <p class="lab-muted">Select the diagram to view it at full size.</p>
+                <figcaption>This diagram shows the provisional layout. The switch uplink is <strong>planned, not confirmed</strong>. Connections and setup progress are recorded manually.</figcaption>
+            </figure>
+        </section>
+        <section aria-labelledby="hardware-title">
+            <p class="lab-eyebrow">02 / THE EQUIPMENT</p><h2 id="hardware-title">Hardware</h2>
+            <div class="hardware-grid" id="lab-hardware"></div>
+        </section>
+        <section aria-labelledby="configuration-title">
+            <p class="lab-eyebrow">03 / THE SETUP</p><h2 id="configuration-title">Current configuration</h2>
+            <div id="lab-configuration" class="lab-compact"><p>Initial setup in progress.</p></div>
+        </section>
+        <section aria-labelledby="services-title">
+            <p class="lab-eyebrow">04 / WHAT RUNS HERE</p><h2 id="services-title">Services and workloads</h2>
+            <div id="lab-services" class="lab-compact"><p>Services will be added as the lab develops.</p></div>
+        </section>
+        <section aria-labelledby="posts-title">
+            <p class="lab-eyebrow">05 / NOTES FROM THE LAB</p><h2 id="posts-title">Related blog posts</h2>
+            <p class="lab-muted">Setup guides, troubleshooting, and lessons learned.</p>
+            <div id="lab-posts" class="blog-grid"><p>Loading related posts…</p></div>
+            <a class="lab-link" href="/blog/">Explore the blog →</a>
+        </section>
+        <p id="lab-error" role="status" hidden></p>
+        <noscript><p>Enable JavaScript to view the equipment and topology. You can also <a href="/homelab/lab.json">read the lab inventory</a> or <a href="/blog/">visit the blog</a>.</p></noscript>
+    </main>
+
+    <div class="contact-modal" id="contactModal">
+        <div class="contact-modal-content">
+            <div class="contact-modal-header">
+                <h3>Get in Touch</h3>
+                <button class="contact-modal-close" type="button" id="contactModalClose">✕</button>
+            </div>
+            <div class="contact-modal-links">
+                <a href="mailto:daviddipiazza29@gmail.com" class="contact-link">Email</a>
+                <a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/CodeGoat29" target="_blank" class="contact-link">GitHub</a>
+            </div>
+        </div>
+    </div>
+
+            <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="/resources/">Resources</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/projects/">Projects</a></li>
+                    <li><a href="/homelab/">Homelab</a></li>
+                    <li><a href="/resume/">Resume</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="mailto:daviddipiazza29@gmail.com">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/david-dipiazza/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/CodeGoat29" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bar">
+            <p>&copy; 2026 DiPiazza.org | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="/js/site.js"></script>
+    <script src="/js/homelab.js?v=provided-topology"></script>
+</body>
+</html>
