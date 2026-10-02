@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-30",
+  "lastUpdated": "2026-10-02",
   "overview": "I’m documenting my homelab: a hands-on environment for networking practice and testing, with room for future server and service hosting. This is a tour of my equipment and how it connects. Setup guides, troubleshooting, and lessons learned live on the blog.",
   "equipment": [
     {
@@ -43,9 +43,20 @@
       "role": "Lab switch",
       "description": "The switch for expanding the lab. Its upstream connection is still to be confirmed.",
       "status": "Awaiting setup",
-      "photo": "/images/homelab/cisco-switch-reference.png",
-      "photoAlt": "Supplied reference image of a Cisco Catalyst switch",
-      "photoCaption": "Reference image · personal photo coming soon"
+      "photo": "/images/homelab/cisco-switch-personal.png",
+      "photoAlt": "My Cisco Catalyst 3560CX-8PC-S lab switch",
+      "photoCaption": "My lab switch"
+    },
+    {
+      "id": "hp-server",
+      "manufacturer": "HP",
+      "model": "EliteDesk 800 G6 Mini",
+      "role": "Homelab server",
+      "description": "My compact homelab server, shown downstream of the Cisco switch in the network topology.",
+      "status": "Setup not recorded",
+      "photo": "/images/homelab/hp-elitedesk-800-g6-mini.jpg",
+      "photoAlt": "HP EliteDesk 800 G6 Mini homelab server",
+      "photoCaption": ""
     }
   ],
   "connections": [
@@ -66,12 +77,18 @@
       "to": "cisco-switch",
       "label": "Switch uplink unconfirmed",
       "status": "Planned"
+    },
+    {
+      "from": "cisco-switch",
+      "to": "hp-server",
+      "label": "Lab switch → homelab server",
+      "status": "Provisional"
     }
   ],
   "configuration": [],
   "services": [],
   "topology": {
-    "image": "/images/homelab/topology.png",
-    "alt": "Internet connects to the ISP ONT, then the Nighthawk RAX45 home router. The home network branches to IoT and computers. The homelab extends to the Cisco C1111-4P router and Cisco 3560CX-8PC-S switch. The switch uplink is planned, not confirmed."
+    "image": "/images/homelab/topology-20261002.png",
+    "alt": "Internet connects to the ISP ONT, then the Nighthawk RAX45 home router. The home network branches to IoT and computers. The homelab extends to the Cisco C1111-4P router, Cisco 3560CX-8PC-S switch, and HP EliteDesk 800 G6 Mini server. The switch uplink remains planned, not confirmed."
   }
 }

@@ -19,7 +19,7 @@ Add servers or endpoints as equipment and add their connections to extend the di
 
 Put your photos in `images/homelab/`, then set a device's `photo` to a site-root path such as `/images/homelab/my-router.jpg`. Add meaningful `photoAlt` text and update `photoCaption`. Leave `photo` empty for the illustrated placeholder, or set `showPhoto` to `false` to omit the photo area entirely. Missing images fall back to a placeholder. Photos retain their proportions.
 
-The Cisco images are supplied product references, clearly labeled as such; replace them with personal equipment photos when ready. No specifications were inferred from those references.
+The Cisco router image is a supplied product reference, clearly labeled as such. The Cisco switch now uses your personal photo. No specifications were inferred from those references.
 
 ## Related blog posts
 
