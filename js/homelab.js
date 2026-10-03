@@ -13,6 +13,12 @@
         for (let i = 0; i < 4; i++) mark.append(el('span'));
         return mark;
     }
+    function appendList(parent, items) {
+        if (!items?.length) return;
+        const list = el('ul', 'lab-detail-list');
+        items.forEach(text => list.append(el('li', '', text)));
+        parent.append(list);
+    }
     async function loadPosts() {
         const target = get('lab-posts');
         try {
@@ -45,6 +51,7 @@
         const topologyImage = get('lab-topology-image');
         topologyImage.src = data.topology.image;
         topologyImage.alt = data.topology.alt;
+        get('lab-topology-caption').textContent = data.topology.caption;
         data.equipment.forEach((device, index) => {
             const card = el('article', 'hardware-card');
             card.id = 'hardware-' + device.id;
@@ -63,6 +70,7 @@
             const body = el('div', 'hardware-body');
             if (device.photoCaption && device.showPhoto !== false) body.append(el('p', 'photo-caption', device.photoCaption));
             body.append(el('p', 'lab-eyebrow', String(index + 1).padStart(2,'0') + ' / ' + device.manufacturer), el('h3', '', device.model), el('p', 'hardware-role', device.role), el('p', '', device.description), el('span', 'lab-badge', device.status));
+            appendList(body, device.specifications);
             if (device.showPhoto !== false) card.append(media);
             card.append(body);
             get('lab-hardware').append(card);
@@ -72,15 +80,29 @@
             data.configuration.forEach(feature => {
                 const item = el('div', 'lab-record');
                 item.append(el('h3', '', feature.name), el('p', '', feature.details));
+                appendList(item, feature.items);
+                if (feature.vlans) {
+                    const wrapper = el('div', 'lab-table-wrap');
+                    wrapper.tabIndex = 0;
+                    wrapper.setAttribute('role', 'region');
+                    wrapper.setAttribute('aria-label', 'VLAN addressing; scroll horizontally on small screens');
+                    const table = el('table', 'lab-vlan-table');
+                    table.append(el('caption', '', 'Configured VLANs and subnet design'));
+                    const head = el('thead');
+                    const headings = el('tr');
+                    ['VLAN', 'Purpose', 'Subnet'].forEach(label => {
+                        const cell = el('th', '', label); cell.scope = 'col'; headings.append(cell);
+                    });
+                    head.append(headings); table.append(head);
+                    const body = el('tbody');
+                    feature.vlans.forEach(vlan => {
+                        const row = el('tr');
+                        [String(vlan.id), vlan.name, vlan.subnet].forEach(value => row.append(el('td', '', value)));
+                        body.append(row);
+                    });
+                    table.append(body); wrapper.append(table); item.append(wrapper);
+                }
                 get('lab-configuration').append(item);
-            });
-        }
-        if (data.services.length) {
-            get('lab-services').replaceChildren();
-            data.services.forEach(service => {
-                const item = el('div', 'lab-record');
-                item.append(el('h3', '', service.name), el('p', '', service.purpose), el('p', 'lab-muted', 'Host: ' + service.host));
-                get('lab-services').append(item);
             });
         }
     } catch (error) {

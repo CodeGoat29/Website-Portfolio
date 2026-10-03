@@ -7,9 +7,9 @@
       "manufacturer": "ISP equipment",
       "model": "Fiber ONT",
       "role": "ISP connection",
-      "description": "The starting point of the network: the fiber connection from my ISP.",
+      "description": "ISP equipment providing the fiber connection to the home network. Detailed setup documentation has not been recorded.",
       "status": "Setup not recorded",
-      "photo": "/images/homelab/ont.png",
+      "photo": "/images/homelab/ont.png?v=redacted",
       "photoAlt": "Frontier fiber ONT box",
       "photoCaption": "",
       "showPhoto": true
@@ -18,9 +18,9 @@
       "id": "nighthawk",
       "manufacturer": "Netgear",
       "model": "Nighthawk RAX45",
-      "role": "Home router",
-      "description": "My home router, between the ISP connection and the proposed lab network.",
-      "status": "Setup not recorded",
+      "role": "Primary home / SOHO router",
+      "description": "The primary household router remains in place, with the Cisco lab behind the existing home network so lab configuration changes do not disrupt household connectivity. A summarized route for the lab networks will be added to the home router after the C1111 is installed.",
+      "status": "Home router · lab route planned",
       "photo": "/images/homelab/nighthawk-rax45.png",
       "photoAlt": "Netgear Nighthawk RAX45 router",
       "photoCaption": ""
@@ -30,8 +30,8 @@
       "manufacturer": "Cisco",
       "model": "C1111-4P",
       "role": "Lab router",
-      "description": "The router I’ll use for hands-on networking practice and testing.",
-      "status": "Awaiting setup",
+      "description": "The planned lab router will connect the existing home network to the Cisco lab. The first implementation uses router-on-a-stick: the C1111 will provide Layer 3 routing and a default gateway for each lab VLAN, while the 3560CX initially operates primarily at Layer 2. Router configuration has not begun.",
+      "status": "Awaiting arrival / setup",
       "photo": "/images/homelab/cisco-router-reference.png",
       "photoAlt": "Supplied reference image of a Cisco router",
       "photoCaption": "Reference image · personal photo coming soon"
@@ -39,24 +39,36 @@
     {
       "id": "cisco-switch",
       "manufacturer": "Cisco",
-      "model": "3560CX-8PC-S",
+      "model": "Catalyst WS-C3560CX-8PC-S",
       "role": "Lab switch",
-      "description": "The switch for expanding the lab. Its upstream connection is still to be confirmed.",
-      "status": "Awaiting setup",
+      "description": "Inspected and validated through console access before configuration. Hardware, interfaces, IOS, licensing, and PoE were verified. Hostname and baseline configuration, VLAN creation, management SVI, management access port, and SSH preparation are complete. GigabitEthernet0/9 is reserved as the planned 802.1Q trunk toward the C1111.",
+      "status": "Baseline configured",
       "photo": "/images/homelab/cisco-switch-personal.png",
       "photoAlt": "My Cisco Catalyst 3560CX-8PC-S lab switch",
-      "photoCaption": "My lab switch"
+      "photoCaption": "My lab switch",
+      "specifications": [
+        "Cisco IOS 15.2(7)E10 · C3560CX-UNIVERSALK9-M",
+        "IP Base license",
+        "8 × Gigabit Ethernet PoE+ access ports · 240W available PoE budget",
+        "2 × additional Gigabit copper uplink interfaces · SFP uplink capability",
+        "Fanless compact design"
+      ]
     },
     {
       "id": "hp-server",
       "manufacturer": "HP",
-      "model": "EliteDesk 800 G6 Mini",
+      "model": "EliteDesk 800 G6 Desktop Mini",
       "role": "Homelab server",
-      "description": "My compact homelab server, shown downstream of the Cisco switch in the network topology.",
-      "status": "Setup not recorded",
-      "photo": "/images/homelab/hp-elitedesk-800-g6-mini.jpg",
+      "description": "A compact, low-power system intended as the lab’s future compute and server platform. Integration into the lab environment is planned; no server software installation is documented.",
+      "status": "Planned / awaiting setup",
+      "photo": "/images/homelab/hp-elitedesk-800-g6-mini.png",
       "photoAlt": "HP EliteDesk 800 G6 Mini homelab server",
-      "photoCaption": ""
+      "photoCaption": "",
+      "specifications": [
+        "Intel Core i5-10500T · 6 cores / 12 threads",
+        "16GB DDR4 RAM",
+        "256GB NVMe SSD"
+      ]
     }
   ],
   "connections": [
@@ -85,10 +97,67 @@
       "status": "Provisional"
     }
   ],
-  "configuration": [],
-  "services": [],
+  "configuration": [
+    {
+      "name": "Current progress",
+      "details": "The physical Cisco portion of the lab is now being built. The switch baseline is configured; routing through the C1111 and access from the home network remain planned."
+    },
+    {
+      "name": "Completed",
+      "items": [
+        "Cisco 3560CX hardware/interface inspection and console access from macOS",
+        "IOS and license verification",
+        "PoE subsystem verification",
+        "Hostname and baseline switch configuration",
+        "Management, Server, Voice, and Lab VLANs created",
+        "Management SVI configured",
+        "VLAN 10 access port configured",
+        "SSH configuration prepared"
+      ]
+    },
+    {
+      "name": "VLAN plan and switch configuration",
+      "details": "The VLANs are configured on the switch with the subnet-level design below. Each VLAN will receive its default gateway from the C1111. Device management will occur over SSH once routing is in place.",
+      "vlans": [
+        {
+          "id": 10,
+          "name": "Management",
+          "subnet": "10.10.10.0/24"
+        },
+        {
+          "id": 20,
+          "name": "Servers",
+          "subnet": "10.10.20.0/24"
+        },
+        {
+          "id": 30,
+          "name": "Voice",
+          "subnet": "10.10.30.0/24"
+        },
+        {
+          "id": 40,
+          "name": "Lab",
+          "subnet": "10.10.40.0/24"
+        }
+      ]
+    },
+    {
+      "name": "Planned next",
+      "items": [
+        "Receive and inspect the Cisco C1111-4P",
+        "Configure router-on-a-stick",
+        "Configure the switch-to-router 802.1Q trunk",
+        "Connect the Cisco lab to the existing home network",
+        "Add the summarized static route on the Nighthawk",
+        "Verify remote SSH management from the normal home network",
+        "Bring the HP EliteDesk server into the lab environment"
+      ],
+      "details": "The first implementation uses router-on-a-stick, with the 3560CX primarily at Layer 2. The router uplink and home-to-lab routing remain planned; the full topology is not yet operational."
+    }
+  ],
   "topology": {
     "image": "/images/homelab/topology-20261002.png",
-    "alt": "Internet connects to the ISP ONT, then the Nighthawk RAX45 home router. The home network branches to IoT and computers. The homelab extends to the Cisco C1111-4P router, Cisco 3560CX-8PC-S switch, and HP EliteDesk 800 G6 Mini server. The switch uplink remains planned, not confirmed."
+    "alt": "Provisional topology: Internet → Fiber ONT → Nighthawk RAX45 home router → Cisco C1111-4P lab router → Cisco Catalyst WS-C3560CX-8PC-S switch → HP EliteDesk 800 G6 Mini / future lab compute and future lab devices. Household computers and IoT devices branch from the RAX45. The C1111 has not arrived; lab uplinks, routing, and server deployment remain planned.",
+    "caption": "The physical Cisco lab is now being configured. The router-to-switch uplink and connection to the home network are planned and will be completed after the C1111 arrives. The full topology is not yet operational; household computers and IoT devices continue to connect through the Nighthawk RAX45."
   }
 }

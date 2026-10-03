@@ -10,8 +10,7 @@ Edit `homelab/lab.json`. Keep it valid JSON (double quotes, no trailing commas).
 - `overview`: introduction text.
 - `equipment`: cards in display order. Each device has a unique `id`, `manufacturer`, `model`, `role`, `description`, manually recorded `status`, `photo`, `photoAlt`, and `photoCaption`.
 - `connections`: diagram edges in display order. `from` and `to` refer to equipment IDs. Set `label` to explain the link and `status` to `Provisional`, `Planned`, or `Confirmed`. Only record `Confirmed` after you verify the connection. The switch uplink starts as `Planned`.
-- `configuration`: empty initially. Add only features you have actually configured, using `{"name": "Feature name", "details": "Your recorded configuration"}`. VLANs, routing, DHCP, SSH, and ACLs are examples of future entries, not existing configuration.
-- `services`: empty initially. Each future entry uses `{"name": "Service name", "purpose": "What it does", "host": "Your host name"}`.
+- `configuration`: manually maintained completed work and planned infrastructure steps. Keep these clearly distinguished.
 
 Add servers or endpoints as equipment and add their connections to extend the diagram. The displayed diagram is your supplied image. Update `topology.image` and `topology.alt` when you replace it; editing connection records does not redraw the image.
 
@@ -29,4 +28,16 @@ The existing source of posts is `blog/index.html`. Add a normal `.blog-card` the
 
 Serve the repository locally with `python3 -m http.server 8765 --bind 127.0.0.1`, then visit `http://127.0.0.1:8765/homelab/`. Opening the HTML as a file will not load fetched JSON/blog content.
 
-Check mobile and desktop layouts, both themes, topology anchors, and any newly added blog links before publishing. This project already uses GitHub Pages; review the working tree before committing because it may contain unrelated work. Publishing is separate from this preview.
+Check mobile and desktop layouts, both themes, topology presentation, and any newly added blog links before publishing. This project already uses GitHub Pages; review the working tree before committing because it may contain unrelated work. Publishing is separate from this preview.
+
+## Progress summaries
+
+Equipment can include a `specifications` list. Configuration sections support `name`, `details`, `items` (bullet list), and `vlans` (rows with `id`, `name`, `subnet`). Only subnet-level addressing belongs in public data. `topology.caption` controls the explanatory note beneath the diagram.
+
+## Public content rules
+
+Keep hardware, major connections, networking concepts, completed configuration, infrastructure next steps, and VLAN purposes/subnets visible. Do not publish exact management or other host addresses, gateway/subinterface addresses, remote-access/security configuration, or physical equipment locations. Remove these from the public JSON as well as rendered HTML.
+
+Before adding photos, screenshots, CLI output, or configuration snippets, remove or redact serial numbers, MAC addresses, public/WAN IPs, administrative usernames, passwords, secrets, cryptographic keys, license identifiers, SNMP strings, API keys, and VPN details. Never publish full unredacted running configurations. Examples should demonstrate a command or concept without device-specific identifiers.
+
+The services section is intentionally removed. Do not list speculative applications, VMs, containers, or workloads. Restore that section only for software and services that are actually deployed.

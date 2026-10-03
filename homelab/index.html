@@ -6,7 +6,7 @@
     <title>Homelab | DiPiazza</title>
     <link rel="stylesheet" href="/css/styles.css?v=server-logo-20260921">
     <link rel="icon" type="image/png" href="/images/dipiazza-logo-20260925.png">
-    <link rel="stylesheet" href="/css/homelab.css?v=static-topology-2">
+    <link rel="stylesheet" href="/css/homelab.css?v=sanitized-20261002">
 </head>
 <body>
     <a class="lab-skip" href="#main-content">Skip to content</a>
@@ -54,7 +54,7 @@
                 <div class="topology-image">
                     <img id="lab-topology-image" src="/images/homelab/topology-20261002.png" alt="Internet → Fiber ONT → Nighthawk RAX45 → Cisco C1111-4P → Cisco 3560CX-8PC-S → HP EliteDesk 800 G6 Mini. Switch uplink planned, not confirmed." width="2187" height="2453">
                 </div>
-                <figcaption>This diagram shows the provisional layout. The switch uplink is <strong>planned, not confirmed</strong>. Connections and setup progress are recorded manually.</figcaption>
+                <figcaption id="lab-topology-caption">The physical Cisco lab is now being configured. The router-to-switch uplink and connection to the home network are planned and will be completed after the C1111 arrives. The full topology is not yet operational; household computers and IoT devices continue to connect through the Nighthawk RAX45.</figcaption>
             </figure>
         </section>
         <section aria-labelledby="hardware-title">
@@ -63,14 +63,10 @@
         </section>
         <section aria-labelledby="configuration-title">
             <p class="lab-eyebrow">03 / THE SETUP</p><h2 id="configuration-title">Current configuration</h2>
-            <div id="lab-configuration" class="lab-compact"><p>Initial setup in progress.</p></div>
-        </section>
-        <section aria-labelledby="services-title">
-            <p class="lab-eyebrow">04 / WHAT RUNS HERE</p><h2 id="services-title">Services and workloads</h2>
-            <div id="lab-services" class="lab-compact"><p>Services will be added as the lab develops.</p></div>
+            <div id="lab-configuration" class="lab-compact"><p>Switch baseline configured; router integration and server deployment are planned.</p></div>
         </section>
         <section aria-labelledby="posts-title">
-            <p class="lab-eyebrow">05 / NOTES FROM THE LAB</p><h2 id="posts-title">Related blog posts</h2>
+            <p class="lab-eyebrow">04 / NOTES FROM THE LAB</p><h2 id="posts-title">Related blog posts</h2>
             <p class="lab-muted">Setup guides, troubleshooting, and lessons learned.</p>
             <div id="lab-posts" class="blog-grid"><p>Loading related posts…</p></div>
             <a class="lab-link" href="/blog/">Explore the blog →</a>
@@ -119,6 +115,6 @@
     </footer>
 
     <script src="/js/site.js"></script>
-    <script src="/js/homelab.js?v=static-topology-2"></script>
+    <script src="/js/homelab.js?v=sanitized-20261002"></script>
 </body>
 </html>

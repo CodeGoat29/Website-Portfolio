@@ -5,3 +5,7 @@
 .dark-mode .homelab-page h2{color:var(--lab-accent)}
 
 .topology-image{display:block;margin:20px auto;max-width:760px;background:#fff;border-radius:12px;overflow:hidden}.topology-image img{display:block;width:100%;height:auto}.topology-panel figcaption{margin-top:12px}
+
+/* Compact, manually recorded hardware and configuration details. */
+.lab-detail-list{padding-left:20px;margin-top:16px;font-size:.9rem;color:var(--lab-muted)}
+.lab-detail-list li+li{margin-top:6px}.lab-table-wrap{overflow-x:auto;margin-top:18px}.lab-vlan-table{border-collapse:collapse;width:100%;font-size:.85rem;text-align:left}.lab-vlan-table caption{text-align:left;margin-bottom:10px}.lab-vlan-table th,.lab-vlan-table td{padding:10px 12px;border-bottom:1px solid var(--lab-border);white-space:nowrap}.lab-vlan-table th{color:var(--lab-accent)}.lab-table-wrap:focus-visible{outline:2px solid var(--lab-accent);outline-offset:3px}
