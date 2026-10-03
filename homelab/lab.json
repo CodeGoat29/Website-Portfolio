@@ -9,8 +9,8 @@
       "role": "ISP connection",
       "description": "ISP equipment providing the fiber connection to the home network. Detailed setup documentation has not been recorded.",
       "status": "Setup not recorded",
-      "photo": "/images/homelab/ont.png?v=redacted",
-      "photoAlt": "Frontier fiber ONT box",
+      "photo": "/images/homelab/ont-personal-20261003.png",
+      "photoAlt": "My Frontier fiber ONT box",
       "photoCaption": "",
       "showPhoto": true
     },
@@ -21,8 +21,8 @@
       "role": "Primary home / SOHO router",
       "description": "The primary household router remains in place, with the Cisco lab behind the existing home network so lab configuration changes do not disrupt household connectivity. A summarized route for the lab networks will be added to the home router after the C1111 is installed.",
       "status": "Home router · lab route planned",
-      "photo": "/images/homelab/nighthawk-rax45.png",
-      "photoAlt": "Netgear Nighthawk RAX45 router",
+      "photo": "/images/homelab/nighthawk-personal-20261003.png",
+      "photoAlt": "My Netgear Nighthawk RAX45 home router",
       "photoCaption": ""
     },
     {
