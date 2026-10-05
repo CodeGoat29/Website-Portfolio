@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-02",
+  "lastUpdated": "2026-10-05",
   "overview": "I’m documenting my homelab: a hands-on environment for networking practice and testing, with room for future server and service hosting. This is a tour of my equipment and how it connects. Setup guides, troubleshooting, and lessons learned live on the blog.",
   "equipment": [
     {
@@ -60,10 +60,10 @@
       "model": "EliteDesk 800 G6 Desktop Mini",
       "role": "Homelab server",
       "description": "A compact, low-power system intended as the lab’s future compute and server platform. Integration into the lab environment is planned; no server software installation is documented.",
-      "status": "Planned / awaiting setup",
-      "photo": "/images/homelab/hp-elitedesk-800-g6-mini.png",
-      "photoAlt": "HP EliteDesk 800 G6 Mini homelab server",
-      "photoCaption": "",
+      "status": "Received / awaiting setup",
+      "photo": "/images/homelab/hp-elitedesk-personal-20261005.png",
+      "photoAlt": "My HP EliteDesk 800 G6 Mini homelab server",
+      "photoCaption": "My homelab server",
       "specifications": [
         "Intel Core i5-10500T · 6 cores / 12 threads",
         "16GB DDR4 RAM",
