@@ -32,9 +32,9 @@
       "role": "Lab router",
       "description": "The planned lab router will connect the existing home network to the Cisco lab. The first implementation uses router-on-a-stick: the C1111 will provide Layer 3 routing and a default gateway for each lab VLAN, while the 3560CX initially operates primarily at Layer 2. Router configuration has not begun.",
       "status": "Awaiting arrival / setup",
-      "photo": "/images/homelab/cisco-router-reference.png",
-      "photoAlt": "Supplied reference image of a Cisco router",
-      "photoCaption": "Reference image · personal photo coming soon"
+      "photo": "/images/homelab/cisco-router-personal-20261005.png",
+      "photoAlt": "My Cisco C1111-4P lab router",
+      "photoCaption": "My lab router"
     },
     {
       "id": "cisco-switch",
