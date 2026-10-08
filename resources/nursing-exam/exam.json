@@ -1,7 +1,6 @@
 {
   "id": "nursing-exam-2-v1",
   "title": "Level 2 Nursing — Exam 2",
-  "durationMinutes": 60,
   "passingScore": 40,
   "questions": [
     {

@@ -17,10 +17,7 @@ test('numeric scoring rejects blanks, units, unrounded values, and invalid strin
  for(const v of ['',' ','14.8 mL/hr','abc','Infinity'])assert.ok(!E.correct(exam.questions[47],v));
  assert.ok(E.correct(exam.questions[48],'0.64'));assert.ok(E.correct(exam.questions[49],'31'));
 });
-test('60-minute deadline survives serialization and expires at the exact boundary',()=>{
- const a=E.create(exam,1000);assert.equal(E.remaining(a,1000),3600);assert.equal(E.remaining(a,3600999),1);
- const loaded=JSON.parse(JSON.stringify(a));assert.equal(E.remaining(loaded,3601000),0);assert.equal(E.remaining(loaded,5000000),0);
-});
+test('new attempts have no deadline',()=>{assert.equal(E.create(exam,1000).deadline,undefined);});
 test('grading counts unanswered, correct, and the 80% passing threshold',()=>{
  const a=E.create(exam,1000);assert.equal(E.grade(exam,a).score,0);assert.equal(E.grade(exam,a).unanswered,50);
  for(const q of exam.questions)a.answers[q.id]=q.type==='number'?String(q.answer):q.answer;
@@ -42,16 +39,28 @@ async function controller(attempt, initialNow) {
  const document={createElement:t=>new FakeNode(t),getElementById:id=>find(app,id)||find(notice,id),addEventListener(){}};
  const context={document,window:{NursingExam:E,addEventListener(){}},Date:{now:()=>now},localStorage:{getItem:()=>stored,setItem:(key,v)=>{stored=v;}},fetch:async()=>({ok:true,json:async()=>exam}),setInterval:fn=>{interval=fn;return 1;},clearInterval(){interval=null;},console};
  // Engine uses the same fake wall clock as the controller.
- context.window.NursingExam={...E,remaining:a=>E.remaining(a,now)};
+ context.window.NursingExam=E;
  await vm.runInNewContext(fs.readFileSync(__dirname+'/exam.js','utf8'),context);
  return {app, saved:()=>JSON.parse(stored), expire:()=>{now=attempt.deadline;interval();}};
 }
-test('controller auto-submits saved answers at expiry and renders final grade',async()=>{
- const attempt=E.create(exam,1000);attempt.answers[1]=['C'];
- const c=await controller(attempt,2000);assert.match(c.app.textContent,/Question 1 of 50/);c.expire();
- assert.equal(c.saved().reason,'timeout');assert.equal(c.saved().submittedAt,attempt.deadline);assert.match(c.app.textContent,/2% — 1\/50 correct/);assert.match(c.app.textContent,/49 unanswered/);
+test('legacy expired attempts retain answers and remain editable without a deadline',async()=>{
+ const attempt=E.create(exam,1000);attempt.deadline=3601000;attempt.answers[1]=['C'];
+ const c=await controller(attempt,9000000);
+ assert.match(c.app.textContent,/Question 1 of 50/);assert.match(c.app.textContent,/Submit exam/);
+ assert.equal(c.saved().submittedAt,null);assert.equal(c.saved().deadline,undefined);assert.deepEqual(c.saved().answers[1],['C']);
+ assert.doesNotMatch(c.app.textContent,/Time remaining|Your results/);
 });
-test('reopening after deadline submits immediately without allowing another answer',async()=>{
- const attempt=E.create(exam,1000);attempt.answers[49]='0.64';
- const c=await controller(attempt,attempt.deadline+30000);assert.equal(c.saved().reason,'timeout');assert.match(c.app.textContent,/Your results/);assert.doesNotMatch(c.app.textContent,/Submit exam early/);
+test('previously submitted results still display',async()=>{
+ const attempt=E.create(exam,1000);attempt.answers[1]=['C'];attempt.submittedAt=2000;attempt.reason='manual';
+ const c=await controller(attempt,9000000);assert.match(c.app.textContent,/2% — 1\/50 correct/);
+});
+
+test('Finish submits directly and Retake immediately starts a fresh attempt',async()=>{
+ const attempt=E.create(exam,1000);attempt.index=49;attempt.answers[1]=['C'];
+ const c=await controller(attempt,2000);
+ function find(node,text){if(node.tag==='button' && node.textContent===text)return node;for(const child of node.children){const found=find(child,text);if(found)return found;}}
+ find(c.app,'Finish exam').events.click();
+ assert.match(c.app.textContent,/Your results/);assert.equal(c.saved().reason,'manual');
+ find(c.app,'Retake exam').events.click();
+ assert.match(c.app.textContent,/Question 1 of 50/);assert.equal(c.saved().submittedAt,null);assert.deepEqual(c.saved().answers,{});assert.equal(c.saved().deadline,undefined);
 });

@@ -9,16 +9,15 @@
         }
         return Array.isArray(value) && [...new Set(value)].sort().join(',') === [...question.answer].sort().join(',');
     }
-    const remaining = (attempt, now = Date.now()) => Math.max(0, Math.ceil((attempt.deadline - now) / 1000));
     function grade(exam, attempt) {
         const rows = exam.questions.map(q => ({ id: q.id, correct: correct(q, attempt.answers[q.id]), answered: answered(attempt.answers[q.id]) }));
         const score = rows.filter(r => r.correct).length;
         return { score, total: rows.length, percent: Math.round(score / rows.length * 100), passed: score >= exam.passingScore, unanswered: rows.filter(r => !r.answered).length, rows };
     }
     function create(exam, now = Date.now()) {
-        return { examId: exam.id, startedAt: now, deadline: now + exam.durationMinutes * 60000, index: 0, answers: {}, work: {}, submittedAt: null, reason: null };
+        return { examId: exam.id, startedAt: now, index: 0, answers: {}, work: {}, submittedAt: null, reason: null };
     }
-    const api = { answered, correct, remaining, grade, create };
+    const api = { answered, correct, grade, create };
     if (typeof module !== 'undefined' && module.exports) module.exports = api;
     else root.NursingExam = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this);
