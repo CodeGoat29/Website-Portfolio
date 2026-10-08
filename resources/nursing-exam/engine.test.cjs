@@ -36,7 +36,7 @@ async function controller(attempt, initialNow) {
  let now=initialNow,interval,stored=JSON.stringify(attempt);
  const app=new FakeNode('div'),notice=new FakeNode('p');app.id='exam-app';notice.id='exam-notice';
  function find(node,id){if(node.id===id)return node;for(const c of node.children){const f=find(c,id);if(f)return f;}return null;}
- const document={createElement:t=>new FakeNode(t),getElementById:id=>find(app,id)||find(notice,id),addEventListener(){}};
+ const document={body:{classList:{add(){},remove(){}}},querySelector(){return null;},createElement:t=>new FakeNode(t),getElementById:id=>find(app,id)||find(notice,id),addEventListener(){}};
  const context={document,window:{NursingExam:E,addEventListener(){}},Date:{now:()=>now},localStorage:{getItem:()=>stored,setItem:(key,v)=>{stored=v;}},fetch:async()=>({ok:true,json:async()=>exam}),setInterval:fn=>{interval=fn;return 1;},clearInterval(){interval=null;},console};
  // Engine uses the same fake wall clock as the controller.
  context.window.NursingExam=E;
@@ -63,4 +63,14 @@ test('Finish submits directly and Retake immediately starts a fresh attempt',asy
  assert.match(c.app.textContent,/Your results/);assert.equal(c.saved().reason,'manual');
  find(c.app,'Retake exam').events.click();
  assert.match(c.app.textContent,/Question 1 of 50/);assert.equal(c.saved().submittedAt,null);assert.deepEqual(c.saved().answers,{});assert.equal(c.saved().deadline,undefined);
+});
+
+test('single answers toggle off on a second click and the picker is in the toolbar',async()=>{
+ const c=await controller(E.create(exam,1000),2000);
+ function find(n,p){if(p(n))return n;for(const child of n.children){const match=find(child,p);if(match)return match;}}
+ const radio=find(c.app,n=>n.tag==='input'&&n.value==='A');
+ radio.events.click();assert.deepEqual(c.saved().answers[1],['A']);
+ radio.events.click();assert.deepEqual(c.saved().answers[1],[]);
+ assert.doesNotMatch(c.app.textContent,/Clear answer/);
+ assert.ok(find(c.app.children[0],n=>n.id==='question-jump'));
 });

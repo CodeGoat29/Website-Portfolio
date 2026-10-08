@@ -38,8 +38,9 @@
         confirmBox.querySelector('button').focus();
     }
     function renderQuestion() {
+        document.body.classList.add('exam-active');
         app.replaceChildren(); const q = exam.questions[attempt.index];
-        const bar = make('div', '', 'exam-toolbar'); const counter = make('strong', `Question ${attempt.index + 1} of ${exam.questions.length}`);
+        const bar = make('div', '', 'exam-toolbar'); const counter = make('span', `Question ${attempt.index + 1} of ${exam.questions.length}`);
         bar.append(counter);
         const progress = make('progress'); progress.max = exam.questions.length; progress.value = countAnswered(); progress.setAttribute('aria-label','Questions answered');
         const answeredText = make('p', `${countAnswered()} of ${exam.questions.length} answered`, 'exam-muted'); answeredText.id='answered-count';
@@ -55,22 +56,27 @@
             const label=make('label',`Answer (${q.unit})`);label.htmlFor='numeric-answer';
             const input=make('input');input.id='numeric-answer';input.type='text';input.inputMode='decimal';input.autocomplete='off';input.value=attempt.answers[q.id]||'';input.addEventListener('input',()=>update(input.value));
             const workLabel=make('label','Scratch work (optional, not graded)');workLabel.htmlFor='scratch-work';
-            const work=make('textarea');work.id='scratch-work';work.rows=4;work.value=attempt.work[q.id]||'';work.addEventListener('input',()=>{attempt.work[q.id]=work.value;save();});panel.append(label,input,workLabel,work);
+            const work=make('textarea');work.id='scratch-work';work.rows=2;work.value=attempt.work[q.id]||'';work.addEventListener('input',()=>{attempt.work[q.id]=work.value;save();});panel.append(label,input,workLabel,work);
         } else {
             const field=make('fieldset');const legend=make('legend','Answer choices','visually-hidden');field.append(legend);
             q.options.forEach(option=>{
                 const label=make('label','','exam-option');const input=make('input');input.type=q.type==='multiple'?'checkbox':'radio';input.name='answer';input.value=option.id;input.checked=(attempt.answers[q.id]||[]).includes(option.id);
+                if(q.type==='single') input.addEventListener('click',()=>{
+                    const selected=(attempt.answers[q.id]||[]).includes(option.id);
+                    input.checked=!selected;update(selected?[]:[option.id]);
+                });
                 input.addEventListener('change',()=>update([...field.querySelectorAll('input:checked')].map(i=>i.value)));
                 label.append(input,make('span',`${option.id}. ${option.text}`));field.append(label);
             });panel.append(field);
         }
         const nav=make('div','','exam-actions');const prev=button('Previous',()=>move(attempt.index-1),'secondary');prev.disabled=attempt.index===0;
-        nav.append(prev,button('Clear answer',()=>{delete attempt.answers[q.id];save();renderQuestion();focusTitle();},'secondary'));
+        nav.append(prev,button('Submit exam',requestSubmit,'secondary submit-early'));
         nav.append(attempt.index===exam.questions.length-1?button('Finish exam',()=>submit('manual')):button('Next',()=>move(attempt.index+1)));
-        const jumpLabel=make('label','Go to question');jumpLabel.htmlFor='question-jump';const jump=make('select');jump.id='question-jump';
+        const jumpLabel=make('label','Go to question','visually-hidden');jumpLabel.htmlFor='question-jump';const jump=make('select');jump.id='question-jump';
         exam.questions.forEach((item,i)=>{const option=make('option',`${i+1}${E.answered(attempt.answers[item.id])?' · Answered':' · Unanswered'}`);option.value=i;option.selected=i===attempt.index;jump.append(option);});jump.addEventListener('change',()=>move(Number(jump.value)));
         confirmBox=make('div','','exam-confirm');confirmBox.hidden=true;
-        app.append(bar,progress,answeredText,panel,nav,jumpLabel,jump,button('Submit exam',requestSubmit,'secondary submit-early'),confirmBox);
+        const picker=make('div','','question-picker');picker.append(jumpLabel,jump);bar.append(picker);
+        app.append(bar,progress,answeredText,panel,nav,confirmBox);
     }
     function answerText(q,value) {
         if (!E.answered(value)) return 'Unanswered';
@@ -78,6 +84,7 @@
         return q.options.filter(o=>value.includes(o.id)).map(o=>`${o.id}. ${o.text}`).join('\n');
     }
     function renderResults() {
+        document.body.classList.remove('exam-active');
         app.replaceChildren();notice.textContent='';const result=E.grade(exam,attempt);const panel=make('div','','exam-panel');
         const title=make('h3','Your results');title.id='exam-focus';title.tabIndex=-1;
         panel.append(title,make('p',`${result.percent}% — ${result.score}/${result.total} correct`,'exam-score'),make('p',result.passed?'Practice target met (80%).':'Below the practice target (80%).'),make('p','This attempt was submitted.'),make('p',`${result.unanswered} unanswered · SATA graded all-or-nothing · 1 point per question`));
