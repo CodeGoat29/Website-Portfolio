@@ -26,3 +26,15 @@
 @media(max-width:600px){.exam-active .exam-page{width:100%;padding:12px}.exam-active .exam-panel{padding:10px 12px}.exam-active .exam-page h2{font-size:1rem}.exam-active .exam-option{font-size:.85rem;padding:7px 8px}.exam-active .exam-panel>h3{font-size:.95rem}}
 
 .exam-active .exam-actions .submit-early{margin:0}.exam-active .exam-actions{flex-wrap:nowrap;gap:8px}.exam-active .exam-resource-link{float:none;display:block;text-align:right;margin-top:10px}
+
+/* Keep the question controls in one predictable place across every question. */
+.exam-active .exam-panel{height:calc(100dvh - 265px);min-height:0;overflow:auto}
+.exam-active .exam-actions{display:grid;grid-template-columns:1fr 1fr 1fr}
+.exam-active .exam-actions button{width:100%;margin:0}
+.exam-resource-link{display:block;max-width:960px;margin:24px auto 32px;padding:0 20px;color:var(--exam-accent,#25664b);text-align:center}
+.exam-active>.exam-resource-link{display:none!important}
+.review-heading{margin-bottom:10px}
+.review-filter{display:flex;justify-content:flex-end;align-items:center;gap:10px;margin-bottom:16px}
+.exam-page .review-filter-label{margin:0;font-size:.9rem}
+.review-filter select{width:auto;min-width:190px;padding:8px 10px}
+@media(max-width:600px){.review-filter{justify-content:space-between}.review-filter select{min-width:0}.exam-active .exam-panel{height:calc(100dvh - 265px)}}

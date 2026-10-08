@@ -27,7 +27,7 @@ test('grading counts unanswered, correct, and the 80% passing threshold',()=>{
 });
 const vm = require('node:vm');
 class FakeNode {
- constructor(tag){this.tag=tag;this.children=[];this.text='';this.events={};this.classList={toggle(){}};}
+ constructor(tag){this.tag=tag;this.children=[];this.text='';this.events={};this.className='';this.classList={toggle(){}};}
  set textContent(v){this.text=String(v);this.children=[];} get textContent(){return this.text+this.children.map(n=>n.textContent).join(' ');}
  append(...items){this.children.push(...items);} replaceChildren(...items){this.text='';this.children=items;}
  setAttribute(){} addEventListener(name,fn){this.events[name]=fn;} focus(){}
@@ -73,4 +73,16 @@ test('single answers toggle off on a second click and the picker is in the toolb
  radio.events.click();assert.deepEqual(c.saved().answers[1],[]);
  assert.doesNotMatch(c.app.textContent,/Clear answer/);
  assert.ok(find(c.app.children[0],n=>n.id==='question-jump'));
+});
+
+test('submitted results include a wrong-answer review filter',async()=>{
+ const attempt=E.create(exam,1000);attempt.answers[1]=['C'];attempt.answers[2]=['A'];attempt.submittedAt=2000;attempt.reason='manual';
+ const c=await controller(attempt,3000);
+ function find(n,p){if(p(n))return n;for(const child of n.children){const match=find(child,p);if(match)return match;}}
+ const filter=find(c.app,n=>n.id==='review-filter');
+ assert.ok(filter);assert.match(filter.textContent,/All answers/);assert.match(filter.textContent,/Wrong answers only/);
+ filter.value='wrong';filter.events.change();
+ const reviews=[];(function collect(n){if(n.className.includes('exam-review'))reviews.push(n);n.children.forEach(collect);})(c.app);
+ assert.equal(reviews.find(n=>n.className.includes('is-correct')).hidden,true);
+ assert.notEqual(reviews.find(n=>n.className.includes('is-wrong')).hidden,true);
 });

@@ -89,11 +89,19 @@
         const title=make('h3','Your results');title.id='exam-focus';title.tabIndex=-1;
         panel.append(title,make('p',`${result.percent}% — ${result.score}/${result.total} correct`,'exam-score'),make('p',result.passed?'Practice target met (80%).':'Below the practice target (80%).'),make('p','This attempt was submitted.'),make('p',`${result.unanswered} unanswered · SATA graded all-or-nothing · 1 point per question`));
         panel.append(button('Retake exam',start,'secondary'));
-        app.append(panel,make('h3','Answer review','review-heading'));
+        const reviewHeading=make('h3','Answer review','review-heading');
+        const filterLabel=make('label','Show','review-filter-label');filterLabel.htmlFor='review-filter';
+        const filter=make('select');filter.id='review-filter';
+        [['all','All answers'],['wrong','Wrong answers only']].forEach(([value,text])=>{const option=make('option',text);option.value=value;filter.append(option);});
+        const filterWrap=make('div','','review-filter');filterWrap.append(filterLabel,filter);
+        app.append(panel,reviewHeading,filterWrap);
+        const reviews=[];
         exam.questions.forEach((q,i)=>{
-            const detail=make('details','','exam-review');detail.append(make('summary',`${q.id}. ${result.rows[i].correct?'Correct':result.rows[i].answered?'Incorrect':'Unanswered'}`),make('p',q.prompt,'question-prompt'),make('p','Your answer:\n'+answerText(q,attempt.answers[q.id]),'answer-review'),make('p','Answer key:\n'+answerText(q,q.type==='number'?String(q.answer):q.answer),'answer-review'));
+            const detail=make('details','',`exam-review ${result.rows[i].correct?'is-correct':'is-wrong'}`);detail.append(make('summary',`${q.id}. ${result.rows[i].correct?'Correct':result.rows[i].answered?'Incorrect':'Unanswered'}`),make('p',q.prompt,'question-prompt'),make('p','Your answer:\n'+answerText(q,attempt.answers[q.id]),'answer-review'),make('p','Answer key:\n'+answerText(q,q.type==='number'?String(q.answer):q.answer),'answer-review'));
             if(attempt.work[q.id])detail.append(make('p','Your scratch work:\n'+attempt.work[q.id],'answer-review'));app.append(detail);
+            reviews.push(detail);
         });
+        filter.addEventListener('change',()=>reviews.forEach(detail=>{detail.hidden=filter.value==='wrong'&&!detail.className.includes('is-wrong');}));
     }
     try {
         const response=await fetch('/resources/nursing-exam/exam.json');if(!response.ok)throw Error('Unable to load exam');exam=await response.json();
