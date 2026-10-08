@@ -1,0 +1,1410 @@
+{
+  "id": "nursing-exam-2-v1",
+  "title": "Level 2 Nursing — Exam 2",
+  "durationMinutes": 60,
+  "passingScore": 40,
+  "questions": [
+    {
+      "id": 1,
+      "section": "PART 1 — CARDIOVASCULAR ASSESSMENT & ECG",
+      "prompt": "A 72-year-old patient with a history of hypertension and coronary artery disease reports increasing fatigue and dizziness. Assessment reveals an apical pulse of 48 beats/min, BP 88/54 mmHg, cool extremities, and delayed capillary refill. Which finding is the strongest indication that cardiac output is inadequate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "History of coronary artery disease"
+        },
+        {
+          "id": "B",
+          "text": "Heart rate below 60 beats/min"
+        },
+        {
+          "id": "C",
+          "text": "Hypotension accompanied by signs of decreased tissue perfusion"
+        },
+        {
+          "id": "D",
+          "text": "Fatigue that has worsened over several days"
+        }
+      ],
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": 2,
+      "section": "PART 1 — CARDIOVASCULAR ASSESSMENT & ECG",
+      "prompt": "Select all that apply. A nurse is assessing a patient with suspected cardiovascular dysfunction. Which findings suggest impaired cardiac or peripheral circulation?",
+      "type": "multiple",
+      "options": [
+        {
+          "id": "A",
+          "text": "New jugular venous distention"
+        },
+        {
+          "id": "B",
+          "text": "Capillary refill of 5 seconds"
+        },
+        {
+          "id": "C",
+          "text": "Symmetrical peripheral pulses rated 2+"
+        },
+        {
+          "id": "D",
+          "text": "New confusion accompanied by hypotension"
+        },
+        {
+          "id": "E",
+          "text": "Cool, pale lower extremities"
+        },
+        {
+          "id": "F",
+          "text": "An apical pulse of 78 beats/min with regular rhythm"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "id": 3,
+      "section": "PART 1 — CARDIOVASCULAR ASSESSMENT & ECG",
+      "prompt": "A patient with a history of coronary artery disease undergoes cardiac testing. The nurse explains that coronary arteries receive most of their blood flow during diastole. Which statement best explains why sustained tachycardia may worsen myocardial ischemia?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Tachycardia increases the amount of time available for ventricular filling."
+        },
+        {
+          "id": "B",
+          "text": "Tachycardia shortens diastole while increasing myocardial oxygen demand."
+        },
+        {
+          "id": "C",
+          "text": "Tachycardia decreases myocardial oxygen requirements."
+        },
+        {
+          "id": "D",
+          "text": "Tachycardia prevents the SA node from initiating electrical impulses."
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 4,
+      "section": "PART 1 — CARDIOVASCULAR ASSESSMENT & ECG",
+      "prompt": "A patient on telemetry has the following rhythm findings:\nHeart rate: 42 beats/min\nRhythm: regular\nP waves: present before every QRS\nPR interval: 0.16 seconds\nQRS duration: 0.08 seconds\nBP: 82/48 mmHg\nPatient reports dizziness\nWhich interpretation requires the most immediate nursing action?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Normal sinus rhythm with expected ventricular conduction"
+        },
+        {
+          "id": "B",
+          "text": "Sinus bradycardia with signs of inadequate perfusion"
+        },
+        {
+          "id": "C",
+          "text": "First-degree AV block without complications"
+        },
+        {
+          "id": "D",
+          "text": "Sinus tachycardia caused by decreased cardiac output"
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 5,
+      "section": "PART 1 — CARDIOVASCULAR ASSESSMENT & ECG",
+      "prompt": "The nurse is reviewing a 12-lead ECG obtained for new chest discomfort. The patient has ST-segment elevation in leads II, III, and aVF. Which interpretation is most appropriate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Findings suggest anterior myocardial injury."
+        },
+        {
+          "id": "B",
+          "text": "Findings suggest inferior myocardial injury."
+        },
+        {
+          "id": "C",
+          "text": "Findings indicate normal ventricular repolarization."
+        },
+        {
+          "id": "D",
+          "text": "Findings confirm isolated right atrial enlargement."
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 6,
+      "section": "PART 1 — CARDIOVASCULAR ASSESSMENT & ECG",
+      "prompt": "Select all that apply. A nursing student is preparing to obtain a 12-lead ECG. Which actions demonstrate correct understanding of precordial lead placement?",
+      "type": "multiple",
+      "options": [
+        {
+          "id": "A",
+          "text": "V1 is placed at the fourth intercostal space, right sternal border."
+        },
+        {
+          "id": "B",
+          "text": "V2 is placed at the fourth intercostal space, left sternal border."
+        },
+        {
+          "id": "C",
+          "text": "V4 is placed at the fifth intercostal space, midclavicular line."
+        },
+        {
+          "id": "D",
+          "text": "V5 is placed at the same horizontal level as V4, anterior axillary line."
+        },
+        {
+          "id": "E",
+          "text": "V6 is placed at the sixth intercostal space, midaxillary line."
+        },
+        {
+          "id": "F",
+          "text": "V3 is placed midway between V2 and V4."
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "F"
+      ]
+    },
+    {
+      "id": 7,
+      "section": "PART 1 — CARDIOVASCULAR ASSESSMENT & ECG",
+      "prompt": "A patient has an ECG showing a regular rhythm at 76 beats/min. Each P wave is followed by a QRS complex. The PR interval is 0.28 seconds, and QRS duration is 0.08 seconds. Which interpretation is most accurate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Normal sinus rhythm"
+        },
+        {
+          "id": "B",
+          "text": "First-degree AV block"
+        },
+        {
+          "id": "C",
+          "text": "Second-degree AV block type II"
+        },
+        {
+          "id": "D",
+          "text": "Third-degree AV block"
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 8,
+      "section": "PART 1 — CARDIOVASCULAR ASSESSMENT & ECG",
+      "prompt": "A patient receiving a potassium-altering medication develops weakness. Telemetry reveals increasingly tall, peaked T waves. Which nursing action is the priority?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Document the rhythm as an expected finding."
+        },
+        {
+          "id": "B",
+          "text": "Encourage the patient to increase oral fluid intake."
+        },
+        {
+          "id": "C",
+          "text": "Assess the patient, notify the provider, and anticipate urgent potassium evaluation and treatment."
+        },
+        {
+          "id": "D",
+          "text": "Administer the next scheduled potassium supplement."
+        }
+      ],
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": 9,
+      "section": "PART 2 — HYPERTENSION",
+      "prompt": "A 64-year-old patient arrives with BP 214/126 mmHg, blurred vision, confusion, and a severe headache. Which interpretation should guide the nurse's immediate response?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Hypertensive urgency because the systolic pressure exceeds 180 mmHg"
+        },
+        {
+          "id": "B",
+          "text": "Hypertensive emergency because severe hypertension is accompanied by possible acute target-organ damage"
+        },
+        {
+          "id": "C",
+          "text": "Stage 2 hypertension requiring only outpatient medication adjustment"
+        },
+        {
+          "id": "D",
+          "text": "Expected compensatory hypertension related to aging"
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 10,
+      "section": "PART 2 — HYPERTENSION",
+      "prompt": "A patient with chronic hypertension has decreased renal perfusion. The nurse anticipates activation of the renin-angiotensin-aldosterone system. Which sequence most accurately explains the resulting increase in blood pressure?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Renin release → decreased angiotensin II → vasodilation → sodium excretion"
+        },
+        {
+          "id": "B",
+          "text": "Renin release → angiotensin II formation → vasoconstriction and aldosterone release → sodium and water retention"
+        },
+        {
+          "id": "C",
+          "text": "Aldosterone release → sodium excretion → decreased blood volume → increased BP"
+        },
+        {
+          "id": "D",
+          "text": "ACE inhibition → increased angiotensin II → increased vascular resistance"
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 11,
+      "section": "PART 2 — HYPERTENSION",
+      "prompt": "Select all that apply. A patient with longstanding uncontrolled hypertension is being assessed for target-organ damage. Which findings warrant further investigation?",
+      "type": "multiple",
+      "options": [
+        {
+          "id": "A",
+          "text": "New visual disturbances"
+        },
+        {
+          "id": "B",
+          "text": "Increasing serum creatinine"
+        },
+        {
+          "id": "C",
+          "text": "New left ventricular hypertrophy"
+        },
+        {
+          "id": "D",
+          "text": "Sudden unilateral weakness"
+        },
+        {
+          "id": "E",
+          "text": "Resting heart rate of 76 beats/min"
+        },
+        {
+          "id": "F",
+          "text": "New proteinuria"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "F"
+      ]
+    },
+    {
+      "id": 12,
+      "section": "PART 2 — HYPERTENSION",
+      "prompt": "A patient prescribed antihypertensive therapy reports dizziness when standing. BP is 136/78 mmHg while supine and 108/64 mmHg after standing. Which action is most appropriate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Instruct the patient to remain on strict bed rest indefinitely."
+        },
+        {
+          "id": "B",
+          "text": "Recognize orthostatic hypotension, institute fall precautions, and review contributing medications."
+        },
+        {
+          "id": "C",
+          "text": "Administer an additional antihypertensive medication."
+        },
+        {
+          "id": "D",
+          "text": "Explain that the decrease is insignificant because the standing systolic BP exceeds 100 mmHg."
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 13,
+      "section": "PART 2 — HYPERTENSION",
+      "prompt": "A patient has persistent hypertension despite treatment. Which assessment finding most directly demonstrates that increased afterload may be contributing to impaired cardiac function?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Decreased systemic vascular resistance"
+        },
+        {
+          "id": "B",
+          "text": "Increased resistance against which the left ventricle must eject blood"
+        },
+        {
+          "id": "C",
+          "text": "Increased venous return without change in arterial resistance"
+        },
+        {
+          "id": "D",
+          "text": "Decreased myocardial workload during systole"
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 14,
+      "section": "PART 3 — HEART FAILURE",
+      "prompt": "A 70-year-old patient has an echocardiogram showing an ejection fraction of 60%. The patient reports dyspnea with activity, fatigue, and exercise intolerance. The provider diagnoses heart failure with preserved ejection fraction. Which mechanism best explains this condition?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "The left ventricle cannot generate any electrical impulses."
+        },
+        {
+          "id": "B",
+          "text": "The ventricle is stiff and has impaired relaxation and filling during diastole."
+        },
+        {
+          "id": "C",
+          "text": "The ventricle has severely reduced systolic contractility with an EF below 30%."
+        },
+        {
+          "id": "D",
+          "text": "The right atrium cannot receive venous blood."
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 15,
+      "section": "PART 3 — HEART FAILURE",
+      "prompt": "The nurse receives a change-of-condition report for four patients with heart failure. Which patient should be assessed first?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Patient with chronic bilateral ankle edema who gained 0.5 lb this week"
+        },
+        {
+          "id": "B",
+          "text": "Patient reporting fatigue when walking long distances"
+        },
+        {
+          "id": "C",
+          "text": "Patient with sudden severe dyspnea, oxygen saturation of 82%, and pink frothy sputum"
+        },
+        {
+          "id": "D",
+          "text": "Patient with stable jugular venous distention and chronic ascites"
+        }
+      ],
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": 16,
+      "section": "PART 3 — HEART FAILURE",
+      "prompt": "Select all that apply. A patient has an acute exacerbation of left-sided heart failure. Which findings support pulmonary congestion?",
+      "type": "multiple",
+      "options": [
+        {
+          "id": "A",
+          "text": "New bilateral crackles"
+        },
+        {
+          "id": "B",
+          "text": "Orthopnea"
+        },
+        {
+          "id": "C",
+          "text": "Pink, frothy sputum"
+        },
+        {
+          "id": "D",
+          "text": "Increased abdominal girth as the isolated finding"
+        },
+        {
+          "id": "E",
+          "text": "Decreased oxygen saturation"
+        },
+        {
+          "id": "F",
+          "text": "Paroxysmal nocturnal dyspnea"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "E",
+        "F"
+      ]
+    },
+    {
+      "id": 17,
+      "section": "PART 3 — HEART FAILURE",
+      "prompt": "A patient reports marked limitation of physical activity. The patient is comfortable at rest but develops fatigue and shortness of breath after walking a short distance inside the home. Which NYHA classification is most appropriate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Class I"
+        },
+        {
+          "id": "B",
+          "text": "Class II"
+        },
+        {
+          "id": "C",
+          "text": "Class III"
+        },
+        {
+          "id": "D",
+          "text": "Class IV"
+        }
+      ],
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": 18,
+      "section": "PART 3 — HEART FAILURE",
+      "prompt": "A patient with chronic heart failure has decreased cardiac output. The sympathetic nervous system and RAAS become activated. Which explanation best describes why these compensatory responses can eventually worsen heart failure?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "They permanently decrease circulating blood volume and eliminate ventricular workload."
+        },
+        {
+          "id": "B",
+          "text": "They increase heart rate, vasoconstriction, and fluid retention, contributing to increased cardiac workload and remodeling."
+        },
+        {
+          "id": "C",
+          "text": "They prevent aldosterone secretion and improve ventricular compliance."
+        },
+        {
+          "id": "D",
+          "text": "They eliminate the need for cardiac medications."
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 19,
+      "section": "PART 4 — CORONARY ARTERY DISEASE & ANGINA",
+      "prompt": "A 58-year-old patient with diabetes reports unusual fatigue, nausea, and mild shortness of breath but denies chest pain. ECG testing shows evidence of myocardial ischemia. Which interpretation is most appropriate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Myocardial ischemia cannot occur without chest discomfort."
+        },
+        {
+          "id": "B",
+          "text": "The findings are consistent with silent myocardial ischemia."
+        },
+        {
+          "id": "C",
+          "text": "The findings rule out coronary artery disease."
+        },
+        {
+          "id": "D",
+          "text": "The patient is experiencing predictable stable angina."
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 20,
+      "section": "PART 4 — CORONARY ARTERY DISEASE & ANGINA",
+      "prompt": "A patient has significant atherosclerotic narrowing of a coronary artery. During physical exertion, myocardial oxygen demand increases. Which mechanism best explains the development of ischemia?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Coronary blood flow cannot increase sufficiently to meet myocardial oxygen demand."
+        },
+        {
+          "id": "B",
+          "text": "Myocardial oxygen demand decreases as workload increases."
+        },
+        {
+          "id": "C",
+          "text": "The narrowed coronary artery increases oxygen delivery to the myocardium."
+        },
+        {
+          "id": "D",
+          "text": "Coronary veins become the primary source of myocardial oxygen delivery."
+        }
+      ],
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": 21,
+      "section": "PART 4 — CORONARY ARTERY DISEASE & ANGINA",
+      "prompt": "A patient with known coronary artery disease develops new chest pressure, diaphoresis, and nausea while resting. Which nursing response is the priority?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Encourage ambulation to determine whether the symptoms worsen."
+        },
+        {
+          "id": "B",
+          "text": "Treat the presentation as possible acute coronary syndrome and initiate urgent assessment, ECG, and appropriate emergency response."
+        },
+        {
+          "id": "C",
+          "text": "Schedule an outpatient stress test for the following week."
+        },
+        {
+          "id": "D",
+          "text": "Reassure the patient that chest discomfort at rest is typical of stable angina."
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 22,
+      "section": "PART 4 — CORONARY ARTERY DISEASE & ANGINA",
+      "prompt": "A patient with a history of stable angina reports that chest discomfort now occurs at rest, lasts longer, and requires less activity to trigger symptoms. Which conclusion is most appropriate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "The patient has developed variant angina solely because the discomfort occurs at rest."
+        },
+        {
+          "id": "B",
+          "text": "The symptoms indicate worsening toward unstable angina."
+        },
+        {
+          "id": "C",
+          "text": "The symptoms represent successful antianginal treatment."
+        },
+        {
+          "id": "D",
+          "text": "The patient is experiencing silent ischemia."
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 23,
+      "section": "PART 4 — CORONARY ARTERY DISEASE & ANGINA",
+      "prompt": "A patient develops chest discomfort while resting. The ECG shows transient ST-segment elevation that resolves when the episode ends. Which mechanism best explains the suspected type of angina?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Fixed coronary narrowing causing predictable exertional pain"
+        },
+        {
+          "id": "B",
+          "text": "Coronary artery vasospasm producing temporary ischemia"
+        },
+        {
+          "id": "C",
+          "text": "Permanent ventricular muscle damage confirmed by the ECG alone"
+        },
+        {
+          "id": "D",
+          "text": "Venous insufficiency causing reduced systemic blood return"
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 24,
+      "section": "PART 4 — CORONARY ARTERY DISEASE & ANGINA",
+      "prompt": "A patient with chronic stable angina asks why a beta blocker was prescribed when nitroglycerin is already available. Which explanation demonstrates correct understanding?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Beta blockers dissolve coronary artery plaques."
+        },
+        {
+          "id": "B",
+          "text": "Beta blockers decrease myocardial oxygen demand by reducing heart rate and contractility."
+        },
+        {
+          "id": "C",
+          "text": "Beta blockers immediately reverse every episode of coronary vasospasm."
+        },
+        {
+          "id": "D",
+          "text": "Beta blockers increase heart rate to improve coronary perfusion."
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 25,
+      "section": "PART 5 — PERIPHERAL VASCULAR DISEASE",
+      "prompt": "A patient is 4 hours postoperative following femoral artery bypass surgery. The nurse notes increasing pain in the affected leg despite prescribed analgesia. The extremity is cool and pale, and the previously palpable pedal pulse is absent. Which action is the priority?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Elevate the extremity above heart level and reassess in 30 minutes."
+        },
+        {
+          "id": "B",
+          "text": "Apply a heating pad to improve circulation."
+        },
+        {
+          "id": "C",
+          "text": "Immediately notify the surgical team of suspected compromised arterial perfusion."
+        },
+        {
+          "id": "D",
+          "text": "Encourage the patient to ambulate to stimulate blood flow."
+        }
+      ],
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": 26,
+      "section": "PART 5 — PERIPHERAL VASCULAR DISEASE",
+      "prompt": "A patient reports calf pain after walking two blocks. The pain resolves after several minutes of rest. The affected foot is cool, with diminished pedal pulses. Which teaching is most appropriate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Avoid all walking to prevent additional ischemia."
+        },
+        {
+          "id": "B",
+          "text": "Begin a structured walking program, resting when claudication develops and resuming after pain subsides."
+        },
+        {
+          "id": "C",
+          "text": "Apply direct heat to the legs before exercise."
+        },
+        {
+          "id": "D",
+          "text": "Wear tight compression garments without further vascular evaluation."
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 27,
+      "section": "PART 5 — PERIPHERAL VASCULAR DISEASE",
+      "prompt": "Select all that apply. A nurse is developing a plan of care for a patient with chronic venous insufficiency. Which interventions are appropriate?",
+      "type": "multiple",
+      "options": [
+        {
+          "id": "A",
+          "text": "Elevate the legs periodically."
+        },
+        {
+          "id": "B",
+          "text": "Use prescribed compression therapy after appropriate vascular assessment."
+        },
+        {
+          "id": "C",
+          "text": "Encourage activities that promote calf-muscle pumping."
+        },
+        {
+          "id": "D",
+          "text": "Keep the legs dependent continuously to improve venous return."
+        },
+        {
+          "id": "E",
+          "text": "Assess for edema, skin pigmentation changes, and ulcer formation."
+        },
+        {
+          "id": "F",
+          "text": "Discourage all physical activity."
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ]
+    },
+    {
+      "id": 28,
+      "section": "PART 6 — DVT, PULMONARY EMBOLISM & CELLULITIS",
+      "prompt": "A postoperative patient suddenly develops dyspnea, pleuritic chest pain, tachycardia, and oxygen saturation of 85%. The patient underwent hip surgery three days ago. Which complication should the nurse suspect first?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Chronic venous insufficiency"
+        },
+        {
+          "id": "B",
+          "text": "Pulmonary embolism"
+        },
+        {
+          "id": "C",
+          "text": "Stable angina"
+        },
+        {
+          "id": "D",
+          "text": "Uncomplicated cellulitis"
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 29,
+      "section": "PART 6 — DVT, PULMONARY EMBOLISM & CELLULITIS",
+      "prompt": "Select all that apply. A patient is admitted with a confirmed lower-extremity DVT. Which nursing actions are appropriate?",
+      "type": "multiple",
+      "options": [
+        {
+          "id": "A",
+          "text": "Assess for new chest pain or dyspnea."
+        },
+        {
+          "id": "B",
+          "text": "Administer prescribed anticoagulation."
+        },
+        {
+          "id": "C",
+          "text": "Massage the affected calf to improve venous return."
+        },
+        {
+          "id": "D",
+          "text": "Monitor for bleeding complications."
+        },
+        {
+          "id": "E",
+          "text": "Assess the affected extremity for changes in swelling, warmth, and pain."
+        },
+        {
+          "id": "F",
+          "text": "Encourage the patient to discontinue anticoagulation once the leg feels normal."
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "id": 30,
+      "section": "PART 6 — DVT, PULMONARY EMBOLISM & CELLULITIS",
+      "prompt": "A patient with a confirmed DVT has been receiving anticoagulation. During assessment, the patient suddenly reports shortness of breath and sharp chest pain. BP is 86/50 mmHg, HR 128 beats/min, and SpO₂ 84%. Which action should the nurse take first?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Document the findings and repeat vital signs in 30 minutes."
+        },
+        {
+          "id": "B",
+          "text": "Activate emergency assistance, support oxygenation, and remain with the patient."
+        },
+        {
+          "id": "C",
+          "text": "Massage the affected leg to reduce venous congestion."
+        },
+        {
+          "id": "D",
+          "text": "Administer the next scheduled oral anticoagulant and reassess."
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 31,
+      "section": "PART 6 — DVT, PULMONARY EMBOLISM & CELLULITIS",
+      "prompt": "A patient with cellulitis of the right lower leg is receiving prescribed antibiotics. Which assessment finding most strongly suggests worsening infection requiring prompt reassessment?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Gradually decreasing erythema"
+        },
+        {
+          "id": "B",
+          "text": "Reduced local tenderness"
+        },
+        {
+          "id": "C",
+          "text": "Rapidly spreading redness accompanied by fever and increasing pain"
+        },
+        {
+          "id": "D",
+          "text": "Mild residual skin discoloration after improvement"
+        }
+      ],
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": 32,
+      "section": "PART 6 — DVT, PULMONARY EMBOLISM & CELLULITIS",
+      "prompt": "The nurse receives reports on four patients. Which patient should be assessed first?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Patient with cellulitis reporting mild itching around a healing area"
+        },
+        {
+          "id": "B",
+          "text": "Patient with chronic venous insufficiency and bilateral ankle edema"
+        },
+        {
+          "id": "C",
+          "text": "Patient with DVT who suddenly develops tachypnea, hemoptysis, and hypotension"
+        },
+        {
+          "id": "D",
+          "text": "Patient with peripheral arterial disease reporting predictable calf pain after walking"
+        }
+      ],
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": 33,
+      "section": "PART 7 — PHARMACOLOGY: HIGH-RISK MEDICATIONS",
+      "prompt": "A patient taking lisinopril for hypertension develops swelling of the lips and tongue with difficulty swallowing. Which action is the priority?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Document the finding as an expected medication effect."
+        },
+        {
+          "id": "B",
+          "text": "Hold the medication and initiate emergency airway assessment and assistance."
+        },
+        {
+          "id": "C",
+          "text": "Administer the next dose with food."
+        },
+        {
+          "id": "D",
+          "text": "Encourage increased oral fluid intake."
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 34,
+      "section": "PART 7 — PHARMACOLOGY: HIGH-RISK MEDICATIONS",
+      "prompt": "A patient with heart failure is prescribed spironolactone. Laboratory results reveal potassium 5.8 mEq/L. Which nursing action is most appropriate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Administer the medication because spironolactone increases potassium excretion."
+        },
+        {
+          "id": "B",
+          "text": "Hold the medication and notify the provider of the elevated potassium."
+        },
+        {
+          "id": "C",
+          "text": "Administer a potassium supplement with the medication."
+        },
+        {
+          "id": "D",
+          "text": "Encourage the patient to increase potassium-rich foods."
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 35,
+      "section": "PART 7 — PHARMACOLOGY: HIGH-RISK MEDICATIONS",
+      "prompt": "Select all that apply. A patient receiving IV furosemide for pulmonary congestion requires close monitoring. Which assessments are most important?",
+      "type": "multiple",
+      "options": [
+        {
+          "id": "A",
+          "text": "Serum potassium"
+        },
+        {
+          "id": "B",
+          "text": "Blood pressure"
+        },
+        {
+          "id": "C",
+          "text": "Intake and output"
+        },
+        {
+          "id": "D",
+          "text": "Daily weight"
+        },
+        {
+          "id": "E",
+          "text": "Renal function"
+        },
+        {
+          "id": "F",
+          "text": "Hair growth pattern"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "id": 36,
+      "section": "PART 7 — PHARMACOLOGY: HIGH-RISK MEDICATIONS",
+      "prompt": "A patient receiving digoxin has an apical pulse of 52 beats/min, nausea, decreased appetite, and new visual disturbances. Which action is most appropriate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Administer digoxin because the symptoms indicate therapeutic effectiveness."
+        },
+        {
+          "id": "B",
+          "text": "Hold digoxin and notify the provider of possible toxicity."
+        },
+        {
+          "id": "C",
+          "text": "Administer an additional dose to improve contractility."
+        },
+        {
+          "id": "D",
+          "text": "Encourage ambulation before administering the medication."
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 37,
+      "section": "PART 7 — PHARMACOLOGY: HIGH-RISK MEDICATIONS",
+      "prompt": "A patient receiving an IV unfractionated heparin infusion for DVT has the following laboratory results:\nPlatelets on admission: 245,000/mm³\nCurrent platelets: 98,000/mm³\nHemoglobin: 12.8 g/dL\naPTT: 68 seconds\nWhich action is the priority?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Continue the infusion because the aPTT is within a commonly used therapeutic range."
+        },
+        {
+          "id": "B",
+          "text": "Increase the infusion rate because the platelet count has decreased."
+        },
+        {
+          "id": "C",
+          "text": "Stop the heparin infusion and immediately notify the provider of suspected heparin-induced thrombocytopenia."
+        },
+        {
+          "id": "D",
+          "text": "Administer vitamin K to reverse the heparin."
+        }
+      ],
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": 38,
+      "section": "PART 7 — PHARMACOLOGY: HIGH-RISK MEDICATIONS",
+      "prompt": "Select all that apply. A patient taking warfarin for a previous pulmonary embolism is receiving discharge teaching. Which statements indicate correct understanding?",
+      "type": "multiple",
+      "options": [
+        {
+          "id": "A",
+          "text": "\"I should have my INR monitored regularly.\""
+        },
+        {
+          "id": "B",
+          "text": "\"I should maintain a consistent intake of vitamin K-containing foods.\""
+        },
+        {
+          "id": "C",
+          "text": "\"If I notice black, tarry stools, I should report them immediately.\""
+        },
+        {
+          "id": "D",
+          "text": "\"I can take aspirin whenever I have a headache without checking first.\""
+        },
+        {
+          "id": "E",
+          "text": "\"I should inform my healthcare providers that I take warfarin.\""
+        },
+        {
+          "id": "F",
+          "text": "\"I can stop taking warfarin once my leg swelling disappears.\""
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ]
+    },
+    {
+      "id": 39,
+      "section": "PART 7 — PHARMACOLOGY: HIGH-RISK MEDICATIONS",
+      "prompt": "A patient with angina reports chest pain rated 8/10. The nurse prepares to administer sublingual nitroglycerin. Assessment reveals:\nBP: 86/52 mmHg\nHR: 112 beats/min\nSpO₂: 96%\nPatient reports taking sildenafil earlier that evening.\nWhich nursing action is most appropriate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Administer nitroglycerin immediately because chest pain is the priority."
+        },
+        {
+          "id": "B",
+          "text": "Withhold nitroglycerin, initiate urgent evaluation of the chest pain, and notify the provider of the hypotension and sildenafil use."
+        },
+        {
+          "id": "C",
+          "text": "Administer two sublingual nitroglycerin tablets simultaneously."
+        },
+        {
+          "id": "D",
+          "text": "Apply a nitroglycerin patch instead because transdermal administration prevents hypotension."
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 40,
+      "section": "PART 7 — PHARMACOLOGY: HIGH-RISK MEDICATIONS",
+      "prompt": "A patient prescribed metoprolol for heart failure has the following assessment findings:\nBP: 94/58 mmHg\nHR: 48 beats/min\nReports dizziness when sitting upright\nSpO₂: 97%\nWhich action should the nurse take?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Administer the medication because beta blockers improve long-term heart failure outcomes."
+        },
+        {
+          "id": "B",
+          "text": "Hold the medication and notify the provider of symptomatic bradycardia and hypotension."
+        },
+        {
+          "id": "C",
+          "text": "Administer the medication with additional fluids."
+        },
+        {
+          "id": "D",
+          "text": "Double the dose to improve ventricular contractility."
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 41,
+      "section": "PART 7 — PHARMACOLOGY: HIGH-RISK MEDICATIONS",
+      "prompt": "A patient taking atorvastatin reports new generalized muscle pain and weakness. Laboratory results show a markedly elevated creatine kinase level. Which complication should the nurse suspect?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Expected therapeutic response to cholesterol reduction"
+        },
+        {
+          "id": "B",
+          "text": "Rhabdomyolysis"
+        },
+        {
+          "id": "C",
+          "text": "Digoxin toxicity"
+        },
+        {
+          "id": "D",
+          "text": "Acute venous insufficiency"
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 42,
+      "section": "PART 7 — PHARMACOLOGY: HIGH-RISK MEDICATIONS",
+      "prompt": "Select all that apply. A nurse is preparing to administer enoxaparin to a patient with a DVT. Which actions are appropriate?",
+      "type": "multiple",
+      "options": [
+        {
+          "id": "A",
+          "text": "Administer by the prescribed subcutaneous route."
+        },
+        {
+          "id": "B",
+          "text": "Monitor for bleeding and bruising."
+        },
+        {
+          "id": "C",
+          "text": "Assess platelet counts during treatment as indicated."
+        },
+        {
+          "id": "D",
+          "text": "Massage the injection site vigorously after administration."
+        },
+        {
+          "id": "E",
+          "text": "Review renal function because impaired clearance can increase bleeding risk."
+        },
+        {
+          "id": "F",
+          "text": "Administer intramuscularly for faster absorption."
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ]
+    },
+    {
+      "id": 43,
+      "section": "PART 7 — PHARMACOLOGY: HIGH-RISK MEDICATIONS",
+      "prompt": "A patient receiving hydrochlorothiazide for hypertension reports muscle weakness and palpitations. Laboratory results reveal potassium 2.9 mEq/L. Which interpretation is most appropriate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "The patient is experiencing hyperkalemia caused by potassium retention."
+        },
+        {
+          "id": "B",
+          "text": "The patient may have diuretic-induced hypokalemia, increasing the risk of dysrhythmias."
+        },
+        {
+          "id": "C",
+          "text": "The medication has caused excessive calcium retention, which explains the potassium level."
+        },
+        {
+          "id": "D",
+          "text": "The potassium result is expected and requires no further assessment."
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 44,
+      "section": "PART 7 — PHARMACOLOGY: HIGH-RISK MEDICATIONS",
+      "prompt": "A patient with hypertension has been taking hydralazine for several months. The patient now reports joint pain, muscle aches, fatigue, and fever. Which adverse medication effect should the nurse suspect?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Digoxin toxicity"
+        },
+        {
+          "id": "B",
+          "text": "Heparin-induced thrombocytopenia"
+        },
+        {
+          "id": "C",
+          "text": "Drug-induced lupus-like syndrome"
+        },
+        {
+          "id": "D",
+          "text": "Acute pulmonary embolism"
+        }
+      ],
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": 45,
+      "section": "PART 7 — PHARMACOLOGY: HIGH-RISK MEDICATIONS",
+      "prompt": "A patient is prescribed losartan after developing a persistent dry cough while taking lisinopril. Which statement best explains the therapeutic rationale for this change?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Losartan directly inhibits the conversion of angiotensin I to angiotensin II."
+        },
+        {
+          "id": "B",
+          "text": "Losartan blocks angiotensin II receptors, reducing vasoconstriction and aldosterone-related effects."
+        },
+        {
+          "id": "C",
+          "text": "Losartan increases aldosterone secretion to improve renal perfusion."
+        },
+        {
+          "id": "D",
+          "text": "Losartan increases heart rate and myocardial contractility."
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 46,
+      "section": "PART 7 — PHARMACOLOGY: HIGH-RISK MEDICATIONS",
+      "prompt": "A patient taking gemfibrozil for elevated triglycerides reports new muscle tenderness and weakness. The medication record also includes atorvastatin. Which nursing action is most appropriate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Reassure the patient that muscle tenderness indicates effective lipid reduction."
+        },
+        {
+          "id": "B",
+          "text": "Assess for medication-related muscle injury and promptly notify the provider."
+        },
+        {
+          "id": "C",
+          "text": "Encourage strenuous exercise to relieve muscle discomfort."
+        },
+        {
+          "id": "D",
+          "text": "Administer an additional dose of gemfibrozil to improve triglyceride control."
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 47,
+      "section": "PART 7 — PHARMACOLOGY: HIGH-RISK MEDICATIONS",
+      "prompt": "A patient taking cholestyramine for hyperlipidemia also takes several oral medications. Which instruction is most appropriate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Take all medications simultaneously to improve absorption."
+        },
+        {
+          "id": "B",
+          "text": "Separate other oral medications from cholestyramine as directed because it can interfere with their absorption."
+        },
+        {
+          "id": "C",
+          "text": "Stop all other medications while taking cholestyramine."
+        },
+        {
+          "id": "D",
+          "text": "Take cholestyramine only when experiencing chest pain."
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 48,
+      "section": "PART 8 — DOSAGE CALCULATIONS",
+      "prompt": "Heparin infusion — mL/hr\nA patient weighing 82 kg is prescribed an IV heparin infusion at 18 units/kg/hr.\nThe pharmacy supplies heparin 25,000 units in 250 mL of 0.9% normal saline.\nHow many mL/hr should the nurse program into the infusion pump?\nRound to the nearest tenth.",
+      "type": "number",
+      "options": [],
+      "answer": 14.8,
+      "unit": "mL/hr",
+      "decimals": 1
+    },
+    {
+      "id": 49,
+      "section": "PART 8 — DOSAGE CALCULATIONS",
+      "prompt": "Heparin IV bolus — mL\nA patient diagnosed with an acute DVT weighs 176 lb. The provider prescribes a heparin IV bolus of 80 units/kg.\nThe available vial contains 10,000 units/mL.\nHow many mL should the nurse administer?\nRound to the nearest hundredth.",
+      "type": "number",
+      "options": [],
+      "answer": 0.64,
+      "unit": "mL",
+      "decimals": 2
+    },
+    {
+      "id": 50,
+      "section": "PART 8 — DOSAGE CALCULATIONS",
+      "prompt": "IV infusion — gtt/min\nA patient is prescribed 500 mL of 0.9% normal saline to infuse over 4 hours.\nThe nurse is using gravity tubing with a drop factor of 15 gtt/mL.\nHow many drops per minute should the nurse regulate?\nRound to the nearest whole number.",
+      "type": "number",
+      "options": [],
+      "answer": 31.0,
+      "unit": "gtt/min",
+      "decimals": 0
+    }
+  ]
+}

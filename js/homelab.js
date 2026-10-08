@@ -75,6 +75,22 @@
             card.append(body);
             get('lab-hardware').append(card);
         });
+        const software = data.software;
+        get('lab-software-intro').textContent = software.intro;
+        get('lab-software-image').src = software.image;
+        get('lab-software-image').alt = software.alt;
+        software.layers.forEach(layer => {
+            const item = el('div', 'lab-record');
+            item.append(el('h3', '', layer.name), el('p', '', layer.details));
+            get('lab-software-layers').append(item);
+        });
+        software.services.forEach(service => {
+            const card = el('article', 'hardware-card');
+            const body = el('div', 'hardware-body');
+            body.append(el('h3', '', service.name), el('p', 'hardware-role', service.role), el('p', '', service.description), el('p', 'lab-muted', 'Host: ' + service.host), el('span', 'lab-badge', service.status));
+            card.append(body);
+            get('lab-software-services').append(card);
+        });
         if (data.configuration.length) {
             get('lab-configuration').replaceChildren();
             data.configuration.forEach(feature => {

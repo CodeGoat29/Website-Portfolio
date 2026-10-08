@@ -6,7 +6,7 @@
     <title>Homelab | DiPiazza</title>
     <link rel="stylesheet" href="/css/styles.css?v=server-logo-20260921">
     <link rel="icon" type="image/png" href="/images/dipiazza-logo-20260925.png">
-    <link rel="stylesheet" href="/css/homelab.css?v=sanitized-20261002">
+    <link rel="stylesheet" href="/css/homelab.css?v=software-20261008">
 </head>
 <body>
     <a class="lab-skip" href="#main-content">Skip to content</a>
@@ -45,7 +45,7 @@
             <p class="lab-eyebrow">HOMELAB / NETWORK & EQUIPMENT</p>
             <h2 id="overview-title">Documenting my homelab.</h2>
             <p id="lab-overview">A hands-on environment for networking practice, testing, and future server and service hosting.</p>
-            <p class="lab-updated">Last updated: <time id="lab-updated">October 5, 2026</time> <span>· Manually maintained</span></p>
+            <p class="lab-updated">Last updated: <time id="lab-updated">October 8, 2026</time> <span>· Manually maintained</span></p>
         </section>
         <section aria-labelledby="topology-title">
             <div class="lab-heading"><div><p class="lab-eyebrow">01 / THE BIG PICTURE</p><h2 id="topology-title">Network topology</h2></div><span class="lab-badge">Provisional layout</span></div>
@@ -61,12 +61,25 @@
             <p class="lab-eyebrow">02 / THE EQUIPMENT</p><h2 id="hardware-title">Hardware</h2>
             <div class="hardware-grid" id="lab-hardware"></div>
         </section>
+        <section aria-labelledby="software-title">
+            <p class="lab-eyebrow">03 / SOFTWARE &amp; VIRTUALIZATION</p><h2 id="software-title">Server software topology</h2>
+            <figure class="topology-panel">
+                <p id="lab-software-intro" class="lab-muted">My HP EliteDesk runs Proxmox VE, with a Debian virtual machine serving as the primary Docker host. Dockhand, Uptime Kuma, and Homarr are deployed inside that VM.</p>
+                <div class="topology-image">
+                    <img id="lab-software-image" src="/images/homelab/software-topology-20261008.png" alt="Software topology: HP EliteDesk 800 G6 Mini running Proxmox VE, hosting a Debian virtual machine running Docker with Dockhand, Uptime Kuma, and Homarr containers." width="1448" height="1086" loading="lazy">
+                </div>
+                <figcaption>Current server stack. Running statuses are manually recorded, not live monitoring.</figcaption>
+            </figure>
+            <div id="lab-software-layers" class="lab-compact software-layers"></div>
+            <h3 class="software-services-title">Current Docker services</h3>
+            <div id="lab-software-services" class="hardware-grid"></div>
+        </section>
         <section aria-labelledby="configuration-title">
-            <p class="lab-eyebrow">03 / THE SETUP</p><h2 id="configuration-title">Current configuration</h2>
-            <div id="lab-configuration" class="lab-compact"><p>Switch baseline configured; router integration and server deployment are planned.</p></div>
+            <p class="lab-eyebrow">04 / THE SETUP</p><h2 id="configuration-title">Current configuration</h2>
+            <div id="lab-configuration" class="lab-compact"><p>Switch baseline configured and server software deployed; Cisco router integration remains planned.</p></div>
         </section>
         <section aria-labelledby="posts-title">
-            <p class="lab-eyebrow">04 / NOTES FROM THE LAB</p><h2 id="posts-title">Related blog posts</h2>
+            <p class="lab-eyebrow">05 / NOTES FROM THE LAB</p><h2 id="posts-title">Related blog posts</h2>
             <p class="lab-muted">Setup guides, troubleshooting, and lessons learned.</p>
             <div id="lab-posts" class="blog-grid"><p>Loading related posts…</p></div>
             <a class="lab-link" href="/blog/">Explore the blog →</a>
@@ -115,6 +128,6 @@
     </footer>
 
     <script src="/js/site.js"></script>
-    <script src="/js/homelab.js?v=sanitized-20261002"></script>
+    <script src="/js/homelab.js?v=software-20261008"></script>
 </body>
 </html>

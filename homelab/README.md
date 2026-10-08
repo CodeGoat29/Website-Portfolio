@@ -40,4 +40,4 @@ Keep hardware, major connections, networking concepts, completed configuration, 
 
 Before adding photos, screenshots, CLI output, or configuration snippets, remove or redact serial numbers, MAC addresses, public/WAN IPs, administrative usernames, passwords, secrets, cryptographic keys, license identifiers, SNMP strings, API keys, and VPN details. Never publish full unredacted running configurations. Examples should demonstrate a command or concept without device-specific identifiers.
 
-The services section is intentionally removed. Do not list speculative applications, VMs, containers, or workloads. Restore that section only for software and services that are actually deployed.
+The Software & Virtualization section lists only deployed software. Maintain `software.intro`, `image`, `alt`, `layers` (name/details), and `services` (name/role/description/host/status) in the JSON. Status labels are manual records, not live monitoring. Do not list speculative applications, VMs, containers, or workloads.

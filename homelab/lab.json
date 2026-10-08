@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-10-05",
-  "overview": "I’m documenting my homelab: a hands-on environment for networking practice and testing, with room for future server and service hosting. This is a tour of my equipment and how it connects. Setup guides, troubleshooting, and lessons learned live on the blog.",
+  "lastUpdated": "2026-10-08",
+  "overview": "I’m documenting my homelab: a hands-on environment for networking practice and testing, with a virtualization platform for self-hosted services. This is a tour of my equipment and how it connects. Setup guides, troubleshooting, and lessons learned live on the blog.",
   "equipment": [
     {
       "id": "ont",
@@ -59,8 +59,8 @@
       "manufacturer": "HP",
       "model": "EliteDesk 800 G6 Desktop Mini",
       "role": "Homelab server",
-      "description": "A compact, low-power system intended as the lab’s future compute and server platform. Integration into the lab environment is planned; no server software installation is documented.",
-      "status": "Received / awaiting setup",
+      "description": "My compact homelab virtualization and server platform runs Proxmox VE as the bare-metal hypervisor and hosts a Debian virtual machine used as the primary Docker host.",
+      "status": "Proxmox host / active",
       "photo": "/images/homelab/hp-elitedesk-personal-20261005.png",
       "photoAlt": "My HP EliteDesk 800 G6 Mini homelab server",
       "photoCaption": "My homelab server",
@@ -100,10 +100,10 @@
   "configuration": [
     {
       "name": "Current progress",
-      "details": "The physical Cisco portion of the lab is now being built. The switch baseline is configured; routing through the C1111 and access from the home network remain planned."
+      "details": "I’m developing two parts of the lab: physical Cisco networking and server/virtualization infrastructure. The switch baseline is configured and the EliteDesk software stack is running; C1111 routing and dedicated lab VLAN integration remain planned."
     },
     {
-      "name": "Completed",
+      "name": "Completed Cisco switch configuration",
       "items": [
         "Cisco 3560CX hardware/interface inspection and console access from macOS",
         "IOS and license verification",
@@ -113,6 +113,18 @@
         "Management SVI configured",
         "VLAN 10 access port configured",
         "SSH configuration prepared"
+      ]
+    },
+    {
+      "name": "Completed server infrastructure",
+      "items": [
+        "HP EliteDesk 800 G6 Mini deployed as the homelab server",
+        "Proxmox VE installed as the hypervisor",
+        "Debian VM created as the Docker host",
+        "Docker deployed",
+        "Dockhand deployed",
+        "Uptime Kuma deployed",
+        "Homarr deployed"
       ]
     },
     {
@@ -150,14 +162,59 @@
         "Connect the Cisco lab to the existing home network",
         "Add the summarized static route on the Nighthawk",
         "Verify remote SSH management from the normal home network",
-        "Bring the HP EliteDesk server into the lab environment"
+        "Add additional self-hosted services",
+        "Expand server storage",
+        "Integrate server workloads with the dedicated lab VLAN design",
+        "Develop a backup and storage strategy"
       ],
       "details": "The first implementation uses router-on-a-stick, with the 3560CX primarily at Layer 2. The router uplink and home-to-lab routing remain planned; the full topology is not yet operational."
     }
   ],
   "topology": {
     "image": "/images/homelab/topology-20261002.png",
-    "alt": "Provisional topology: Internet → Fiber ONT → Nighthawk RAX45 home router → Cisco C1111-4P lab router → Cisco Catalyst WS-C3560CX-8PC-S switch → HP EliteDesk 800 G6 Mini / future lab compute and future lab devices. Household computers and IoT devices branch from the RAX45. The C1111 has not arrived; lab uplinks, routing, and server deployment remain planned.",
+    "alt": "Provisional topology: Internet → Fiber ONT → Nighthawk RAX45 home router → Cisco C1111-4P lab router → Cisco Catalyst WS-C3560CX-8PC-S switch → HP EliteDesk 800 G6 Mini server and future lab devices. Household computers and IoT devices branch from the RAX45. The C1111 has not arrived; lab uplinks and routing remain planned.",
     "caption": "The physical Cisco lab is now being configured. The router-to-switch uplink and connection to the home network are planned and will be completed after the C1111 arrives. The full topology is not yet operational; household computers and IoT devices continue to connect through the Nighthawk RAX45."
+  },
+  "software": {
+    "intro": "My HP EliteDesk runs Proxmox VE, with a Debian virtual machine serving as the primary Docker host. Dockhand, Uptime Kuma, and Homarr are deployed inside that VM.",
+    "image": "/images/homelab/software-topology-20261008.png",
+    "alt": "Software topology: HP EliteDesk 800 G6 Mini running Proxmox VE, hosting a Debian virtual machine running Docker with Dockhand, Uptime Kuma, and Homarr containers.",
+    "layers": [
+      {
+        "name": "Proxmox VE",
+        "details": "Bare-metal hypervisor installed on the EliteDesk, providing the virtualization layer for my homelab."
+      },
+      {
+        "name": "Debian VM",
+        "details": "A virtual machine inside Proxmox that serves as my main Docker host."
+      },
+      {
+        "name": "Docker",
+        "details": "Runs containerized self-hosted applications inside the Debian VM."
+      }
+    ],
+    "services": [
+      {
+        "name": "Dockhand",
+        "role": "Docker management",
+        "description": "My web-based Docker and container management interface for deploying and managing Compose stacks.",
+        "host": "Docker · Debian VM on the HP EliteDesk",
+        "status": "Running"
+      },
+      {
+        "name": "Uptime Kuma",
+        "role": "Monitoring",
+        "description": "Monitors homelab services and endpoints for availability and status.",
+        "host": "Docker · Debian VM on the HP EliteDesk",
+        "status": "Running"
+      },
+      {
+        "name": "Homarr",
+        "role": "Homelab dashboard",
+        "description": "My central dashboard for accessing and organizing homelab applications and services.",
+        "host": "Docker · Debian VM on the HP EliteDesk",
+        "status": "Running"
+      }
+    ]
   }
 }
