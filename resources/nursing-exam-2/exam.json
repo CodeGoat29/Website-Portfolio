@@ -1,0 +1,1420 @@
+{
+  "id": "nursing-exam-2-practice-2-v1",
+  "title": "Level 2 Nursing — Exam 2 · Practice Test 2",
+  "passingScore": 40,
+  "questions": [
+    {
+      "id": 1,
+      "section": "SECTION 1 — PHARMACOLOGY & ANTICOAGULANTS",
+      "prompt": "A patient receiving an IV heparin infusion for a DVT develops bleeding gums and blood in the urine. Which nursing action is the priority?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Continue the infusion because bleeding is expected"
+        },
+        {
+          "id": "B",
+          "text": "Stop the infusion and notify the healthcare provider"
+        },
+        {
+          "id": "C",
+          "text": "Encourage oral fluids and reassess in four hours"
+        },
+        {
+          "id": "D",
+          "text": "Administer the next dose of warfarin"
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 2,
+      "section": "SECTION 1 — PHARMACOLOGY & ANTICOAGULANTS",
+      "prompt": "A nurse is teaching a patient who is beginning warfarin therapy. Which statements indicate an understanding of the teaching?",
+      "type": "multiple",
+      "options": [
+        {
+          "id": "A",
+          "text": "\"I need to have my INR monitored.\""
+        },
+        {
+          "id": "B",
+          "text": "\"I should maintain a consistent intake of vitamin K.\""
+        },
+        {
+          "id": "C",
+          "text": "\"I can stop taking the medication when my leg pain disappears.\""
+        },
+        {
+          "id": "D",
+          "text": "\"I should report unusual bruising or bleeding.\""
+        },
+        {
+          "id": "E",
+          "text": "\"I can take aspirin whenever I have a headache without checking first.\""
+        },
+        {
+          "id": "F",
+          "text": "\"I should inform my healthcare providers that I take warfarin.\""
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D",
+        "F"
+      ]
+    },
+    {
+      "id": 3,
+      "section": "SECTION 1 — PHARMACOLOGY & ANTICOAGULANTS",
+      "prompt": "A patient receiving unfractionated heparin has a platelet count that has decreased significantly from baseline. The nurse suspects heparin-induced thrombocytopenia (HIT). Which action is most appropriate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Continue heparin because the medication prevents clot formation"
+        },
+        {
+          "id": "B",
+          "text": "Administer aspirin to increase anticoagulation"
+        },
+        {
+          "id": "C",
+          "text": "Stop heparin and immediately notify the healthcare provider"
+        },
+        {
+          "id": "D",
+          "text": "Increase the heparin infusion rate"
+        }
+      ],
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": 4,
+      "section": "SECTION 1 — PHARMACOLOGY & ANTICOAGULANTS",
+      "prompt": "A patient taking warfarin has an INR of 5.8 and reports bleeding gums. Which medication should the nurse anticipate may be prescribed to reverse warfarin's effects?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Protamine sulfate"
+        },
+        {
+          "id": "B",
+          "text": "Vitamin K"
+        },
+        {
+          "id": "C",
+          "text": "Digoxin"
+        },
+        {
+          "id": "D",
+          "text": "Furosemide"
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 5,
+      "section": "SECTION 1 — PHARMACOLOGY & ANTICOAGULANTS",
+      "prompt": "A patient is receiving enoxaparin for a DVT. Which nursing action demonstrates appropriate administration?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Administer deep intramuscularly"
+        },
+        {
+          "id": "B",
+          "text": "Massage the injection site after administration"
+        },
+        {
+          "id": "C",
+          "text": "Administer subcutaneously and avoid rubbing the injection site"
+        },
+        {
+          "id": "D",
+          "text": "Aspirate before injecting the medication"
+        }
+      ],
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": 6,
+      "section": "SECTION 1 — PHARMACOLOGY & ANTICOAGULANTS",
+      "prompt": "The nurse is assessing a patient receiving anticoagulant therapy. Which findings require further evaluation for possible bleeding?",
+      "type": "multiple",
+      "options": [
+        {
+          "id": "A",
+          "text": "Black, tarry stools"
+        },
+        {
+          "id": "B",
+          "text": "Blood in the urine"
+        },
+        {
+          "id": "C",
+          "text": "Unexplained bruising"
+        },
+        {
+          "id": "D",
+          "text": "Bleeding gums"
+        },
+        {
+          "id": "E",
+          "text": "Sudden severe headache"
+        },
+        {
+          "id": "F",
+          "text": "Improved lower-extremity swelling"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "id": 7,
+      "section": "SECTION 1 — PHARMACOLOGY & ANTICOAGULANTS",
+      "prompt": "A patient receiving IV heparin develops serious bleeding. Which medication should the nurse anticipate administering as prescribed?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Vitamin K"
+        },
+        {
+          "id": "B",
+          "text": "Protamine sulfate"
+        },
+        {
+          "id": "C",
+          "text": "Atorvastatin"
+        },
+        {
+          "id": "D",
+          "text": "Spironolactone"
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 8,
+      "section": "SECTION 1 — PHARMACOLOGY & ANTICOAGULANTS",
+      "prompt": "A patient taking lisinopril for hypertension develops swelling of the lips and tongue. Which action is the priority?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Document this as an expected medication effect"
+        },
+        {
+          "id": "B",
+          "text": "Encourage increased oral fluid intake"
+        },
+        {
+          "id": "C",
+          "text": "Hold the medication and obtain immediate emergency evaluation"
+        },
+        {
+          "id": "D",
+          "text": "Reassess the patient at the next scheduled medication time"
+        }
+      ],
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": 9,
+      "section": "SECTION 1 — PHARMACOLOGY & ANTICOAGULANTS",
+      "prompt": "A patient with heart failure takes furosemide daily. The patient reports muscle weakness, and laboratory results show potassium of 2.9 mEq/L. Which action should the nurse take?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Administer the medication because potassium is normal"
+        },
+        {
+          "id": "B",
+          "text": "Hold the medication and notify the healthcare provider"
+        },
+        {
+          "id": "C",
+          "text": "Encourage the patient to restrict potassium intake"
+        },
+        {
+          "id": "D",
+          "text": "Administer spironolactone without a prescription"
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 10,
+      "section": "SECTION 1 — PHARMACOLOGY & ANTICOAGULANTS",
+      "prompt": "The nurse is reviewing medications prescribed for a patient with hypertension and heart failure. Which statements are accurate?",
+      "type": "multiple",
+      "options": [
+        {
+          "id": "A",
+          "text": "Hydralazine decreases systemic vascular resistance and afterload."
+        },
+        {
+          "id": "B",
+          "text": "Losartan blocks the action of angiotensin II at its receptors."
+        },
+        {
+          "id": "C",
+          "text": "Metoprolol decreases heart rate and myocardial contractility."
+        },
+        {
+          "id": "D",
+          "text": "Spironolactone increases potassium excretion."
+        },
+        {
+          "id": "E",
+          "text": "Furosemide promotes fluid removal."
+        },
+        {
+          "id": "F",
+          "text": "Lisinopril increases the formation of angiotensin II."
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ]
+    },
+    {
+      "id": 11,
+      "section": "SECTION 1 — PHARMACOLOGY & ANTICOAGULANTS",
+      "prompt": "A patient taking digoxin reports nausea and visual disturbances. The nurse assesses an apical pulse of 52 beats/min. Which action is most appropriate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Administer digoxin because the pulse is above 50"
+        },
+        {
+          "id": "B",
+          "text": "Hold digoxin and notify the healthcare provider"
+        },
+        {
+          "id": "C",
+          "text": "Administer an additional dose"
+        },
+        {
+          "id": "D",
+          "text": "Encourage ambulation before administering digoxin"
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 12,
+      "section": "SECTION 1 — PHARMACOLOGY & ANTICOAGULANTS",
+      "prompt": "A patient prescribed spironolactone has a serum potassium level of 5.8 mEq/L. Which action should the nurse take?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Administer the medication because potassium loss is expected"
+        },
+        {
+          "id": "B",
+          "text": "Encourage potassium-containing salt substitutes"
+        },
+        {
+          "id": "C",
+          "text": "Hold the medication and notify the healthcare provider"
+        },
+        {
+          "id": "D",
+          "text": "Increase the dose to improve diuresis"
+        }
+      ],
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": 13,
+      "section": "SECTION 1 — PHARMACOLOGY & ANTICOAGULANTS",
+      "prompt": "A patient taking atorvastatin reports new, unexplained muscle pain and weakness. Which nursing response is most appropriate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Explain that this confirms the medication is working"
+        },
+        {
+          "id": "B",
+          "text": "Recommend doubling the next dose"
+        },
+        {
+          "id": "C",
+          "text": "Tell the patient to ignore the symptoms"
+        },
+        {
+          "id": "D",
+          "text": "Notify the healthcare provider about possible muscle injury"
+        }
+      ],
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": 14,
+      "section": "SECTION 1 — PHARMACOLOGY & ANTICOAGULANTS",
+      "prompt": "A patient receiving nitroglycerin for chest pain becomes dizzy. The nurse obtains a blood pressure of 82/48 mmHg. What is the priority?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Administer another nitroglycerin dose"
+        },
+        {
+          "id": "B",
+          "text": "Hold further nitroglycerin and notify the healthcare provider"
+        },
+        {
+          "id": "C",
+          "text": "Encourage the patient to stand and walk"
+        },
+        {
+          "id": "D",
+          "text": "Apply a nitroglycerin patch"
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 15,
+      "section": "SECTION 1 — PHARMACOLOGY & ANTICOAGULANTS",
+      "prompt": "Which medication-class pairings are correct?",
+      "type": "multiple",
+      "options": [
+        {
+          "id": "A",
+          "text": "Atenolol — beta blocker"
+        },
+        {
+          "id": "B",
+          "text": "Diltiazem — calcium channel blocker"
+        },
+        {
+          "id": "C",
+          "text": "Losartan — ACE inhibitor"
+        },
+        {
+          "id": "D",
+          "text": "Hydrochlorothiazide — thiazide diuretic"
+        },
+        {
+          "id": "E",
+          "text": "Gemfibrozil — fibrate"
+        },
+        {
+          "id": "F",
+          "text": "Cholestyramine — statin"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "id": 16,
+      "section": "SECTION 2 — ECG INTERPRETATION & CARDIOVASCULAR ASSESSMENT",
+      "prompt": "A nurse reviews a telemetry strip showing an irregularly irregular rhythm with no discernible P waves. Which rhythm should the nurse suspect?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Normal sinus rhythm"
+        },
+        {
+          "id": "B",
+          "text": "Sinus bradycardia"
+        },
+        {
+          "id": "C",
+          "text": "Atrial fibrillation"
+        },
+        {
+          "id": "D",
+          "text": "Atrial flutter"
+        }
+      ],
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": 17,
+      "section": "SECTION 2 — ECG INTERPRETATION & CARDIOVASCULAR ASSESSMENT",
+      "prompt": "A patient's ECG shows a regular rhythm at 48 beats/min with a P wave before every QRS complex. Which interpretation is most appropriate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Sinus tachycardia"
+        },
+        {
+          "id": "B",
+          "text": "Sinus bradycardia"
+        },
+        {
+          "id": "C",
+          "text": "Atrial fibrillation"
+        },
+        {
+          "id": "D",
+          "text": "Atrial flutter"
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 18,
+      "section": "SECTION 2 — ECG INTERPRETATION & CARDIOVASCULAR ASSESSMENT",
+      "prompt": "A patient reports palpitations and dizziness. The nurse reviews an ECG showing a classic sawtooth pattern. Which rhythm is most consistent with this finding?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Atrial flutter"
+        },
+        {
+          "id": "B",
+          "text": "Sinus bradycardia"
+        },
+        {
+          "id": "C",
+          "text": "Normal sinus rhythm"
+        },
+        {
+          "id": "D",
+          "text": "Sinus tachycardia"
+        }
+      ],
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": 19,
+      "section": "SECTION 2 — ECG INTERPRETATION & CARDIOVASCULAR ASSESSMENT",
+      "prompt": "The nurse is interpreting a patient's ECG rhythm. Which assessments are included in the systematic interpretation outlined in the lecture?",
+      "type": "multiple",
+      "options": [
+        {
+          "id": "A",
+          "text": "Determine whether the rate is fast or slow"
+        },
+        {
+          "id": "B",
+          "text": "Determine whether the rhythm is regular or irregular"
+        },
+        {
+          "id": "C",
+          "text": "Identify whether P waves are present"
+        },
+        {
+          "id": "D",
+          "text": "Evaluate whether a P wave precedes each QRS"
+        },
+        {
+          "id": "E",
+          "text": "Evaluate ECG intervals"
+        },
+        {
+          "id": "F",
+          "text": "Determine the patient's serum cholesterol from the tracing"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "id": 20,
+      "section": "SECTION 2 — ECG INTERPRETATION & CARDIOVASCULAR ASSESSMENT",
+      "prompt": "A patient develops an abnormal rhythm. The nurse notes hypotension, diaphoresis, and shortness of breath. Which interpretation is most appropriate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "The rhythm is harmless because the patient is conscious"
+        },
+        {
+          "id": "B",
+          "text": "The findings suggest compromised cardiac perfusion"
+        },
+        {
+          "id": "C",
+          "text": "The findings indicate adequate cardiac output"
+        },
+        {
+          "id": "D",
+          "text": "The nurse should prioritize routine discharge teaching"
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 21,
+      "section": "SECTION 2 — ECG INTERPRETATION & CARDIOVASCULAR ASSESSMENT",
+      "prompt": "A patient has a stroke volume of 60 mL and a heart rate of 110 beats/min. What is the patient's cardiac output?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "4.6 L/min"
+        },
+        {
+          "id": "B",
+          "text": "5.5 L/min"
+        },
+        {
+          "id": "C",
+          "text": "6.6 L/min"
+        },
+        {
+          "id": "D",
+          "text": "7.7 L/min"
+        }
+      ],
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": 22,
+      "section": "SECTION 2 — ECG INTERPRETATION & CARDIOVASCULAR ASSESSMENT",
+      "prompt": "A nurse explains to a patient how electrical impulses travel through the heart. Which sequence is correct?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "AV node → SA node → Purkinje fibers → Bundle of His"
+        },
+        {
+          "id": "B",
+          "text": "SA node → AV node → Bundle of His → Purkinje fibers"
+        },
+        {
+          "id": "C",
+          "text": "SA node → Purkinje fibers → AV node → Bundle of His"
+        },
+        {
+          "id": "D",
+          "text": "Bundle of His → SA node → AV node → Purkinje fibers"
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 23,
+      "section": "SECTION 3 — HYPERTENSION & HEART FAILURE",
+      "prompt": "A patient presents with a blood pressure of 198/122 mmHg, severe headache, and new confusion. Which interpretation is most appropriate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Stage 1 hypertension"
+        },
+        {
+          "id": "B",
+          "text": "Hypertensive urgency without evidence of organ damage"
+        },
+        {
+          "id": "C",
+          "text": "Hypertensive emergency with possible end-organ damage"
+        },
+        {
+          "id": "D",
+          "text": "Elevated blood pressure without immediate concern"
+        }
+      ],
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": 24,
+      "section": "SECTION 3 — HYPERTENSION & HEART FAILURE",
+      "prompt": "Two patients have the same blood pressure of 190/120 mmHg. Patient A denies symptoms and has no evidence of end-organ damage. Patient B has new confusion and chest pain. Which patient requires the most immediate intervention?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Patient A because asymptomatic hypertension is always more dangerous"
+        },
+        {
+          "id": "B",
+          "text": "Patient B because symptoms suggest acute end-organ damage"
+        },
+        {
+          "id": "C",
+          "text": "Both patients can safely wait for routine follow-up"
+        },
+        {
+          "id": "D",
+          "text": "Neither patient requires intervention unless the systolic pressure exceeds 220 mmHg"
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 25,
+      "section": "SECTION 3 — HYPERTENSION & HEART FAILURE",
+      "prompt": "A patient with chronic hypertension asks how ACE inhibitors lower blood pressure. Which explanation is most accurate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "They increase the production of angiotensin II"
+        },
+        {
+          "id": "B",
+          "text": "They directly increase aldosterone secretion"
+        },
+        {
+          "id": "C",
+          "text": "They prevent the conversion of angiotensin I to angiotensin II"
+        },
+        {
+          "id": "D",
+          "text": "They increase sodium and water retention"
+        }
+      ],
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": 26,
+      "section": "SECTION 3 — HYPERTENSION & HEART FAILURE",
+      "prompt": "A patient has an echocardiogram showing an ejection fraction of 30%. Which pathophysiologic problem best explains this finding?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "The ventricle is stiff but maintains normal contraction"
+        },
+        {
+          "id": "B",
+          "text": "The ventricle has impaired pumping during systole"
+        },
+        {
+          "id": "C",
+          "text": "The ventricle has increased filling ability"
+        },
+        {
+          "id": "D",
+          "text": "The heart has no pumping abnormality because blood pressure is normal"
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 27,
+      "section": "SECTION 3 — HYPERTENSION & HEART FAILURE",
+      "prompt": "A patient has symptoms of heart failure but a preserved ejection fraction. Which explanation best describes the underlying dysfunction?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "The heart muscle is weakened and cannot squeeze effectively"
+        },
+        {
+          "id": "B",
+          "text": "The ventricles have lost all electrical activity"
+        },
+        {
+          "id": "C",
+          "text": "The ventricular muscle is stiff and cannot relax and fill properly"
+        },
+        {
+          "id": "D",
+          "text": "The coronary arteries have completely stopped supplying blood"
+        }
+      ],
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": 28,
+      "section": "SECTION 3 — HYPERTENSION & HEART FAILURE",
+      "prompt": "A nurse assesses a patient with suspected right-sided heart failure. Which findings support this diagnosis?",
+      "type": "multiple",
+      "options": [
+        {
+          "id": "A",
+          "text": "Jugular venous distention"
+        },
+        {
+          "id": "B",
+          "text": "Ascites"
+        },
+        {
+          "id": "C",
+          "text": "Hepatomegaly"
+        },
+        {
+          "id": "D",
+          "text": "Dependent lower-extremity edema"
+        },
+        {
+          "id": "E",
+          "text": "Weight gain"
+        },
+        {
+          "id": "F",
+          "text": "Crackles as the hallmark finding"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "id": 29,
+      "section": "SECTION 3 — HYPERTENSION & HEART FAILURE",
+      "prompt": "A patient with chronic heart failure suddenly develops severe breathlessness, anxiety, diffuse crackles, and pink frothy sputum. What is the priority nursing action?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Place the patient flat to improve venous return"
+        },
+        {
+          "id": "B",
+          "text": "Elevate the head of the bed and activate rapid response"
+        },
+        {
+          "id": "C",
+          "text": "Encourage the patient to ambulate"
+        },
+        {
+          "id": "D",
+          "text": "Wait for the next scheduled daily weight"
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 30,
+      "section": "SECTION 3 — HYPERTENSION & HEART FAILURE",
+      "prompt": "A patient with heart failure has a normal ejection fraction. The patient states, \"That means I cannot have heart failure.\" Which response is most appropriate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "\"Correct. Heart failure only occurs when ejection fraction is below normal.\""
+        },
+        {
+          "id": "B",
+          "text": "\"A normal ejection fraction means your heart cannot develop fluid overload.\""
+        },
+        {
+          "id": "C",
+          "text": "\"Heart failure can occur when the ventricle becomes stiff and has difficulty filling, even with a preserved ejection fraction.\""
+        },
+        {
+          "id": "D",
+          "text": "\"A preserved ejection fraction means both ventricles are functioning normally.\""
+        }
+      ],
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": 31,
+      "section": "SECTION 4 — CORONARY ARTERY DISEASE & ANGINA",
+      "prompt": "A patient reports chest discomfort every time they climb stairs. The pain resolves after stopping to rest. Which condition best explains this pattern?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Unstable angina"
+        },
+        {
+          "id": "B",
+          "text": "Stable angina"
+        },
+        {
+          "id": "C",
+          "text": "Variant angina"
+        },
+        {
+          "id": "D",
+          "text": "Silent ischemia"
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 32,
+      "section": "SECTION 4 — CORONARY ARTERY DISEASE & ANGINA",
+      "prompt": "A patient with a history of stable angina reports that chest pain is now occurring more frequently, lasts longer, and sometimes occurs at rest. Which interpretation is most appropriate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Expected progression of stable angina without concern"
+        },
+        {
+          "id": "B",
+          "text": "Silent ischemia"
+        },
+        {
+          "id": "C",
+          "text": "Unstable angina"
+        },
+        {
+          "id": "D",
+          "text": "Improved coronary circulation"
+        }
+      ],
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": 33,
+      "section": "SECTION 4 — CORONARY ARTERY DISEASE & ANGINA",
+      "prompt": "A patient develops chest pain while resting. The ECG shows reversible ST-segment elevation, and coronary vasospasm is suspected. Which type of angina is most consistent with these findings?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Stable angina"
+        },
+        {
+          "id": "B",
+          "text": "Variant angina"
+        },
+        {
+          "id": "C",
+          "text": "Silent ischemia"
+        },
+        {
+          "id": "D",
+          "text": "Refractory angina"
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 34,
+      "section": "SECTION 4 — CORONARY ARTERY DISEASE & ANGINA",
+      "prompt": "A patient has ECG evidence of myocardial ischemia during a stress test but denies any chest discomfort. Which condition does the nurse recognize?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Unstable angina"
+        },
+        {
+          "id": "B",
+          "text": "Variant angina"
+        },
+        {
+          "id": "C",
+          "text": "Silent ischemia"
+        },
+        {
+          "id": "D",
+          "text": "Intractable angina"
+        }
+      ],
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": 35,
+      "section": "SECTION 4 — CORONARY ARTERY DISEASE & ANGINA",
+      "prompt": "A nurse teaches a patient about sublingual nitroglycerin. Which statements are consistent with the lecture instructions?",
+      "type": "multiple",
+      "options": [
+        {
+          "id": "A",
+          "text": "\"I should sit down before taking it.\""
+        },
+        {
+          "id": "B",
+          "text": "\"I should keep it in its original dark glass container.\""
+        },
+        {
+          "id": "C",
+          "text": "\"Headache and dizziness can occur.\""
+        },
+        {
+          "id": "D",
+          "text": "\"I can take it before an activity that usually causes my angina.\""
+        },
+        {
+          "id": "E",
+          "text": "\"I should store the tablets in a warm, sunny location.\""
+        },
+        {
+          "id": "F",
+          "text": "\"If pain persists after three tablets taken five minutes apart, I should call emergency services.\""
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "F"
+      ]
+    },
+    {
+      "id": 36,
+      "section": "SECTION 5 — PERIPHERAL VASCULAR DISEASE, DVT & PE",
+      "prompt": "A patient with peripheral arterial disease reports severe leg pain. The nurse finds a cool, pale extremity, absent pedal pulse, and new numbness. Which action is the priority?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Encourage walking until the pain resolves"
+        },
+        {
+          "id": "B",
+          "text": "Apply a heating pad to improve circulation"
+        },
+        {
+          "id": "C",
+          "text": "Notify the healthcare provider immediately about suspected acute arterial occlusion"
+        },
+        {
+          "id": "D",
+          "text": "Apply tight compression clothing"
+        }
+      ],
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": 37,
+      "section": "SECTION 5 — PERIPHERAL VASCULAR DISEASE, DVT & PE",
+      "prompt": "A nurse is assessing a patient for acute arterial occlusion. Which findings represent the six Ps described in the lecture?",
+      "type": "multiple",
+      "options": [
+        {
+          "id": "A",
+          "text": "Pain"
+        },
+        {
+          "id": "B",
+          "text": "Pallor"
+        },
+        {
+          "id": "C",
+          "text": "Pulselessness"
+        },
+        {
+          "id": "D",
+          "text": "Paresthesia"
+        },
+        {
+          "id": "E",
+          "text": "Paralysis"
+        },
+        {
+          "id": "F",
+          "text": "Poikilothermia"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ]
+    },
+    {
+      "id": 38,
+      "section": "SECTION 5 — PERIPHERAL VASCULAR DISEASE, DVT & PE",
+      "prompt": "A patient with PAD experiences calf pain during walking that improves with rest. Which teaching is most appropriate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Avoid all walking to prevent tissue ischemia"
+        },
+        {
+          "id": "B",
+          "text": "Walk until claudication occurs, rest until it subsides, and resume walking"
+        },
+        {
+          "id": "C",
+          "text": "Apply heat to the legs before walking"
+        },
+        {
+          "id": "D",
+          "text": "Wear tight socks to improve arterial blood flow"
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 39,
+      "section": "SECTION 5 — PERIPHERAL VASCULAR DISEASE, DVT & PE",
+      "prompt": "A patient underwent lower-extremity bypass surgery six hours ago. The nurse discovers the operative leg is cool and dusky, with weaker pulses and increasing pain. Which action is most appropriate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Document the findings as expected after surgery"
+        },
+        {
+          "id": "B",
+          "text": "Encourage ambulation and reassess in two hours"
+        },
+        {
+          "id": "C",
+          "text": "Immediately report the deteriorating neurovascular findings to the surgical team"
+        },
+        {
+          "id": "D",
+          "text": "Apply a heating pad to the extremity"
+        }
+      ],
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": 40,
+      "section": "SECTION 5 — PERIPHERAL VASCULAR DISEASE, DVT & PE",
+      "prompt": "A patient with peripheral vascular disease has bilateral lower-extremity edema, warm skin, gray-brown pigmentation, and palpable pulses. Which interpretation is most consistent with these findings?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Acute arterial occlusion"
+        },
+        {
+          "id": "B",
+          "text": "Chronic venous disease"
+        },
+        {
+          "id": "C",
+          "text": "Sudden complete arterial blockage"
+        },
+        {
+          "id": "D",
+          "text": "Normal peripheral circulation"
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 41,
+      "section": "SECTION 5 — PERIPHERAL VASCULAR DISEASE, DVT & PE",
+      "prompt": "A patient hospitalized with a DVT suddenly develops shortness of breath and chest pain. Which complication should the nurse suspect first?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cellulitis"
+        },
+        {
+          "id": "B",
+          "text": "Stable angina"
+        },
+        {
+          "id": "C",
+          "text": "Pulmonary embolism"
+        },
+        {
+          "id": "D",
+          "text": "Chronic venous insufficiency"
+        }
+      ],
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": 42,
+      "section": "SECTION 5 — PERIPHERAL VASCULAR DISEASE, DVT & PE",
+      "prompt": "A patient is diagnosed with pulmonary embolism. Which prescribed treatment directly addresses the risk of additional thrombus formation?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "Anticoagulant therapy"
+        },
+        {
+          "id": "B",
+          "text": "Cholestyramine"
+        },
+        {
+          "id": "C",
+          "text": "Atorvastatin"
+        },
+        {
+          "id": "D",
+          "text": "Hydrochlorothiazide"
+        }
+      ],
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": 43,
+      "section": "SECTION 5 — PERIPHERAL VASCULAR DISEASE, DVT & PE",
+      "prompt": "A patient with a lower-extremity DVT asks why anticoagulation is necessary when the medication does not immediately dissolve the existing clot. Which explanation is most accurate?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "\"It increases platelet aggregation.\""
+        },
+        {
+          "id": "B",
+          "text": "\"It prevents additional clot formation and clot extension.\""
+        },
+        {
+          "id": "C",
+          "text": "\"It eliminates the need to monitor for pulmonary embolism.\""
+        },
+        {
+          "id": "D",
+          "text": "\"It directly increases arterial blood pressure.\""
+        }
+      ],
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": 44,
+      "section": "SECTION 5 — PERIPHERAL VASCULAR DISEASE, DVT & PE",
+      "prompt": "A nurse provides discharge teaching to a patient with peripheral arterial disease. Which instructions are appropriate?",
+      "type": "multiple",
+      "options": [
+        {
+          "id": "A",
+          "text": "Avoid exposure to extreme cold"
+        },
+        {
+          "id": "B",
+          "text": "Stop using tobacco and nicotine"
+        },
+        {
+          "id": "C",
+          "text": "Wear sturdy, properly fitting shoes"
+        },
+        {
+          "id": "D",
+          "text": "Avoid constrictive clothing"
+        },
+        {
+          "id": "E",
+          "text": "Apply heating pads directly to the feet"
+        },
+        {
+          "id": "F",
+          "text": "Protect the extremities from injury"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "F"
+      ]
+    },
+    {
+      "id": 45,
+      "section": "SECTION 6 — DOSAGE CALCULATIONS & FINAL CLINICAL JUDGMENT",
+      "prompt": "A patient has an order for heparin 1,200 units/hr by continuous IV infusion. The IV bag contains 25,000 units of heparin in 500 mL of solution.\n\nHow many mL/hr should the nurse program on the infusion pump?",
+      "type": "number",
+      "answer": 24,
+      "unit": "mL/hr",
+      "decimals": 0
+    },
+    {
+      "id": 46,
+      "section": "SECTION 6 — DOSAGE CALCULATIONS & FINAL CLINICAL JUDGMENT",
+      "prompt": "A patient is prescribed 8,000 units of heparin subcutaneously. The available vial contains 10,000 units/mL.\n\nHow many mL should the nurse administer? Round to the nearest tenth.",
+      "type": "number",
+      "answer": 0.8,
+      "unit": "mL",
+      "decimals": 1
+    },
+    {
+      "id": 47,
+      "section": "SECTION 6 — DOSAGE CALCULATIONS & FINAL CLINICAL JUDGMENT",
+      "prompt": "A patient is prescribed an IV medication dose of 10 mg. The available vial contains 10 mg/2 mL. The medication must be administered IV push over two minutes.\n\nHow many mL should the nurse administer every 15 seconds to deliver the dose evenly?",
+      "type": "number",
+      "answer": 0.25,
+      "unit": "mL every 15 seconds",
+      "decimals": 2
+    },
+    {
+      "id": 48,
+      "section": "SECTION 6 — DOSAGE CALCULATIONS & FINAL CLINICAL JUDGMENT",
+      "prompt": "The nurse receives reports on four patients. Which patient should the nurse assess first?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "A patient with stable angina whose chest discomfort resolved with rest"
+        },
+        {
+          "id": "B",
+          "text": "A patient with right-sided heart failure who has chronic ankle edema"
+        },
+        {
+          "id": "C",
+          "text": "A patient with PAD who suddenly develops a cold, pulseless foot"
+        },
+        {
+          "id": "D",
+          "text": "A patient taking atorvastatin who requests dietary education"
+        }
+      ],
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": 49,
+      "section": "SECTION 6 — DOSAGE CALCULATIONS & FINAL CLINICAL JUDGMENT",
+      "prompt": "A nurse reviews the following clinical findings. Which require prompt nursing intervention?",
+      "type": "multiple",
+      "options": [
+        {
+          "id": "A",
+          "text": "A patient receiving heparin develops hematuria"
+        },
+        {
+          "id": "B",
+          "text": "A patient with heart failure suddenly develops pink frothy sputum"
+        },
+        {
+          "id": "C",
+          "text": "A patient taking lisinopril develops swelling of the tongue"
+        },
+        {
+          "id": "D",
+          "text": "A patient with stable angina experiences predictable discomfort that resolves with rest"
+        },
+        {
+          "id": "E",
+          "text": "A patient after vascular bypass develops an absent distal pulse"
+        },
+        {
+          "id": "F",
+          "text": "A patient with PAD reports improved walking distance after participating in a structured exercise program"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ]
+    },
+    {
+      "id": 50,
+      "section": "SECTION 6 — DOSAGE CALCULATIONS & FINAL CLINICAL JUDGMENT",
+      "prompt": "FINAL PRIORITY QUESTION — You are the nurse caring for four cardiovascular patients at the beginning of your shift.\n\nWhich patient has the highest priority for immediate assessment and intervention?",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "A patient with hypertension whose BP is 164/94 mmHg and who denies symptoms"
+        },
+        {
+          "id": "B",
+          "text": "A patient receiving warfarin whose INR is 2.5 and who has no evidence of bleeding"
+        },
+        {
+          "id": "C",
+          "text": "A patient with chronic heart failure who reports a gradual increase in ankle swelling over several days"
+        },
+        {
+          "id": "D",
+          "text": "A patient with left-sided heart failure who suddenly becomes severely short of breath, restless, and begins coughing pink frothy sputum"
+        }
+      ],
+      "answer": [
+        "D"
+      ]
+    }
+  ]
+}

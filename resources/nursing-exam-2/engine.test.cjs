@@ -1,0 +1,88 @@
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const E = require('./engine.js');
+const exam = JSON.parse(fs.readFileSync(__dirname + '/exam.json','utf8'));
+test('source exam contains all 50 questions and valid answer sets',()=>{
+ assert.equal(exam.questions.length,50);
+ assert.deepEqual(exam.questions.map(q=>q.id),Array.from({length:50},(_,i)=>i+1));
+ for(const q of exam.questions.filter(q=>q.type!=='number')) assert.ok(q.answer.every(a=>q.options.some(o=>o.id===a)));
+ assert.equal(exam.questions.filter(q=>q.type==='number').length,3);
+});
+test('SATA requires the full correct set with no extras, independent of order',()=>{
+ const q=exam.questions[1];assert.ok(E.correct(q,['F','D','B','A']));assert.ok(!E.correct(q,['A','B','D']));assert.ok(!E.correct(q,['A','B','C','D','F']));assert.ok(!E.correct(q,[]));
+});
+test('numeric scoring rejects blanks, units, unrounded values, and invalid strings',()=>{
+ assert.ok(E.correct(exam.questions[44],'24'));assert.ok(!E.correct(exam.questions[44],'23.9'));
+ for(const v of ['',' ','24 mL/hr','abc','Infinity'])assert.ok(!E.correct(exam.questions[44],v));
+ assert.ok(E.correct(exam.questions[45],'0.8'));assert.ok(E.correct(exam.questions[46],'0.25'));
+});
+test('new attempts have no deadline',()=>{assert.equal(E.create(exam,1000).deadline,undefined);});
+test('grading counts unanswered, correct, and the 80% passing threshold',()=>{
+ const a=E.create(exam,1000);assert.equal(E.grade(exam,a).score,0);assert.equal(E.grade(exam,a).unanswered,50);
+ for(const q of exam.questions)a.answers[q.id]=q.type==='number'?String(q.answer):q.answer;
+ assert.equal(E.grade(exam,a).percent,100);
+ for(let i=41;i<=50;i++)delete a.answers[i];assert.equal(E.grade(exam,a).score,40);assert.equal(E.grade(exam,a).passed,true);
+ delete a.answers[40];assert.equal(E.grade(exam,a).passed,false);
+});
+const vm = require('node:vm');
+class FakeNode {
+ constructor(tag){this.tag=tag;this.children=[];this.text='';this.events={};this.className='';this.classList={toggle(){}};}
+ set textContent(v){this.text=String(v);this.children=[];} get textContent(){return this.text+this.children.map(n=>n.textContent).join(' ');}
+ append(...items){this.children.push(...items);} replaceChildren(...items){this.text='';this.children=items;}
+ setAttribute(){} addEventListener(name,fn){this.events[name]=fn;} focus(){}
+}
+async function controller(attempt, initialNow) {
+ let now=initialNow,interval,stored=JSON.stringify(attempt);
+ const app=new FakeNode('div'),notice=new FakeNode('p');app.id='exam-app';notice.id='exam-notice';
+ function find(node,id){if(node.id===id)return node;for(const c of node.children){const f=find(c,id);if(f)return f;}return null;}
+ const document={body:{classList:{add(){},remove(){}}},querySelector(){return null;},createElement:t=>new FakeNode(t),getElementById:id=>find(app,id)||find(notice,id),addEventListener(){}};
+ const context={document,window:{NursingExam:E,addEventListener(){}},Date:{now:()=>now},localStorage:{getItem:()=>stored,setItem:(key,v)=>{stored=v;}},fetch:async()=>({ok:true,json:async()=>exam}),setInterval:fn=>{interval=fn;return 1;},clearInterval(){interval=null;},console};
+ // Engine uses the same fake wall clock as the controller.
+ context.window.NursingExam=E;
+ await vm.runInNewContext(fs.readFileSync(__dirname+'/exam.js','utf8'),context);
+ return {app, saved:()=>JSON.parse(stored), expire:()=>{now=attempt.deadline;interval();}};
+}
+test('legacy expired attempts retain answers and remain editable without a deadline',async()=>{
+ const attempt=E.create(exam,1000);attempt.deadline=3601000;attempt.answers[1]=['B'];
+ const c=await controller(attempt,9000000);
+ assert.match(c.app.textContent,/Question 1 of 50/);assert.match(c.app.textContent,/Submit exam/);
+ assert.equal(c.saved().submittedAt,null);assert.equal(c.saved().deadline,undefined);assert.deepEqual(c.saved().answers[1],['B']);
+ assert.doesNotMatch(c.app.textContent,/Time remaining|Your results/);
+});
+test('previously submitted results still display',async()=>{
+ const attempt=E.create(exam,1000);attempt.answers[1]=['B'];attempt.submittedAt=2000;attempt.reason='manual';
+ const c=await controller(attempt,9000000);assert.match(c.app.textContent,/2% — 1\/50 correct/);
+});
+
+test('Finish submits directly and Retake immediately starts a fresh attempt',async()=>{
+ const attempt=E.create(exam,1000);attempt.index=49;attempt.answers[1]=['B'];
+ const c=await controller(attempt,2000);
+ function find(node,text){if(node.tag==='button' && node.textContent===text)return node;for(const child of node.children){const found=find(child,text);if(found)return found;}}
+ find(c.app,'Finish exam').events.click();
+ assert.match(c.app.textContent,/Your results/);assert.equal(c.saved().reason,'manual');
+ find(c.app,'Retake exam').events.click();
+ assert.match(c.app.textContent,/Question 1 of 50/);assert.equal(c.saved().submittedAt,null);assert.deepEqual(c.saved().answers,{});assert.equal(c.saved().deadline,undefined);
+});
+
+test('single answers toggle off on a second click and the picker is in the toolbar',async()=>{
+ const c=await controller(E.create(exam,1000),2000);
+ function find(n,p){if(p(n))return n;for(const child of n.children){const match=find(child,p);if(match)return match;}}
+ const radio=find(c.app,n=>n.tag==='input'&&n.value==='A');
+ radio.events.click();assert.deepEqual(c.saved().answers[1],['A']);
+ radio.events.click();assert.deepEqual(c.saved().answers[1],[]);
+ assert.doesNotMatch(c.app.textContent,/Clear answer/);
+ assert.ok(find(c.app.children[0],n=>n.id==='question-jump'));
+});
+
+test('submitted results include a wrong-answer review filter',async()=>{
+ const attempt=E.create(exam,1000);attempt.answers[1]=['B'];attempt.answers[2]=['A'];attempt.submittedAt=2000;attempt.reason='manual';
+ const c=await controller(attempt,3000);
+ function find(n,p){if(p(n))return n;for(const child of n.children){const match=find(child,p);if(match)return match;}}
+ const filter=find(c.app,n=>n.id==='review-filter');
+ assert.ok(filter);assert.match(filter.textContent,/All answers/);assert.match(filter.textContent,/Wrong answers only/);
+ filter.value='wrong';filter.events.change();
+ const reviews=[];(function collect(n){if(n.className.includes('exam-review'))reviews.push(n);n.children.forEach(collect);})(c.app);
+ assert.equal(reviews.find(n=>n.className.includes('is-correct')).hidden,true);
+ assert.notEqual(reviews.find(n=>n.className.includes('is-wrong')).hidden,true);
+});
