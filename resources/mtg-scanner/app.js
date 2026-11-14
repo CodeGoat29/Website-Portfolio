@@ -109,8 +109,9 @@
   function renderDecks() {
     if (!state.decks.length) { refs.deckList.innerHTML = '<div class="deck-card"><h3>No decks yet</h3><p class="deck-meta">Add Phenax, Clavileño, or any Moxfield deck export.</p></div>'; return; }
     refs.deckList.innerHTML = state.decks.map(deck => {
-      const totals = deckTotals(deck); const imported = deck.lastSuccessfulImport ? `Last successful import ${new Date(deck.lastSuccessfulImport).toLocaleString()}` : 'Profile deck saved · add its card list once to enable matching';
-      return `<article class="deck-card" data-deck="${escapeHtml(deck.id)}"><h3>${escapeHtml(deck.name)}</h3><p class="deck-meta">${escapeHtml(imported)}</p><div class="deck-totals"><span><strong>${totals.deck}</strong>deck qty</span><span><strong>${totals.owned}</strong>owned</span><span><strong>${totals.need}</strong>needed</span></div><div class="deck-actions">${deck.url ? `<a href="${escapeHtml(deck.url)}" target="_blank" rel="noopener">Open Moxfield</a>` : ''}<button data-action="reimport">${deck.lastSuccessfulImport ? 'Refresh export' : 'Add card list'}</button><button data-action="delete">Delete</button></div></article>`;
+      const totals = deckTotals(deck); const imported = deck.lastSuccessfulImport ? `Last successful import ${new Date(deck.lastSuccessfulImport).toLocaleString()}` : 'Public Moxfield deck';
+      const totalsHtml = deck.lastSuccessfulImport ? `<div class="deck-totals"><span><strong>${totals.deck}</strong>deck qty</span><span><strong>${totals.owned}</strong>owned</span><span><strong>${totals.need}</strong>needed</span></div>` : '';
+      return `<article class="deck-card ${deck.lastSuccessfulImport ? '' : 'profile-deck'}" data-deck="${escapeHtml(deck.id)}"><h3>${escapeHtml(deck.name)}</h3><p class="deck-meta">${escapeHtml(imported)}</p>${totalsHtml}${deck.url ? `<a class="deck-view" href="${escapeHtml(deck.url)}" target="_blank" rel="noopener">View deck on Moxfield <span aria-hidden="true">→</span></a>` : ''}<div class="deck-actions"><button data-action="reimport">${deck.lastSuccessfulImport ? 'Refresh card list' : 'Enable card matching'}</button>${deck.profileUrl ? '' : '<button data-action="delete">Delete</button>'}</div></article>`;
     }).join('');
   }
   function renderWanted() {
@@ -143,7 +144,7 @@
     const parsed = C.parseDeckExport(sourceText, options, catalogLookup, catalogEntries);
     if (!parsed.recognizedCount) { reportImport({ message: 'No cards were imported. The last good deck, counts, and timestamp were preserved.', unrecognized: parsed.unrecognized }, true); return; }
     const existing = state.decks.find(deck => deck.id === editingDeckId);
-    const deck = { id: existing?.id || crypto.randomUUID(), name, url, sourceText, includeSideboard: options.sideboard, includeMaybeboard: options.maybeboard, lastSuccessfulImport: new Date().toISOString(), cards: C.mergeDeckCards(existing?.cards || [], parsed.cards) };
+    const deck = { id: existing?.id || crypto.randomUUID(), name, url, profileUrl: existing?.profileUrl || null, profileSeed: Boolean(existing?.profileSeed), sourceText, includeSideboard: options.sideboard, includeMaybeboard: options.maybeboard, lastSuccessfulImport: new Date().toISOString(), cards: C.mergeDeckCards(existing?.cards || [], parsed.cards) };
     if (existing) state.decks[state.decks.indexOf(existing)] = deck; else state.decks.push(deck);
     saveState(); renderAll(); reportImport({ message: `Imported ${parsed.recognizedCount} card copies. `, unrecognized: parsed.unrecognized });
     if (!parsed.unrecognized.length) setTimeout(closeDeckForm, 500);
@@ -232,7 +233,7 @@
     try {
       audioContext ||= new (window.AudioContext || window.webkitAudioContext)(); await audioContext.resume();
       if (!stream) {
-        stream = await navigator.mediaDevices.getUserMedia({ audio: false, video: { facingMode: { ideal: 'environment' }, width: { ideal: 1920 }, height: { ideal: 1080 } } });
+        stream = await navigator.mediaDevices.getUserMedia({ audio: false, video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 }, height: { ideal: 720 } } });
         refs.camera.srcObject = stream; await refs.camera.play(); refs.cameraStage.classList.add('streaming');
         stream.getVideoTracks()[0].addEventListener('ended', () => stopCamera('Camera stopped by Safari. Tap Open camera to resume.'));
       }
@@ -259,7 +260,7 @@
     const cardWidth = guideRect.width / scale; const cardHeight = guideRect.height / scale;
     const region = kind === 'footer' ? { x: .05, y: .86, w: .9, h: .11 } : { x: .055, y: .035, w: .89, h: .105 };
     const source = { x: cardX + cardWidth * region.x, y: cardY + cardHeight * region.y, w: cardWidth * region.w, h: cardHeight * region.h };
-    const canvas = refs.canvas; canvas.width = 760; canvas.height = Math.max(90, Math.round(canvas.width * source.h / source.w));
+    const canvas = refs.canvas; canvas.width = 480; canvas.height = Math.max(72, Math.round(canvas.width * source.h / source.w));
     const context = canvas.getContext('2d', { willReadFrequently: true }); context.drawImage(video, source.x, source.y, source.w, source.h, 0, 0, canvas.width, canvas.height);
     const image = context.getImageData(0, 0, canvas.width, canvas.height); const pixels = image.data;
     for (let index = 0; index < pixels.length; index += 4) { const gray = pixels[index] * .299 + pixels[index + 1] * .587 + pixels[index + 2] * .114; const value = Math.max(0, Math.min(255, (gray - 128) * 1.65 + 128)); pixels[index] = pixels[index + 1] = pixels[index + 2] = value; }
@@ -349,9 +350,9 @@
   document.addEventListener('visibilitychange', () => { if (document.hidden && stream) stopCamera('Camera paused by Safari. Tap Open camera to resume.'); });
   window.addEventListener('pagehide', () => { stream?.getTracks().forEach(track => track.stop()); worker?.terminate(); });
 
-  renderAll();
+  seedProfileDecks(); renderAll();
   try {
-    await loadCatalog(); seedProfileDecks(); renderAll();
+    await loadCatalog(); renderAll();
     const warmOcr = () => ensureWorker(true).catch(() => { /* Manual search remains available if OCR cannot preload. */ });
     if ('requestIdleCallback' in window) requestIdleCallback(warmOcr, { timeout: 1500 }); else setTimeout(warmOcr, 400);
   } catch (error) { setStatus(`${error.message} Manual scanning and deck matching need the catalog; retry in Settings.`); }
