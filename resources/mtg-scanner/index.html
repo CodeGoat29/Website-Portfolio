@@ -7,76 +7,50 @@
     <title>MTG Bulk Scanner | DiPiazza</title>
     <link rel="icon" type="image/png" href="/images/dipiazza-logo-20260925.png">
     <link rel="stylesheet" href="/css/styles.css?v=server-logo-20260921">
-    <link rel="stylesheet" href="/resources/mtg-scanner/scanner.css?v=5">
+    <link rel="stylesheet" href="/resources/mtg-scanner/scanner.css?v=6">
 </head>
 <body class="scanner-body">
     <a class="skip-link" href="#scanner-main">Skip to scanner</a>
     <header class="scanner-header">
         <a href="/resources/" class="scanner-back" aria-label="Back to Resources">←</a>
-        <div>
-            <p class="scanner-kicker">DIPIAZZA TOOLS</p>
-            <h1>MTG Bulk Scanner</h1>
-        </div>
-        <label class="compact-toggle" title="Dark mode">
-            <span class="visually-hidden">Dark mode</span>
-            <input type="checkbox" id="darkModeToggle">
-            <span aria-hidden="true"></span>
-        </label>
+        <div><p class="scanner-kicker">DIPIAZZA TOOLS</p><h1>MTG Bulk Scanner</h1></div>
+        <label class="compact-toggle" title="Dark mode"><span class="visually-hidden">Dark mode</span><input type="checkbox" id="darkModeToggle"><span aria-hidden="true"></span></label>
     </header>
 
     <main id="scanner-main" class="scanner-shell">
-        <div class="local-note" role="note">
-            <strong>On-device workspace.</strong> Decks and counts stay in this browser. Camera frames are processed on your device and are never uploaded.
-        </div>
+        <div class="local-note" role="note"><strong>Your Moxfield decks are built in.</strong> Card-name OCR runs on this device and camera frames are never uploaded.</div>
 
         <nav class="scanner-tabs" aria-label="Scanner sections">
             <button type="button" class="active" data-tab="scan">Scan</button>
-            <button type="button" data-tab="decks">Decks <span id="deck-count">0</span></button>
-            <button type="button" data-tab="wanted">Wanted <span id="wanted-count">0</span></button>
+            <button type="button" data-tab="decks">Decks <span id="deck-count">7</span></button>
             <button type="button" data-tab="settings">Settings</button>
         </nav>
 
-        <p id="app-status" class="app-status" role="status">Loading the local Scryfall catalog…</p>
+        <p id="app-status" class="app-status" role="status">Loading the Scryfall catalog…</p>
 
         <section class="tab-panel active" data-panel="scan" aria-labelledby="scan-title">
-            <div class="scan-heading">
-                <div><p class="eyebrow">FAST SCAN</p><h2 id="scan-title">Tap to scan a card</h2></div>
-                <span id="scan-state" class="status-pill">Camera off</span>
-            </div>
+            <div class="scan-heading"><div><p class="eyebrow">CONTINUOUS SCAN</p><h2 id="scan-title">Flip through cards hands-free</h2></div><span id="scan-state" class="status-pill">Camera off</span></div>
 
             <div class="camera-stage" id="camera-stage">
                 <video id="camera" playsinline muted aria-label="Rear camera preview"></video>
                 <div class="card-guide" aria-hidden="true"><span>Align card here</span><i></i></div>
-                <div class="camera-message" id="camera-message">Open the camera, align a card, then tap Scan card.</div>
-                <div id="scan-alert" class="scan-alert" hidden role="alert">
-                    <span id="scan-alert-label"></span>
-                    <strong id="scan-alert-name"></strong>
-                    <small id="scan-alert-detail"></small>
-                </div>
-                <div id="camera-recognition" class="camera-recognition" hidden>
-                    <span>RECOGNIZED</span>
-                    <strong id="camera-card-name"></strong>
-                    <small id="camera-card-meta"></small>
-                </div>
+                <div class="camera-message" id="camera-message">Tap Start scanning once, then hold cards inside the guide.</div>
+                <div id="scan-alert" class="scan-alert" hidden role="alert"><span id="scan-alert-label"></span><strong id="scan-alert-name"></strong><small id="scan-alert-detail"></small></div>
+                <div id="camera-recognition" class="camera-recognition" hidden><span>RECOGNIZED</span><strong id="camera-card-name"></strong><small id="camera-card-meta"></small></div>
                 <section id="ambiguous" class="camera-candidates" hidden aria-labelledby="ambiguous-title">
-                    <div class="camera-candidates-heading">
-                        <div><span>POSSIBLE MATCHES</span><strong id="ambiguous-title">Tap the correct card</strong></div>
-                        <button type="button" id="dismiss-candidates" aria-label="Dismiss possible matches">×</button>
-                    </div>
+                    <div class="camera-candidates-heading"><div><span>POSSIBLE MATCHES</span><strong id="ambiguous-title">Tap the correct card</strong></div><button type="button" id="dismiss-candidates" aria-label="Dismiss possible matches">×</button></div>
                     <div id="candidate-list" class="candidate-list"></div>
                 </section>
                 <canvas id="ocr-canvas" hidden></canvas>
             </div>
             <div class="camera-controls">
-                <button type="button" id="start-scan" class="secondary">Open camera</button>
-                <button type="button" id="scan-card" class="primary" disabled>Scan card</button>
+                <button type="button" id="start-scan" class="primary">Start scanning</button>
+                <button type="button" id="pause-scan" class="secondary" disabled>Pause</button>
                 <button type="button" id="stop-scan" class="secondary" disabled>Stop</button>
             </div>
-            <p class="scan-tip">Hold the card upright in the guide and tap <strong>Scan card</strong>. The camera stays open for the next one. <span id="scan-speed">OCR timing appears after the first scan.</span></p>
+            <p class="scan-tip">The camera reads one card at a time and keeps the result visible while you move to the next card. <span id="scan-speed">OCR timing appears after the first read.</span></p>
 
-            <section id="scan-result" class="scan-result empty" aria-live="polite">
-                <div class="empty-result"><span>✦</span><h3>Ready for a card</h3><p>Results stay here until the next card is recognized.</p></div>
-            </section>
+            <section id="scan-result" class="scan-result empty" aria-live="polite"><div class="empty-result"><span>✦</span><h3>Ready for a card</h3><p>Deck matches and price estimates appear here.</p></div></section>
 
             <form id="manual-search" class="manual-search" role="search">
                 <label for="card-search">Manual card search</label>
@@ -86,29 +60,9 @@
         </section>
 
         <section class="tab-panel" data-panel="decks" aria-labelledby="decks-title" hidden>
-            <div class="section-heading"><div><p class="eyebrow">MOXFIELD PROFILE</p><h2 id="decks-title">codegoat29 decks</h2></div><button type="button" id="new-deck" class="primary small">Add deck</button></div>
-            <p class="section-copy">All public decks from <a href="https://moxfield.com/users/codegoat29" target="_blank" rel="noopener">your Moxfield profile</a> are ready to view below. Add a text export only when you want that deck included in card-need matching.</p>
+            <div class="section-heading"><div><p class="eyebrow">MOXFIELD PROFILE</p><h2 id="decks-title">codegoat29 decks</h2></div></div>
+            <p class="section-copy">These are the seven public decks on <a href="https://moxfield.com/users/codegoat29" target="_blank" rel="noopener">your Moxfield profile</a>. Open a card list to browse mainboard cards by color and rarity, with sideboard and considering cards kept separate.</p>
             <div id="deck-list" class="deck-list"></div>
-
-            <form id="deck-form" class="deck-form" hidden>
-                <div class="form-heading"><h3 id="deck-form-title">Import a deck</h3><button type="button" id="close-deck-form" aria-label="Close import form">×</button></div>
-                <label for="deck-url">Moxfield deck URL <span>preferred</span></label>
-                <input id="deck-url" type="url" inputmode="url" placeholder="https://www.moxfield.com/decks/…">
-                <label for="deck-name">Deck name</label>
-                <input id="deck-name" required placeholder="Phenax">
-                <label for="deck-export">Moxfield text export</label>
-                <textarea id="deck-export" rows="9" required placeholder="Commander&#10;1 Phenax, God of Deception&#10;&#10;Deck&#10;1 Counterspell (DMR) 45"></textarea>
-                <label class="file-button" for="deck-file">Or choose an export file</label><input id="deck-file" type="file" accept=".txt,text/plain">
-                <fieldset><legend>Boards to import</legend><label><input type="checkbox" checked disabled> Commander + mainboard</label><label><input id="include-sideboard" type="checkbox"> Sideboard</label><label><input id="include-maybeboard" type="checkbox"> Maybeboard</label></fieldset>
-                <div class="form-actions"><button type="submit" class="primary">Save import</button><button type="button" id="cancel-deck" class="secondary">Cancel</button></div>
-                <div id="import-report" class="import-report" role="status"></div>
-            </form>
-        </section>
-
-        <section class="tab-panel" data-panel="wanted" aria-labelledby="wanted-title" hidden>
-            <div class="section-heading"><div><p class="eyebrow">SHOPPING VIEW</p><h2 id="wanted-title">Cards still needed</h2></div></div>
-            <p class="section-copy">Deck quantity, owned quantity, and remaining need are tracked separately for each deck.</p>
-            <div id="wanted-list" class="wanted-list"></div>
         </section>
 
         <section class="tab-panel" data-panel="settings" aria-labelledby="settings-title" hidden>
@@ -116,21 +70,10 @@
             <div class="settings-card">
                 <label for="value-threshold">USD value alert threshold</label>
                 <div class="money-input"><span>$</span><input id="value-threshold" type="number" min="0" step="1" value="2"></div>
-                <label class="switch-row"><span><strong>Deck-need sound</strong><small>One short tone when the card is still needed.</small></span><input id="need-sound" type="checkbox" checked></label>
-                <label class="switch-row"><span><strong>Value sound</strong><small>Chimes when the exact printing, or every possible printing, clears the threshold.</small></span><input id="value-sound" type="checkbox" checked></label>
-                <label class="switch-row"><span><strong>Try printing OCR</strong><small>Reads the footer after the name; slower and less reliable.</small></span><input id="printing-ocr" type="checkbox" checked></label>
+                <label class="switch-row"><span><strong>Deck-match sound</strong><small>One short tone when a recognized card appears in any bundled deck list.</small></span><input id="need-sound" type="checkbox" checked></label>
+                <label class="switch-row"><span><strong>Value sound</strong><small>Chimes when every possible printing clears the threshold.</small></span><input id="value-sound" type="checkbox" checked></label>
             </div>
-            <div class="settings-card">
-                <h3>Card catalog</h3>
-                <p id="catalog-details">Loading…</p>
-                <button type="button" id="refresh-catalog" class="secondary">Reload bundled catalog</button>
-            </div>
-            <div class="settings-card danger-zone">
-                <h3>Local data</h3><p>Decks and owned counts are specific to this browser. They will not appear automatically on another phone.</p>
-                <button type="button" id="export-data" class="secondary">Export backup</button>
-                <label class="file-button" for="restore-data">Restore backup</label><input id="restore-data" type="file" accept="application/json,.json">
-                <button type="button" id="clear-data" class="danger">Clear scanner data</button>
-            </div>
+            <div class="settings-card"><h3>Card catalog</h3><p id="catalog-details">Loading…</p></div>
         </section>
     </main>
 
@@ -138,7 +81,8 @@
 
     <script src="/js/site.js"></script>
     <script src="/resources/mtg-scanner/core.js?v=3"></script>
+    <script src="/resources/mtg-scanner/profile-decks.js?v=1"></script>
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@7.0.0/dist/tesseract.min.js" crossorigin="anonymous"></script>
-    <script src="/resources/mtg-scanner/app.js?v=6"></script>
+    <script src="/resources/mtg-scanner/app.js?v=7"></script>
 </body>
 </html>
