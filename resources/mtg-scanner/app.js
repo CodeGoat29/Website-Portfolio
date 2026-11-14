@@ -12,12 +12,14 @@
   let state = loadState();
   let catalog = null; let catalogEntries = []; let catalogLookup = new Map();
   let stream = null; let worker = null; let scanning = false; let paused = false; let scanLoopPromise = null;
-  let editingDeckId = null; let readStreak = { key: '', count: 0 }; let resultCard = null; let exactPrinting = null; let resultAlerted = { need: false, value: false };
-  let audioContext = null; const latch = C.createScanLatch(1500);
+  let editingDeckId = null; let resultCard = null; let exactPrinting = null; let resultAlerted = { need: false, value: false };
+  let ambiguityShownAt = 0; let ambiguityDismissedUntil = 0;
+  let audioContext = null; const latch = C.createScanLatch(1500); const recognitionGate = C.createRecognitionGate();
 
   const refs = {
     status: $('#app-status'), scanState: $('#scan-state'), camera: $('#camera'), cameraStage: $('#camera-stage'), cameraMessage: $('#camera-message'), canvas: $('#ocr-canvas'),
     start: $('#start-scan'), pause: $('#pause-scan'), stop: $('#stop-scan'), speed: $('#scan-speed'), result: $('#scan-result'), ambiguous: $('#ambiguous'), candidates: $('#candidate-list'),
+    cameraRecognition: $('#camera-recognition'), cameraName: $('#camera-card-name'), cameraMeta: $('#camera-card-meta'),
     searchForm: $('#manual-search'), searchInput: $('#card-search'), searchResults: $('#search-results'), deckList: $('#deck-list'), wantedList: $('#wanted-list'),
     deckForm: $('#deck-form'), deckName: $('#deck-name'), deckUrl: $('#deck-url'), deckExport: $('#deck-export'), importReport: $('#import-report')
   };
@@ -134,6 +136,8 @@
     resultCard = card; exactPrinting = selectedPrinting;
     const needs = C.deckNeeds(card, state.decks); const needed = needs.filter(match => match.needed > 0);
     const foil = Boolean($('#foil-toggle')?.checked); const summary = C.priceSummary(card, foil); const exactPrice = printingPrice(selectedPrinting, foil);
+    refs.cameraRecognition.hidden = false; refs.cameraName.textContent = card.n;
+    refs.cameraMeta.textContent = needed.length ? `Needed for ${needed.map(match => match.deckName).join(' + ')}` : 'Not currently needed by an imported deck';
     let priceHtml;
     if (selectedPrinting) priceHtml = `<span class="price-value">${money(exactPrice)}</span><small>Exact printing · ${escapeHtml(selectedPrinting[0].toUpperCase())} #${escapeHtml(selectedPrinting[1])}</small>`;
     else if (!summary.available) priceHtml = '<span class="price-value">Price unavailable</span><small>No USD price from Scryfall.</small>';
@@ -152,7 +156,7 @@
     if (!resultAlerted.value && state.settings.valueSound && Number.isFinite(value) && value >= state.settings.threshold) { beep(980, .09, 0); beep(1180, .12, .11); resultAlerted.value = true; }
   }
   function registerCard(card, printing = null) {
-    resultAlerted = { need: false, value: false }; renderResult(card, printing); refs.ambiguous.hidden = true;
+    resultAlerted = { need: false, value: false }; renderResult(card, printing); hideCandidates(); recognitionGate.reset();
   }
 
   function beep(frequency, duration, delay = 0) {
@@ -197,7 +201,7 @@
   }
   function stopCamera(message = 'Camera stopped.') {
     scanning = false; paused = false; stream?.getTracks().forEach(track => track.stop()); stream = null; refs.camera.srcObject = null; refs.cameraStage.classList.remove('streaming'); refs.cameraMessage.textContent = message;
-    refs.start.disabled = false; refs.pause.disabled = true; refs.stop.disabled = true; refs.pause.textContent = 'Pause'; setScanState('Camera off');
+    refs.start.disabled = false; refs.pause.disabled = true; refs.stop.disabled = true; refs.pause.textContent = 'Pause'; setScanState('Camera off'); hideCandidates(); recognitionGate.reset();
   }
 
   function cropFrame(kind) {
@@ -209,7 +213,7 @@
     const offsetX = (video.videoWidth - visibleWidth) / 2; const offsetY = (video.videoHeight - visibleHeight) / 2;
     const cardX = offsetX + (guideRect.left - stageRect.left) / scale; const cardY = offsetY + (guideRect.top - stageRect.top) / scale;
     const cardWidth = guideRect.width / scale; const cardHeight = guideRect.height / scale;
-    const region = kind === 'footer' ? { x: .05, y: .86, w: .9, h: .11 } : { x: .06, y: .055, w: .88, h: .13 };
+    const region = kind === 'footer' ? { x: .05, y: .86, w: .9, h: .11 } : { x: .055, y: .035, w: .89, h: .105 };
     const source = { x: cardX + cardWidth * region.x, y: cardY + cardHeight * region.y, w: cardWidth * region.w, h: cardHeight * region.h };
     const canvas = refs.canvas; canvas.width = 1200; canvas.height = Math.max(120, Math.round(canvas.width * source.h / source.w));
     const context = canvas.getContext('2d', { willReadFrequently: true }); context.drawImage(video, source.x, source.y, source.w, source.h, 0, 0, canvas.width, canvas.height);
@@ -232,10 +236,11 @@
         refs.speed.textContent = `Last name read: ${readSeconds.toFixed(1)}s on this device.`;
         if (!scanning) break;
         const candidates = C.findCandidates(read.text, catalogEntries, 4); const best = candidates[0]; const margin = best && candidates[1] ? best.score - candidates[1].score : 1;
-        if (best && read.confidence >= 32 && best.score >= .62) {
-          const key = best.entry.o; readStreak = readStreak.key === key ? { key, count: readStreak.count + 1 } : { key, count: 1 };
-          const decisive = (best.score >= .94 && read.confidence >= 60) || (readStreak.count >= 2 && (best.score >= .72 || margin >= .12));
+        const plausible = best && read.confidence >= 24 && best.score >= .5;
+        const decisive = recognitionGate.observe(plausible ? { key: best.entry.o, score: best.score, confidence: read.confidence, margin } : null);
+        if (plausible) {
           if (decisive) {
+            const key = best.entry.o;
             const isNew = latch.observe(key, Date.now());
             if (isNew) {
               registerCard(best.entry); setStatus(`${best.entry.n} · ${readSeconds.toFixed(1)}s · OCR ${Math.round(read.confidence)}% · match ${Math.round(best.score * 100)}%`);
@@ -244,11 +249,10 @@
                 if (latch.current() === token) { const printing = resolvePrinting(best.entry, footer.text); if (printing) renderResult(best.entry, printing); }
               }
             }
-            refs.ambiguous.hidden = true;
-          } else if (readStreak.count >= 2) showCandidates(candidates, read.text);
+            hideCandidates();
+          } else if (recognitionGate.count() >= 3) showCandidates(candidates, read.text);
         } else {
-          readStreak = { key: '', count: 0 }; latch.observe(null, Date.now());
-          if (best && best.score >= .48) showCandidates(candidates, read.text);
+          latch.observe(null, Date.now());
         }
         setScanState('Scanning', 'live'); await wait(220);
       }
@@ -262,9 +266,19 @@
     const collectorMatches = card.p.filter(printing => String(printing[1]).length >= 2 && compact.split(' ').includes(C.normalizeName(printing[1])));
     return collectorMatches.length === 1 ? collectorMatches[0] : null;
   }
+  function hideCandidates(suppress = false) {
+    refs.ambiguous.hidden = true; refs.candidates.innerHTML = ''; refs.candidates.dataset.cards = '[]'; ambiguityShownAt = 0;
+    if (suppress) ambiguityDismissedUntil = Date.now() + 3000;
+  }
   function showCandidates(candidates, raw) {
-    refs.ambiguous.hidden = false; refs.candidates.innerHTML = candidates.map((candidate, index) => `<button type="button" data-candidate="${index}">${escapeHtml(candidate.entry.n)} <small>${Math.round(candidate.score * 100)}%</small></button>`).join('');
-    refs.candidates.dataset.cards = JSON.stringify(candidates.map(candidate => candidate.entry.o)); setStatus(`Ambiguous read: “${raw || 'no clear text'}”. Tap the correct card.`);
+    const now = Date.now(); if (now < ambiguityDismissedUntil || !candidates.length) return;
+    const ids = candidates.slice(0, 3).map(candidate => candidate.entry.o);
+    const shown = JSON.parse(refs.candidates.dataset.cards || '[]');
+    if (!refs.ambiguous.hidden && shown.includes(ids[0])) return;
+    if (!refs.ambiguous.hidden && now - ambiguityShownAt < 2500) return;
+    refs.ambiguous.hidden = false; ambiguityShownAt = now;
+    refs.candidates.innerHTML = candidates.slice(0, 3).map((candidate, index) => `<button type="button" data-candidate="${index}"><strong>${escapeHtml(candidate.entry.n)}</strong><small>Match ${Math.round(candidate.score * 100)}%</small></button>`).join('');
+    refs.candidates.dataset.cards = JSON.stringify(ids); setStatus(`Possible match from “${raw || 'unclear text'}”. Hold still or tap the correct card.`);
   }
 
   function searchCards(query) {
@@ -288,6 +302,7 @@
   refs.wantedList.addEventListener('click', event => { if (!event.target.dataset.adjust) return; const article = event.target.closest('[data-deck]'); adjustDeckCard(article.dataset.deck, article.dataset.card, event.target.dataset.adjust, Number(event.target.dataset.delta)); });
   refs.result.addEventListener('click', event => { const action = event.target.dataset.resultAction; if (!action || !resultCard) return; const key = resultCard.o || C.normalizeName(resultCard.n); adjustDeckCard(event.target.dataset.deck, key, action, 1); });
   refs.candidates.addEventListener('click', event => { const index = event.target.closest('[data-candidate]')?.dataset.candidate; if (index === undefined) return; const ids = JSON.parse(refs.candidates.dataset.cards); const card = catalogEntries.find(item => item.o === ids[Number(index)]); if (card) registerCard(card); });
+  $('#dismiss-candidates').addEventListener('click', () => { hideCandidates(true); recognitionGate.reset(); });
   refs.searchForm.addEventListener('submit', event => { event.preventDefault(); renderSearchResults(refs.searchInput.value); }); refs.searchInput.addEventListener('input', () => { if (refs.searchInput.value.trim().length >= 3) renderSearchResults(refs.searchInput.value); else refs.searchResults.innerHTML = ''; });
   refs.searchResults.addEventListener('click', event => { const index = event.target.closest('[data-search-result]')?.dataset.searchResult; if (index === undefined) return; const ids = JSON.parse(refs.searchResults.dataset.cards); const card = catalogEntries.find(item => item.o === ids[Number(index)]); if (card) { registerCard(card); refs.searchResults.innerHTML = ''; refs.searchInput.value = card.n; } });
   $('#value-threshold').value = state.settings.threshold; $('#need-sound').checked = state.settings.needSound; $('#value-sound').checked = state.settings.valueSound; $('#printing-ocr').checked = state.settings.printingOcr;

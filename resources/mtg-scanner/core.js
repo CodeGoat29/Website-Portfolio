@@ -121,5 +121,22 @@
     };
   }
 
-  return { normalizeName, similarity, findCandidates, parseCardLine, parseDeckExport, mergeDeckCards, deckNeeds, priceSummary, createScanLatch };
+  function createRecognitionGate() {
+    let activeKey = ''; let reads = 0;
+    return {
+      observe(candidate) {
+        if (!candidate?.key) { activeKey = ''; reads = 0; return false; }
+        if (candidate.key === activeKey) reads += 1;
+        else { activeKey = candidate.key; reads = 1; }
+        const quickMatch = candidate.score >= 0.94 && candidate.confidence >= 72 && candidate.margin >= 0.1;
+        const repeatedMatch = candidate.score >= 0.74 && candidate.confidence >= 42 && candidate.margin >= 0.08;
+        return (quickMatch && reads >= 2) || (repeatedMatch && reads >= 3);
+      },
+      count() { return reads; },
+      key() { return activeKey; },
+      reset() { activeKey = ''; reads = 0; }
+    };
+  }
+
+  return { normalizeName, similarity, findCandidates, parseCardLine, parseDeckExport, mergeDeckCards, deckNeeds, priceSummary, createScanLatch, createRecognitionGate };
 });

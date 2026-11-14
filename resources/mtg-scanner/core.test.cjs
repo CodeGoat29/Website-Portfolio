@@ -43,6 +43,17 @@ test('held cards alert once and the same name can register after leaving', () =>
   assert.equal(latch.observe('Counterspell', 2200), true);
 });
 
+test('recognition requires repeated agreement and resets when the guess changes', () => {
+  const gate = C.createRecognitionGate();
+  const strong = { key: 'counterspell', score: .96, confidence: 80, margin: .2 };
+  assert.equal(gate.observe(strong), false);
+  assert.equal(gate.observe(strong), true);
+  assert.equal(gate.observe({ key: 'sol-ring', score: .83, confidence: 61, margin: .14 }), false);
+  assert.equal(gate.count(), 1);
+  assert.equal(gate.observe(null), false);
+  assert.equal(gate.count(), 0);
+});
+
 test('price ranges respect foil mode and unavailable values', () => {
   const card = { p: [['a', '1', 1, 9], ['b', '2', 3, 7], ['c', '3', null, null]] };
   assert.deepEqual(C.priceSummary(card, false), { available: true, min: 1, max: 3 });

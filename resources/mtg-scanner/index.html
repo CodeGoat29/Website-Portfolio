@@ -7,7 +7,7 @@
     <title>MTG Bulk Scanner | DiPiazza</title>
     <link rel="icon" type="image/png" href="/images/dipiazza-logo-20260925.png">
     <link rel="stylesheet" href="/css/styles.css?v=server-logo-20260921">
-    <link rel="stylesheet" href="/resources/mtg-scanner/scanner.css?v=1">
+    <link rel="stylesheet" href="/resources/mtg-scanner/scanner.css?v=2">
 </head>
 <body class="scanner-body">
     <a class="skip-link" href="#scanner-main">Skip to scanner</a>
@@ -48,6 +48,18 @@
                 <video id="camera" playsinline muted aria-label="Rear camera preview"></video>
                 <div class="card-guide" aria-hidden="true"><span>Align card here</span><i></i></div>
                 <div class="camera-message" id="camera-message">Tap Start scanning to use the rear camera.</div>
+                <div id="camera-recognition" class="camera-recognition" hidden>
+                    <span>RECOGNIZED</span>
+                    <strong id="camera-card-name"></strong>
+                    <small id="camera-card-meta"></small>
+                </div>
+                <section id="ambiguous" class="camera-candidates" hidden aria-labelledby="ambiguous-title">
+                    <div class="camera-candidates-heading">
+                        <div><span>POSSIBLE MATCHES</span><strong id="ambiguous-title">Tap the correct card</strong></div>
+                        <button type="button" id="dismiss-candidates" aria-label="Dismiss possible matches">×</button>
+                    </div>
+                    <div id="candidate-list" class="candidate-list"></div>
+                </section>
                 <canvas id="ocr-canvas" hidden></canvas>
             </div>
             <div class="camera-controls">
@@ -56,11 +68,6 @@
                 <button type="button" id="stop-scan" class="secondary" disabled>Stop</button>
             </div>
             <p class="scan-tip">Keep the card upright and fill the guide. Hold it still until the name appears, then flip to the next card. <span id="scan-speed">OCR timing appears after the first read.</span></p>
-
-            <section id="ambiguous" class="ambiguous" hidden aria-labelledby="ambiguous-title">
-                <h3 id="ambiguous-title">Which card is this?</h3>
-                <div id="candidate-list" class="candidate-list"></div>
-            </section>
 
             <section id="scan-result" class="scan-result empty" aria-live="polite">
                 <div class="empty-result"><span>✦</span><h3>Ready for a card</h3><p>Results stay here until the next card is recognized.</p></div>
@@ -125,8 +132,8 @@
     <footer class="scanner-footer"><a href="/resources/">← Back to Resources</a><p>Card identity and prices from Scryfall. Prices are estimates, not offers.</p></footer>
 
     <script src="/js/site.js"></script>
-    <script src="/resources/mtg-scanner/core.js?v=1"></script>
+    <script src="/resources/mtg-scanner/core.js?v=2"></script>
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@7.0.0/dist/tesseract.min.js" crossorigin="anonymous"></script>
-    <script src="/resources/mtg-scanner/app.js?v=2"></script>
+    <script src="/resources/mtg-scanner/app.js?v=3"></script>
 </body>
 </html>
