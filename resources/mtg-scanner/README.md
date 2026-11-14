@@ -11,7 +11,7 @@ The public scanner lives at `/resources/mtg-scanner/`. It is a static, mobile-fi
 
 ## Deck imports
 
-Moxfield does not publish a supported public deck-fetch API, and its terms prohibit automated scraping. The scanner saves a Moxfield URL for reference and imports the site's text export. Commander and mainboard are included by default; sideboard and maybeboard are optional. A failed re-import preserves the last successful import and all owned counts.
+Moxfield does not publish a supported public deck-fetch API, and its terms prohibit automated scraping. The scanner starts with links to the public decks on the `codegoat29` profile and imports a deck's text export for card matching. Commander and mainboard are included by default; sideboard and maybeboard are optional. A failed re-import preserves the last successful import and all owned counts.
 
 ## Card catalog
 
@@ -29,6 +29,6 @@ node --check resources/mtg-scanner/core.js
 node --check resources/mtg-scanner/app.js
 ```
 
-The automated checks cover common Moxfield export lines, optional boards, unrecognized lines, count preservation, alternate-printing identity matches across two decks, one alert per held card, re-registering the same card after it leaves the frame, and foil/nonfoil price handling.
+The automated checks cover common Moxfield export lines, optional boards, unrecognized lines, count preservation, alternate-printing identity matches across two decks, scan-latch behavior retained in the core library, and foil/nonfoil price handling.
 
-Camera OCR speed depends on the iPhone model and lighting. The scanner displays the last name-read time while running so field performance can be measured on the actual phone. Glare, foil surfaces, stylized title text, cards held at an angle, split or double-faced names, and low light are the main expected misread sources. Printing-footer OCR is optional because it is slower and less reliable than card-name recognition.
+Camera OCR runs once per tap and leaves the camera open between cards. Speed depends on the iPhone model and lighting, so the scanner displays the last scan time for field measurement. Glare, foil surfaces, stylized title text, cards held at an angle, split or double-faced names, and low light are the main expected misread sources. Printing-footer OCR is optional because it is slower and less reliable than card-name recognition.

@@ -7,7 +7,7 @@
     <title>MTG Bulk Scanner | DiPiazza</title>
     <link rel="icon" type="image/png" href="/images/dipiazza-logo-20260925.png">
     <link rel="stylesheet" href="/css/styles.css?v=server-logo-20260921">
-    <link rel="stylesheet" href="/resources/mtg-scanner/scanner.css?v=3">
+    <link rel="stylesheet" href="/resources/mtg-scanner/scanner.css?v=4">
 </head>
 <body class="scanner-body">
     <a class="skip-link" href="#scanner-main">Skip to scanner</a>
@@ -40,14 +40,19 @@
 
         <section class="tab-panel active" data-panel="scan" aria-labelledby="scan-title">
             <div class="scan-heading">
-                <div><p class="eyebrow">FAST SCAN</p><h2 id="scan-title">Scan cards continuously</h2></div>
+                <div><p class="eyebrow">FAST SCAN</p><h2 id="scan-title">Tap to scan a card</h2></div>
                 <span id="scan-state" class="status-pill">Camera off</span>
             </div>
 
             <div class="camera-stage" id="camera-stage">
                 <video id="camera" playsinline muted aria-label="Rear camera preview"></video>
                 <div class="card-guide" aria-hidden="true"><span>Align card here</span><i></i></div>
-                <div class="camera-message" id="camera-message">Tap Start once, then hold each card inside the guide.</div>
+                <div class="camera-message" id="camera-message">Open the camera, align a card, then tap Scan card.</div>
+                <div id="scan-alert" class="scan-alert" hidden role="alert">
+                    <span id="scan-alert-label"></span>
+                    <strong id="scan-alert-name"></strong>
+                    <small id="scan-alert-detail"></small>
+                </div>
                 <div id="camera-recognition" class="camera-recognition" hidden>
                     <span>RECOGNIZED</span>
                     <strong id="camera-card-name"></strong>
@@ -63,11 +68,11 @@
                 <canvas id="ocr-canvas" hidden></canvas>
             </div>
             <div class="camera-controls">
-                <button type="button" id="start-scan" class="primary">Start scanning</button>
-                <button type="button" id="pause-scan" class="secondary" disabled>Pause</button>
+                <button type="button" id="start-scan" class="secondary">Open camera</button>
+                <button type="button" id="scan-card" class="primary" disabled>Scan card</button>
                 <button type="button" id="stop-scan" class="secondary" disabled>Stop</button>
             </div>
-            <p class="scan-tip">Hold the card upright until its name appears, then move straight to the next card. <span id="scan-speed">OCR timing appears after the first read.</span></p>
+            <p class="scan-tip">Hold the card upright in the guide and tap <strong>Scan card</strong>. The camera stays open for the next one. <span id="scan-speed">OCR timing appears after the first scan.</span></p>
 
             <section id="scan-result" class="scan-result empty" aria-live="polite">
                 <div class="empty-result"><span>✦</span><h3>Ready for a card</h3><p>Results stay here until the next card is recognized.</p></div>
@@ -82,7 +87,7 @@
 
         <section class="tab-panel" data-panel="decks" aria-labelledby="decks-title" hidden>
             <div class="section-heading"><div><p class="eyebrow">MOXFIELD EXPORTS</p><h2 id="decks-title">Your decks</h2></div><button type="button" id="new-deck" class="primary small">Add deck</button></div>
-            <p class="section-copy">Paste the Moxfield URL first, then paste or upload its text export. Moxfield does not publish a supported deck-fetch API, so the URL is saved for reference and refreshes use a new export.</p>
+            <p class="section-copy"><a href="https://moxfield.com/users/codegoat29" target="_blank" rel="noopener">codegoat29 on Moxfield</a> is preloaded as the default profile. Moxfield does not publish a supported deck-fetch API, so profile deck links are saved here and card-list refreshes still use Moxfield's text export.</p>
             <div id="deck-list" class="deck-list"></div>
 
             <form id="deck-form" class="deck-form" hidden>
@@ -110,9 +115,9 @@
             <div class="section-heading"><div><p class="eyebrow">SCANNER OPTIONS</p><h2 id="settings-title">Settings</h2></div></div>
             <div class="settings-card">
                 <label for="value-threshold">USD value alert threshold</label>
-                <div class="money-input"><span>$</span><input id="value-threshold" type="number" min="0" step="1" value="5"></div>
+                <div class="money-input"><span>$</span><input id="value-threshold" type="number" min="0" step="1" value="2"></div>
                 <label class="switch-row"><span><strong>Deck-need sound</strong><small>One short tone when the card is still needed.</small></span><input id="need-sound" type="checkbox" checked></label>
-                <label class="switch-row"><span><strong>Value sound</strong><small>Only chimes after an exact printing clears the threshold.</small></span><input id="value-sound" type="checkbox" checked></label>
+                <label class="switch-row"><span><strong>Value sound</strong><small>Chimes when the exact printing, or every possible printing, clears the threshold.</small></span><input id="value-sound" type="checkbox" checked></label>
                 <label class="switch-row"><span><strong>Try printing OCR</strong><small>Reads the footer after the name; slower and less reliable.</small></span><input id="printing-ocr" type="checkbox" checked></label>
             </div>
             <div class="settings-card">
@@ -134,6 +139,6 @@
     <script src="/js/site.js"></script>
     <script src="/resources/mtg-scanner/core.js?v=3"></script>
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@7.0.0/dist/tesseract.min.js" crossorigin="anonymous"></script>
-    <script src="/resources/mtg-scanner/app.js?v=4"></script>
+    <script src="/resources/mtg-scanner/app.js?v=5"></script>
 </body>
 </html>

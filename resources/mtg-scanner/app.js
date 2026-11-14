@@ -2,7 +2,17 @@
   'use strict';
   const C = window.MTGScannerCore;
   const STORAGE_KEY = 'dipiazza-mtg-scanner-v1';
-  const DEFAULT_STATE = { decks: [], settings: { threshold: 5, needSound: true, valueSound: true, printingOcr: false, performanceVersion: 2 } };
+  const DEFAULT_STATE = { decks: [], settings: { threshold: 2, needSound: true, valueSound: true, printingOcr: false, performanceVersion: 3 } };
+  const PROFILE_URL = 'https://moxfield.com/users/codegoat29';
+  const PROFILE_DECKS = [
+    ['Heaven\'s Gate: All Members Must Ascend - Clavileño, First of the Blessed', 'https://moxfield.com/decks/u3c9DNw2hUKUeywURgZe8Q'],
+    ['My Counters are Saved to the Cloud - Skullbriar, the Walking Grave', 'https://moxfield.com/decks/v4XpqhWtHkeoDX6Gv9wfoA'],
+    ['Prospect commanders', 'https://moxfield.com/decks/Hm_yD1yLCkCiHffyIfDCqg'],
+    ['The Undead Avengers - Zombie Scarlet Witch', 'https://moxfield.com/decks/9iBgtt4OAkip0DL0gyegoQ'],
+    ['OnlyMoths: 18+ Rads Only - The Wise Mothman', 'https://moxfield.com/decks/L6HvOVoq1k6d9QeXd8Ct_w'],
+    ['You are Overencumbered With 1/1s - Casar Legion\'s Emperor', 'https://moxfield.com/decks/fSOhAW212X6-MJDN1Teecg'],
+    ['PRECON - Peace Offering - Ms. Bumbleflower', 'https://moxfield.com/decks/GSbizXqL7Eixmx5E82jA6A']
+  ];
   const $ = selector => document.querySelector(selector);
   const $$ = selector => [...document.querySelectorAll(selector)];
   const escapeHtml = value => String(value ?? '').replace(/[&<>'"]/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[character]));
@@ -11,15 +21,16 @@
 
   let state = loadState();
   let catalog = null; let catalogEntries = []; let catalogLookup = new Map();
-  let stream = null; let worker = null; let workerPromise = null; let scanning = false; let paused = false; let scanLoopPromise = null;
+  let stream = null; let worker = null; let workerPromise = null; let scanning = false;
   let editingDeckId = null; let resultCard = null; let exactPrinting = null; let resultAlerted = { need: false, value: false };
   let ambiguityShownAt = 0; let ambiguityDismissedUntil = 0;
-  let audioContext = null; const latch = C.createScanLatch(1500); const recognitionGate = C.createRecognitionGate();
+  let audioContext = null; let alertTimer = null;
 
   const refs = {
     status: $('#app-status'), scanState: $('#scan-state'), camera: $('#camera'), cameraStage: $('#camera-stage'), cameraMessage: $('#camera-message'), canvas: $('#ocr-canvas'),
-    start: $('#start-scan'), pause: $('#pause-scan'), stop: $('#stop-scan'), speed: $('#scan-speed'), result: $('#scan-result'), ambiguous: $('#ambiguous'), candidates: $('#candidate-list'),
+    start: $('#start-scan'), scan: $('#scan-card'), stop: $('#stop-scan'), speed: $('#scan-speed'), result: $('#scan-result'), ambiguous: $('#ambiguous'), candidates: $('#candidate-list'),
     cameraRecognition: $('#camera-recognition'), cameraName: $('#camera-card-name'), cameraMeta: $('#camera-card-meta'),
+    alert: $('#scan-alert'), alertLabel: $('#scan-alert-label'), alertName: $('#scan-alert-name'), alertDetail: $('#scan-alert-detail'),
     searchForm: $('#manual-search'), searchInput: $('#card-search'), searchResults: $('#search-results'), deckList: $('#deck-list'), wantedList: $('#wanted-list'),
     deckForm: $('#deck-form'), deckName: $('#deck-name'), deckUrl: $('#deck-url'), deckExport: $('#deck-export'), importReport: $('#import-report')
   };
@@ -29,11 +40,24 @@
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
       if (!saved || !Array.isArray(saved.decks)) return structuredClone(DEFAULT_STATE);
       const loaded = { ...DEFAULT_STATE, ...saved, settings: { ...DEFAULT_STATE.settings, ...(saved.settings || {}) } };
-      if (loaded.settings.performanceVersion !== 2) { loaded.settings.printingOcr = false; loaded.settings.performanceVersion = 2; }
+      if (loaded.settings.performanceVersion !== 3) {
+        loaded.settings.printingOcr = false;
+        if (Number(loaded.settings.threshold) === 5) loaded.settings.threshold = 2;
+        loaded.settings.performanceVersion = 3;
+      }
       return loaded;
     } catch { return structuredClone(DEFAULT_STATE); }
   }
   function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderCounts(); }
+  function seedProfileDecks() {
+    let changed = false;
+    PROFILE_DECKS.forEach(([name, url]) => {
+      if (state.decks.some(deck => deck.url === url)) return;
+      state.decks.push({ id: crypto.randomUUID(), name, url, profileUrl: PROFILE_URL, sourceText: '', includeSideboard: false, includeMaybeboard: false, lastSuccessfulImport: null, cards: [], profileSeed: true });
+      changed = true;
+    });
+    if (changed) saveState();
+  }
   function setStatus(message, tone = '') { refs.status.textContent = message; refs.status.dataset.tone = tone; }
   function setScanState(message, tone = '') { refs.scanState.textContent = message; refs.scanState.className = `status-pill ${tone}`.trim(); }
 
@@ -85,8 +109,8 @@
   function renderDecks() {
     if (!state.decks.length) { refs.deckList.innerHTML = '<div class="deck-card"><h3>No decks yet</h3><p class="deck-meta">Add Phenax, Clavileño, or any Moxfield deck export.</p></div>'; return; }
     refs.deckList.innerHTML = state.decks.map(deck => {
-      const totals = deckTotals(deck); const imported = new Date(deck.lastSuccessfulImport).toLocaleString();
-      return `<article class="deck-card" data-deck="${escapeHtml(deck.id)}"><h3>${escapeHtml(deck.name)}</h3><p class="deck-meta">Last successful import ${escapeHtml(imported)}</p><div class="deck-totals"><span><strong>${totals.deck}</strong>deck qty</span><span><strong>${totals.owned}</strong>owned</span><span><strong>${totals.need}</strong>needed</span></div><div class="deck-actions">${deck.url ? `<a href="${escapeHtml(deck.url)}" target="_blank" rel="noopener">Open Moxfield</a>` : ''}<button data-action="reimport">Re-import export</button><button data-action="delete">Delete</button></div></article>`;
+      const totals = deckTotals(deck); const imported = deck.lastSuccessfulImport ? `Last successful import ${new Date(deck.lastSuccessfulImport).toLocaleString()}` : 'Profile deck saved · add its card list once to enable matching';
+      return `<article class="deck-card" data-deck="${escapeHtml(deck.id)}"><h3>${escapeHtml(deck.name)}</h3><p class="deck-meta">${escapeHtml(imported)}</p><div class="deck-totals"><span><strong>${totals.deck}</strong>deck qty</span><span><strong>${totals.owned}</strong>owned</span><span><strong>${totals.need}</strong>needed</span></div><div class="deck-actions">${deck.url ? `<a href="${escapeHtml(deck.url)}" target="_blank" rel="noopener">Open Moxfield</a>` : ''}<button data-action="reimport">${deck.lastSuccessfulImport ? 'Refresh export' : 'Add card list'}</button><button data-action="delete">Delete</button></div></article>`;
     }).join('');
   }
   function renderWanted() {
@@ -152,20 +176,34 @@
     const select = $('#printing-select');
     select.addEventListener('change', () => { const printing = select.value === '' ? null : printings[Number(select.value)]; renderResult(card, printing); if (printing) maybeValueAlert(printing); });
     $('#foil-toggle').addEventListener('change', () => renderResult(card, selectedPrinting));
-    if (!resultAlerted.need && needed.length) { flashCamera('need'); if (state.settings.needSound) beep(740, .11); resultAlerted.need = true; }
-    if (selectedPrinting) maybeValueAlert(selectedPrinting);
+    const guaranteedValue = selectedPrinting ? exactPrice : (summary.available && summary.min >= state.settings.threshold ? summary.min : null);
+    const newNeed = !resultAlerted.need && needed.length > 0;
+    const newValue = !resultAlerted.value && Number.isFinite(guaranteedValue) && guaranteedValue >= state.settings.threshold;
+    if (newNeed || newValue) {
+      const kind = newNeed && newValue ? 'both' : newNeed ? 'need' : 'value';
+      const detail = newNeed && newValue ? `Needed for ${needed.map(match => match.deckName).join(' + ')} · ${money(guaranteedValue)}` : newNeed ? `Needed for ${needed.map(match => match.deckName).join(' + ')}` : `${money(guaranteedValue)} clears your ${money(state.settings.threshold)} alert`;
+      flashCamera(kind, card.n, detail);
+      if (newNeed && state.settings.needSound) beep(740, .16);
+      if (newValue && state.settings.valueSound) { beep(980, .12, newNeed ? .17 : 0); beep(1180, .16, newNeed ? .31 : .14); }
+      resultAlerted.need ||= newNeed; resultAlerted.value ||= newValue;
+    }
   }
   function maybeValueAlert(printing) {
     const foil = Boolean($('#foil-toggle')?.checked); const value = printingPrice(printing, foil);
-    if (!resultAlerted.value && Number.isFinite(value) && value >= state.settings.threshold) { flashCamera('value'); if (state.settings.valueSound) { beep(980, .09, 0); beep(1180, .12, .11); } resultAlerted.value = true; }
+    if (!resultAlerted.value && Number.isFinite(value) && value >= state.settings.threshold) { flashCamera('value', resultCard?.n || 'Card found', `${money(value)} clears your ${money(state.settings.threshold)} alert`); if (state.settings.valueSound) { beep(980, .12, 0); beep(1180, .16, .14); } resultAlerted.value = true; }
   }
   function registerCard(card, printing = null) {
-    resultAlerted = { need: false, value: false }; renderResult(card, printing); hideCandidates(); recognitionGate.reset();
+    resultAlerted = { need: false, value: false }; renderResult(card, printing); hideCandidates();
   }
 
-  function flashCamera(kind) {
-    refs.cameraStage.classList.remove('alert-need', 'alert-value');
-    requestAnimationFrame(() => { refs.cameraStage.classList.add(`alert-${kind}`); setTimeout(() => refs.cameraStage.classList.remove(`alert-${kind}`), 700); });
+  function flashCamera(kind, name, detail) {
+    clearTimeout(alertTimer);
+    refs.cameraStage.classList.remove('alert-need', 'alert-value', 'alert-both');
+    refs.alert.className = `scan-alert ${kind}`; refs.alert.hidden = false;
+    refs.alertLabel.textContent = kind === 'both' ? 'NEEDED + VALUE ALERT' : kind === 'need' ? 'DECK NEED' : 'VALUE ALERT';
+    refs.alertName.textContent = name; refs.alertDetail.textContent = detail;
+    requestAnimationFrame(() => refs.cameraStage.classList.add(`alert-${kind}`));
+    alertTimer = setTimeout(() => { refs.alert.hidden = true; refs.cameraStage.classList.remove('alert-need', 'alert-value', 'alert-both'); }, 2400);
   }
 
   function beep(frequency, duration, delay = 0) {
@@ -196,25 +234,18 @@
       if (!stream) {
         stream = await navigator.mediaDevices.getUserMedia({ audio: false, video: { facingMode: { ideal: 'environment' }, width: { ideal: 1920 }, height: { ideal: 1080 } } });
         refs.camera.srcObject = stream; await refs.camera.play(); refs.cameraStage.classList.add('streaming');
-        stream.getVideoTracks()[0].addEventListener('ended', () => stopCamera('Camera stopped by Safari. Tap Start scanning to resume.'));
+        stream.getVideoTracks()[0].addEventListener('ended', () => stopCamera('Camera stopped by Safari. Tap Open camera to resume.'));
       }
-      await ensureWorker(); scanning = true; paused = false; refs.start.disabled = true; refs.pause.disabled = false; refs.stop.disabled = false; refs.pause.textContent = 'Pause';
-      setScanState('Scanning', 'live'); setStatus('On-device OCR is active. Hold a card steady in the guide.');
-      if (!scanLoopPromise) scanLoopPromise = scanLoop();
+      await ensureWorker(); refs.start.disabled = true; refs.scan.disabled = false; refs.stop.disabled = false;
+      setScanState('Ready', 'live'); setStatus('Camera ready. Align one card and tap Scan card.');
     } catch (error) {
       setScanState('Camera unavailable'); refs.cameraMessage.textContent = error.name === 'NotAllowedError' ? 'Camera permission was denied. Allow camera access in Safari settings, or use manual search.' : `${error.message} Use manual search below.`;
       refs.start.disabled = false;
     }
   }
-  function pauseCamera() {
-    if (!stream) return;
-    paused = !paused; scanning = !paused; refs.pause.textContent = paused ? 'Resume' : 'Pause';
-    setScanState(paused ? 'Paused' : 'Scanning', paused ? '' : 'live');
-    if (!paused && !scanLoopPromise) scanLoopPromise = scanLoop();
-  }
   function stopCamera(message = 'Camera stopped.') {
-    scanning = false; paused = false; stream?.getTracks().forEach(track => track.stop()); stream = null; refs.camera.srcObject = null; refs.cameraStage.classList.remove('streaming'); refs.cameraMessage.textContent = message;
-    refs.start.disabled = false; refs.pause.disabled = true; refs.stop.disabled = true; refs.pause.textContent = 'Pause'; setScanState('Camera off'); hideCandidates(); recognitionGate.reset();
+    scanning = false; stream?.getTracks().forEach(track => track.stop()); stream = null; refs.camera.srcObject = null; refs.cameraStage.classList.remove('streaming'); refs.cameraMessage.textContent = message;
+    refs.start.disabled = false; refs.scan.disabled = true; refs.stop.disabled = true; setScanState('Camera off'); hideCandidates();
   }
 
   function cropFrame(kind) {
@@ -239,37 +270,28 @@
     const canvas = cropFrame(kind); if (!canvas) return { text: '', confidence: 0 };
     const result = await worker.recognize(canvas); return { text: cleanOcr(result.data.text), confidence: result.data.confidence || 0 };
   }
-  async function scanLoop() {
+  async function scanCard() {
+    if (!stream || scanning) return;
+    scanning = true; refs.scan.disabled = true; setScanState('Scanning card…', 'busy'); hideCandidates();
     try {
-      while (scanning && stream) {
-        const readStarted = performance.now();
-        const read = await recognizeRegion('name');
-        const readSeconds = (performance.now() - readStarted) / 1000;
-        refs.speed.textContent = `Last name read: ${readSeconds.toFixed(1)}s on this device.`;
-        if (!scanning) break;
-        const candidates = C.findCandidates(read.text, catalogEntries, 4); const best = candidates[0]; const margin = best && candidates[1] ? best.score - candidates[1].score : 1;
-        const plausible = best && read.confidence >= 24 && best.score >= .5;
-        const decisive = recognitionGate.observe(plausible ? { key: best.entry.o, score: best.score, confidence: read.confidence, margin } : null);
-        if (plausible) {
-          if (decisive) {
-            const key = best.entry.o;
-            const isNew = latch.observe(key, Date.now());
-            if (isNew) {
-              registerCard(best.entry); setStatus(`${best.entry.n} · ${readSeconds.toFixed(1)}s · OCR ${Math.round(read.confidence)}% · match ${Math.round(best.score * 100)}%`);
-              if (state.settings.printingOcr) {
-                const token = key; const footer = await recognizeRegion('footer');
-                if (latch.current() === token) { const printing = resolvePrinting(best.entry, footer.text); if (printing) renderResult(best.entry, printing); }
-              }
-            }
-            hideCandidates();
-          } else if (recognitionGate.count() >= 2) showCandidates(candidates, read.text);
-        } else {
-          latch.observe(null, Date.now());
+      const readStarted = performance.now(); const read = await recognizeRegion('name');
+      const readSeconds = (performance.now() - readStarted) / 1000;
+      refs.speed.textContent = `Last scan: ${readSeconds.toFixed(1)}s on this device.`;
+      const candidates = C.findCandidates(read.text, catalogEntries, 4); const best = candidates[0]; const margin = best && candidates[1] ? best.score - candidates[1].score : 1;
+      const decisive = best && read.confidence >= 48 && best.score >= .78 && margin >= .1;
+      if (decisive) {
+        registerCard(best.entry); setStatus(`${best.entry.n} · ${readSeconds.toFixed(1)}s · OCR ${Math.round(read.confidence)}% · match ${Math.round(best.score * 100)}%`);
+        if (state.settings.printingOcr) {
+          const footer = await recognizeRegion('footer'); const printing = resolvePrinting(best.entry, footer.text);
+          if (printing) renderResult(best.entry, printing);
         }
-        await wait(50);
+      } else if (candidates.length) {
+        showCandidates(candidates, read.text); setStatus(`Name was uncertain after ${readSeconds.toFixed(1)}s. Tap the correct match in the camera.`);
+      } else {
+        setStatus(`No confident name found after ${readSeconds.toFixed(1)}s. Re-align the title strip and tap Scan card again.`);
       }
-    } catch (error) { setStatus(`OCR paused: ${error.message}. You can resume or use manual search.`); paused = true; scanning = false; setScanState('OCR paused'); refs.pause.textContent = 'Resume'; }
-    finally { scanLoopPromise = null; }
+    } catch (error) { setStatus(`Scan failed: ${error.message}. Try again or use manual search.`); }
+    finally { scanning = false; if (stream) { refs.scan.disabled = false; setScanState('Ready', 'live'); } }
   }
   function resolvePrinting(card, text) {
     const compact = C.normalizeName(text); if (!compact) return null;
@@ -307,14 +329,14 @@
   }
 
   $$('.scanner-tabs button').forEach(button => button.addEventListener('click', () => showTab(button.dataset.tab)));
-  refs.start.addEventListener('click', startCamera); refs.pause.addEventListener('click', pauseCamera); refs.stop.addEventListener('click', () => stopCamera());
+  refs.start.addEventListener('click', startCamera); refs.scan.addEventListener('click', scanCard); refs.stop.addEventListener('click', () => stopCamera());
   $('#new-deck').addEventListener('click', () => openDeckForm()); $('#close-deck-form').addEventListener('click', closeDeckForm); $('#cancel-deck').addEventListener('click', closeDeckForm); refs.deckForm.addEventListener('submit', importDeck);
   $('#deck-file').addEventListener('change', async event => { const file = event.target.files[0]; if (file) refs.deckExport.value = await file.text(); });
   refs.deckList.addEventListener('click', event => { const action = event.target.dataset.action; if (!action) return; const deck = state.decks.find(item => item.id === event.target.closest('[data-deck]').dataset.deck); if (action === 'reimport') openDeckForm(deck); if (action === 'delete' && confirm(`Delete ${deck.name} from this browser?`)) { state.decks = state.decks.filter(item => item !== deck); saveState(); renderAll(); } });
   refs.wantedList.addEventListener('click', event => { if (!event.target.dataset.adjust) return; const article = event.target.closest('[data-deck]'); adjustDeckCard(article.dataset.deck, article.dataset.card, event.target.dataset.adjust, Number(event.target.dataset.delta)); });
   refs.result.addEventListener('click', event => { const action = event.target.dataset.resultAction; if (!action || !resultCard) return; const key = resultCard.o || C.normalizeName(resultCard.n); adjustDeckCard(event.target.dataset.deck, key, action, 1); });
   refs.candidates.addEventListener('click', event => { const index = event.target.closest('[data-candidate]')?.dataset.candidate; if (index === undefined) return; const ids = JSON.parse(refs.candidates.dataset.cards); const card = catalogEntries.find(item => item.o === ids[Number(index)]); if (card) registerCard(card); });
-  $('#dismiss-candidates').addEventListener('click', () => { hideCandidates(true); recognitionGate.reset(); });
+  $('#dismiss-candidates').addEventListener('click', () => hideCandidates(true));
   refs.searchForm.addEventListener('submit', event => { event.preventDefault(); renderSearchResults(refs.searchInput.value); }); refs.searchInput.addEventListener('input', () => { if (refs.searchInput.value.trim().length >= 3) renderSearchResults(refs.searchInput.value); else refs.searchResults.innerHTML = ''; });
   refs.searchResults.addEventListener('click', event => { const index = event.target.closest('[data-search-result]')?.dataset.searchResult; if (index === undefined) return; const ids = JSON.parse(refs.searchResults.dataset.cards); const card = catalogEntries.find(item => item.o === ids[Number(index)]); if (card) { registerCard(card); refs.searchResults.innerHTML = ''; refs.searchInput.value = card.n; } });
   $('#value-threshold').value = state.settings.threshold; $('#need-sound').checked = state.settings.needSound; $('#value-sound').checked = state.settings.valueSound; $('#printing-ocr').checked = state.settings.printingOcr;
@@ -324,12 +346,12 @@
   $('#export-data').addEventListener('click', downloadBackup);
   $('#restore-data').addEventListener('change', async event => { try { const backup = JSON.parse(await event.target.files[0].text()); if (!backup.state?.decks) throw new Error('Not a scanner backup.'); state = { ...DEFAULT_STATE, ...backup.state, settings: { ...DEFAULT_STATE.settings, ...(backup.state.settings || {}) } }; saveState(); renderAll(); setStatus('Backup restored.'); } catch (error) { setStatus(`Restore failed: ${error.message}`); } });
   $('#clear-data').addEventListener('click', () => { if (!confirm('Clear all decks, counts, and scanner settings from this browser?')) return; state = structuredClone(DEFAULT_STATE); saveState(); renderAll(); setStatus('Scanner data cleared.'); });
-  document.addEventListener('visibilitychange', () => { if (document.hidden && stream && scanning) { paused = true; scanning = false; refs.pause.textContent = 'Resume'; setScanState('Paused by Safari'); } });
+  document.addEventListener('visibilitychange', () => { if (document.hidden && stream) stopCamera('Camera paused by Safari. Tap Open camera to resume.'); });
   window.addEventListener('pagehide', () => { stream?.getTracks().forEach(track => track.stop()); worker?.terminate(); });
 
   renderAll();
   try {
-    await loadCatalog();
+    await loadCatalog(); seedProfileDecks(); renderAll();
     const warmOcr = () => ensureWorker(true).catch(() => { /* Manual search remains available if OCR cannot preload. */ });
     if ('requestIdleCallback' in window) requestIdleCallback(warmOcr, { timeout: 1500 }); else setTimeout(warmOcr, 400);
   } catch (error) { setStatus(`${error.message} Manual scanning and deck matching need the catalog; retry in Settings.`); }
