@@ -2,7 +2,7 @@
   'use strict';
   const C = window.MTGScannerCore;
   const STORAGE_KEY = 'dipiazza-mtg-scanner-v1';
-  const DEFAULT_STATE = { decks: [], settings: { threshold: 5, needSound: true, valueSound: true, printingOcr: true } };
+  const DEFAULT_STATE = { decks: [], settings: { threshold: 5, needSound: true, valueSound: true, printingOcr: false, performanceVersion: 2 } };
   const $ = selector => document.querySelector(selector);
   const $$ = selector => [...document.querySelectorAll(selector)];
   const escapeHtml = value => String(value ?? '').replace(/[&<>'"]/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[character]));
@@ -11,7 +11,7 @@
 
   let state = loadState();
   let catalog = null; let catalogEntries = []; let catalogLookup = new Map();
-  let stream = null; let worker = null; let scanning = false; let paused = false; let scanLoopPromise = null;
+  let stream = null; let worker = null; let workerPromise = null; let scanning = false; let paused = false; let scanLoopPromise = null;
   let editingDeckId = null; let resultCard = null; let exactPrinting = null; let resultAlerted = { need: false, value: false };
   let ambiguityShownAt = 0; let ambiguityDismissedUntil = 0;
   let audioContext = null; const latch = C.createScanLatch(1500); const recognitionGate = C.createRecognitionGate();
@@ -27,7 +27,10 @@
   function loadState() {
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-      return saved && Array.isArray(saved.decks) ? { ...DEFAULT_STATE, ...saved, settings: { ...DEFAULT_STATE.settings, ...(saved.settings || {}) } } : structuredClone(DEFAULT_STATE);
+      if (!saved || !Array.isArray(saved.decks)) return structuredClone(DEFAULT_STATE);
+      const loaded = { ...DEFAULT_STATE, ...saved, settings: { ...DEFAULT_STATE.settings, ...(saved.settings || {}) } };
+      if (loaded.settings.performanceVersion !== 2) { loaded.settings.printingOcr = false; loaded.settings.performanceVersion = 2; }
+      return loaded;
     } catch { return structuredClone(DEFAULT_STATE); }
   }
   function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); renderCounts(); }
@@ -136,8 +139,9 @@
     resultCard = card; exactPrinting = selectedPrinting;
     const needs = C.deckNeeds(card, state.decks); const needed = needs.filter(match => match.needed > 0);
     const foil = Boolean($('#foil-toggle')?.checked); const summary = C.priceSummary(card, foil); const exactPrice = printingPrice(selectedPrinting, foil);
+    const cameraPrice = selectedPrinting ? money(exactPrice) : summary.available ? (summary.min === summary.max ? money(summary.min) : `${money(summary.min)}–${money(summary.max)}`) : 'Price unavailable';
     refs.cameraRecognition.hidden = false; refs.cameraName.textContent = card.n;
-    refs.cameraMeta.textContent = needed.length ? `Needed for ${needed.map(match => match.deckName).join(' + ')}` : 'Not currently needed by an imported deck';
+    refs.cameraMeta.textContent = `${needed.length ? `Needed for ${needed.map(match => match.deckName).join(' + ')}` : 'Not currently needed'} · ${cameraPrice}`;
     let priceHtml;
     if (selectedPrinting) priceHtml = `<span class="price-value">${money(exactPrice)}</span><small>Exact printing · ${escapeHtml(selectedPrinting[0].toUpperCase())} #${escapeHtml(selectedPrinting[1])}</small>`;
     else if (!summary.available) priceHtml = '<span class="price-value">Price unavailable</span><small>No USD price from Scryfall.</small>';
@@ -148,15 +152,20 @@
     const select = $('#printing-select');
     select.addEventListener('change', () => { const printing = select.value === '' ? null : printings[Number(select.value)]; renderResult(card, printing); if (printing) maybeValueAlert(printing); });
     $('#foil-toggle').addEventListener('change', () => renderResult(card, selectedPrinting));
-    if (!resultAlerted.need && needed.length && state.settings.needSound) { beep(740, .11); resultAlerted.need = true; }
+    if (!resultAlerted.need && needed.length) { flashCamera('need'); if (state.settings.needSound) beep(740, .11); resultAlerted.need = true; }
     if (selectedPrinting) maybeValueAlert(selectedPrinting);
   }
   function maybeValueAlert(printing) {
     const foil = Boolean($('#foil-toggle')?.checked); const value = printingPrice(printing, foil);
-    if (!resultAlerted.value && state.settings.valueSound && Number.isFinite(value) && value >= state.settings.threshold) { beep(980, .09, 0); beep(1180, .12, .11); resultAlerted.value = true; }
+    if (!resultAlerted.value && Number.isFinite(value) && value >= state.settings.threshold) { flashCamera('value'); if (state.settings.valueSound) { beep(980, .09, 0); beep(1180, .12, .11); } resultAlerted.value = true; }
   }
   function registerCard(card, printing = null) {
     resultAlerted = { need: false, value: false }; renderResult(card, printing); hideCandidates(); recognitionGate.reset();
+  }
+
+  function flashCamera(kind) {
+    refs.cameraStage.classList.remove('alert-need', 'alert-value');
+    requestAnimationFrame(() => { refs.cameraStage.classList.add(`alert-${kind}`); setTimeout(() => refs.cameraStage.classList.remove(`alert-${kind}`), 700); });
   }
 
   function beep(frequency, duration, delay = 0) {
@@ -168,13 +177,17 @@
     } catch { /* Sound is optional. */ }
   }
 
-  async function ensureWorker() {
+  async function ensureWorker(silent = false) {
     if (worker) return worker;
+    if (workerPromise) return workerPromise;
     if (!window.Tesseract) throw new Error('OCR could not load. Manual search is still available.');
-    setScanState('Loading OCR…', 'busy');
-    worker = await Tesseract.createWorker('eng', 1, { logger: message => { if (message.status === 'loading tesseract core' || message.status === 'loading language traineddata') setStatus(`Preparing on-device OCR · ${Math.round((message.progress || 0) * 100)}%`); } });
-    await worker.setParameters({ tessedit_pageseg_mode: '7', preserve_interword_spaces: '1' });
-    return worker;
+    if (!silent) setScanState('Starting…', 'busy');
+    workerPromise = (async () => {
+      const nextWorker = await Tesseract.createWorker('eng', 1, { logger: message => { if (!silent && (message.status === 'loading tesseract core' || message.status === 'loading language traineddata')) setStatus(`Preparing on-device OCR · ${Math.round((message.progress || 0) * 100)}%`); } });
+      await nextWorker.setParameters({ tessedit_pageseg_mode: '7', preserve_interword_spaces: '1' });
+      worker = nextWorker; return worker;
+    })();
+    try { return await workerPromise; } finally { workerPromise = null; }
   }
   async function startCamera() {
     if (!catalog) { setStatus('Wait for the card catalog to finish loading.'); return; }
@@ -215,7 +228,7 @@
     const cardWidth = guideRect.width / scale; const cardHeight = guideRect.height / scale;
     const region = kind === 'footer' ? { x: .05, y: .86, w: .9, h: .11 } : { x: .055, y: .035, w: .89, h: .105 };
     const source = { x: cardX + cardWidth * region.x, y: cardY + cardHeight * region.y, w: cardWidth * region.w, h: cardHeight * region.h };
-    const canvas = refs.canvas; canvas.width = 1200; canvas.height = Math.max(120, Math.round(canvas.width * source.h / source.w));
+    const canvas = refs.canvas; canvas.width = 760; canvas.height = Math.max(90, Math.round(canvas.width * source.h / source.w));
     const context = canvas.getContext('2d', { willReadFrequently: true }); context.drawImage(video, source.x, source.y, source.w, source.h, 0, 0, canvas.width, canvas.height);
     const image = context.getImageData(0, 0, canvas.width, canvas.height); const pixels = image.data;
     for (let index = 0; index < pixels.length; index += 4) { const gray = pixels[index] * .299 + pixels[index + 1] * .587 + pixels[index + 2] * .114; const value = Math.max(0, Math.min(255, (gray - 128) * 1.65 + 128)); pixels[index] = pixels[index + 1] = pixels[index + 2] = value; }
@@ -229,7 +242,6 @@
   async function scanLoop() {
     try {
       while (scanning && stream) {
-        setScanState('Reading…', 'busy');
         const readStarted = performance.now();
         const read = await recognizeRegion('name');
         const readSeconds = (performance.now() - readStarted) / 1000;
@@ -250,11 +262,11 @@
               }
             }
             hideCandidates();
-          } else if (recognitionGate.count() >= 3) showCandidates(candidates, read.text);
+          } else if (recognitionGate.count() >= 2) showCandidates(candidates, read.text);
         } else {
           latch.observe(null, Date.now());
         }
-        setScanState('Scanning', 'live'); await wait(220);
+        await wait(50);
       }
     } catch (error) { setStatus(`OCR paused: ${error.message}. You can resume or use manual search.`); paused = true; scanning = false; setScanState('OCR paused'); refs.pause.textContent = 'Resume'; }
     finally { scanLoopPromise = null; }
@@ -316,6 +328,10 @@
   window.addEventListener('pagehide', () => { stream?.getTracks().forEach(track => track.stop()); worker?.terminate(); });
 
   renderAll();
-  try { await loadCatalog(); } catch (error) { setStatus(`${error.message} Manual scanning and deck matching need the catalog; retry in Settings.`); }
+  try {
+    await loadCatalog();
+    const warmOcr = () => ensureWorker(true).catch(() => { /* Manual search remains available if OCR cannot preload. */ });
+    if ('requestIdleCallback' in window) requestIdleCallback(warmOcr, { timeout: 1500 }); else setTimeout(warmOcr, 400);
+  } catch (error) { setStatus(`${error.message} Manual scanning and deck matching need the catalog; retry in Settings.`); }
   window.MTGBulkScanner = { parseDeck: C.parseDeckExport, getState: () => structuredClone(state), search: searchCards };
 })();

@@ -43,12 +43,13 @@ test('held cards alert once and the same name can register after leaving', () =>
   assert.equal(latch.observe('Counterspell', 2200), true);
 });
 
-test('recognition requires repeated agreement and resets when the guess changes', () => {
+test('recognition accepts an exceptionally clear read or two agreeing normal reads', () => {
   const gate = C.createRecognitionGate();
-  const strong = { key: 'counterspell', score: .96, confidence: 80, margin: .2 };
-  assert.equal(gate.observe(strong), false);
-  assert.equal(gate.observe(strong), true);
-  assert.equal(gate.observe({ key: 'sol-ring', score: .83, confidence: 61, margin: .14 }), false);
+  assert.equal(gate.observe({ key: 'counterspell', score: .99, confidence: 90, margin: .24 }), true);
+  const normal = { key: 'sol-ring', score: .84, confidence: 61, margin: .14 };
+  assert.equal(gate.observe(normal), false);
+  assert.equal(gate.observe(normal), true);
+  assert.equal(gate.observe({ key: 'island', score: .82, confidence: 58, margin: .12 }), false);
   assert.equal(gate.count(), 1);
   assert.equal(gate.observe(null), false);
   assert.equal(gate.count(), 0);

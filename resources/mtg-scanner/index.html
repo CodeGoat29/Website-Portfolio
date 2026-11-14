@@ -7,7 +7,7 @@
     <title>MTG Bulk Scanner | DiPiazza</title>
     <link rel="icon" type="image/png" href="/images/dipiazza-logo-20260925.png">
     <link rel="stylesheet" href="/css/styles.css?v=server-logo-20260921">
-    <link rel="stylesheet" href="/resources/mtg-scanner/scanner.css?v=2">
+    <link rel="stylesheet" href="/resources/mtg-scanner/scanner.css?v=3">
 </head>
 <body class="scanner-body">
     <a class="skip-link" href="#scanner-main">Skip to scanner</a>
@@ -40,14 +40,14 @@
 
         <section class="tab-panel active" data-panel="scan" aria-labelledby="scan-title">
             <div class="scan-heading">
-                <div><p class="eyebrow">CONTINUOUS SCAN</p><h2 id="scan-title">Flip cards without tapping</h2></div>
+                <div><p class="eyebrow">FAST SCAN</p><h2 id="scan-title">Scan cards continuously</h2></div>
                 <span id="scan-state" class="status-pill">Camera off</span>
             </div>
 
             <div class="camera-stage" id="camera-stage">
                 <video id="camera" playsinline muted aria-label="Rear camera preview"></video>
                 <div class="card-guide" aria-hidden="true"><span>Align card here</span><i></i></div>
-                <div class="camera-message" id="camera-message">Tap Start scanning to use the rear camera.</div>
+                <div class="camera-message" id="camera-message">Tap Start once, then hold each card inside the guide.</div>
                 <div id="camera-recognition" class="camera-recognition" hidden>
                     <span>RECOGNIZED</span>
                     <strong id="camera-card-name"></strong>
@@ -67,7 +67,7 @@
                 <button type="button" id="pause-scan" class="secondary" disabled>Pause</button>
                 <button type="button" id="stop-scan" class="secondary" disabled>Stop</button>
             </div>
-            <p class="scan-tip">Keep the card upright and fill the guide. Hold it still until the name appears, then flip to the next card. <span id="scan-speed">OCR timing appears after the first read.</span></p>
+            <p class="scan-tip">Hold the card upright until its name appears, then move straight to the next card. <span id="scan-speed">OCR timing appears after the first read.</span></p>
 
             <section id="scan-result" class="scan-result empty" aria-live="polite">
                 <div class="empty-result"><span>✦</span><h3>Ready for a card</h3><p>Results stay here until the next card is recognized.</p></div>
@@ -132,8 +132,8 @@
     <footer class="scanner-footer"><a href="/resources/">← Back to Resources</a><p>Card identity and prices from Scryfall. Prices are estimates, not offers.</p></footer>
 
     <script src="/js/site.js"></script>
-    <script src="/resources/mtg-scanner/core.js?v=2"></script>
+    <script src="/resources/mtg-scanner/core.js?v=3"></script>
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@7.0.0/dist/tesseract.min.js" crossorigin="anonymous"></script>
-    <script src="/resources/mtg-scanner/app.js?v=3"></script>
+    <script src="/resources/mtg-scanner/app.js?v=4"></script>
 </body>
 </html>
