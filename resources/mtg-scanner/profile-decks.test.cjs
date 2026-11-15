@@ -10,20 +10,23 @@ function loadProfile() {
   return context.window.MTGProfileDecks;
 }
 
-test('the deployed profile contains all seven Moxfield decks and board snapshots', () => {
+test('the deployed profile contains the current six Moxfield decks and board snapshots', () => {
   const profile = loadProfile();
-  assert.equal(profile.decks.length, 7);
+  assert.equal(profile.decks.length, 6);
   assert.deepEqual(
     JSON.parse(JSON.stringify(profile.decks.map(deck => Object.fromEntries(Object.entries(deck.boards).map(([board, cards]) => [board, cards.reduce((sum, card) => sum + card.q, 0)]))))),
     [
       { mainboard: 100, sideboard: 6, considering: 22 },
       { mainboard: 100, sideboard: 21, considering: 10 },
-      { mainboard: 8, sideboard: 0, considering: 0 },
+      { mainboard: 106, sideboard: 0, considering: 0 },
       { mainboard: 100, sideboard: 26, considering: 102 },
       { mainboard: 100, sideboard: 18, considering: 4 },
-      { mainboard: 100, sideboard: 7, considering: 0 },
-      { mainboard: 100, sideboard: 0, considering: 0 }
+      { mainboard: 100, sideboard: 7, considering: 0 }
     ]
+  );
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(profile.decks.map(deck => deck.id))),
+    ['clavileno', 'skullbriar', 'top-secret-project', 'zombie-scarlet-witch', 'mothman', 'caesar']
   );
   profile.decks.forEach(deck => assert.match(deck.url, /^https:\/\/moxfield\.com\/decks\//));
 });

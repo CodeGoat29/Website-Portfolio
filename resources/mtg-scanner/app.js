@@ -45,7 +45,7 @@
     catalogEntries.forEach(card => { catalogLookup.set(C.normalizeName(card.n), card); (card.a || []).forEach(alias => catalogLookup.set(C.normalizeName(alias), card)); });
     resolveDeckIdentities();
     const date = new Date(catalog.updatedAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
-    setStatus(`${catalog.cards.length.toLocaleString()} card identities ready · 7 Moxfield decks matched · prices dated ${date}`);
+    setStatus(`${catalog.cards.length.toLocaleString()} card identities ready · ${profile.decks.length} Moxfield decks matched · prices dated ${date}`);
     $('#catalog-details').textContent = `${catalog.source}. ${catalog.cards.length.toLocaleString()} card identities; price snapshot ${date}. The bundled catalog loads automatically with the page.`;
   }
 
@@ -201,11 +201,14 @@
       audioContext ||= new (window.AudioContext || window.webkitAudioContext)(); await audioContext.resume();
       if (!stream) {
         stream = await navigator.mediaDevices.getUserMedia({ audio: false, video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 }, height: { ideal: 720 } } });
+        const track = stream.getVideoTracks()[0];
+        const capabilities = track.getCapabilities?.();
+        if (capabilities?.focusMode?.includes('continuous')) await track.applyConstraints({ advanced: [{ focusMode: 'continuous' }] }).catch(() => {});
         refs.camera.srcObject = stream; await refs.camera.play(); refs.cameraStage.classList.add('streaming');
         stream.getVideoTracks()[0].addEventListener('ended', () => stopCamera('Camera stopped by Safari. Tap Start scanning to resume.'));
       }
       await ensureWorker(); scanActive = true; refs.start.disabled = true; refs.pause.disabled = false; refs.stop.disabled = false; refs.pause.textContent = 'Pause';
-      setScanState('Scanning', 'live'); setStatus('Continuous scanning is active. Hold one card at a time inside the guide.');
+      setScanState('Scanning', 'live'); setStatus('Continuous scanning is active. Keep the printed card name sharp inside the green band.');
       if (!scanTask) scanTask = scanLoop().finally(() => { scanTask = null; });
     } catch (error) {
       setScanState('Camera unavailable'); refs.cameraMessage.textContent = error.name === 'NotAllowedError' ? 'Camera permission was denied. Allow camera access in Safari settings, or use manual search.' : `${error.message} Use manual search below.`; refs.start.disabled = false;
@@ -226,8 +229,8 @@
     const scale = Math.max(stageRect.width / video.videoWidth, stageRect.height / video.videoHeight); const visibleWidth = stageRect.width / scale; const visibleHeight = stageRect.height / scale;
     const offsetX = (video.videoWidth - visibleWidth) / 2; const offsetY = (video.videoHeight - visibleHeight) / 2;
     const cardX = offsetX + (guideRect.left - stageRect.left) / scale; const cardY = offsetY + (guideRect.top - stageRect.top) / scale; const cardWidth = guideRect.width / scale; const cardHeight = guideRect.height / scale;
-    const source = { x: cardX + cardWidth * .055, y: cardY + cardHeight * .035, w: cardWidth * .89, h: cardHeight * .105 };
-    const canvas = refs.canvas; canvas.width = 480; canvas.height = Math.max(72, Math.round(canvas.width * source.h / source.w));
+    const source = { x: cardX + cardWidth * .055, y: cardY + cardHeight * .035, w: cardWidth * .89, h: cardHeight * .09 };
+    const canvas = refs.canvas; canvas.width = 384; canvas.height = Math.max(52, Math.round(canvas.width * source.h / source.w));
     const context = canvas.getContext('2d', { willReadFrequently: true }); context.drawImage(video, source.x, source.y, source.w, source.h, 0, 0, canvas.width, canvas.height);
     const image = context.getImageData(0, 0, canvas.width, canvas.height); const pixels = image.data;
     for (let index = 0; index < pixels.length; index += 4) { const gray = pixels[index] * .299 + pixels[index + 1] * .587 + pixels[index + 2] * .114; const value = Math.max(0, Math.min(255, (gray - 128) * 1.65 + 128)); pixels[index] = pixels[index + 1] = pixels[index + 2] = value; }

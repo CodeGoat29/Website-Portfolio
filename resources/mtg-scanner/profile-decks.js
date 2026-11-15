@@ -228,7 +228,7 @@ Cavern of Souls`)
   };
 
   window.MTGProfileDecks = {
-    updatedAt: '2026-11-14',
+    updatedAt: '2026-11-15',
     profile: 'https://moxfield.com/users/codegoat29',
     decks: [
       {
@@ -479,18 +479,107 @@ Strong Back`)
         }
       },
       {
-        id: 'prospects',
-        name: 'Prospect commanders',
-        url: 'https://moxfield.com/decks/Hm_yD1yLCkCiHffyIfDCqg',
+        id: 'top-secret-project',
+        name: 'TOP SECRET PROJECT',
+        url: 'https://moxfield.com/decks/iiyl_Y4V2EOWjqlUzNFo9Q',
         boards: {
-          mainboard: cards(`Animar, Soul of Elements
-Atla Palani, Nest Tender
-Baylen, the Haymaker
-Elsha of the Infinite
-Glarb, Calamity's Augur
-Hazezon, Shaper of Sand
-Henzie "Toolbox" Torre
-Nick Fury, Agent of S.H.I.E.L.D.`),
+          mainboard: cards(`Hashaton, Scarab's Fist
+Adarkar Wastes
+An Offer You Can't Refuse
+Ancient Silver Dragon
+Animate Dead
+Arcane Denial
+Arcane Signet
+Archfiend of Despair
+Archfiend of Ifnir
+Archon of Cruelty
+Auton Soldier
+Avacyn, Angel of Hope
+Azorius Signet
+Bone Miser
+Caves of Koilos
+Cephalid Coliseum
+City of Brass
+Command Tower
+Consecrated Sphinx
+Dance of the Dead
+Deserted Beach
+Diamond Lion
+Dimir Signet
+Drowned Catacomb
+Elesh Norn, Grand Cenobite
+Emeria Shepherd
+Exotic Orchard
+Exquisite Archangel
+Fellwar Stone
+Flooded Strand
+Frantic Search
+Geier Reach Sanitarium
+Ghostly Pilferer
+Glacial Fortress
+Godless Shrine
+Hallowed Fountain
+Hullbreaker Horror
+Iron-Shield Elf
+4 Island
+Isolated Chapel
+Jin-Gitaxias, Core Augur
+Jin-Gitaxias, Progress Tyrant
+Joo Dee, Public Servant
+Kitsa, Otterball Elite
+Ledger Shredder
+Lightning Greaves
+Likeness Looter
+Marsh Flats
+Merfolk Looter
+Morphic Pool
+Mox Amber
+Nezahal, Primal Tide
+Oblivion Crown
+Ori, Plate Stacker
+Orzhov Signet
+Overlord of the Floodpits
+4 Plains
+Polluted Delta
+Psychic Frog
+Putrid Imp
+Raffine, Scheming Seer
+Raffine's Tower
+Reanimate
+Rona, Herald of Invasion / Rona, Tolarian Obliterator
+Sea of Clouds
+Shattered Sanctum
+Sheoldred, Whispering One
+Shipwreck Marsh
+Shorikai, Genesis Engine
+Siren Stormtamer
+Skirge Familiar
+Smothering Tithe
+Sol Ring
+Spellskite
+Springleaf Drum
+4 Swamp
+Swan Song
+Swiftfoot Boots
+Swords to Plowshares
+Talisman of Dominance
+Talisman of Hierarchy
+Talisman of Progress
+The Underworld Cookbook
+Tireless Tribe
+Tortured Existence
+Toxrill, the Corrosive
+Unctus, Grand Metatect
+Underground River
+Undertaker
+Valgavoth, Terror Eater
+Vault of Champions
+Vohar, Vodalian Desecrator
+Void Winnower
+Wandering Archaic / Explore the Vastlands
+Watery Grave
+Windfall
+Wonderscape Sage`),
           sideboard: [],
           considering: []
         }
@@ -723,106 +812,6 @@ Boromir, Warden of the Tower
 Darksteel Mutation
 Goblin Rabblemaster
 Powerbalance`),
-          considering: []
-        }
-      },
-      {
-        id: 'bumbleflower',
-        name: 'PRECON - Peace Offering - Ms. Bumbleflower',
-        url: 'https://moxfield.com/decks/GSbizXqL7Eixmx5E82jA6A',
-        boards: {
-          mainboard: cards(`Ms. Bumbleflower
-Adarkar Wastes
-An Offer You Can't Refuse
-Arcane Signet
-Baird, Steward of Argive
-Bloodroot Apothecary
-Body of Knowledge
-Broken Wings
-Brushland
-Canopy Vista
-Chasm Skulker
-Coiling Oracle
-Command Tower
-Communal Brewing
-Coveted Jewel
-Cultivate
-Evolving Wilds
-Exotic Orchard
-Faeburrow Elder
-Farseek
-Fellwar Stone
-Fisher's Talent
-Flooded Grove
-4 Forest
-Forgotten Ancient
-Generous Gift
-Ghirapur Orrery
-Glacial Fortress
-Hinterland Harbor
-Hoofprints of the Stag
-Illusionist's Gambit
-Intellectual Offering
-4 Island
-Jolly Gerbils
-Jolrael, Mwonvuli Recluse
-Kalonian Hydra
-Kwain, Itinerant Meddler
-Long River's Pull
-Loran of the Third Path
-Managorger Hydra
-Mangara, the Diplomat
-Martial Impetus
-Mind Stone
-Mr. Foxglove
-Octomancer
-Overflowing Basin
-Peerless Recycling
-Perch Protection
-Perplexing Test
-4 Plains
-Prairie Stream
-Promise of Loyalty
-Psychosis Crawler
-Razorverge Thicket
-Realm-Cloaked Giant / Cast Off
-Reliquary Tower
-Riot Control
-Rishkar, Peema Renegade
-Rites of Flourishing
-Seachrome Coast
-Seaside Citadel
-Secret Rendezvous
-Selvala, Explorer Returned
-Simic Ascendancy
-Skycloud Expanse
-Sol Ring
-Sphinx of Enlightenment
-Spore Frog
-Steelburr Champion
-Sungrass Prairie
-Sunpetal Grove
-Sunscorch Regent
-Swiftfoot Boots
-Swords to Plowshares
-Tamiyo, Field Researcher
-Temple of Enlightenment
-Temple of Mystery
-Temple of Plenty
-Tempt with Bunnies
-Tempt with Discovery
-Tenuous Truce
-Terramorphic Expanse
-Thought Vessel
-Thriving Grove
-Thriving Heath
-Thriving Isle
-Triskaidekaphile
-Twenty-Toed Toad
-Wear Down
-Wizard Class
-Yavimaya Coast`),
-          sideboard: [],
           considering: []
         }
       }

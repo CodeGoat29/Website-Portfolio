@@ -7,7 +7,7 @@
     <title>MTG Bulk Scanner | DiPiazza</title>
     <link rel="icon" type="image/png" href="/images/dipiazza-logo-20260925.png">
     <link rel="stylesheet" href="/css/styles.css?v=server-logo-20260921">
-    <link rel="stylesheet" href="/resources/mtg-scanner/scanner.css?v=6">
+    <link rel="stylesheet" href="/resources/mtg-scanner/scanner.css?v=7">
 </head>
 <body class="scanner-body">
     <a class="skip-link" href="#scanner-main">Skip to scanner</a>
@@ -22,19 +22,19 @@
 
         <nav class="scanner-tabs" aria-label="Scanner sections">
             <button type="button" class="active" data-tab="scan">Scan</button>
-            <button type="button" data-tab="decks">Decks <span id="deck-count">7</span></button>
+            <button type="button" data-tab="decks">Decks <span id="deck-count">6</span></button>
             <button type="button" data-tab="settings">Settings</button>
         </nav>
 
         <p id="app-status" class="app-status" role="status">Loading the Scryfall catalog…</p>
 
         <section class="tab-panel active" data-panel="scan" aria-labelledby="scan-title">
-            <div class="scan-heading"><div><p class="eyebrow">CONTINUOUS SCAN</p><h2 id="scan-title">Flip through cards hands-free</h2></div><span id="scan-state" class="status-pill">Camera off</span></div>
+            <div class="scan-heading"><div><p class="eyebrow">CONTINUOUS SCAN</p><h2 id="scan-title">Aim at the card name</h2></div><span id="scan-state" class="status-pill">Camera off</span></div>
 
             <div class="camera-stage" id="camera-stage">
                 <video id="camera" playsinline muted aria-label="Rear camera preview"></video>
-                <div class="card-guide" aria-hidden="true"><span>Align card here</span><i></i></div>
-                <div class="camera-message" id="camera-message">Tap Start scanning once, then hold cards inside the guide.</div>
+                <div class="card-guide" aria-hidden="true"><span class="name-strip-guide"><b>FOCUS CARD NAME HERE</b></span><i></i></div>
+                <div class="camera-message" id="camera-message">Tap Start scanning, then put the card name inside the green band.</div>
                 <div id="scan-alert" class="scan-alert" hidden role="alert"><span id="scan-alert-label"></span><strong id="scan-alert-name"></strong><small id="scan-alert-detail"></small></div>
                 <div id="camera-recognition" class="camera-recognition" hidden><span>RECOGNIZED</span><strong id="camera-card-name"></strong><small id="camera-card-meta"></small></div>
                 <section id="ambiguous" class="camera-candidates" hidden aria-labelledby="ambiguous-title">
@@ -48,7 +48,7 @@
                 <button type="button" id="pause-scan" class="secondary" disabled>Pause</button>
                 <button type="button" id="stop-scan" class="secondary" disabled>Stop</button>
             </div>
-            <p class="scan-tip">The camera reads one card at a time and keeps the result visible while you move to the next card. <span id="scan-speed">OCR timing appears after the first read.</span></p>
+            <p class="scan-tip"><strong>Focus on the printed card name, not the artwork.</strong> Keep the whole card inside the frame and move it closer until the name is sharp inside the green band. <span id="scan-speed">OCR timing appears after the first read.</span></p>
 
             <section id="scan-result" class="scan-result empty" aria-live="polite"><div class="empty-result"><span>✦</span><h3>Ready for a card</h3><p>Deck matches and price estimates appear here.</p></div></section>
 
@@ -61,7 +61,7 @@
 
         <section class="tab-panel" data-panel="decks" aria-labelledby="decks-title" hidden>
             <div class="section-heading"><div><p class="eyebrow">MOXFIELD PROFILE</p><h2 id="decks-title">codegoat29 decks</h2></div></div>
-            <p class="section-copy">These are the seven public decks on <a href="https://moxfield.com/users/codegoat29" target="_blank" rel="noopener">your Moxfield profile</a>. Open a card list to browse mainboard cards by color and rarity, with sideboard and considering cards kept separate.</p>
+            <p class="section-copy">These are the six public decks on <a href="https://moxfield.com/users/codegoat29" target="_blank" rel="noopener">your Moxfield profile</a>. Open a card list to browse mainboard cards by color and rarity, with sideboard and considering cards kept separate.</p>
             <div id="deck-list" class="deck-list"></div>
         </section>
 
@@ -81,8 +81,8 @@
 
     <script src="/js/site.js"></script>
     <script src="/resources/mtg-scanner/core.js?v=3"></script>
-    <script src="/resources/mtg-scanner/profile-decks.js?v=1"></script>
+    <script src="/resources/mtg-scanner/profile-decks.js?v=2"></script>
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@7.0.0/dist/tesseract.min.js" crossorigin="anonymous"></script>
-    <script src="/resources/mtg-scanner/app.js?v=7"></script>
+    <script src="/resources/mtg-scanner/app.js?v=8"></script>
 </body>
 </html>

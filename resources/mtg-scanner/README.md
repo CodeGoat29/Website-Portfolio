@@ -4,7 +4,7 @@ The scanner is a static, mobile-first page designed for iPhone Safari. One tap o
 
 ## Bundled decks
 
-`profile-decks.js` contains the seven public decks from the `codegoat29` Moxfield profile. Each deck includes its Moxfield URL plus separate mainboard, sideboard, and considering lists. The Decks screen fetches current Scryfall color and rarity metadata to organize those bundled lists for browsing.
+`profile-decks.js` contains the six public decks from the `codegoat29` Moxfield profile. Each deck includes its Moxfield URL plus separate mainboard, sideboard, and considering lists. The Decks screen fetches current Scryfall color and rarity metadata to organize those bundled lists for browsing.
 
 Update `profile-decks.js` when the Moxfield profile changes. Moxfield does not provide a supported public, unauthenticated profile/deck import API, so the deployed deck snapshot is intentionally explicit rather than depending on a fragile runtime scrape.
 
